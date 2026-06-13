@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/schemas/UserUpdateArgs",
+  "title": "UserUpdateArgs",
+  "description": "User update options",
+  "properties": {
+    "dateOptionId": {
+      "description": "The id of the date format to use when displaying dates to this user. These options are defined in Admin > Configuration.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "displayName": {
+      "description": "The user\u2019s name as displayed in the user interface.",
+      "type": "string"
+    },
+    "duoTwoFactor": {
+      "description": "Whether Duo two-factor authentication is enabled.",
+      "type": "boolean"
+    },
+    "emailAddress": {
+      "description": "The user's email address. Used by the system to send reports, access requests, and other notifications.",
+      "type": "string"
+    },
+    "enabled": {
+      "description": "Whether the user account is enabled. Disabled users are unable to log in and do not consume a user license.",
+      "type": "boolean"
+    },
+    "fido2TwoFactor": {
+      "description": "Whether FIDO2 two-factor authentication is enabled.",
+      "type": "boolean"
+    },
+    "groupOwners": {
+      "description": "A list of group ids for the groups that can manage this user. If not set, the user is managed by all users with the \u2018Administer Users\u2019 role permission.",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "type": "array"
+    },
+    "id": {
+      "description": "User ID. Must match ID in path.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 1
+    },
+    "isApplicationAccount": {
+      "description": "Whether this is an application account. Application accounts are used for automation, cannot log in using the UI, and do not consume a user license.",
+      "type": "boolean"
+    },
+    "isGroupOwnerUpdate": {
+      "description": "Whether the user is managed by the groups specified in GroupOwners or is managed by all users with the \u2018Administer Users\u2019 role permission.",
+      "type": "boolean"
+    },
+    "isLockedOut": {
+      "description": "Whether the user is locked out. A locked out user cannot log in.",
+      "type": "boolean"
+    },
+    "loginFailures": {
+      "description": "Number of login failures to allow before the account is locked out. Set to 0 for unlimited login attempts.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": 0
+    },
+    "oathTwoFactor": {
+      "description": "Whether OATH two-factor authentication is enabled.",
+      "type": "boolean"
+    },
+    "password": {
+      "description": "The password used by local accounts to log in.",
+      "type": "string"
+    },
+    "radiusTwoFactor": {
+      "description": "Whether RADIUS two-factor authentication is enabled.",
+      "type": "boolean"
+    },
+    "radiusUserName": {
+      "description": "When a user account uses RADIUS two-factor authentication, this property is the user name of the RADIUS account used to authenticate this user.",
+      "type": "string"
+    },
+    "timeOptionId": {
+      "description": "The id of the time format to use when displaying times to this user. These options are defined in Admin > Configuration.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "twoFactor": {
+      "description": "Whether two-factor authentication is enabled.",
+      "type": "boolean"
+    },
+    "unixAuthenticationMethod": {
+      "$ref": "#/components/schemas/UnixAuthenticationMethodType"
+    }
+  },
+  "type": "object"
+}

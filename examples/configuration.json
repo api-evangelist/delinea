@@ -1,0 +1,1251 @@
+{
+  "category": "configuration",
+  "description": "Example API requests and responses for configuration endpoints in Delinea Secret Server REST API",
+  "examples": [
+    {
+      "path": "/v1/configuration/saml/identity-provider/{id}",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetSamlIdentityProviderConfiguration",
+      "summary": "Get Saml Identity Provider configuration",
+      "responseExample": {
+        "active": true,
+        "authnContext": "string",
+        "clockSkew": 1,
+        "description": "string",
+        "disableAssertionReplayCheck": true,
+        "disableAudienceRestrictionCheck": true,
+        "disableAuthnContextCheck": true,
+        "disableDestinationCheck": true
+      }
+    },
+    {
+      "path": "/v1/configuration/saml/identity-provider/{id}",
+      "method": "DELETE",
+      "operationId": "ConfigurationService_DeleteSamlConfigurationIdentityProvider",
+      "summary": "Delete Saml Configuration Identity Provider",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/configuration/state",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetConfigurationState",
+      "summary": "The allowed permissions for configuration for the current user",
+      "responseExample": {
+        "sections": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/audit",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetConfigurationAudit",
+      "summary": "Audit of system configuration changes",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v3/configuration/general",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetGeneralConfigurationV3",
+      "summary": "Get the general configuration",
+      "responseExample": {
+        "applicationSettings": {},
+        "email": {},
+        "folders": {},
+        "launcherSettings": {},
+        "localUserPasswords": {},
+        "login": {},
+        "permissionOptions": {},
+        "protocolHandlerSettings": {}
+      }
+    },
+    {
+      "path": "/v1/configuration/settings-menu",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetSettingsMenu",
+      "summary": "Get settings menu",
+      "responseExample": {
+        "hidden": [
+          {}
+        ],
+        "privilegeManagerLink": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/local-user-passwords",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetLocalPasswordConfiguration",
+      "summary": "Get the local user password configuration",
+      "responseExample": {
+        "allowUsersToResetForgottenPasswords": true,
+        "enableLocalUserPasswordExpiration": true,
+        "enableMinimumPasswordAge": true,
+        "enablePasswordHistory": true,
+        "localUserPasswordExpirationDays": 1,
+        "localUserPasswordExpirationHours": 1,
+        "localUserPasswordExpirationMinutes": 1,
+        "minimumPasswordAgeDays": 1
+      }
+    },
+    {
+      "path": "/v1/configuration/local-user-passwords",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchLocalPasswordConfiguration",
+      "summary": "Update the local user password configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "allowUsersToResetForgottenPasswords": true,
+        "enableLocalUserPasswordExpiration": true,
+        "enableMinimumPasswordAge": true,
+        "enablePasswordHistory": true,
+        "localUserPasswordExpirationDays": 1,
+        "localUserPasswordExpirationHours": 1,
+        "localUserPasswordExpirationMinutes": 1,
+        "minimumPasswordAgeDays": 1
+      }
+    },
+    {
+      "path": "/v1/configuration/security",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetSecurityConfiguration",
+      "summary": "Get Security configuration",
+      "responseExample": {
+        "allowFilesWithoutExtension": true,
+        "allowQuantumSafeEncryption": true,
+        "allowWebServiceHttpGet": true,
+        "auditTlsErrors": true,
+        "auditTlsErrorsDebug": true,
+        "certificateChainPolicyOptions": "string",
+        "clientCertificateIds": "string",
+        "databaseIntegrityMonitoringSymmetricKey": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/security",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchSecurityConfiguration",
+      "summary": "Update Security configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "allowFilesWithoutExtension": true,
+        "allowQuantumSafeEncryption": true,
+        "allowWebServiceHttpGet": true,
+        "auditTlsErrors": true,
+        "auditTlsErrorsDebug": true,
+        "certificateChainPolicyOptions": "string",
+        "clientCertificateIds": "string",
+        "databaseIntegrityMonitoringSymmetricKey": "string"
+      }
+    },
+    {
+      "path": "/v2/configuration/login",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetLoginConfigurationV2",
+      "summary": "Get Login configuration",
+      "responseExample": {
+        "allowRememberMe": true,
+        "cacheADCredentials": true,
+        "defaultLoginDomain": 1,
+        "enableDomainSelector": 1,
+        "enableLoginFailureCAPTCHA": true,
+        "maxConcurrentLoginsPerUser": 1,
+        "maximumLoginFailures": 1,
+        "maxLoginFailuresBeforeCAPTCHA": 1
+      }
+    },
+    {
+      "path": "/v2/configuration/login",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchLoginConfigurationV2",
+      "summary": "Update Login configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "allowRememberMe": true,
+        "cacheADCredentials": true,
+        "defaultLoginDomain": 1,
+        "enableDomainSelector": 1,
+        "enableLoginFailureCAPTCHA": true,
+        "maxConcurrentLoginsPerUser": 1,
+        "maximumLoginFailures": 1,
+        "maxLoginFailuresBeforeCAPTCHA": 1
+      }
+    },
+    {
+      "path": "/v1/configuration/login-policy",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetLoginPolicyConfiguration",
+      "summary": "Get Login Policy configuration",
+      "responseExample": {
+        "enableLoginPolicy": true,
+        "forceLoginPolicy": true,
+        "loginPolicy": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/login-policy",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchLoginPolicyConfiguration",
+      "summary": "Update Login Policy configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "enableLoginPolicy": true,
+        "forceLoginPolicy": true,
+        "loginPolicy": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/saml",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetSamlConfiguration",
+      "summary": "Get Saml configuration",
+      "responseExample": {
+        "enabled": true,
+        "enableLegacySLO": true,
+        "identityProviders": [
+          {}
+        ],
+        "legacyUsernameAttribute": "string",
+        "serviceProviderCertificate": "string",
+        "serviceProviderCertificateExpirationDateString": "string",
+        "serviceProviderCertificateFriendlyName": "string",
+        "serviceProviderCertificatePassword": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/saml",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchSamlConfiguration",
+      "summary": "Update Saml configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "enabled": true,
+        "enableLegacySLO": true,
+        "identityProviders": [
+          {}
+        ],
+        "legacyUsernameAttribute": "string",
+        "serviceProviderCertificate": "string",
+        "serviceProviderCertificateExpirationDateString": "string",
+        "serviceProviderCertificateFriendlyName": "string",
+        "serviceProviderCertificatePassword": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/folder-synchronization",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetFolderSyncConfiguration",
+      "summary": "Get folder synchronization configuration",
+      "responseExample": {
+        "companyId": "string",
+        "daysToKeepOperationalLogs": 1,
+        "folderStructure": "string",
+        "integratorCredentials": 1,
+        "integratorCredentialsName": "string",
+        "intervalDays": 1,
+        "intervalHours": 1,
+        "intervalMinutes": 1
+      }
+    },
+    {
+      "path": "/v1/configuration/folder-synchronization",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchFolderSyncConfiguration",
+      "summary": "Update folder synchronization configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "companyId": "string",
+        "daysToKeepOperationalLogs": 1,
+        "folderStructure": "string",
+        "integratorCredentials": 1,
+        "integratorCredentialsName": "string",
+        "intervalDays": 1,
+        "intervalHours": 1,
+        "intervalMinutes": 1
+      }
+    },
+    {
+      "path": "/v1/configuration/saml/identity-provider/stub",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetSamlIdentityProviderConfigurationStub",
+      "summary": "Get Saml Identity Provider configuration stub",
+      "responseExample": {
+        "active": true,
+        "authnContext": "string",
+        "clockSkew": 1,
+        "description": "string",
+        "disableAssertionReplayCheck": true,
+        "disableAudienceRestrictionCheck": true,
+        "disableAuthnContextCheck": true,
+        "disableDestinationCheck": true
+      }
+    },
+    {
+      "path": "/v1/configuration/rpc",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetRpcConfiguration",
+      "summary": "Get RPC configuration",
+      "responseExample": {
+        "checkOutIntervalDays": 1,
+        "checkOutIntervalHours": 1,
+        "checkOutIntervalMinutes": 1,
+        "daysToKeepLogs": 1,
+        "enableHeartbeat": true,
+        "enableHeartbeatSmbFallback": true,
+        "enablePasswordChangeOnCheckIn": true,
+        "enableRpc": true
+      }
+    },
+    {
+      "path": "/v1/configuration/rpc",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchRpcConfiguration",
+      "summary": "Update RPC configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "checkOutIntervalDays": 1,
+        "checkOutIntervalHours": 1,
+        "checkOutIntervalMinutes": 1,
+        "daysToKeepLogs": 1,
+        "enableHeartbeat": true,
+        "enableHeartbeatSmbFallback": true,
+        "enablePasswordChangeOnCheckIn": true,
+        "enableRpc": true
+      }
+    },
+    {
+      "path": "/v1/configuration/sessionrecording-advanced",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetSessionRecordingAdvancedConfiguration",
+      "summary": "Get Session Recording Advanced",
+      "responseExample": {
+        "agentCallbackUrl": "string",
+        "enableAdvancedSessionRecording": true
+      }
+    },
+    {
+      "path": "/v1/configuration/sessionrecording-advanced",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchSessionRecordingAdvancedConfiguration",
+      "summary": "Update Session Recording Advanced",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "agentCallbackUrl": "string",
+        "enableAdvancedSessionRecording": true
+      }
+    },
+    {
+      "path": "/v1/configuration/site-connector",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetSiteConnectors",
+      "summary": "Site Connectors",
+      "responseExample": [
+        {
+          "active": {},
+          "siteConnectorId": {},
+          "siteConnectorName": {}
+        }
+      ]
+    },
+    {
+      "path": "/v1/configuration/internal-site-connector",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetInternalSiteConfiguration",
+      "summary": "Internal Site Connector Configuration",
+      "responseExample": {
+        "siteConnectorId": 1
+      }
+    },
+    {
+      "path": "/v1/configuration/internal-site-connector",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchInternalSiteConfiguration",
+      "summary": "Update Internal Site Connector",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "siteConnectorId": 1
+      }
+    },
+    {
+      "path": "/v1/configuration/unlimited-admin",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetUnlimitedAdmin",
+      "summary": "Get Unlimited Admin",
+      "responseExample": {
+        "enabled": true
+      }
+    },
+    {
+      "path": "/v1/configuration/unlimited-admin",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_UpdateUnlimitedAdmin",
+      "summary": "Update Unlimited Admin",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": true
+    },
+    {
+      "path": "/v1/configuration/unlimited-admin/audit",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetAuditUnlimitedAdmin",
+      "summary": "Get unlimited admin configuration audits",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/secret-search-indexer",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetSecretSearchIndexerConfiguration",
+      "summary": "Secret Search Indexer Configuration",
+      "responseExample": {
+        "daysToKeepLogs": 1,
+        "enabled": true,
+        "indexingSeparators": [
+          {}
+        ],
+        "indexMode": {},
+        "indexPercentComplete": 1,
+        "lastIndexDate": "2024-01-15T10:30:00Z",
+        "logAvailable": true,
+        "status": {}
+      }
+    },
+    {
+      "path": "/v1/configuration/secret-search-indexer",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchSecretSearchIndexerConfiguration",
+      "summary": "Update Secret Search Indexer Configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "daysToKeepLogs": 1,
+        "enabled": true,
+        "indexingSeparators": [
+          {}
+        ],
+        "indexMode": {},
+        "indexPercentComplete": 1,
+        "lastIndexDate": "2024-01-15T10:30:00Z",
+        "logAvailable": true,
+        "status": {}
+      }
+    },
+    {
+      "path": "/v1/configuration/platform",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetPlatformConfiguration",
+      "summary": "Get Platform Configuration",
+      "responseExample": {
+        "createGroupsDuringSynchronization": true,
+        "enablePlatformAuditIntegration": true,
+        "enablePlatformInventoryForwarding": true,
+        "enablePlatformOnLoginPage": true,
+        "openIdConnectClientId": "string",
+        "openIdConnectClientSecret": "string",
+        "openIdConnectEnabled": true,
+        "openIdConnectLoginUrl": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/platform",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchPlatformConfiguration",
+      "summary": "Patch Platform Configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "createGroupsDuringSynchronization": true,
+        "enablePlatformAuditIntegration": true,
+        "enablePlatformInventoryForwarding": true,
+        "enablePlatformOnLoginPage": true,
+        "openIdConnectClientId": "string",
+        "openIdConnectClientSecret": "string",
+        "openIdConnectEnabled": true,
+        "openIdConnectLoginUrl": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/platform-audits",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetPlatformConfigurationAudits",
+      "summary": "Get Platform Configuration Audits",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/auto-export",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetAutoExportConfiguration",
+      "summary": "Get Automatic Export Configuration",
+      "responseExample": {
+        "enableAutoExport": true,
+        "exportChildFolders": true,
+        "exportFolderPaths": true,
+        "exportPasswordSecretId": 1,
+        "exportPath": "string",
+        "exportTotpSettings": true,
+        "folderId": 1,
+        "frequencyDays": 1
+      }
+    },
+    {
+      "path": "/v1/configuration/auto-export",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchAutomaticExportConfiguration",
+      "summary": "Patch Automatic Export Configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "enableAutoExport": true,
+        "exportChildFolders": true,
+        "exportFolderPaths": true,
+        "exportPasswordSecretId": 1,
+        "exportPath": "string",
+        "exportTotpSettings": true,
+        "folderId": 1,
+        "frequencyDays": 1
+      }
+    },
+    {
+      "path": "/v1/configuration/auto-export-audits",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetAutoExportConfigurationAudits",
+      "summary": "Get Automatic Export Configuration Audits",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/auto-export-logs",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetAutoExportLogs",
+      "summary": "Get Automatic Export Logs",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/auto-export-storage",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetAutoExportStorageItemsDefault",
+      "summary": "Get Automatic Export Storage Items",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/auto-export-storage/{id}",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetAutoExportStorageItems",
+      "summary": "Get Automatic Export Storage Items For Configuration",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/auto-export-storage/item/{id}",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetAutoExportStorageItem",
+      "summary": "Get Automatic Export Storage Item",
+      "responseExample": {
+        "headers": {}
+      }
+    },
+    {
+      "path": "/v1/configuration/backup",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetDatabaseBackupConfiguration",
+      "summary": "Get Backup Configuration",
+      "responseExample": {
+        "backupDatabasePath": "string",
+        "backupFailureNotification": true,
+        "backupPath": "string",
+        "backupStartDateTime": "2024-01-15T10:30:00Z",
+        "configurationSqlBackupTimeoutMinutes": 1,
+        "copyOnlyDatabaseBackup": true,
+        "enableDatabaseBackup": true,
+        "enableScheduledBackup": true
+      }
+    },
+    {
+      "path": "/v1/configuration/backup",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchDatabaseBackupConfiguration",
+      "summary": "Patch Backup Configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "backupDatabasePath": "string",
+        "backupFailureNotification": true,
+        "backupPath": "string",
+        "backupStartDateTime": "2024-01-15T10:30:00Z",
+        "configurationSqlBackupTimeoutMinutes": 1,
+        "copyOnlyDatabaseBackup": true,
+        "enableDatabaseBackup": true,
+        "enableScheduledBackup": true
+      }
+    },
+    {
+      "path": "/v2/configuration/backup-logs",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetBackupLogsV2",
+      "summary": "Get Backup Logs",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/system-log",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetSystemLogConfiguration",
+      "summary": "Get system log configuration",
+      "responseExample": {
+        "allowViewingOnline": {},
+        "enableSystemLog": {},
+        "maxLogLength": {},
+        "notifyWhenShrunk": {}
+      }
+    },
+    {
+      "path": "/v1/configuration/system-log",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchSystemLogConfiguration",
+      "summary": "Patch system log configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "allowViewingOnline": {},
+        "enableSystemLog": {},
+        "maxLogLength": {},
+        "notifyWhenShrunk": {}
+      }
+    },
+    {
+      "path": "/v1/configuration/system-log/clear",
+      "method": "GET",
+      "operationId": "ConfigurationService_ClearSystemLog",
+      "summary": "Clear system log",
+      "responseExample": true
+    },
+    {
+      "path": "/v1/configuration/public-ssh-key",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetPublicSshKeyExpiration",
+      "summary": "Public SSH Key Expiration",
+      "responseExample": {
+        "enabled": true,
+        "expirationMessage": "string",
+        "isPassphraseRequired": true
+      }
+    },
+    {
+      "path": "/v1/configuration/ticket-system",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetTicketSystemConfiguration",
+      "summary": "Get the ticket system configuration",
+      "responseExample": {
+        "ticketSystemList": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/ticket-system",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchTicketSystemConfiguration",
+      "summary": "Update the ticket system configuration",
+      "requestBody": {
+        "data": [
+          {}
+        ]
+      },
+      "responseExample": {
+        "ticketSystemList": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/database",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetDatabaseConfiguration",
+      "summary": "Get the database configuration",
+      "responseExample": {
+        "applicationPoolIdentity": "string",
+        "authenticationType": {},
+        "connectionTimeout": 1,
+        "databaseConfigFilePath": "string",
+        "databaseName": "string",
+        "enableMultiSubnetFailover": true,
+        "enableSslEncryption": true,
+        "failoverPartner": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/database",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchDatabaseConfiguration",
+      "summary": "Update the database configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "applicationPoolIdentity": "string",
+        "authenticationType": {},
+        "connectionTimeout": 1,
+        "databaseConfigFilePath": "string",
+        "databaseName": "string",
+        "enableMultiSubnetFailover": true,
+        "enableSslEncryption": true,
+        "failoverPartner": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/read-only-mode",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetConfigurationReadOnlyMode",
+      "summary": "Get Read Only Mode Configuration",
+      "responseExample": {
+        "enabled": true
+      }
+    },
+    {
+      "path": "/v1/configuration/read-only-mode",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchConfigurationReadOnlyMode",
+      "summary": "Patch Read Only Mode Configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "enabled": true
+      }
+    },
+    {
+      "path": "/v1/configuration/security/rotate-secret-keys-status",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetRotateSecretKeysStatus",
+      "summary": "Get Rotate Secret Keys Status",
+      "responseExample": {
+        "lastRequestDate": "2024-01-15T10:30:00Z",
+        "lastRunDate": "2024-01-15T10:30:00Z",
+        "lastStatus": "string",
+        "message": "string",
+        "progressStatus": {}
+      }
+    },
+    {
+      "path": "/v1/configuration/dp/state",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetDpapiEncryptState",
+      "summary": "Get DPAPI Encryption State",
+      "responseExample": {
+        "configFilePath": "string",
+        "isDpapiEncrypted": true,
+        "isHsmEncrypted": true
+      }
+    },
+    {
+      "path": "/v1/configuration/mfa/get-auth-profiles",
+      "method": "GET",
+      "operationId": "ConfigurationService_GetMultifactorAuthenticationConfiguration",
+      "summary": "Get Multifactor Authentication Profiles",
+      "responseExample": {
+        "authProfiles": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/configuration/general",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchGeneralConfiguration",
+      "summary": "Update general configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "applicationSettings": {},
+        "email": {},
+        "folders": {},
+        "launcherSettings": {},
+        "localUserPasswords": {},
+        "login": {},
+        "permissionOptions": {},
+        "protocolHandlerSettings": {}
+      }
+    },
+    {
+      "path": "/v1/configuration/saml/identity-provider",
+      "method": "POST",
+      "operationId": "ConfigurationService_PostSamlConfiguration",
+      "summary": "Create Saml configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "active": true,
+        "authnContext": "string",
+        "clockSkew": 1,
+        "description": "string",
+        "disableAssertionReplayCheck": true,
+        "disableAudienceRestrictionCheck": true,
+        "disableAuthnContextCheck": true,
+        "disableDestinationCheck": true
+      }
+    },
+    {
+      "path": "/v1/configuration/saml/identity-provider",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchSamlIdentityProviderConfiguration",
+      "summary": "Update Saml Identity Provider configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "active": true,
+        "authnContext": "string",
+        "clockSkew": 1,
+        "description": "string",
+        "disableAssertionReplayCheck": true,
+        "disableAudienceRestrictionCheck": true,
+        "disableAuthnContextCheck": true,
+        "disableDestinationCheck": true
+      }
+    },
+    {
+      "path": "/v1/configuration/sessionrecording",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchSessionRecordingConfiguration",
+      "summary": "Session Recording",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "archiveLocationBySite": true,
+        "archivePath": "string",
+        "archivePathMappings": [
+          {}
+        ],
+        "daysUntilArchive": 1,
+        "daysUntilDelete": 1,
+        "enableArchive": true,
+        "enableDelete": true,
+        "enableHardwareAcceleration": true
+      }
+    },
+    {
+      "path": "/v1/configuration/folder",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchFolderConfiguration",
+      "summary": "Folder",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "enablePersonalFolders": true,
+        "personalFolderName": "string",
+        "personalFolderNameOption": {},
+        "personalFolderWarning": "string",
+        "requireViewFolderPermission": true,
+        "showPersonalFolderWarning": true
+      }
+    },
+    {
+      "path": "/v1/configuration/application-settings",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchApplicationSettingsConfiguration",
+      "summary": "Update the application settings configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "allowSendTelemetry": true,
+        "allowSoftwareUpdateChecks": true,
+        "apiRefreshTokensEnabled": true,
+        "apiSessionTimeoutDays": 1,
+        "apiSessionTimeoutHours": 1,
+        "apiSessionTimeoutMinutes": 1,
+        "apiSessionTimeoutUnlimited": true,
+        "configurationEarlyAdopterEnabled": true
+      }
+    },
+    {
+      "path": "/v1/configuration/permission-options",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchPermissionOptionsConfiguration",
+      "summary": "Update the permission options configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "allowDuplicateSecretNames": true,
+        "allowViewUserToRetrieveAutoChangeNextPassword": true,
+        "defaultSecretPermissions": {},
+        "enableApprovalFromEmail": true,
+        "forceSecretApproval": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/launcher-settings",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchLauncherSettingsConfiguration",
+      "summary": "Update the launcher settings configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "checkInSecretOnLastLauncherClose": true,
+        "closeLauncherOnCheckInSecret": true,
+        "enableDomainDownload": true,
+        "enableDomainUpload": true,
+        "enableLauncher": true,
+        "enableLauncherAutoUpdate": true,
+        "enableWebParsing": true,
+        "launcherDeploymentType": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/protocol-handler-settings",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchProtocolHandlerSettingsConfiguration",
+      "summary": "Update the protocol handler settings configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "protocolHandlerInstallTimeAllowedDomains": "string",
+        "protocolHandlerInstallTimeDisableAutoUpdate": true,
+        "protocolHandlerInstallTimeSettingsEnabled": true
+      }
+    },
+    {
+      "path": "/v1/configuration/user-experience",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchUserExperienceConfiguration",
+      "summary": "Update the user experience configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "applicationLanguage": 1,
+        "checkoutNotificationThreshold": 1,
+        "defaultDateFormat": 1,
+        "defaultNewUserRoleId": 1,
+        "defaultTimeFormat": 1,
+        "enableSecretCheckOutExtension": true,
+        "forceInactivityTimeout": true,
+        "forceInactivityTimeoutMinutes": 1
+      }
+    },
+    {
+      "path": "/v2/configuration/user-interface",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchUserInterfaceConfigurationV2",
+      "summary": "Update the user interface configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "customBannerStyle": "string",
+        "customBannerText": "string",
+        "customBannerViewLink": "string",
+        "customBannerViewLinkText": "string",
+        "customLogoCollapsed": "string",
+        "customLogoCollapsedDark": "string",
+        "customLogoFullSize": "string",
+        "customLogoFullSizeDark": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/email",
+      "method": "PATCH",
+      "operationId": "ConfigurationService_PatchEmailConfiguration",
+      "summary": "Update the email configuration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "fromEmailAddress": "string",
+        "fromEmailName": "string",
+        "sendLegacyEmails": true,
+        "smtpCheckCertificateRevocation": true,
+        "smtpDomain": "string",
+        "smtpPassword": "string",
+        "smtpPort": 1,
+        "smtpServer": "string"
+      }
+    },
+    {
+      "path": "/v1/configuration/rpc/run-now",
+      "method": "POST",
+      "operationId": "ConfigurationService_RunRpcNow",
+      "summary": "Run RPC Now",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/configuration/heartbeat/run-now",
+      "method": "POST",
+      "operationId": "ConfigurationService_RunHeartbeatNow",
+      "summary": "Run Heartbeat Now",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/configuration/secret-search-indexer/rebuild-index",
+      "method": "POST",
+      "operationId": "ConfigurationService_RebuildSecretSearchIndexerConfiguration",
+      "summary": "Rebuild Secret Search Index",
+      "responseExample": true
+    },
+    {
+      "path": "/v1/configuration/auto-export/run-now",
+      "method": "POST",
+      "operationId": "ConfigurationService_RunAutoExportNow",
+      "summary": "Start Automatic Export",
+      "responseExample": true
+    },
+    {
+      "path": "/v1/configuration/backup/run-now",
+      "method": "POST",
+      "operationId": "ConfigurationService_RunBackupNow",
+      "summary": "Start Backup",
+      "responseExample": true
+    },
+    {
+      "path": "/v1/configuration/security/rotate-secret-keys",
+      "method": "POST",
+      "operationId": "ConfigurationService_RotateSecretKeys",
+      "summary": "Rotate Secret Keys",
+      "responseExample": {
+        "lastRequestDate": "2024-01-15T10:30:00Z",
+        "lastRunDate": "2024-01-15T10:30:00Z",
+        "lastStatus": "string",
+        "message": "string",
+        "progressStatus": {}
+      }
+    },
+    {
+      "path": "/v1/configuration/security/cancel-rotate-secret-keys",
+      "method": "POST",
+      "operationId": "ConfigurationService_CancelRotateSecretKeys",
+      "summary": "Cancel Rotate Secret Keys",
+      "responseExample": {
+        "lastRequestDate": "2024-01-15T10:30:00Z",
+        "lastRunDate": "2024-01-15T10:30:00Z",
+        "lastStatus": "string",
+        "message": "string",
+        "progressStatus": {}
+      }
+    },
+    {
+      "path": "/v1/configuration/email/test",
+      "method": "POST",
+      "operationId": "ConfigurationService_TestEmail",
+      "summary": "TestEmail",
+      "responseExample": {
+        "message": "string",
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/configuration/login/clear-ad-credentials",
+      "method": "POST",
+      "operationId": "ConfigurationService_ClearADCredentials",
+      "summary": "Clear AD Credentials",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/configuration/login/radius/test",
+      "method": "POST",
+      "operationId": "ConfigurationService_TestRadiusLogin",
+      "summary": "Test Radius Login",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/configuration/syslog/test",
+      "method": "POST",
+      "operationId": "ConfigurationService_TestSyslog",
+      "summary": "Test Syslog",
+      "responseExample": {
+        "description": "string",
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/configuration/dp/encrypt",
+      "method": "POST",
+      "operationId": "ConfigurationService_DpapiEncrypt",
+      "summary": "Encrypt using DPAPI",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "configFilePath": "string",
+        "isDpapiEncrypted": true,
+        "isHsmEncrypted": true
+      }
+    },
+    {
+      "path": "/v1/configuration/dp/decrypt",
+      "method": "POST",
+      "operationId": "ConfigurationService_DpapiDecrypt",
+      "summary": "Decrypt using DPAPI",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "configFilePath": "string",
+        "isDpapiEncrypted": true,
+        "isHsmEncrypted": true
+      }
+    },
+    {
+      "path": "/v1/configuration/saml/identity-provider/import",
+      "method": "PUT",
+      "operationId": "ConfigurationService_ImportSamlConfiguration",
+      "summary": "Import Saml configuration Identity Provider",
+      "requestBody": {
+        "importFile": "string",
+        "importFileData": "string"
+      },
+      "responseExample": [
+        {
+          "active": {},
+          "authnContext": {},
+          "clockSkew": {},
+          "description": {},
+          "disableAssertionReplayCheck": {},
+          "disableAudienceRestrictionCheck": {},
+          "disableAuthnContextCheck": {},
+          "disableDestinationCheck": {}
+        }
+      ]
+    },
+    {
+      "path": "/v1/configuration/mfa/set-auth-profile",
+      "method": "PUT",
+      "operationId": "ConfigurationService_SetCurrentMultifactorAuthenticationConfiguration",
+      "summary": "Set Current Multifactor Authentication Profile",
+      "requestBody": {
+        "authProfileId": "string"
+      },
+      "responseExample": {
+        "authProfiles": [
+          {}
+        ]
+      }
+    }
+  ]
+}

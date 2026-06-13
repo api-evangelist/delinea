@@ -1,0 +1,177 @@
+{
+  "category": "recorded-sessions",
+  "description": "Example API requests and responses for recorded-sessions endpoints in Delinea Secret Server REST API",
+  "examples": [
+    {
+      "path": "/v1/recorded-sessions/ssh-session",
+      "method": "GET",
+      "operationId": "SecretSessionsService_GetSshProxyData",
+      "summary": "Get the SSH proxy session data",
+      "responseExample": {
+        "data": [
+          {}
+        ],
+        "secretSessionId": 1
+      }
+    },
+    {
+      "path": "/v1/recorded-sessions/ssh-session-file",
+      "method": "GET",
+      "operationId": "SecretSessionsService_GetSshProxyDataAsFile",
+      "summary": "Get the SSH proxy session data as an attached file",
+      "responseExample": {}
+    },
+    {
+      "path": "/v1/recorded-sessions",
+      "method": "GET",
+      "operationId": "SecretSessionsService_SearchSessions",
+      "summary": "Search Recorded Sessions",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/recorded-sessions/{id}",
+      "method": "GET",
+      "operationId": "SecretSessionsService_Get",
+      "summary": "Get Recorded Session",
+      "responseExample": {
+        "accessedByName": "string",
+        "active": true,
+        "application": "string",
+        "auditSecretId": 1,
+        "duration": 1,
+        "endDate": "2024-01-15T10:30:00Z",
+        "endDateDisplay": "string",
+        "errorMessage": "string"
+      }
+    },
+    {
+      "path": "/v1/recorded-sessions/{id}/summary",
+      "method": "GET",
+      "operationId": "SecretSessionsService_GetSummary",
+      "summary": "Recorded Session Summary",
+      "responseExample": {
+        "accessedByName": "string",
+        "active": true,
+        "application": "string",
+        "auditSecretId": 1,
+        "duration": 1,
+        "endDate": "2024-01-15T10:30:00Z",
+        "endDateDisplay": "string",
+        "errorMessage": "string"
+      }
+    },
+    {
+      "path": "/v1/recorded-sessions/{id}/points-of-interest",
+      "method": "GET",
+      "operationId": "SecretSessionsService_SearchPointsOfInterest",
+      "summary": "Recorded Session Points of Interest",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/recorded-sessions/{id}/points-of-interest-summary",
+      "method": "GET",
+      "operationId": "SecretSessionsService_SearchPointsOfInterestSummary",
+      "summary": "Recorded Session Points of Interest Summary",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/recorded-sessions/{id}/session-recordings/{fileName}",
+      "method": "GET",
+      "operationId": "SecretSessionsService_GetSessionRecording",
+      "summary": "Get Recorded Session Video Stream",
+      "responseExample": {}
+    },
+    {
+      "path": "/v1/recorded-sessions/{id}/session-recordings",
+      "method": "GET",
+      "operationId": "SecretSessionsService_GetSessionRecordingById",
+      "summary": "Get Recorded Session Video Stream by ID",
+      "responseExample": {}
+    },
+    {
+      "path": "/v1/recorded-sessions/session-image-by-key/{secretSessionKey}/{imageId?}",
+      "method": "GET",
+      "operationId": "SecretSessionsService_GetSessionImageByKey",
+      "summary": "Get Session Image By the Session Key",
+      "responseExample": {
+        "contentType": "string",
+        "fileContents": "string",
+        "fileDownloadName": "string"
+      }
+    },
+    {
+      "path": "/v1/recorded-sessions/session-image-by-launcher-guid/{launcherGuid}/{imageId?}",
+      "method": "GET",
+      "operationId": "SecretSessionsService_GetSessionImageLauncherGuid",
+      "summary": "Get Session Image By the Launcher Session Guid",
+      "responseExample": {
+        "contentType": "string",
+        "fileContents": "string",
+        "fileDownloadName": "string"
+      }
+    },
+    {
+      "path": "/v1/recorded-sessions/session-image/{secretSessionId}/{imageId?}",
+      "method": "GET",
+      "operationId": "SecretSessionsService_GetSessionImage",
+      "summary": "Get Session Image",
+      "responseExample": {
+        "contentType": "string",
+        "fileContents": "string",
+        "fileDownloadName": "string"
+      }
+    },
+    {
+      "path": "/v1/recorded-sessions/session-frames/{secretSessionId}/{topImageIdRecovered}",
+      "method": "GET",
+      "operationId": "SecretSessionsService_GetSessionFrames",
+      "summary": "Get Session Frames",
+      "responseExample": [
+        {
+          "captureTime": {},
+          "description": {},
+          "imageId": {}
+        }
+      ]
+    },
+    {
+      "path": "/v1/recorded-sessions/{id}/request-processing",
+      "method": "POST",
+      "operationId": "SecretSessionsService_ProcessSession",
+      "summary": "Request Immediate Session Processing"
+    }
+  ]
+}

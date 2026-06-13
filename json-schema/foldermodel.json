@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/schemas/FolderModel",
+  "title": "FolderModel",
+  "description": "Describes the properties of a secret folder",
+  "properties": {
+    "childFolders": {
+      "description": "List of folders within this folder",
+      "items": {
+        "$ref": "#/components/schemas/IFolderModel"
+      },
+      "type": "array"
+    },
+    "folderName": {
+      "description": "The name of the folder.",
+      "type": "string"
+    },
+    "folderPath": {
+      "description": "The path of all folders and subfolders beginning at the root anterminating at this folder.",
+      "type": "string"
+    },
+    "folderTypeId": {
+      "description": "The icon to display for the folder. Depricated in latest UI. Use 1 when setting this value.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "id": {
+      "description": "Folder ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "inheritPermissions": {
+      "description": "Whether the folder should inherit permissions from its parent (default: true)",
+      "type": "boolean"
+    },
+    "inheritSecretPolicy": {
+      "description": "Whether the folder should inherit the secret policy.  Defaults to true unless creating a root folder.",
+      "type": "boolean"
+    },
+    "parentFolderId": {
+      "description": "The ID of this folder's parent folder.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "secretPolicyId": {
+      "description": "The id of the Secret Policy that sets security and other settings on secrets contained within the folder.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "secretTemplates": {
+      "description": "List of templates that may be used to create secrets in this folder",
+      "items": {
+        "$ref": "#/components/schemas/SecretTemplateSummary"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

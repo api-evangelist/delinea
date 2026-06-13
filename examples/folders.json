@@ -1,0 +1,208 @@
+{
+  "category": "folders",
+  "description": "Example API requests and responses for folders endpoints in Delinea Secret Server REST API",
+  "examples": [
+    {
+      "path": "/v1/folders/{id}",
+      "method": "GET",
+      "operationId": "FoldersService_Get",
+      "summary": "Get Folder",
+      "responseExample": {
+        "childFolders": [
+          {}
+        ],
+        "folderName": "string",
+        "folderPath": "string",
+        "folderTypeId": 1,
+        "id": 1,
+        "inheritPermissions": true,
+        "inheritSecretPolicy": true,
+        "parentFolderId": 1
+      }
+    },
+    {
+      "path": "/v1/folders/{id}",
+      "method": "PUT",
+      "operationId": "FoldersService_Update",
+      "summary": "Update Folder",
+      "requestBody": {
+        "folderName": "string",
+        "folderTypeId": 1,
+        "id": 1,
+        "inheritPermissions": true,
+        "inheritSecretPolicy": true,
+        "parentFolderId": 1,
+        "secretPolicyId": 1
+      },
+      "responseExample": {
+        "childFolders": [
+          {}
+        ],
+        "folderName": "string",
+        "folderPath": "string",
+        "folderTypeId": 1,
+        "id": 1,
+        "inheritPermissions": true,
+        "inheritSecretPolicy": true,
+        "parentFolderId": 1
+      }
+    },
+    {
+      "path": "/v1/folders/{id}",
+      "method": "DELETE",
+      "operationId": "FoldersService_Delete",
+      "summary": "Delete Folder",
+      "responseExample": {
+        "id": 1,
+        "objectType": "string",
+        "responseCodes": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/folders/{id}/templates/{templateId}",
+      "method": "DELETE",
+      "operationId": "FoldersService_DissassociateTemplateToFolder",
+      "summary": "Disassociate Template from Folder",
+      "responseExample": {
+        "id": 1,
+        "objectType": "string",
+        "responseCodes": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/folders",
+      "method": "GET",
+      "operationId": "FoldersService_Search",
+      "summary": "Search Folders",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/folders",
+      "method": "POST",
+      "operationId": "FoldersService_Create",
+      "summary": "Create Folder",
+      "requestBody": {
+        "folderName": "string",
+        "folderTypeId": 1,
+        "inheritPermissions": true,
+        "inheritSecretPolicy": true,
+        "parentFolderId": 1,
+        "secretPolicyId": 1
+      },
+      "responseExample": {
+        "childFolders": [
+          {}
+        ],
+        "folderName": "string",
+        "folderPath": "string",
+        "folderTypeId": 1,
+        "id": 1,
+        "inheritPermissions": true,
+        "inheritSecretPolicy": true,
+        "parentFolderId": 1
+      }
+    },
+    {
+      "path": "/v1/folders/lookup",
+      "method": "GET",
+      "operationId": "FoldersService_Lookup",
+      "summary": "Lookup Folders",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/folders/stub",
+      "method": "GET",
+      "operationId": "FoldersService_Stub",
+      "summary": "Get Folder Stub",
+      "responseExample": {
+        "childFolders": [
+          {}
+        ],
+        "folderName": "string",
+        "folderPath": "string",
+        "folderTypeId": 1,
+        "id": 1,
+        "inheritPermissions": true,
+        "inheritSecretPolicy": true,
+        "parentFolderId": 1
+      }
+    },
+    {
+      "path": "/v1/folders/{id}/audit",
+      "method": "GET",
+      "operationId": "FoldersService_GetAudits",
+      "summary": "Folder Audits",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/folders/pinned",
+      "method": "GET",
+      "operationId": "FoldersService_GetPinnedFolders",
+      "summary": "Get Pinned Folders",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/folders/{id}/templates",
+      "method": "POST",
+      "operationId": "FoldersService_AssociateTemplateToFolder",
+      "summary": "Associate Template to Folder",
+      "requestBody": {
+        "folderId": 1,
+        "templateId": 1
+      },
+      "responseExample": {
+        "associated": true,
+        "folderId": 1,
+        "templateId": 1
+      }
+    }
+  ]
+}

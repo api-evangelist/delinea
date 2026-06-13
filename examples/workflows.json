@@ -1,0 +1,247 @@
+{
+  "category": "workflows",
+  "description": "Example API requests and responses for workflows endpoints in Delinea Secret Server REST API",
+  "examples": [
+    {
+      "path": "/v1/workflows/instances/template/{id}",
+      "method": "GET",
+      "operationId": "WorkflowInstancesService_GetByTemplateId",
+      "summary": "Get Workflow Instances By Workflow Template Id.",
+      "responseExample": [
+        {
+          "configurationJson": {},
+          "currentState": {},
+          "currentStateInfoJson": {},
+          "currentStepId": {},
+          "currentStepState": {},
+          "endTime": {},
+          "entityWorkflowMapId": {},
+          "expirationTime": {}
+        }
+      ]
+    },
+    {
+      "path": "/v1/workflows/templates/{id}/steps",
+      "method": "GET",
+      "operationId": "WorkflowStepTemplatesService_GetTemplateSteps",
+      "summary": "Get Workflow Template Steps",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/workflows/templates/{id}/steps",
+      "method": "POST",
+      "operationId": "WorkflowStepTemplatesService_CreateStep",
+      "summary": "Create Workflow Step",
+      "requestBody": {
+        "configuration": {},
+        "name": "string",
+        "order": 1,
+        "workflowTemplateId": 1
+      },
+      "responseExample": 1
+    },
+    {
+      "path": "/v1/workflows/templates/{id}/steps",
+      "method": "PUT",
+      "operationId": "WorkflowStepTemplatesService_UpdateStep",
+      "summary": "Update Workflow Template Steps",
+      "requestBody": {
+        "workflowStepTemplates": [
+          {}
+        ]
+      },
+      "responseExample": [
+        {
+          "configuration": {},
+          "expirationMinutes": {},
+          "name": {},
+          "order": {},
+          "workflowStepTemplateId": {},
+          "workflowTemplateId": {}
+        }
+      ]
+    },
+    {
+      "path": "/v1/workflows/templates/steps/stub",
+      "method": "GET",
+      "operationId": "WorkflowStepTemplatesService_Stub",
+      "summary": "Get a Workflow Template Step Stub",
+      "responseExample": {
+        "active": true,
+        "configurationJson": "string",
+        "description": "string",
+        "expirationMinutes": 1,
+        "name": "string",
+        "reusable": true,
+        "typeName": "string",
+        "workflowTemplateId": 1
+      }
+    },
+    {
+      "path": "/v1/workflows/templates/{id}/steps/{stepNum}",
+      "method": "GET",
+      "operationId": "WorkflowStepTemplatesService_GetTemplateStep",
+      "summary": "Get a Workflow Template Step",
+      "responseExample": {
+        "configuration": {},
+        "expirationMinutes": 1,
+        "name": "string",
+        "order": 1,
+        "workflowStepTemplateId": 1,
+        "workflowTemplateId": 1
+      }
+    },
+    {
+      "path": "/v1/workflows/templates/{id}/steps/{stepNum}",
+      "method": "PUT",
+      "operationId": "WorkflowStepTemplatesService_UpdateStepModel",
+      "summary": "Update a Workflow Template Step",
+      "requestBody": {
+        "configuration": {},
+        "expirationMinutes": 1,
+        "name": "string",
+        "order": 1,
+        "workflowStepTemplateId": 1
+      },
+      "responseExample": {
+        "configuration": {},
+        "expirationMinutes": 1,
+        "name": "string",
+        "order": 1,
+        "workflowStepTemplateId": 1,
+        "workflowTemplateId": 1
+      }
+    },
+    {
+      "path": "/v1/workflows/templates",
+      "method": "GET",
+      "operationId": "WorkflowTemplatesService_SearchWorkflowTemplates",
+      "summary": "Search Workflow Templates",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/workflows/templates",
+      "method": "POST",
+      "operationId": "WorkflowTemplatesService_CreateWorkflowTemplate",
+      "summary": "Create a Workflow Template",
+      "requestBody": {
+        "configurationJson": "string",
+        "description": "string",
+        "expirationMinutes": 1,
+        "name": "string",
+        "workflowType": {}
+      },
+      "responseExample": 1
+    },
+    {
+      "path": "/v1/workflows/templates/stub",
+      "method": "GET",
+      "operationId": "WorkflowTemplatesService_StubWorkflowTemplate",
+      "summary": "Get a Workflow Template Stub",
+      "responseExample": {
+        "active": true,
+        "configurationJson": "string",
+        "description": "string",
+        "expirationMinutes": 1,
+        "name": "string",
+        "reusable": true,
+        "typeName": "string",
+        "workflowTemplateId": 1
+      }
+    },
+    {
+      "path": "/v1/workflows/templates/{id}",
+      "method": "GET",
+      "operationId": "WorkflowTemplatesService_GetTemplate",
+      "summary": "Get a Workflow Template",
+      "responseExample": {
+        "active": true,
+        "configurationJson": "string",
+        "description": "string",
+        "expirationMinutes": 1,
+        "name": "string",
+        "reusable": true,
+        "typeName": "string",
+        "workflowTemplateId": 1
+      }
+    },
+    {
+      "path": "/v1/workflows/templates/{id}",
+      "method": "PUT",
+      "operationId": "WorkflowTemplatesService_UpdateWorkflowTemplate",
+      "summary": "Update a Workflow Template",
+      "requestBody": {
+        "active": {},
+        "configurationJson": {},
+        "description": {},
+        "expirationMinutes": {},
+        "isCopy": {},
+        "name": {}
+      },
+      "responseExample": {
+        "active": true,
+        "configurationJson": "string",
+        "description": "string",
+        "expirationMinutes": 1,
+        "name": "string",
+        "reusable": true,
+        "typeName": "string",
+        "workflowTemplateId": 1
+      }
+    },
+    {
+      "path": "/v1/workflows/templates/{id}/audits",
+      "method": "GET",
+      "operationId": "WorkflowTemplatesService_SearchTemplateAudit",
+      "summary": "Get a Workflow Template Audit List",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/workflows/templates/{id}/entities/{includeAll}",
+      "method": "GET",
+      "operationId": "WorkflowTemplatesService_GetWorkflowEntities",
+      "summary": "Count of Entities using a Workflow Template",
+      "responseExample": 1
+    },
+    {
+      "path": "/v1/workflows/templates/{id}/cancel-requests",
+      "method": "POST",
+      "operationId": "WorkflowTemplatesService_CancelRequest",
+      "summary": "Cancel Workflow Requests",
+      "responseExample": "string"
+    }
+  ]
+}

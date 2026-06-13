@@ -1,0 +1,590 @@
+{
+  "category": "reports",
+  "description": "Example API requests and responses for reports endpoints in Delinea Secret Server REST API",
+  "examples": [
+    {
+      "path": "/v1/reports/{id}",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportDetail",
+      "summary": "Get Report",
+      "responseExample": {
+        "categoryId": 1,
+        "chartType": "string",
+        "description": "string",
+        "disableSorting": true,
+        "enabled": true,
+        "enableInheritPermissions": true,
+        "id": 1,
+        "is3DReport": true
+      }
+    },
+    {
+      "path": "/v1/reports/{id}",
+      "method": "PUT",
+      "operationId": "ReportsService_UpdateReport",
+      "summary": "Update Report",
+      "requestBody": {
+        "categoryId": 1,
+        "chartType": "string",
+        "description": "string",
+        "dualControlApproval": {},
+        "id": 1,
+        "is3DReport": true,
+        "name": "string",
+        "pageSize": 1
+      },
+      "responseExample": {
+        "categoryId": 1,
+        "chartType": "string",
+        "description": "string",
+        "disableSorting": true,
+        "enabled": true,
+        "enableInheritPermissions": true,
+        "id": 1,
+        "is3DReport": true
+      }
+    },
+    {
+      "path": "/v1/reports/{id}",
+      "method": "DELETE",
+      "operationId": "ReportsService_Delete",
+      "summary": "Delete Report",
+      "responseExample": true
+    },
+    {
+      "path": "/v2/reports/{id}",
+      "method": "DELETE",
+      "operationId": "ReportsService_DeleteV2",
+      "summary": "Delete Report",
+      "responseExample": {
+        "id": 1,
+        "objectType": "string",
+        "responseCodes": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/categories/{reportCategoryId}",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportCategory",
+      "summary": "Get Report Category",
+      "responseExample": {
+        "reportCategoryDescription": "string",
+        "reportCategoryId": 1,
+        "reportCategoryName": "string",
+        "sortOrder": 1
+      }
+    },
+    {
+      "path": "/v1/reports/categories/{reportCategoryId}",
+      "method": "PATCH",
+      "operationId": "ReportsService_UpdateReportCategory",
+      "summary": "Update Report Category",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "reportCategoryDescription": "string",
+        "reportCategoryId": 1,
+        "reportCategoryName": "string",
+        "sortOrder": 1
+      }
+    },
+    {
+      "path": "/v1/reports/categories/{reportCategoryId}",
+      "method": "DELETE",
+      "operationId": "ReportsService_DeleteReportCategory",
+      "summary": "Delete Report Category",
+      "responseExample": true
+    },
+    {
+      "path": "/v2/reports/categories/{reportCategoryId}",
+      "method": "DELETE",
+      "operationId": "ReportsService_DeleteReportCategoryV2",
+      "summary": "Delete Report Category",
+      "responseExample": {
+        "id": 1,
+        "objectType": "string",
+        "responseCodes": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/schedules/{reportScheduleId}",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportSchedule",
+      "summary": "Get Report Schedule",
+      "responseExample": {
+        "customParameterValue": "string",
+        "endDateParameterSpecificDateValue": "2024-01-15T10:30:00Z",
+        "endDateParameterValue": "string",
+        "folderParameterValue": {},
+        "folderPathParameterValue": {},
+        "format": {},
+        "groupParameterValue": {},
+        "reportId": 1
+      }
+    },
+    {
+      "path": "/v1/reports/schedules/{reportScheduleId}",
+      "method": "PATCH",
+      "operationId": "ReportsService_UpdateReportSchedule",
+      "summary": "Update Report Schedule",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "customParameterValue": "string",
+        "endDateParameterSpecificDateValue": "2024-01-15T10:30:00Z",
+        "endDateParameterValue": "string",
+        "folderParameterValue": {},
+        "folderPathParameterValue": {},
+        "format": {},
+        "groupParameterValue": {},
+        "reportId": 1
+      }
+    },
+    {
+      "path": "/v1/reports/schedules/{reportScheduleId}",
+      "method": "DELETE",
+      "operationId": "ReportsService_DeleteReportSchedule",
+      "summary": "Delete Report Schedule",
+      "responseExample": true
+    },
+    {
+      "path": "/v2/reports/schedules/{reportScheduleId}",
+      "method": "DELETE",
+      "operationId": "ReportsService_DeleteReportScheduleV2",
+      "summary": "Delete Report Schedule",
+      "responseExample": {
+        "id": 1,
+        "objectType": "string",
+        "responseCodes": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/{id}/audits",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportAuditsById",
+      "summary": "Get Report Audits",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/audits",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportAudits",
+      "summary": "Get All Report Audits",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports",
+      "method": "GET",
+      "operationId": "ReportsService_SearchReportSummary",
+      "summary": "Search Reports",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports",
+      "method": "POST",
+      "operationId": "ReportsService_CreateReport",
+      "summary": "Create Report",
+      "requestBody": {
+        "categoryId": 1,
+        "chartType": "string",
+        "description": "string",
+        "dualControlApproval": {},
+        "is3DReport": true,
+        "name": "string",
+        "pageSize": 1,
+        "reportSql": "string"
+      },
+      "responseExample": {
+        "categoryId": 1,
+        "chartType": "string",
+        "description": "string",
+        "disableSorting": true,
+        "enabled": true,
+        "enableInheritPermissions": true,
+        "id": 1,
+        "is3DReport": true
+      }
+    },
+    {
+      "path": "/v1/reports/lookup",
+      "method": "GET",
+      "operationId": "ReportsService_Lookup",
+      "summary": "Lookup Reports",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/categories",
+      "method": "GET",
+      "operationId": "ReportsService_GetCategories",
+      "summary": "List Report Categories",
+      "responseExample": [
+        {
+          "description": {},
+          "id": {},
+          "name": {}
+        }
+      ]
+    },
+    {
+      "path": "/v1/reports/categories",
+      "method": "POST",
+      "operationId": "ReportsService_CreateReportCategory",
+      "summary": "Create Report Category",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "reportCategoryDescription": "string",
+        "reportCategoryId": 1,
+        "reportCategoryName": "string",
+        "sortOrder": 1
+      }
+    },
+    {
+      "path": "/v1/reports/charttypes",
+      "method": "GET",
+      "operationId": "ReportsService_GetChartTypes",
+      "summary": "List Report Chart Types",
+      "responseExample": [
+        {
+          "id": {},
+          "name": {}
+        }
+      ]
+    },
+    {
+      "path": "/v1/reports/{id}/defaultparameters",
+      "method": "GET",
+      "operationId": "ReportsService_GetDefaultParameters",
+      "summary": "Report Parameters",
+      "responseExample": {
+        "defaultParameterValues": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/schedules",
+      "method": "GET",
+      "operationId": "ReportsService_SearchReportSchedules",
+      "summary": "Search Report Schedules",
+      "responseExample": {
+        "records": [
+          {}
+        ],
+        "sortBy": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/schedules",
+      "method": "POST",
+      "operationId": "ReportsService_CreateReportSchedule",
+      "summary": "Create Report Schedule",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "customParameterValue": "string",
+        "endDateParameterSpecificDateValue": "2024-01-15T10:30:00Z",
+        "endDateParameterValue": "string",
+        "folderParameterValue": {},
+        "folderPathParameterValue": {},
+        "format": {},
+        "groupParameterValue": {},
+        "reportId": 1
+      }
+    },
+    {
+      "path": "/v1/reports/schedules/stub/{reportId}",
+      "method": "GET",
+      "operationId": "ReportsService_StubReportSchedule",
+      "summary": "Stub Report Schedule",
+      "responseExample": {
+        "customParameterValue": "string",
+        "endDateParameterSpecificDateValue": "2024-01-15T10:30:00Z",
+        "endDateParameterValue": "string",
+        "folderParameterValue": {},
+        "folderPathParameterValue": {},
+        "format": {},
+        "groupParameterValue": {},
+        "reportId": 1
+      }
+    },
+    {
+      "path": "/v1/reports/schedules/{reportScheduleId}/history/search",
+      "method": "GET",
+      "operationId": "ReportsService_SearchReportScheduleHistory",
+      "summary": "Search Report Schedule History",
+      "responseExample": {
+        "records": [
+          {}
+        ],
+        "sortBy": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/schedules/{reportScheduleHistoryId}/history",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportScheduleHistory",
+      "summary": "Get Report Schedule History",
+      "responseExample": {
+        "records": [
+          {}
+        ],
+        "sortBy": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/{reportId}/permissions",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportPermissions",
+      "summary": "Get a Report's Permissions",
+      "responseExample": {
+        "records": [
+          {}
+        ],
+        "sortBy": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/{reportId}/permissions",
+      "method": "PATCH",
+      "operationId": "ReportsService_UpdateReportPermissions",
+      "summary": "Update Report Permissions",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "records": [
+          {}
+        ],
+        "sortBy": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/{reportCategoryId}/permissions-from-category",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportPermissionsFromCategory",
+      "summary": "Get a Report's Permissions from a Report Category",
+      "responseExample": {
+        "records": [
+          {}
+        ],
+        "sortBy": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/categories/{reportCategoryId}/permissions",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportCategoryPermissions",
+      "summary": "Get a Report Category's Permissions",
+      "responseExample": {
+        "records": [
+          {}
+        ],
+        "sortBy": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/categories/{reportCategoryId}/permissions",
+      "method": "PATCH",
+      "operationId": "ReportsService_UpdateReportCategoryPermissions",
+      "summary": "Update Category Report Permissions",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "records": [
+          {}
+        ],
+        "sortBy": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/permissions/options",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportPermissionOptions",
+      "summary": "Get Report Permission Options",
+      "responseExample": [
+        {
+          "rolePermissionId": {},
+          "rolePermissionName": {}
+        }
+      ]
+    },
+    {
+      "path": "/v1/reports/categories/permissions/options",
+      "method": "GET",
+      "operationId": "ReportsService_GetReportCategoryPermissionOptions",
+      "summary": "Get Report Category Permission Options",
+      "responseExample": [
+        {
+          "rolePermissionId": {},
+          "rolePermissionName": {}
+        }
+      ]
+    },
+    {
+      "path": "/v1/reports/export",
+      "method": "POST",
+      "operationId": "ReportsService_Export",
+      "summary": "Export Report",
+      "requestBody": {
+        "delimiter": "string",
+        "dualControlApproval": {},
+        "encodeHtml": true,
+        "endRecordNumber": 1,
+        "format": "string",
+        "id": 1,
+        "isAscending": true,
+        "name": "string"
+      },
+      "responseExample": "string"
+    },
+    {
+      "path": "/v1/reports/execute",
+      "method": "POST",
+      "operationId": "ReportsService_Execute",
+      "summary": "Execute Report",
+      "requestBody": {
+        "dualControlApproval": {},
+        "encodeHtml": true,
+        "endRecordNumber": 1,
+        "id": 1,
+        "isAscending": true,
+        "name": "string",
+        "orderByFieldOrdinal": 1,
+        "pageNumber": 1
+      },
+      "responseExample": {
+        "columns": [
+          {}
+        ],
+        "columnTypes": [
+          {}
+        ],
+        "enabled": true,
+        "id": 1,
+        "localizedColumns": [
+          {}
+        ],
+        "name": "string",
+        "reportPreviewSql": "string",
+        "rows": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/reports/{id}/email",
+      "method": "POST",
+      "operationId": "ReportsService_Email",
+      "summary": "Email Report",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/reports/schedules/{reportScheduleHistoryId}/history/download",
+      "method": "POST",
+      "operationId": "ReportsService_DownloadHistoricalReport",
+      "summary": "Download Historical Report",
+      "responseExample": {
+        "content": {},
+        "headers": {},
+        "isSuccessStatusCode": true,
+        "reasonPhrase": "string",
+        "requestMessage": {},
+        "statusCode": {},
+        "version": {}
+      }
+    },
+    {
+      "path": "/v1/reports/schedules/{reportScheduleId}/undelete",
+      "method": "PUT",
+      "operationId": "ReportsService_UndeleteReportSchedule",
+      "summary": "Undelete Report Schedule",
+      "responseExample": true
+    },
+    {
+      "path": "/v1/reports/{reportId}/undelete",
+      "method": "PUT",
+      "operationId": "ReportsService_UndeleteSystemReport",
+      "summary": "Undelete System Report",
+      "responseExample": {
+        "success": true
+      }
+    }
+  ]
+}

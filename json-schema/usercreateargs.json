@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/schemas/UserCreateArgs",
+  "title": "UserCreateArgs",
+  "description": "User create options",
+  "required": [
+    "userName",
+    "password",
+    "displayName"
+  ],
+  "properties": {
+    "adGuid": {
+      "description": "Active Directory unique identifier.",
+      "type": "string",
+      "maxLength": 50
+    },
+    "displayName": {
+      "description": "The user\u2019s name as displayed in the user interface.",
+      "type": "string"
+    },
+    "domainId": {
+      "description": "If not null, the Active Directory domain ID.",
+      "type": "integer",
+      "format": "int32",
+      "minimum": -1
+    },
+    "duoTwoFactor": {
+      "description": "Whether Duo two-factor authentication is enabled.",
+      "type": "boolean"
+    },
+    "emailAddress": {
+      "description": "The user's email address. Used by the system to send reports, access requests, and other notifications.",
+      "type": "string"
+    },
+    "enabled": {
+      "description": "Whether the user account is enabled. Disabled users are unable to log in and do not consume a user license.",
+      "type": "boolean"
+    },
+    "fido2TwoFactor": {
+      "description": "Whether Duo two-factor authentication is enabled.",
+      "type": "boolean"
+    },
+    "isApplicationAccount": {
+      "description": "Whether this is an application account. Application accounts are used for automation, cannot log in using the UI, and do not consume a user license.",
+      "type": "boolean"
+    },
+    "oathTwoFactor": {
+      "description": "Whether OATH two-factor authentication is enabled.",
+      "type": "boolean"
+    },
+    "password": {
+      "description": "The password used by local accounts to log in.",
+      "type": "string"
+    },
+    "radiusTwoFactor": {
+      "description": "Whether RADIUS two-factor authentication is enabled.",
+      "type": "boolean"
+    },
+    "radiusUserName": {
+      "description": "RADIUS username",
+      "type": "string"
+    },
+    "twoFactor": {
+      "description": "Whether two-factor authentication is enabled.",
+      "type": "boolean"
+    },
+    "unixAuthenticationMethod": {
+      "$ref": "#/components/schemas/UnixAuthenticationMethodType"
+    },
+    "userName": {
+      "description": "The unique string identifying this user.",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

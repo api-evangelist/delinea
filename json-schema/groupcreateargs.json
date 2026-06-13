@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/schemas/GroupCreateArgs",
+  "title": "GroupCreateArgs",
+  "description": "Group create options",
+  "required": [
+    "name",
+    "enabled"
+  ],
+  "properties": {
+    "adGuid": {
+      "description": "The Object GUID of the Active Directory Group (Hexadecimal)",
+      "type": "string"
+    },
+    "domainId": {
+      "description": "Active Directory Domain ID",
+      "type": "integer",
+      "format": "int32",
+      "nullable": true
+    },
+    "enabled": {
+      "description": "Whether the group is active",
+      "type": "boolean"
+    },
+    "hasGroupOwners": {
+      "description": "If true, the group is owned by specific other users/groups. If false, if it is owned by Group Administrators.",
+      "type": "boolean",
+      "nullable": true
+    },
+    "isPlatform": {
+      "description": "Whether the group is a Platform Group",
+      "type": "boolean"
+    },
+    "name": {
+      "description": "Group name",
+      "type": "string"
+    },
+    "ownerGroupIds": {
+      "description": "List of owner GroupIds. Only used if HasGroupOwners is true.",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "type": "array"
+    },
+    "ownerGroupNames": {
+      "description": "List of owner Group Names. Only used if HasGroupOwners is true.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "ownerUserIds": {
+      "description": "List of owner UserIds. Only used if HasGroupOwners is true.",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "type": "array"
+    },
+    "ownerUserNames": {
+      "description": "List of owner Usernames. Only used if HasGroupOwners is true.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "synchronized": {
+      "description": "Whether the group is synchronized with Active Directory",
+      "type": "boolean"
+    },
+    "synchronizeNow": {
+      "description": "Active Directory Sync will only pull in members for domain groups that have this set to true.",
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}

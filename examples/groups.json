@@ -1,0 +1,377 @@
+{
+  "category": "groups",
+  "description": "Example API requests and responses for groups endpoints in Delinea Secret Server REST API",
+  "examples": [
+    {
+      "path": "/v1/groups/{id}",
+      "method": "GET",
+      "operationId": "GroupsService_Get",
+      "summary": "Get Group",
+      "responseExample": {
+        "adGuid": "string",
+        "canEditMembers": true,
+        "created": "2024-01-15T10:30:00Z",
+        "domainId": 1,
+        "domainName": "string",
+        "enabled": true,
+        "hasGroupOwners": true,
+        "id": 1
+      }
+    },
+    {
+      "path": "/v1/groups/{id}",
+      "method": "PUT",
+      "operationId": "GroupsService_Update",
+      "summary": "Update Group",
+      "requestBody": {
+        "adGuid": "string",
+        "domainId": 1,
+        "enabled": true,
+        "hasGroupOwners": true,
+        "id": 1,
+        "isPlatform": true,
+        "name": "string",
+        "ownerGroupIds": [
+          {}
+        ]
+      },
+      "responseExample": {
+        "adGuid": "string",
+        "canEditMembers": true,
+        "created": "2024-01-15T10:30:00Z",
+        "domainId": 1,
+        "domainName": "string",
+        "enabled": true,
+        "hasGroupOwners": true,
+        "id": 1
+      }
+    },
+    {
+      "path": "/v1/groups/{id}",
+      "method": "DELETE",
+      "operationId": "GroupsService_Delete",
+      "summary": "Delete Group",
+      "responseExample": {
+        "id": 1,
+        "objectType": "string",
+        "responseCodes": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/users/{userId}",
+      "method": "GET",
+      "operationId": "GroupsService_GetGroupUser",
+      "summary": "Get User In Group",
+      "responseExample": {
+        "groupDomainId": 1,
+        "groupId": 1,
+        "groupName": "string",
+        "userDomainId": 1,
+        "userId": 1,
+        "userName": "string"
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/users/{userId}",
+      "method": "DELETE",
+      "operationId": "GroupsService_RemoveUserFromGroup",
+      "summary": "Remove User From Group",
+      "responseExample": {
+        "id": 1,
+        "objectType": "string",
+        "responseCodes": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/roles",
+      "method": "GET",
+      "operationId": "GroupsService_GetRoles",
+      "summary": "Gets roles for group",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/roles",
+      "method": "POST",
+      "operationId": "GroupsService_CreateUserRoles",
+      "summary": "Add roles to existing group",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/roles",
+      "method": "DELETE",
+      "operationId": "GroupsService_DeleteUserRoles",
+      "summary": "Remove roles from existing group",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/groups",
+      "method": "GET",
+      "operationId": "GroupsService_Search",
+      "summary": "Search Groups",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/groups",
+      "method": "POST",
+      "operationId": "GroupsService_Create",
+      "summary": "Create Group",
+      "requestBody": {
+        "adGuid": "string",
+        "domainId": 1,
+        "enabled": true,
+        "hasGroupOwners": true,
+        "isPlatform": true,
+        "name": "string",
+        "ownerGroupIds": [
+          {}
+        ],
+        "ownerGroupNames": [
+          {}
+        ]
+      },
+      "responseExample": {
+        "adGuid": "string",
+        "canEditMembers": true,
+        "created": "2024-01-15T10:30:00Z",
+        "domainId": 1,
+        "domainName": "string",
+        "enabled": true,
+        "hasGroupOwners": true,
+        "id": 1
+      }
+    },
+    {
+      "path": "/v1/groups/lookup",
+      "method": "GET",
+      "operationId": "GroupsService_Lookup",
+      "summary": "Lookup Groups",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/groups/stub",
+      "method": "GET",
+      "operationId": "GroupsService_Stub",
+      "summary": "Get Group Stub",
+      "responseExample": {
+        "adGuid": "string",
+        "canEditMembers": true,
+        "created": "2024-01-15T10:30:00Z",
+        "domainId": 1,
+        "domainName": "string",
+        "enabled": true,
+        "hasGroupOwners": true,
+        "id": 1
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/users",
+      "method": "GET",
+      "operationId": "GroupsService_GetGroupMembership",
+      "summary": "Get Group Membership",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/users",
+      "method": "POST",
+      "operationId": "GroupsService_AddUserToGroup",
+      "summary": "Add User To Group",
+      "requestBody": {
+        "userId": 1
+      },
+      "responseExample": {
+        "groupDomainId": 1,
+        "groupId": 1,
+        "groupName": "string",
+        "userDomainId": 1,
+        "userId": 1,
+        "userName": "string"
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/users",
+      "method": "PATCH",
+      "operationId": "GroupsService_PatchGroupMembership",
+      "summary": "Patch Group Membership",
+      "requestBody": {
+        "addedUserIds": [
+          {}
+        ],
+        "removeUserIds": [
+          {}
+        ]
+      },
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/groups/audit",
+      "method": "GET",
+      "operationId": "GroupsService_GetAuditGroupAssignments",
+      "summary": "Get group audits",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/users-lookup",
+      "method": "GET",
+      "operationId": "GroupsService_GetGroupUsersLookup",
+      "summary": "Get Group Users for display",
+      "responseExample": {
+        "users": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/users/search",
+      "method": "GET",
+      "operationId": "GroupsService_GroupMemberSearch",
+      "summary": "Group members search",
+      "responseExample": {
+        "success": true,
+        "totalAssigned": 1,
+        "totalUnassigned": 1,
+        "users": {}
+      }
+    },
+    {
+      "path": "/v1/groups/platform/{adGuid}",
+      "method": "GET",
+      "operationId": "GroupsService_GetGroupByPlatformIdentifer",
+      "summary": "Get Group by domain identifier",
+      "responseExample": {
+        "adGuid": "string",
+        "canEditMembers": true,
+        "created": "2024-01-15T10:30:00Z",
+        "domainId": 1,
+        "domainName": "string",
+        "enabled": true,
+        "hasGroupOwners": true,
+        "id": 1
+      }
+    },
+    {
+      "path": "/v1/groups/{groupId}",
+      "method": "PATCH",
+      "operationId": "GroupsService_PatchGroup",
+      "summary": "Patch Group",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "adGuid": "string",
+        "canEditMembers": true,
+        "created": "2024-01-15T10:30:00Z",
+        "domainId": 1,
+        "domainName": "string",
+        "enabled": true,
+        "hasGroupOwners": true,
+        "id": 1
+      }
+    },
+    {
+      "path": "/v2/groups/{id}/roles",
+      "method": "PUT",
+      "operationId": "GroupsService_UpdateGroupRoles",
+      "summary": "Update all roles on group",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/groups/{groupId}/users",
+      "method": "PUT",
+      "operationId": "GroupsService_UpdateGroupMembers",
+      "summary": "Update all members of a group",
+      "requestBody": {
+        "userIds": [
+          {}
+        ]
+      },
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/groups/{id}/ipaddress-restrictions",
+      "method": "GET",
+      "operationId": "IpAddressRestrictionsService_GetAllByGroup",
+      "summary": "Search IP Address restrictions assigned to a group",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    }
+  ]
+}

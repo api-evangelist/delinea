@@ -1,0 +1,692 @@
+{
+  "category": "users",
+  "description": "Example API requests and responses for users endpoints in Delinea Secret Server REST API",
+  "examples": [
+    {
+      "path": "/v1/users/{id}/ipaddress-restrictions",
+      "method": "GET",
+      "operationId": "IpAddressRestrictionsService_GetAllByUser",
+      "summary": "Search IP Address restrictions assigned to a user",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/{id}",
+      "method": "GET",
+      "operationId": "UsersService_Get",
+      "summary": "Get User",
+      "responseExample": {
+        "adAccountExpires": "2024-01-15T10:30:00Z",
+        "adGuid": "string",
+        "created": "2024-01-15T10:30:00Z",
+        "dateOptionId": 1,
+        "displayName": "string",
+        "domainId": 1,
+        "duoTwoFactor": true,
+        "emailAddress": "string"
+      }
+    },
+    {
+      "path": "/v1/users/{id}",
+      "method": "PUT",
+      "operationId": "UsersService_UpdateUser",
+      "summary": "Update User",
+      "requestBody": {
+        "dateOptionId": 1,
+        "displayName": "string",
+        "duoTwoFactor": true,
+        "emailAddress": "string",
+        "enabled": true,
+        "fido2TwoFactor": true,
+        "groupOwners": [
+          {}
+        ],
+        "id": 1
+      },
+      "responseExample": {
+        "adAccountExpires": "2024-01-15T10:30:00Z",
+        "adGuid": "string",
+        "created": "2024-01-15T10:30:00Z",
+        "dateOptionId": 1,
+        "displayName": "string",
+        "domainId": 1,
+        "duoTwoFactor": true,
+        "emailAddress": "string"
+      }
+    },
+    {
+      "path": "/v1/users/{id}",
+      "method": "PATCH",
+      "operationId": "UsersService_PatchUser",
+      "summary": "Update included properties for user by Id",
+      "requestBody": {
+        "dateOptionId": {},
+        "displayName": {},
+        "duoTwoFactor": {},
+        "emailAddress": {},
+        "enabled": {},
+        "fido2TwoFactor": {},
+        "groupOwners": [
+          {}
+        ],
+        "id": 1
+      },
+      "responseExample": {
+        "adAccountExpires": "2024-01-15T10:30:00Z",
+        "adGuid": "string",
+        "created": "2024-01-15T10:30:00Z",
+        "dateOptionId": 1,
+        "displayName": "string",
+        "domainId": 1,
+        "duoTwoFactor": true,
+        "emailAddress": "string"
+      }
+    },
+    {
+      "path": "/v1/users/{id}",
+      "method": "DELETE",
+      "operationId": "UsersService_Delete",
+      "summary": "Delete User",
+      "responseExample": {
+        "id": 1,
+        "objectType": "string",
+        "responseCodes": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/{id}/owners/{ownerId}",
+      "method": "GET",
+      "operationId": "UsersService_GetUserOwner",
+      "summary": "Get User Owner",
+      "responseExample": {
+        "domainId": 1,
+        "groupId": 1,
+        "id": 1,
+        "isUser": true,
+        "name": "string",
+        "userId": 1
+      }
+    },
+    {
+      "path": "/v1/users/{id}/owners/{ownerId}",
+      "method": "DELETE",
+      "operationId": "UsersService_DeleteUserOwner",
+      "summary": "Remove User Owner",
+      "responseExample": {
+        "id": 1,
+        "objectType": "string",
+        "responseCodes": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/{id}/roles",
+      "method": "GET",
+      "operationId": "UsersService_GetRoles",
+      "summary": "Gets roles for user",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/{id}/roles",
+      "method": "POST",
+      "operationId": "UsersService_CreateUserRoles",
+      "summary": "Add roles to existing user",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/{id}/roles",
+      "method": "PUT",
+      "operationId": "UsersService_UpdateUserRoles",
+      "summary": "Update all roles on user",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/{id}/roles",
+      "method": "DELETE",
+      "operationId": "UsersService_DeleteUserRoles",
+      "summary": "Remove roles from existing user",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/{id}/groups",
+      "method": "GET",
+      "operationId": "UsersService_GetUserGroups",
+      "summary": "Get User Groups",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/{id}/groups",
+      "method": "POST",
+      "operationId": "UsersService_AddUserToGroups",
+      "summary": "Add groups to existing user",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/{id}/groups",
+      "method": "PUT",
+      "operationId": "UsersService_UpdateUserGroups",
+      "summary": "Update all groups on user",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/{id}/groups",
+      "method": "DELETE",
+      "operationId": "UsersService_RemoveUserGroups",
+      "summary": "Remove groups from existing user",
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users",
+      "method": "GET",
+      "operationId": "UsersService_SearchUsers",
+      "summary": "Search Users",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users",
+      "method": "POST",
+      "operationId": "UsersService_CreateUser",
+      "summary": "Create User",
+      "requestBody": {
+        "adGuid": "string",
+        "displayName": "string",
+        "domainId": 1,
+        "duoTwoFactor": true,
+        "emailAddress": "string",
+        "enabled": true,
+        "fido2TwoFactor": true,
+        "isApplicationAccount": true
+      },
+      "responseExample": {
+        "adAccountExpires": "2024-01-15T10:30:00Z",
+        "adGuid": "string",
+        "created": "2024-01-15T10:30:00Z",
+        "dateOptionId": 1,
+        "displayName": "string",
+        "domainId": 1,
+        "duoTwoFactor": true,
+        "emailAddress": "string"
+      }
+    },
+    {
+      "path": "/v1/users/current-summary",
+      "method": "GET",
+      "operationId": "UsersService_GetCurrentUserSummary",
+      "summary": "Current User Summary",
+      "responseExample": {
+        "id": 1
+      }
+    },
+    {
+      "path": "/v1/users/current",
+      "method": "GET",
+      "operationId": "UsersService_GetCurrentUser",
+      "summary": "Current User",
+      "responseExample": {
+        "dateOptionId": 1,
+        "displayName": "string",
+        "emailAddress": "string",
+        "id": 1,
+        "permissions": [
+          {}
+        ],
+        "platformIntegrationType": {},
+        "timeOptionId": 1,
+        "userLcid": 1
+      }
+    },
+    {
+      "path": "/v1/users/lookup",
+      "method": "GET",
+      "operationId": "UsersService_Lookup",
+      "summary": "Lookup Users",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/stub",
+      "method": "GET",
+      "operationId": "UsersService_Stub",
+      "summary": "Get User Stub",
+      "responseExample": {
+        "adAccountExpires": "2024-01-15T10:30:00Z",
+        "adGuid": "string",
+        "created": "2024-01-15T10:30:00Z",
+        "dateOptionId": 1,
+        "displayName": "string",
+        "domainId": 1,
+        "duoTwoFactor": true,
+        "emailAddress": "string"
+      }
+    },
+    {
+      "path": "/v1/users/platform/{platformUserId}",
+      "method": "GET",
+      "operationId": "UsersService_GetUserByPlatformId",
+      "summary": "Get User by External Platform User ID",
+      "responseExample": {
+        "adAccountExpires": "2024-01-15T10:30:00Z",
+        "adGuid": "string",
+        "created": "2024-01-15T10:30:00Z",
+        "dateOptionId": 1,
+        "displayName": "string",
+        "domainId": 1,
+        "duoTwoFactor": true,
+        "emailAddress": "string"
+      }
+    },
+    {
+      "path": "/v1/users/public-ssh-keys",
+      "method": "GET",
+      "operationId": "UsersService_GetUserPublicSshKeys",
+      "summary": "Get User Public Ssh Keys",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/public-ssh-keys",
+      "method": "POST",
+      "operationId": "UsersService_CreateUserPublicSshKey",
+      "summary": "Create a User Ssh Key",
+      "requestBody": {
+        "algorithm": "string",
+        "description": "string",
+        "format": "string",
+        "passphrase": "string"
+      },
+      "responseExample": "string"
+    },
+    {
+      "path": "/v1/users/{id}/owners",
+      "method": "GET",
+      "operationId": "UsersService_SearchUserOwners",
+      "summary": "Get User Owners",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/{id}/owners",
+      "method": "POST",
+      "operationId": "UsersService_AddUserOwner",
+      "summary": "Add User Owner",
+      "requestBody": {
+        "groupId": 1,
+        "groupName": "string",
+        "userId": 1,
+        "userName": "string"
+      },
+      "responseExample": {
+        "domainId": 1,
+        "groupId": 1,
+        "id": 1,
+        "isUser": true,
+        "name": "string",
+        "userId": 1
+      }
+    },
+    {
+      "path": "/v1/users/{id}/owners",
+      "method": "PATCH",
+      "operationId": "UsersService_PatchUserOwners",
+      "summary": "Add and remove the owners on the user",
+      "requestBody": {
+        "addedGroupIds": [
+          {}
+        ],
+        "removeAllOwners": true,
+        "removeGroupIds": [
+          {}
+        ]
+      },
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/{userId}/roles-assigned",
+      "method": "GET",
+      "operationId": "UsersService_GetUserRoles",
+      "summary": "Get User Roles",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/{userId}/audit",
+      "method": "GET",
+      "operationId": "UsersService_GetUserAudits",
+      "summary": "User Audits",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/{userId}/secret-activity",
+      "method": "GET",
+      "operationId": "UsersService_GetUserSecretActivity",
+      "summary": "User Secret Activity",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/action/audit",
+      "method": "GET",
+      "operationId": "UsersService_GetUserActionAudits",
+      "summary": "User Audits by Action",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/{userId}/teams",
+      "method": "GET",
+      "operationId": "UsersService_GetUserTeams",
+      "summary": "User Teams",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/preference",
+      "method": "GET",
+      "operationId": "UsersService_GetPreference",
+      "summary": "Get Preference",
+      "responseExample": {
+        "settingCode": "string",
+        "settingId": 1,
+        "settingKey": "string",
+        "settingName": "string",
+        "settingValue": "string",
+        "userId": 1,
+        "userSettingId": 1
+      }
+    },
+    {
+      "path": "/v1/users/preference",
+      "method": "POST",
+      "operationId": "UsersService_UpdatePreference",
+      "summary": "Update Preference",
+      "requestBody": {
+        "settingCode": "string",
+        "settingName": "string",
+        "value": {}
+      },
+      "responseExample": {
+        "settingCode": "string",
+        "settingId": 1,
+        "settingKey": "string",
+        "settingName": "string",
+        "settingValue": "string",
+        "userId": 1,
+        "userSettingId": 1
+      }
+    },
+    {
+      "path": "/v1/users/sessions",
+      "method": "GET",
+      "operationId": "UsersService_GetCurrentUserSessions",
+      "summary": "User Sessions",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/users/public-ssh-keys/{id}",
+      "method": "PATCH",
+      "operationId": "UsersService_DeactivateUserPublicSshKey",
+      "summary": "Deactivate SSH Key",
+      "responseExample": 1
+    },
+    {
+      "path": "/v1/users/change-password",
+      "method": "POST",
+      "operationId": "UsersService_ChangePassword",
+      "summary": "Change User Password",
+      "requestBody": {
+        "currentPassword": "string",
+        "newPassword": "string"
+      },
+      "responseExample": {
+        "adAccountExpires": "2024-01-15T10:30:00Z",
+        "adGuid": "string",
+        "created": "2024-01-15T10:30:00Z",
+        "dateOptionId": 1,
+        "displayName": "string",
+        "domainId": 1,
+        "duoTwoFactor": true,
+        "emailAddress": "string"
+      }
+    },
+    {
+      "path": "/v1/users/verify-password",
+      "method": "POST",
+      "operationId": "UsersService_VerifyPassword",
+      "summary": "Verify the Current User Password",
+      "requestBody": {
+        "password": "string"
+      },
+      "responseExample": true
+    },
+    {
+      "path": "/v1/users/{userId}/reset-two-factor",
+      "method": "POST",
+      "operationId": "UsersService_ResetTwoFactor",
+      "summary": "Reset 2FA",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/{userId}/password-reset",
+      "method": "POST",
+      "operationId": "UsersService_ResetUserPassword",
+      "summary": "Reset a user password as an admin",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/delete-pii/{id}",
+      "method": "POST",
+      "operationId": "UsersService_UserPersonalInfoDeleteCommand",
+      "summary": "Delete a user's personally identifiable info",
+      "responseExample": true
+    },
+    {
+      "path": "/v1/users/{userId}/secret-activity/expire",
+      "method": "POST",
+      "operationId": "UsersService_ExpireUserSecretActivity",
+      "summary": "User Secret Activity Expiration",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "operationMessage": {},
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/{userId}/lock-out",
+      "method": "POST",
+      "operationId": "UsersService_LockOut",
+      "summary": "Lock Out",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/sessions/terminate",
+      "method": "POST",
+      "operationId": "UsersService_TerminateCurrentUserSessions",
+      "summary": "Terminate Current User Sessions",
+      "requestBody": {
+        "data": {}
+      },
+      "responseExample": {
+        "success": true
+      }
+    },
+    {
+      "path": "/v1/users/doublelock-password",
+      "method": "PUT",
+      "operationId": "UsersService_SetUserDoubleLockPassword",
+      "summary": "Update Users Doublelock Password",
+      "requestBody": {
+        "password": "string"
+      },
+      "responseExample": true
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/schemas/GroupModel",
+  "title": "GroupModel",
+  "description": "Group",
+  "properties": {
+    "adGuid": {
+      "description": "Active Directory unique identifier",
+      "type": "string"
+    },
+    "canEditMembers": {
+      "description": "Whether you can edit the members of this group.  For example, Directory Services group members cannot be edited.  Populated on a single group get.",
+      "type": "boolean",
+      "nullable": true
+    },
+    "created": {
+      "description": "Group created date",
+      "type": "string",
+      "format": "date-time"
+    },
+    "domainId": {
+      "description": "Active Directory Domain ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "domainName": {
+      "description": "Active Directory domain name",
+      "type": "string"
+    },
+    "enabled": {
+      "description": "Whether the group is active",
+      "type": "boolean"
+    },
+    "hasGroupOwners": {
+      "description": "If true, the group is owned by specific other users/groups. If false, if it is owned by Group Administrators.",
+      "type": "boolean"
+    },
+    "id": {
+      "description": "Group ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "ipAddressRestrictions": {
+      "description": "Array of IP Address Restrictions for the group.",
+      "items": {
+        "$ref": "#/components/schemas/GroupIpAddressRestrictionSummaryModel"
+      },
+      "type": "array"
+    },
+    "isEditable": {
+      "description": "Whether you have permission to edit this group",
+      "type": "boolean"
+    },
+    "isPlatform": {
+      "description": "Whether the group is a Platform Group",
+      "type": "boolean"
+    },
+    "name": {
+      "description": "Group name",
+      "type": "string"
+    },
+    "ownerGroups": {
+      "$ref": "#/components/schemas/DictionaryOfInt32AndString"
+    },
+    "owners": {
+      "description": "The owners for the group, both users and groups",
+      "items": {
+        "$ref": "#/components/schemas/GroupOwner"
+      },
+      "type": "array"
+    },
+    "ownerUsers": {
+      "$ref": "#/components/schemas/DictionaryOfInt32AndString"
+    },
+    "synchronized": {
+      "description": "Whether the group is synchronized with Active Directory",
+      "type": "boolean"
+    },
+    "synchronizeNow": {
+      "description": "Active Directory Sync will only pull in members for domain groups that have this set to true.",
+      "type": "boolean"
+    },
+    "systemGroup": {
+      "description": "Whether the group is an Active Directory system group",
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}

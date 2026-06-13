@@ -1,0 +1,188 @@
+{
+  "category": "platform",
+  "description": "Example API requests and responses for platform endpoints in Delinea Secret Server REST API",
+  "examples": [
+    {
+      "path": "/v1/platform/group/{groupId}",
+      "method": "DELETE",
+      "operationId": "PlatformService_UnlinkDomainGroup",
+      "summary": "Unlink a group from Platform",
+      "responseExample": true
+    },
+    {
+      "path": "/v1/platform/groups/search-directory",
+      "method": "GET",
+      "operationId": "PlatformService_SearchPlatformForGroups",
+      "summary": "Search in Platform for groups",
+      "responseExample": {
+        "errorMessage": "string",
+        "groups": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/platform/directories",
+      "method": "GET",
+      "operationId": "PlatformService_GetPlatformDirectories",
+      "summary": "Get Platform Directories",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/platform/members",
+      "method": "GET",
+      "operationId": "PlatformService_GetDirectoryGroupMembers",
+      "summary": "Search in platform for members of a group",
+      "responseExample": {
+        "errorMessage": "string",
+        "members": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/platform/users-groups-search",
+      "method": "GET",
+      "operationId": "PlatformService_QueryPlatformUsersGroups",
+      "summary": "Search Platform users/groups",
+      "responseExample": {
+        "batchCount": 1,
+        "currentPage": 1,
+        "hasNext": true,
+        "hasPrev": true,
+        "nextSkip": 1,
+        "pageCount": 1,
+        "prevSkip": 1,
+        "records": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/platform/synchronization",
+      "method": "GET",
+      "operationId": "PlatformService_GetSynchronizationStatus",
+      "summary": "Platform Sync Status",
+      "responseExample": {
+        "endDateTime": "2024-01-15T10:30:00Z",
+        "errorCount": 1,
+        "lastLogEntry": "string",
+        "lastSyncGroupsCreated": 1,
+        "lastSyncUsersAddedToGroups": 1,
+        "lastSyncUsersRemovedFromGroups": 1,
+        "nextSynchronizationDateTime": "2024-01-15T10:30:00Z",
+        "startDateTime": "2024-01-15T10:30:00Z"
+      }
+    },
+    {
+      "path": "/v1/platform/provision-status",
+      "method": "GET",
+      "operationId": "PlatformService_GetProvisionStatus",
+      "summary": "Platform Provision Status",
+      "responseExample": {
+        "oneTimePlatformLoginURL": "string",
+        "openIdConnectEnabled": true,
+        "requestStartDateTime": "2024-01-15T10:30:00Z"
+      }
+    },
+    {
+      "path": "/v1/platform/provision-requested-date",
+      "method": "GET",
+      "operationId": "PlatformService_GetProvisionRequestedDate",
+      "summary": "Platform Provision Requested Date",
+      "responseExample": {
+        "requestDateTime": "2024-01-15T10:30:00Z"
+      }
+    },
+    {
+      "path": "/v1/platform/get-platform-regions",
+      "method": "GET",
+      "operationId": "PlatformService_GetPlatformRegions",
+      "summary": "Platform Get Regions",
+      "responseExample": {
+        "regions": [
+          {}
+        ]
+      }
+    },
+    {
+      "path": "/v1/platform/test-integration",
+      "method": "GET",
+      "operationId": "PlatformService_TestIntegrationAsync",
+      "summary": "Test Platform Integration",
+      "responseExample": {
+        "hasAuthenticatedCurrentUser": true,
+        "hasIntegrationConfigured": true,
+        "hasMatchingIntegrationUris": true,
+        "hasReceivedIntegrationResponse": true
+      }
+    },
+    {
+      "path": "/v1/platform/group",
+      "method": "POST",
+      "operationId": "PlatformService_LinkPlatformGroup",
+      "summary": "Link a group from Platform",
+      "responseExample": true
+    },
+    {
+      "path": "/v1/platform/create-users-and-groups",
+      "method": "POST",
+      "operationId": "PlatformService_CreatePlatformUsersAndGroups",
+      "summary": "Create Platform users and groups",
+      "requestBody": {
+        "data": [
+          {}
+        ]
+      },
+      "responseExample": {
+        "data": [
+          {}
+        ],
+        "error": "string"
+      }
+    },
+    {
+      "path": "/v1/platform/synchronization-now",
+      "method": "POST",
+      "operationId": "PlatformService_SynchronizeNow",
+      "summary": "Synchronize Platform user properties and group memberships",
+      "responseExample": true
+    },
+    {
+      "path": "/v1/platform/provision",
+      "method": "POST",
+      "operationId": "PlatformService_Provision",
+      "summary": "Provision Platform",
+      "requestBody": {
+        "adminEmail": "string",
+        "adminUsername": "string",
+        "optinToPlatformAcknowledgement": true,
+        "platformRegion": "string",
+        "tenantName": "string"
+      },
+      "responseExample": {
+        "oneTimePlatformLoginURL": "string",
+        "openIdConnectEnabled": true,
+        "requestStartDateTime": "2024-01-15T10:30:00Z"
+      }
+    },
+    {
+      "path": "/v1/platform/reset-user-mappings",
+      "method": "POST",
+      "operationId": "PlatformService_ResetPlatformUserMappings",
+      "summary": "Reset Platform User Mappings",
+      "responseExample": true
+    }
+  ]
+}

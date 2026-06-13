@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/schemas/UserModel",
+  "title": "UserModel",
+  "description": "User",
+  "properties": {
+    "adAccountExpires": {
+      "description": "Active Directory account expiration time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "adGuid": {
+      "description": "Active Directory unique identifier",
+      "type": "string"
+    },
+    "created": {
+      "description": "User creation time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "dateOptionId": {
+      "description": "DateOptionId",
+      "type": "integer",
+      "format": "int32"
+    },
+    "displayName": {
+      "description": "Display name",
+      "type": "string"
+    },
+    "domainId": {
+      "description": "Active Directory domain ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "duoTwoFactor": {
+      "description": "Whether Duo two-factor authentication is enabled",
+      "type": "boolean"
+    },
+    "emailAddress": {
+      "description": "Email address",
+      "type": "string"
+    },
+    "enabled": {
+      "description": "Whether the user account is enabled",
+      "type": "boolean"
+    },
+    "externalUserSource": {
+      "$ref": "#/components/schemas/ExternalUserSourceTypes"
+    },
+    "fido2TwoFactor": {
+      "description": "Whether FIDO2 two-factor authentication is enabled",
+      "type": "boolean"
+    },
+    "id": {
+      "description": "User ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "ipAddressRestrictions": {
+      "description": "Array of IP Address Restrictions for the user.",
+      "items": {
+        "$ref": "#/components/schemas/UserIpAddressRestrictionModel"
+      },
+      "type": "array"
+    },
+    "isApplicationAccount": {
+      "description": "IsApplicationAccount",
+      "type": "boolean"
+    },
+    "isEmailCopiedFromAD": {
+      "description": "Whether the email address is derived from the Active Directory account",
+      "type": "boolean"
+    },
+    "isEmailVerified": {
+      "description": "Whether the email address has been verified",
+      "type": "boolean"
+    },
+    "isLockedOut": {
+      "description": "Whether the user is locked out",
+      "type": "boolean"
+    },
+    "lastLogin": {
+      "description": "Time of last login",
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastSessionActivity": {
+      "description": "Time of last session activity",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "lockOutReason": {
+      "description": "The reason for the lock out",
+      "type": "string",
+      "nullable": true
+    },
+    "lockOutReasonDescription": {
+      "description": "An optional description of the reason for the lock out",
+      "type": "string"
+    },
+    "loginFailures": {
+      "description": "Number of login failures",
+      "type": "integer",
+      "format": "int32"
+    },
+    "mustVerifyEmail": {
+      "description": "Whether the user must verify their email address",
+      "type": "boolean"
+    },
+    "oathTwoFactor": {
+      "description": "Whether OATH two-factor authentication is enabled",
+      "type": "boolean"
+    },
+    "oathVerified": {
+      "description": "Whether OATH has been verified",
+      "type": "boolean"
+    },
+    "passwordLastChanged": {
+      "description": "Time when the password was last changed",
+      "type": "string",
+      "format": "date-time"
+    },
+    "personalGroupId": {
+      "description": "The personal group ID for this user.  Each user has a personal group that is a group that only contains that user.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "platformIntegrationType": {
+      "$ref": "#/components/schemas/PlatformIntegrationType"
+    },
+    "platformServiceUser": {
+      "description": "Whether user is a system managed account used for Platform Integration",
+      "type": "boolean"
+    },
+    "radiusTwoFactor": {
+      "description": "Whether RADIUS two-factor authentication is enabled",
+      "type": "boolean"
+    },
+    "radiusUserName": {
+      "description": "RADIUS username",
+      "type": "string"
+    },
+    "resetSessionStarted": {
+      "description": "ResetSessionStarted",
+      "type": "string",
+      "format": "date-time"
+    },
+    "slackId": {
+      "description": "Slack ID of the user",
+      "type": "string"
+    },
+    "timeOptionId": {
+      "description": "TimeOptionId",
+      "type": "integer",
+      "format": "int32"
+    },
+    "twoFactor": {
+      "description": "Whether two-factor authentication is enabled",
+      "type": "boolean"
+    },
+    "unixAuthenticationMethod": {
+      "$ref": "#/components/schemas/UnixAuthenticationMethodType"
+    },
+    "userLcid": {
+      "description": "UserLcid",
+      "type": "integer",
+      "format": "int32"
+    },
+    "userName": {
+      "description": "User name",
+      "type": "string"
+    },
+    "verifyEmailSentDate": {
+      "description": "Time when the verification email was sent",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "type": "object"
+}

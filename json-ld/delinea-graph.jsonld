@@ -1,0 +1,73 @@
+{
+  "@context": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-ld/delinea-context.jsonld",
+  "@graph": [
+    {
+      "@type": "schema:WebAPI",
+      "@id": "https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/",
+      "schema:name": "Secret Server Rest API",
+      "schema:version": "11.7.2",
+      "schema:description": "REST API for Delinea Secret Server enabling programmatic management of privileged credentials, secrets, folders, permissions, and session recording.",
+      "schema:url": "https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "schema:name": "Delinea",
+        "schema:url": "https://delinea.com/"
+      },
+      "schema:termsOfService": "https://delinea.com/legal",
+      "schema:documentation": "https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm",
+      "delinea:pathCount": 826,
+      "delinea:schemaCount": 1947,
+      "delinea:specVersion": "3.0.0",
+      "delinea:apiVersion": "11.7.2",
+      "schema:additionalProperty": [
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "authentication",
+          "schema:value": "Bearer Token, OAuth 2.0, Windows Integrated Authentication"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "baseURL",
+          "schema:value": "https://your-secret-server-instance/api/v1"
+        }
+      ]
+    },
+    {
+      "@type": "delinea:SecretModel",
+      "@id": "delinea:SecretModel",
+      "schema:name": "Secret",
+      "schema:description": "A privileged credential or secret stored and managed by Delinea Secret Server",
+      "rdfs:comment": "Represents a secret (credential) entity with fields, access controls, and policy settings"
+    },
+    {
+      "@type": "delinea:FolderModel",
+      "@id": "delinea:FolderModel",
+      "schema:name": "Folder",
+      "schema:description": "An organizational container for secrets in Delinea Secret Server"
+    },
+    {
+      "@type": "delinea:UserModel",
+      "@id": "delinea:UserModel",
+      "schema:name": "User",
+      "schema:description": "A user account with access rights within Delinea Secret Server"
+    },
+    {
+      "@type": "delinea:GroupModel",
+      "@id": "delinea:GroupModel",
+      "schema:name": "Group",
+      "schema:description": "A collection of users sharing common access permissions in Delinea Secret Server"
+    },
+    {
+      "@type": "delinea:RoleModel",
+      "@id": "delinea:RoleModel",
+      "schema:name": "Role",
+      "schema:description": "A named set of permissions that can be assigned to users or groups in Delinea Secret Server"
+    },
+    {
+      "@type": "delinea:SecretPolicyModel",
+      "@id": "delinea:SecretPolicyModel",
+      "schema:name": "Secret Policy",
+      "schema:description": "A policy governing access, checkout, and rotation behavior for secrets in Delinea Secret Server"
+    }
+  ]
+}
