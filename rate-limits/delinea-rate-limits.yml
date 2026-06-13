@@ -1,0 +1,36 @@
+name: Delinea API Rate Limits
+description: Rate limiting policies for Delinea REST APIs across Secret Server, DevOps Secrets Vault, Privilege Manager, and Platform APIs. Delinea does not publish explicit rate limit thresholds in public documentation; limits are enforced at the server level and governed by third-party integration guidance.
+url: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+limits:
+  - api: Secret Server REST API
+    notes: No publicly documented rate limits. Delinea recommends that third-party integrations respect token expiry and avoid issuing calls too quickly without waiting for responses and timeouts.
+    authentication: Bearer token (OAuth 2.0) or Windows Integrated Authentication
+    token_lifespan: Configurable by administrator
+    best_practices:
+      - Respect token expiry and refresh proactively
+      - Wait for API responses before issuing subsequent calls
+      - Handle 429 and 503 HTTP status codes with exponential backoff
+  - api: DevOps Secrets Vault (DSV) API
+    base_url: https://secretsvaultcloud.com/v1/
+    notes: No publicly documented rate limits. The API uses standard HTTP status codes including 429 for rate limit exceeded.
+    authentication: Bearer token via Authorization header
+    http_error_codes:
+      - code: 200
+        meaning: Success
+      - code: 400
+        meaning: Bad request
+      - code: 401
+        meaning: Unauthorized
+      - code: 403
+        meaning: Forbidden
+      - code: 429
+        meaning: Rate limit exceeded (implied by standard HTTP practice)
+      - code: 500
+        meaning: Internal server error
+  - api: Delinea Platform API
+    notes: No publicly documented rate limits. OAuth 2.0 access tokens are used for all requests.
+    authentication: OAuth 2.0
+general_guidance:
+  - Contact Delinea support or review your subscription agreement for specific rate limit thresholds.
+  - On-premises Secret Server deployments may have different limits than cloud-hosted instances.
+  - DevOps Secrets Vault is cloud-only and multi-tenant rate limits may apply.
