@@ -1,0 +1,857 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations SshCommandMenu API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: SshCommandMenu
+  description: View and maintain SSH Command Menus
+paths:
+  /v1/ssh-command-menu/search:
+    get:
+      tags:
+      - SshCommandMenu
+      summary: Search SSH Commands
+      description: Search, filter, sort, and page SSH Commands
+      operationId: SshCommandMenuService_SearchSshCommandMenu
+      parameters:
+      - name: filter.includeDisabled
+        in: query
+        description: IncludeDisabled
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: SSH Command Menu search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSshCommandMenuSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/ssh-command-menu/audit/search:
+    get:
+      tags:
+      - SshCommandMenu
+      summary: Search Menu Audits
+      description: Search, filter, sort, and page audits
+      operationId: SshCommandMenuService_SearchAudits
+      parameters:
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: filter.sshCommandMenuName
+        in: query
+        description: SshCommandMenuName
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Menu audit search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSshCommandMenuAuditSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/ssh-command-item/audit/search:
+    get:
+      tags:
+      - SshCommandMenu
+      summary: Search SSH Command, Blocklist, and Menu Audits for audit item
+      description: Search, filter, sort, and page audits for audit item
+      operationId: SshCommandMenuService_SearchItemAudits
+      parameters:
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: filter.sshCommandItemNameOrNotes
+        in: query
+        description: SshCommandItemNameOrNotes
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: SSH Command, Blocklist, and Menu search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSshCommandItemAuditSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/ssh-command-menu/{sshCommandMenuId}:
+    get:
+      tags:
+      - SshCommandMenu
+      summary: Get SSH Command Menu
+      description: Return details for a specific SSH Command Menu item
+      operationId: SshCommandMenuService_GetSshCommandMenu
+      parameters:
+      - name: sshCommandMenuId
+        in: path
+        description: sshCommandMenuId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: SSH Command Menu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshCommandMenuModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - SshCommandMenu
+      summary: Update an SSH Command Menu
+      description: Update an SSH Command Menu
+      operationId: SshCommandMenuService_PatchSshCommandMenu
+      parameters:
+      - name: sshCommandMenuId
+        in: path
+        description: sshCommandMenuId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SshCommandMenuPatchArgs'
+        description: SSH Command Menu Update Options
+      responses:
+        '200':
+          description: SSH Command Menu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshCommandMenuModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/ssh-command-menu/state:
+    get:
+      tags:
+      - SshCommandMenu
+      summary: Get user actions for SSH Commands
+      description: Available user actions for commands
+      operationId: SshCommandMenuService_GetSshCommandState
+      responses:
+        '200':
+          description: The list of actions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshCommandMenuStateModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/ssh-command-menu:
+    post:
+      tags:
+      - SshCommandMenu
+      summary: Add an SSH Command Menu
+      description: Create a new SSH Command Menu item
+      operationId: SshCommandMenuService_AddSshCommandMenu
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SshCommandMenuCreateArgs'
+        description: SSH Command create options
+      responses:
+        '200':
+          description: SSH Command Menu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshCommandMenuModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    SshCommandMenuCreateModel:
+      description: Create a new SSH Command Menu
+      required:
+      - name
+      - active
+      - description
+      - sshCommands
+      properties:
+        active:
+          description: Active
+          type: boolean
+        description:
+          description: Description
+          type: string
+        name:
+          description: Name
+          type: string
+        sshCommands:
+          description: SSH Commands should be in the format of commandname = command.  Each command should be separated by a carriage return and line feed
+          type: string
+      type: object
+    SshCommandMenuActions:
+      description: Actions the current user can perform
+      properties: {}
+      type: string
+      enum:
+      - CanCreate
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    PagingOfSshCommandItemAuditSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SshCommandItemAuditSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    SshCommandMenuAuditSummaryModel:
+      description: SSH Command Menu Audits
+      properties:
+        action:
+          description: Action
+          type: string
+        dateRecorded:
+          description: The date of the change
+          type: string
+          format: date-time
+        newCommands:
+          description: New Commands
+          type: string
+        notes:
+          description: Notes
+          type: string
+        oldCommands:
+          description: Old Commands
+          type: string
+        sshCommandMenuName:
+          description: The name of the command menu
+          type: string
+        userDisplayName:
+          description: Display name of the user making the change
+          type: string
+      type: object
+    SshCommandMenuPatchModel:
+      description: Patch SSH Command Menu
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        description:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        sshCommandMenuGuid:
+          description: Ssh Command Menu Guid Id
+          type: string
+          format: uuid
+          nullable: true
+        sshCommandMenuId:
+          description: Ssh Command Menu Id
+          type: integer
+          format: int32
+          nullable: true
+        sshCommands:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    SshCommandMenuSummaryModel:
+      description: SSH Command Menu Summary
+      properties:
+        active:
+          description: Active
+          type: boolean
+        description:
+          description: Description
+          type: string
+        name:
+          description: Name
+          type: string
+        sshCommandMenuId:
+          description: ID of the SSH Command Menu
+          type: integer
+          format: int32
+      type: object
+    SshCommandItemAuditSummaryModel:
+      description: SSH Command Info Audits (Menu, Blocklist, Command)
+      properties:
+        action:
+          description: Action
+          type: string
+        dateRecorded:
+          description: The date of the change
+          type: string
+          format: date-time
+        itemName:
+          description: The name of the item
+          type: string
+        itemType:
+          description: Item Type (Command, Menu, Blocklist)
+          type: string
+        newCommands:
+          description: New Commands (Menu only)
+          type: string
+        notes:
+          description: Notes
+          type: string
+        oldCommands:
+          description: Old Commands (Menu only)
+          type: string
+        userDisplayName:
+          description: Display name of the user making the change
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    SshCommandMenuStateModel:
+      description: Available state that can be performed on the SSH command feature such as actions
+      properties:
+        actions:
+          description: Actions the current user can perform
+          items:
+            $ref: '#/components/schemas/SshCommandMenuActions'
+          type: array
+        viewPolicy:
+          description: ViewPolicy
+          type: boolean
+      type: object
+    PagingOfSshCommandMenuAuditSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SshCommandMenuAuditSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    SshCommandMenuPatchArgs:
+      description: SshCommandMenuPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/SshCommandMenuPatchModel'
+      type: object
+    SshCommandMenuModel:
+      description: SSH Command Menu
+      properties:
+        active:
+          description: Active
+          type: boolean
+        description:
+          description: Description
+          type: string
+        name:
+          description: Name
+          type: string
+        sshCommandMenuGuid:
+          description: Ssh Command Menu Guid Id
+          type: string
+          format: uuid
+        sshCommandMenuId:
+          description: Ssh Command Menu Id
+          type: integer
+          format: int32
+        sshCommands:
+          description: SshCommands
+          type: string
+      type: object
+    PagingOfSshCommandMenuSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SshCommandMenuSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    SshCommandMenuCreateArgs:
+      description: Options to create SSH Command Menu
+      properties:
+        data:
+          $ref: '#/components/schemas/SshCommandMenuCreateModel'
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

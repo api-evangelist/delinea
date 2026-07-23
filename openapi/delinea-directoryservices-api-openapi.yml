@@ -1,0 +1,1641 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations DirectoryServices API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: DirectoryServices
+  description: View and maintain Directory Services integrations
+paths:
+  /v1/directory-services/domains/{domainId}/group/{groupId}:
+    delete:
+      tags:
+      - DirectoryServices
+      summary: Unlink a group from domain
+      description: Unlinking a group from a domain will disable future synchronization updates. The group will also be disabled.
+      operationId: DirectoryServicesService_UnlinkDomainGroup
+      parameters:
+      - name: domainId
+        in: path
+        description: domainId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: groupId
+        in: path
+        description: groupId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success status
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/synchronization/logs:
+    get:
+      tags:
+      - DirectoryServices
+      summary: Get Synchronization Log
+      description: Get Synchronization Log
+      operationId: DirectoryServicesService_GetSynchronizationLog
+      parameters:
+      - name: filter.endDate
+        in: query
+        description: EndDate
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+          format: date-time
+      - name: filter.searchText
+        in: query
+        description: SearchText
+        required: false
+        schema:
+          type: string
+      - name: filter.startDate
+        in: query
+        description: StartDate
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+          format: date-time
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Synchronization log entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfDirectoryServicesSynchronizationLogEntry'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/synchronization:
+    get:
+      tags:
+      - DirectoryServices
+      summary: Directory Services Sync Status
+      description: Return status of directory services synchronization
+      operationId: DirectoryServicesService_GetSynchronizationStatus
+      responses:
+        '200':
+          description: Whether or not the sync has started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryServicesSynchronizationStatus'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/domains:
+    get:
+      tags:
+      - DirectoryServices
+      summary: Search Domains
+      description: Search Domains
+      operationId: DirectoryServicesService_SearchDomains
+      parameters:
+      - name: filter.domainName
+        in: query
+        description: DomainName
+        required: false
+        schema:
+          type: string
+      - name: filter.includeInactive
+        in: query
+        description: IncludeInactive
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Domains that matched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPagingOfDomainSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - DirectoryServices
+      summary: Create Domain
+      description: Create a new domain to be used for directory services synchronization / integration
+      operationId: DirectoryServicesService_CreateDomain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: Domain that was just created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/domains/{id}:
+    get:
+      tags:
+      - DirectoryServices
+      summary: Get a Domain
+      description: Get a Domain
+      operationId: DirectoryServicesService_GetDomain
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Domain that was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/domains/ldap-settings/{id}:
+    get:
+      tags:
+      - DirectoryServices
+      summary: Get Ldap synchronization settings for a domain
+      description: Get Ldap synchronization settings for a domain
+      operationId: DirectoryServicesService_GetLdapSyncSettings
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ldap synchronization settings for the domain
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LdapSyncSettingsViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/domains/stub:
+    get:
+      tags:
+      - DirectoryServices
+      summary: Get a Domain Stub
+      description: Get a Domain Stub
+      operationId: DirectoryServicesService_GetDomainStub
+      parameters:
+      - name: domainType
+        in: query
+        description: domainType
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Domain Stub
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/domains/{domainId}/groups/search-directory:
+    get:
+      tags:
+      - DirectoryServices
+      summary: Search in the directory for groups
+      description: Using the credentials defined on the domain search within the directory for groups
+      operationId: DirectoryServicesService_SearchDirectoryForGroups
+      parameters:
+      - name: domainId
+        in: path
+        description: domainId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: searchText
+        in: query
+        description: 'Search text. Use * for wildcards, ex: Admin*. Leave empty to return all.'
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Array of groups matching search criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalGroupViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/domains/{domainId}/members:
+    get:
+      tags:
+      - DirectoryServices
+      summary: Search in the directory for members of a group
+      description: Using the credentials defined on the domain find members of a group within the directory
+      operationId: DirectoryServicesService_GetDirectoryGroupMembers
+      parameters:
+      - name: domainId
+        in: path
+        description: domainId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: domainIdentifier
+        in: query
+        description: The unique directory identifier for the group to be linked.  For example, this is ADGuid in Active Directory
+        required: false
+        schema:
+          type: string
+      - name: groupName
+        in: query
+        description: Name of the Group
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Array of users in the passed in group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryServicesGroupMemberResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/configuration:
+    get:
+      tags:
+      - DirectoryServices
+      summary: Directory Services Configuration
+      description: Retrieve the current settings for Directory Services configuration
+      operationId: DirectoryServicesService_GetDirectoryServicesConfiguration
+      responses:
+        '200':
+          description: Directory Services Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryServicesConfigurationModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - DirectoryServices
+      summary: Update Directory Services Configuration
+      description: Update the current settings for Directory Services configuration
+      operationId: DirectoryServicesService_PatchDirectoryServicesConfiguration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryServicesConfigurationUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Updated Directory Services Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryServicesConfigurationModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/domains/ldap-settings/{domainId}:
+    patch:
+      tags:
+      - DirectoryServices
+      summary: Patch Ldap Sync Settings for a domain
+      description: Patch Ldap Sync Settings for a domain
+      operationId: DirectoryServicesService_PatchLdapSyncSettings
+      parameters:
+      - name: domainId
+        in: path
+        description: domainId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LdapSyncSettingsPatchArgs'
+        description: args
+      responses:
+        '200':
+          description: Domain that was just updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LdapSyncSettingsViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/domains/{domainId}:
+    patch:
+      tags:
+      - DirectoryServices
+      summary: Patch a domain
+      description: Patch a domain
+      operationId: DirectoryServicesService_PatchDomain
+      parameters:
+      - name: domainId
+        in: path
+        description: domainId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainPatchArgs'
+        description: args
+      responses:
+        '200':
+          description: Domain that was just updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/synchronization-now:
+    post:
+      tags:
+      - DirectoryServices
+      summary: Synchronize all directory services
+      description: Run synchronize to update users and groups for all configurated and enabled domains in all directories and domains
+      operationId: DirectoryServicesService_SynchronizeNow
+      responses:
+        '200':
+          description: True if the command was initiated successfully
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/directory-services/domains/{domainId}/group:
+    post:
+      tags:
+      - DirectoryServices
+      summary: Link a group from the directory
+      description: Linking or adding a group to a domain will synchronize all users from the directory to SS that are members of this group.
+      operationId: DirectoryServicesService_LinkDomainGroup
+      parameters:
+      - name: domainId
+        in: path
+        description: domainId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/LinkExternalGroupArgs'
+      responses:
+        '200':
+          description: Success status
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    DomainActionType:
+      description: Valid Actions
+      properties: {}
+      type: string
+      enum:
+      - EditDomain
+      - EditGroups
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    LinkExternalGroupSettings:
+      description: Information about the directory group that is needed to create a link
+      properties:
+        domainIdentifier:
+          description: The unique directory identifier for the group to be linked. For Active Directory this must be in hex format, NOT guid format.  For example, this is ADGuid in Active Directory
+          type: string
+        name:
+          description: Name of the group in the directory
+          type: string
+      type: object
+    DirectoryServicesConfigurationModel:
+      description: Directory Services Configuration
+      properties:
+        daysToKeepOperationalLogs:
+          description: How long to keep operational logs
+          type: integer
+          format: int32
+        disableInactiveUsersMonths:
+          description: How long to wait before disabling inactive users
+          type: integer
+          format: int32
+        enableDirectoryIntegration:
+          description: Whether or not any Directory Services integrations are enabled or not
+          type: boolean
+        enableDirectorySynchronization:
+          description: Synchronize users and group membership on a time interval
+          type: boolean
+        enableIntegratedWindowsAuthentication:
+          description: Integrated Windows Authentication (IWA) allows users to log into Secret Server automatically if they are logged into a workstation with their Active Directory credentials.
+          type: boolean
+        enableUserDisabling:
+          description: When enabled inactive users will be automatically disabled regardless of their Directory status
+          type: boolean
+        synchronizationIntervalDays:
+          description: Synchronize days interval for users and group membership
+          type: integer
+          format: int32
+        synchronizationIntervalHours:
+          description: Synchronize hours interval for users and group membership
+          type: integer
+          format: int32
+        synchronizationIntervalMinutes:
+          description: Synchronize minutes interval for users and group membership
+          type: integer
+          format: int32
+        userAccountOptions:
+          $ref: '#/components/schemas/DirectoryServicesSynchronizationUserOption'
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    LdapSyncSettingsViewModel:
+      description: LdapSyncSettingsViewModel
+      properties:
+        actions:
+          description: Valid Actions
+          items:
+            $ref: '#/components/schemas/DomainActionType'
+          type: array
+        baseDnCode:
+          $ref: '#/components/schemas/ViewFieldDropDownValueOfString'
+        displayNameAttribute:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        domainId:
+          description: Domain Id
+          type: integer
+          format: int32
+          nullable: true
+        emailAttribute:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        groupMemberAttribute:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        groupNameAttribute:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        groupObjectClasses:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        groupSearchFilter:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        guidAttribute:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        usernameAttribute:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        userObjectClasses:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        userPrincipalNameAttribute:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    DirectoryServicesConfigurationUpdateArgs:
+      description: DirectoryServicesConfigurationUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DirectoryServicesConfigurationUpdateModel'
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    MultifactorAuthenticationProviderTypes:
+      description: Domain multifactor authentication providers.
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Radius
+      - TOTPAuthenticator
+      - Duo
+      - Fido2
+      - Email
+    LdapSyncSettingsPatchModel:
+      description: Patch update data for the Ldap Sync Settings.
+      properties:
+        baseDnCode:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        displayNameAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        emailAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        groupMemberAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        groupNameAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        groupObjectClasses:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        groupSearchFilter:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        guidAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        usernameAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        userObjectClasses:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        userPrincipalNameAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    IPagingOfDomainSummaryModel:
+      description: IPagingOfDomainSummaryModel
+      properties:
+        records:
+          description: Records
+          items:
+            $ref: '#/components/schemas/DomainSummaryModel'
+          type: array
+        sortBy:
+          description: SortBy
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+      type: object
+    ViewFieldValueOfString:
+      description: GeneratedToken
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    DomainSummaryModel:
+      description: Domain Summary
+      properties:
+        active:
+          description: Active
+          type: boolean
+        domainId:
+          description: Domain Id
+          type: integer
+          format: int32
+        domainName:
+          description: Domain Name
+          type: string
+        domainType:
+          $ref: '#/components/schemas/DomainType'
+        friendlyName:
+          description: Friendly Name
+          type: string
+        requireRadiusAuthentication:
+          description: Require Radius Authentication
+          type: boolean
+        useSecureLdap:
+          description: Use Secure LDAP
+          type: boolean
+      type: object
+    DomainSynchronizationStatus:
+      description: Results of the last synchronization for this domain
+      properties:
+        disabledUsers:
+          description: Number of users that were disabled
+          type: integer
+          format: int32
+        domainId:
+          description: Which domain is this status for
+          type: integer
+          format: int32
+        domainUsersUpdatedSinceLastSynchronization:
+          description: Obsolete - Not populated.
+          type: integer
+          format: int32
+        lastLogEntry:
+          description: Log Entry used for parsing
+          type: string
+        newUsersCreated:
+          description: Total new users that were created
+          type: integer
+          format: int32
+        newUsersCreatedAsDisabled:
+          description: Total new users that were created and then set as disabled due to either license limits or other settings
+          type: integer
+          format: int32
+        usersRemovedFromGroups:
+          description: Total users removed from groups
+          type: integer
+          format: int32
+        usersWithGroupMembershipChanges:
+          description: Total number of users that were added or removed from any group in this domain
+          type: integer
+          format: int32
+      type: object
+    PagingOfDirectoryServicesSynchronizationLogEntry:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/DirectoryServicesSynchronizationLogEntry'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    DirectoryServicesConfigurationUpdateModel:
+      description: The fields to update on the Directory Services configuration.
+      properties:
+        daysToKeepOperationalLogs:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        disableInactiveUsersMonths:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        enableDirectoryIntegration:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableDirectorySynchronization:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableIntegratedWindowsAuthentication:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableUserDisabling:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        synchronizationIntervalDays:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        synchronizationIntervalHours:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        synchronizationIntervalMinutes:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        userAccountOptions:
+          $ref: '#/components/schemas/UpdateFieldValueOfDirectoryServicesSynchronizationUserOption'
+      type: object
+    DirectoryServicesSynchronizationStatus:
+      description: Directory Synchronization Status
+      properties:
+        domainStatus:
+          description: Results from the last synchronization for each domain.  If a synchronization is currently running this will indicate the results for the last synchronization and not the current running totals.
+          items:
+            $ref: '#/components/schemas/DomainSynchronizationStatus'
+          type: array
+        endDateTime:
+          description: The date and time that the last synchronization ended.  If a synchronization is currently running this will be empty.
+          type: string
+          format: date-time
+          nullable: true
+        errorCount:
+          description: The number of errors since the last synchronization start time
+          type: integer
+          format: int32
+        estimatedPercentComplete:
+          description: Based on last run time duration the percent complete assumes each run takes approximately the same amount of time
+          type: integer
+          format: int32
+        nextSynchronizationDateTime:
+          description: The next time the synchronization is expected to run
+          type: string
+          format: date-time
+          nullable: true
+        startDateTime:
+          description: The date and time that the last synchronization started.  This will be empty if a synchronization has never been run.
+          type: string
+          format: date-time
+          nullable: true
+      type: object
+    DirectoryServicesGroupMemberResponse:
+      description: Group Member Response
+      properties:
+        errorMessage:
+          description: Indicates if an error message occurred
+          type: string
+        members:
+          description: Members of the group
+          items:
+            $ref: '#/components/schemas/DirectoryGroupUserViewModel'
+          type: array
+      type: object
+    ViewFieldLink:
+      description: AdditionalLinks
+      properties:
+        isExternal:
+          description: IsExternal
+          type: boolean
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
+          type: string
+      type: object
+    DirectoryServicesSynchronizationLogEntry:
+      description: Query results
+      properties:
+        createdOn:
+          description: CreatedOn
+          type: string
+          format: date-time
+        machineName:
+          description: MachineName
+          type: string
+        text:
+          description: Text
+          type: string
+      type: object
+    UpdateFieldValueOfMultifactorAuthenticationProviderTypes:
+      description: Domain multifactor authentication provider.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/MultifactorAuthenticationProviderTypes'
+      type: object
+    UpdateFieldValueOfOptionalBoolean:
+      description: Use RADIUS Username for DUO
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+          nullable: true
+      type: object
+    ExternalServicesGroupModel:
+      description: Directory Group
+      properties:
+        dsGuid:
+          description: Unique Identifier of the Group
+          type: string
+        name:
+          description: Name Guid of the Group
+          type: string
+      type: object
+    DomainCreateModel:
+      description: Data
+      properties:
+        active:
+          description: Active
+          type: boolean
+        authType:
+          description: AuthType for OpenLdap
+          type: string
+          nullable: true
+        clientId:
+          description: Client ID
+          type: string
+        clientSecret:
+          description: Client Secret
+          type: string
+        distinguishedName:
+          description: Domain Base DN
+          type: string
+        domainName:
+          description: The name of the domain.
+          type: string
+        domainType:
+          $ref: '#/components/schemas/DomainType'
+        friendlyName:
+          description: The friendly name of the domain.
+          type: string
+        multifactorAuthenticationProvider:
+          $ref: '#/components/schemas/MultifactorAuthenticationProviderTypes'
+        siteId:
+          description: Site Id
+          type: integer
+          format: int32
+          nullable: true
+        synchronizationSecretId:
+          description: Synchronization Secret
+          type: integer
+          format: int32
+          nullable: true
+        tenantId:
+          description: Tenant ID
+          type: string
+        userAuthType:
+          description: UserAuthType for OpenLdap
+          type: string
+          nullable: true
+        useSecureLDAP:
+          description: Use Secure LDAP
+          type: boolean
+          nullable: true
+      type: object
+    ExternalGroupViewModel:
+      description: External Groups
+      properties:
+        errorMessage:
+          description: Error Message returned when populating groups array if error occurs, otherwise null
+          type: string
+        groups:
+          description: Groups that matched the search criteria
+          items:
+            $ref: '#/components/schemas/ExternalServicesGroupModel'
+          type: array
+      type: object
+    DomainPatchModel:
+      description: Patch update data for the domain.
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        authType:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalAuthType'
+        clientId:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        clientSecret:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        distinguishedName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        domainName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        friendlyName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        multifactorAuthenticationProvider:
+          $ref: '#/components/schemas/UpdateFieldValueOfMultifactorAuthenticationProviderTypes'
+        siteId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        synchronizationSecretId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        tenantId:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        userAuthType:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalAuthType'
+        useSecureLDAP:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+      type: object
+    UpdateFieldValueOfDirectoryServicesSynchronizationUserOption:
+      description: Indicates how to synchronize the enabled status for new and existing users
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/DirectoryServicesSynchronizationUserOption'
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    DirectoryGroupUserViewModel:
+      description: Directory Group User
+      properties:
+        displayName:
+          description: Display Name of the user
+          type: string
+      type: object
+    LinkExternalGroupArgs:
+      description: LinkExternalGroupArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/LinkExternalGroupSettings'
+      type: object
+    ViewFieldDropDownOption:
+      description: DropDownOptions
+      properties:
+        fieldDisplay:
+          description: FieldDisplay
+          type: string
+        fieldValue:
+          description: FieldValue
+          type: string
+      type: object
+    DomainType:
+      description: Domain Type
+      properties: {}
+      type: string
+      enum:
+      - ActiveDirectory
+      - OpenLdap
+      - AzureActiveDirectory
+    LdapSyncSettingsPatchArgs:
+      description: LdapSyncSettingsPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/LdapSyncSettingsPatchModel'
+      type: object
+    DomainPatchArgs:
+      description: DomainPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DomainPatchModel'
+      type: object
+    DomainCreateArgs:
+      description: DomainCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DomainCreateModel'
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    ViewFieldDropDownValueOfString:
+      description: Base Distinguished Name Code
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        dropDownOptions:
+          description: DropDownOptions
+          items:
+            $ref: '#/components/schemas/ViewFieldDropDownOption'
+          type: array
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+      type: object
+    DirectoryServicesSynchronizationUserOption:
+      description: Indicates how to synchronize the enabled status for new and existing users
+      properties: {}
+      type: string
+      enum:
+      - ImportEnabled
+      - ImportDisabled
+      - MirrorDirectory
+    DomainModel:
+      description: Domain
+      properties:
+        active:
+          description: Active
+          type: boolean
+        domainId:
+          description: Domain Id
+          type: integer
+          format: int32
+          nullable: true
+        domainName:
+          description: Domain Name
+          type: string
+        friendlyName:
+          description: Friendly Name
+          type: string
+        multifactorAuthenticationProvider:
+          $ref: '#/components/schemas/MultifactorAuthenticationProviderTypes'
+        siteId:
+          description: Site Id
+          type: integer
+          format: int32
+        synchronizationSecretId:
+          description: Synchronization Secret
+          type: integer
+          format: int32
+          nullable: true
+        useSecureLDAP:
+          description: Use Secure LDAP
+          type: boolean
+      type: object
+    UpdateFieldValueOfOptionalAuthType:
+      description: AuthType for OpenLdap
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+          nullable: true
+      type: object
+  requestBodies:
+    LinkExternalGroupArgs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LinkExternalGroupArgs'
+      description: args
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

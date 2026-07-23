@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations RestApiDocs API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: RestApiDocs
+  description: REST API Doc Services
+paths:
+  /v1/rest-documentation/services:
+    get:
+      tags:
+      - RestApiDocs
+      summary: Get REST API Services
+      description: Return a list of all REST API service names
+      operationId: RestApiDocsService_GetRestApiServices
+      responses:
+        '200':
+          description: List of REST API service names
+          content:
+            application/json:
+              schema:
+                description: List of REST API service names
+                items:
+                  $ref: '#/components/schemas/RestApiDocSummary'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    RestApiDocSummary:
+      description: RestApiDocSummary[]
+      properties:
+        description:
+          description: Description of the service
+          type: string
+        serviceDisplayName:
+          description: Display Name of the service
+          type: string
+        serviceName:
+          description: Name of the service
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

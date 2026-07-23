@@ -1,0 +1,2549 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations EventPipeline API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: EventPipeline
+  description: EventPipelineController
+paths:
+  /v1/event-pipeline/{id}:
+    get:
+      tags:
+      - EventPipeline
+      summary: Get an Event Pipeline
+      description: Returns the Event Pipeline for the provided ID
+      operationId: EventPipelineService_GetEventPipeline
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: The Event Pipeline View
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipelineModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - EventPipeline
+      summary: Update an Event Pipeline
+      description: Update an existing Event Pipeline using the existing Event Pipeline's ID
+      operationId: EventPipelineService_UpdateEventPipelines
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelineUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: The updated Event Pipeline
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipelineModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline/list:
+    get:
+      tags:
+      - EventPipeline
+      summary: Get a list of Event Pipelines
+      description: Returns a list of Event Pipelines that meet the paging/searching criterea
+      operationId: EventPipelineService_GetEventPipelines
+      parameters:
+      - name: filter.eventEntityTypeId
+        in: query
+        description: EventEntityTypeId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.eventPipelineName
+        in: query
+        description: EventPipelineName
+        required: false
+        schema:
+          type: string
+      - name: filter.eventPipelinePolicyId
+        in: query
+        description: EventPipelinePolicyId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeActive
+        in: query
+        description: IncludeActive
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.includeInactive
+        in: query
+        description: IncludeInactive
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: The list of Event Pipelines
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfEventPipelineViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline/summaries:
+    get:
+      tags:
+      - EventPipeline
+      summary: Get summaries of Event Pipelines
+      description: Returns a list of Event Pipeline summaries that meet the searching criterea
+      operationId: EventPipelineService_GetEventPipelineSummaries
+      parameters:
+      - name: filter.eventEntityTypeId
+        in: query
+        description: EventEntityTypeId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.eventPipelineName
+        in: query
+        description: EventPipelineName
+        required: false
+        schema:
+          type: string
+      - name: filter.eventPipelinePolicyId
+        in: query
+        description: EventPipelinePolicyId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeActive
+        in: query
+        description: IncludeActive
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.includeInactive
+        in: query
+        description: IncludeInactive
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: The summaries of Event Pipelines
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfEventPipelineSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline/stub:
+    get:
+      tags:
+      - EventPipeline
+      summary: Stub an empty Event Pipeline
+      description: Returns an empty Event Pipeline to be filled out.
+      operationId: EventPipelineService_GetEventPipelineStub
+      responses:
+        '200':
+          description: An empty Event Pipeline
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipeline'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline/runs:
+    get:
+      tags:
+      - EventPipeline
+      summary: Get Event Pipeline Runs
+      description: Get all of the runs for a specific pipeline
+      operationId: EventPipelineService_GetEventPipelineRuns
+      parameters:
+      - name: filter.eventPipelineId
+        in: query
+        description: EventPipelineId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.eventPipelinePolicyRunId
+        in: query
+        description: EventPipelinePolicyRunId
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+          format: uuid
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged list of pipeline runs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfEventPipelineRunViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline:
+    post:
+      tags:
+      - EventPipeline
+      summary: Create a new Event Pipeline
+      description: Creates a new Event Pipeline with the provided object.
+      operationId: EventPipelineService_CreateEventPipelines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelineCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: The new Event Pipeline
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipelineModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline/{id}/order:
+    put:
+      tags:
+      - EventPipeline
+      summary: Reorder an Event Pipeline
+      description: Reorder an existing Event Pipeline in a policy
+      operationId: EventPipelineService_ReorderPipeline
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelineOrderUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Event Pipeline Policy Map
+          content:
+            application/json:
+              schema:
+                description: Event Pipeline Policy Map
+                items:
+                  $ref: '#/components/schemas/EventPipelinePolicyMap'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline/{id}/activate:
+    put:
+      tags:
+      - EventPipeline
+      summary: Update an Event Pipeline active value
+      description: Sets if an Event Pipeline is active or not
+      operationId: EventPipelineService_TogglePipelineActive
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelineActivateUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: The Active value
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    PagingOfEventPipelineRunViewModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EventPipelineRunViewModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    EventPipelineTriggerModel:
+      description: Event Pipeline Trigger
+      properties:
+        entityTypeDisplayName:
+          description: Entity Type Display Name
+          type: string
+        eventActionId:
+          description: Event Action Id
+          type: integer
+          format: int32
+        eventPipelineId:
+          description: Event Pipeline Id
+          type: integer
+          format: int32
+        eventPipelineTriggerId:
+          description: Event Pipeline Trigger Id
+          type: integer
+          format: int32
+        triggerDisplayName:
+          description: Trigger Display Name
+          type: string
+      type: object
+    UpdateFieldValueOfEventPipelineTriggerUpdateModelArray:
+      description: Triggers
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineTriggerUpdateModel'
+          type: array
+      type: object
+    SettingUpdateModel:
+      description: Value
+      properties:
+        settingName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        settingValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    EventPipelineOrderUpdateArgs:
+      description: EventPipelineOrderUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EventPipelineOrderUpdateModel'
+      type: object
+    EventPipelineRunViewModel:
+      description: Query results
+      properties:
+        description:
+          description: Description
+          type: string
+        duration:
+          description: Duration
+          type: string
+        endDate:
+          description: EndDate
+          type: string
+          format: date-time
+          nullable: true
+        entityTypeName:
+          description: EntityTypeName
+          type: string
+        eventDateTime:
+          description: EventDateTime
+          type: string
+          format: date-time
+        eventDetails:
+          description: EventDetails
+          type: string
+        eventName:
+          description: EventName
+          type: string
+        eventPipelineId:
+          description: EventPipelineId
+          type: integer
+          format: int32
+          nullable: true
+        eventPipelinePolicyRunId:
+          description: EventPipelinePolicyRunId
+          type: string
+          format: uuid
+        itemId:
+          description: ItemId
+          type: integer
+          format: int32
+        itemName:
+          description: ItemName
+          type: string
+        name:
+          description: Name
+          type: string
+        queuedDate:
+          description: QueuedDate
+          type: string
+          format: date-time
+        startDate:
+          description: StartDate
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          $ref: '#/components/schemas/EventPipelineStatus'
+      type: object
+    ViewFieldValueOfSettingForDisplay:
+      description: Setting
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          $ref: '#/components/schemas/SettingForDisplay'
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    PagingOfEventPipelineSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EventPipelineSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    SettingType:
+      description: SettingType
+      properties: {}
+      type: string
+      enum:
+      - Default
+      - Integer
+      - String
+      - Boolean
+      - StringArray
+      - DropDown
+      - DropDownItem
+      - MultilineString
+      - IntegerArray
+      - Radio
+      - RadioItem
+    PagingOfEventPipelineViewModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EventPipelineViewModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    ViewFieldValueOfString:
+      description: GeneratedToken
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+      type: object
+    ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum:
+      description: EventEntityTypeId
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+          nullable: true
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    EventPipelineTaskModel:
+      description: Event Pipeline Task
+      properties:
+        eventEntityTypeId:
+          description: Event Entity Type Id
+          type: string
+          nullable: true
+        eventPipelineTaskDescription:
+          description: Event Pipeline Task Description
+          type: string
+        eventPipelineTaskDisplayName:
+          description: Event Pipeline Task Display Name
+          type: string
+        eventPipelineTaskId:
+          description: Event Pipeline Task Id
+          type: integer
+          format: int32
+        eventPipelineTaskMapId:
+          description: Event Pipeline Task Map Id
+          type: integer
+          format: int32
+        eventPipelineTaskName:
+          description: Event Pipeline Name
+          type: string
+        isMultiSelect:
+          description: Multiselect
+          type: boolean
+        settings:
+          description: Settings
+          items:
+            $ref: '#/components/schemas/EventPipelineTaskSettingValueMapModel'
+          type: array
+        sortOrder:
+          description: Sort ORder
+          type: integer
+          format: int32
+      type: object
+    EventPipelineTriggerViewModel:
+      description: Triggers
+      properties:
+        entityTypeDisplayName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        eventActionId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        eventEntityTypeId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum'
+        eventPipelineId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfInt32'
+        eventPipelineTriggerId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        triggerDisplayName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+      type: object
+    Setting:
+      description: ChildSettings
+      properties:
+        active:
+          description: Active
+          type: boolean
+        canEdit:
+          description: CanEdit
+          type: boolean
+        canEditValue:
+          description: CanEditValue
+          type: boolean
+        childLoadSQL:
+          description: ChildLoadSQL
+          type: string
+        defaultValue:
+          description: DefaultValue
+          type: string
+        isVisible:
+          description: IsVisible
+          type: boolean
+        nameLocalizeKey:
+          description: NameLocalizeKey
+          type: string
+        parentSettingId:
+          description: ParentSettingId
+          type: integer
+          format: int32
+          nullable: true
+        regexValidation:
+          description: RegexValidation
+          type: string
+        settingId:
+          description: SettingId
+          type: integer
+          format: int32
+        settingName:
+          description: SettingName
+          type: string
+        settingSectionId:
+          description: SettingSectionId
+          type: integer
+          format: int32
+        settingType:
+          $ref: '#/components/schemas/SettingType'
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+        subSettingSectionId:
+          description: SubSettingSectionId
+          type: integer
+          format: int32
+          nullable: true
+        tooltipLocalizeKey:
+          description: TooltipLocalizeKey
+          type: string
+      type: object
+    EventPipelineTriggerUpdateModel:
+      description: Value
+      properties:
+        eventActionId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    EventPipelineTaskMapUpdateModel:
+      description: Value
+      properties:
+        eventPipelineTaskId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        eventPipelineTaskMapId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        eventPipelineTaskName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        settings:
+          $ref: '#/components/schemas/UpdateFieldValueOfSettingUpdateModelArray'
+        sortOrder:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    EventPipelineFilterMapUpdateModel:
+      description: Value
+      properties:
+        eventPipelineFilterId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        eventPipelineFilterMapId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        eventPipelineFilterName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        settings:
+          $ref: '#/components/schemas/UpdateFieldValueOfSettingUpdateModelArray'
+        sortOrder:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    EventPipelineFilterModel:
+      description: Event Pipeline Filter
+      properties:
+        eventEntityTypeId:
+          description: Event Entity Type Id
+          type: integer
+          format: int32
+          nullable: true
+        eventPipelineFilterDescription:
+          description: Event Pipeline Filter Description
+          type: string
+        eventPipelineFilterDisplayName:
+          description: Event Pipeline Filter Display Name
+          type: string
+        eventPipelineFilterId:
+          description: Event Pipeline Filter Id
+          type: integer
+          format: int32
+        eventPipelineFilterMapId:
+          description: Event Pipeline Filter Map Id
+          type: integer
+          format: int32
+        eventPipelineFilterName:
+          description: Event Pipeline Filter Name
+          type: string
+        settings:
+          description: Settings
+          items:
+            $ref: '#/components/schemas/EventPipelineFilterSettingValueMapModel'
+          type: array
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+      type: object
+    EventPipelineSummaryModel:
+      description: Query results
+      properties:
+        active:
+          description: Active
+          type: boolean
+        createdDate:
+          description: Event Pipeline Created Date
+          type: string
+          format: date-time
+        eventEntityTypeId:
+          description: Entity Type Id
+          type: integer
+          format: int32
+        eventPipelineDescription:
+          description: Event Pipeline Description
+          type: string
+        eventPipelineId:
+          description: Event Pipeline Id
+          type: integer
+          format: int32
+        eventPipelineName:
+          description: Event Pipeline Name
+          type: string
+        eventPipelinePolicyId:
+          description: Event Pipeline Policy Id
+          type: integer
+          format: int32
+          nullable: true
+        eventPipelinePolicyMapId:
+          description: Event Pipeline Policy Map Id
+          type: integer
+          format: int32
+          nullable: true
+        isSystem:
+          description: Event pipeline used by the system
+          type: boolean
+        lastModifiedDate:
+          description: Event Pipeline Modified Date
+          type: string
+          format: date-time
+        lastModifiedDisplayName:
+          description: Event Pipeline Last Modified Date
+          type: string
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+      type: object
+    ViewFieldLink:
+      description: AdditionalLinks
+      properties:
+        isExternal:
+          description: IsExternal
+          type: boolean
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
+          type: string
+      type: object
+    UpdateFieldValueOfSettingUpdateModelArray:
+      description: Settings
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/SettingUpdateModel'
+          type: array
+      type: object
+    EventPipelineFilterSettingValueMapViewModel:
+      description: Value
+      properties:
+        eventPipelineFilterMapId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        eventPipelineFilterSettingValueMapId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalInt32'
+        overrideDefault:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        setting:
+          $ref: '#/components/schemas/ViewFieldValueOfSettingForDisplay'
+        settingDisplay:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        settingDisplayValue:
+          description: SettingDisplayValue
+          type: string
+        settingId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        settingValue:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        usingDefault:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+      type: object
+    EventPipelineTaskViewModel:
+      description: TaskList
+      properties:
+        eventEntityTypeId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum'
+        eventPipelineTaskDescription:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        eventPipelineTaskDisplayName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        eventPipelineTaskId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        eventPipelineTaskMapId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfInt32'
+        eventPipelineTaskName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        isMultiSelect:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfBoolean'
+        settings:
+          $ref: '#/components/schemas/ViewFieldValueOfEventPipelineTaskSettingValueMapViewModelArray'
+        sortOrder:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+      type: object
+    ViewFieldValueReadOnlyOfString:
+      description: Name of the Secret.
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+      type: object
+    ViewFieldValueReadOnlyOfDateTime:
+      description: When the Secret was originally mapped to the Tenant.
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+          format: date-time
+      type: object
+    ViewFieldValueReadOnlyOfInt32:
+      description: ID of the mapping between the Tenant and Secret.
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    EventPipelineUpdateModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        eventPipelineDescription:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        eventPipelineName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        filters:
+          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineFilterMapUpdateModelArray'
+        tasks:
+          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineTaskMapUpdateModelArray'
+        triggers:
+          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineTriggerUpdateModelArray'
+      type: object
+    EventPipelineOrderUpdateModel:
+      description: Data
+      properties:
+        eventPipelinePolicyId:
+          description: EventPipelinePolicyId
+          type: integer
+          format: int32
+        sortOrder:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    ViewFieldValueOfBoolean:
+      description: When enabled, the log will be able to be viewed online
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: boolean
+      type: object
+    ViewFieldValueOfInt32:
+      description: OrganizationId
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    EventPipelineTaskSettingValueMapViewModel:
+      description: Value
+      properties:
+        eventPipelineTaskMapId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        eventPipelineTaskSettingValueMapId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalInt32'
+        overrideDefault:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        setting:
+          $ref: '#/components/schemas/ViewFieldValueOfSettingForDisplay'
+        settingDisplay:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        settingDisplayValue:
+          description: SettingDisplayValue
+          type: string
+        settingId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        settingValue:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        usingDefault:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+      type: object
+    EventPipelineUpdateArgs:
+      description: EventPipelineUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EventPipelineUpdateModel'
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    EventPipelineStatus:
+      description: Status
+      properties: {}
+      type: string
+      enum:
+      - Failed
+      - Success
+      - Skipped
+      - Processing
+      - Pending
+      - Scheduled
+    ViewFieldValueOfEventPipelineTaskSettingValueMapViewModelArray:
+      description: Settings
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineTaskSettingValueMapViewModel'
+          type: array
+      type: object
+    UpdateFieldValueOfEventPipelineTaskMapUpdateModelArray:
+      description: Tasks
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineTaskMapUpdateModel'
+          type: array
+      type: object
+    UpdateFieldValueOfEventPipelineFilterMapUpdateModelArray:
+      description: Filters
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineFilterMapUpdateModel'
+          type: array
+      type: object
+    ViewFieldValueReadOnlyOfEventPipelineFilterSettingValueMapViewModelArray:
+      description: Settings
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineFilterSettingValueMapViewModel'
+          type: array
+      type: object
+    EventPipelineTaskSettingValueMapModel:
+      description: Event Pipeline Task Setting Value Map
+      properties:
+        eventPipelineTaskMapId:
+          description: Event Pipeline Task Map Id
+          type: integer
+          format: int32
+        eventPipelineTaskSettingValueMapId:
+          description: Event Pipeline Task Setting Value Map Id
+          type: integer
+          format: int32
+          nullable: true
+        overrideDefault:
+          description: Override Default
+          type: boolean
+        setting:
+          $ref: '#/components/schemas/SettingForDisplay'
+        settingDisplay:
+          description: Setting Display
+          type: string
+        settingDisplayValue:
+          description: Setting Display Value
+          type: string
+        settingId:
+          description: Setting Id
+          type: integer
+          format: int32
+        settingValue:
+          description: Setting Value
+          type: string
+        usingDefault:
+          description: Whether or not to use the setting's default value.
+          type: boolean
+      type: object
+    EventPipelineActivateUpdateArgs:
+      description: EventPipelineActivateUpdateArgs
+      properties:
+        activate:
+          description: Activate
+          type: boolean
+      type: object
+    ViewFieldValueReadOnlyOfBoolean:
+      description: IsMultiSelect
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: boolean
+      type: object
+    EventPipelineFilterSettingValueMapModel:
+      description: Event Pipeline Filter Setting Value Map
+      properties:
+        eventPipelineFilterMapId:
+          description: Event Pipeline Filter Map Id
+          type: integer
+          format: int32
+        eventPipelineFilterSettingValueMapId:
+          description: Event Pipeline Filter Setting Value Map Id
+          type: integer
+          format: int32
+          nullable: true
+        overrideDefault:
+          description: Whether to override the default value
+          type: boolean
+        setting:
+          $ref: '#/components/schemas/SettingForDisplay'
+        settingDisplay:
+          description: Setting Display
+          type: string
+        settingDisplayValue:
+          description: Setting Display Value
+          type: string
+        settingId:
+          description: Setting Id
+          type: integer
+          format: int32
+        settingValue:
+          description: Setting Value
+          type: string
+        usingDefault:
+          description: Whether or not to use the setting's default value.
+          type: boolean
+      type: object
+    ViewFieldValueReadOnlyOfOptionalInt32:
+      description: EventEntityTypeId
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    SettingForDisplay:
+      description: Setting
+      properties:
+        active:
+          description: Active
+          type: boolean
+        canEdit:
+          description: CanEdit
+          type: boolean
+        canEditValue:
+          description: CanEditValue
+          type: boolean
+        childLoadSQL:
+          description: ChildLoadSQL
+          type: string
+        childSettings:
+          description: ChildSettings
+          items:
+            $ref: '#/components/schemas/Setting'
+          type: array
+        defaultValue:
+          description: DefaultValue
+          type: string
+        isVisible:
+          description: IsVisible
+          type: boolean
+        nameLocalizeKey:
+          description: NameLocalizeKey
+          type: string
+        parentSettingId:
+          description: ParentSettingId
+          type: integer
+          format: int32
+          nullable: true
+        regexValidation:
+          description: RegexValidation
+          type: string
+        settingId:
+          description: SettingId
+          type: integer
+          format: int32
+        settingName:
+          description: SettingName
+          type: string
+        settingSectionId:
+          description: SettingSectionId
+          type: integer
+          format: int32
+        settingType:
+          $ref: '#/components/schemas/SettingType'
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+        subSettingSectionId:
+          description: SubSettingSectionId
+          type: integer
+          format: int32
+          nullable: true
+        tooltipLocalizeKey:
+          description: TooltipLocalizeKey
+          type: string
+      type: object
+    EventPipelineModel:
+      description: Event Pipeline
+      properties:
+        active:
+          description: Active
+          type: boolean
+        createdDate:
+          description: Event Pipeline Created Date
+          type: string
+          format: date-time
+        eventEntityTypeId:
+          description: Entity Type Id
+          type: integer
+          format: int32
+        eventPipelineDescription:
+          description: Event Pipeline Description
+          type: string
+        eventPipelineId:
+          description: Event Pipeline Id
+          type: integer
+          format: int32
+        eventPipelineName:
+          description: Event Pipeline Name
+          type: string
+        eventPipelinePolicyId:
+          description: Event Pipeline Policy Id
+          type: integer
+          format: int32
+          nullable: true
+        eventPipelinePolicyMapId:
+          description: Event Pipeline Policy Map Id
+          type: integer
+          format: int32
+          nullable: true
+        filterList:
+          description: Event Pipeline Filters
+          items:
+            $ref: '#/components/schemas/EventPipelineFilterModel'
+          type: array
+        isSystem:
+          description: Event pipeline used by the system
+          type: boolean
+        lastModifiedDate:
+          description: Event Pipeline Modified Date
+          type: string
+          format: date-time
+        lastModifiedDisplayName:
+          description: Event Pipeline Last Modified Date
+          type: string
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+        taskList:
+          description: Event Pipeline Tasks
+          items:
+            $ref: '#/components/schemas/EventPipelineTaskModel'
+          type: array
+        triggers:
+          description: Event Pipeline Triggers
+          items:
+            $ref: '#/components/schemas/EventPipelineTriggerModel'
+          type: array
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    EventPipelinePolicyMap:
+      description: EventPipelinePolicyMap[]
+      properties:
+        eventPipelineId:
+          description: EventPipelineId
+          type: integer
+          format: int32
+        eventPipelinePolicyId:
+          description: EventPipelinePolicyId
+          type: integer
+          format: int32
+        eventPipelinePolicyMapId:
+          description: EventPipelinePolicyMapId
+          type: integer
+          format: int32
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+      type: object
+    EventPipelineViewModel:
+      description: Query results
+      properties:
+        active:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        createdDate:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfDateTime'
+        eventEntityTypeId:
+          description: EventEntityTypeId
+          type: integer
+          format: int32
+        eventPipelineDescription:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        eventPipelineId:
+          description: EventPipelineId
+          type: integer
+          format: int32
+        eventPipelineName:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        eventPipelinePolicyId:
+          description: EventPipelinePolicyId
+          type: integer
+          format: int32
+          nullable: true
+        eventPipelinePolicyMapId:
+          description: EventPipelinePolicyMapId
+          type: integer
+          format: int32
+          nullable: true
+        filterList:
+          description: FilterList
+          items:
+            $ref: '#/components/schemas/EventPipelineFilterViewModel'
+          type: array
+        isSystem:
+          description: IsSystem
+          type: boolean
+        lastModifiedDate:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfDateTime'
+        lastModifiedDisplayName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        sortOrder:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        taskList:
+          description: TaskList
+          items:
+            $ref: '#/components/schemas/EventPipelineTaskViewModel'
+          type: array
+        triggers:
+          description: Triggers
+          items:
+            $ref: '#/components/schemas/EventPipelineTriggerViewModel'
+          type: array
+      type: object
+    EventPipelineFilterViewModel:
+      description: FilterList
+      properties:
+        eventEntityTypeId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalInt32'
+        eventPipelineFilterDescription:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        eventPipelineFilterDisplayName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        eventPipelineFilterId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        eventPipelineFilterMapId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfInt32'
+        eventPipelineFilterName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        settings:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfEventPipelineFilterSettingValueMapViewModelArray'
+        sortOrder:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfInt32'
+      type: object
+    EventPipeline:
+      description: EventPipeline
+      properties:
+        active:
+          description: Active
+          type: boolean
+        createdDate:
+          description: CreatedDate
+          type: string
+          format: date-time
+        eventEntityTypeId:
+          description: EventEntityTypeId
+          type: integer
+          format: int32
+        eventPipelineDescription:
+          description: EventPipelineDescription
+          type: string
+        eventPipelineId:
+          description: EventPipelineId
+          type: integer
+          format: int32
+        eventPipelineName:
+          description: EventPipelineName
+          type: string
+        eventPipelinePolicyId:
+          description: EventPipelinePolicyId
+          type: integer
+          format: int32
+        isSystem:
+          description: IsSystem
+          type: boolean
+        lastModifiedDate:
+          description: LastModifiedDate
+          type: string
+          format: date-time
+        lastModifiedUser:
+          description: LastModifiedUser
+          type: string
+        lastModifiedUserId:
+          description: LastModifiedUserId
+          type: integer
+          format: int32
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+      type: object
+    EventPipelineCreateArgs:
+      description: EventPipelineCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EventPipelineUpdateModel'
+        eventEntityTypeId:
+          description: EventEntityTypeId
+          type: integer
+          format: int32
+        eventPipelinePolicyId:
+          description: EventPipelinePolicyId
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

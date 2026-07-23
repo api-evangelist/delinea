@@ -1,0 +1,4517 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations Users API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: Users
+  description: View and maintain users
+paths:
+  /v1/users/{id}:
+    get:
+      tags:
+      - Users
+      summary: Get User
+      description: Get a single user by ID
+      operationId: UsersService_Get
+      parameters:
+      - name: includeInactive
+        in: query
+        description: Whether to include inactive users in the results
+        required: false
+        schema:
+          type: boolean
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - Users
+      summary: Update User
+      description: Update a single user by ID
+      operationId: UsersService_UpdateUser
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateArgs'
+        description: User update options
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Users
+      summary: Delete User
+      description: Delete a user by ID
+      operationId: UsersService_Delete
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - Users
+      summary: Update included properties for user by Id
+      description: Update included properties for user by Id
+      operationId: UsersService_PatchUser
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchUserModel'
+        description: patchModel
+      responses:
+        '200':
+          description: User Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{id}/owners/{ownerId}:
+    get:
+      tags:
+      - Users
+      summary: Get User Owner
+      description: Get a single owner for a user
+      operationId: UsersService_GetUserOwner
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: ownerId
+        in: path
+        description: Owner ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: User owner object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserOwnerModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Users
+      summary: Remove User Owner
+      description: Remove an owner from a single user
+      operationId: UsersService_DeleteUserOwner
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: ownerId
+        in: path
+        description: Owner ID is the unique sequence for this specific owner.  This is returned as ID on UserOwnerModel
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{id}/roles:
+    get:
+      tags:
+      - Users
+      summary: Gets roles for user
+      description: Gets roles for user
+      operationId: UsersService_GetRoles
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfRoleSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - Users
+      summary: Update all roles on user
+      description: Update all roles on user
+      operationId: UsersService_UpdateUserRoles
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/RoleAssignments'
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleChangeStatusModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Users
+      summary: Add roles to existing user
+      description: Add roles to existing user
+      operationId: UsersService_CreateUserRoles
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/RoleAssignments'
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleChangeStatusModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Users
+      summary: Remove roles from existing user
+      description: Remove roles from existing user
+      operationId: UsersService_DeleteUserRoles
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/RoleRemovals'
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleChangeStatusModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{id}/groups:
+    get:
+      tags:
+      - Users
+      summary: Get User Groups
+      description: Get the groups for a user by ID
+      operationId: UsersService_GetUserGroups
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Group membership results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfGroupUserSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - Users
+      summary: Update all groups on user
+      description: Update all groups on user
+      operationId: UsersService_UpdateUserGroups
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/GroupAssignments'
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupChangeStatusModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Users
+      summary: Add groups to existing user
+      description: Add groups to existing user
+      operationId: UsersService_AddUserToGroups
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/GroupAssignments'
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupChangeStatusModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Users
+      summary: Remove groups from existing user
+      description: Remove groups from existing user
+      operationId: UsersService_RemoveUserGroups
+      parameters:
+      - name: groupIds
+        in: query
+        description: groupIds
+        required: false
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupChangeStatusModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users:
+    get:
+      tags:
+      - Users
+      summary: Search Users
+      description: Search, filter, sort, and page users
+      operationId: UsersService_SearchUsers
+      parameters:
+      - name: filter.domainId
+        in: query
+        description: If not null, filters users by Active Directory domain.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.excludeInboxRuleIdSubscribers
+        in: query
+        description: When set all subscribers not subscribed directly to this inbox notification rule will be excluded.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeInactive
+        in: query
+        description: Whether to include inactive users in the results.
+        required: false
+        schema:
+          type: boolean
+      - name: filter.searchFields
+        in: query
+        description: User fields to search.
+        required: false
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filter.searchText
+        in: query
+        description: The text to match in the username, display name, or email address.
+        required: false
+        schema:
+          type: string
+      - name: filter.userIds
+        in: query
+        description: User Ids to search.
+        required: false
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: User search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfUserSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Users
+      summary: Create User
+      description: Create a new user
+      operationId: UsersService_CreateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateArgs'
+        description: User creation options
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/current-summary:
+    get:
+      tags:
+      - Users
+      summary: Current User Summary
+      description: Gets the current user summary
+      operationId: UsersService_GetCurrentUserSummary
+      responses:
+        '200':
+          description: Current user summary result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentUserSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/current:
+    get:
+      tags:
+      - Users
+      summary: Current User
+      description: Gets the current user
+      operationId: UsersService_GetCurrentUser
+      responses:
+        '200':
+          description: Current user result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentUserModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/lookup:
+    get:
+      tags:
+      - Users
+      summary: Lookup Users
+      description: Search, filter, sort, and page users, returning only user ID and name
+      operationId: UsersService_Lookup
+      parameters:
+      - name: filter.domainId
+        in: query
+        description: If not null, filters users by Active Directory domain.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.excludeInboxRuleIdSubscribers
+        in: query
+        description: When set all subscribers not subscribed directly to this inbox notification rule will be excluded.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeInactive
+        in: query
+        description: Whether to include inactive users in the results.
+        required: false
+        schema:
+          type: boolean
+      - name: filter.searchFields
+        in: query
+        description: User fields to search.
+        required: false
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filter.searchText
+        in: query
+        description: The text to match in the username, display name, or email address.
+        required: false
+        schema:
+          type: string
+      - name: filter.userIds
+        in: query
+        description: User Ids to search.
+        required: false
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: User search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfUserLookup'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/stub:
+    get:
+      tags:
+      - Users
+      summary: Get User Stub
+      description: Return the default values for a new user
+      operationId: UsersService_Stub
+      responses:
+        '200':
+          description: Default User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/platform/{platformUserId}:
+    get:
+      tags:
+      - Users
+      summary: Get User by External Platform User ID
+      description: Get a single user by the External Platform User ID
+      operationId: UsersService_GetUserByPlatformId
+      parameters:
+      - name: includeInactive
+        in: query
+        description: Whether to include inactive users in the results
+        required: false
+        schema:
+          type: boolean
+      - name: platformUserId
+        in: path
+        description: User Platform Guid
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/public-ssh-keys:
+    get:
+      tags:
+      - Users
+      summary: Get User Public Ssh Keys
+      description: Get the public ssh keys for a user by ID
+      operationId: UsersService_GetUserPublicSshKeys
+      parameters:
+      - name: filter.includeExpired
+        in: query
+        description: Whether to include expired user public ssh keys in the results
+        required: false
+        schema:
+          type: boolean
+      - name: filter.includeInactive
+        in: query
+        description: Whether to include inactive user public ssh keys in the results
+        required: false
+        schema:
+          type: boolean
+      - name: filter.searchText
+        in: query
+        description: Search text
+        required: false
+        schema:
+          type: string
+      - name: filter.userId
+        in: query
+        description: An optional ID for a specific user's public ssh keys
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Public ssh key results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfUserPublicSshKeySummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Users
+      summary: Create a User Ssh Key
+      description: Create the public ssh keys for the current user
+      operationId: UsersService_CreateUserPublicSshKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPublicSshKeyCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: Private ssh key result
+          content:
+            application/json:
+              schema:
+                description: String
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{id}/owners:
+    get:
+      tags:
+      - Users
+      summary: Get User Owners
+      description: Get the owners for a user by ID
+      operationId: UsersService_SearchUserOwners
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: User owner results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfUserOwnerSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Users
+      summary: Add User Owner
+      description: Add an owner to a single user
+      operationId: UsersService_AddUserOwner
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserOwnerCreateArgs'
+        description: User owner add options
+      responses:
+        '200':
+          description: User owner object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserOwnerModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - Users
+      summary: Add and remove the owners on the user
+      description: Add and remove the owners on the user
+      operationId: UsersService_PatchUserOwners
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserOwnerPatchUserModel'
+        description: patchModel
+      responses:
+        '200':
+          description: A list of all user owner objects for the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserOwnerPatchResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/domains:
+    get:
+      tags:
+      - Users
+      summary: Get Domains
+      description: Get Domains
+      operationId: UsersService_GetDomains
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Domain summary list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfDomainSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{userId}/roles-assigned:
+    get:
+      tags:
+      - Users
+      summary: Get User Roles
+      description: Get the roles for a user by ID
+      operationId: UsersService_GetUserRoles
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: userId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: User role summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfUserRoleSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{userId}/audit:
+    get:
+      tags:
+      - Users
+      summary: User Audits
+      description: Get all of the audits for events that have occured for a specific user such as create user, edit user, change password, login success, login failed
+      operationId: UsersService_GetUserAudits
+      parameters:
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: userId
+        in: path
+        description: userId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged list of user event audits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfUserAuditSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{userId}/secret-activity:
+    get:
+      tags:
+      - Users
+      summary: User Secret Activity
+      description: Get all Secret activity for a specific user
+      operationId: UsersService_GetUserSecretActivity
+      parameters:
+      - name: filter.endDate
+        in: query
+        description: Include secrets accessed before this date.  Can be null which will not filter by any end date and results in today basically.
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+          format: date-time
+      - name: filter.excludeInactiveSecrets
+        in: query
+        description: Exclude any inactive secrets
+        required: false
+        schema:
+          type: boolean
+      - name: filter.excludeRotatedSecrets
+        in: query
+        description: Exclude any secrets that rotate
+        required: false
+        schema:
+          type: boolean
+      - name: filter.folderId
+        in: query
+        description: Only include secrets in a specific folder.  Exclude or pass null to include all secrets
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeSubfolders
+        in: query
+        description: Only used if a FolderId is included and when true it will also search subfolders.  When false only secrets from the passed FolderId will be returned.
+        required: false
+        schema:
+          type: boolean
+      - name: filter.startDate
+        in: query
+        description: Include any Secrets access since this date
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: userId
+        in: path
+        description: userId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged list of user secret activity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfUserSecretActivitySummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/action/audit:
+    get:
+      tags:
+      - Users
+      summary: User Audits by Action
+      description: Get all of the audits for users who performed the specified action
+      operationId: UsersService_GetUserActionAudits
+      parameters:
+      - name: actions
+        in: query
+        description: actions
+        required: false
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged List of Audits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfUserAuditSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{userId}/teams:
+    get:
+      tags:
+      - Users
+      summary: User Teams
+      description: Get all of the teams for a user
+      operationId: UsersService_GetUserTeams
+      parameters:
+      - name: filter.includeGroupMemberships
+        in: query
+        description: Include Group Memberships
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.includeInactive
+        in: query
+        description: Include Inactive
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.searchTerm
+        in: query
+        description: Search Term
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: userId
+        in: path
+        description: userId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged List of Team Summaries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfUserTeamSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/preference:
+    get:
+      tags:
+      - Users
+      summary: Get Preference
+      description: Get a Preference for the current user
+      operationId: UsersService_GetPreference
+      parameters:
+      - name: isLegacy
+        in: query
+        description: Is Legacy
+        required: false
+        schema:
+          type: boolean
+      - name: settingCode
+        in: query
+        description: Setting Code
+        required: false
+        schema:
+          type: string
+      - name: settingName
+        in: query
+        description: Setting Name
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Preference
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreferenceModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Users
+      summary: Update Preference
+      description: Update a Preference for the current user
+      operationId: UsersService_UpdatePreference
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestPreferenceUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Preference
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreferenceModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/sessions:
+    get:
+      tags:
+      - Users
+      summary: User Sessions
+      description: Get sessions for current user
+      operationId: UsersService_GetCurrentUserSessions
+      parameters:
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged List of Sessions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSessionSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/public-ssh-keys/{id}:
+    patch:
+      tags:
+      - Users
+      summary: Deactivate SSH Key
+      description: Deactivate a User's Public SSH Key by specifying the key's ID
+      operationId: UsersService_DeactivateUserPublicSshKey
+      parameters:
+      - name: id
+        in: path
+        description: Public SSH Key ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: The ID if the key deactivated
+          content:
+            application/json:
+              schema:
+                description: Int32
+                type: integer
+                format: int32
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/change-password:
+    post:
+      tags:
+      - Users
+      summary: Change User Password
+      description: Change a user's password
+      operationId: UsersService_ChangePassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserChangePasswordArgs'
+        description: User password change options
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/verify-password:
+    post:
+      tags:
+      - Users
+      summary: Verify the Current User Password
+      description: Verify the current user's password
+      operationId: UsersService_VerifyPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPasswordVerifyArgs'
+        description: User password verification options
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{userId}/reset-two-factor:
+    post:
+      tags:
+      - Users
+      summary: Reset 2FA
+      description: Reset 2FA for a specific user.  After the reset they will need to update their 2FA on next login
+      operationId: UsersService_ResetTwoFactor
+      parameters:
+      - name: userId
+        in: path
+        description: userId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetTwoFactorArgs'
+        description: args
+      responses:
+        '200':
+          description: Result of 2FA reset
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResetTwoFactorResponseModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{userId}/password-reset:
+    post:
+      tags:
+      - Users
+      summary: Reset a user password as an admin
+      description: The password reset command
+      operationId: UsersService_ResetUserPassword
+      parameters:
+      - name: userId
+        in: path
+        description: userId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordResetArgs'
+        description: args
+      responses:
+        '200':
+          description: Password Reset Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResetResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/delete-pii/{id}:
+    post:
+      tags:
+      - Users
+      summary: Delete a user's personally identifiable info
+      description: Delete a user's personally identifiable info
+      operationId: UsersService_UserPersonalInfoDeleteCommand
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{userId}/secret-activity/expire:
+    post:
+      tags:
+      - Users
+      summary: User Secret Activity Expiration
+      description: Expire all secrets access by a specific user and filter
+      operationId: UsersService_ExpireUserSecretActivity
+      parameters:
+      - name: userId
+        in: path
+        description: userId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpireUserSecretActivityDataArgs'
+        description: args
+      responses:
+        '200':
+          description: User Secret Activity Expiration result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSecretActivityExpireResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/{userId}/lock-out:
+    post:
+      tags:
+      - Users
+      summary: Lock Out
+      description: Lock Out a specific user.
+      operationId: UsersService_LockOut
+      parameters:
+      - name: userId
+        in: path
+        description: userId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LockOutArgs'
+        description: args
+      responses:
+        '200':
+          description: Result of Lock Out
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockOutResponseModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/sessions/terminate:
+    post:
+      tags:
+      - Users
+      summary: Terminate Current User Sessions
+      description: Terminate sessions of the current user
+      operationId: UsersService_TerminateCurrentUserSessions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionTerminateArgs'
+        description: args
+      responses:
+        '200':
+          description: Result of Session Termination
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionTerminateResponseModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/users/doublelock-password:
+    put:
+      tags:
+      - Users
+      summary: Update Users Doublelock Password
+      description: Update the doublelock password of a user
+      operationId: UsersService_SetUserDoubleLockPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DoubleLockSetUserPasswordArgs'
+        description: args
+      responses:
+        '200':
+          description: Result of the doublelock password change
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    ExpireUserSecretActivityDataModel:
+      description: Expire Active Secrets for a User based on filter criteria
+      properties:
+        filter:
+          $ref: '#/components/schemas/UserSecretActivityFilter'
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    SessionTerminateResponseModel:
+      description: The result of a session termination
+      properties:
+        success:
+          description: Did the session terminate succeed
+          type: boolean
+      type: object
+    UserOwnerCreateArgs:
+      description: User owner create options
+      properties:
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+          nullable: true
+        groupName:
+          description: Group name
+          type: string
+        userId:
+          description: User ID
+          type: integer
+          format: int32
+          nullable: true
+        userName:
+          description: User name
+          type: string
+      type: object
+    UpdateFieldValueOfInt32Array:
+      description: FolderIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    PagingOfRoleSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/RoleSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PagingOfUserPublicSshKeySummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/UserPublicSshKeySummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UserPublicSshKeyCreateArgs:
+      description: User public ssh key create options
+      required:
+      - description
+      - format
+      properties:
+        algorithm:
+          description: Algorithm for the key
+          type: string
+        description:
+          description: Description
+          type: string
+        format:
+          description: Format of private key file
+          type: string
+        passphrase:
+          description: Passphrase
+          type: string
+      type: object
+    PagingOfUserSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/UserSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PreferenceModel:
+      description: Preference Model
+      properties:
+        settingCode:
+          description: Setting Code
+          type: string
+        settingId:
+          description: Setting Id
+          type: integer
+          format: int32
+          nullable: true
+        settingKey:
+          description: Setting Key
+          type: string
+        settingName:
+          description: Setting Name
+          type: string
+        settingValue:
+          description: Setting Value
+          type: string
+        userId:
+          description: User Id
+          type: integer
+          format: int32
+        userSettingId:
+          description: User Setting Id
+          type: integer
+          format: int32
+      type: object
+    RoleRemovals:
+      description: Roles to be removed
+      properties:
+        roleIds:
+          description: Role IDs
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    RoleChangeStatusModel:
+      description: The status of the Role change action.
+      properties:
+        success:
+          description: The success or failure of the user or group role action.
+          type: boolean
+      type: object
+    DeletedModel:
+      description: Information about an object that was deleted
+      properties:
+        id:
+          description: ID of the deleted object
+          type: integer
+          format: int32
+        objectType:
+          description: Type of the deleted object
+          type: string
+        responseCodes:
+          description: List of response codes from the delete operation
+          items:
+            type: string
+          type: array
+      type: object
+    PagingOfUserSecretActivitySummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/UserSecretActivitySummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UserTeamSummary:
+      description: Query results
+      properties:
+        active:
+          description: Team Active State
+          type: boolean
+        domainId:
+          description: Team Domain Id
+          type: integer
+          format: int32
+          nullable: true
+        isDirectlyAssigned:
+          description: If the user is directly assigned to the team
+          type: boolean
+        teamDescription:
+          description: Team Description
+          type: string
+        teamGroupMemberships:
+          description: The memberships a user has to a team.
+          items:
+            $ref: '#/components/schemas/TeamGroupSummary'
+          type: array
+        teamId:
+          description: Team Id
+          type: integer
+          format: int32
+        teamName:
+          description: Team Name
+          type: string
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    PasswordResetRequestModel:
+      description: Reset a users password
+      required:
+      - userId
+      - password
+      properties:
+        password:
+          description: The new password for this user
+          type: string
+        userId:
+          description: The user id to reset
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    GroupAssignedRoleModel:
+      description: All of the groups to which the user belongs that have this role
+      properties:
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+        groupName:
+          description: GroupName
+          type: string
+      type: object
+    BulkOperationResponseMessage:
+      description: BulkOperationResponseMessage
+      properties:
+        bulkOperationId:
+          description: BulkOperationId
+          type: string
+      type: object
+    UserRoleSummary:
+      description: All of the roles a user has
+      properties:
+        groups:
+          description: All of the groups to which the user belongs that have this role
+          items:
+            $ref: '#/components/schemas/GroupAssignedRoleModel'
+          type: array
+        isDirectAssignment:
+          description: Is the role directly assigned to the user
+          type: boolean
+        roleId:
+          description: Role ID
+          type: integer
+          format: int32
+        roleName:
+          description: Role Name
+          type: string
+      type: object
+    LockOutRequestModel:
+      description: Request a lock out
+      properties:
+        description:
+          description: An optional description of the reason for the lock out
+          type: string
+        reasonType:
+          $ref: '#/components/schemas/LockOutReasonType'
+      type: object
+    MultifactorAuthenticationProviderTypes:
+      description: Domain multifactor authentication providers.
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Radius
+      - TOTPAuthenticator
+      - Duo
+      - Fido2
+      - Email
+    UserOwnerPatchUserModel:
+      description: Update a list of add and removed owners owners of the user
+      properties:
+        addedGroupIds:
+          description: Group IDs to add as owners of the user
+          items:
+            type: integer
+            format: int32
+          type: array
+        removeAllOwners:
+          description: Set to remove all owners to make user to be managed by user admins
+          type: boolean
+        removeGroupIds:
+          description: Group IDs to remove as owners of the user
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    UserCreateArgs:
+      description: User create options
+      required:
+      - userName
+      - password
+      - displayName
+      properties:
+        adGuid:
+          description: Active Directory unique identifier.
+          type: string
+          maxLength: 50
+        displayName:
+          description: The user’s name as displayed in the user interface.
+          type: string
+        domainId:
+          description: If not null, the Active Directory domain ID.
+          type: integer
+          format: int32
+          minimum: -1
+        duoTwoFactor:
+          description: Whether Duo two-factor authentication is enabled.
+          type: boolean
+        emailAddress:
+          description: The user's email address. Used by the system to send reports, access requests, and other notifications.
+          type: string
+        enabled:
+          description: Whether the user account is enabled. Disabled users are unable to log in and do not consume a user license.
+          type: boolean
+        fido2TwoFactor:
+          description: Whether Duo two-factor authentication is enabled.
+          type: boolean
+        isApplicationAccount:
+          description: Whether this is an application account. Application accounts are used for automation, cannot log in using the UI, and do not consume a user license.
+          type: boolean
+        oathTwoFactor:
+          description: Whether OATH two-factor authentication is enabled.
+          type: boolean
+        password:
+          description: The password used by local accounts to log in.
+          type: string
+        radiusTwoFactor:
+          description: Whether RADIUS two-factor authentication is enabled.
+          type: boolean
+        radiusUserName:
+          description: RADIUS username
+          type: string
+        twoFactor:
+          description: Whether two-factor authentication is enabled.
+          type: boolean
+        unixAuthenticationMethod:
+          $ref: '#/components/schemas/UnixAuthenticationMethodType'
+        userName:
+          description: The unique string identifying this user.
+          type: string
+      type: object
+    UserSecretActivitySummary:
+      description: A secret that was accessed by a specific user
+      properties:
+        active:
+          description: Whether the Secret is active or not
+          type: boolean
+        folderId:
+          description: The folder id that contains the secret
+          type: integer
+          format: int32
+          nullable: true
+        folderPath:
+          description: The folder path of the secret
+          type: string
+        ipAddress:
+          description: The IP address that was used to access the secret
+          type: string
+        lastDate:
+          description: The last date the secret was accessed
+          type: string
+          format: date-time
+        secretId:
+          description: The ID of the secret that was access
+          type: integer
+          format: int32
+        secretName:
+          description: The name of the secret
+          type: string
+        secretType:
+          description: The name of the secret template
+          type: string
+      type: object
+    SessionTerminateArgs:
+      description: SessionTerminateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/SessionTerminateModel'
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    RestRolePermission:
+      description: Permissions assigned to current user
+      properties:
+        name:
+          description: Name
+          type: string
+      type: object
+    SessionTerminateModel:
+      description: The request of a session termination
+      properties:
+        userSessionIds:
+          description: Ids of the User Sessions to terminate
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    LockOutResponseModel:
+      description: The result of the lock out
+      properties:
+        success:
+          description: Did the lock out succeed
+          type: boolean
+      type: object
+    UserIpAddressRestrictionModel:
+      description: UserIpAddressRestrictionModel
+      properties:
+        id:
+          description: Id
+          type: integer
+          format: int32
+        ipAddressRestrictionId:
+          description: IpAddressRestrictionId
+          type: integer
+          format: int32
+        ipAddressRestrictionName:
+          description: IpAddressRestrictionName
+          type: string
+        userDisplayName:
+          description: UserDisplayName
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+        userName:
+          description: UserName
+          type: string
+      type: object
+    UserChangePasswordArgs:
+      description: User change password options
+      required:
+      - currentPassword
+      - newPassword
+      properties:
+        currentPassword:
+          description: Current user password
+          type: string
+        newPassword:
+          description: New user password
+          type: string
+      type: object
+    CurrentUserModel:
+      description: Current User
+      properties:
+        dateOptionId:
+          description: Date option of current user
+          type: integer
+          format: int32
+        displayName:
+          description: Display Name of current user
+          type: string
+        emailAddress:
+          description: Email Address of current user
+          type: string
+        id:
+          description: Id of current user
+          type: integer
+          format: int32
+        permissions:
+          description: Permissions assigned to current user
+          items:
+            $ref: '#/components/schemas/RestRolePermission'
+          type: array
+        platformIntegrationType:
+          $ref: '#/components/schemas/PlatformIntegrationType'
+        timeOptionId:
+          description: Time option of current user
+          type: integer
+          format: int32
+        userLcid:
+          description: Language of current user
+          type: integer
+          format: int32
+        userName:
+          description: User Name of current user
+          type: string
+        userTheme:
+          description: The current users theme
+          type: string
+      type: object
+    DomainSummary:
+      description: Query results
+      properties:
+        domainId:
+          description: DomainId
+          type: integer
+          format: int32
+        domainName:
+          description: DomainName
+          type: string
+      type: object
+    ExternalUserSourceTypes:
+      description: External user sources.
+      properties: {}
+      type: string
+      enum:
+      - None
+      - ThycoticOne
+      - Azure
+      - Platform
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    ResetTwoFactorResponseModel:
+      description: The result of the 2FA reset
+      properties:
+        success:
+          description: Did the 2FA reset succeed
+          type: boolean
+      type: object
+    ResetTwoFactorArgs:
+      description: ResetTwoFactorArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/ResetTwoFactorRequestModel'
+      type: object
+    UserPasswordVerifyArgs:
+      description: UserPasswordVerifyArgs
+      properties:
+        password:
+          description: Password
+          type: string
+      type: object
+    UserPublicSshKeySummary:
+      description: User public ssh key
+      properties:
+        active:
+          description: Whether the user public ssh key is active
+          type: boolean
+        dateCreated:
+          description: User public ssh key creation time
+          type: string
+          format: date-time
+        description:
+          description: Description
+          type: string
+        expired:
+          description: Whether the user public ssh key is expired
+          type: boolean
+        format:
+          description: The Format of the key
+          type: string
+        id:
+          description: Id
+          type: integer
+          format: int32
+        publicSshKey:
+          description: Public ssh key
+          type: string
+      type: object
+    PagingOfUserRoleSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/UserRoleSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    PagingOfGroupUserSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/GroupUserSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PasswordResetResultModel:
+      description: PasswordResetResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    TwoFactorResetType:
+      description: Available types of 2FA options that can be reset
+      properties: {}
+      type: string
+      enum:
+      - Oath
+      - Fido
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    TeamGroupSummary:
+      description: Team Group Summary
+      properties:
+        groupId:
+          description: Group Id
+          type: integer
+          format: int32
+        groupName:
+          description: Group Name
+          type: string
+        isPersonal:
+          description: Is Personal Group
+          type: boolean
+        teamId:
+          description: Team Id
+          type: integer
+          format: int32
+      type: object
+    ExpireUserSecretActivityDataArgs:
+      description: ExpireUserSecretActivityDataArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/ExpireUserSecretActivityDataModel'
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    UserUpdateArgs:
+      description: User update options
+      properties:
+        dateOptionId:
+          description: The id of the date format to use when displaying dates to this user. These options are defined in Admin > Configuration.
+          type: integer
+          format: int32
+        displayName:
+          description: The user’s name as displayed in the user interface.
+          type: string
+        duoTwoFactor:
+          description: Whether Duo two-factor authentication is enabled.
+          type: boolean
+        emailAddress:
+          description: The user's email address. Used by the system to send reports, access requests, and other notifications.
+          type: string
+        enabled:
+          description: Whether the user account is enabled. Disabled users are unable to log in and do not consume a user license.
+          type: boolean
+        fido2TwoFactor:
+          description: Whether FIDO2 two-factor authentication is enabled.
+          type: boolean
+        groupOwners:
+          description: A list of group ids for the groups that can manage this user. If not set, the user is managed by all users with the ‘Administer Users’ role permission.
+          items:
+            type: integer
+            format: int32
+          type: array
+        id:
+          description: User ID. Must match ID in path.
+          type: integer
+          format: int32
+          minimum: 1
+        isApplicationAccount:
+          description: Whether this is an application account. Application accounts are used for automation, cannot log in using the UI, and do not consume a user license.
+          type: boolean
+        isGroupOwnerUpdate:
+          description: Whether the user is managed by the groups specified in GroupOwners or is managed by all users with the ‘Administer Users’ role permission.
+          type: boolean
+        isLockedOut:
+          description: Whether the user is locked out. A locked out user cannot log in.
+          type: boolean
+        loginFailures:
+          description: Number of login failures to allow before the account is locked out. Set to 0 for unlimited login attempts.
+          type: integer
+          format: int32
+          minimum: 0
+        oathTwoFactor:
+          description: Whether OATH two-factor authentication is enabled.
+          type: boolean
+        password:
+          description: The password used by local accounts to log in.
+          type: string
+        radiusTwoFactor:
+          description: Whether RADIUS two-factor authentication is enabled.
+          type: boolean
+        radiusUserName:
+          description: When a user account uses RADIUS two-factor authentication, this property is the user name of the RADIUS account used to authenticate this user.
+          type: string
+        timeOptionId:
+          description: The id of the time format to use when displaying times to this user. These options are defined in Admin > Configuration.
+          type: integer
+          format: int32
+        twoFactor:
+          description: Whether two-factor authentication is enabled.
+          type: boolean
+        unixAuthenticationMethod:
+          $ref: '#/components/schemas/UnixAuthenticationMethodType'
+      type: object
+    GroupAssignments:
+      description: Groups to be assigned.
+      properties:
+        groupIds:
+          description: Group Ids
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    UserSecretActivityFilter:
+      description: Filter which secrets that had activity to include
+      properties:
+        endDate:
+          description: Include secrets accessed before this date.  Can be null which will not filter by any end date and results in today basically.
+          type: string
+          format: date-time
+          nullable: true
+        excludeInactiveSecrets:
+          description: Exclude any inactive secrets
+          type: boolean
+        excludeRotatedSecrets:
+          description: Exclude any secrets that rotate
+          type: boolean
+        folderId:
+          description: Only include secrets in a specific folder.  Exclude or pass null to include all secrets
+          type: integer
+          format: int32
+          nullable: true
+        includeSubfolders:
+          description: Only used if a FolderId is included and when true it will also search subfolders.  When false only secrets from the passed FolderId will be returned.
+          type: boolean
+        startDate:
+          description: Include any Secrets access since this date
+          type: string
+          format: date-time
+      type: object
+    PagingOfUserAuditSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/UserAuditSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UserOwnerSummary:
+      description: User owner summary
+      properties:
+        domainId:
+          description: Active Directory domain ID
+          type: integer
+          format: int32
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+          nullable: true
+        id:
+          description: User owner ID
+          type: integer
+          format: int32
+        isUser:
+          description: Whether the owner is a user (true) or a group (false)
+          type: boolean
+        name:
+          description: User owner name
+          type: string
+        userId:
+          description: User ID
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    UserModel:
+      description: User
+      properties:
+        adAccountExpires:
+          description: Active Directory account expiration time
+          type: string
+          format: date-time
+        adGuid:
+          description: Active Directory unique identifier
+          type: string
+        created:
+          description: User creation time
+          type: string
+          format: date-time
+        dateOptionId:
+          description: DateOptionId
+          type: integer
+          format: int32
+        displayName:
+          description: Display name
+          type: string
+        domainId:
+          description: Active Directory domain ID
+          type: integer
+          format: int32
+        duoTwoFactor:
+          description: Whether Duo two-factor authentication is enabled
+          type: boolean
+        emailAddress:
+          description: Email address
+          type: string
+        enabled:
+          description: Whether the user account is enabled
+          type: boolean
+        externalUserSource:
+          $ref: '#/components/schemas/ExternalUserSourceTypes'
+        fido2TwoFactor:
+          description: Whether FIDO2 two-factor authentication is enabled
+          type: boolean
+        id:
+          description: User ID
+          type: integer
+          format: int32
+        ipAddressRestrictions:
+          description: Array of IP Address Restrictions for the user.
+          items:
+            $ref: '#/components/schemas/UserIpAddressRestrictionModel'
+          type: array
+        isApplicationAccount:
+          description: IsApplicationAccount
+          type: boolean
+        isEmailCopiedFromAD:
+          description: Whether the email address is derived from the Active Directory account
+          type: boolean
+        isEmailVerified:
+          description: Whether the email address has been verified
+          type: boolean
+        isLockedOut:
+          description: Whether the user is locked out
+          type: boolean
+        lastLogin:
+          description: Time of last login
+          type: string
+          format: date-time
+        lastSessionActivity:
+          description: Time of last session activity
+          type: string
+          format: date-time
+          nullable: true
+        lockOutReason:
+          description: The reason for the lock out
+          type: string
+          nullable: true
+        lockOutReasonDescription:
+          description: An optional description of the reason for the lock out
+          type: string
+        loginFailures:
+          description: Number of login failures
+          type: integer
+          format: int32
+        mustVerifyEmail:
+          description: Whether the user must verify their email address
+          type: boolean
+        oathTwoFactor:
+          description: Whether OATH two-factor authentication is enabled
+          type: boolean
+        oathVerified:
+          description: Whether OATH has been verified
+          type: boolean
+        passwordLastChanged:
+          description: Time when the password was last changed
+          type: string
+          format: date-time
+        personalGroupId:
+          description: The personal group ID for this user.  Each user has a personal group that is a group that only contains that user.
+          type: integer
+          format: int32
+        platformIntegrationType:
+          $ref: '#/components/schemas/PlatformIntegrationType'
+        platformServiceUser:
+          description: Whether user is a system managed account used for Platform Integration
+          type: boolean
+        radiusTwoFactor:
+          description: Whether RADIUS two-factor authentication is enabled
+          type: boolean
+        radiusUserName:
+          description: RADIUS username
+          type: string
+        resetSessionStarted:
+          description: ResetSessionStarted
+          type: string
+          format: date-time
+        slackId:
+          description: Slack ID of the user
+          type: string
+        timeOptionId:
+          description: TimeOptionId
+          type: integer
+          format: int32
+        twoFactor:
+          description: Whether two-factor authentication is enabled
+          type: boolean
+        unixAuthenticationMethod:
+          $ref: '#/components/schemas/UnixAuthenticationMethodType'
+        userLcid:
+          description: UserLcid
+          type: integer
+          format: int32
+        userName:
+          description: User name
+          type: string
+        verifyEmailSentDate:
+          description: Time when the verification email was sent
+          type: string
+          format: date-time
+      type: object
+    GroupChangeStatusModel:
+      description: The status of the group change action.
+      properties:
+        success:
+          description: The success or failure of the user group action.
+          type: boolean
+      type: object
+    PagingOfSessionSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SessionSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UserAuditSummary:
+      description: Query results
+      properties:
+        action:
+          description: Action that occurred
+          type: string
+        databaseName:
+          description: Database name
+          type: string
+        dateRecorded:
+          description: Date Recorded
+          type: string
+          format: date-time
+        displayName:
+          description: The name of the user that made the change
+          type: string
+        displayNameAffected:
+          description: The display name that was affected by this change
+          type: string
+        ipAddress:
+          description: IP Address
+          type: string
+        machineName:
+          description: Machine name
+          type: string
+        notes:
+          description: Notes
+          type: string
+        userId:
+          description: The user id of the user that made the change
+          type: integer
+          format: int32
+        userIdAffected:
+          description: The user id that was affected by this change
+          type: integer
+          format: int32
+      type: object
+    GroupUserSummary:
+      description: Query results
+      properties:
+        displayName:
+          description: User display name
+          type: string
+        enabled:
+          description: User Enabled
+          type: boolean
+        groupDomainId:
+          description: Group Active Directory domain ID
+          type: integer
+          format: int32
+        groupDomainName:
+          description: Group Domain Name
+          type: string
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+        groupName:
+          description: Group name
+          type: string
+        userDomainId:
+          description: User Active Directory domain ID
+          type: integer
+          format: int32
+        userDomainName:
+          description: User Active Directory domain name
+          type: string
+        userId:
+          description: User ID
+          type: integer
+          format: int32
+        userName:
+          description: User name
+          type: string
+      type: object
+    PatchUserModel:
+      description: PatchUserModel
+      properties:
+        dateOptionId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        displayName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        duoTwoFactor:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        emailAddress:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        enabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        fido2TwoFactor:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        groupOwners:
+          description: GroupOwners
+          items:
+            type: integer
+            format: int32
+          type: array
+        id:
+          description: User ID. Must match ID in path
+          type: integer
+          format: int32
+        ipAddressRestrictionIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+        isApplicationAccount:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        isGroupOwnerUpdate:
+          description: IsGroupOwnerUpdate
+          type: boolean
+        isLockedOut:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        loginFailures:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        oathTwoFactor:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        password:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        radiusTwoFactor:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        radiusUserName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        slackId:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        timeOptionId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        twoFactor:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        unixAuthenticationMethod:
+          $ref: '#/components/schemas/UpdateFieldValueOfUnixAuthenticationMethodType'
+      type: object
+    RoleSummary:
+      description: Role Summary
+      properties:
+        name:
+          description: Role Name
+          type: string
+        roleId:
+          description: Role ID
+          type: integer
+          format: int32
+      type: object
+    SessionSummaryModel:
+      description: Session Summary Model
+      properties:
+        browser:
+          description: Browser
+          type: string
+        current:
+          description: Indicating the current session
+          type: boolean
+        ipAddress:
+          description: IP Address
+          type: string
+        loginDate:
+          description: Login Date
+          type: string
+          format: date-time
+        userSessionId:
+          description: User Session Id
+          type: integer
+          format: int32
+      type: object
+    PlatformIntegrationType:
+      description: Type of Platform integration
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Native
+      - Hybrid
+    PagingOfDomainSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/DomainSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    Object:
+      description: ItemId
+      properties: {}
+      type: object
+    CurrentUserSummaryModel:
+      description: Current User Summary
+      properties:
+        id:
+          description: Id of current user
+          type: integer
+          format: int32
+      type: object
+    RoleAssignments:
+      description: Roles to be assigned
+      properties:
+        roleIds:
+          description: Role IDs
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    UnixAuthenticationMethodType:
+      description: Check password, public key, either, or both
+      properties: {}
+      type: string
+      enum:
+      - Password
+      - PublicKey
+      - PasswordOrPublicKey
+      - PasswordAndPublicKey
+    UpdateFieldValueOfUnixAuthenticationMethodType:
+      description: Check password, public key, either, or both
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/UnixAuthenticationMethodType'
+      type: object
+    UserLookup:
+      description: Simple user representation
+      properties:
+        id:
+          description: User ID
+          type: integer
+          format: int32
+        value:
+          description: User name
+          type: string
+      type: object
+    DoubleLockSetUserPasswordArgs:
+      description: DoubleLockSetUserPasswordArgs
+      properties:
+        password:
+          description: Password
+          type: string
+      type: object
+    PagingOfUserTeamSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/UserTeamSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PagingOfUserLookup:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/UserLookup'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    LockOutArgs:
+      description: LockOutArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/LockOutRequestModel'
+      type: object
+    UserOwnerModel:
+      description: User owner
+      properties:
+        domainId:
+          description: Active Directory domain ID
+          type: integer
+          format: int32
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+          nullable: true
+        id:
+          description: User owner ID
+          type: integer
+          format: int32
+        isUser:
+          description: Whether the owner is a user (true) or a group (false)
+          type: boolean
+        name:
+          description: User owner name
+          type: string
+        userId:
+          description: User ID
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    RestPreferenceUpdateArgs:
+      description: Preference update options
+      properties:
+        settingCode:
+          description: Setting Code
+          type: string
+        settingName:
+          description: Setting Name
+          type: string
+        value:
+          $ref: '#/components/schemas/Object'
+      type: object
+    ResetTwoFactorRequestModel:
+      description: Request a 2FA reset
+      properties:
+        twoFactorType:
+          $ref: '#/components/schemas/TwoFactorResetType'
+      type: object
+    UserSecretActivityExpireResult:
+      description: UserSecretActivityExpireResult
+      properties:
+        operationMessage:
+          $ref: '#/components/schemas/BulkOperationResponseMessage'
+        success:
+          description: Success
+          type: boolean
+      type: object
+    PasswordResetArgs:
+      description: PasswordResetArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/PasswordResetRequestModel'
+      type: object
+    PagingOfUserOwnerSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/UserOwnerSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    LockOutReasonType:
+      description: Available types of reasons for lock out
+      properties: {}
+      type: string
+      enum:
+      - SuspiciousActivity
+      - LoginAttemptsExceeded
+      - Other
+    UserOwnerPatchResult:
+      description: UserOwnerPatchResult
+      properties:
+        success:
+          description: Success of the patch
+          type: boolean
+      type: object
+    UserSummary:
+      description: User summary
+      properties:
+        created:
+          description: User creation time
+          type: string
+          format: date-time
+        displayName:
+          description: Display name
+          type: string
+        domainId:
+          description: Active Directory domain ID
+          type: integer
+          format: int32
+        domainName:
+          description: Active Directory Domain Name
+          type: string
+        emailAddress:
+          description: Email address
+          type: string
+        enabled:
+          description: Whether the user account is enabled
+          type: boolean
+        externalUserSource:
+          $ref: '#/components/schemas/ExternalUserSourceTypes'
+        id:
+          description: User ID
+          type: integer
+          format: int32
+        isApplicationAccount:
+          description: IsApplicationAccount
+          type: boolean
+        isLockedOut:
+          description: Whether the user is locked out
+          type: boolean
+        lastLogin:
+          description: Time of last login
+          type: string
+          format: date-time
+        loginFailures:
+          description: Number of login failures
+          type: integer
+          format: int32
+        platformIntegrationType:
+          $ref: '#/components/schemas/PlatformIntegrationType'
+        twoFactorMethod:
+          $ref: '#/components/schemas/MultifactorAuthenticationProviderTypes'
+        userName:
+          description: User name
+          type: string
+      type: object
+  requestBodies:
+    RoleRemovals:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RoleRemovals'
+      description: args
+    RoleAssignments:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RoleAssignments'
+      description: args
+    GroupAssignments:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GroupAssignments'
+      description: args
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

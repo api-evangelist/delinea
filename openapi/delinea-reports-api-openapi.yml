@@ -1,0 +1,4962 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations Reports API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: Reports
+  description: View and maintain Reports
+paths:
+  /v1/reports/{id}:
+    get:
+      tags:
+      - Reports
+      summary: Get Report
+      description: Gets a Report and returns the Report Model
+      operationId: ReportsService_GetReportDetail
+      parameters:
+      - name: id
+        in: path
+        description: Report ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - Reports
+      summary: Update Report
+      description: Updates a Report and returns the report
+      operationId: ReportsService_UpdateReport
+      parameters:
+      - name: id
+        in: path
+        description: Report ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportUpdateArgs'
+        description: Report update options
+      responses:
+        '200':
+          description: Report object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Reports
+      summary: Delete Report
+      description: Delete a report by ID
+      operationId: ReportsService_Delete
+      parameters:
+      - name: id
+        in: path
+        description: Report ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v2/reports/{id}:
+    delete:
+      tags:
+      - Reports
+      summary: Delete Report
+      description: Delete a report by ID
+      operationId: ReportsService_DeleteV2
+      parameters:
+      - name: id
+        in: path
+        description: Report ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/categories/{reportCategoryId}:
+    get:
+      tags:
+      - Reports
+      summary: Get Report Category
+      description: Get Report Category
+      operationId: ReportsService_GetReportCategory
+      parameters:
+      - name: reportCategoryId
+        in: path
+        description: reportCategoryId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportCategoryDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Reports
+      summary: Delete Report Category
+      description: This will delete the report category and all assigned reports will be set inactive
+      operationId: ReportsService_DeleteReportCategory
+      parameters:
+      - name: reportCategoryId
+        in: path
+        description: reportCategoryId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: true if success
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - Reports
+      summary: Update Report Category
+      description: Update Report Category
+      operationId: ReportsService_UpdateReportCategory
+      parameters:
+      - name: reportCategoryId
+        in: path
+        description: reportCategoryId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportCategoryUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Report Category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportCategoryDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v2/reports/categories/{reportCategoryId}:
+    delete:
+      tags:
+      - Reports
+      summary: Delete Report Category
+      description: This will delete the report category and all assigned reports will be set inactive
+      operationId: ReportsService_DeleteReportCategoryV2
+      parameters:
+      - name: reportCategoryId
+        in: path
+        description: reportCategoryId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/schedules/{reportScheduleId}:
+    get:
+      tags:
+      - Reports
+      summary: Get Report Schedule
+      description: Get Report Schedule
+      operationId: ReportsService_GetReportSchedule
+      parameters:
+      - name: reportScheduleId
+        in: path
+        description: reportScheduleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Schedule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportScheduleModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Reports
+      summary: Delete Report Schedule
+      description: Delete Report Schedule
+      operationId: ReportsService_DeleteReportSchedule
+      parameters:
+      - name: reportScheduleId
+        in: path
+        description: reportScheduleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - Reports
+      summary: Update Report Schedule
+      description: Update Report Schedule
+      operationId: ReportsService_UpdateReportSchedule
+      parameters:
+      - name: reportScheduleId
+        in: path
+        description: reportScheduleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportScheduleUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Report Schedule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportScheduleModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v2/reports/schedules/{reportScheduleId}:
+    delete:
+      tags:
+      - Reports
+      summary: Delete Report Schedule
+      description: Delete Report Schedule
+      operationId: ReportsService_DeleteReportScheduleV2
+      parameters:
+      - name: reportScheduleId
+        in: path
+        description: reportScheduleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/{id}/audits:
+    get:
+      tags:
+      - Reports
+      summary: Get Report Audits
+      description: Get report audits by report Id
+      operationId: ReportsService_GetReportAuditsById
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Audit Summaries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfReportAuditSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/audits:
+    get:
+      tags:
+      - Reports
+      summary: Get All Report Audits
+      description: Get all report audits
+      operationId: ReportsService_GetReportAudits
+      parameters:
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Audit Summaries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfReportAuditSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports:
+    get:
+      tags:
+      - Reports
+      summary: Search Reports
+      description: Search, filter, sort, and page reports
+      operationId: ReportsService_SearchReportSummary
+      parameters:
+      - name: filter.categoryId
+        in: query
+        description: Category ID
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeInactive
+        in: query
+        description: Whether to include inactive Reports in the results
+        required: false
+        schema:
+          type: boolean
+      - name: filter.reportName
+        in: query
+        description: Report Name - Searching by report name ignores other filters
+        required: false
+        schema:
+          type: string
+      - name: filter.searchText
+        in: query
+        description: Search text
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfReportSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Reports
+      summary: Create Report
+      description: Creates a new Report and returns the report
+      operationId: ReportsService_CreateReport
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportCreateArgs'
+        description: Report create options
+      responses:
+        '200':
+          description: Report object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/lookup:
+    get:
+      tags:
+      - Reports
+      summary: Lookup Reports
+      description: Search, filter, sort, and page reports, returning only group ID and name
+      operationId: ReportsService_Lookup
+      parameters:
+      - name: filter.categoryId
+        in: query
+        description: Category ID
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeInactive
+        in: query
+        description: Whether to include inactive Reports in the results
+        required: false
+        schema:
+          type: boolean
+      - name: filter.reportName
+        in: query
+        description: Report Name - Searching by report name ignores other filters
+        required: false
+        schema:
+          type: string
+      - name: filter.searchText
+        in: query
+        description: Search text
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Reports search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfReportLookup'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/categories:
+    get:
+      tags:
+      - Reports
+      summary: List Report Categories
+      description: List the report categories
+      operationId: ReportsService_GetCategories
+      responses:
+        '200':
+          description: Report categories array
+          content:
+            application/json:
+              schema:
+                description: Report categories array
+                items:
+                  $ref: '#/components/schemas/ReportCategory'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Reports
+      summary: Create Report Category
+      description: Create Report Category
+      operationId: ReportsService_CreateReportCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportCategoryCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: Report Category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportCategoryDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/charttypes:
+    get:
+      tags:
+      - Reports
+      summary: List Report Chart Types
+      description: List the report chart types
+      operationId: ReportsService_GetChartTypes
+      responses:
+        '200':
+          description: Report chart types array
+          content:
+            application/json:
+              schema:
+                description: Report chart types array
+                items:
+                  $ref: '#/components/schemas/ReportChartType'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/{id}/defaultparameters:
+    get:
+      tags:
+      - Reports
+      summary: Report Parameters
+      description: Gets the default parameters for the specified report
+      operationId: ReportsService_GetDefaultParameters
+      parameters:
+      - name: id
+        in: path
+        description: Report ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportDefaultParams'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/schedules:
+    get:
+      tags:
+      - Reports
+      summary: Search Report Schedules
+      description: Search Report Schedules
+      operationId: ReportsService_SearchReportSchedules
+      parameters:
+      - name: filter.includeDeleted
+        in: query
+        description: When set, deleted reports will be included
+        required: false
+        schema:
+          type: boolean
+      - name: filter.reportId
+        in: query
+        description: Report Id
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Schedules that matched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPagingOfReportScheduleSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Reports
+      summary: Create Report Schedule
+      description: Create Report Schedule
+      operationId: ReportsService_CreateReportSchedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportScheduleCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: Report Schedule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportScheduleModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/schedules/stub/{reportId}:
+    get:
+      tags:
+      - Reports
+      summary: Stub Report Schedule
+      description: Stub Report Schedule
+      operationId: ReportsService_StubReportSchedule
+      parameters:
+      - name: reportId
+        in: path
+        description: reportId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Schedule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportScheduleModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/schedules/{reportScheduleId}/history/search:
+    get:
+      tags:
+      - Reports
+      summary: Search Report Schedule History
+      description: Search Report Schedule History
+      operationId: ReportsService_SearchReportScheduleHistory
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: reportScheduleId
+        in: path
+        description: reportScheduleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Schedule History for a particular Id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPagingOfReportScheduleHistorySummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/schedules/{reportScheduleHistoryId}/history:
+    get:
+      tags:
+      - Reports
+      summary: Get Report Schedule History
+      description: Get a Report Schedule History
+      operationId: ReportsService_GetReportScheduleHistory
+      parameters:
+      - name: reportScheduleHistoryId
+        in: path
+        description: reportScheduleHistoryId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Schedule History for a ScheduleReportHistoryId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPagingOfReportScheduleHistorySummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/{reportId}/permissions:
+    get:
+      tags:
+      - Reports
+      summary: Get a Report's Permissions
+      description: Get a Report's Permissions
+      operationId: ReportsService_GetReportPermissions
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: reportId
+        in: path
+        description: reportId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Permissions for a Report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPagingOfReportPermissionModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - Reports
+      summary: Update Report Permissions
+      description: Update Report Permissions
+      operationId: ReportsService_UpdateReportPermissions
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: reportId
+        in: path
+        description: reportId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportPermissionsUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Report Permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPagingOfReportPermissionModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/{reportCategoryId}/permissions-from-category:
+    get:
+      tags:
+      - Reports
+      summary: Get a Report's Permissions from a Report Category
+      description: Get a Report's Permissions from a Report Category
+      operationId: ReportsService_GetReportPermissionsFromCategory
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: reportCategoryId
+        in: path
+        description: reportCategoryId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Permissions for a Report from a Report Category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPagingOfReportPermissionModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/categories/{reportCategoryId}/permissions:
+    get:
+      tags:
+      - Reports
+      summary: Get a Report Category's Permissions
+      description: Get a Report Category's Permissions
+      operationId: ReportsService_GetReportCategoryPermissions
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: reportCategoryId
+        in: path
+        description: reportCategoryId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report Category Permissions for a Report Category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPagingOfReportCategoryPermissionModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - Reports
+      summary: Update Category Report Permissions
+      description: Update Category Report Permissions
+      operationId: ReportsService_UpdateReportCategoryPermissions
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: reportCategoryId
+        in: path
+        description: reportCategoryId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportCategoryPermissionsUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Report Category Permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPagingOfReportCategoryPermissionModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/permissions/options:
+    get:
+      tags:
+      - Reports
+      summary: Get Report Permission Options
+      description: Get Report Permission Options
+      operationId: ReportsService_GetReportPermissionOptions
+      responses:
+        '200':
+          description: Report Permissions Options
+          content:
+            application/json:
+              schema:
+                description: Report Permissions Options
+                items:
+                  $ref: '#/components/schemas/ReportPermissionOptionModel'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/categories/permissions/options:
+    get:
+      tags:
+      - Reports
+      summary: Get Report Category Permission Options
+      description: Get Report Category Permission Options
+      operationId: ReportsService_GetReportCategoryPermissionOptions
+      responses:
+        '200':
+          description: Report Category Permissions Options
+          content:
+            application/json:
+              schema:
+                description: Report Category Permissions Options
+                items:
+                  $ref: '#/components/schemas/ReportCategoryPermissionOptionModel'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/export:
+    post:
+      tags:
+      - Reports
+      summary: Export Report
+      description: Exports a Report and returns the results
+      operationId: ReportsService_Export
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportExportArgs'
+        description: Report execute options
+      responses:
+        '200':
+          description: Report object
+          content:
+            application/json:
+              schema:
+                description: String
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/execute:
+    post:
+      tags:
+      - Reports
+      summary: Execute Report
+      description: Executes a Report and returns the results
+      operationId: ReportsService_Execute
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportExecuteArgs'
+        description: Report execute options
+      responses:
+        '200':
+          description: Report object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportExecuteModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/{id}/email:
+    post:
+      tags:
+      - Reports
+      summary: Email Report
+      description: Email a report
+      operationId: ReportsService_Email
+      parameters:
+      - name: id
+        in: path
+        description: Report Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportEmailArgs'
+        description: Report email options
+      responses:
+        '200':
+          description: Object email result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportEmailResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/schedules/{reportScheduleHistoryId}/history/download:
+    post:
+      tags:
+      - Reports
+      summary: Download Historical Report
+      description: Download historical report from a schedule
+      operationId: ReportsService_DownloadHistoricalReport
+      parameters:
+      - name: reportScheduleHistoryId
+        in: path
+        description: reportScheduleHistoryId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Report object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/schedules/{reportScheduleId}/undelete:
+    put:
+      tags:
+      - Reports
+      summary: Undelete Report Schedule
+      description: Undelete Report Schedule
+      operationId: ReportsService_UndeleteReportSchedule
+      parameters:
+      - name: reportScheduleId
+        in: path
+        description: reportScheduleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/reports/{reportId}/undelete:
+    put:
+      tags:
+      - Reports
+      summary: Undelete System Report
+      description: Allows user to undelete system reports only.  Non-system reports are required to be edited in order for the SQL to be valdiated properly.
+      operationId: ReportsService_UndeleteSystemReport
+      parameters:
+      - name: reportId
+        in: path
+        description: reportId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Returns success/fail model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UndeleteReportResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    UpdateFieldValueOfOptionalReportScheduleDateParameterType:
+      description: End Date Parameter Value
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+          nullable: true
+      type: object
+    ReportEmailArgs:
+      description: Report Email Args
+      properties:
+        data:
+          $ref: '#/components/schemas/ReportEmailModel'
+      type: object
+    AuthenticationHeaderValue:
+      description: ProxyAuthenticate
+      properties:
+        parameter:
+          description: Parameter
+          type: string
+        scheme:
+          description: Scheme
+          type: string
+      type: object
+    ReportCategoryUpdateArgs:
+      description: Report Category Update Args
+      properties:
+        data:
+          $ref: '#/components/schemas/ReportCategoryUpdateModel'
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    NameValueHeaderValue:
+      description: Parameters
+      properties:
+        name:
+          description: Name
+          type: string
+        value:
+          description: Value
+          type: string
+      type: object
+    PagingOfReportSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/ReportSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfOptionalDateTime:
+      description: Update when the pinned folder was last viewed
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+          format: date-time
+          nullable: true
+      type: object
+    UpdateFieldValueOfInt32Array:
+      description: FolderIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    OptionalDateTimeOffset:
+      description: CreationDate
+      properties:
+        date:
+          description: Date
+          type: string
+          format: date-time
+        dateTime:
+          description: DateTime
+          type: string
+          format: date-time
+        day:
+          description: Day
+          type: integer
+          format: int32
+        dayOfWeek:
+          $ref: '#/components/schemas/DayOfWeek'
+        dayOfYear:
+          description: DayOfYear
+          type: integer
+          format: int32
+        hour:
+          description: Hour
+          type: integer
+          format: int32
+        localDateTime:
+          description: LocalDateTime
+          type: string
+          format: date-time
+        millisecond:
+          description: Millisecond
+          type: integer
+          format: int32
+        minute:
+          description: Minute
+          type: integer
+          format: int32
+        month:
+          description: Month
+          type: integer
+          format: int32
+        offset:
+          description: Offset
+          type: string
+          format: time-span
+        second:
+          description: Second
+          type: integer
+          format: int32
+        ticks:
+          description: Ticks
+          type: integer
+          format: int64
+        timeOfDay:
+          description: TimeOfDay
+          type: string
+          format: time-span
+        utcDateTime:
+          description: UtcDateTime
+          type: string
+          format: date-time
+        utcTicks:
+          description: UtcTicks
+          type: integer
+          format: int64
+        year:
+          description: Year
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfOptionalScheduleMonthlyDayType:
+      description: MonthlyDay
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+          nullable: true
+      type: object
+    ReportEmailModel:
+      description: Report Email Model
+      properties:
+        dateOptionId:
+          description: Format spec for dates in report
+          type: integer
+          format: int32
+          nullable: true
+        emailAddress:
+          description: Email Address to which the report will be sent
+          type: string
+        format:
+          $ref: '#/components/schemas/ReportFormat'
+        parameters:
+          description: Report Parameters to be used for the report execution
+          items:
+            $ref: '#/components/schemas/ReportParameterValue'
+          type: array
+        timeOptionId:
+          description: Format spec for times in report
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    IPagingOfReportCategoryPermissionModel:
+      description: IPagingOfReportCategoryPermissionModel
+      properties:
+        records:
+          description: Records
+          items:
+            $ref: '#/components/schemas/ReportCategoryPermissionModel'
+          type: array
+        sortBy:
+          description: SortBy
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    ReportCategoryPermissionsUpdateArgs:
+      description: Report Category Permissions Update Args
+      properties:
+        data:
+          $ref: '#/components/schemas/ReportCategoryPermissionsUpdateModel'
+      type: object
+    ScheduleCreateModel:
+      description: Schedule Create Model
+      properties:
+        additionalEmailAddresses:
+          description: Additional email addresses to receive the email
+          type: string
+        changeType:
+          $ref: '#/components/schemas/ScheduleChangeType'
+        days:
+          description: Days of Recurrence if Daily ScheduleType
+          type: integer
+          format: int32
+          nullable: true
+        emailGroups:
+          description: Groups to receive the email
+          items:
+            type: integer
+            format: int32
+          type: array
+        friday:
+          description: Occurs on Fridays when set if Weekly ScheduleType
+          type: boolean
+          nullable: true
+        healthCheck:
+          description: Health Check
+          type: boolean
+        historySize:
+          description: The number of generated reports that will be saved. Null if All
+          type: integer
+          format: int32
+          nullable: true
+        monday:
+          description: Occurs on Mondays when set if Weekly ScheduleType
+          type: boolean
+          nullable: true
+        monthlyDay:
+          description: Day(s) used if DayOfWeekMonth and Monthly ScheduleType
+          type: string
+          nullable: true
+        monthlyDayOfMonth:
+          description: Day of Month if DayOfMonth and Monthly ScheduleType
+          type: integer
+          format: int32
+          nullable: true
+        monthlyDayOrder:
+          description: Day Order used if DayOfWeekMonth and Monthly ScheduleType
+          type: string
+          nullable: true
+        monthlyDayOrderRecurrence:
+          description: Months of Recurrence if DayOfWeekMonth and Monthly ScheduleType
+          type: integer
+          format: int32
+          nullable: true
+        monthlyDayRecurrence:
+          description: Months of Recurrence if DayOfMonth and Monthly ScheduleType
+          type: integer
+          format: int32
+          nullable: true
+        monthlyScheduleType:
+          description: Selection used if Monthly ScheduleType
+          type: string
+          nullable: true
+        saturday:
+          description: Occurs on Saturdays when set if Weekly ScheduleType
+          type: boolean
+          nullable: true
+        scheduleName:
+          description: Schedule Name
+          type: string
+        sendEmail:
+          description: Send Report via Email
+          type: boolean
+        sendEmailWithHighPriority:
+          description: Send Email With High Priority
+          type: boolean
+        startingOn:
+          description: Day for Report Schedule to start
+          type: string
+          format: date-time
+        sunday:
+          description: Occurs on Sundays when set if Weekly ScheduleType
+          type: boolean
+          nullable: true
+        thursday:
+          description: Occurs on Thursdays when set if Weekly ScheduleType
+          type: boolean
+          nullable: true
+        tuesday:
+          description: Occurs on Tuesdays when set if Weekly ScheduleType
+          type: boolean
+          nullable: true
+        wednesday:
+          description: Occurs on Wednesdays when set if Weekly ScheduleType
+          type: boolean
+          nullable: true
+        weeks:
+          description: Weeks of Recurrence if Weekly ScheduleType
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    ViewFieldLink:
+      description: AdditionalLinks
+      properties:
+        isExternal:
+          description: IsExternal
+          type: boolean
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
+          type: string
+      type: object
+    DeletedModel:
+      description: Information about an object that was deleted
+      properties:
+        id:
+          description: ID of the deleted object
+          type: integer
+          format: int32
+        objectType:
+          description: Type of the deleted object
+          type: string
+        responseCodes:
+          description: List of response codes from the delete operation
+          items:
+            type: string
+          type: array
+      type: object
+    PagingOfReportLookup:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/ReportLookup'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    ReportCategory:
+      description: ReportCategory[]
+      properties:
+        description:
+          description: The report category description
+          type: string
+        id:
+          description: The Id value of the report category
+          type: integer
+          format: int32
+        name:
+          description: The name of the report category
+          type: string
+      type: object
+    ViewFieldValueOfBoolean:
+      description: When enabled, the log will be able to be viewed online
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: boolean
+      type: object
+    ReportSummary:
+      description: Report summary
+      properties:
+        categoryId:
+          description: Category ID
+          type: integer
+          format: int32
+        enabled:
+          description: Whether the Report is active
+          type: boolean
+        id:
+          description: Report ID
+          type: integer
+          format: int32
+        name:
+          description: Report name
+          type: string
+      type: object
+    ReportChartType:
+      description: ReportChartType[]
+      properties:
+        id:
+          description: The int value of the report chart type
+          type: integer
+          format: int32
+        name:
+          description: The name of the report chart type
+          type: string
+      type: object
+    ReportCategoryDetailModel:
+      description: Report Category Detail
+      properties:
+        reportCategoryDescription:
+          description: Report Category Description
+          type: string
+        reportCategoryId:
+          description: Report Category Id
+          type: integer
+          format: int32
+        reportCategoryName:
+          description: Report Category Name
+          type: string
+        sortOrder:
+          description: Sort Order in which the category should appear
+          type: integer
+          format: int32
+      type: object
+    ReportScheduleCreateArgs:
+      description: Report Schedule Create Args
+      properties:
+        data:
+          $ref: '#/components/schemas/ReportScheduleCreateModel'
+      type: object
+    ViewFieldValueOfOptionalScheduleMonthlyDayOrderType:
+      description: MonthlyDayOrder
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+          nullable: true
+      type: object
+    ViewFieldValueOfOptionalScheduleMonthlyDayType:
+      description: MonthlyDay
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+          nullable: true
+      type: object
+    IPagingOfReportPermissionModel:
+      description: IPagingOfReportPermissionModel
+      properties:
+        records:
+          description: Records
+          items:
+            $ref: '#/components/schemas/ReportPermissionModel'
+          type: array
+        sortBy:
+          description: SortBy
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+      type: object
+    ReportCategoryPermissionOptionModel:
+      description: ReportCategoryPermissionOptionModel[]
+      properties:
+        rolePermissionId:
+          description: Report Permission Id
+          type: integer
+          format: int32
+        rolePermissionName:
+          description: Report Permission Name
+          type: string
+      type: object
+    ViaHeaderValue:
+      description: Via
+      properties:
+        comment:
+          description: Comment
+          type: string
+        protocolName:
+          description: ProtocolName
+          type: string
+        protocolVersion:
+          description: ProtocolVersion
+          type: string
+        receivedBy:
+          description: ReceivedBy
+          type: string
+      type: object
+    ReportExportArgs:
+      description: Report query options
+      properties:
+        delimiter:
+          description: Delimiter
+          type: string
+        dualControlApproval:
+          $ref: '#/components/schemas/DualControlApproval'
+        encodeHtml:
+          description: True to encode data as HTML, defaults to true if not provided
+          type: boolean
+          nullable: true
+        endRecordNumber:
+          description: End Record Number when taking a specific set of records, passing this will override PageNumber and RecordsPerPage
+          type: integer
+          format: int32
+          nullable: true
+        format:
+          description: Format
+          type: string
+          nullable: true
+        id:
+          description: 'The Id of the report to run. Optional: will use Name if provided'
+          type: integer
+          format: int32
+          nullable: true
+        isAscending:
+          description: Flag determining sort direction of custom sort
+          type: boolean
+          nullable: true
+        name:
+          description: 'The name of the report to run. Optional: will use Id if provided'
+          type: string
+        orderByFieldOrdinal:
+          description: Ordinal of Field for custom OrderBy of results
+          type: integer
+          format: int32
+          nullable: true
+        pageNumber:
+          description: Page number for paging results. All records returned if null
+          type: integer
+          format: int32
+          nullable: true
+        parameters:
+          description: The parameters of the report
+          items:
+            $ref: '#/components/schemas/ReportParameter'
+          type: array
+        previewSql:
+          description: When passed the report will be previewed with this sql
+          type: string
+        recordsPerPage:
+          description: Number of records per page for paging results
+          type: integer
+          format: int32
+          nullable: true
+        startRecordNumber:
+          description: Start Record Number when taking a specific set of records, passing this will override PageNumber and RecordsPerPage
+          type: integer
+          format: int32
+          nullable: true
+        timeZone:
+          description: TimeZone
+          type: string
+          nullable: true
+        useDatabasePaging:
+          description: If true the report will attempt to do paging in the database. If false the paging will occur on the application server.
+          type: boolean
+          nullable: true
+        useDefaultParameters:
+          description: If a report contains a parameter but it is not passed the default value will be used on the server
+          type: boolean
+          nullable: true
+      type: object
+    ReportCategoryPermissionModel:
+      description: Report Category Permission Model
+      properties:
+        group:
+          $ref: '#/components/schemas/ReportPermissionGroupModel'
+        rolePermission:
+          $ref: '#/components/schemas/ReportRolePermissionModel'
+      type: object
+    ReportPermissionsUpdateArgs:
+      description: Report Permissions Update Args
+      properties:
+        data:
+          $ref: '#/components/schemas/ReportPermissionsUpdateModel'
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    UpdateFieldValueOfOptionalScheduleMonthlyDayOrderType:
+      description: MonthlyDayOrder
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+          nullable: true
+      type: object
+    HttpResponseHeaders:
+      description: Headers
+      properties:
+        acceptRanges:
+          description: AcceptRanges
+          items:
+            type: string
+          type: array
+        age:
+          description: Age
+          type: string
+          format: time-span
+          nullable: true
+        cacheControl:
+          $ref: '#/components/schemas/CacheControlHeaderValue'
+        connection:
+          description: Connection
+          items:
+            type: string
+          type: array
+        connectionClose:
+          description: ConnectionClose
+          type: boolean
+          nullable: true
+        date:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+        eTag:
+          $ref: '#/components/schemas/EntityTagHeaderValue'
+        location:
+          $ref: '#/components/schemas/Uri'
+        pragma:
+          description: Pragma
+          items:
+            $ref: '#/components/schemas/NameValueHeaderValue'
+          type: array
+        proxyAuthenticate:
+          description: ProxyAuthenticate
+          items:
+            $ref: '#/components/schemas/AuthenticationHeaderValue'
+          type: array
+        retryAfter:
+          $ref: '#/components/schemas/RetryConditionHeaderValue'
+        server:
+          description: Server
+          items:
+            $ref: '#/components/schemas/ProductInfoHeaderValue'
+          type: array
+        trailer:
+          description: Trailer
+          items:
+            type: string
+          type: array
+        transferEncoding:
+          description: TransferEncoding
+          items:
+            $ref: '#/components/schemas/TransferCodingHeaderValue'
+          type: array
+        transferEncodingChunked:
+          description: TransferEncodingChunked
+          type: boolean
+          nullable: true
+        upgrade:
+          description: Upgrade
+          items:
+            $ref: '#/components/schemas/ProductHeaderValue'
+          type: array
+        vary:
+          description: Vary
+          items:
+            type: string
+          type: array
+        via:
+          description: Via
+          items:
+            $ref: '#/components/schemas/ViaHeaderValue'
+          type: array
+        warning:
+          description: Warning
+          items:
+            $ref: '#/components/schemas/WarningHeaderValue'
+          type: array
+        wwwAuthenticate:
+          description: WwwAuthenticate
+          items:
+            $ref: '#/components/schemas/AuthenticationHeaderValue'
+          type: array
+      type: object
+    ViewFieldValueOfString:
+      description: GeneratedToken
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+      type: object
+    UpdateFieldValueOfScheduleChangeType:
+      description: ChangeType
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/ScheduleChangeType'
+      type: object
+    EntityTagHeaderValue:
+      description: ETag
+      properties:
+        isWeak:
+          description: IsWeak
+          type: boolean
+        tag:
+          description: Tag
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    ScheduleViewModel:
+      description: Schedule
+      properties:
+        additionalEmailAddresses:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        changeType:
+          $ref: '#/components/schemas/ViewFieldValueOfScheduleChangeType'
+        days:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalInt32'
+        emailGroups:
+          $ref: '#/components/schemas/ViewFieldValueOfReportSubscriberArray'
+        friday:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalBoolean'
+        healthCheck:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        historySize:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalInt32'
+        monday:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalBoolean'
+        monthlyDay:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalScheduleMonthlyDayType'
+        monthlyDayOfMonth:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalInt32'
+        monthlyDayOrder:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalScheduleMonthlyDayOrderType'
+        monthlyDayOrderRecurrence:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalInt32'
+        monthlyDayRecurrence:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalInt32'
+        monthlyScheduleType:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalScheduleMonthlyType'
+        saturday:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalBoolean'
+        scheduleName:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        sendEmail:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        sendEmailWithHighPriority:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        startingOn:
+          $ref: '#/components/schemas/ViewFieldValueOfDateTime'
+        sunday:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalBoolean'
+        thursday:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalBoolean'
+        tuesday:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalBoolean'
+        wednesday:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalBoolean'
+        weeks:
+          $ref: '#/components/schemas/ViewFieldValueOfOptionalInt32'
+      type: object
+    ViewFieldValueOfScheduleChangeType:
+      description: ChangeType
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          $ref: '#/components/schemas/ScheduleChangeType'
+      type: object
+    ReportParameterValue:
+      description: Folder Parameter Value
+      properties:
+        name:
+          description: Name of the Report Parameter
+          type: string
+        value:
+          $ref: '#/components/schemas/Object'
+        valueDisplayName:
+          description: A display name representing the value.  For example, when a parameter is a user this will be the user display name
+          type: string
+      type: object
+    ReportPermissionGroupModel:
+      description: Report Permission Group Model
+      properties:
+        domainName:
+          description: Domain Name of Group/User
+          type: string
+        groupId:
+          description: Group Id of Group/User
+          type: integer
+          format: int32
+        groupName:
+          description: Name of Group/User
+          type: string
+        isPersonal:
+          description: True if User
+          type: boolean
+      type: object
+    ICustomReportParameterValue:
+      description: DefaultParameterValues
+      properties:
+        name:
+          description: Name
+          type: string
+        value:
+          $ref: '#/components/schemas/Object'
+        valueDisplayName:
+          description: ValueDisplayName
+          type: string
+        variableName:
+          description: VariableName
+          type: string
+      type: object
+    ViewFieldValueOfDateTime:
+      description: StartingOn
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+          format: date-time
+      type: object
+    ReportCategoryCreateArgs:
+      description: Report Category Create Args
+      properties:
+        data:
+          $ref: '#/components/schemas/ReportCategoryCreateModel'
+      type: object
+    ContentDispositionHeaderValue:
+      description: ContentDisposition
+      properties:
+        creationDate:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+        dispositionType:
+          description: DispositionType
+          type: string
+        fileName:
+          description: FileName
+          type: string
+        fileNameStar:
+          description: FileNameStar
+          type: string
+        modificationDate:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+        name:
+          description: Name
+          type: string
+        parameters:
+          description: Parameters
+          items:
+            $ref: '#/components/schemas/NameValueHeaderValue'
+          type: array
+        readDate:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+        size:
+          description: Size
+          type: integer
+          format: int64
+          nullable: true
+      type: object
+    ReportCreateArgs:
+      description: Report create options
+      required:
+      - name
+      - description
+      - categoryId
+      - reportSql
+      properties:
+        categoryId:
+          description: The Category that the report should be in
+          type: integer
+          format: int32
+        chartType:
+          description: The Chart type to use for the report
+          type: string
+          nullable: true
+        description:
+          description: The description of the new report
+          type: string
+        dualControlApproval:
+          $ref: '#/components/schemas/DualControlApproval'
+        is3DReport:
+          description: If the report chart should be 3D or not
+          type: boolean
+        name:
+          description: The name of the new report
+          type: string
+        pageSize:
+          description: The number of records that the report should return per page
+          type: integer
+          format: int32
+        reportSql:
+          description: The SQL query that defines the report
+          type: string
+        useDatabasePaging:
+          description: If true the report will attempt to do paging in the database.  If false the paging will occur on the application server.
+          type: boolean
+      type: object
+    UpdateFieldValueOfDateTime:
+      description: BackupStartDateTime
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+          format: date-time
+      type: object
+    ScheduleUpdateModel:
+      description: Schedule
+      properties:
+        additionalEmailAddresses:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        changeType:
+          $ref: '#/components/schemas/UpdateFieldValueOfScheduleChangeType'
+        days:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        emailGroups:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+        friday:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        healthCheck:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        historySize:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        monday:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        monthlyDay:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalScheduleMonthlyDayType'
+        monthlyDayOfMonth:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        monthlyDayOrder:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalScheduleMonthlyDayOrderType'
+        monthlyDayOrderRecurrence:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        monthlyDayRecurrence:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        monthlyScheduleType:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalScheduleMonthlyType'
+        saturday:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        scheduleName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        sendEmail:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        sendEmailWithHighPriority:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        startingOn:
+          $ref: '#/components/schemas/UpdateFieldValueOfDateTime'
+        sunday:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        thursday:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        tuesday:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        wednesday:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        weeks:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+      type: object
+    DayOfWeek:
+      description: DayOfWeek
+      properties: {}
+      type: string
+      enum:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    UpdateFieldValueOfReportFormat:
+      description: How to show the report when emailed. Inline will show the report within the email. Otherwise, it will be an attachment.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/ReportFormat'
+      type: object
+    ReportSubscriber:
+      description: Value
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    ViewFieldValueOfOptionalScheduleMonthlyType:
+      description: MonthlyScheduleType
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+          nullable: true
+      type: object
+    ReportScheduleUpdateModel:
+      description: Report Schedule Update Model
+      properties:
+        customParameterValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        endDateParameterSpecificDateValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalDateTime'
+        endDateParameterValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalReportScheduleDateParameterType'
+        folderParameterValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        folderPathParameterValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        format:
+          $ref: '#/components/schemas/UpdateFieldValueOfReportFormat'
+        groupParameterValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        schedule:
+          $ref: '#/components/schemas/ScheduleUpdateModel'
+        startDateParameterSpecificDateValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalDateTime'
+        startDateParameterValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalReportScheduleDateParameterType'
+        userParameterValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+      type: object
+    ContentRangeHeaderValue:
+      description: ContentRange
+      properties:
+        from:
+          description: From
+          type: integer
+          format: int64
+          nullable: true
+        hasLength:
+          description: HasLength
+          type: boolean
+        hasRange:
+          description: HasRange
+          type: boolean
+        length:
+          description: Length
+          type: integer
+          format: int64
+          nullable: true
+        to:
+          description: To
+          type: integer
+          format: int64
+          nullable: true
+        unit:
+          description: Unit
+          type: string
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    UpdateFieldValueOfReportPermissionUpdateModelArray:
+      description: Array of permissions to use for a given report
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/ReportPermissionUpdateModel'
+          type: array
+      type: object
+    HttpRequestMessage:
+      description: RequestMessage
+      properties: {}
+      type: object
+    Uri:
+      description: ContentLocation
+      properties:
+        absolutePath:
+          description: AbsolutePath
+          type: string
+        absoluteUri:
+          description: AbsoluteUri
+          type: string
+        authority:
+          description: Authority
+          type: string
+        dnsSafeHost:
+          description: DnsSafeHost
+          type: string
+        fragment:
+          description: Fragment
+          type: string
+        host:
+          description: Host
+          type: string
+        hostNameType:
+          $ref: '#/components/schemas/UriHostNameType'
+        idnHost:
+          description: IdnHost
+          type: string
+        isAbsoluteUri:
+          description: IsAbsoluteUri
+          type: boolean
+        isDefaultPort:
+          description: IsDefaultPort
+          type: boolean
+        isFile:
+          description: IsFile
+          type: boolean
+        isLoopback:
+          description: IsLoopback
+          type: boolean
+        isUnc:
+          description: IsUnc
+          type: boolean
+        localPath:
+          description: LocalPath
+          type: string
+        originalString:
+          description: OriginalString
+          type: string
+        pathAndQuery:
+          description: PathAndQuery
+          type: string
+        port:
+          description: Port
+          type: integer
+          format: int32
+        query:
+          description: Query
+          type: string
+        scheme:
+          description: Scheme
+          type: string
+        segments:
+          description: Segments
+          items:
+            type: string
+          type: array
+        userEscaped:
+          description: UserEscaped
+          type: boolean
+        userInfo:
+          description: UserInfo
+          type: string
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    ReportExecuteArgs:
+      description: Report query options
+      properties:
+        dualControlApproval:
+          $ref: '#/components/schemas/DualControlApproval'
+        encodeHtml:
+          description: True to encode data as HTML, defaults to true if not provided
+          type: boolean
+          nullable: true
+        endRecordNumber:
+          description: End Record Number when taking a specific set of records, passing this will override PageNumber and RecordsPerPage
+          type: integer
+          format: int32
+          nullable: true
+        id:
+          description: 'The Id of the report to run. Optional: will use Name if provided'
+          type: integer
+          format: int32
+          nullable: true
+        isAscending:
+          description: Flag determining sort direction of custom sort
+          type: boolean
+          nullable: true
+        name:
+          description: 'The name of the report to run. Optional: will use Id if provided'
+          type: string
+        orderByFieldOrdinal:
+          description: Ordinal of Field for custom OrderBy of results
+          type: integer
+          format: int32
+          nullable: true
+        pageNumber:
+          description: Page number for paging results. All records returned if null
+          type: integer
+          format: int32
+          nullable: true
+        parameters:
+          description: The parameters of the report
+          items:
+            $ref: '#/components/schemas/ReportParameter'
+          type: array
+        previewSql:
+          description: When passed the report will be previewed with this sql
+          type: string
+        recordsPerPage:
+          description: Number of records per page for paging results
+          type: integer
+          format: int32
+          nullable: true
+        startRecordNumber:
+          description: Start Record Number when taking a specific set of records, passing this will override PageNumber and RecordsPerPage
+          type: integer
+          format: int32
+          nullable: true
+        useDatabasePaging:
+          description: If true the report will attempt to do paging in the database. If false the paging will occur on the application server.
+          type: boolean
+          nullable: true
+        useDefaultParameters:
+          description: If a report contains a parameter but it is not passed the default value will be used on the server
+          type: boolean
+          nullable: true
+      type: object
+    ReportCategoryCreateModel:
+      description: Report Category Create Model
+      properties:
+        reportCategoryDescription:
+          description: Report Category Description
+          type: string
+        reportCategoryName:
+          description: Report Category Name
+          type: string
+        sortOrder:
+          description: Report Category Sort Order, when null will be added at the end
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    HttpResponseMessage:
+      description: HttpResponseMessage
+      properties:
+        content:
+          $ref: '#/components/schemas/HttpContent'
+        headers:
+          $ref: '#/components/schemas/HttpResponseHeaders'
+        isSuccessStatusCode:
+          description: IsSuccessStatusCode
+          type: boolean
+        reasonPhrase:
+          description: ReasonPhrase
+          type: string
+        requestMessage:
+          $ref: '#/components/schemas/HttpRequestMessage'
+        statusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        version:
+          $ref: '#/components/schemas/Version'
+      type: object
+    HttpStatusCode:
+      description: StatusCode
+      properties: {}
+      type: string
+      enum:
+      - Continue
+      - SwitchingProtocols
+      - OK
+      - Created
+      - Accepted
+      - NonAuthoritativeInformation
+      - NoContent
+      - ResetContent
+      - PartialContent
+      - MultipleChoices
+      - Ambiguous
+      - MovedPermanently
+      - Moved
+      - Found
+      - Redirect
+      - SeeOther
+      - RedirectMethod
+      - NotModified
+      - UseProxy
+      - Unused
+      - TemporaryRedirect
+      - RedirectKeepVerb
+      - BadRequest
+      - Unauthorized
+      - PaymentRequired
+      - Forbidden
+      - NotFound
+      - MethodNotAllowed
+      - NotAcceptable
+      - ProxyAuthenticationRequired
+      - RequestTimeout
+      - Conflict
+      - Gone
+      - LengthRequired
+      - PreconditionFailed
+      - RequestEntityTooLarge
+      - RequestUriTooLong
+      - UnsupportedMediaType
+      - RequestedRangeNotSatisfiable
+      - ExpectationFailed
+      - UpgradeRequired
+      - InternalServerError
+      - NotImplemented
+      - BadGateway
+      - ServiceUnavailable
+      - GatewayTimeout
+      - HttpVersionNotSupported
+    ReportUpdateArgs:
+      description: Report update options
+      required:
+      - id
+      properties:
+        categoryId:
+          description: The Category that the report should be in
+          type: integer
+          format: int32
+        chartType:
+          description: The Chart type to use for the report
+          type: string
+          nullable: true
+        description:
+          description: The description of the new report
+          type: string
+        dualControlApproval:
+          $ref: '#/components/schemas/DualControlApproval'
+        id:
+          description: The ID of the Report to update. Must match the value in the path
+          type: integer
+          format: int32
+          minimum: 1
+        is3DReport:
+          description: If the report chart should be 3D or not
+          type: boolean
+        name:
+          description: The name of the new report
+          type: string
+        pageSize:
+          description: The number of records that the report should return per page
+          type: integer
+          format: int32
+        reportSql:
+          description: The SQL query that defines the report
+          type: string
+        useDatabasePaging:
+          description: If true the report will attempt to do paging in the database.  If false the paging will occur on the application server.
+          type: boolean
+      type: object
+    ViewFieldValueOfOptionalBoolean:
+      description: Friday
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: boolean
+          nullable: true
+      type: object
+    ReportExecuteModel:
+      description: ReportExecution
+      properties:
+        columns:
+          description: Array of column names.
+          items:
+            type: string
+          type: array
+        columnTypes:
+          description: Array of column types
+          items:
+            type: string
+          type: array
+        enabled:
+          description: Whether the Report is active
+          type: boolean
+        id:
+          description: Report ID
+          type: integer
+          format: int32
+        localizedColumns:
+          description: Array of localized column names.
+          items:
+            type: string
+          type: array
+        name:
+          description: Report name
+          type: string
+        reportPreviewSql:
+          description: When passed this SQL will be used to run the report in a preview mode.  Used for testing SQL but not updating the report.
+          type: string
+        rows:
+          description: Rows of report data.
+          items:
+            items:
+              $ref: '#/components/schemas/Object'
+            type: array
+          type: array
+        systemReport:
+          description: Whether the Report is a system Report
+          type: boolean
+        totalRowCount:
+          description: Total number of rows
+          type: integer
+          format: int32
+      type: object
+    WarningHeaderValue:
+      description: Warning
+      properties:
+        agent:
+          description: Agent
+          type: string
+        code:
+          description: Code
+          type: integer
+          format: int32
+        date:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+        text:
+          description: Text
+          type: string
+      type: object
+    ReportRolePermissionModel:
+      description: Report Role Permission Model
+      properties:
+        rolePermissionId:
+          description: Role Permission Id
+          type: integer
+          format: int32
+        rolePermissionName:
+          description: Role Permission Name
+          type: string
+      type: object
+    ReportEmailResponse:
+      description: Report Email Response
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    ReportLookup:
+      description: Simple Report representation
+      properties:
+        id:
+          description: Report ID
+          type: integer
+          format: int32
+        value:
+          description: Report name
+          type: string
+      type: object
+    Version:
+      description: Version
+      properties:
+        build:
+          description: Build
+          type: integer
+          format: int32
+        major:
+          description: Major
+          type: integer
+          format: int32
+        majorRevision:
+          description: MajorRevision
+          type: integer
+        minor:
+          description: Minor
+          type: integer
+          format: int32
+        minorRevision:
+          description: MinorRevision
+          type: integer
+        revision:
+          description: Revision
+          type: integer
+          format: int32
+      type: object
+    ReportCategoryPermissionUpdateModel:
+      description: Report Category Permission Update Model
+      properties:
+        groupId:
+          description: Group Id of the User/Group
+          type: integer
+          format: int32
+        rolePermissionId:
+          description: Role Permission Id
+          type: integer
+          format: int32
+      type: object
+    ReportPermissionModel:
+      description: Report Permission Model
+      properties:
+        group:
+          $ref: '#/components/schemas/ReportPermissionGroupModel'
+        rolePermission:
+          $ref: '#/components/schemas/ReportRolePermissionModel'
+      type: object
+    MediaTypeHeaderValue:
+      description: ContentType
+      properties:
+        charSet:
+          description: CharSet
+          type: string
+        mediaType:
+          description: MediaType
+          type: string
+        parameters:
+          description: Parameters
+          items:
+            $ref: '#/components/schemas/NameValueHeaderValue'
+          type: array
+      type: object
+    ReportScheduleHistorySummaryModel:
+      description: Report Schedule History Summary
+      properties:
+        dateRun:
+          description: Date Schedule was Run
+          type: string
+          format: date-time
+        scheduleReportHistoryId:
+          description: Id of Schedule Report History
+          type: integer
+          format: int32
+      type: object
+    ViewFieldValueOfOptionalInt32:
+      description: Maximum number of messages to keep in log. When null, it is unlimited
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    HttpContentHeaders:
+      description: Headers
+      properties:
+        allow:
+          description: Allow
+          items:
+            type: string
+          type: array
+        contentDisposition:
+          $ref: '#/components/schemas/ContentDispositionHeaderValue'
+        contentEncoding:
+          description: ContentEncoding
+          items:
+            type: string
+          type: array
+        contentLanguage:
+          description: ContentLanguage
+          items:
+            type: string
+          type: array
+        contentLength:
+          description: ContentLength
+          type: integer
+          format: int64
+          nullable: true
+        contentLocation:
+          $ref: '#/components/schemas/Uri'
+        contentMD5:
+          description: ContentMD5
+          type: string
+          format: binary
+        contentRange:
+          $ref: '#/components/schemas/ContentRangeHeaderValue'
+        contentType:
+          $ref: '#/components/schemas/MediaTypeHeaderValue'
+        expires:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+        lastModified:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+      type: object
+    ReportModel:
+      description: Report
+      properties:
+        categoryId:
+          description: The Report Category Id
+          type: integer
+          format: int32
+        chartType:
+          description: The report chart Type.  Null if no chart
+          type: string
+          nullable: true
+        description:
+          description: Report Description
+          type: string
+        disableSorting:
+          description: When true, the option to sort the data is not available.
+          type: boolean
+        enabled:
+          description: Whether the Report is active
+          type: boolean
+        enableInheritPermissions:
+          description: When true, permissions will be inherited from the report category in which the report resides.
+          type: boolean
+        id:
+          description: Report ID
+          type: integer
+          format: int32
+        is3DReport:
+          description: Whether the Report chart is displayed in 3d
+          type: boolean
+        name:
+          description: Report name
+          type: string
+        pageSize:
+          description: The page size of the report
+          type: integer
+          format: int32
+        reportSql:
+          description: The SQL used to generate the report
+          type: string
+        systemReport:
+          description: Whether the Report is a system Report
+          type: boolean
+        useDatabasePaging:
+          description: When true paging of a report will be done in SQL server.  Not all SQL is compatible with this option.
+          type: boolean
+      type: object
+    ScheduleChangeType:
+      description: Value
+      properties: {}
+      type: string
+      enum:
+      - Daily
+      - Weekly
+      - Monthly
+    UpdateFieldValueOfReportCategoryPermissionUpdateModelArray:
+      description: Array of permissions to use for a given report category
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/ReportCategoryPermissionUpdateModel'
+          type: array
+      type: object
+    ReportScheduleCreateModel:
+      description: Report Schedule Create Model
+      properties:
+        customParameterValue:
+          description: Custom Parameter Value
+          type: string
+        endDateParameterSpecificDateValue:
+          description: Specific Date Value for when Specfic date is specified for EndDateParameterValue
+          type: string
+          format: date-time
+          nullable: true
+        endDateParameterValue:
+          description: End Date Parameter Value
+          type: string
+          nullable: true
+        folderParameterValue:
+          description: Folder Parameter Value
+          type: integer
+          format: int32
+          nullable: true
+        folderPathParameterValue:
+          description: Folder Path Parameter Value
+          type: string
+        groupParameterValue:
+          description: Group Parameter Value
+          type: integer
+          format: int32
+          nullable: true
+        reportId:
+          description: Report Id
+          type: integer
+          format: int32
+        schedule:
+          $ref: '#/components/schemas/ScheduleCreateModel'
+        startDateParameterSpecificDateValue:
+          description: Specific Date Value for when Specfic date is specified for StartDateParameterValue
+          type: string
+          format: date-time
+          nullable: true
+        startDateParameterValue:
+          description: Start Date Parameter Value
+          type: string
+          nullable: true
+        userParameterValue:
+          description: User Parameter Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    ProductHeaderValue:
+      description: Product
+      properties:
+        name:
+          description: Name
+          type: string
+        version:
+          description: Version
+          type: string
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    CacheControlHeaderValue:
+      description: CacheControl
+      properties:
+        extensions:
+          description: Extensions
+          items:
+            $ref: '#/components/schemas/NameValueHeaderValue'
+          type: array
+        maxAge:
+          description: MaxAge
+          type: string
+          format: time-span
+          nullable: true
+        maxStale:
+          description: MaxStale
+          type: boolean
+        maxStaleLimit:
+          description: MaxStaleLimit
+          type: string
+          format: time-span
+          nullable: true
+        minFresh:
+          description: MinFresh
+          type: string
+          format: time-span
+          nullable: true
+        mustRevalidate:
+          description: MustRevalidate
+          type: boolean
+        noCache:
+          description: NoCache
+          type: boolean
+        noCacheHeaders:
+          description: NoCacheHeaders
+          items:
+            type: string
+          type: array
+        noStore:
+          description: NoStore
+          type: boolean
+        noTransform:
+          description: NoTransform
+          type: boolean
+        onlyIfCached:
+          description: OnlyIfCached
+          type: boolean
+        private:
+          description: Private
+          type: boolean
+        privateHeaders:
+          description: PrivateHeaders
+          items:
+            type: string
+          type: array
+        proxyRevalidate:
+          description: ProxyRevalidate
+          type: boolean
+        public:
+          description: Public
+          type: boolean
+        sharedMaxAge:
+          description: SharedMaxAge
+          type: string
+          format: time-span
+          nullable: true
+      type: object
+    DualControlApproval:
+      description: The Dual control approval needed to update the report
+      properties:
+        domainId:
+          description: DomainId
+          type: integer
+          format: int32
+          nullable: true
+        password:
+          description: Password
+          type: string
+        twoFactor:
+          description: TwoFactor
+          type: string
+        username:
+          description: Username
+          type: string
+      type: object
+    ReportAuditSummary:
+      description: Report Audit Summary
+      properties:
+        action:
+          description: Action
+          type: string
+        auditReportId:
+          description: Audit Report Id
+          type: integer
+          format: int32
+        database:
+          description: Database
+          type: string
+        dateRecorded:
+          description: Date Recorded
+          type: string
+          format: date-time
+        displayName:
+          description: Display Name
+          type: string
+        ipAddress:
+          description: IP Address
+          type: string
+        notes:
+          description: Notes
+          type: string
+        reportName:
+          description: Report Name
+          type: string
+      type: object
+    ReportPermissionUpdateModel:
+      description: Report Permission Update Model
+      properties:
+        groupId:
+          description: Group Id of the User/Group
+          type: integer
+          format: int32
+        rolePermissionId:
+          description: Role Permission Id
+          type: integer
+          format: int32
+      type: object
+    IPagingOfReportScheduleHistorySummaryModel:
+      description: IPagingOfReportScheduleHistorySummaryModel
+      properties:
+        records:
+          description: Records
+          items:
+            $ref: '#/components/schemas/ReportScheduleHistorySummaryModel'
+          type: array
+        sortBy:
+          description: SortBy
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+      type: object
+    Object:
+      description: ItemId
+      properties: {}
+      type: object
+    RetryConditionHeaderValue:
+      description: RetryAfter
+      properties:
+        date:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+        delta:
+          description: Delta
+          type: string
+          format: time-span
+          nullable: true
+      type: object
+    HttpContent:
+      description: Content
+      properties:
+        headers:
+          $ref: '#/components/schemas/HttpContentHeaders'
+      type: object
+    ReportPermissionsUpdateModel:
+      description: Report Permissions Update Model
+      properties:
+        allowRemoveEdit:
+          description: If true, this will allow the removal of the edit permission for the current user.
+          type: boolean
+        enableInheritPermissions:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        permissions:
+          $ref: '#/components/schemas/UpdateFieldValueOfReportPermissionUpdateModelArray'
+      type: object
+    UpdateFieldValueOfOptionalScheduleMonthlyType:
+      description: MonthlyScheduleType
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+          nullable: true
+      type: object
+    UpdateFieldValueOfOptionalBoolean:
+      description: Use RADIUS Username for DUO
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+          nullable: true
+      type: object
+    ReportCategoryPermissionsUpdateModel:
+      description: Report Category Permissions Update Model
+      properties:
+        allowRemoveEdit:
+          description: If true, this will allow the removal of the edit permission for the current user.
+          type: boolean
+        permissions:
+          $ref: '#/components/schemas/UpdateFieldValueOfReportCategoryPermissionUpdateModelArray'
+      type: object
+    UriHostNameType:
+      description: HostNameType
+      properties: {}
+      type: string
+      enum:
+      - Unknown
+      - Basic
+      - Dns
+      - IPv4
+      - IPv6
+    IPagingOfReportScheduleSummaryModel:
+      description: IPagingOfReportScheduleSummaryModel
+      properties:
+        records:
+          description: Records
+          items:
+            $ref: '#/components/schemas/ReportScheduleSummaryModel'
+          type: array
+        sortBy:
+          description: SortBy
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+      type: object
+    ReportScheduleModel:
+      description: Report Schedule Model
+      properties:
+        customParameterValue:
+          description: Custom Parameter Value
+          type: string
+        endDateParameterSpecificDateValue:
+          description: Specific Date Value for when Specfic date is specified for EndDateParameterValue
+          type: string
+          format: date-time
+          nullable: true
+        endDateParameterValue:
+          description: End Date Parameter Value
+          type: string
+          nullable: true
+        folderParameterValue:
+          $ref: '#/components/schemas/ReportParameterValue'
+        folderPathParameterValue:
+          $ref: '#/components/schemas/ReportParameterValue'
+        format:
+          $ref: '#/components/schemas/ReportFormat'
+        groupParameterValue:
+          $ref: '#/components/schemas/ReportParameterValue'
+        reportId:
+          description: Report Id
+          type: integer
+          format: int32
+        reportName:
+          description: Report Name
+          type: string
+        schedule:
+          $ref: '#/components/schemas/ScheduleViewModel'
+        scheduleReportId:
+          description: Schedule Report Id
+          type: integer
+          format: int32
+        startDateParameterSpecificDateValue:
+          description: Specific Date Value for when Specfic date is specified for StartDateParameterValue
+          type: string
+          format: date-time
+          nullable: true
+        startDateParameterValue:
+          description: Start Date Parameter Value
+          type: string
+          nullable: true
+        userParameterValue:
+          $ref: '#/components/schemas/ReportParameterValue'
+      type: object
+    ProductInfoHeaderValue:
+      description: Server
+      properties:
+        comment:
+          description: Comment
+          type: string
+        product:
+          $ref: '#/components/schemas/ProductHeaderValue'
+      type: object
+    PagingOfReportAuditSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/ReportAuditSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    ReportFormat:
+      description: How to show the report when emailed. Default is Inline which shows the report within the email. Otherwise, it will be an attachment in the selected format.
+      properties: {}
+      type: string
+      enum:
+      - Html
+      - Csv
+    TransferCodingHeaderValue:
+      description: TransferEncoding
+      properties:
+        parameters:
+          description: Parameters
+          items:
+            $ref: '#/components/schemas/NameValueHeaderValue'
+          type: array
+        value:
+          description: Value
+          type: string
+      type: object
+    ViewFieldValueOfReportSubscriberArray:
+      description: EmailGroups
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/ReportSubscriber'
+          type: array
+      type: object
+    ReportDefaultParams:
+      description: ReportExecution
+      properties:
+        defaultParameterValues:
+          description: DefaultParameterValues
+          items:
+            $ref: '#/components/schemas/ICustomReportParameterValue'
+          type: array
+      type: object
+    ReportScheduleUpdateArgs:
+      description: Report Schedule Update Args
+      properties:
+        data:
+          $ref: '#/components/schemas/ReportScheduleUpdateModel'
+      type: object
+    ReportPermissionOptionModel:
+      description: ReportPermissionOptionModel[]
+      properties:
+        rolePermissionId:
+          description: Report Permission Id
+          type: integer
+          format: int32
+        rolePermissionName:
+          description: Report Permission Name
+          type: string
+      type: object
+    ReportParameter:
+      description: The parameters of the report
+      properties:
+        name:
+          description: Name
+          type: string
+        value:
+          description: Value
+          type: string
+      type: object
+    ReportScheduleSummaryModel:
+      description: Report Schedule Summary
+      properties:
+        changeType:
+          $ref: '#/components/schemas/ScheduleChangeType'
+        deleted:
+          description: Deleted
+          type: boolean
+        description:
+          description: Description
+          type: string
+        lastRun:
+          description: DateTime of Last Run
+          type: string
+          format: date-time
+          nullable: true
+        lastRunHistoryId:
+          description: HistoryId of Last Run
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        reportId:
+          description: Report Id
+          type: integer
+          format: int32
+        reportName:
+          description: Report Name
+          type: string
+        scheduleReportId:
+          description: Schedule Report Id
+          type: integer
+          format: int32
+        sendEmail:
+          description: Send Report via Email
+          type: boolean
+        storedReportCount:
+          description: Number of reports stored for this schedule
+          type: integer
+          format: int32
+      type: object
+    ReportCategoryUpdateModel:
+      description: Report Category Update Model
+      properties:
+        reportCategoryDescription:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        reportCategoryName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    UndeleteReportResponse:
+      description: UndeleteReportResponse
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

@@ -1,0 +1,911 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations Diagnostics API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: Diagnostics
+  description: View diagnostics information
+paths:
+  /v1/diagnostics:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get Diagnostic Information
+      description: Get Diagnostic Information
+      operationId: DiagnosticsService_GetDiagnosticInformation
+      responses:
+        '200':
+          description: Diagnostics Info object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiagnosticsSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/connectivity-report:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get Connectivity Report
+      description: Get Connectivity Report
+      operationId: DiagnosticsService_GetConnectivityReport
+      responses:
+        '200':
+          description: Connectivity Report
+          content:
+            application/json:
+              schema:
+                description: String
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v2/diagnostics/app-settings:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get App Settings
+      description: Get App Settings as key value array of items
+      operationId: DiagnosticsService_GetAppSettingsV2
+      responses:
+        '200':
+          description: App Settings
+          content:
+            application/json:
+              schema:
+                description: App Settings
+                items:
+                  $ref: '#/components/schemas/AppSettingModel'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/log-collections:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get log collections
+      description: Get all of the log collections (on prem only)
+      operationId: DiagnosticsService_GetLogCollections
+      responses:
+        '200':
+          description: List of log collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogCollectionSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/quartz-jobs:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get Quartz Jobs
+      description: Get Quartz Jobs
+      operationId: DiagnosticsService_GetQuartzJobs
+      responses:
+        '200':
+          description: Enumerable of Quartz Jobs
+          content:
+            application/json:
+              schema:
+                description: Enumerable of Quartz Jobs
+                items:
+                  $ref: '#/components/schemas/QuartzTrigger'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/general-logs:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get General Logs
+      description: Get General Logs
+      operationId: DiagnosticsService_GetGeneralLogs
+      responses:
+        '200':
+          description: Get General Logs
+          content:
+            application/json:
+              schema:
+                description: String
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/system-logs:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get System Logs
+      description: Get System Logs
+      operationId: DiagnosticsService_GetSystemLogs
+      responses:
+        '200':
+          description: Get System Logs
+          content:
+            application/json:
+              schema:
+                description: String
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/discovery-logs:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get Discovery Logs
+      description: Get Discovery Logs
+      operationId: DiagnosticsService_GetDiscoveryLogs
+      responses:
+        '200':
+          description: Get Discovery Logs
+          content:
+            application/json:
+              schema:
+                description: String
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/computer-scan-logs:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get ComputerScan Logs
+      description: Get ComputerScan Logs
+      operationId: DiagnosticsService_GetComputerScanLogs
+      responses:
+        '200':
+          description: Get ComputerScan Logs
+          content:
+            application/json:
+              schema:
+                description: String
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/rpc-logs:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get RPC Logs
+      description: Get RPC Logs
+      operationId: DiagnosticsService_GetRPCLogs
+      responses:
+        '200':
+          description: Get RPC Logs
+          content:
+            application/json:
+              schema:
+                description: String
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/heartbeat-logs:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get Heartbeat Logs
+      description: Get Heartbeat Logs
+      operationId: DiagnosticsService_GetHeartbeatLogs
+      responses:
+        '200':
+          description: Get Heartbeat Logs
+          content:
+            application/json:
+              schema:
+                description: String
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/export-logs:
+    get:
+      tags:
+      - Diagnostics
+      summary: Get the logs exported as an attached file
+      description: Get the logs exported as an attached file
+      operationId: DiagnosticsService_GetLogsExported
+      responses:
+        '200':
+          description: Logs Exported as an attached file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StreamContentResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/clear-cache:
+    post:
+      tags:
+      - Diagnostics
+      summary: Clear cache
+      description: Attempts to clear cache (on prem only)
+      operationId: DiagnosticsService_ClearCache
+      responses:
+        '200':
+          description: True if the command was initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClearCacheResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/log-collections/clear:
+    post:
+      tags:
+      - Diagnostics
+      summary: Clear log collections
+      description: Clear a log collection
+      operationId: DiagnosticsService_ClearLogCollections
+      responses:
+        '200':
+          description: True if the command was initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClearLogCollectionResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/log-collections/collect:
+    post:
+      tags:
+      - Diagnostics
+      summary: Collect log collections
+      description: Start processing log collection
+      operationId: DiagnosticsService_CollectLogCollections
+      responses:
+        '200':
+          description: True if the command was initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectLogCollectionResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/clear-quartz-job-errors:
+    post:
+      tags:
+      - Diagnostics
+      summary: Clear Quartz Job Errors
+      description: Clear Quartz Job Errors
+      operationId: DiagnosticsService_ClearQuartzJobErrors
+      responses:
+        '200':
+          description: Clear Quartz Job Errors Success
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/clear-upgrade-in-progress:
+    post:
+      tags:
+      - Diagnostics
+      summary: Clear Upgrade In Progress
+      description: Clear Upgrade In Progress
+      operationId: DiagnosticsService_ClearUpgradeInProgress
+      responses:
+        '200':
+          description: Clear Upgrade In Progress Success
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/test-event-log:
+    post:
+      tags:
+      - Diagnostics
+      summary: Test Event Log
+      description: Test Event Log
+      operationId: DiagnosticsService_TestEventLog
+      responses:
+        '200':
+          description: Test Event Log Success
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    LogCollectionStatus:
+      description: Status
+      properties: {}
+      type: string
+      enum:
+      - Collecting
+      - Done
+      - Failed
+    AppSettingModel:
+      description: AppSettingModel[]
+      properties:
+        key:
+          description: App setting key
+          type: string
+        value:
+          description: App setting value
+          type: string
+      type: object
+    StreamContentResult:
+      description: StreamContentResult
+      properties: {}
+      type: object
+    LogCollectionSummaryModel:
+      description: LogCollectionSummaryModel
+      properties:
+        logCollection:
+          description: LogCollection
+          items:
+            $ref: '#/components/schemas/LogCollectionModel'
+          type: array
+        startDate:
+          description: StartDate
+          type: string
+          format: date-time
+          nullable: true
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    QuartzTrigger:
+      description: QuartzTrigger[]
+      properties:
+        jobName:
+          description: JobName
+          type: string
+        nextFireTicks:
+          description: NextFireTicks
+          type: integer
+          format: int64
+        nextFireTime:
+          description: NextFireTime
+          type: string
+          format: date-time
+          nullable: true
+        previousFireTicks:
+          description: PreviousFireTicks
+          type: integer
+          format: int64
+        previousFireTime:
+          description: PreviousFireTime
+          type: string
+          format: date-time
+          nullable: true
+        triggerState:
+          description: TriggerState
+          type: string
+      type: object
+    DiagnosticsSummary:
+      description: Diagnostics summary
+      properties:
+        activeDirectorySynchronizationThreadStatus:
+          description: Active Directory Synchronization Status
+          type: string
+        backboneClass:
+          description: Backbone Class Name
+          type: string
+        backboneType:
+          description: Backbone Type
+          type: string
+        compiledLanguageCount:
+          description: The total number of files for all compiled languages
+          type: integer
+          format: int32
+          nullable: true
+        hsmCacheMapSize:
+          description: HSM Cache Map Size
+          type: string
+        hsmTiming:
+          description: HSM Timing
+          type: string
+        isDomainController:
+          description: Is Domain Controller
+          type: string
+        lastUpgrade:
+          description: Last Upgrade
+          type: string
+        latestVersion:
+          description: Latest Version
+          type: string
+        ldapProvider:
+          description: LDAP Provider
+          type: string
+        maxDegreeOfParallelism:
+          description: Max Degrees Of Parallelism
+          type: string
+        netFxVersion:
+          description: Net FX Version
+          type: string
+        operatingSystem:
+          description: Operating System
+          type: string
+        operatingSystemArchitecture:
+          description: Operating System Architecture
+          type: string
+        physicalMemory:
+          description: Physical Memory
+          type: string
+        productVersion:
+          description: Product Version
+          type: string
+        proxyConfiguration:
+          description: Proxy Configuration
+          type: string
+        readOnlyMode:
+          description: Read Only Mode
+          type: string
+        searchIndexerThreadStatus:
+          description: Search Indexer Status
+          type: string
+        secretServerUrl:
+          description: Secret Server URL
+          type: string
+        serverName:
+          description: Server Name
+          type: string
+        serverTime:
+          description: Server Time
+          type: string
+        serverTimeZone:
+          description: Server TimeZone
+          type: string
+        sqlDatabaseName:
+          description: SQL Database Name
+          type: string
+        sqlIsDatabaseReplicated:
+          description: SQL Is Database Replicated
+          type: string
+        sqlServerCollation:
+          description: SQL Server Collation
+          type: string
+        sqlServerConnectionString:
+          description: SQL Server Connection String
+          type: string
+        sqlServerEdition:
+          description: SQL Server Edition
+          type: string
+        sqlServerIsPublished:
+          description: SQL Server Is Published
+          type: string
+        sqlServerIsReplicationRunning:
+          description: SQL Server Is Replication Running
+          type: string
+        sqlServerIsSubscribed:
+          description: SQL Server Is Subscribed
+          type: string
+        sqlServerName:
+          description: SQL Server Name
+          type: string
+        sqlServerTime:
+          description: SQL Server Time
+          type: string
+        sqlServerVersion:
+          description: SQL Server Version
+          type: string
+        upgradeAvailable:
+          description: Upgrade Available
+          type: string
+        upgradeInProgress:
+          description: Upgrade In Progress
+          type: string
+        upTime:
+          description: Up Time
+          type: string
+      type: object
+    ClearLogCollectionResultModel:
+      description: ClearLogCollectionResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    ClearCacheResultModel:
+      description: ClearCacheResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    LogCollectionModel:
+      description: LogCollection
+      properties:
+        logCollectionId:
+          description: LogCollectionId
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+        sourceId:
+          description: SourceId
+          type: integer
+          format: int32
+        sourceType:
+          $ref: '#/components/schemas/LogCollectionSourceType'
+        status:
+          $ref: '#/components/schemas/LogCollectionStatus'
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    LogCollectionSourceType:
+      description: SourceType
+      properties: {}
+      type: string
+      enum:
+      - Node
+      - Engine
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    CollectLogCollectionResultModel:
+      description: CollectLogCollectionResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

@@ -1,0 +1,277 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations CloudDiagnostics API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: CloudDiagnostics
+  description: View cloud diagnostics information
+paths:
+  /v1/diagnostics/background-processes:
+    get:
+      tags:
+      - CloudDiagnostics
+      summary: Get Background Processes
+      description: Get Background Process Information
+      operationId: CloudDiagnosticsService_GetBackgroundProcesses
+      responses:
+        '200':
+          description: Background Process Enumerable
+          content:
+            application/json:
+              schema:
+                description: Background Process Enumerable
+                items:
+                  $ref: '#/components/schemas/ThreadInformation'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/long-running-tasks:
+    get:
+      tags:
+      - CloudDiagnostics
+      summary: Get long running tasks
+      description: List of long running tasks (on prem only)
+      operationId: CloudDiagnosticsService_GetLongRunningTasks
+      responses:
+        '200':
+          description: List of long running tasks
+          content:
+            application/json:
+              schema:
+                description: List of long running tasks
+                items:
+                  $ref: '#/components/schemas/LongRunningTaskModel'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/recycle-background-processes:
+    post:
+      tags:
+      - CloudDiagnostics
+      summary: Recycle background processes
+      description: Attempts to recycle background processes (on prem only)
+      operationId: CloudDiagnosticsService_RecycleBackgroundProcesses
+      responses:
+        '200':
+          description: True if the command was initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecycleBackgroundProcessesResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/diagnostics/long-running-tasks/clear/{taskName}:
+    post:
+      tags:
+      - CloudDiagnostics
+      summary: Clear long running task
+      description: Attempts to clear a long running task (on prem only)
+      operationId: CloudDiagnosticsService_ClearLongRunningTask
+      parameters:
+      - name: taskName
+        in: path
+        description: taskName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: True if the command was initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LongRunningTaskClearResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    ThreadInformation:
+      description: ThreadInformation[]
+      properties:
+        applicationName:
+          description: ApplicationName
+          type: string
+        hostName:
+          description: HostName
+          type: string
+        identityName:
+          description: IdentityName
+          type: string
+        lastActivity:
+          description: LastActivity
+          type: string
+          format: date-time
+        managedThreadId:
+          description: ManagedThreadId
+          type: integer
+          format: int32
+        threadName:
+          description: ThreadName
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    RecycleBackgroundProcessesResultModel:
+      description: RecycleBackgroundProcessesResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    LongRunningTaskClearResult:
+      description: LongRunningTaskClearResult
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    LongRunningTaskModel:
+      description: LongRunningTaskModel[]
+      properties:
+        createDate:
+          description: When the task started running
+          type: string
+          format: date-time
+          nullable: true
+        expirationDate:
+          description: The time that the task should expire
+          type: string
+          format: date-time
+        taskName:
+          description: Name of the long running task or stale lock key
+          type: string
+        timeToLive:
+          description: How many more minutes the task has to live
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

@@ -1,0 +1,1156 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations Platform API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: Platform
+  description: View and maintain Platform integration
+paths:
+  /v1/platform/group/{groupId}:
+    delete:
+      tags:
+      - Platform
+      summary: Unlink a group from Platform
+      description: Unlinking a group from Platform will disable the group.
+      operationId: PlatformService_UnlinkDomainGroup
+      parameters:
+      - name: groupId
+        in: path
+        description: groupId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success status
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/groups/search-directory:
+    get:
+      tags:
+      - Platform
+      summary: Search in Platform for groups
+      description: Search in Platform for external groups using Platform credentials
+      operationId: PlatformService_SearchPlatformForGroups
+      parameters:
+      - name: searchText
+        in: query
+        description: 'Search text. Use * for wildcards, ex: Admin*. Leave empty to return all.'
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Array of groups matching search criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalGroupViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/directories:
+    get:
+      tags:
+      - Platform
+      summary: Get Platform Directories
+      description: Get Platform Directories
+      operationId: PlatformService_GetPlatformDirectories
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Platform Directory summary list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfPlatformDirectorySummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/members:
+    get:
+      tags:
+      - Platform
+      summary: Search in platform for members of a group
+      description: Search in platform for members of a group using the platform credentials
+      operationId: PlatformService_GetDirectoryGroupMembers
+      parameters:
+      - name: domainIdentifier
+        in: query
+        description: The unique directory identifier for the group to be linked.  For example, this is ADGuid in Active Directory
+        required: false
+        schema:
+          type: string
+      - name: groupName
+        in: query
+        description: Name of the Group
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Array of users in the passed in group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryServicesGroupMemberResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/users-groups-search:
+    get:
+      tags:
+      - Platform
+      summary: Search Platform users/groups
+      description: Search in Platform for external users and groups, optionally indicating those linked to local users and groups
+      operationId: PlatformService_QueryPlatformUsersGroups
+      parameters:
+      - name: filter.excludeLinkedLocalEntities
+        in: query
+        description: Whether to exclude any entities with local linked user and group ids.
+        required: false
+        schema:
+          type: boolean
+      - name: filter.platformDirectoryUuid
+        in: query
+        description: Platform Directory Uuid
+        required: false
+        schema:
+          type: string
+      - name: filter.searchText
+        in: query
+        description: 'Search text. Use * for wildcards, ex: Admin*. Leave empty to return all for local.'
+        required: false
+        schema:
+          type: string
+      - name: filter.showLinkedLocalEntities
+        in: query
+        description: Whether to return local linked user and group ids.
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of Platform user and groups optionally indicating existing links to local users and groups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfPlatformUserAndGroupSearchSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/synchronization:
+    get:
+      tags:
+      - Platform
+      summary: Platform Sync Status
+      description: Return status of platform synchronization
+      operationId: PlatformService_GetSynchronizationStatus
+      responses:
+        '200':
+          description: Whether or not the sync has started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformSynchronizationStatus'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/provision-status:
+    get:
+      tags:
+      - Platform
+      summary: Platform Provision Status
+      description: Return status of platform provisioning
+      operationId: PlatformService_GetProvisionStatus
+      responses:
+        '200':
+          description: Status of provisioning when made the opt-in call for Delinea Platform
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformProvisionStatus'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/provision-requested-date:
+    get:
+      tags:
+      - Platform
+      summary: Platform Provision Requested Date
+      description: Return platform provisioning request date
+      operationId: PlatformService_GetProvisionRequestedDate
+      responses:
+        '200':
+          description: Get the date when platform provisioning was requested
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformProvisionRequestedDateResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/get-platform-regions:
+    get:
+      tags:
+      - Platform
+      summary: Platform Get Regions
+      description: Return available platform regions
+      operationId: PlatformService_GetPlatformRegions
+      responses:
+        '200':
+          description: Get available platform regions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformGetRegionsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/test-integration:
+    get:
+      tags:
+      - Platform
+      summary: Test Platform Integration
+      description: Return platform integration status
+      operationId: PlatformService_TestIntegrationAsync
+      responses:
+        '200':
+          description: Get platform integration status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestIntegrationResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/group:
+    post:
+      tags:
+      - Platform
+      summary: Link a group from Platform
+      description: Linking or adding a group with Platform will allow permissions to be added before those members log in.
+      operationId: PlatformService_LinkPlatformGroup
+      requestBody:
+        $ref: '#/components/requestBodies/LinkExternalGroupArgs'
+      responses:
+        '200':
+          description: Success status
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/create-users-and-groups:
+    post:
+      tags:
+      - Platform
+      summary: Create Platform users and groups
+      description: Create Platform users and groups
+      operationId: PlatformService_CreatePlatformUsersAndGroups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlatformCreateUsersAndGroupsCommand'
+        description: command
+      responses:
+        '200':
+          description: Array of created users and groups or their error messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformCreateUsersAndGroupsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/synchronization-now:
+    post:
+      tags:
+      - Platform
+      summary: Synchronize Platform user properties and group memberships
+      description: Run synchronize to update groups and user properties for Platform users
+      operationId: PlatformService_SynchronizeNow
+      responses:
+        '200':
+          description: True if the command was initiated successfully
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/provision:
+    post:
+      tags:
+      - Platform
+      summary: Provision Platform
+      description: One-time opt-in call to initiates provisioning of Delinea Platform instance and connecting it to this cloud instance. Recommend using the UI for more details.
+      operationId: PlatformService_Provision
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProvisionPlatformRequestArgs'
+        description: args
+      responses:
+        '200':
+          description: Status of provisioning when made the opt-in call for Delinea Platform
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformProvisionStatus'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/platform/reset-user-mappings:
+    post:
+      tags:
+      - Platform
+      summary: Reset Platform User Mappings
+      description: Used to remove user mappings from Platform to Vault
+      operationId: PlatformService_ResetPlatformUserMappings
+      responses:
+        '200':
+          description: Success status
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    LinkExternalGroupSettings:
+      description: Information about the directory group that is needed to create a link
+      properties:
+        domainIdentifier:
+          description: The unique directory identifier for the group to be linked. For Active Directory this must be in hex format, NOT guid format.  For example, this is ADGuid in Active Directory
+          type: string
+        name:
+          description: Name of the group in the directory
+          type: string
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    PlatformCreateEntityResponse:
+      description: Data
+      properties:
+        error:
+          description: Error
+          type: string
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+          nullable: true
+        platformUuid:
+          description: PlatformUuid
+          type: string
+        type:
+          $ref: '#/components/schemas/PlatformCreateEntityType'
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    PlatformSynchronizationStatus:
+      description: Platform Synchronization Status
+      properties:
+        endDateTime:
+          description: The date and time that the last synchronization ended.  If a synchronization is currently running this will be empty.
+          type: string
+          format: date-time
+          nullable: true
+        errorCount:
+          description: The number of errors since the last synchronization start time
+          type: integer
+          format: int32
+        lastLogEntry:
+          description: Log Entry used for parsing
+          type: string
+        lastSyncGroupsCreated:
+          description: Number of groups created during last sync
+          type: integer
+          format: int32
+        lastSyncUsersAddedToGroups:
+          description: Number of users that were added to any platform group
+          type: integer
+          format: int32
+        lastSyncUsersRemovedFromGroups:
+          description: Number of users that were removed from any platform group
+          type: integer
+          format: int32
+        nextSynchronizationDateTime:
+          description: The next time the synchronization is expected to run
+          type: string
+          format: date-time
+          nullable: true
+        startDateTime:
+          description: The date and time that the last synchronization started.  This will be empty if a synchronization has never been run.
+          type: string
+          format: date-time
+          nullable: true
+      type: object
+    PagingOfPlatformUserAndGroupSearchSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/PlatformUserAndGroupSearchSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    PlatformProvisionRequestedDateResponse:
+      description: Platform Provision Requested Date Response
+      properties:
+        requestDateTime:
+          description: The date and time that platform provisioning was requested.
+          type: string
+          format: date-time
+          nullable: true
+      type: object
+    PlatformCreateEntityItem:
+      description: Data
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        entityName:
+          description: EntityName
+          type: string
+        platformUuid:
+          description: PlatformUuid
+          type: string
+        type:
+          $ref: '#/components/schemas/PlatformCreateEntityType'
+      type: object
+    PlatformDirectorySummary:
+      description: Query results
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        platformDirectoryServiceUuid:
+          description: PlatformDirectoryServiceUuid
+          type: string
+          format: uuid
+      type: object
+    PlatformRegion:
+      description: Platform Region
+      properties:
+        id:
+          description: The id of the region.
+          type: string
+          format: uuid
+        isDefault:
+          description: Indicates that the environment is the default region for the current instance.
+          type: boolean
+        name:
+          description: The name of the region.
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    IdentityEntityType:
+      description: EntityType
+      properties: {}
+      type: string
+      enum:
+      - Entity
+      - User
+      - DirectoryGroup
+      - XpmGroup
+      - XpmServiceUser
+      - NotFound
+    DirectoryServicesGroupMemberResponse:
+      description: Group Member Response
+      properties:
+        errorMessage:
+          description: Indicates if an error message occurred
+          type: string
+        members:
+          description: Members of the group
+          items:
+            $ref: '#/components/schemas/DirectoryGroupUserViewModel'
+          type: array
+      type: object
+    PlatformProvisionStatus:
+      description: Platform Provisioning Status
+      properties:
+        oneTimePlatformLoginURL:
+          description: One-time use platform login URL
+          type: string
+        openIdConnectEnabled:
+          description: Whether Platform integration is enabled.
+          type: boolean
+        requestStartDateTime:
+          description: The date and time that the provisioning started.  This will be empty if it has never been run.
+          type: string
+          format: date-time
+          nullable: true
+      type: object
+    ExternalServicesGroupModel:
+      description: Directory Group
+      properties:
+        dsGuid:
+          description: Unique Identifier of the Group
+          type: string
+        name:
+          description: Name Guid of the Group
+          type: string
+      type: object
+    PlatformUserAndGroupSearchSummary:
+      description: Query results
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        domainName:
+          description: DomainName
+          type: string
+        entityType:
+          $ref: '#/components/schemas/IdentityEntityType'
+        existingEntity:
+          description: ExistingEntity
+          type: boolean
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        platformEntityUuid:
+          description: PlatformEntityUuid
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    TestIntegrationResponse:
+      description: Platform Test Integration Response
+      properties:
+        hasAuthenticatedCurrentUser:
+          description: Whether the JWT Identity was able to be authenticated in Secret Server.
+          type: boolean
+        hasIntegrationConfigured:
+          description: Whether Platform Integration has been configured.
+          type: boolean
+        hasMatchingIntegrationUris:
+          description: Whether Platform Configuration Login Uri and JWT Issuer claim uris match.
+          type: boolean
+        hasReceivedIntegrationResponse:
+          description: Whether Platform Integration was able to retrieve a successful response.
+          type: boolean
+      type: object
+    PlatformGetRegionsResponse:
+      description: Platform Get Region Response
+      properties:
+        regions:
+          description: The collection of available regions.
+          items:
+            $ref: '#/components/schemas/PlatformRegion'
+          type: array
+      type: object
+    ProvisionPlatformRequestArgs:
+      description: Values needed for provisioning request
+      properties:
+        adminEmail:
+          description: Platform Initial Admin Email
+          type: string
+        adminUsername:
+          description: Platform Initial Admin Username
+          type: string
+        optinToPlatformAcknowledgement:
+          description: Platform Acknowledgement for being one-time opt-in
+          type: boolean
+        platformRegion:
+          description: Platform Region
+          type: string
+        tenantName:
+          description: Platform Host Name
+          type: string
+      type: object
+    ExternalGroupViewModel:
+      description: External Groups
+      properties:
+        errorMessage:
+          description: Error Message returned when populating groups array if error occurs, otherwise null
+          type: string
+        groups:
+          description: Groups that matched the search criteria
+          items:
+            $ref: '#/components/schemas/ExternalServicesGroupModel'
+          type: array
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    DirectoryGroupUserViewModel:
+      description: Directory Group User
+      properties:
+        displayName:
+          description: Display Name of the user
+          type: string
+      type: object
+    LinkExternalGroupArgs:
+      description: LinkExternalGroupArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/LinkExternalGroupSettings'
+      type: object
+    PagingOfPlatformDirectorySummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/PlatformDirectorySummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PlatformCreateUsersAndGroupsCommand:
+      description: PlatformCreateUsersAndGroupsCommand
+      properties:
+        data:
+          description: Data
+          items:
+            $ref: '#/components/schemas/PlatformCreateEntityItem'
+          type: array
+      type: object
+    PlatformCreateUsersAndGroupsResponse:
+      description: PlatformCreateUsersAndGroupsResponse
+      properties:
+        data:
+          description: Data
+          items:
+            $ref: '#/components/schemas/PlatformCreateEntityResponse'
+          type: array
+        error:
+          description: Error
+          type: string
+      type: object
+    PlatformCreateEntityType:
+      description: Type
+      properties: {}
+      type: string
+      enum:
+      - User
+      - Group
+  requestBodies:
+    LinkExternalGroupArgs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LinkExternalGroupArgs'
+      description: args
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

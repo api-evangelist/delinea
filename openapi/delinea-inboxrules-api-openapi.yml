@@ -1,0 +1,1749 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations InboxRules API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: InboxRules
+  description: InboxRulesController
+paths:
+  /v1/inbox-rules/{ruleId}/subscribe:
+    post:
+      tags:
+      - InboxRules
+      summary: Subscribe Current User
+      description: Subscribe the current user from the rule
+      operationId: InboxRulesService_SubscribeCurrentUserToRule
+      parameters:
+      - name: ruleId
+        in: path
+        description: ruleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Response if successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleSubscriptionUpdateResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - InboxRules
+      summary: Unsubscribe current user
+      description: Unsubscribe the current user from the rule
+      operationId: InboxRulesService_UnsubscribeCurrentUserFromRule
+      parameters:
+      - name: ruleId
+        in: path
+        description: ruleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Response if successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleSubscriptionUpdateResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules:
+    get:
+      tags:
+      - InboxRules
+      summary: Search inbox rules
+      description: Search, filter, sort, and page inbox rules
+      operationId: InboxRulesService_SearchInboxRules
+      parameters:
+      - name: filter.includeCurrentUserSubscriptionStatus
+        in: query
+        description: Return the subscription status of the current user whether subscribed directly or via a group.
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.includeInactive
+        in: query
+        description: Include inactive rules.
+        required: false
+        schema:
+          type: boolean
+      - name: filter.isImmediate
+        in: query
+        description: Only return rules that run immediately or on a schedule, depending on value.
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.messageId
+        in: query
+        description: Return all rules that will apply to this message id, does not account for time or schedule.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.messageTypeId
+        in: query
+        description: Only return rules that apply to this message type.  If a MessageId is passed then this value will be replaced with that message's MessageTypeId.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: ruleConditionFilters[0].displayValue
+        in: query
+        description: Search specifically display values
+        required: false
+        schema:
+          type: string
+      - name: ruleConditionFilters[0].inboxDataId
+        in: query
+        description: Which field is being searched.  This value can be null if InboxDataName is passed instead.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: ruleConditionFilters[0].inboxDataName
+        in: query
+        description: Which field is being searched.  If InboxDataId is passed this value is ignored.
+        required: false
+        schema:
+          type: string
+      - name: ruleConditionFilters[0].valueBool
+        in: query
+        description: Search specifically for boolean values
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: ruleConditionFilters[0].valueInt
+        in: query
+        description: Search specifically for int values
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: ruleConditionFilters[0].valueString
+        in: query
+        description: Search specifically for string values with a partial match
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Inbox Rules results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfInboxRuleSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - InboxRules
+      summary: Create Inbox Rule
+      description: Create a new inbox rule
+      operationId: InboxRulesService_CreateInboxRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InboxRuleCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: Inbox Rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules/{id}:
+    get:
+      tags:
+      - InboxRules
+      summary: Get Inbox Rule
+      description: Retrieve inbox rule by Id
+      operationId: InboxRulesService_GetInboxRule
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Inbox Rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - InboxRules
+      summary: Patch Inbox Rule
+      description: Change properties of an inbox rule
+      operationId: InboxRulesService_PatchInboxRule
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InboxRulePatchArgs'
+        description: args
+      responses:
+        '200':
+          description: Inbox Rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules/stub:
+    get:
+      tags:
+      - InboxRules
+      summary: Get Inbox Rule Stub
+      description: Retrieve an empty inbox rule
+      operationId: InboxRulesService_GetInboxRuleStub
+      responses:
+        '200':
+          description: Inbox Rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules/conditions/{id}:
+    get:
+      tags:
+      - InboxRules
+      summary: Get Inbox Rule Condition
+      description: Retrieve inbox rule condition by Id
+      operationId: InboxRulesService_GetInboxRuleCondition
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Inbox Rule Condition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleConditionDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules/{id}/conditions:
+    get:
+      tags:
+      - InboxRules
+      summary: Search Inbox Rule Conditions
+      description: Search Inbox Rule Conditions
+      operationId: InboxRulesService_SearchInboxRuleConditions
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Inbox Rule Conditions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleConditionSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules/{inboxRuleId}/subscribers:
+    get:
+      tags:
+      - InboxRules
+      summary: Search inbox rule subscribers
+      description: Search, filter, sort, and page inbox subscribers
+      operationId: InboxRulesService_SearchSubscribers
+      parameters:
+      - name: inboxRuleId
+        in: path
+        description: inboxRuleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.accountTypes
+        in: query
+        description: AccountTypes
+        required: false
+        schema:
+          type: string
+      - name: filter.onlyIncludeUnsubscribableUsers
+        in: query
+        description: This will ignore most other filters and return only User accounts that belong to groups that are subscribed.  The results will not include users that are directly subscribed as they must be removed from the subscription, not unsubscribed.
+        required: false
+        schema:
+          type: boolean
+      - name: filter.searchText
+        in: query
+        description: Search text to filter users from the unsubscribable users
+        required: false
+        schema:
+          type: string
+      - name: filter.status
+        in: query
+        description: Status
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Inbox Rule Subscriber results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfInboxRuleSubscriberSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules/{inboxRuleId}/action-log:
+    get:
+      tags:
+      - InboxRules
+      summary: Get Inbox Rule Logs By Inbox Rule Id
+      description: Get Inbox Rule Logs By Inbox Rule Id
+      operationId: InboxRulesService_SearchLog
+      parameters:
+      - name: inboxRuleId
+        in: path
+        description: inboxRuleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.endDate
+        in: query
+        description: EndDate
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+          format: date-time
+      - name: filter.ruleActionStatus
+        in: query
+        description: RuleActionStatus
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+      - name: filter.startDate
+        in: query
+        description: StartDate
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+          format: date-time
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Inbox Rule Log results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfInboxRuleLogSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules/{id}/actions:
+    patch:
+      tags:
+      - InboxRules
+      summary: Patch Inbox Rule Actions
+      description: Change Inbox Rule Actions
+      operationId: InboxRulesService_PatchInboxRuleActions
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InboxRuleActionPatchArgs'
+        description: args
+      responses:
+        '200':
+          description: Inbox Rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules/{ruleId}/subscribers:
+    patch:
+      tags:
+      - InboxRules
+      summary: Patch Inbox Rule Subscribers
+      description: Add, Remove, or unsubscribe groups, users, and external emails to a specific rule
+      operationId: InboxRulesService_PatchInboxRuleSubscribers
+      parameters:
+      - name: ruleId
+        in: path
+        description: ruleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InboxRuleSubscribersPatchArgs'
+        description: args
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleSubscriberUpdateResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules/copy:
+    post:
+      tags:
+      - InboxRules
+      summary: Copy Inbox Rule
+      description: Copy an inbox rule
+      operationId: InboxRulesService_CopyInboxRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InboxRuleCopyArgs'
+        description: args
+      responses:
+        '200':
+          description: Inbox Rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/inbox-rules/{inboxRuleId}/conditions:
+    put:
+      tags:
+      - InboxRules
+      summary: Update Inbox Rule Condition
+      description: Update inbox rule condition
+      operationId: InboxRulesService_UpdateInboxRuleCondition
+      parameters:
+      - name: inboxRuleId
+        in: path
+        description: inboxRuleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InboxRuleConditionUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Inbox Rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - InboxRules
+      summary: Create Inbox Rule Condition
+      description: Create a new inbox rule condition
+      operationId: InboxRulesService_CreateInboxRuleCondition
+      parameters:
+      - name: inboxRuleId
+        in: path
+        description: inboxRuleId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InboxRuleConditionCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: Inbox Rule Condition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRuleConditionDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    InboxRuleCopyModel:
+      description: Inbox Rule Copy Model
+      properties:
+        inboxRuleIdToCopy:
+          description: InboxRuleId To Copy
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    InboxRuleCreateArgs:
+      description: InboxRuleCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRuleCreateModel'
+      type: object
+    InboxRuleConditionCreateModel:
+      description: InboxRuleConditionCreateModel
+      properties:
+        displayValue:
+          description: Display Value
+          type: string
+        inboxDataId:
+          description: Inbox Data
+          type: integer
+          format: int32
+        inboxRuleId:
+          description: Inbox Rule
+          type: integer
+          format: int32
+        inboxRuleOperand:
+          $ref: '#/components/schemas/InboxRuleConditionOperand'
+        valueBool:
+          description: Boolean Value
+          type: boolean
+          nullable: true
+        valueDateTime:
+          description: DateTime Value
+          type: string
+          format: date-time
+          nullable: true
+        valueInt:
+          description: Integer Value
+          type: integer
+          format: int32
+          nullable: true
+        valueString:
+          description: String Value
+          type: string
+      type: object
+    InboxRuleSubscriberEmailUpdate:
+      description: Change the subscription for a specific email
+      properties:
+        emailAddress:
+          description: A specific email address to add / remove.
+          type: string
+        subscribe:
+          description: Passing true will subscribe this email address, passing false will remove this email address along with any rule action history
+          type: boolean
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    InboxRuleDetailModel:
+      description: InboxRuleDetailModel
+      properties:
+        active:
+          description: Active
+          type: boolean
+        canEditOwnSubscription:
+          description: Can Edit Own Subscription
+          type: boolean
+        conditions:
+          description: Conditions
+          items:
+            $ref: '#/components/schemas/InboxRuleConditionSummary'
+          type: array
+        createdByUserId:
+          description: Created By User Id
+          type: integer
+          format: int32
+        highPriority:
+          description: High Priority
+          type: boolean
+        inboxEmailTemplateId:
+          description: Inbox Email Template
+          type: integer
+          format: int32
+          nullable: true
+        inboxMessageTypes:
+          description: Inbox Message Types
+          items:
+            $ref: '#/components/schemas/InboxMessageTypeSummary'
+          type: array
+        inboxRuleId:
+          description: Inbox Rule Id
+          type: integer
+          format: int32
+        inboxSlackTemplateId:
+          description: Inbox Slack Template
+          type: integer
+          format: int32
+          nullable: true
+        isImmediate:
+          description: Is Immediate
+          type: boolean
+        isSystem:
+          description: Is System
+          type: boolean
+        name:
+          description: Name
+          type: string
+        recurringScheduleId:
+          description: The schedule that indicates when this rule should trigger
+          type: integer
+          format: int32
+          nullable: true
+        sendEmail:
+          description: Send Email
+          type: boolean
+        sendSlack:
+          description: Send Slack
+          type: boolean
+      type: object
+    InboxDataType:
+      description: InboxDataType
+      properties: {}
+      type: string
+      enum:
+      - Integer
+      - DateTime
+      - String
+      - Boolean
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    InboxRuleActionPatchArgs:
+      description: InboxRuleActionPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRuleActionPatchModel'
+      type: object
+    InboxRuleActionPatchModel:
+      description: InboxRuleActionPatchModel
+      properties:
+        inboxEmailTemplateId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        inboxSlackTemplateId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        sendEmail:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        sendSlack:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+      type: object
+    UpdateFieldValueOfInt32Array:
+      description: FolderIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    PagingOfInboxRuleSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/InboxRuleSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InboxRuleSubscriberGroupUserUpdate:
+      description: The user/group to add or remove to the subscription.  Either UserId or GroupId should be set.  If both are set then GroupId will take precedence and UserId will be ignored.
+      properties:
+        groupId:
+          description: The group ID representing a group or an individual user
+          type: integer
+          format: int32
+          nullable: true
+        subscribe:
+          description: When true a group or user will be subscribed to this rule.  When false a group will be removed from the list.  If the this is a user then it will be removed if it is directly subscribed or it will be explicitly unsubscribed if not currently subscribed.
+          type: boolean
+        userId:
+          description: The user ID representing a an individual user
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    InboxRuleSummary:
+      description: Query results
+      properties:
+        active:
+          description: Whether or not this rule is active
+          type: boolean
+        currentUserSubscribed:
+          description: Only populated when IncludeCurrentUserSubscriptionStatus is passed as true on a rule search
+          type: boolean
+          nullable: true
+        digest:
+          description: Whether or not this rule is for a Digest that runs on a schedule.
+          type: boolean
+        inboxRuleId:
+          description: Inbox Rule ID
+          type: integer
+          format: int32
+        inboxRuleName:
+          description: The name of the rule
+          type: string
+        isSystem:
+          description: Whether or not this rule is a system rule
+          type: boolean
+        notificationTypes:
+          description: Notification Types where this rule is used
+          items:
+            type: string
+          type: array
+        usageCount:
+          description: Number of times this rule has been used in the last 7 days
+          type: integer
+          format: int32
+      type: object
+    InboxRuleSubscriberUpdateResponse:
+      description: InboxRuleSubscriberUpdateResponse
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    InboxRulePatchModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        canEditOwnSubscription:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        highPriority:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        inboxMessageTypes:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+        isImmediate:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    InboxRuleActionStatusType:
+      description: The result of the action
+      properties: {}
+      type: string
+      enum:
+      - Success
+      - Failed
+      - FailedAfterThreeAttempts
+      - InvalidEmail
+      - UnableToResolveHost
+    InboxRuleSubscriptionUpdateResponse:
+      description: InboxRuleSubscriptionUpdateResponse
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    InboxRuleConditionOperand:
+      description: Operand
+      properties: {}
+      type: string
+      enum:
+      - Equals
+      - NotEquals
+      - LessThan
+      - GreaterThan
+      - Regex
+    InboxRuleSubscribersPatchArgs:
+      description: InboxRuleSubscribersPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRuleSubscriberPatchModel'
+      type: object
+    InboxRuleConditionSummary:
+      description: Conditions
+      properties:
+        displayValue:
+          description: DisplayValue
+          type: string
+        inboxDataId:
+          description: InboxDataId
+          type: integer
+          format: int32
+        inboxDataName:
+          description: InboxDataName
+          type: string
+        inboxDataType:
+          $ref: '#/components/schemas/InboxDataType'
+        inboxRuleConditionId:
+          description: InboxRuleConditionId
+          type: integer
+          format: int32
+        inboxRuleOperand:
+          $ref: '#/components/schemas/InboxRuleConditionOperand'
+        valueBool:
+          description: ValueBool
+          type: boolean
+          nullable: true
+        valueDateTime:
+          description: ValueDateTime
+          type: string
+          format: date-time
+          nullable: true
+        valueInt:
+          description: ValueInt
+          type: integer
+          format: int32
+          nullable: true
+        valueString:
+          description: ValueString
+          type: string
+      type: object
+    InboxRuleConditionCreateArgs:
+      description: InboxRuleConditionCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRuleConditionCreateModel'
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    InboxRuleCreateModel:
+      description: Data
+      properties:
+        active:
+          description: Active
+          type: boolean
+        canEditOwnSubscription:
+          description: Can Edit Own Subscription
+          type: boolean
+        conditions:
+          description: Conditions
+          items:
+            $ref: '#/components/schemas/InboxRuleConditionCreateModel'
+          type: array
+        highPriority:
+          description: High Priority
+          type: boolean
+        inboxEmailTemplateId:
+          description: Email Template
+          type: integer
+          format: int32
+          nullable: true
+        inboxMessageTypeIds:
+          description: Inbox Message Types
+          items:
+            type: integer
+            format: int32
+          type: array
+        inboxSlackTemplateId:
+          description: Slack Template
+          type: integer
+          format: int32
+          nullable: true
+        isImmediate:
+          description: Is Immediate
+          type: boolean
+        name:
+          description: Name
+          type: string
+        sendEmail:
+          description: Send Email
+          type: boolean
+        sendSlack:
+          description: Send Slack
+          type: boolean
+      type: object
+    InboxRuleConditionUpdateArgs:
+      description: InboxRuleConditionUpdateArgs
+      properties:
+        data:
+          description: Data
+          items:
+            $ref: '#/components/schemas/InboxRuleConditionUpdateModel'
+          type: array
+      type: object
+    InboxRuleConditionUpdateModel:
+      description: Inbox Rule Condition Update Model
+      properties:
+        displayValue:
+          description: Display Value
+          type: string
+        inboxDataId:
+          description: Inbox Data
+          type: integer
+          format: int32
+        inboxRuleConditionId:
+          description: The ID of the existing rule condition to update
+          type: integer
+          format: int32
+          nullable: true
+        inboxRuleOperand:
+          $ref: '#/components/schemas/InboxRuleConditionOperand'
+        valueBool:
+          description: Boolean Value
+          type: boolean
+          nullable: true
+        valueDateTime:
+          description: DateTime Value
+          type: string
+          format: date-time
+          nullable: true
+        valueInt:
+          description: Integer Value
+          type: integer
+          format: int32
+          nullable: true
+        valueString:
+          description: String Value
+          type: string
+      type: object
+    InboxRuleSubscriberPatchModel:
+      description: Inbox rule subscription changes
+      properties:
+        emailUpdates:
+          description: External email addresses to add or remove from this rule
+          items:
+            $ref: '#/components/schemas/InboxRuleSubscriberEmailUpdate'
+          type: array
+        groupUserUpdates:
+          description: Groups and Users changes to the subscription
+          items:
+            $ref: '#/components/schemas/InboxRuleSubscriberGroupUserUpdate'
+          type: array
+      type: object
+    InboxRulePatchArgs:
+      description: InboxRulePatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRulePatchModel'
+      type: object
+    PagingOfInboxRuleSubscriberSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/InboxRuleSubscriberSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    InboxRuleConditionDetailModel:
+      description: Inbox Rule Condition
+      properties:
+        displayValue:
+          description: Display Value
+          type: string
+        inboxDataId:
+          description: Inbox Data
+          type: integer
+          format: int32
+        inboxDataType:
+          $ref: '#/components/schemas/InboxDataType'
+        inboxRuleConditionId:
+          description: Inbox Rule Condition Id
+          type: integer
+          format: int32
+        inboxRuleId:
+          description: Inbox Rule
+          type: integer
+          format: int32
+        inboxRuleOperand:
+          $ref: '#/components/schemas/InboxRuleConditionOperand'
+        valueBool:
+          description: Boolean Value
+          type: boolean
+          nullable: true
+        valueDateTime:
+          description: DateTime Value
+          type: string
+          format: date-time
+          nullable: true
+        valueInt:
+          description: Integer Value
+          type: integer
+          format: int32
+          nullable: true
+        valueString:
+          description: String Value
+          type: string
+      type: object
+    InboxRuleSubscriberSummary:
+      description: A user, group, or external email that is subscribed or unsubscribed to an inbox rule
+      properties:
+        displayName:
+          description: A display name for this subscriber
+          type: string
+        domainId:
+          description: Active Directory domain ID
+          type: integer
+          format: int32
+        domainName:
+          description: Active Directory Domain Name
+          type: string
+        emailAddress:
+          description: EmailAddress
+          type: string
+        groupId:
+          description: The subscribers group id.  Either an actual group or a personal group ID for a single user.
+          type: integer
+          format: int32
+          nullable: true
+        inboxRuleAdditionalEmailId:
+          description: InboxRuleAdditionalEmailId
+          type: integer
+          format: int32
+          nullable: true
+        inboxRuleSubscribersId:
+          description: The identifier for this subscriber.  Email only subscribers will not have this ID.
+          type: integer
+          format: int32
+          nullable: true
+        isGroup:
+          description: Is this a group or a single user
+          type: boolean
+        subscribed:
+          description: True if the user, group, or external email is subscribed.  False if the user is unsubscribed.  Groups and external emails cannot be unsubscribed as they are just removed.
+          type: boolean
+      type: object
+    InboxMessageTypeSummary:
+      description: InboxMessageTypeSummary[]
+      properties:
+        inboxMessageTypeId:
+          description: Message Type ID
+          type: integer
+          format: int32
+        inboxMessageTypeName:
+          description: The name of the message type
+          type: string
+        notificationCount:
+          description: 'Populated with the number of notifications the current user has of this message type.  Only populated when '
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    InboxRuleLogSummary:
+      description: Log item for inbox rule action results
+      properties:
+        actionType:
+          $ref: '#/components/schemas/ActionType'
+        displayName:
+          description: The display name for the user or external email address
+          type: string
+        inboxRuleActionStatus:
+          $ref: '#/components/schemas/InboxRuleActionStatusType'
+        statusDate:
+          description: When the action triggered
+          type: string
+          format: date-time
+        statusDescription:
+          description: Any extra description for this status
+          type: string
+        userId:
+          description: The specific user id that this action was for
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    InboxRuleCopyArgs:
+      description: InboxRuleCopyArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRuleCopyModel'
+      type: object
+    ActionType:
+      description: The type of action that was performed for this log entry
+      properties: {}
+      type: string
+      enum:
+      - SendEmail
+      - SendSlack
+    PagingOfInboxRuleLogSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/InboxRuleLogSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

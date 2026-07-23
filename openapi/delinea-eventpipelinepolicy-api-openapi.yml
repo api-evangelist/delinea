@@ -1,0 +1,2028 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations EventPipelinePolicy API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: EventPipelinePolicy
+  description: EventPipelinePolicyController
+paths:
+  /v1/event-pipeline-policy/{policyId}/pipeline/{pipelineId}:
+    delete:
+      tags:
+      - EventPipelinePolicy
+      summary: Remove Event Pipeline From Policy
+      description: Remove a pipeline from a specific policy
+      operationId: EventPipelinePolicyService_RemoveEventPipelineFromPolicy
+      parameters:
+      - name: pipelineId
+        in: path
+        description: Event Pipeline ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: policyId
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: boolean indicating success
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/{id}:
+    get:
+      tags:
+      - EventPipelinePolicy
+      summary: Get Event Pipeline Policy
+      description: Get a specific policy by ID
+      operationId: EventPipelinePolicyService_GetEventPipelinePolicy
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Policy details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipelinePolicyModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - EventPipelinePolicy
+      summary: Update Event Pipeline Policy
+      description: Update a policy
+      operationId: EventPipelinePolicyService_UpdateEventPipelinePolicy
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelinePolicyUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: The update policy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipelinePolicyModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - EventPipelinePolicy
+      summary: Add Pipeline To Event Pipeline Policy
+      description: Returns data pertaining to children of a folder that has a particular pipeline policy assigned
+      operationId: EventPipelinePolicyService_AddPipelineToEventPipelinePolicy
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelinePolicyAddPipelineArgs'
+        description: eventPipelinePolicyAddPipelineArgs
+      responses:
+        '200':
+          description: Pipeline policy children
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipelinePolicyMapModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/list:
+    get:
+      tags:
+      - EventPipelinePolicy
+      summary: Get Event Pipeline Policies
+      description: Get all pipeline policies
+      operationId: EventPipelinePolicyService_GetEventPipelinePolicies
+      parameters:
+      - name: filter.eventPipelineId
+        in: query
+        description: EventPipelineId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.eventPipelinePolicyName
+        in: query
+        description: EventPipelinePolicyName
+        required: false
+        schema:
+          type: string
+      - name: filter.folderId
+        in: query
+        description: FolderId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeActive
+        in: query
+        description: IncludeActive
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.includeInactive
+        in: query
+        description: IncludeInactive
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: A paged list of all policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfEventPipelinePolicySummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/runs:
+    get:
+      tags:
+      - EventPipelinePolicy
+      summary: Get Event Pipeline Policy Runs
+      description: Get all runs by specific search criteria
+      operationId: EventPipelinePolicyService_GetEventPipelinePolicyRuns
+      parameters:
+      - name: filter.eventPipelinePolicyId
+        in: query
+        description: EventPipelinePolicyId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.eventPipelinePolicyRunId
+        in: query
+        description: EventPipelinePolicyRunId
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged list of policy runs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfEventPipelineRunViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/activity:
+    get:
+      tags:
+      - EventPipelinePolicy
+      summary: Get Event Pipeline Policy Run Activity
+      description: Get all activity for a specific policy run ID
+      operationId: EventPipelinePolicyService_GetEventPipelinePolicyRunActivity
+      parameters:
+      - name: eventPipelineId
+        in: query
+        description: eventPipelineId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: eventPipelinePolicyRunId
+        in: query
+        description: Event Pipeline Policy Run ID
+        required: false
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Details for a specific run
+          content:
+            application/json:
+              schema:
+                description: Details for a specific run
+                items:
+                  $ref: '#/components/schemas/EventPipelinePolicyRunActivityViewModel'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/{id}/secretpolicies:
+    get:
+      tags:
+      - EventPipelinePolicy
+      summary: Get Secret Policies For Pipeline Policies
+      description: Get all of the secret polocies that are related to this pipeline
+      operationId: EventPipelinePolicyService_GetSecretPoliciesForPipelinePolicies
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.eventPipelinePolicyId
+        in: query
+        description: EventPipelinePolicyId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.eventPipelinePolicyName
+        in: query
+        description: EventPipelinePolicyName
+        required: false
+        schema:
+          type: string
+      - name: filter.includeActive
+        in: query
+        description: IncludeActive
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged list of secret policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSecretPolicyViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/{id}/folders:
+    get:
+      tags:
+      - EventPipelinePolicy
+      summary: Get Folders For Pipeline Policies
+      description: Get all of the folders for a policy pipeline
+      operationId: EventPipelinePolicyService_GetFoldersForPipelinePolicies
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of all folders to which this policy is applied
+          content:
+            application/json:
+              schema:
+                description: List of all folders to which this policy is applied
+                items:
+                  $ref: '#/components/schemas/FolderSimpleViewModel'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - EventPipelinePolicy
+      summary: Update Event Pipeline Policy Folder Maps
+      description: Adds or updates the Pipeline Policy Folder Maps to reflect the collection of folder maps for the pipeline policy that was passed in.
+      operationId: EventPipelinePolicyService_UpdateEventPipelinePolicyFolderMaps
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelinePolicyFolderMapUpdateArgs'
+        description: eventPipelinePolicyFolderMaps
+      responses:
+        '200':
+          description: boolean indicating success
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/{id}/groups:
+    get:
+      tags:
+      - EventPipelinePolicy
+      summary: Get Groups For Pipeline Policies
+      description: Get all of the groups that apply this pipeline
+      operationId: EventPipelinePolicyService_GetGroupsForPipelinePolicies
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of all groups
+          content:
+            application/json:
+              schema:
+                description: List of all groups
+                items:
+                  $ref: '#/components/schemas/UserGroupSearchResultModel'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - EventPipelinePolicy
+      summary: Update Event Pipeline Policy Group Maps
+      description: Adds or updates the Pipeline Policy Group Maps to reflect the collection of group maps for the pipeline policy that was passed in.
+      operationId: EventPipelinePolicyService_UpdateEventPipelinePolicyGroupMaps
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelinePolicyGroupMapUpdateArgs'
+        description: eventPipelinePolicyGroupMaps
+      responses:
+        '200':
+          description: boolean indicating success
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/{id}/groups/count:
+    get:
+      tags:
+      - EventPipelinePolicy
+      summary: Get Group Count For Pipeline Policy
+      description: Returns the count of groups that have a particular pipeline policy assigned
+      operationId: EventPipelinePolicyService_GetGroupCountForPipelinePolicy
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Number of groups affected
+          content:
+            application/json:
+              schema:
+                description: Int32
+                type: integer
+                format: int32
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/{id}/folders/{folderId}/childdata:
+    get:
+      tags:
+      - EventPipelinePolicy
+      summary: Get Child Folder Data For Pipeline Policy Folder
+      description: Get all of the child data for a specific folder
+      operationId: EventPipelinePolicyService_GetChildFolderDataForPipelinePolicyFolder
+      parameters:
+      - name: folderId
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of child data
+          content:
+            application/json:
+              schema:
+                description: List of child data
+                items:
+                  $ref: '#/components/schemas/EventPipelinePolicyFolderChildData'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/export/{id}:
+    get:
+      tags:
+      - EventPipelinePolicy
+      summary: Export Event Pipeline Policy
+      description: Export a policy
+      operationId: EventPipelinePolicyService_ExportEventPipelinePolicy
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: the exported json of the policy
+          content:
+            application/json:
+              schema:
+                description: String
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy:
+    post:
+      tags:
+      - EventPipelinePolicy
+      summary: Create Pipeline Policy
+      description: Create Pipeline Policy
+      operationId: EventPipelinePolicyService_CreateEventPipelinePolicy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelinePolicyCreateArgs'
+        description: eventPipelinePolicy
+      responses:
+        '200':
+          description: Newly created model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipelinePolicyModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/duplicate:
+    post:
+      tags:
+      - EventPipelinePolicy
+      summary: Duplicate Event Pipeline Policy
+      description: Create a duplicate of a policy
+      operationId: EventPipelinePolicyService_DuplicateEventPipelinePolicy
+      requestBody:
+        $ref: '#/components/requestBodies/EventPipelinePolicyImportArgs'
+      responses:
+        '200':
+          description: The duplicated model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipelinePolicyModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/import:
+    post:
+      tags:
+      - EventPipelinePolicy
+      summary: Import Event Pipeline Policy
+      description: Import a policy
+      operationId: EventPipelinePolicyService_ImportEventPipelinePolicy
+      requestBody:
+        $ref: '#/components/requestBodies/EventPipelinePolicyImportArgs'
+      responses:
+        '200':
+          description: The imported policy model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipelinePolicyModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/{id}/order:
+    put:
+      tags:
+      - EventPipelinePolicy
+      summary: Update Event Pipeline Policy Sort Order
+      description: Update the sort order of a policy
+      operationId: EventPipelinePolicyService_UpdateEventPipelinePolicySortOrder
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelinePolicySortOrderUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: updated policy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPipelinePolicyModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-policy/{id}/activate:
+    put:
+      tags:
+      - EventPipelinePolicy
+      summary: Activate Event Pipeline Policy
+      description: Activate a specific policy
+      operationId: EventPipelinePolicyService_ActivateEventPipelinePolicy
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Policy ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPipelinePolicyActivateArgs'
+        description: args
+      responses:
+        '200':
+          description: boolean indicating success
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    PagingOfEventPipelineRunViewModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EventPipelineRunViewModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfEventPipelineTriggerUpdateModelArray:
+      description: Triggers
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineTriggerUpdateModel'
+          type: array
+      type: object
+    SettingUpdateModel:
+      description: Value
+      properties:
+        settingName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        settingValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    EventPipelinePolicySortOrderUpdateArgs:
+      description: EventPipelinePolicySortOrderUpdateArgs
+      properties:
+        newSortOrder:
+          description: NewSortOrder
+          type: integer
+          format: int32
+      type: object
+    PagingOfSecretPolicyViewModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SecretPolicyViewModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    EventPipelineRunViewModel:
+      description: Query results
+      properties:
+        description:
+          description: Description
+          type: string
+        duration:
+          description: Duration
+          type: string
+        endDate:
+          description: EndDate
+          type: string
+          format: date-time
+          nullable: true
+        entityTypeName:
+          description: EntityTypeName
+          type: string
+        eventDateTime:
+          description: EventDateTime
+          type: string
+          format: date-time
+        eventDetails:
+          description: EventDetails
+          type: string
+        eventName:
+          description: EventName
+          type: string
+        eventPipelineId:
+          description: EventPipelineId
+          type: integer
+          format: int32
+          nullable: true
+        eventPipelinePolicyRunId:
+          description: EventPipelinePolicyRunId
+          type: string
+          format: uuid
+        itemId:
+          description: ItemId
+          type: integer
+          format: int32
+        itemName:
+          description: ItemName
+          type: string
+        name:
+          description: Name
+          type: string
+        queuedDate:
+          description: QueuedDate
+          type: string
+          format: date-time
+        startDate:
+          description: StartDate
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          $ref: '#/components/schemas/EventPipelineStatus'
+      type: object
+    FolderSimpleViewModel:
+      description: FolderSimpleViewModel[]
+      properties:
+        id:
+          description: Id
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+        path:
+          description: Path
+          type: string
+        restricted:
+          description: Restricted
+          type: boolean
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    EventPipelinePolicySummary:
+      description: Query results
+      properties:
+        active:
+          description: Active
+          type: boolean
+        createdDate:
+          description: Created Date
+          type: string
+          format: date-time
+        eventEntityTypeId:
+          description: Event Entity Type ID
+          type: integer
+          format: int32
+        eventPipelinePolicyDescription:
+          description: Event Pipeline Policy Description
+          type: string
+        eventPipelinePolicyId:
+          description: Event Pipeline Policy ID
+          type: integer
+          format: int32
+        eventPipelinePolicyName:
+          description: Event Pipeline Policy Name
+          type: string
+        isSystem:
+          description: Is System
+          type: boolean
+        lastModifiedDate:
+          description: Last Modified Date
+          type: string
+          format: date-time
+        lastModifiedDisplayName:
+          description: Last Modified Display Name
+          type: string
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    ViewFieldValueOfString:
+      description: GeneratedToken
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+      type: object
+    EventPipelinePolicyAddPipelineArgs:
+      description: EventPipelinePolicyAddPipelineArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EventPipelinePolicyAddPipelineModel'
+      type: object
+    EventPipelinePolicyMapModel:
+      description: Event Pipeline Policy Map
+      properties:
+        eventPipelineId:
+          description: Event Pipeline Id
+          type: integer
+          format: int32
+        eventPipelinePolicyId:
+          description: Event Pipeline Policy Id
+          type: integer
+          format: int32
+        eventPipelinePolicyMapId:
+          description: Event Pipeline Policy Map Id
+          type: integer
+          format: int32
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    EventPipelinePolicyFolderChildData:
+      description: EventPipelinePolicyFolderChildData[]
+      properties:
+        childFolderCount:
+          description: ChildFolderCount
+          type: integer
+          format: int32
+        folderId:
+          description: FolderId
+          type: integer
+          format: int32
+        hasPipelinePolicy:
+          description: HasPipelinePolicy
+          type: boolean
+      type: object
+    SecretPolicyViewModel:
+      description: Query results
+      properties:
+        active:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        secretPolicyDescription:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        secretPolicyId:
+          description: SecretPolicyId
+          type: integer
+          format: int32
+        secretPolicyName:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+      type: object
+    EventPipelineTriggerUpdateModel:
+      description: Value
+      properties:
+        eventActionId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    EventPipelineTaskMapUpdateModel:
+      description: Value
+      properties:
+        eventPipelineTaskId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        eventPipelineTaskMapId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        eventPipelineTaskName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        settings:
+          $ref: '#/components/schemas/UpdateFieldValueOfSettingUpdateModelArray'
+        sortOrder:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    EventPipelinePolicyCreateArgs:
+      description: EventPipelinePolicyCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EventPipelinePolicyCreateModel'
+      type: object
+    EventPipelineFilterMapUpdateModel:
+      description: Value
+      properties:
+        eventPipelineFilterId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        eventPipelineFilterMapId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        eventPipelineFilterName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        settings:
+          $ref: '#/components/schemas/UpdateFieldValueOfSettingUpdateModelArray'
+        sortOrder:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    EventPipelinePolicyAddPipelineModel:
+      description: Data
+      properties:
+        eventPipelineId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    ViewFieldLink:
+      description: AdditionalLinks
+      properties:
+        isExternal:
+          description: IsExternal
+          type: boolean
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
+          type: string
+      type: object
+    UpdateFieldValueOfSettingUpdateModelArray:
+      description: Settings
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/SettingUpdateModel'
+          type: array
+      type: object
+    EventPipelineUpdateModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        eventPipelineDescription:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        eventPipelineName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        filters:
+          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineFilterMapUpdateModelArray'
+        tasks:
+          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineTaskMapUpdateModelArray'
+        triggers:
+          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineTriggerUpdateModelArray'
+      type: object
+    PagingOfEventPipelinePolicySummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EventPipelinePolicySummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfEventPipelineUpdateModelArray:
+      description: Pipelines
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineUpdateModel'
+          type: array
+      type: object
+    UserGroupSearchResultModel:
+      description: UserGroupSearchResultModel[]
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        domainName:
+          description: DomainName
+          type: string
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    EventPipelinePolicyUpdateModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        eventPipelinePolicyDescription:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        eventPipelinePolicyName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    ViewFieldValueOfBoolean:
+      description: When enabled, the log will be able to be viewed online
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: boolean
+      type: object
+    EventPipelinePolicyGroupMapUpdateArgs:
+      description: EventPipelinePolicyGroupMapUpdateArgs
+      properties:
+        data:
+          description: Data
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    EventPipelinePolicyFolderMapUpdateArgs:
+      description: EventPipelinePolicyFolderMapUpdateArgs
+      properties:
+        data:
+          description: Data
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    UpdateFieldValueOfEventPipelineTaskMapUpdateModelArray:
+      description: Tasks
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineTaskMapUpdateModel'
+          type: array
+      type: object
+    EventPipelinePolicyUpdateArgs:
+      description: EventPipelinePolicyUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EventPipelinePolicyUpdateModel'
+      type: object
+    UpdateFieldValueOfEventPipelineFilterMapUpdateModelArray:
+      description: Filters
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineFilterMapUpdateModel'
+          type: array
+      type: object
+    EventPipelinePolicyImportArgs:
+      description: EventPipelinePolicyImportArgs
+      properties:
+        data:
+          description: Data
+          type: string
+      type: object
+    EventPipelinePolicyRunActivityViewModel:
+      description: EventPipelinePolicyRunActivityViewModel[]
+      properties:
+        duration:
+          description: Duration
+          type: string
+        endDateTime:
+          description: EndDateTime
+          type: string
+          format: date-time
+          nullable: true
+        eventAction:
+          description: EventAction
+          type: string
+        eventEntityType:
+          description: EventEntityType
+          type: string
+        eventPipelineDescription:
+          description: EventPipelineDescription
+          type: string
+        eventPipelineId:
+          description: EventPipelineId
+          type: integer
+          format: int32
+        eventPipelineName:
+          description: EventPipelineName
+          type: string
+        eventPipelinePolicyRunId:
+          description: EventPipelinePolicyRunId
+          type: string
+          format: uuid
+        eventPipelineTaskDescription:
+          description: EventPipelineTaskDescription
+          type: string
+        eventPipelineTaskId:
+          description: EventPipelineTaskId
+          type: integer
+          format: int32
+          nullable: true
+        eventPipelineTaskName:
+          description: EventPipelineTaskName
+          type: string
+        itemId:
+          description: ItemId
+          type: integer
+          format: int32
+        itemName:
+          description: ItemName
+          type: string
+        notes:
+          description: Notes
+          type: string
+        queuedDateTime:
+          description: QueuedDateTime
+          type: string
+          format: date-time
+        runOrder:
+          description: RunOrder
+          type: integer
+          format: int32
+        startDateTime:
+          description: StartDateTime
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          $ref: '#/components/schemas/EventPipelineStatus'
+      type: object
+    EventPipelinePolicyModel:
+      description: Event Pipeline Policy
+      properties:
+        active:
+          description: If the Policy is Active
+          type: boolean
+        createdDate:
+          description: The Date the Policy was created
+          type: string
+          format: date-time
+        eventEntityTypeId:
+          description: Event Pipeline Type Id
+          type: integer
+          format: int32
+        eventPipelinePolicyDescription:
+          description: Event Pipeline Policy Description
+          type: string
+        eventPipelinePolicyId:
+          description: Event Pipeline Policy Id
+          type: integer
+          format: int32
+        eventPipelinePolicyName:
+          description: Event Pipeline Policy Name
+          type: string
+        isSystem:
+          description: Event pipeline policy used by the system
+          type: boolean
+        lastModifiedDate:
+          description: The Date the Policy was last modified
+          type: string
+          format: date-time
+        lastModifiedDisplayName:
+          description: The display name of the user who last modified the Policy
+          type: string
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+      type: object
+    EventPipelinePolicyCreateModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        eventEntityTypeId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        eventPipelinePolicyDescription:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        eventPipelinePolicyName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        externalInstanceId:
+          description: ExternalInstanceId
+          type: string
+          format: uuid
+        isSystem:
+          description: IsSystem
+          type: boolean
+        pipelines:
+          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineUpdateModelArray'
+        reuseExistingPipelines:
+          description: ReuseExistingPipelines
+          type: boolean
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    EventPipelineStatus:
+      description: Status
+      properties: {}
+      type: string
+      enum:
+      - Failed
+      - Success
+      - Skipped
+      - Processing
+      - Pending
+      - Scheduled
+    EventPipelinePolicyActivateArgs:
+      description: EventPipelinePolicyActivateArgs
+      properties:
+        activate:
+          description: Activate
+          type: boolean
+      type: object
+  requestBodies:
+    EventPipelinePolicyImportArgs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EventPipelinePolicyImportArgs'
+      description: importPolicy
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

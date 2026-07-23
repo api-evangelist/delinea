@@ -1,0 +1,1593 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations Launchers API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: Launchers
+  description: View available application launchers
+paths:
+  /v1/launchers:
+    get:
+      tags:
+      - Launchers
+      summary: Search Launchers
+      description: Search, filter, sort, and page launchers
+      operationId: LaunchersService_SearchLaunchers
+      parameters:
+      - name: filter.application
+        in: query
+        description: Associated application
+        required: false
+        schema:
+          type: string
+      - name: filter.includeInactive
+        in: query
+        description: Whether to include inactive launchers
+        required: false
+        schema:
+          type: boolean
+      - name: filter.searchText
+        in: query
+        description: Search the launcher names
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Launcher search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfLauncherSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/launchers/lookup:
+    get:
+      tags:
+      - Launchers
+      summary: Lookup Launchers
+      description: Search, filter, sort, and page launchers, returning only launcher ID and name
+      operationId: LaunchersService_Lookup
+      parameters:
+      - name: filter.application
+        in: query
+        description: Associated application
+        required: false
+        schema:
+          type: string
+      - name: filter.includeInactive
+        in: query
+        description: Whether to include inactive launchers
+        required: false
+        schema:
+          type: boolean
+      - name: filter.searchText
+        in: query
+        description: Search the launcher names
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Launcher search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfLauncherLookup'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/launchers/{id}:
+    get:
+      tags:
+      - Launchers
+      summary: Get Launcher
+      description: Get a single launcher by ID
+      operationId: LaunchersService_Get
+      parameters:
+      - name: id
+        in: path
+        description: Launcher ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Launcher object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LauncherModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v2/launchers/secret:
+    get:
+      tags:
+      - Launchers
+      summary: Get secret launcher details.
+      description: Get the details and fields needed for the launchers a secret can use.
+      operationId: LaunchersService_SearchLauncherDetailsV2
+      parameters:
+      - name: filter.secretId
+        in: query
+        description: The secret to get launch information about
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Secret's Launcher details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfLauncherDetailsV2'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/launchers/protocol-handler:
+    get:
+      tags:
+      - Launchers
+      summary: Triggers a download of the Protocol Handler
+      description: Triggers a download of the Protocol Handler
+      operationId: LaunchersService_TriggerDownload
+      parameters:
+      - name: forceMsi
+        in: query
+        description: forceMsi
+        required: false
+        schema:
+          type: boolean
+      - name: is32Bit
+        in: query
+        description: is32Bit
+        required: false
+        schema:
+          type: boolean
+      - name: isRDS
+        in: query
+        description: isRDS
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Unknown or empty response
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/launchers/prepare/{id}/result:
+    get:
+      tags:
+      - Launchers
+      summary: Get Prepare Launcher Result
+      description: Get result of prepare Launcher Session request.
+      operationId: LaunchersService_LauncherSucceeded
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Prepare Launcher Query Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrepareLauncherQueryResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/launchers/types/{launcherTypeId}:
+    get:
+      tags:
+      - Launchers
+      summary: Get Custom Launcher Type
+      description: Get all of the details for a custom launcher
+      operationId: LaunchersService_GetLauncherType
+      parameters:
+      - name: launcherTypeId
+        in: path
+        description: launcherTypeId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: A definition for a launcher
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LauncherTypeModelV2'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - Launchers
+      summary: Patch Custom Launcher Type
+      description: Patch details or settings for a custom launcher
+      operationId: LaunchersService_PatchLauncherType
+      parameters:
+      - name: launcherTypeId
+        in: path
+        description: launcherTypeId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LauncherTypePatchArgs'
+        description: args
+      responses:
+        '200':
+          description: Launcher Type Model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LauncherTypeModelV2'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/launchers/secret:
+    post:
+      tags:
+      - Launchers
+      summary: Launch a secret.
+      description: Launch a the secret using the provided secret id, and required fields.
+      operationId: LaunchersService_Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LaunchSecretArgs'
+        description: args
+      responses:
+        '200':
+          description: Launched Secret details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LaunchedSecretModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/launchers/prepare:
+    post:
+      tags:
+      - Launchers
+      summary: Prepare Launcher Session
+      description: Prepare a Launcher Session.
+      operationId: LaunchersService_PrepareLauncher
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrepareLauncherArgs'
+        description: args
+      responses:
+        '200':
+          description: PrepareLauncherResult
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrepareLauncherResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/launchers/types/file-attachments:
+    post:
+      tags:
+      - Launchers
+      summary: Create Custom Launcher File Attachment
+      description: Create a new custom launcher file attachment
+      operationId: LaunchersService_CreateFileAttachment
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LauncherTypeFileAttachmentArgs'
+        description: args
+      responses:
+        '200':
+          description: File Attachment Model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileAttachmentModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/launchers/types:
+    post:
+      tags:
+      - Launchers
+      summary: Create Custom Launcher Type
+      description: Create a new custom launcher
+      operationId: LaunchersService_CreateLauncherType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LauncherTypeCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: Launcher Detail Model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LauncherTypeModelV2'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    ICategorizedListItemValue:
+      description: The restricted hosts.
+      properties:
+        category:
+          description: Category
+          type: string
+        value:
+          description: Value
+          type: string
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    RedirectToLauncherUrl:
+      description: LauncherUrl
+      properties:
+        apiVersion:
+          description: ApiVersion
+          type: integer
+          format: int32
+        autoUpdateEnabled:
+          description: AutoUpdateEnabled
+          type: boolean
+        baseUrl:
+          description: BaseUrl
+          type: string
+        encodedUrl:
+          description: EncodedUrl
+          type: string
+        launcherFileDownload:
+          $ref: '#/components/schemas/LauncherFileDownload'
+        requestGuid:
+          description: RequestGuid
+          type: string
+          format: uuid
+        secretSessionId:
+          description: SecretSessionId
+          type: integer
+          format: int32
+        sessionGuid:
+          description: SessionGuid
+          type: string
+          format: uuid
+        ssUrl:
+          description: SsUrl
+          type: string
+        type:
+          description: Type
+          type: string
+      type: object
+    LauncherFileDownload:
+      description: FileDownload
+      properties:
+        contentType:
+          description: ContentType
+          type: string
+        description:
+          description: Description
+          type: string
+        fileContents:
+          description: FileContents
+          type: string
+        fileName:
+          description: FileName
+          type: string
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    PrepareLauncherResult:
+      description: PrepareLauncherResult
+      properties:
+        errorMessage:
+          description: ErrorMessage
+          type: string
+        fileDownload:
+          $ref: '#/components/schemas/LauncherFileDownload'
+        launcherPopupTimeoutSeconds:
+          description: LauncherPopupTimeoutSeconds
+          type: integer
+          format: int32
+        launcherUrl:
+          $ref: '#/components/schemas/RedirectToLauncherUrl'
+        redirectUrl:
+          description: RedirectUrl
+          type: string
+        shouldDownload:
+          description: ShouldDownload
+          type: boolean
+        shouldRedirect:
+          description: ShouldRedirect
+          type: boolean
+        success:
+          description: Success
+          type: boolean
+      type: object
+    LauncherModel:
+      description: Launcher
+      properties:
+        active:
+          description: Whether the launcher is active
+          type: boolean
+        application:
+          description: Associated application
+          type: string
+        customLauncherId:
+          description: Associated custom launcher ID
+          type: integer
+          format: int32
+        customLauncherProcessName:
+          description: Associated custom launcher process name
+          type: string
+        customParameters:
+          description: Associated custom launcher parameters
+          type: string
+        id:
+          description: Launcher ID
+          type: integer
+          format: int32
+        isCustom:
+          description: Whether this is a custom launcher
+          type: boolean
+        name:
+          description: Launcher name
+          type: string
+      type: object
+    LaunchSecretArgs:
+      description: LaunchSecretArgs
+      properties:
+        launcherId:
+          description: The Id of the launcher to use.
+          type: integer
+          format: int32
+        promptFieldValue:
+          description: The value to apply to the prompted field.
+          type: string
+        secretId:
+          description: The Id of the secret to launch.
+          type: integer
+          format: int32
+        siteId:
+          description: The site used to launch when using RDP proxy
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    PrepareLauncherQueryResultModel:
+      description: Prepare Launcher Query Result
+      properties:
+        success:
+          description: True when Prepare Launcher succeeds, otherwise false.
+          type: boolean
+      type: object
+    ILauncherTypeField:
+      description: Fields required by the launcher
+      properties:
+        allowDefault:
+          description: AllowDefault
+          type: boolean
+        concurrencyId:
+          description: ConcurrencyId
+          type: string
+        defaultType:
+          description: DefaultType
+          type: string
+        defaultTypeIntMax:
+          description: DefaultTypeIntMax
+          type: integer
+          format: int32
+          nullable: true
+        defaultTypeIntMin:
+          description: DefaultTypeIntMin
+          type: integer
+          format: int32
+          nullable: true
+        launcherTypeFieldId:
+          description: LauncherTypeFieldId
+          type: integer
+          format: int32
+        launcherTypeId:
+          description: LauncherTypeId
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+        promptableField:
+          description: PromptableField
+          type: boolean
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    LaunchedSecretModel:
+      description: Launcher
+      properties:
+        apiVersion:
+          description: The version of the Launcher API used.
+          type: integer
+          format: int32
+        baseUrl:
+          description: The url to the launcher
+          type: string
+        encodedUrl:
+          description: The url to Secret Server
+          type: string
+        guid:
+          description: The launcher request guid
+          type: string
+          format: uuid
+          nullable: true
+        launcherType:
+          description: The name of the launcher used.
+          type: string
+        launcherTypeId:
+          description: The Id of the launcher used.
+          type: integer
+          format: int32
+        sessionGuid:
+          description: The Id for a running session.
+          type: string
+          format: uuid
+          nullable: true
+        ssUrl:
+          description: The query string for the launcher.
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    PagingOfLauncherDetailsV2:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/LauncherDetailsV2'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    LauncherSummary:
+      description: Launcher summary
+      properties:
+        active:
+          description: Whether the launcher is active
+          type: boolean
+        application:
+          description: Associated application
+          type: string
+        id:
+          description: Launcher ID
+          type: integer
+          format: int32
+        isCustom:
+          description: Whether this is a custom launcher
+          type: boolean
+        name:
+          description: Launcher name
+          type: string
+      type: object
+    LauncherTypePatchData:
+      description: Data to update on a launcher type
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        additionalProcessesToRecord:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        additionalPromptField:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        additionalPromptFieldName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        batchFileId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        canUseSSHKey:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        charactersToEscape:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        childLauncherId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        customLauncherId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        escapeCharacter:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        launchAsSecretCredentials:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        launcherTypeName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        loadUserProfile:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        macProcessArguments:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        macProcessName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        mstscLauncherOption:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        overrideDisallowAdditionalParametersInQuotes:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        preserveSSHClientProcess:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        processArguments:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        processName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        rdsCredentialsSecretId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        rdsServerHostname:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        rdsServerPort:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        recordKeystrokes:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        recordMultipleWindows:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        shellScriptId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        useSFTPTunnel:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        useShellExecute:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        useSSHTunnel:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+      type: object
+    LauncherTypeFileAttachmentArgs:
+      description: Create a launcher type file attachment
+      properties:
+        file:
+          description: Details for the item to create
+          type: string
+          format: binary
+      type: object
+    PagingOfLauncherLookup:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/LauncherLookup'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    LauncherDetailsV2:
+      description: Launcher And Fields
+      properties:
+        application:
+          description: Associated application
+          type: string
+        approvedList:
+          description: If the restricted host is on the allowed list
+          type: boolean
+        customLauncherId:
+          description: Associated custom launcher ID
+          type: integer
+          format: int32
+        customLauncherProcessName:
+          description: Associated custom launcher process name
+          type: string
+        customParameters:
+          description: Associated custom launcher parameters
+          type: string
+        isCustom:
+          description: Whether this is a custom launcher
+          type: boolean
+        launcherId:
+          description: Launcher ID
+          type: integer
+          format: int32
+        launcherName:
+          description: Launcher name
+          type: string
+        promptedField:
+          $ref: '#/components/schemas/ILauncherTypeField'
+        restrictedHost:
+          description: Whether there is a host restriction
+          type: boolean
+        restrictedHosts:
+          description: The restricted hosts.
+          items:
+            $ref: '#/components/schemas/ICategorizedListItemValue'
+          type: array
+      type: object
+    LauncherTypePatchArgs:
+      description: Patch a launcher type
+      properties:
+        data:
+          $ref: '#/components/schemas/LauncherTypePatchData'
+      type: object
+    PrepareLauncherArgs:
+      description: Prepare Launcher Options
+      required:
+      - secretId
+      - launcherTypeId
+      properties:
+        launcherTypeId:
+          description: Launcher Type Id
+          type: integer
+          format: int32
+        promptFieldValue:
+          description: User-provided response to prompt, e.g. machine name
+          type: string
+        secretId:
+          description: Secret Id
+          type: integer
+          format: int32
+        siteId:
+          description: Site Id
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    CustomLauncherModel:
+      description: CustomLauncher
+      properties:
+        additionalProcessesToRecord:
+          description: The additional process to record if record multiple windows is set to true
+          type: string
+        batchFileData:
+          description: The batch file data
+          type: string
+          format: binary
+        batchFileId:
+          description: The batch file id
+          type: integer
+          format: int32
+          nullable: true
+        batchFileName:
+          description: The batch file name
+          type: string
+        charactersToEscape:
+          description: Denotes a group of characters to escape
+          type: string
+        childLauncherId:
+          description: The ID of the child launcher associated to this launcher
+          type: integer
+          format: int32
+          nullable: true
+        escapeCharacter:
+          description: Denotes an escape character
+          type: string
+        launchAsSecretCredentials:
+          description: Determines whether to launch as secret credentials
+          type: boolean
+        loadUserProfile:
+          description: Determines whether to load user profile if launch as secret credentials is set to true
+          type: boolean
+        macProcessArguments:
+          description: the updated mac process arguments
+          type: string
+        macProcessName:
+          description: The updated mac process name
+          type: string
+        overrideDisallowAdditionalParametersInQuotes:
+          description: Determines whether to wrap parameters in quotes
+          type: boolean
+        preserveSSHClientProcess:
+          description: Determines whether to preserve ssh client
+          type: boolean
+        processArguments:
+          description: The process arguments
+          type: string
+        processName:
+          description: The process name
+          type: string
+        rdsCredentialsSecretId:
+          description: The rds credentials secret ID
+          type: integer
+          format: int32
+          nullable: true
+        rdsCredentialsSecretName:
+          description: The rds credentials secret name
+          type: string
+        rdsServerHostname:
+          description: The rds server hostname
+          type: string
+        rdsServerPort:
+          description: The rds server port
+          type: integer
+          format: int32
+          nullable: true
+        recordKeystrokes:
+          description: Determines whether to record keystrokes
+          type: boolean
+        recordMultipleWindows:
+          description: Determines whether to record multiple windows
+          type: boolean
+        runType:
+          description: The run type id for the launcher
+          type: integer
+          format: int32
+        shellScriptData:
+          description: The shell script data
+          type: string
+          format: binary
+        shellScriptId:
+          description: The shell script id
+          type: integer
+          format: int32
+          nullable: true
+        shellScriptName:
+          description: The shell script name
+          type: string
+        useSFTPTunnel:
+          description: Determines whether to use sftp tunnel to allow multiple data connections
+          type: boolean
+        useShellExecute:
+          description: Determines whether to use shell execute
+          type: boolean
+        useSSHTunnel:
+          description: Determines whether to us ssh tunnel
+          type: boolean
+      type: object
+    PagingOfLauncherSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/LauncherSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    LauncherTypeModelV2:
+      description: A definition for a launcher
+      properties:
+        active:
+          description: Launcher type is active
+          type: boolean
+        additionalPromptField:
+          description: Determines whether to include additional prompts for the launcher
+          type: boolean
+        additionalPromptFieldName:
+          description: The name of the additional prompt
+          type: string
+        application:
+          description: Launcher type id
+          type: string
+        canGetProxyCredentials:
+          description: Method, denotes if can get proxy credentials
+          type: boolean
+        canUseSSHKey:
+          description: Method, denotes if you can use ssh key
+          type: boolean
+        concurrencyId:
+          description: The concurrency ID
+          type: string
+        customLauncher:
+          $ref: '#/components/schemas/CustomLauncherModel'
+        customLauncherId:
+          description: The custom launcher ID associated with the launcher
+          type: integer
+          format: int32
+          nullable: true
+        isCustomLauncher:
+          description: Method, denotes if is custom launcher
+          type: boolean
+        isPuttyLauncherType:
+          description: Method, denotes if is putty launcher
+          type: boolean
+        isRDPReady:
+          description: Method, denotes if is rdp ready
+          type: boolean
+        isSessionConnectorLauncher:
+          description: Method, denotes if is session connector launcher
+          type: boolean
+        isSystemInternalLauncherType:
+          description: Method, denotes if is system internal launcher
+          type: boolean
+        lastModifiedDate:
+          description: Date of last modification
+          type: string
+          format: date-time
+        launcherTypeId:
+          description: Launcher type id
+          type: integer
+          format: int32
+        launcherTypeName:
+          description: Launcher type name
+          type: string
+        mstscLauncherOption:
+          description: Determines whether mstsc option is enabled
+          type: boolean
+      type: object
+    LauncherLookup:
+      description: Simple launcher representation
+      properties:
+        id:
+          description: Launcher ID
+          type: integer
+          format: int32
+        value:
+          description: Launcher name
+          type: string
+      type: object
+    FileAttachmentModel:
+      description: A definition for a file attachment
+      properties:
+        fileAttachmentId:
+          description: File attachment id
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    LauncherTypeCreateData:
+      description: Create launcher type definition
+      properties:
+        active:
+          description: Launcher type is active
+          type: boolean
+        additionalProcessesToRecord:
+          description: The additional process to record if record multiple windows is set to true
+          type: string
+        additionalPromptField:
+          description: Determines whether to include additional prompts for the launcher
+          type: boolean
+        additionalPromptFieldName:
+          description: The name of the additional prompt
+          type: string
+        application:
+          description: Launcher type id
+          type: string
+        batchFileId:
+          description: The batch file id
+          type: integer
+          format: int32
+          nullable: true
+        charactersToEscape:
+          description: Denotes a group of characters to escape
+          type: string
+        childLauncherId:
+          description: The ID of the child launcher associated to this launcher
+          type: integer
+          format: int32
+          nullable: true
+        escapeCharacter:
+          description: Denotes an escape character
+          type: string
+        launchAsSecretCredentials:
+          description: Determines whether to launch as secret credentials
+          type: boolean
+        launcherTypeName:
+          description: The name for this launcher type
+          type: string
+        loadUserProfile:
+          description: Determines whether to load user profile if launch as secret credentials is set to true
+          type: boolean
+        macProcessArguments:
+          description: the updated mac process arguments
+          type: string
+        macProcessName:
+          description: The updated mac process name
+          type: string
+        mstscLauncherOption:
+          description: The mstsc launcher option
+          type: boolean
+        overrideDisallowAdditionalParametersInQuotes:
+          description: Determines whether to wrap parameters in quotes
+          type: boolean
+        preserveSSHClientProcess:
+          description: Determines whether to preserve ssh client
+          type: boolean
+        processArguments:
+          description: The process arguments
+          type: string
+        processName:
+          description: The process name
+          type: string
+        rdsCredentialsSecretId:
+          description: The rds credentials secret ID
+          type: integer
+          format: int32
+          nullable: true
+        rdsServerHostname:
+          description: The rds server hostname
+          type: string
+        rdsServerPort:
+          description: The rds server port
+          type: integer
+          format: int32
+          nullable: true
+        recordKeystrokes:
+          description: Determines whether to record keystrokes
+          type: boolean
+        recordMultipleWindows:
+          description: Determines whether to record multiple windows
+          type: boolean
+        runType:
+          description: The run type id for the launcher
+          type: integer
+          format: int32
+        shellScriptId:
+          description: The updated shell script id
+          type: integer
+          format: int32
+          nullable: true
+        useSFTPTunnel:
+          description: Determines whether to use sftp tunnel to allow multiple data connections
+          type: boolean
+        useShellExecute:
+          description: Determines whether to use shell execute
+          type: boolean
+        useSSHTunnel:
+          description: Determines whether to us ssh tunnel
+          type: boolean
+      type: object
+    LauncherTypeCreateArgs:
+      description: Create a launcher type
+      properties:
+        data:
+          $ref: '#/components/schemas/LauncherTypeCreateData'
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

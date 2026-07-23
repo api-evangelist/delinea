@@ -1,0 +1,814 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations SshCipherSuite API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: SshCipherSuite
+  description: SshCipherSuiteController
+paths:
+  /v1/ssh-cipher-suite/search:
+    get:
+      tags:
+      - SshCipherSuite
+      summary: Search SshCipherSuites
+      description: Search, filter, sort, and page SSH Cipher Suites
+      operationId: SshCipherSuiteService_SearchCipherSuite
+      parameters:
+      - name: filter.includeActive
+        in: query
+        description: Should include active
+        required: false
+        schema:
+          type: boolean
+      - name: filter.includeInactive
+        in: query
+        description: Should include inactive
+        required: false
+        schema:
+          type: boolean
+      - name: filter.searchTerm
+        in: query
+        description: SSH Cipher Suite search term
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: SshCipherSuite search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSshCipherSuiteSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/ssh-cipher-suite/{id}:
+    get:
+      tags:
+      - SshCipherSuite
+      summary: Find SshCipherSuite
+      description: Find a SSH Cipher Suite by Id
+      operationId: SshCipherSuiteService_Get
+      parameters:
+      - name: id
+        in: path
+        description: SSH Cipher Suite Id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: SshCipherSuite detail object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshCipherSuiteModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - SshCipherSuite
+      summary: Udpate a SSH Cipher Suite
+      description: Update an existing SSH Cipher Suite using the existing SSH Cipher Suite's ID
+      operationId: SshCipherSuiteService_UpdateSshCipherSuite
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SshCipherSuitePatchArgs'
+        description: SshCipherSuiteUpdateArgs
+      responses:
+        '200':
+          description: SshCipherSuite Summary Object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshCipherSuiteSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/ssh-ciphers/search:
+    get:
+      tags:
+      - SshCipherSuite
+      summary: Find SshCiphers
+      description: Find a SSH Ciphers
+      operationId: SshCipherSuiteService_SearchCipher
+      parameters:
+      - name: filter.algorithmType
+        in: query
+        description: SSH Cipher algorithm type
+        required: false
+        schema:
+          type: string
+      - name: filter.searchTerm
+        in: query
+        description: SSH Cipher search term
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: SshCiphers objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshCiphersModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/ssh-cipher-suite/{id}/audit:
+    get:
+      tags:
+      - SshCipherSuite
+      summary: Get SSH Cipher Suite Audits
+      description: Retrieve audits for the SSH Cipher Suites
+      operationId: SshCipherSuiteService_GetSshCipherSuiteAudits
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: filter.searchTerm
+        in: query
+        description: SSH Cipher Suite Audit Search Term
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: A paged list of audit entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSshCipherSuiteAuditModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/ssh-cipher-suite:
+    post:
+      tags:
+      - SshCipherSuite
+      summary: Create SshCipherSuite
+      description: Create a new SSH Cipher Suite
+      operationId: SshCipherSuiteService_CreateSshCipherSuite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SshCipherSuiteCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: SshCipherSuite Summary Object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshCipherSuiteSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    SshCipherSuiteAuditModel:
+      description: SSH Cipher Suite audit
+      properties:
+        action:
+          description: Action
+          type: string
+        auditId:
+          description: Audit ID
+          type: string
+          format: uuid
+        date:
+          description: Date
+          type: string
+        displayName:
+          description: User Display Name
+          type: string
+        notes:
+          description: Notes
+          type: string
+      type: object
+    SshCipherSuiteSummaryModel:
+      description: SSH Cipher Suite summary
+      properties:
+        active:
+          description: Indicates if the SSH Cipher Suite is active
+          type: boolean
+        description:
+          description: SSH Cipher Suite Descrition
+          type: string
+        encryptionAlgorithms:
+          description: SSH Cipher Suite Encryption Algorithms
+          type: string
+        encryptionAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite Encryption Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        keyExchangeAlgorithms:
+          description: SSH Cipher Suite Key Exchange Algorithms
+          type: string
+        keyExchangeAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite Key Exchange Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        macAlgorithms:
+          description: SSH Cipher Suite Mac Algorithms
+          type: string
+        macAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite Mac Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        name:
+          description: SSH Cipher Suite Name
+          type: string
+        pkAlgorithms:
+          description: SSH Cipher Suite Public Key Algorithms
+          type: string
+        pkAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite Public Key Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        sshCipherSuiteConfigurationId:
+          description: SSH Cipher Suite Id
+          type: string
+          format: uuid
+          nullable: true
+      type: object
+    SshCipherSuiteCreateModel:
+      description: SSH Cipher Suite Create
+      properties:
+        active:
+          description: Indicates if the SSH Cipher Suite is active
+          type: boolean
+        description:
+          description: SSH Cipher Suite Descrition
+          type: string
+        encryptionAlgorithms:
+          description: SSH Cipher Suite Encryption Algorithms
+          type: string
+        keyExchangeAlgorithms:
+          description: SSH Cipher Suite Key Exchange Algorithms
+          type: string
+        macAlgorithms:
+          description: SSH Cipher Suite Mac Algorithms
+          type: string
+        name:
+          description: SSH Cipher Suite Name
+          type: string
+        publicKeyAlgorithms:
+          description: SSH Cipher Suite Public Key Algorithms
+          type: string
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    SshCipherSuitePatchModel:
+      description: SSH Cipher Suite Patch
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        description:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        encryptionAlgorithms:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        keyExchangeAlgorithms:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        macAlgorithms:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        pkAlgorithms:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        sshCipherSuiteConfigurationId:
+          description: SSH Cipher Suite Id
+          type: string
+          format: uuid
+      type: object
+    PagingOfSshCipherSuiteAuditModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SshCipherSuiteAuditModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    SshCipherSuiteModel:
+      description: SSH Cipher Suite
+      properties:
+        active:
+          description: Indicates if the SSH Cipher Suite is active
+          type: boolean
+        description:
+          description: SSH Cipher Suite Descrition
+          type: string
+        encryptionAlgorithms:
+          description: SSH Cipher Suite Encryption Algorithms
+          type: string
+        encryptionAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite Encryption Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        keyExchangeAlgorithms:
+          description: SSH Cipher Suite Key Exchange Algorithms
+          type: string
+        keyExchangeAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite Key Exchange Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        macAlgorithms:
+          description: SSH Cipher Suite Mac Algorithms
+          type: string
+        macAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite Mac Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        name:
+          description: SSH Cipher Suite Name
+          type: string
+        publicKeyAlgorithms:
+          description: SSH Cipher Suite Public Key Algorithms
+          type: string
+        publicKeyAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite PublicKey Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        sshCipherSuiteConfigurationId:
+          description: SSH Cipher Suite Id
+          type: string
+          format: uuid
+      type: object
+    SshCipherSuitePatchArgs:
+      description: SSH Cipher Suite Patch arguments
+      properties:
+        data:
+          $ref: '#/components/schemas/SshCipherSuitePatchModel'
+      type: object
+    SshCipherModel:
+      description: SSH Cipher
+      properties:
+        fipsCompliant:
+          description: SSH Cipher is FIPS compliant
+          type: boolean
+        name:
+          description: SSH Cipher name
+          type: string
+      type: object
+    SshCipherSuiteCreateArgs:
+      description: SSH Cipher Suite Creation Arguments
+      properties:
+        data:
+          $ref: '#/components/schemas/SshCipherSuiteCreateModel'
+      type: object
+    PagingOfSshCipherSuiteSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SshCipherSuiteSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    SshCiphersModel:
+      description: SSH Ciphers
+      properties:
+        ciphers:
+          description: SSH Ciphers list
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

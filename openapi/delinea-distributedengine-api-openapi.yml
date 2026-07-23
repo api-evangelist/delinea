@@ -1,0 +1,3245 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations DistributedEngine API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: DistributedEngine
+  description: View and maintain Distributed Engine integrations
+paths:
+  /v1/distributed-engine/configuration:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Distributed Engine Configuration
+      description: Retrieve the current settings for Distributed Engine configuration
+      operationId: DistributedEngineService_GetDistributedEngineConfiguration
+      responses:
+        '200':
+          description: Distributed Engines Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistributedEngineConfigurationModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - DistributedEngine
+      summary: Update Distributed Engine Configuration
+      description: Update the current settings for Distributed Engine configuration
+      operationId: DistributedEngineService_PatchDistributedEngineConfiguration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DistributedEngineConfigurationUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Updated Distributed Engine Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistributedEngineConfigurationModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site-connectors:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Search Site Connectors
+      description: Search Site Connectors
+      operationId: DistributedEngineService_SearchSiteConnectors
+      parameters:
+      - name: filter.includeInactive
+        in: query
+        description: IncludeInactive
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Site Connectors that matched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSiteConnectorSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site-connector/{id}:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Get Site Connector
+      description: Get Site Connector for passed in Id
+      operationId: DistributedEngineService_GetSiteConnector
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Site Connector if found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteConnectorViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - DistributedEngine
+      summary: Update Site Connector
+      description: Update Site Connector object with passed in Id
+      operationId: DistributedEngineService_UpdateSiteConnector
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteConnectorUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Updated Site Connector object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteConnectorViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site-connector/stub:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Get Site Connector Stub
+      description: Get Site Connector for passed in args
+      operationId: DistributedEngineService_GetSiteConnectorStub
+      parameters:
+      - name: queueType
+        in: query
+        description: QueueType
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Stub of a Site Connector model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteConnectorViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site-connector/{siteConnectorId}/credentials:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Get Site Connector Credentials
+      description: Get Site Connector Credentials
+      operationId: DistributedEngineService_GetSiteConnectorCredentials
+      parameters:
+      - name: siteConnectorId
+        in: path
+        description: siteConnectorId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Site Connector Credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteConnectorCredentialsModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/engines:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Search Engines
+      description: Search Engines
+      operationId: DistributedEngineService_SearchEngines
+      parameters:
+      - name: filter.activationStatus
+        in: query
+        description: Only return engines with this activation status
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+      - name: filter.connectionStatus
+        in: query
+        description: Only return engines with this connection status
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+      - name: filter.friendlyName
+        in: query
+        description: Only return engines with a friendly name that contains this text
+        required: false
+        schema:
+          type: string
+      - name: filter.onlyIncludeRequiringAction
+        in: query
+        description: Only include engines that require action.  For example, pending but not deleted or no site assigned.
+        required: false
+        schema:
+          type: boolean
+      - name: filter.siteId
+        in: query
+        description: Only return engines for this site
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Engines that matched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfEngineSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/engine-settings/site/{siteId}:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Get Default Engine Settings for Site
+      description: Get Default Engine Settings object having passed in Site Id
+      operationId: DistributedEngineService_GetEngineSettingsForSite
+      parameters:
+      - name: siteId
+        in: path
+        description: siteId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Get Engine Settings object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngineSettingsModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site/{siteId}/engine-audits:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Get Engine Audits for Site
+      description: Get Engine Audits having passed in Site Id
+      operationId: DistributedEngineService_GetEngineAuditsForSite
+      parameters:
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: filter.engineId
+        in: query
+        description: EngineId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.searchTerm
+        in: query
+        description: SearchTerm
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: siteId
+        in: path
+        description: siteId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Get Engine Audit Summary object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfEngineAuditSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/engine-settings/{engineId}:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Get Engine Settings
+      description: Get Engine Settings object having passed in Engine Id
+      operationId: DistributedEngineService_GetEngineSettings
+      parameters:
+      - name: engineId
+        in: path
+        description: engineId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Get Engine Settings object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngineSettingsModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/sites:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Search Sites
+      description: Search Sites
+      operationId: DistributedEngineService_SearchSites
+      parameters:
+      - name: filter.includeInactive
+        in: query
+        description: Include inactive sites
+        required: false
+        schema:
+          type: boolean
+      - name: filter.includeSiteMetrics
+        in: query
+        description: When true metrics are included for returned sites such as how many inactive or active sites
+        required: false
+        schema:
+          type: boolean
+      - name: filter.onlyIncludeSitesThatCanAddNewEngines
+        in: query
+        description: Only returns sites that can have new engines added
+        required: false
+        schema:
+          type: boolean
+      - name: filter.siteId
+        in: query
+        description: Return the site with this ID
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.siteName
+        in: query
+        description: Return sites that partially match this name
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Sites that matched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSiteSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site/{id}:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Get Site
+      description: Get Site for passed in Id
+      operationId: DistributedEngineService_GetSite
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Site if found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteBasicModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - DistributedEngine
+      summary: Patch Site
+      description: Patch Site object having passed in Id
+      operationId: DistributedEngineService_PatchSite
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteUpdateArgs'
+        description: args
+      responses:
+        '200':
+          description: Patch Site object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteBasicModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site/stub:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Get Site Stub
+      description: Get Site for passed in args
+      operationId: DistributedEngineService_GetSiteStub
+      responses:
+        '200':
+          description: Stub of a Site model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteBasicModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site/{id}/audit:
+    get:
+      tags:
+      - DistributedEngine
+      summary: GetSiteAudits
+      description: Get audits by Site Id
+      operationId: DistributedEngineService_GetSiteAudits
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged List of Audits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSiteAuditSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site/{id}/logs:
+    get:
+      tags:
+      - DistributedEngine
+      summary: SearchSiteLogs
+      description: Search site logs by Site Id
+      operationId: DistributedEngineService_SearchSiteLogs
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.engineId
+        in: query
+        description: Filter by a specific engine ID
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.searchTerm
+        in: query
+        description: Term used to search the Engine Name and/or the Message of the Site Log
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged List of Logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSiteLogSummaryModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site-connector/{id}/download-memorymq:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Download Memory MQ
+      description: Downloads MemoryMQ
+      operationId: DistributedEngineService_DownloadMemoryMq
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: MemoryMQ File Download
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileStream'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/{id}/server-capabilities:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Get Server Capabilities
+      description: Gets the server capabilities of an engine's server
+      operationId: DistributedEngineService_GetServerCapabilities
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Returns the server capabilities of an engine's server
+          content:
+            application/json:
+              schema:
+                description: Returns the server capabilities of an engine's server
+                items:
+                  $ref: '#/components/schemas/EngineServerCapabilitiesSummary'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/download-distributed-engine:
+    get:
+      tags:
+      - DistributedEngine
+      summary: Download Distributed Engine
+      description: Downloads Distributed Engine
+      operationId: DistributedEngineService_DownloadDistributedEngine
+      parameters:
+      - name: is64Bit
+        in: query
+        description: is64Bit
+        required: false
+        schema:
+          type: boolean
+      - name: siteId
+        in: query
+        description: siteId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: DistributedEngine File Download
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileStream'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/configuration/engine-latest-version:
+    patch:
+      tags:
+      - DistributedEngine
+      summary: Updated Distributed Engine Version
+      description: Update the current settings for Distributed Engine configuration with the latest DE version specified in latest version file if it exists.
+      operationId: DistributedEngineService_PatchDistributedEngineLatestVersionConfiguration
+      responses:
+        '200':
+          description: Updated Distributed Engine Version
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngineLatestVersionResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/engine-settings/{engineSettingsId}:
+    patch:
+      tags:
+      - DistributedEngine
+      summary: Patch Engine Settings
+      description: Patch Engine Settings object having passed in the Id
+      operationId: DistributedEngineService_PatchEngineSettings
+      parameters:
+      - name: engineSettingsId
+        in: path
+        description: engineSettingsId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/EngineSettingsUpdateArgs'
+      responses:
+        '200':
+          description: Patch Engine Settings object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngineSettingsModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/engine-settings/engine/{engineId}:
+    patch:
+      tags:
+      - DistributedEngine
+      summary: Patch Engine Settings For Engine
+      description: Patch Engine Settings object having passed in the Engine Id
+      operationId: DistributedEngineService_PatchEngineSettingsForEngine
+      parameters:
+      - name: engineId
+        in: path
+        description: engineId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/EngineSettingsUpdateArgs'
+      responses:
+        '200':
+          description: Patch Engine Settings object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngineSettingsModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site-connector:
+    post:
+      tags:
+      - DistributedEngine
+      summary: Create Site Connector
+      description: Create Site Connector and returns model
+      operationId: DistributedEngineService_CreateSiteConnector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteConnectorCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: Site Connector object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteConnectorViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site-connector/{siteConnectorId}/validate:
+    post:
+      tags:
+      - DistributedEngine
+      summary: Validate Site Connector
+      description: Validate Site Connector and returns model
+      operationId: DistributedEngineService_ValidateSiteConnector
+      parameters:
+      - name: siteConnectorId
+        in: path
+        description: siteConnectorId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Site Connector validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteConnectorValidationResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/update-engine-status:
+    post:
+      tags:
+      - DistributedEngine
+      summary: Activate Engine
+      description: Activate the specified engine
+      operationId: DistributedEngineService_UpdateEngineStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EngineActivationRequestArgs'
+        description: args
+      responses:
+        '200':
+          description: Engine Activation Result Model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngineActivationResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site/{siteId}/validate-connectivity:
+    post:
+      tags:
+      - DistributedEngine
+      summary: Validate Site Connectivity
+      description: Validate Site Connectivity within a timeout.
+      operationId: DistributedEngineService_ValidateSiteConnectivity
+      parameters:
+      - name: siteId
+        in: path
+        description: Id of Site
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteConnectivityValidationArgs'
+        description: args
+      responses:
+        '200':
+          description: SiteConnectivityValidationResult object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteConnectivityValidationResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site:
+    post:
+      tags:
+      - DistributedEngine
+      summary: Create Site
+      description: Create Site and returns model
+      operationId: DistributedEngineService_CreateSite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteCreateArgs'
+        description: args
+      responses:
+        '200':
+          description: Site object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteBasicModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/distributed-engine/site/{id}/reassign:
+    post:
+      tags:
+      - DistributedEngine
+      summary: Reassign Secrets From the Site
+      description: Reassign Secrets From the Site
+      operationId: DistributedEngineService_ReassignSecrets
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReassignSecretsArgs'
+        description: args
+      responses:
+        '200':
+          description: The site model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteBasicModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    PagingOfEngineAuditSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EngineAuditSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    SiteConnectorSummaryModel:
+      description: Site Connector Summary
+      properties:
+        active:
+          description: Whether Site Connector is active or not
+          type: boolean
+        hostName:
+          description: Host Name of Site Connector
+          type: string
+        queueType:
+          description: Queue Type of Site Connector
+          type: string
+        siteConnectorId:
+          description: Id of Site Connector
+          type: integer
+          format: int32
+        siteConnectorName:
+          description: Name of Site Connector
+          type: string
+        validated:
+          description: Whether Site Connector has been validated or not
+          type: boolean
+        version:
+          description: Version of Site Connector
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    SiteConnectivityValidationResult:
+      description: Result of site connectivity validation
+      properties:
+        validationMessage:
+          description: When false, may contain reason for failure
+          type: string
+        validationSuccess:
+          description: True if successfully validated
+          type: boolean
+      type: object
+    EngineServerCapabilitiesSummary:
+      description: EngineServerCapabilitiesSummary[]
+      properties:
+        lastModifiedDate:
+          description: When the capability was last updated
+          type: string
+          format: date-time
+        name:
+          description: Which capability
+          type: string
+        value:
+          description: The server's capability
+          type: string
+      type: object
+    ViewFieldLink:
+      description: AdditionalLinks
+      properties:
+        isExternal:
+          description: IsExternal
+          type: boolean
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
+          type: string
+      type: object
+    IntPtr:
+      description: Handle
+      properties: {}
+      type: object
+    SiteConnectorValidationResult:
+      description: Result of site connector validation
+      properties:
+        validationMessage:
+          description: When false, may contain reason for failure
+          type: string
+        validationSuccess:
+          description: True if successfully validated
+          type: boolean
+      type: object
+    ViewFieldValueOfBoolean:
+      description: When enabled, the log will be able to be viewed online
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: boolean
+      type: object
+    EngineActivationResult:
+      description: The result of the engine status update
+      properties:
+        engineId:
+          description: Engine ID
+          type: integer
+          format: int32
+        engineName:
+          description: The name of the engine
+          type: string
+        error:
+          description: If there was an error
+          type: string
+        success:
+          description: Whether or not the status change was successful
+          type: boolean
+      type: object
+    SiteConnectorCreateModel:
+      description: Site Connector Create Model
+      properties:
+        active:
+          description: Whether Site Connector is active or not
+          type: boolean
+        hostName:
+          description: Host Name of Site Connector
+          type: string
+        port:
+          description: Port of Site Connector
+          type: integer
+          format: int32
+        queueType:
+          $ref: '#/components/schemas/MessageQueueType'
+        sharedAccessKeyName:
+          description: Shared Access Key Name of Site Connector
+          type: string
+        sharedAccessKeyValue:
+          description: Shared Access Key Value of Site Connector
+          type: string
+        siteConnectorName:
+          description: Name of Site Connector
+          type: string
+        sslCertificateThumbprint:
+          description: SSL Certificate Thumbprint of Site Connector
+          type: string
+        useSsl:
+          description: Whether Site Connector uses SSL or not
+          type: boolean
+      type: object
+    SiteCreateArgs:
+      description: SiteCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/SiteCreateModel'
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    SiteConnectorViewModel:
+      description: Site Connector View Model
+      properties:
+        active:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        hostName:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        port:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        queueType:
+          $ref: '#/components/schemas/ViewFieldDropDownValueOfMessageQueueType'
+        sharedAccessKeyName:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        sharedAccessKeyValue:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        siteConnectorId:
+          description: Id of Site Connector
+          type: integer
+          format: int32
+        siteConnectorName:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        sslCertificateThumbprint:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        useSsl:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        validated:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+      type: object
+    PagingOfSiteConnectorSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SiteConnectorSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfProcessingLocationType:
+      description: Processing Location of Site
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/ProcessingLocationType'
+      type: object
+    SiteBasicModel:
+      description: Basic Site Model
+      properties:
+        active:
+          description: Is Site Active
+          type: boolean
+        enableCredSspForWinRm:
+          description: Enable CredSSP For WinRM
+          type: boolean
+          nullable: true
+        enableRdpProxy:
+          description: Enable RDP Proxy
+          type: boolean
+        enableSshProxy:
+          description: Enable SSH Proxy
+          type: boolean
+        heartbeatInterval:
+          description: Heartbeat Interval of Site
+          type: integer
+          format: int32
+        jumpBoxAvailablePortRange:
+          description: JumpBoxAvailablePortRange
+          type: string
+        powershellSecretId:
+          description: Powershell Secret Id of Site if set
+          type: integer
+          format: int32
+          nullable: true
+        processingLocation:
+          $ref: '#/components/schemas/ProcessingLocationType'
+        rdpProxyPort:
+          description: RDP Proxy Port
+          type: integer
+          format: int32
+          nullable: true
+        rdpProxyPortInherited:
+          description: RDP Proxy Port Inherited
+          type: boolean
+        secretCount:
+          description: Secret Count of Site
+          type: integer
+          format: int32
+        siteConnectorId:
+          description: Id of Site Connector of Site
+          type: integer
+          format: int32
+          nullable: true
+        siteId:
+          description: Id of Site
+          type: integer
+          format: int32
+        siteName:
+          description: Name of Site
+          type: string
+        sshProxyPort:
+          description: SSH Proxy Port
+          type: integer
+          format: int32
+          nullable: true
+        sshProxyPortInherited:
+          description: SSH Proxy Port Inherited
+          type: boolean
+        systemSite:
+          description: Is this a system site
+          type: boolean
+        winRmEndPointUrl:
+          description: WinRM End Point URL of Site
+          type: string
+      type: object
+    DistributedEngineConfigurationUpdateArgs:
+      description: DistributedEngineConfigurationUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DistributedEngineConfigurationUpdateModel'
+      type: object
+    ViewFieldValueOfString:
+      description: GeneratedToken
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+      type: object
+    SiteCreateModel:
+      description: Site Create Model
+      properties:
+        active:
+          description: Is Site Active
+          type: boolean
+        enableCredSspForWinRm:
+          description: Enable CredSSP For WinRM
+          type: boolean
+          nullable: true
+        enableRdpProxy:
+          description: Enable RDP Proxy
+          type: boolean
+        enableSshProxy:
+          description: Enable SSH Proxy
+          type: boolean
+        heartbeatInterval:
+          description: Heartbeat Interval of Site
+          type: integer
+          format: int32
+        powershellSecretId:
+          description: Powershell Secret Id of Site if set
+          type: integer
+          format: int32
+          nullable: true
+        rdpProxyPort:
+          description: RDP Proxy Port
+          type: integer
+          format: int32
+          nullable: true
+        siteConnectorId:
+          description: Id of Site Connector of Site
+          type: integer
+          format: int32
+        siteName:
+          description: Name of Site
+          type: string
+        sshProxyPort:
+          description: SSH Proxy Port
+          type: integer
+          format: int32
+          nullable: true
+        winRmEndPointUrl:
+          description: WinRM End Point URL of Site
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    PagingOfEngineSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EngineSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    EngineSettingsUpdateArgs:
+      description: EngineSettingsUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EngineSettingsUpdateModel'
+      type: object
+    EngineStatusChangeModel:
+      description: Change engine status
+      properties:
+        callbackInterval:
+          description: When activating an engine if SiteId is null this will be the default callback interval
+          type: integer
+          format: int32
+        changeType:
+          $ref: '#/components/schemas/EngineStatusChangeType'
+        engineId:
+          description: The ID of the engine to change status
+          type: integer
+          format: int32
+        siteConnectorId:
+          description: When activating an engine if SiteId is null this is the site connector that will be used.
+          type: integer
+          format: int32
+          nullable: true
+        siteId:
+          description: When activating an engine SiteId is required
+          type: integer
+          format: int32
+          nullable: true
+        siteName:
+          description: When activating an engine if SiteId is null you can pass a SiteName and it will create the site and then activate the engine
+          type: string
+      type: object
+    EngineActivationRequestArgs:
+      description: EngineActivationRequestArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EngineActivationRequestModel'
+      type: object
+    MessageQueueType:
+      description: Value
+      properties: {}
+      type: string
+      enum:
+      - MemoryMq
+      - RabbitMq
+      - AzureServiceBus
+    ProcessingLocationType:
+      description: Processing Location of Site
+      properties: {}
+      type: string
+      enum:
+      - UseWebSite
+      - UseDistributedEngine
+    EngineActivationRequestModel:
+      description: Data
+      properties:
+        engines:
+          description: Engines
+          items:
+            $ref: '#/components/schemas/EngineStatusChangeModel'
+          type: array
+      type: object
+    UpdateFieldValueOfOptionalLog4NetLevel:
+      description: Log Level
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+          nullable: true
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    SiteAuditSummary:
+      description: Site Audit Summary
+      properties:
+        action:
+          description: Site Audit Action
+          type: string
+        dateRecorded:
+          description: Site Audit DateRecorded
+          type: string
+          format: date-time
+        notes:
+          description: Site Audit Notes
+          type: string
+        siteAuditId:
+          description: Site Audit Id
+          type: integer
+          format: int32
+        userName:
+          description: Site Audit UserName
+          type: string
+      type: object
+    EngineSummaryModel:
+      description: Query results
+      properties:
+        activationStatus:
+          $ref: '#/components/schemas/EngineActivationStatusType'
+        bindAddress:
+          description: BindAddress
+          type: string
+        canCancelUpdateVersion:
+          description: CanCancelUpdateVersion
+          type: boolean
+        canUpdateVersion:
+          description: CanUpdateVersion
+          type: boolean
+        connectionStatus:
+          $ref: '#/components/schemas/EngineConnectionStatusType'
+        currentVersion:
+          description: CurrentVersion
+          type: string
+        engineId:
+          description: EngineId
+          type: integer
+          format: int32
+        friendlyName:
+          description: FriendlyName
+          type: string
+        hostName:
+          description: HostName
+          type: string
+        isBlockedByNet48:
+          description: IsBlockedByNet48
+          type: boolean
+        lastConnected:
+          description: LastConnected
+          type: string
+          format: date-time
+          nullable: true
+        latestVersion:
+          description: LatestVersion
+          type: string
+        pendingUpdate:
+          description: PendingUpdate
+          type: boolean
+        timeMismatch:
+          description: TimeMismatch
+          type: boolean
+        timeMismatchSeconds:
+          description: TimeMismatchSeconds
+          type: integer
+          format: int64
+          nullable: true
+      type: object
+    SafeFileHandle:
+      description: SafeFileHandle
+      properties:
+        isClosed:
+          description: IsClosed
+          type: boolean
+        isInvalid:
+          description: IsInvalid
+          type: boolean
+      type: object
+    ReassignSecretsModel:
+      description: Data
+      properties:
+        disableSite:
+          description: Should the site be disabled as part of the reassign
+          type: boolean
+          nullable: true
+        newSiteId:
+          description: The new site ID to reassign to
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    FileStream:
+      description: FileStream
+      properties:
+        canRead:
+          description: CanRead
+          type: boolean
+        canSeek:
+          description: CanSeek
+          type: boolean
+        canTimeout:
+          description: CanTimeout
+          type: boolean
+        canWrite:
+          description: CanWrite
+          type: boolean
+        handle:
+          $ref: '#/components/schemas/IntPtr'
+        isAsync:
+          description: IsAsync
+          type: boolean
+        length:
+          description: Length
+          type: integer
+          format: int64
+        name:
+          description: Name
+          type: string
+        position:
+          description: Position
+          type: integer
+          format: int64
+        readTimeout:
+          description: ReadTimeout
+          type: integer
+          format: int32
+        safeFileHandle:
+          $ref: '#/components/schemas/SafeFileHandle'
+        writeTimeout:
+          description: WriteTimeout
+          type: integer
+          format: int32
+      type: object
+    EngineActivationStatusType:
+      description: ActivationStatus
+      properties: {}
+      type: string
+      enum:
+      - Pending
+      - Activated
+      - Inactive
+      - Deleted
+    EngineActivationResultModel:
+      description: EngineActivationResultModel
+      properties:
+        results:
+          description: Results
+          items:
+            $ref: '#/components/schemas/EngineActivationResult'
+          type: array
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    SiteUpdateArgs:
+      description: SiteUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/SiteUpdateModel'
+      type: object
+    EngineSettingsUpdateModel:
+      description: Data
+      properties:
+        adSyncEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        advancedAuditingEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        fipsEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        localAccountDiscoveryEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        logLevel:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalLog4NetLevel'
+        passwordChangingEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        rdpProxyEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        secretWorkflowEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        securityAnalyticsEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        serviceAccountManagementEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        sshProxyEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        sshTerminalEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+      type: object
+    UpdateFieldValueOfAzureServiceBusTransportType:
+      description: Azure Service Bus Transport Type
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/AzureServiceBusTransportType'
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    SiteConnectivityValidationArgs:
+      description: SiteConnectivityValidationArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/SiteConnectivityValidationModel'
+      type: object
+    EngineSettingsModel:
+      description: EngineSettingsModel
+      properties:
+        adSyncEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        advancedAuditingEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        engineId:
+          description: EngineId
+          type: integer
+          format: int32
+          nullable: true
+        engineSettingsId:
+          description: EngineSettingsId
+          type: integer
+          format: int32
+        fipsEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        localAccountDiscoveryEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        logLevel:
+          description: LogLevel
+          type: string
+          nullable: true
+        passwordChangingEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        rdpProxyEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        secretWorkflowEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        securityAnalyticsEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        serviceAccountManagementEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        siteId:
+          description: SiteId
+          type: integer
+          format: int32
+          nullable: true
+        sshProxyEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        sshTerminalEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+      type: object
+    EngineSettingBool:
+      description: AdSyncEnabled
+      properties:
+        canEdit:
+          description: CanEdit
+          type: boolean
+        display:
+          description: Display
+          type: boolean
+        enabled:
+          description: Enabled
+          type: boolean
+      type: object
+    PagingOfSiteAuditSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SiteAuditSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    DistributedEngineConfigurationUpdateModel:
+      description: The fields to update on the Distributed Engine Configuration
+      properties:
+        autoUpdateEnginesVersion:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        azureServiceBusTransportType:
+          $ref: '#/components/schemas/UpdateFieldValueOfAzureServiceBusTransportType'
+        callbackPort:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        callbackUrl:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        defaultCallbackIntervalSeconds:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        enableDistributedEngines:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        minimumRequiredDistributedEnginesVersion:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        protocol:
+          $ref: '#/components/schemas/UpdateFieldValueOfDistributedEngineProtocol'
+        responseBusSiteConnectorId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        secretHeartbeatMessageMinutesToLive:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        secretHeartbeatMessageRetryMinutes:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        secretPasswordChangeMessageMinutesToLive:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        secretPasswordChangeMessageRetryMinutes:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    EngineStatusChangeType:
+      description: The action to perform on the engine
+      properties: {}
+      type: string
+      enum:
+      - Activate
+      - Deactivate
+      - RemoveFromSite
+      - Delete
+      - UpdateVersion
+      - CancelUpdateVersion
+      - AssignToSite
+    SiteConnectorCredentialsModel:
+      description: The credentials that should exist in the site connector service
+      properties:
+        password:
+          description: The password that should exist in the site connector service
+          type: string
+        username:
+          description: The username that should exist in the site connector service
+          type: string
+      type: object
+    SiteConnectorUpdateModel:
+      description: Site Connector Update Model
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        hostName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        port:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        queueType:
+          $ref: '#/components/schemas/UpdateFieldValueOfMessageQueueType'
+        sharedAccessKeyName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        sharedAccessKeyValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        siteConnectorName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        sslCertificateThumbprint:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        useSsl:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+      type: object
+    EngineConnectionStatusType:
+      description: ConnectionStatus
+      properties: {}
+      type: string
+      enum:
+      - Offline
+      - Online
+      - Invalid
+      - OldVersion
+    ViewFieldValueOfInt32:
+      description: OrganizationId
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    DistributedEngineConfigurationModel:
+      description: Distributed Engine Configuration
+      properties:
+        autoUpdateEnginesVersion:
+          description: Always Update Engines Version
+          type: boolean
+        azureServiceBusTransportType:
+          $ref: '#/components/schemas/AzureServiceBusTransportType'
+        callbackPort:
+          description: Port of the Distributed Engines
+          type: integer
+          format: int32
+          nullable: true
+        callbackUrl:
+          description: Url of the Distributed Engines
+          type: string
+        defaultCallbackIntervalSeconds:
+          description: Default Callback Interval Seconds
+          type: integer
+          format: int32
+        enableDistributedEngines:
+          description: Whether Distributed Engines are enabled or not
+          type: boolean
+        engineVersionUpdateAvailable:
+          description: Engine Version Update Available
+          type: boolean
+        latestDistributedEnginesVersion:
+          description: Latest Distributed Engines Version
+          type: string
+        minimumRequiredDistributedEnginesVersion:
+          description: Minimum Required Distributed Engines Version
+          type: string
+        protocol:
+          $ref: '#/components/schemas/DistributedEngineProtocol'
+        responseBusSiteConnectorId:
+          description: Response Bus Site Connector
+          type: integer
+          format: int32
+          nullable: true
+        secretHeartbeatMessageMinutesToLive:
+          description: Secret Heartbeat Message Time to Live in Minutes
+          type: integer
+          format: int32
+        secretHeartbeatMessageRetryMinutes:
+          description: Secret Heartbeat Message Retry Time in Minutes
+          type: integer
+          format: int32
+        secretPasswordChangeMessageMinutesToLive:
+          description: Secret Password Change Message Time to Live in Minutes
+          type: integer
+          format: int32
+        secretPasswordChangeMessageRetryMinutes:
+          description: Secret Password Change Message Retry Time in Minutes
+          type: integer
+          format: int32
+        updateEnginesBannerMessage:
+          description: Update Engines Banner Message
+          type: string
+      type: object
+    EngineAuditSummary:
+      description: Query results
+      properties:
+        action:
+          description: Action
+          type: string
+        auditId:
+          description: AuditId
+          type: integer
+          format: int32
+        dateRecorded:
+          description: DateRecorded
+          type: string
+          format: date-time
+        engineName:
+          description: EngineName
+          type: string
+        notes:
+          description: Notes
+          type: string
+        user:
+          description: User
+          type: string
+      type: object
+    ViewFieldDropDownOption:
+      description: DropDownOptions
+      properties:
+        fieldDisplay:
+          description: FieldDisplay
+          type: string
+        fieldValue:
+          description: FieldValue
+          type: string
+      type: object
+    ReassignSecretsArgs:
+      description: ReassignSecretsArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/ReassignSecretsModel'
+      type: object
+    UpdateFieldValueOfDistributedEngineProtocol:
+      description: Protocol used by Distibuted Engine
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/DistributedEngineProtocol'
+      type: object
+    ViewFieldDropDownValueOfMessageQueueType:
+      description: Queue Type of Site Connector
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        dropDownOptions:
+          description: DropDownOptions
+          items:
+            $ref: '#/components/schemas/ViewFieldDropDownOption'
+          type: array
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          $ref: '#/components/schemas/MessageQueueType'
+      type: object
+    PagingOfSiteSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SiteSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    SiteLogSummaryModel:
+      description: Site Log Summary Model
+      properties:
+        dateRecorded:
+          description: Date Log Message was Recorded
+          type: string
+          format: date-time
+        engineName:
+          description: Name of Engine
+          type: string
+        message:
+          description: Message that was Logged
+          type: string
+      type: object
+    DistributedEngineProtocol:
+      description: Protocol used by Distibuted Engines
+      properties: {}
+      type: string
+      enum:
+      - Http
+      - Https
+      - Tcp
+    UpdateFieldValueOfOptionalGuid:
+      description: SSH Cipher Suite
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+          format: uuid
+          nullable: true
+      type: object
+    SiteConnectorUpdateArgs:
+      description: SiteConnectorUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/SiteConnectorUpdateModel'
+      type: object
+    EngineLatestVersionResult:
+      description: Result of Engine Latest Version Command
+      properties:
+        latestVersion:
+          description: Latest Available Version of Distributed Engine
+          type: string
+      type: object
+    UpdateFieldValueOfMessageQueueType:
+      description: Queue Type of Site Connector
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/MessageQueueType'
+      type: object
+    SiteConnectivityValidationModel:
+      description: Data
+      properties:
+        timeout:
+          description: Millisecond timeout length for testing connectivity.
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfOptionalBoolean:
+      description: Use RADIUS Username for DUO
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+          nullable: true
+      type: object
+    PagingOfSiteLogSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SiteLogSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    SiteConnectorCreateArgs:
+      description: SiteConnectorCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/SiteConnectorCreateModel'
+      type: object
+    AzureServiceBusTransportType:
+      description: Azure Service Bus Transport Type
+      properties: {}
+      type: string
+      enum:
+      - Amqp
+      - AmqpWebSockets
+    SiteUpdateModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableCredSspForWinRm:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        enableRdpProxy:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableSshProxy:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        heartbeatInterval:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        powershellSecretId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        processingLocation:
+          $ref: '#/components/schemas/UpdateFieldValueOfProcessingLocationType'
+        rdpProxyPort:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        siteConnectorId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        siteName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        sshCipherSuite:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalGuid'
+        sshProxyPort:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        winRmEndPointUrl:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    SiteMetric:
+      description: List of Metrics for this site such as ConnectionStatusOffline, ConnectionStatusOnline, ActivationStatusPending, LostConnection, and more.  Only returned on a search when IncludeSiteMetrics is true.
+      properties:
+        metricDisplayName:
+          description: MetricDisplayName
+          type: string
+        metricName:
+          description: MetricName
+          type: string
+        metricValue:
+          description: MetricValue
+          type: integer
+          format: int32
+      type: object
+    SiteSummaryModel:
+      description: Site Summary
+      properties:
+        active:
+          description: Is Site Active
+          type: boolean
+        isLocal:
+          description: Indicates if this site is the local site that cannot have engines assigned
+          type: boolean
+        lastActivity:
+          description: Last Date of Activity of Site
+          type: string
+          format: date-time
+          nullable: true
+        numEnginesMissingNetFramework:
+          description: The number of engines on the site missing the minimum DotNet Framework
+          type: integer
+          format: int32
+        numEnginesWithoutAbilityToRestartService:
+          description: The number of engines on the site without the ability to restart the service, required for upgrades
+          type: integer
+          format: int32
+        offlineEngineCount:
+          description: Offline Engine Count of Site
+          type: integer
+          format: int32
+        onlineEngineCount:
+          description: Online Engine Count of Site
+          type: integer
+          format: int32
+        showEngineVersionUpdateBlocklistBannerMessage:
+          description: Whether to show the banner message indicating one or more engines has a blocklisted version and must be updated manually
+          type: boolean
+        siteId:
+          description: Id of Site
+          type: integer
+          format: int32
+        siteMetrics:
+          description: List of Metrics for this site such as ConnectionStatusOffline, ConnectionStatusOnline, ActivationStatusPending, LostConnection, and more.  Only returned on a search when IncludeSiteMetrics is true.
+          items:
+            $ref: '#/components/schemas/SiteMetric'
+          type: array
+        siteName:
+          description: Name of Site
+          type: string
+      type: object
+  requestBodies:
+    EngineSettingsUpdateArgs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EngineSettingsUpdateArgs'
+      description: args
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

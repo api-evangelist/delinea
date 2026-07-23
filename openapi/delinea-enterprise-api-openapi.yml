@@ -1,0 +1,242 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations Enterprise API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: Enterprise
+  description: View enterprise related data
+paths:
+  /v1/enterprise/search-request/{requestId}:
+    get:
+      tags:
+      - Enterprise
+      summary: GetRequestData
+      description: Retrieve Enterprise Search Request Data
+      operationId: EnterpriseService_GetRequestData
+      parameters:
+      - name: requestId
+        in: path
+        description: requestId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: EnterpriseSummaryModel for given TaskId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnterpriseSearchResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/enterprise/search-request:
+    post:
+      tags:
+      - Enterprise
+      summary: Request Enterprise Data
+      description: Initiate a search request for Enterprise Data
+      operationId: EnterpriseService_SearchRequestData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnterpriseSearchRequestArgs'
+        description: args
+      responses:
+        '200':
+          description: Model of request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnterpriseSearchRequestModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    EnterpriseSearchResultDataModel:
+      description: Enterprise Search Result Data Model
+      properties:
+        action:
+          description: Action taken on the accessed enterprise
+          type: string
+        dateRecorded:
+          description: Date enterprise was accessed
+          type: string
+          format: date-time
+        secretName:
+          description: Name of secret associated to the accessed enterprise
+          type: string
+        secretTemplateName:
+          description: Secret Template of secret associated to the accessed enterprise
+          type: string
+        userId:
+          description: Id of user that accessed the enterprise
+          type: integer
+          format: int32
+        userName:
+          description: Name of user that accessed the enterprise
+          type: string
+      type: object
+    EnterpriseSearchResultModel:
+      description: Enterprise Search Result Model
+      properties:
+        data:
+          description: Date enterprise was accessed
+          items:
+            $ref: '#/components/schemas/EnterpriseSearchResultDataModel'
+          type: array
+        processEndDate:
+          description: Date process was completed
+          type: string
+          format: date-time
+          nullable: true
+        processStartDate:
+          description: Date process was started
+          type: string
+          format: date-time
+          nullable: true
+      type: object
+    EnterpriseSearchRequestFieldModel:
+      description: Enterprise Search Request Field Model
+      properties:
+        fieldName:
+          description: Field of scan template to filter by
+          type: string
+        fieldValue:
+          description: Value of field to filter by
+          type: string
+      type: object
+    EnterpriseSearchRequestFilter:
+      description: Enterprise Search Request Filter
+      properties:
+        endDate:
+          description: End Date of date range to filter
+          type: string
+          format: date-time
+          nullable: true
+        enterpriseName:
+          description: Specify this for filtering data by the Enterprise Name
+          type: string
+        requestFields:
+          description: Fields used for filtering results. At least one is required
+          items:
+            $ref: '#/components/schemas/EnterpriseSearchRequestFieldModel'
+          type: array
+        startDate:
+          description: Start Date of date range to filter
+          type: string
+          format: date-time
+          nullable: true
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    EnterpriseSearchRequestArgs:
+      description: Arguments for an Enterprise Search Request
+      properties:
+        data:
+          $ref: '#/components/schemas/EnterpriseSearchRequestFilter'
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    EnterpriseSearchRequestModel:
+      description: Enterprise Search Request Model
+      properties:
+        requestId:
+          description: Id of Request
+          type: integer
+          format: int32
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

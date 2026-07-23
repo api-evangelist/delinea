@@ -1,0 +1,1698 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations CategorizedLists API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: CategorizedLists
+  description: View and maintain lists of options
+paths:
+  /v1/lists/{categorizedListId}:
+    get:
+      tags:
+      - CategorizedLists
+      summary: Get a list
+      description: Returns the list for the provided ID
+      operationId: CategorizedListsService_GetList
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The list with provided ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategorizedListModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - CategorizedLists
+      summary: Update a list
+      description: Updates a given list
+      operationId: CategorizedListsService_UpdateList
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategorizedListUpdateArgs'
+        description: List to be updated
+      responses:
+        '200':
+          description: The updated list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategorizedListModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - CategorizedLists
+      summary: Delete List
+      description: Delete a List by ID
+      operationId: CategorizedListsService_DeleteList
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: ID of list to be deleted
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategorizedListDeleteModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/lists/{categorizedListId}/options:
+    get:
+      tags:
+      - CategorizedLists
+      summary: Get a list's items
+      description: Returns the list's options for the provided ID
+      operationId: CategorizedListsService_GetListItems
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: filter.category
+        in: query
+        description: Category text to filter by. If empty or not included, will return items for all categories.
+        required: false
+        schema:
+          type: string
+      - name: filter.nullCategoryIsUncategorized
+        in: query
+        description: If true and Category value is an empty string or not included, will return only uncategorized items; otherwise, an empty category filter is treated as no category filter.
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: The list's options
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfCategorizedListItemModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - CategorizedLists
+      summary: Updates options in a list
+      description: Updates the options in the list with the provided ID
+      operationId: CategorizedListsService_UpdateItemsInList
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategorizedListItemUpdateArgs'
+        description: List options to be updated
+      responses:
+        '200':
+          description: The updated options in the list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfCategorizedListItemViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - CategorizedLists
+      summary: Adds options to a list
+      description: Adds the options to the list with the provided ID
+      operationId: CategorizedListsService_AddItemsToList
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        $ref: '#/components/requestBodies/CategorizedListItemCreateArgs'
+      responses:
+        '200':
+          description: The new options in the list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfCategorizedListItemViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - CategorizedLists
+      summary: Delete all list options from a list
+      description: Delete all list options from a list
+      operationId: CategorizedListsService_RemoveItemsFromList
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategorizedListDeleteModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/lists/{listId}/options/{optionId}:
+    delete:
+      tags:
+      - CategorizedLists
+      summary: Delete a list option from a list
+      description: Delete a list option from a list
+      operationId: CategorizedListsService_RemoveItemFromList
+      parameters:
+      - name: listId
+        in: path
+        description: List id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: optionId
+        in: path
+        description: List option id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: List option deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategorizedListItemDeleteModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/lists:
+    get:
+      tags:
+      - CategorizedLists
+      summary: Search Lists
+      description: Search, filter, sort, and page lists
+      operationId: CategorizedListsService_Search
+      parameters:
+      - name: filter.includeActive
+        in: query
+        description: Whether to include active lists in results (when excluded equals true)
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.includeInactive
+        in: query
+        description: Whether to include inactive lists in results
+        required: false
+        schema:
+          type: boolean
+      - name: filter.searchText
+        in: query
+        description: Search text
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfCategorizedListSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - CategorizedLists
+      summary: Create a list
+      description: Creates the given list
+      operationId: CategorizedListsService_CreateList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategorizedListCreateArgs'
+        description: List be added
+      responses:
+        '200':
+          description: The new list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategorizedListModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/lists/summary:
+    get:
+      tags:
+      - CategorizedLists
+      summary: Get a list of lists available to current user
+      description: Returns a list of lists for the current user
+      operationId: CategorizedListsService_GetAllListsUserMaySee
+      responses:
+        '200':
+          description: A list of lists for the current user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfSimpleCategorizedList'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/lists/{categorizedListId}/categories:
+    get:
+      tags:
+      - CategorizedLists
+      summary: Get a list's current categories
+      description: Returns the list's categories for the provided ID
+      operationId: CategorizedListsService_GetCategoriesForList
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The list's categories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfString'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/lists/{categorizedListId}/audits:
+    get:
+      tags:
+      - CategorizedLists
+      summary: Get Audits for List
+      description: Search, filter, sort, and page List Audits.
+      operationId: CategorizedListsService_SearchListAudit
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List Id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: A paginated list of Audits for List.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfCategorizedListAuditModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/lists/{categorizedListId}/options/single:
+    put:
+      tags:
+      - CategorizedLists
+      summary: Updates an option in a list
+      description: Updates an option in the list with the provided ID
+      operationId: CategorizedListsService_UpdateItemInList
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategorizedListItemSingleUpdateArgs'
+        description: List option to be updated
+      responses:
+        '200':
+          description: The updated options in the list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfCategorizedListItemViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - CategorizedLists
+      summary: Adds an option to a list
+      description: Adds an option to the list with the provided ID
+      operationId: CategorizedListsService_AddItemToList
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategorizedListItemSingleCreateArgs'
+        description: List option to be added
+      responses:
+        '200':
+          description: The new option in the list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfCategorizedListItemViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/lists/{categorizedListId}/options/{category}:
+    post:
+      tags:
+      - CategorizedLists
+      summary: Adds options to the list with the specified category
+      description: Adds the options to the list with the provided ID with the specified category
+      operationId: CategorizedListsService_AddItemsToListWithCategory
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: category
+        in: path
+        description: Category to assign
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/CategorizedListItemCreateArgs'
+      responses:
+        '200':
+          description: The new options in the list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfCategorizedListItemViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/lists/{categorizedListId}/options/file:
+    post:
+      tags:
+      - CategorizedLists
+      summary: Upload a file of list options
+      description: Adds the options from the given file to the list with the provided ID
+      operationId: CategorizedListsService_AddItemsToListFromFile
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategorizedListItemCreateWithFileArgs'
+        description: File containing list options to add
+      responses:
+        '200':
+          description: The new options in the list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfCategorizedListItemModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/lists/{categorizedListId}/options/replace:
+    put:
+      tags:
+      - CategorizedLists
+      summary: Replaces options in a list
+      description: Replaces all options currently in the list with the given options
+      operationId: CategorizedListsService_ReplaceItemsInList
+      parameters:
+      - name: categorizedListId
+        in: path
+        description: List ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        $ref: '#/components/requestBodies/CategorizedListItemCreateArgs'
+      responses:
+        '200':
+          description: The new item in the list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfCategorizedListItemViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    CategorizedListAuditModel:
+      description: Query results
+      properties:
+        action:
+          description: Action
+          type: string
+        categorizedListAuditId:
+          description: CategorizedListAuditId
+          type: integer
+          format: int32
+        categorizedListId:
+          description: CategorizedListId
+          type: string
+          format: uuid
+        databaseName:
+          description: DatabaseName
+          type: string
+        dateRecorded:
+          description: DateRecorded
+          type: string
+          format: date-time
+        delegatedUserId:
+          description: DelegatedUserId
+          type: integer
+          format: int32
+          nullable: true
+        delegatedUserName:
+          description: DelegatedUserName
+          type: string
+        displayName:
+          description: DisplayName
+          type: string
+        formattedDate:
+          description: FormattedDate
+          type: string
+        ipAddress:
+          description: IpAddress
+          type: string
+        machineName:
+          description: MachineName
+          type: string
+        notes:
+          description: Notes
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+        userName:
+          description: UserName
+          type: string
+      type: object
+    CategorizedListDeleteModel:
+      description: CategorizedListDeleteModel
+      properties:
+        id:
+          description: Id
+          type: string
+          format: uuid
+        objectType:
+          description: ObjectType
+          type: string
+        responseCodes:
+          description: ResponseCodes
+          items:
+            type: string
+          type: array
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    Char:
+      description: Delimiter used in the file
+      properties: {}
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    CategorizedListItemSingleUpdateArgs:
+      description: List Option Update Argument
+      properties:
+        option:
+          $ref: '#/components/schemas/CategorizedListItemUpdateModel'
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    CategorizedListItemViewModel:
+      description: Query results
+      properties:
+        categorizedListId:
+          description: CategorizedListId
+          type: string
+          format: uuid
+        categorizedListItemId:
+          description: CategorizedListItemId
+          type: string
+          format: uuid
+        category:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        value:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+      type: object
+    CategorizedListModel:
+      description: CategorizedListModel
+      properties:
+        active:
+          description: Whether or not the list is active
+          type: boolean
+        categorizedListId:
+          description: List Id
+          type: string
+          format: uuid
+        description:
+          description: Description of the list
+          type: string
+        name:
+          description: Name of the list
+          type: string
+      type: object
+    ViewFieldValueOfString:
+      description: GeneratedToken
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type: string
+          nullable: true
+        hasHistory:
+          description: HasHistory
+          type: boolean
+          nullable: true
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type: boolean
+          nullable: true
+        hideOnView:
+          description: HideOnView
+          type: boolean
+          nullable: true
+        isRequired:
+          description: IsRequired
+          type: boolean
+          nullable: true
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type: boolean
+          nullable: true
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+          nullable: true
+        value:
+          description: Value
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    CategorizedListItemUpdateModel:
+      description: Value(s) of the list options to update
+      properties:
+        categorizedListItemId:
+          description: CategorizedListItemId
+          type: string
+          format: uuid
+        category:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        value:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    CategorizedListItemCreateModel:
+      description: Value(s) of the list options to add
+      properties:
+        category:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        value:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    CategorizedListItemCreateWithFileArgs:
+      description: List option create argument using a file
+      properties:
+        delimiter:
+          $ref: '#/components/schemas/Char'
+        file:
+          description: Uploaded file containing list options to add
+          type: string
+          format: binary
+      type: object
+    CategorizedListUpdateModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        description:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    ViewFieldLink:
+      description: AdditionalLinks
+      properties:
+        isExternal:
+          description: IsExternal
+          type: boolean
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
+          type: string
+      type: object
+    CategorizedListSummary:
+      description: Query results
+      properties:
+        active:
+          description: Whether or not the list is active
+          type: boolean
+        categorizedListId:
+          description: List Id
+          type: string
+        description:
+          description: Description of the list
+          type: string
+        name:
+          description: Name of the list
+          type: string
+        numOptions:
+          description: The number of options in the list
+          type: integer
+          format: int32
+      type: object
+    PagingOfCategorizedListAuditModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/CategorizedListAuditModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    CategorizedListItemModel:
+      description: Query results
+      properties:
+        categorizedListId:
+          description: Categorized List Id
+          type: string
+          format: uuid
+        categorizedListItemId:
+          description: Categorized List Item Id
+          type: string
+          format: uuid
+        category:
+          description: Categorized List Item Category
+          type: string
+        value:
+          description: Categorized List Item Value
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    CategorizedListCreateArgs:
+      description: CategorizedListCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/CategorizedListUpdateModel'
+      type: object
+    PagingOfSimpleCategorizedList:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SimpleCategorizedList'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PagingOfCategorizedListItemModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/CategorizedListItemModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    SimpleCategorizedList:
+      description: Query results
+      properties:
+        categorizedListId:
+          description: List Id
+          type: string
+          format: uuid
+        name:
+          description: Name of the list
+          type: string
+      type: object
+    CategorizedListItemCreateArgs:
+      description: List Option Create Argument
+      properties:
+        data:
+          description: Value(s) of the list options to add
+          items:
+            $ref: '#/components/schemas/CategorizedListItemCreateModel'
+          type: array
+      type: object
+    CategorizedListItemSingleCreateArgs:
+      description: Single List Option Create Argument
+      properties:
+        option:
+          $ref: '#/components/schemas/CategorizedListItemCreateModel'
+      type: object
+    PagingOfString:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            type: string
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PagingOfCategorizedListItemViewModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/CategorizedListItemViewModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PagingOfCategorizedListSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/CategorizedListSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    CategorizedListItemDeleteModel:
+      description: CategorizedListItemDeleteModel
+      properties:
+        isDeleted:
+          description: IsDeleted
+          type: boolean
+      type: object
+    CategorizedListUpdateArgs:
+      description: CategorizedListUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/CategorizedListUpdateModel'
+      type: object
+    CategorizedListItemUpdateArgs:
+      description: List Option Update Argument
+      properties:
+        data:
+          description: Value(s) of the list options to update
+          items:
+            $ref: '#/components/schemas/CategorizedListItemUpdateModel'
+          type: array
+      type: object
+  requestBodies:
+    CategorizedListItemCreateArgs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CategorizedListItemCreateArgs'
+      description: List options to be added
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

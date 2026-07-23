@@ -1,0 +1,1281 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations Teams API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: Teams
+  description: View and maintain user security teams
+paths:
+  /v1/teams:
+    get:
+      tags:
+      - Teams
+      summary: Search Teams
+      description: Search, filter, sort, and page teams
+      operationId: TeamsService_Search
+      parameters:
+      - name: filter.includeInactive
+        in: query
+        description: Include Inactive
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.searchTerm
+        in: query
+        description: Search Term
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Team search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfTeamDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Teams
+      summary: Create Team
+      description: Create a new team
+      operationId: TeamsService_CreateTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamCreateArgs'
+        description: Team creation options
+      responses:
+        '200':
+          description: New Team Id
+          content:
+            application/json:
+              schema:
+                description: Int32
+                type: integer
+                format: int32
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/teams/stub:
+    get:
+      tags:
+      - Teams
+      summary: Get Team Stub
+      description: Return the default values for a new team
+      operationId: TeamsService_Stub
+      responses:
+        '200':
+          description: Team object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/teams/{id}:
+    get:
+      tags:
+      - Teams
+      summary: Get Team
+      description: Get a single team by ID
+      operationId: TeamsService_Get
+      parameters:
+      - name: id
+        in: path
+        description: Team ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Team object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - Teams
+      summary: Update Team
+      description: Update a single team by ID
+      operationId: TeamsService_UpdateTeam
+      parameters:
+      - name: id
+        in: path
+        description: Team ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamDetailUpdateModel'
+        description: Team update options
+      responses:
+        '200':
+          description: Team object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamDetailModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/teams/{id}/audits:
+    get:
+      tags:
+      - Teams
+      summary: Get Team Audits
+      description: Search, filter, sort, and page team audits
+      operationId: TeamsService_GetTeamAudits
+      parameters:
+      - name: id
+        in: path
+        description: Team ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Team Audit search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfTeamAuditModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/teams/{id}/members:
+    get:
+      tags:
+      - Teams
+      summary: Get Users In Team
+      description: Get members in a team
+      operationId: TeamsService_GetTeamMembers
+      parameters:
+      - name: id
+        in: path
+        description: Team ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Get Team membership. Includes Groups and Users. User will be their personal GroupId.
+          content:
+            application/json:
+              schema:
+                description: Get Team membership. Includes Groups and Users. User will be their personal GroupId.
+                items:
+                  $ref: '#/components/schemas/TeamGroupMembershipModel'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Teams
+      summary: Update Team Members
+      description: Save members of the team by GroupId
+      operationId: TeamsService_AddTeamMember
+      parameters:
+      - name: id
+        in: path
+        description: Team ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamMemberUpdateArgs'
+        description: Team user add options
+      responses:
+        '200':
+          description: Get Team membership. Includes Groups and Users. User will be their personal GroupId.
+          content:
+            application/json:
+              schema:
+                description: Get Team membership. Includes Groups and Users. User will be their personal GroupId.
+                items:
+                  $ref: '#/components/schemas/TeamGroupMembershipModel'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/teams/{id}/members/search:
+    get:
+      tags:
+      - Teams
+      summary: Search Users In Team
+      description: Search for members in a team
+      operationId: TeamsService_SearchTeamMembers
+      parameters:
+      - name: id
+        in: path
+        description: Team ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.domainId
+        in: query
+        description: DomainId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.searchText
+        in: query
+        description: SearchText
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Search for users or groups by name and team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfTeamMembershipSearchModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/teams/{id}/sites:
+    get:
+      tags:
+      - Teams
+      summary: Get Sites for a Team
+      description: Get sites a team has associated
+      operationId: TeamsService_GetTeamSites
+      parameters:
+      - name: id
+        in: path
+        description: Team ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: includeInactive
+        in: query
+        description: includeInactive
+        required: true
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Get Team Sites.
+          content:
+            application/json:
+              schema:
+                description: Get Team Sites.
+                items:
+                  $ref: '#/components/schemas/TeamSiteMap'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Teams
+      summary: Update Team Sites
+      description: Save sites of the team by SiteId
+      operationId: TeamsService_AddTeamSite
+      parameters:
+      - name: id
+        in: path
+        description: Team ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamSiteUpdateArgs'
+        description: Team site add options
+      responses:
+        '200':
+          description: Get Team Sites.
+          content:
+            application/json:
+              schema:
+                description: Get Team Sites.
+                items:
+                  $ref: '#/components/schemas/TeamSiteMap'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/teams/{id}/lists:
+    get:
+      tags:
+      - Teams
+      summary: Get a Team's Lists
+      description: Get the lists of the Team by TeamId
+      operationId: TeamsService_GetTeamLists
+      parameters:
+      - name: id
+        in: path
+        description: Team Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Summary of a Team's Lists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamCategorizedListSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Teams
+      summary: Update Team Lists
+      description: Save lists of the Team by ListId
+      operationId: TeamsService_AddListsToTeam
+      parameters:
+      - name: id
+        in: path
+        description: Team Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamCategorizedListUpdateArgs'
+        description: Team list
+      responses:
+        '200':
+          description: Summary a Team's Lists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamCategorizedListSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    TeamDetailModel:
+      description: Query results
+      properties:
+        active:
+          description: Active
+          type: boolean
+        concurrencyId:
+          description: ConcurrencyId
+          type: string
+        domainId:
+          description: Domain Id
+          type: integer
+          format: int32
+          nullable: true
+        domainName:
+          description: Domain Name
+          type: string
+        shouldRestrictLists:
+          description: Should Restrict Lists
+          type: boolean
+        shouldRestrictSites:
+          description: Should Restrict Sites
+          type: boolean
+        teamDescription:
+          description: Team Description
+          type: string
+        teamId:
+          description: Team Id
+          type: integer
+          format: int32
+        teamName:
+          description: Team Name
+          type: string
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    PagingOfTeamDetailModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/TeamDetailModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    TeamAuditModel:
+      description: Query results
+      properties:
+        action:
+          description: Action
+          type: string
+        databaseName:
+          description: Database Name
+          type: string
+        dateRecorded:
+          description: Date Recordd
+          type: string
+          format: date-time
+        delegatedUserId:
+          description: Delegated User Id
+          type: integer
+          format: int32
+          nullable: true
+        displayName:
+          description: Display Name
+          type: string
+        ipAddress:
+          description: IP Address
+          type: string
+        machineName:
+          description: Machine Name
+          type: string
+        notes:
+          description: Notes
+          type: string
+        teamAuditId:
+          description: TeamAuditId
+          type: integer
+          format: int32
+        teamId:
+          description: Team Id
+          type: integer
+          format: int32
+        userId:
+          description: User Id
+          type: integer
+          format: int32
+        userName:
+          description: User Name
+          type: string
+      type: object
+    UpdateFieldValueOfInt32Array:
+      description: FolderIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    TeamCreateArgs:
+      description: Available options for creating a team
+      required:
+      - teamName
+      properties:
+        domainId:
+          description: Id of domain team is in
+          type: integer
+          format: int32
+          nullable: true
+        teamDescription:
+          description: User description of team
+          type: string
+        teamName:
+          description: Name of the team
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    TeamMemberUpdateArgs:
+      description: TeamMemberUpdateArgs
+      properties:
+        domainId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        groupIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+      type: object
+    TeamGroupMembershipModel:
+      description: TeamGroupMembershipModel[]
+      properties:
+        groupDisplayName:
+          description: GroupDisplayName
+          type: string
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+        teamGroupMembershipId:
+          description: TeamGroupMembershipId
+          type: integer
+          format: int32
+        teamId:
+          description: TeamId
+          type: integer
+          format: int32
+        type:
+          description: Type
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalBoolean:
+      description: Use RADIUS Username for DUO
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+          nullable: true
+      type: object
+    PagingOfTeamAuditModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/TeamAuditModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    TeamCategorizedListUpdateArgs:
+      description: TeamCategorizedListUpdateArgs
+      properties:
+        listIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfGuidArray'
+        shouldRestrictLists:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+      type: object
+    UpdateFieldValueOfGuidArray:
+      description: SshCommandIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: string
+            format: uuid
+          type: array
+      type: object
+    TeamSiteMap:
+      description: TeamSiteMap[]
+      properties:
+        siteId:
+          description: SiteId
+          type: integer
+          format: int32
+        siteName:
+          description: SiteName
+          type: string
+        teamId:
+          description: TeamId
+          type: integer
+          format: int32
+        teamSiteMapId:
+          description: TeamSiteMapId
+          type: integer
+          format: int32
+      type: object
+    TeamDetailUpdateModel:
+      description: TeamDetailUpdateModel
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        domainId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        teamDescription:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        teamName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    TeamMembershipSearchModel:
+      description: Query results
+      properties:
+        displayName:
+          description: Display name for the team member
+          type: string
+        domainName:
+          description: Domainn name for the team member
+          type: string
+        groupId:
+          description: Group Id
+          type: integer
+          format: int32
+        teamId:
+          description: Team Id
+          type: integer
+          format: int32
+        userId:
+          description: User Id
+          type: integer
+          format: int32
+          nullable: true
+        username:
+          description: User name for the team member
+          type: string
+      type: object
+    TeamSiteUpdateArgs:
+      description: TeamSiteUpdateArgs
+      properties:
+        shouldRestrictSites:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        siteIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    TeamCategorizedListSummary:
+      description: TeamCategorizedListSummary
+      properties:
+        lists:
+          description: Lists
+          items:
+            $ref: '#/components/schemas/SimpleCategorizedList'
+          type: array
+        teamId:
+          description: TeamId
+          type: integer
+          format: int32
+      type: object
+    SimpleCategorizedList:
+      description: Query results
+      properties:
+        categorizedListId:
+          description: List Id
+          type: string
+          format: uuid
+        name:
+          description: Name of the list
+          type: string
+      type: object
+    PagingOfTeamMembershipSearchModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/TeamMembershipSearchModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

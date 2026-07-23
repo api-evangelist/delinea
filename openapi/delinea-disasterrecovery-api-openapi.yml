@@ -1,0 +1,1190 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations DisasterRecovery API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: DisasterRecovery
+  description: Disaster Recovery
+paths:
+  /v1/disaster-recovery/data-replication/{replicaId}:
+    get:
+      tags:
+      - DisasterRecovery
+      summary: Get Disaster Recovery Data Replica
+      description: Retrieve the settings and descriptions for the Disaster Recovery data replica view model.
+      operationId: DisasterRecoveryService_GetDisasterRecoveryDataReplica
+      parameters:
+      - name: replicaId
+        in: path
+        description: replicaId
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Disaster Recovery Data Replica
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryDataReplicaModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - DisasterRecovery
+      summary: Delete Disaster Recovery Data Replica
+      description: Delete the data replica.
+      operationId: DisasterRecoveryService_DeleteDisasterRecoveryDataReplica
+      parameters:
+      - name: replicaId
+        in: path
+        description: replicaId
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: True if the data replica was deleted.
+          content:
+            application/json:
+              schema:
+                description: Boolean
+                type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - DisasterRecovery
+      summary: Patch Disaster Recovery Data Replica
+      description: Patch Disaster Recovery Data Replica by sending one or more fields with dirty set to true.  This will return the actual updated view model.
+      operationId: DisasterRecoveryService_PatchDisasterRecoveryDataReplica
+      parameters:
+      - name: replicaId
+        in: path
+        description: replicaId
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisasterRecoveryDataReplicaArgs'
+        description: Disaster Recovery Data Replica Update Settings
+      responses:
+        '200':
+          description: Updated Disaster Recovery Data Replica
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryDataReplicaModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/disaster-recovery/incoming-configuration:
+    get:
+      tags:
+      - DisasterRecovery
+      summary: Get Disaster Recovery Incoming Configuration
+      description: Retrieve the settings and descriptions for the Disaster Recovery incoming configuration view model.
+      operationId: DisasterRecoveryService_GetDisasterRecoveryIncomingConfiguration
+      responses:
+        '200':
+          description: Disaster Recovery Incoming Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryIncomingConfigurationModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - DisasterRecovery
+      summary: Patch Disaster Recovery Incoming Configuration
+      description: Patch Disaster Recovery Incoming Configuration by sending one or more fields with dirty set to true.  This will return the actual updated view model.
+      operationId: DisasterRecoveryService_PatchDisasterRecoveryIncomingConfiguration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisasterRecoveryConfigurationArgs'
+        description: Disaster Recovery Incoming Configuration Update Settings
+      responses:
+        '200':
+          description: Updated Disaster Recovery Incoming Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryIncomingConfigurationModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/disaster-recovery/audits:
+    get:
+      tags:
+      - DisasterRecovery
+      summary: Get Disaster Recovery Configuration Audits
+      description: Retrieve the audits for the Disaster Recovery configuration.
+      operationId: DisasterRecoveryService_GetDisasterRecoveryConfigurationAudits
+      parameters:
+      - name: auditType
+        in: query
+        description: auditType
+        required: false
+        schema:
+          type: string
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Disaster Recovery Configuration Audits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfDisasterRecoveryAuditViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/disaster-recovery/outgoing-configuration:
+    get:
+      tags:
+      - DisasterRecovery
+      summary: Get Disaster Recovery Outgoing Configuration
+      description: Retrieve the settings and descriptions for the Disaster Recovery Outgoing Configuration view model.
+      operationId: DisasterRecoveryService_GetDisasterRecoveryOutgoingConfiguration
+      parameters:
+      - name: filter.location
+        in: query
+        description: Only return data replicas with locations containing this text.
+        required: false
+        schema:
+          type: string
+      - name: filter.name
+        in: query
+        description: Only return data replicas with names containing this text.
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Disaster Recovery Outgoing Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryOutgoingConfigurationModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/disaster-recovery/logs:
+    get:
+      tags:
+      - DisasterRecovery
+      summary: Get Disaster Recovery Replication Logs
+      description: Retrieve the logs for each run of Disaster Recovery Replication
+      operationId: DisasterRecoveryService_GetDisasterRecoveryDataReplicationLogs
+      parameters:
+      - name: logType
+        in: query
+        description: logType
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Disaster Recovery Replication Logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfDisasterRecoveryDataReplicationLogViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/disaster-recovery/handshake:
+    post:
+      tags:
+      - DisasterRecovery
+      summary: Disaster Recovery Handshake
+      description: Try to add the requesting data replica to the receiving data source.
+      operationId: DisasterRecoveryService_PostDisasterRecoveryHandshake
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisasterRecoveryHandshakeArgs'
+        description: Disaster Recovery Handshake arguments encrypted using the data source's public key.
+      responses:
+        '200':
+          description: Disaster Recovery Handshake response encrypted using the data replica's public key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryHandshakeModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/disaster-recovery/data-replication/run-now:
+    post:
+      tags:
+      - DisasterRecovery
+      summary: Start Disaster Recovery Data Replication
+      description: Start Disaster Recovery data replication as configured.
+      operationId: DisasterRecoveryService_RunDisasterRecoveryDataReplicationNow
+      parameters:
+      - name: minutes
+        in: query
+        description: minutes
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: True if the job was queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryDataReplicaMessageResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/disaster-recovery/data-replication/test:
+    post:
+      tags:
+      - DisasterRecovery
+      summary: Test Disaster Recovery Data Replication
+      description: Test Disaster Recovery data replication as configured.
+      operationId: DisasterRecoveryService_RunDisasterRecoveryDataReplicaTestNow
+      responses:
+        '200':
+          description: Whether the connection between the data replica and data source is configured correctly.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryDataReplicaMessageResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/disaster-recovery/data-replication/start:
+    post:
+      tags:
+      - DisasterRecovery
+      summary: Request Disaster Recovery Data Replica Replication Start
+      description: Request that data replication be started for the given replica.
+      operationId: DisasterRecoveryService_RequestDataReplicaReplicationStart
+      requestBody:
+        $ref: '#/components/requestBodies/DisasterRecoveryDataReplicaToDataSourceArgs'
+      responses:
+        '200':
+          description: Disaster Recovery Data Replica Replication Start response encrypted using the symmetric key for this data replica.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryDataSourceToDataReplicaModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/disaster-recovery/data-replication/status:
+    post:
+      tags:
+      - DisasterRecovery
+      summary: Request Disaster Recovery Data Replica Replication Status
+      description: Request the data replication status for this replica from the Data Source.
+      operationId: DisasterRecoveryService_RequestDataReplicaReplicationStatus
+      requestBody:
+        $ref: '#/components/requestBodies/DisasterRecoveryDataReplicaToDataSourceArgs'
+      responses:
+        '200':
+          description: Disaster Recovery Data Replica Replication Status response encrypted using the symmetric key for this data replica.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryDataSourceToDataReplicaModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/disaster-recovery/data-replication/package:
+    post:
+      tags:
+      - DisasterRecovery
+      summary: Request Disaster Recovery Data Replica Replication Package
+      description: Request a data replication package for this replica from the Data Source.
+      operationId: DisasterRecoveryService_RequestDataReplicaReplicationPackage
+      requestBody:
+        $ref: '#/components/requestBodies/DisasterRecoveryDataReplicaToDataSourceArgs'
+      responses:
+        '200':
+          description: Disaster Recovery Data Replica Replication Package response encrypted using the symmetric key for this data replica.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterRecoveryDataSourceToDataReplicaModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    UpdateFieldValueOfDisasterRecoveryDataReplicaStatus:
+      description: Status
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/DisasterRecoveryDataReplicaStatus'
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    DisasterRecoveryHandshakeModel:
+      description: DisasterRecoveryHandshakeModel
+      properties:
+        encryptedParts:
+          description: EncryptedParts
+          items:
+            type: string
+          type: array
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    UpdateFieldValueOfInt32Array:
+      description: FolderIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    DisasterRecoveryDataSourceToDataReplicaModel:
+      description: DisasterRecoveryDataSourceToDataReplicaModel
+      properties:
+        encryptedResponse:
+          description: EncryptedResponse
+          type: string
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    DisasterRecoveryConfigurationUpdateModel:
+      description: Data
+      properties:
+        dataPackageStoragePath:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        dataReplicationEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        dataSourceCertificatePinningKeyHashSha256:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        dataSourceKey:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        dataSourceUrl:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        replicationIntervalMinutes:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        userAccountOption:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    DisasterRecoveryDataReplicaMessageResponse:
+      description: DisasterRecoveryDataReplicaMessageResponse
+      properties:
+        message:
+          description: Message
+          type: string
+        status:
+          description: Status
+          type: string
+          nullable: true
+        success:
+          description: Success
+          type: boolean
+      type: object
+    DisasterRecoveryIncomingConfigurationModel:
+      description: Disaster Recovery Configuration
+      properties:
+        dataReplicaName:
+          description: The data replica name given to it by the data source.
+          type: string
+        dataReplicationEnabled:
+          description: Whether data replication is enabled.
+          type: boolean
+        dataSourceCertificatePinningKeyHashSha256:
+          description: The SHA-256 hash of the data source certificate's public key.
+          type: string
+        dataSourceKey:
+          description: The data source key.
+          type: string
+        dataSourceUrl:
+          description: The data source URL.
+          type: string
+        isReplica:
+          description: Whether this instance of Secret Server is a data replica, a data source, or neither.
+          type: boolean
+          nullable: true
+        isReplicating:
+          description: Whether data replication is currently active.
+          type: boolean
+        lastReplicated:
+          description: The last time data replication ran.
+          type: string
+          format: date-time
+          nullable: true
+        replicationIntervalMinutes:
+          description: How frequently data replication will take place on this data replica.
+          type: integer
+          format: int32
+        replicationStatus:
+          description: Current step in the replication process when currently active
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    DisasterRecoveryConfigurationArgs:
+      description: DisasterRecoveryConfigurationArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DisasterRecoveryConfigurationUpdateModel'
+      type: object
+    PagingOfDisasterRecoveryAuditViewModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/DisasterRecoveryAuditViewModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PagingOfDisasterRecoveryDataReplicationLogViewModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/DisasterRecoveryDataReplicationLogViewModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    DisasterRecoveryDataReplicationLogViewModel:
+      description: Query results
+      properties:
+        created:
+          description: Created
+          type: string
+          format: date-time
+        dataReplicaName:
+          description: DataReplicaName
+          type: string
+        dataSourceUrl:
+          description: DataSourceUrl
+          type: string
+        fatal:
+          description: Fatal
+          type: boolean
+        success:
+          description: Success
+          type: boolean
+        text:
+          description: Text
+          type: string
+      type: object
+    FolderSimpleModel:
+      description: Describes simple properties of a secret folder.
+      properties:
+        id:
+          description: The ID for the folder.
+          type: integer
+          format: int32
+        name:
+          description: The dispay name for the folder.
+          type: string
+        path:
+          description: The full path for the folder.
+          type: string
+        restricted:
+          description: Whether the folder is a restricted system folder.
+          type: boolean
+      type: object
+    DisasterRecoveryDataReplicaModel:
+      description: Disaster Recovery Data Replica
+      properties:
+        error:
+          description: Any error that occurred on the last data replication with this data replica.
+          type: string
+        folders:
+          description: The folders to be replicated, default is all folders.
+          items:
+            $ref: '#/components/schemas/FolderSimpleModel'
+          type: array
+        id:
+          description: The data replica ID.
+          type: string
+          format: uuid
+        isFoldersBlockList:
+          description: Whether the list of folders associated with this replica is an allow list or a block list.
+          type: boolean
+        isReplicating:
+          description: Whether data replication is currently active for this data replica.
+          type: boolean
+        lastReplicated:
+          description: The last time data replication was requested by this data replica.
+          type: string
+          format: date-time
+          nullable: true
+        location:
+          description: The location of the data replica.
+          type: string
+        name:
+          description: The name of the data replica.
+          type: string
+        status:
+          $ref: '#/components/schemas/DisasterRecoveryDataReplicaStatus'
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    DisasterRecoveryHandshakeArgs:
+      description: DisasterRecoveryHandshakeArgs
+      properties:
+        encryptedParts:
+          description: EncryptedParts
+          items:
+            type: string
+          type: array
+      type: object
+    DisasterRecoveryDataReplicaArgs:
+      description: DisasterRecoveryDataReplicaArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DisasterRecoveryDataReplicaUpdateModel'
+      type: object
+    DisasterRecoveryDataReplicaStatus:
+      description: The status of the data replica.
+      properties: {}
+      type: string
+      enum:
+      - Unapproved
+      - Approved
+      - Disabled
+    DisasterRecoveryDataReplicaUpdateModel:
+      description: Data
+      properties:
+        dataReplicaId:
+          description: DataReplicaId
+          type: string
+          format: uuid
+        folderIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+        isFoldersBlockList:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        status:
+          $ref: '#/components/schemas/UpdateFieldValueOfDisasterRecoveryDataReplicaStatus'
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    DisasterRecoveryDataReplicaToDataSourceArgs:
+      description: DisasterRecoveryDataReplicaToDataSourceArgs
+      properties:
+        dataReplicaId:
+          description: DataReplicaId
+          type: string
+          format: uuid
+        encryptedRequest:
+          description: EncryptedRequest
+          type: string
+      type: object
+    DisasterRecoveryAuditViewModel:
+      description: Disaster Recovery Audit
+      properties:
+        action:
+          description: Action
+          type: string
+        date:
+          description: Date
+          type: string
+          format: date-time
+        displayName:
+          description: DisplayName
+          type: string
+        notes:
+          description: Notes
+          type: string
+      type: object
+    DisasterRecoveryOutgoingConfigurationModel:
+      description: Disaster Recovery Data Replicas
+      properties:
+        dataPackageStoragePath:
+          description: The location of where data replication files are stored temporarily on the data source.
+          type: string
+        dataReplicas:
+          description: The data replicas registered with this data source.
+          items:
+            $ref: '#/components/schemas/DisasterRecoveryDataReplicaModel'
+          type: array
+        dataSourceKey:
+          description: The data source key a data replica should use when enabling data replication.
+          type: string
+        dataSourceUrl:
+          description: The data source URL a data replica should use when enabling data replication.
+          type: string
+        isDataPackageStoragePathValid:
+          description: Whether the data package storage location is valid and ready for use.
+          type: boolean
+        isReplica:
+          description: Whether this instance of Secret Server is a data replica, a data source, or neither.
+          type: boolean
+          nullable: true
+      type: object
+  requestBodies:
+    DisasterRecoveryDataReplicaToDataSourceArgs:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DisasterRecoveryDataReplicaToDataSourceArgs'
+      description: Disaster Recovery Data Replica to Data Source request encrypted using the symmetric key from the data replica.
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

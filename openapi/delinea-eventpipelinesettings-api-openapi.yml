@@ -1,0 +1,700 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations EventPipelineSettings API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: EventPipelineSettings
+  description: EventPipelineSettingsController
+paths:
+  /v1/event-pipeline-settings/task/list:
+    get:
+      tags:
+      - EventPipelineSettings
+      summary: Get Event Pipeline Tasks
+      description: Get all tasks
+      operationId: EventPipelineSettingsService_GetEventPipelineTasks
+      parameters:
+      - name: filter.eventActionId
+        in: query
+        description: EventActionId
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Paged list of tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfEventPipelineTask'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-settings/task-settings/list/{id}:
+    get:
+      tags:
+      - EventPipelineSettings
+      summary: Get Event Pipeline Task Settings
+      description: Returns a list of all pipeline task settings
+      operationId: EventPipelineSettingsService_GetEventPipelineTaskSettings
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Task ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Pipeline task settings
+          content:
+            application/json:
+              schema:
+                description: Pipeline task settings
+                items:
+                  $ref: '#/components/schemas/EventPipelineTaskSettingMapSummary'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-settings/filter-settings/list/{id}:
+    get:
+      tags:
+      - EventPipelineSettings
+      summary: Get Event Pipeline Filter Settings
+      description: Get all filter settings for a specific pipeline
+      operationId: EventPipelineSettingsService_GetEventPipelineFilterSettings
+      parameters:
+      - name: id
+        in: path
+        description: Event Pipeline Filter ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: filter settings
+          content:
+            application/json:
+              schema:
+                description: filter settings
+                items:
+                  $ref: '#/components/schemas/EventPipelineFilterSettingMapSummary'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-settings/tasks/options:
+    get:
+      tags:
+      - EventPipelineSettings
+      summary: Get Pipeline Task Options
+      description: Get all available options for tasks
+      operationId: EventPipelineSettingsService_GetPipelineTaskOptions
+      parameters:
+      - name: eventEntityTypeId
+        in: query
+        description: eventEntityTypeId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of task options
+          content:
+            application/json:
+              schema:
+                description: List of task options
+                items:
+                  $ref: '#/components/schemas/EventPipelineTaskSummary'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/event-pipeline-settings/filter/options:
+    get:
+      tags:
+      - EventPipelineSettings
+      summary: Get Pipeline Filter Options
+      description: Get all the available filter options
+      operationId: EventPipelineSettingsService_GetPipelineFilterOptions
+      parameters:
+      - name: eventEntityTypeId
+        in: query
+        description: eventEntityTypeId
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of filter options
+          content:
+            application/json:
+              schema:
+                description: List of filter options
+                items:
+                  $ref: '#/components/schemas/EventPipelineFilterSummary'
+                type: array
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    EventPipelineTaskSettingMapSummary:
+      description: EventPipelineTaskSettingMapSummary[]
+      properties:
+        eventPipelineTaskId:
+          description: Event Pipeline Task ID
+          type: integer
+          format: int32
+        eventPipelineTaskSettingMapId:
+          description: Event Pipeline Task Setting Map ID
+          type: integer
+          format: int32
+          nullable: true
+        setting:
+          $ref: '#/components/schemas/SettingForDisplay'
+        settingDisplay:
+          description: Setting Display
+          type: string
+        settingId:
+          description: Setting ID
+          type: integer
+          format: int32
+        settingValue:
+          description: Setting Value
+          type: string
+        sortOrder:
+          description: Event Pipeline Sort Order
+          type: integer
+          format: int32
+        usingDefault:
+          description: Using Default
+          type: boolean
+      type: object
+    EventPipelineFilterSummary:
+      description: EventPipelineFilterSummary[]
+      properties:
+        eventEntityTypeId:
+          description: Event Entity Type ID
+          type: integer
+          format: int32
+          nullable: true
+        eventPipelineFilterDescription:
+          description: Event Pipeline Filter Description
+          type: string
+        eventPipelineFilterDisplayName:
+          description: Event Pipeline Filter Display Name
+          type: string
+        eventPipelineFilterId:
+          description: Event Pipeline Filter Id
+          type: integer
+          format: int32
+        eventPipelineFilterMapId:
+          description: Event Pipeline Filter Map ID
+          type: integer
+          format: int32
+        eventPipelineFilterName:
+          description: Event Pipeline Filter Name
+          type: string
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    EventPipelineFilterSettingMapSummary:
+      description: EventPipelineFilterSettingMapSummary[]
+      properties:
+        eventPipelineFilterId:
+          description: Event Pipeline Filter ID
+          type: integer
+          format: int32
+        eventPipelineFilterSettingMapId:
+          description: Event Pipeline Filter Setting Map ID
+          type: integer
+          format: int32
+        setting:
+          $ref: '#/components/schemas/SettingForDisplay'
+        settingDisplay:
+          description: Setting Display
+          type: string
+        settingId:
+          description: Setting ID
+          type: integer
+          format: int32
+        settingValue:
+          description: Setting Value
+          type: string
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+        usingDefault:
+          description: Using Default
+          type: boolean
+      type: object
+    Setting:
+      description: ChildSettings
+      properties:
+        active:
+          description: Active
+          type: boolean
+        canEdit:
+          description: CanEdit
+          type: boolean
+        canEditValue:
+          description: CanEditValue
+          type: boolean
+        childLoadSQL:
+          description: ChildLoadSQL
+          type: string
+        defaultValue:
+          description: DefaultValue
+          type: string
+        isVisible:
+          description: IsVisible
+          type: boolean
+        nameLocalizeKey:
+          description: NameLocalizeKey
+          type: string
+        parentSettingId:
+          description: ParentSettingId
+          type: integer
+          format: int32
+          nullable: true
+        regexValidation:
+          description: RegexValidation
+          type: string
+        settingId:
+          description: SettingId
+          type: integer
+          format: int32
+        settingName:
+          description: SettingName
+          type: string
+        settingSectionId:
+          description: SettingSectionId
+          type: integer
+          format: int32
+        settingType:
+          $ref: '#/components/schemas/SettingType'
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+        subSettingSectionId:
+          description: SubSettingSectionId
+          type: integer
+          format: int32
+          nullable: true
+        tooltipLocalizeKey:
+          description: TooltipLocalizeKey
+          type: string
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    PagingOfEventPipelineTask:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EventPipelineTask'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    EventPipelineTask:
+      description: Query results
+      properties:
+        eventEntityTypeId:
+          description: EventEntityTypeId
+          type: integer
+          format: int32
+          nullable: true
+        eventPipelineTaskDescription:
+          description: EventPipelineTaskDescription
+          type: string
+        eventPipelineTaskId:
+          description: EventPipelineTaskId
+          type: integer
+          format: int32
+        eventPipelineTaskName:
+          description: EventPipelineTaskName
+          type: string
+        isMultiSelect:
+          description: IsMultiSelect
+          type: boolean
+      type: object
+    SettingType:
+      description: SettingType
+      properties: {}
+      type: string
+      enum:
+      - Default
+      - Integer
+      - String
+      - Boolean
+      - StringArray
+      - DropDown
+      - DropDownItem
+      - MultilineString
+      - IntegerArray
+      - Radio
+      - RadioItem
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    EventPipelineTaskSummary:
+      description: EventPipelineTaskSummary[]
+      properties:
+        eventEntityTypeId:
+          description: Event Entity Type ID
+          type: string
+          nullable: true
+        eventPipelineTaskDescription:
+          description: Event Pipeline Task Description
+          type: string
+        eventPipelineTaskDisplayName:
+          description: Event Pipeline Task Display Name
+          type: string
+        eventPipelineTaskId:
+          description: Event Pipeline Task ID
+          type: integer
+          format: int32
+        eventPipelineTaskMapId:
+          description: Event Pipeline Task Map ID
+          type: integer
+          format: int32
+        eventPipelineTaskName:
+          description: Event Pipeline Task Name
+          type: string
+        isMultiSelect:
+          description: Is Multi Select
+          type: boolean
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+      type: object
+    SettingForDisplay:
+      description: Setting
+      properties:
+        active:
+          description: Active
+          type: boolean
+        canEdit:
+          description: CanEdit
+          type: boolean
+        canEditValue:
+          description: CanEditValue
+          type: boolean
+        childLoadSQL:
+          description: ChildLoadSQL
+          type: string
+        childSettings:
+          description: ChildSettings
+          items:
+            $ref: '#/components/schemas/Setting'
+          type: array
+        defaultValue:
+          description: DefaultValue
+          type: string
+        isVisible:
+          description: IsVisible
+          type: boolean
+        nameLocalizeKey:
+          description: NameLocalizeKey
+          type: string
+        parentSettingId:
+          description: ParentSettingId
+          type: integer
+          format: int32
+          nullable: true
+        regexValidation:
+          description: RegexValidation
+          type: string
+        settingId:
+          description: SettingId
+          type: integer
+          format: int32
+        settingName:
+          description: SettingName
+          type: string
+        settingSectionId:
+          description: SettingSectionId
+          type: integer
+          format: int32
+        settingType:
+          $ref: '#/components/schemas/SettingType'
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+        subSettingSectionId:
+          description: SubSettingSectionId
+          type: integer
+          format: int32
+          nullable: true
+        tooltipLocalizeKey:
+          description: TooltipLocalizeKey
+          type: string
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

@@ -1,0 +1,2267 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations Groups API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: Groups
+  description: View and maintain user security groups
+paths:
+  /v1/groups/{id}:
+    get:
+      tags:
+      - Groups
+      summary: Get Group
+      description: Get a single group by ID
+      operationId: GroupsService_Get
+      parameters:
+      - name: id
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Group object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - Groups
+      summary: Update Group
+      description: Update a single group by ID
+      operationId: GroupsService_Update
+      parameters:
+      - name: id
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupUpdateArgs'
+        description: Group update options
+      responses:
+        '200':
+          description: Group object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Groups
+      summary: Delete Group
+      description: Delete a group by ID
+      operationId: GroupsService_Delete
+      parameters:
+      - name: id
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/{id}/users/{userId}:
+    get:
+      tags:
+      - Groups
+      summary: Get User In Group
+      description: Get a user in a group
+      operationId: GroupsService_GetGroupUser
+      parameters:
+      - name: id
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: userId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: User group membership object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupUserModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Groups
+      summary: Remove User From Group
+      description: Remove a user from a group
+      operationId: GroupsService_RemoveUserFromGroup
+      parameters:
+      - name: id
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: userId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/{id}/roles:
+    get:
+      tags:
+      - Groups
+      summary: Gets roles for group
+      description: Gets roles for group
+      operationId: GroupsService_GetRoles
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfRoleSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Groups
+      summary: Add roles to existing group
+      description: Add roles to existing group
+      operationId: GroupsService_CreateUserRoles
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/RoleAssignments'
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleChangeStatusModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Groups
+      summary: Remove roles from existing group
+      description: Remove roles from existing group
+      operationId: GroupsService_DeleteUserRoles
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/RoleRemovals'
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleChangeStatusModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups:
+    get:
+      tags:
+      - Groups
+      summary: Search Groups
+      description: Search, filter, sort, and page groups
+      operationId: GroupsService_Search
+      parameters:
+      - name: filter.domainId
+        in: query
+        description: Active Directory domain ID
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.excludeInboxRuleIdSubscribers
+        in: query
+        description: Do not include any groups already subscribed this inbox notification rule
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeInactive
+        in: query
+        description: Whether to include inactive groups in the results
+        required: false
+        schema:
+          type: boolean
+      - name: filter.limitToViewableGroups
+        in: query
+        description: Limit groups to groups that current user can view details of
+        required: false
+        schema:
+          type: boolean
+      - name: filter.platformOnly
+        in: query
+        description: Limit groups to only Platform groups
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.searchText
+        in: query
+        description: Search text
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Group search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfGroupSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Groups
+      summary: Create Group
+      description: Create a new group
+      operationId: GroupsService_Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupCreateArgs'
+        description: Group creation options
+      responses:
+        '200':
+          description: Group object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/lookup:
+    get:
+      tags:
+      - Groups
+      summary: Lookup Groups
+      description: Search, filter, sort, and page groups, returning only group ID and name
+      operationId: GroupsService_Lookup
+      parameters:
+      - name: filter.domainId
+        in: query
+        description: Active Directory domain ID
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.excludeInboxRuleIdSubscribers
+        in: query
+        description: Do not include any groups already subscribed this inbox notification rule
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeInactive
+        in: query
+        description: Whether to include inactive groups in the results
+        required: false
+        schema:
+          type: boolean
+      - name: filter.limitToViewableGroups
+        in: query
+        description: Limit groups to groups that current user can view details of
+        required: false
+        schema:
+          type: boolean
+      - name: filter.platformOnly
+        in: query
+        description: Limit groups to only Platform groups
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.searchText
+        in: query
+        description: Search text
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Group search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfGroupLookup'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/stub:
+    get:
+      tags:
+      - Groups
+      summary: Get Group Stub
+      description: Return the default values for a new group
+      operationId: GroupsService_Stub
+      responses:
+        '200':
+          description: Group object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/{id}/users:
+    get:
+      tags:
+      - Groups
+      summary: Get Group Membership
+      description: Get group membership will return all of the users that are assigned as members of the group
+      operationId: GroupsService_GetGroupMembership
+      parameters:
+      - name: id
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.includeInactiveUsersForGroup
+        in: query
+        description: Whether to include inactive users in the results
+        required: false
+        schema:
+          type: boolean
+      - name: filter.userDomainId
+        in: query
+        description: Filter only users in a specific domain
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Group membership results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfGroupUserSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Groups
+      summary: Add User To Group
+      description: Add a user to a group
+      operationId: GroupsService_AddUserToGroup
+      parameters:
+      - name: id
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupUserCreateArgs'
+        description: Group user add options
+      responses:
+        '200':
+          description: User group membership object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupUserModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - Groups
+      summary: Patch Group Membership
+      description: Update group memberships by sending a list of add and remove IDs
+      operationId: GroupsService_PatchGroupMembership
+      parameters:
+      - name: id
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupMembershipPatchModel'
+        description: Group update options
+      responses:
+        '200':
+          description: Group model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupMembershipPatchResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/audit:
+    get:
+      tags:
+      - Groups
+      summary: Get group audits
+      description: Audit records for group assignments
+      operationId: GroupsService_GetAuditGroupAssignments
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Audit records for group assignments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfAdminAuditItem'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/{id}/users-lookup:
+    get:
+      tags:
+      - Groups
+      summary: Get Group Users for display
+      description: Get Group Users for display by group id
+      operationId: GroupsService_GetGroupUsersLookup
+      parameters:
+      - name: id
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: GroupUsersLookupViewModel object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupUsersLookupViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/{id}/users/search:
+    get:
+      tags:
+      - Groups
+      summary: Group members search
+      description: Group members search will return all of the users that are assigned and/or unassigned as members of the group.
+      operationId: GroupsService_GroupMemberSearch
+      parameters:
+      - name: id
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.assigned
+        in: query
+        description: Include or exclude Users assigned to the specified Group; include both assigned and unassigned if null.
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.domainId
+        in: query
+        description: Include only Users in this domain. Pass -1 to return local accounts.  Null or empty will not filter by domain.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.groupId
+        in: query
+        description: Include/exclude members of this Group depending on the value of the Assigned parameter.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: filter.searchTerm
+        in: query
+        description: Include only Users whose display name contains the search term.
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Group membership results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupMembersSearchResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/platform/{adGuid}:
+    get:
+      tags:
+      - Groups
+      summary: Get Group by domain identifier
+      description: Get a single group by AD Guid
+      operationId: GroupsService_GetGroupByPlatformIdentifer
+      parameters:
+      - name: adGuid
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Group object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/{groupId}:
+    patch:
+      tags:
+      - Groups
+      summary: Patch Group
+      description: Patch a single group by ID
+      operationId: GroupsService_PatchGroup
+      parameters:
+      - name: groupId
+        in: path
+        description: Group ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPatchArgs'
+        description: Group update options
+      responses:
+        '200':
+          description: Group object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v2/groups/{id}/roles:
+    put:
+      tags:
+      - Groups
+      summary: Update all roles on group
+      description: Update all roles on group
+      operationId: GroupsService_UpdateGroupRoles
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        $ref: '#/components/requestBodies/RoleAssignments'
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleChangeStatusModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/groups/{groupId}/users:
+    put:
+      tags:
+      - Groups
+      summary: Update all members of a group
+      description: Update all members of a group
+      operationId: GroupsService_UpdateGroupMembers
+      parameters:
+      - name: groupId
+        in: path
+        description: groupId
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupMemberAssignmentRequest'
+        description: args
+      responses:
+        '200':
+          description: Success / Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupMembershipAssignmentResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    GroupMembersSearchResult:
+      description: GroupMembersSearchResult
+      properties:
+        success:
+          description: Success
+          type: boolean
+        totalAssigned:
+          description: TotalAssigned
+          type: integer
+          format: int32
+        totalUnassigned:
+          description: TotalUnassigned
+          type: integer
+          format: int32
+        users:
+          $ref: '#/components/schemas/PagingOfGroupMemberSummary'
+      type: object
+    PagingOfGroupUserSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/GroupUserSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    GroupPatchArgs:
+      description: GroupPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/GroupPatchModel'
+      type: object
+    GroupMembershipPatchModel:
+      description: Patch group membership
+      properties:
+        addedUserIds:
+          description: Only the group IDs to add as members
+          items:
+            type: integer
+            format: int32
+          type: array
+        removeUserIds:
+          description: Only the group IDs to removed as members
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    PagingOfGroupSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/GroupSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    DictionaryOfInt32AndString:
+      description: Hash of GroupIds and GroupNames that own this group. Only used if HasGroupOwners is true.
+      properties: {}
+      type: object
+    GroupOwner:
+      description: The owners for the group
+      properties:
+        groupId:
+          description: The group ID, or personal group ID in the case of a user
+          type: integer
+          format: int32
+        name:
+          description: The display name for the user or group
+          type: string
+        userId:
+          description: The user ID, or null in the case of a group
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    AdminAuditItem:
+      description: Audit entries for administration items
+      properties:
+        action:
+          description: The action that occurred
+          type: string
+        dateRecorded:
+          description: The date the audit entry was recorded
+          type: string
+          format: date-time
+        notes:
+          description: Extended information for the audit
+          type: string
+        userDisplayName:
+          description: Display Name for the user that made the audit
+          type: string
+        userId:
+          description: The user id of the user that made the audit
+          type: integer
+          format: int32
+      type: object
+    GroupCreateArgs:
+      description: Group create options
+      required:
+      - name
+      - enabled
+      properties:
+        adGuid:
+          description: The Object GUID of the Active Directory Group (Hexadecimal)
+          type: string
+        domainId:
+          description: Active Directory Domain ID
+          type: integer
+          format: int32
+          nullable: true
+        enabled:
+          description: Whether the group is active
+          type: boolean
+        hasGroupOwners:
+          description: If true, the group is owned by specific other users/groups. If false, if it is owned by Group Administrators.
+          type: boolean
+          nullable: true
+        isPlatform:
+          description: Whether the group is a Platform Group
+          type: boolean
+        name:
+          description: Group name
+          type: string
+        ownerGroupIds:
+          description: List of owner GroupIds. Only used if HasGroupOwners is true.
+          items:
+            type: integer
+            format: int32
+          type: array
+        ownerGroupNames:
+          description: List of owner Group Names. Only used if HasGroupOwners is true.
+          items:
+            type: string
+          type: array
+        ownerUserIds:
+          description: List of owner UserIds. Only used if HasGroupOwners is true.
+          items:
+            type: integer
+            format: int32
+          type: array
+        ownerUserNames:
+          description: List of owner Usernames. Only used if HasGroupOwners is true.
+          items:
+            type: string
+          type: array
+        synchronized:
+          description: Whether the group is synchronized with Active Directory
+          type: boolean
+        synchronizeNow:
+          description: Active Directory Sync will only pull in members for domain groups that have this set to true.
+          type: boolean
+      type: object
+    UpdateFieldValueOfInt32Array:
+      description: FolderIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    GroupIpAddressRestrictionSummaryModel:
+      description: Group IP Address Restriction Model
+      properties:
+        id:
+          description: Id of Address Restriction
+          type: integer
+          format: int32
+        name:
+          description: Name of IP Address Restriction
+          type: string
+        range:
+          description: Range of IP Address Restriction
+          type: string
+      type: object
+    PagingOfRoleSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/RoleSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    GroupMemberAssignmentRequest:
+      description: GroupMemberAssignmentRequest
+      properties:
+        userIds:
+          description: This list will be the exact members for the group
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    GroupMemberSummary:
+      description: Query results
+      properties:
+        assigned:
+          description: User assigned to Group
+          type: boolean
+        displayName:
+          description: User display name
+          type: string
+        domainName:
+          description: User Active Directory domain name
+          type: string
+        enabled:
+          description: User Enabled
+          type: boolean
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+        userId:
+          description: User ID
+          type: integer
+          format: int32
+        userName:
+          description: User name
+          type: string
+      type: object
+    PagingOfGroupMemberSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/GroupMemberSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    RoleAssignments:
+      description: Roles to be assigned
+      properties:
+        roleIds:
+          description: Role IDs
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    GroupModel:
+      description: Group
+      properties:
+        adGuid:
+          description: Active Directory unique identifier
+          type: string
+        canEditMembers:
+          description: Whether you can edit the members of this group.  For example, Directory Services group members cannot be edited.  Populated on a single group get.
+          type: boolean
+          nullable: true
+        created:
+          description: Group created date
+          type: string
+          format: date-time
+        domainId:
+          description: Active Directory Domain ID
+          type: integer
+          format: int32
+        domainName:
+          description: Active Directory domain name
+          type: string
+        enabled:
+          description: Whether the group is active
+          type: boolean
+        hasGroupOwners:
+          description: If true, the group is owned by specific other users/groups. If false, if it is owned by Group Administrators.
+          type: boolean
+        id:
+          description: Group ID
+          type: integer
+          format: int32
+        ipAddressRestrictions:
+          description: Array of IP Address Restrictions for the group.
+          items:
+            $ref: '#/components/schemas/GroupIpAddressRestrictionSummaryModel'
+          type: array
+        isEditable:
+          description: Whether you have permission to edit this group
+          type: boolean
+        isPlatform:
+          description: Whether the group is a Platform Group
+          type: boolean
+        name:
+          description: Group name
+          type: string
+        ownerGroups:
+          $ref: '#/components/schemas/DictionaryOfInt32AndString'
+        owners:
+          description: The owners for the group, both users and groups
+          items:
+            $ref: '#/components/schemas/GroupOwner'
+          type: array
+        ownerUsers:
+          $ref: '#/components/schemas/DictionaryOfInt32AndString'
+        synchronized:
+          description: Whether the group is synchronized with Active Directory
+          type: boolean
+        synchronizeNow:
+          description: Active Directory Sync will only pull in members for domain groups that have this set to true.
+          type: boolean
+        systemGroup:
+          description: Whether the group is an Active Directory system group
+          type: boolean
+      type: object
+    PagingOfGroupLookup:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/GroupLookup'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    RoleRemovals:
+      description: Roles to be removed
+      properties:
+        roleIds:
+          description: Role IDs
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    RoleChangeStatusModel:
+      description: The status of the Role change action.
+      properties:
+        success:
+          description: The success or failure of the user or group role action.
+          type: boolean
+      type: object
+    GroupPatchModel:
+      description: Patch group
+      properties:
+        addedOwnerGroupIds:
+          description: Only the group IDs to add as owners, this take precedence over the OwnerGroupIds
+          items:
+            type: integer
+            format: int32
+          type: array
+        enabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        ipAddressRestrictionIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        ownerGroupIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+        removedOwnerGroupIds:
+          description: Only the group IDs to removed as owners, this take precedence over the OwnerGroupIds
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    GroupMembershipAssignmentResponse:
+      description: GroupMembershipAssignmentResponse
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    DeletedModel:
+      description: Information about an object that was deleted
+      properties:
+        id:
+          description: ID of the deleted object
+          type: integer
+          format: int32
+        objectType:
+          description: Type of the deleted object
+          type: string
+        responseCodes:
+          description: List of response codes from the delete operation
+          items:
+            type: string
+          type: array
+      type: object
+    GroupSummary:
+      description: Group summary
+      properties:
+        created:
+          description: Created Date
+          type: string
+          format: date-time
+        domainGuid:
+          description: If this a synchronized group and the user requesting access has access this will be populated with the unique guid for the directory with a group search.
+          type: string
+        domainId:
+          description: Active Directory domain ID
+          type: integer
+          format: int32
+        domainName:
+          description: Active Directory domain name
+          type: string
+        enabled:
+          description: Whether the group is active
+          type: boolean
+        id:
+          description: Group ID
+          type: integer
+          format: int32
+        isPlatform:
+          description: If this is synchronized with Platform
+          type: boolean
+        memberCount:
+          description: Number of members in group
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          description: Group name
+          type: string
+        synchronized:
+          description: Whether the group is synchronized with Active Directory
+          type: boolean
+        synchronizeNow:
+          description: Active Directory Sync will only pull in members for domain groups that have this set to true.
+          type: boolean
+      type: object
+    GroupMembershipPatchResult:
+      description: GroupMembershipPatchResult
+      properties:
+        success:
+          description: Success of the patch
+          type: boolean
+      type: object
+    GroupUsersLookupViewModel:
+      description: GroupUsersLookupViewModel
+      properties:
+        users:
+          description: Users
+          items:
+            type: string
+          type: array
+      type: object
+    GroupLookup:
+      description: Simple group representation
+      properties:
+        id:
+          description: Group ID
+          type: integer
+          format: int32
+        value:
+          description: Group name
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    PagingOfAdminAuditItem:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/AdminAuditItem'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    GroupUserCreateArgs:
+      description: Group memberhsip create options
+      properties:
+        userId:
+          description: User ID to add
+          type: integer
+          format: int32
+      type: object
+    GroupUserModel:
+      description: Represents a single user's membership in a group
+      properties:
+        groupDomainId:
+          description: Group Active Directory domain ID
+          type: integer
+          format: int32
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+        groupName:
+          description: Group name
+          type: string
+        userDomainId:
+          description: User Active Directory domain ID
+          type: integer
+          format: int32
+        userId:
+          description: User ID
+          type: integer
+          format: int32
+        userName:
+          description: User name
+          type: string
+      type: object
+    GroupUserSummary:
+      description: Query results
+      properties:
+        displayName:
+          description: User display name
+          type: string
+        enabled:
+          description: User Enabled
+          type: boolean
+        groupDomainId:
+          description: Group Active Directory domain ID
+          type: integer
+          format: int32
+        groupDomainName:
+          description: Group Domain Name
+          type: string
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+        groupName:
+          description: Group name
+          type: string
+        userDomainId:
+          description: User Active Directory domain ID
+          type: integer
+          format: int32
+        userDomainName:
+          description: User Active Directory domain name
+          type: string
+        userId:
+          description: User ID
+          type: integer
+          format: int32
+        userName:
+          description: User name
+          type: string
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    GroupUpdateArgs:
+      description: Group update options
+      required:
+      - id
+      properties:
+        adGuid:
+          description: The Object GUID of the Active Directory Group (Hexadecimal)
+          type: string
+        domainId:
+          description: Active Directory Domain ID
+          type: integer
+          format: int32
+          nullable: true
+        enabled:
+          description: Whether the group is active
+          type: boolean
+          nullable: true
+        hasGroupOwners:
+          description: If true, the group is owned by specific other users/groups. If false, if it is owned by Group Administrators.
+          type: boolean
+          nullable: true
+        id:
+          description: Group ID. Must match ID in path
+          type: integer
+          format: int32
+          minimum: 1
+        isPlatform:
+          description: Whether the group is a Platform Group
+          type: boolean
+        name:
+          description: Group name
+          type: string
+        ownerGroupIds:
+          description: List of owner GroupIds. Only used if HasGroupOwners is true.
+          items:
+            type: integer
+            format: int32
+          type: array
+        ownerGroupNames:
+          description: List of owner Group Names. Only used if HasGroupOwners is true.
+          items:
+            type: string
+          type: array
+        ownerUserIds:
+          description: List of owner UserIds. Only used if HasGroupOwners is true.
+          items:
+            type: integer
+            format: int32
+          type: array
+        ownerUserNames:
+          description: List of owner Usernames. Only used if HasGroupOwners is true.
+          items:
+            type: string
+          type: array
+        synchronized:
+          description: Whether the group is synchronized with Active Directory
+          type: boolean
+        synchronizeNow:
+          description: Active Directory Sync will only pull in members for domain groups that have this set to true.
+          type: boolean
+      type: object
+    RoleSummary:
+      description: Role Summary
+      properties:
+        name:
+          description: Role Name
+          type: string
+        roleId:
+          description: Role ID
+          type: integer
+          format: int32
+      type: object
+  requestBodies:
+    RoleAssignments:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RoleAssignments'
+      description: args
+    RoleRemovals:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RoleRemovals'
+      description: args
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

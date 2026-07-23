@@ -1,0 +1,1251 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations BulkUserOperations API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: BulkUserOperations
+  description: Create Bulk User Operations
+paths:
+  /v1/bulk-user-operations/enable:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Enable
+      description: Enable each User.
+      operationId: BulkUserOperationsService_EnableUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/disable:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Disable
+      description: Disable each User.
+      operationId: BulkUserOperationsService_DisableUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/enable-email-two-factor:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Enable Email Two Factor
+      description: Enable Email two factor for each User.
+      operationId: BulkUserOperationsService_EnableEmailTwoFactorForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableEmailTwoFactorForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/disable-email-two-factor:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Disable Email Two Factor
+      description: Disable Email two factor for each User.
+      operationId: BulkUserOperationsService_DisableEmailTwoFactorForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableEmailTwoFactorForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/enable-radius-two-factor:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Enable Radius Two Factor
+      description: Enable Radius two factor for each User.
+      operationId: BulkUserOperationsService_EnableRadiusTwoFactorForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableRadiusTwoFactorForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/disable-radius-two-factor:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Disable Radius Two Factor
+      description: Disable Radius two factor for each User.
+      operationId: BulkUserOperationsService_DisableRadiusTwoFactorForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableRadiusTwoFactorForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/enable-totp-auth:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Enable TOTP Auth
+      description: Enable TOTP Auth for each User.
+      operationId: BulkUserOperationsService_EnableTOTPAuthForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableTOTPAuthForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/disable-totp-auth:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Disable TOTP Auth
+      description: Disable TOTP Auth for each User.
+      operationId: BulkUserOperationsService_DisableTOTPAuthForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableTOTPAuthForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/reset-totp-auth:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Reset TOTP Auth
+      description: Reset TOTP Auth for each User.
+      operationId: BulkUserOperationsService_ResetTOTPAuthForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetTOTPAuthForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/enable-duo-auth:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Enable Duo Auth
+      description: Enable Duo Auth for each User.
+      operationId: BulkUserOperationsService_EnableDuoAuthForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableDuoAuthForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/disable-duo-auth:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Disable Duo Auth
+      description: Disable Duo Auth for each User.
+      operationId: BulkUserOperationsService_DisableDuoAuthForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableDuoAuthForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/enable-fido2-two-factor:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Enable Fido2 Two Factor
+      description: Enable Fido2 two factor for each User.
+      operationId: BulkUserOperationsService_EnableFido2TwoFactorForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableFido2TwoFactorForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/disable-fido2-two-factor:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Disable Fido2 Two Factor
+      description: Disable Fido2 two factor for each User.
+      operationId: BulkUserOperationsService_DisableFido2TwoFactorForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableFido2TwoFactorForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/reset-fido2-two-factor:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Reset Fido2 Two Factor
+      description: Reset Fido2 two factor for each User.
+      operationId: BulkUserOperationsService_ResetFido2TwoFactorForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetFido2TwoFactorForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/force-logout:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Force Logout
+      description: Force Logout for each User.
+      operationId: BulkUserOperationsService_ForceLogoutForUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForceLogoutForUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/lock:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Lock
+      description: Lock selected Users.
+      operationId: BulkUserOperationsService_LockUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LockUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/unlock:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Unlock
+      description: Unlock selected Users.
+      operationId: BulkUserOperationsService_UnlockUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnlockUsersArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/add-to-group:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Add To Group
+      description: Add selected Users to the specified Group.
+      operationId: BulkUserOperationsService_AddUsersToGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUsersToGroupArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/remove-from-group:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Remove From Group
+      description: Remove selected Users from the specified Group.
+      operationId: BulkUserOperationsService_RemoveUsersFromGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveUsersFromGroupArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/add-to-team:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Add To Team
+      description: Add selected Users to the specified Team.
+      operationId: BulkUserOperationsService_AddUsersToTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUsersToTeamArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/bulk-user-operations/remove-from-team:
+    post:
+      tags:
+      - BulkUserOperations
+      summary: Remove From Team
+      description: Remove selected Users from the specified Team.
+      operationId: BulkUserOperationsService_RemoveUsersFromTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveUsersFromTeamArgs'
+        description: args
+      responses:
+        '200':
+          description: BulkOperationResponseMessage containing the Id of the created Bulk Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkOperationResponseMessage'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    RemoveUsersFromTeamModel:
+      description: Data
+      properties:
+        teamId:
+          description: Id of Team to remove selected users from.
+          type: integer
+          format: int32
+        userIds:
+          description: User Ids to remove from selected Team.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    EnableUsersArgs:
+      description: EnableUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EnableUsersModel'
+      type: object
+    BulkOperationResponseMessage:
+      description: BulkOperationResponseMessage
+      properties:
+        bulkOperationId:
+          description: BulkOperationId
+          type: string
+      type: object
+    ResetFido2TwoFactorForUsersArgs:
+      description: ResetFido2TwoFactorForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/ResetFido2TwoFactorForUsersModel'
+      type: object
+    UnlockUsersArgs:
+      description: UnlockUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/UnlockUsersModel'
+      type: object
+    RemoveUsersFromGroupArgs:
+      description: RemoveUsersFromGroupArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/RemoveUsersFromGroupModel'
+      type: object
+    LockUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to lock.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    ResetFido2TwoFactorForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to reset Fido2 Two Factor for.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    UnlockUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to unlock.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    DisableUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to disable.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    EnableRadiusTwoFactorForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to set Radius Two Factor to enabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    EnableFido2TwoFactorForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to set Fido2 Two Factor to enabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    DisableTOTPAuthForUsersArgs:
+      description: DisableTOTPAuthForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DisableTOTPAuthForUsersModel'
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    AddUsersToGroupArgs:
+      description: AddUsersToGroupArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/AddUsersToGroupModel'
+      type: object
+    EnableFido2TwoFactorForUsersArgs:
+      description: EnableFido2TwoFactorForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EnableFido2TwoFactorForUsersModel'
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    DisableFido2TwoFactorForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to set Fido2 Two Factor to disabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    AddUsersToTeamModel:
+      description: Data
+      properties:
+        teamId:
+          description: Id of Team to add selected users to.
+          type: integer
+          format: int32
+        userIds:
+          description: User Ids to add to selected Team.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    ForceLogoutForUsersArgs:
+      description: ForceLogoutForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/ForceLogoutForUsersModel'
+      type: object
+    EnableEmailTwoFactorForUsersArgs:
+      description: EnableEmailTwoFactorForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EnableEmailTwoFactorForUsersModel'
+      type: object
+    AddUsersToTeamArgs:
+      description: AddUsersToTeamArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/AddUsersToTeamModel'
+      type: object
+    EnableDuoAuthForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to set Duo Auth to enabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    LockUsersArgs:
+      description: LockUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/LockUsersModel'
+      type: object
+    EnableTOTPAuthForUsersArgs:
+      description: EnableTOTPAuthForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EnableTOTPAuthForUsersModel'
+      type: object
+    ForceLogoutForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to force logout.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    EnableRadiusTwoFactorForUsersArgs:
+      description: EnableRadiusTwoFactorForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EnableRadiusTwoFactorForUsersModel'
+      type: object
+    RemoveUsersFromGroupModel:
+      description: Data
+      properties:
+        groupId:
+          description: Id of Group to remove selected users from.
+          type: integer
+          format: int32
+        userIds:
+          description: User Ids to remove from selected Group.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    DisableUsersArgs:
+      description: DisableUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DisableUsersModel'
+      type: object
+    DisableTOTPAuthForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to set TOTP Auth to disabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    DisableRadiusTwoFactorForUsersArgs:
+      description: DisableRadiusTwoFactorForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DisableRadiusTwoFactorForUsersModel'
+      type: object
+    AddUsersToGroupModel:
+      description: Data
+      properties:
+        groupId:
+          description: Id of Group to add selected users to.
+          type: integer
+          format: int32
+        userIds:
+          description: User Ids to add to selected Group.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    EnableDuoAuthForUsersArgs:
+      description: EnableDuoAuthForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EnableDuoAuthForUsersModel'
+      type: object
+    RemoveUsersFromTeamArgs:
+      description: RemoveUsersFromTeamArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/RemoveUsersFromTeamModel'
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    DisableEmailTwoFactorForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to set Email Two Factor to disabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    ResetTOTPAuthForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to reset TOTP Auth for.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    DisableDuoAuthForUsersArgs:
+      description: DisableDuoAuthForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DisableDuoAuthForUsersModel'
+      type: object
+    EnableTOTPAuthForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to set TOTP Auth to enabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    DisableFido2TwoFactorForUsersArgs:
+      description: DisableFido2TwoFactorForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DisableFido2TwoFactorForUsersModel'
+      type: object
+    EnableUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: Ids of Users to enabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    DisableRadiusTwoFactorForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to set Radius Two Factor to disabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    DisableDuoAuthForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to set Duo Auth to disabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    DisableEmailTwoFactorForUsersArgs:
+      description: DisableEmailTwoFactorForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DisableEmailTwoFactorForUsersModel'
+      type: object
+    ResetTOTPAuthForUsersArgs:
+      description: ResetTOTPAuthForUsersArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/ResetTOTPAuthForUsersModel'
+      type: object
+    EnableEmailTwoFactorForUsersModel:
+      description: Data
+      properties:
+        userIds:
+          description: User Ids to set Email Two Factor to enabled.
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header

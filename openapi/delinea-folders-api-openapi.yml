@@ -1,0 +1,1932 @@
+openapi: 3.0.0
+info:
+  title: Secret Server Rest Activations Folders API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  termsOfService: https://delinea.com/eula
+  contact:
+    name: Support
+    url: https://delinea.com
+  version: 11.7.2
+servers:
+- url: /SecretServer/api
+security:
+- BearerToken: []
+tags:
+- name: Folders
+  description: View and maintain secret folders
+paths:
+  /v1/folders/{id}:
+    get:
+      tags:
+      - Folders
+      summary: Get Folder
+      description: Get a single folder by ID
+      operationId: FoldersService_Get
+      parameters:
+      - name: getAllChildren
+        in: query
+        description: Whether to retrieve all child folders of the requested folder
+        required: false
+        schema:
+          type: boolean
+      - name: includeAssociatedTemplates
+        in: query
+        description: Whether to list associated secret templates
+        required: false
+        schema:
+          type: boolean
+      - name: folderPath
+        in: query
+        description: A full path to a folder including the folder name can be passed as a query string parameter when the folder ID is set to 0.  This will lookup the folder ID by path.
+        required: false
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Folder object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    put:
+      tags:
+      - Folders
+      summary: Update Folder
+      description: Update a single secret folder by ID
+      operationId: FoldersService_Update
+      parameters:
+      - name: id
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FolderUpdateArgs'
+        description: Folder update options
+      responses:
+        '200':
+          description: Folder object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    delete:
+      tags:
+      - Folders
+      summary: Delete Folder
+      description: Delete a folder by ID
+      operationId: FoldersService_Delete
+      parameters:
+      - name: id
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Object deletion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folders/{id}/templates/{templateId}:
+    delete:
+      tags:
+      - Folders
+      summary: Disassociate Template from Folder
+      description: Remove the ability to create secrets based on the template in this folder. If the folder has no associated templates, then any template can be used.
+      operationId: FoldersService_DissassociateTemplateToFolder
+      parameters:
+      - name: id
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: templateId
+        in: path
+        description: Template ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Folder object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folder/{id}/pinned:
+    delete:
+      tags:
+      - Folders
+      summary: Unpin Folder
+      description: Unpin a folder for the current user.  This will remove any settings for this user for this pinned folder.  If not pinned already it will still return success.
+      operationId: FoldersService_UnpinFolder
+      parameters:
+      - name: id
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success Status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnpinFolderResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    patch:
+      tags:
+      - Folders
+      summary: Pin Folder
+      description: Pin a single folder or update settings for the pinned folder for the current user
+      operationId: FoldersService_PinFolder
+      parameters:
+      - name: id
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PinFolderArgs'
+        description: Pin Folder Args
+      responses:
+        '200':
+          description: Success Status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PinFolderResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folders:
+    get:
+      tags:
+      - Folders
+      summary: Search Folders
+      description: Search, filter, sort, and page secret folders
+      operationId: FoldersService_Search
+      parameters:
+      - name: filter.folderTypeId
+        in: query
+        description: The icon to display for the folder. Depricated in latest UI. Use 1 when setting this value.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.limitToDirectDescendents
+        in: query
+        description: When true and ParentFolderId is not null only return immediate child folders
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.onlyIncludeRootFolders
+        in: query
+        description: When true only root folders will be returned and ParentFolderId will be ignored
+        required: false
+        schema:
+          type: boolean
+      - name: filter.parentFolderId
+        in: query
+        description: Return folders that are descendants of this folder.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.permissionRequired
+        in: query
+        description: Specify whether to filter by Owner, Edit, AddSecret, View folder permission. Default is View.
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+      - name: filter.searchText
+        in: query
+        description: Search term to match against folder names. Search returns any folder where the search term is contained in the folder name.
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Folder search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfFolderSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+    post:
+      tags:
+      - Folders
+      summary: Create Folder
+      description: Create a new secret folder
+      operationId: FoldersService_Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FolderCreateArgs'
+        description: Folder creation options
+      responses:
+        '200':
+          description: Folder object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folders/lookup:
+    get:
+      tags:
+      - Folders
+      summary: Lookup Folders
+      description: Search, filter, sort, and page secret folders, returning only folder ID and name
+      operationId: FoldersService_Lookup
+      parameters:
+      - name: filter.folderTypeId
+        in: query
+        description: The icon to display for the folder. Depricated in latest UI. Use 1 when setting this value.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.limitToDirectDescendents
+        in: query
+        description: When true and ParentFolderId is not null only return immediate child folders
+        required: false
+        x-nullable: true
+        schema:
+          type: boolean
+      - name: filter.onlyIncludeRootFolders
+        in: query
+        description: When true only root folders will be returned and ParentFolderId will be ignored
+        required: false
+        schema:
+          type: boolean
+      - name: filter.parentFolderId
+        in: query
+        description: Return folders that are descendants of this folder.
+        required: false
+        x-nullable: true
+        schema:
+          type: integer
+          format: int32
+      - name: filter.permissionRequired
+        in: query
+        description: Specify whether to filter by Owner, Edit, AddSecret, View folder permission. Default is View.
+        required: false
+        x-nullable: true
+        schema:
+          type: string
+      - name: filter.searchText
+        in: query
+        description: Search term to match against folder names. Search returns any folder where the search term is contained in the folder name.
+        required: false
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Folder search result object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfFolderLookup'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folders/stub:
+    get:
+      tags:
+      - Folders
+      summary: Get Folder Stub
+      description: Return the default values for a new secret folder
+      operationId: FoldersService_Stub
+      responses:
+        '200':
+          description: Folder object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folders/{id}/audit:
+    get:
+      tags:
+      - Folders
+      summary: Folder Audits
+      description: Retrieve a list of audits for folder by ID.
+      operationId: FoldersService_GetAudits
+      parameters:
+      - name: id
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: isExporting
+        in: query
+        description: isExporting
+        required: false
+        schema:
+          type: boolean
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Specify paging and sorting options for querying records and returning results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfFolderAuditSummary'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folder-details/{id}:
+    get:
+      tags:
+      - Folders
+      summary: Get Folder Details
+      description: Get Folder Details
+      operationId: FoldersService_GetFolderDetail
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: returnEmptyInsteadOfNoAccessException
+        in: query
+        description: returnEmptyInsteadOfNoAccessException
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Folder Details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderDetailViewModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folders/pinned:
+    get:
+      tags:
+      - Folders
+      summary: Get Pinned Folders
+      description: Return a list of folders that the current user has pinned
+      operationId: FoldersService_GetPinnedFolders
+      parameters:
+      - name: skip
+        in: query
+        description: Number of records to skip before taking results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortBy[0].direction
+        in: query
+        description: Sort direction
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].name
+        in: query
+        description: Sort field name
+        required: false
+        schema:
+          type: string
+      - name: sortBy[0].priority
+        in: query
+        description: Priority index. Sorts with lower values are executed earlier
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: take
+        in: query
+        description: Maximum number of records to include in results
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of pinned folders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagingOfPinnedFolderModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folder/{id}:
+    patch:
+      tags:
+      - Folders
+      summary: Patch a Folder
+      description: Patch a single secret folder by ID
+      operationId: FoldersService_PatchFolder
+      parameters:
+      - name: id
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FolderPatchArgs'
+        description: Folder update options
+      responses:
+        '200':
+          description: Folder object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderBasicModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folder/{folderId}/permissions:
+    patch:
+      tags:
+      - Folders
+      summary: Patch Folder Permissions
+      description: Add, delete, and update some permissions as opposed to a full replace of all permissions for a folder
+      operationId: FoldersService_PatchFolderPermissions
+      parameters:
+      - name: folderId
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FolderPermissionsPatchArgs'
+        description: Folder permission update options
+      responses:
+        '200':
+          description: Success result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderPermissionsPatchResultModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+  /v1/folders/{id}/templates:
+    post:
+      tags:
+      - Folders
+      summary: Associate Template to Folder
+      description: Allow secrets based on the template to be created in the folder. If the folder has no associated templates, then any template can be used.
+      operationId: FoldersService_AssociateTemplateToFolder
+      parameters:
+      - name: id
+        in: path
+        description: Folder ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FolderTemplateArgs'
+        description: Folder template association options
+      responses:
+        '200':
+          description: Folder object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderTemplateModel'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '403':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFailedResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      deprecated: false
+components:
+  schemas:
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    PinnedFolderModel:
+      description: A folder that a user has pinned
+      properties:
+        activeFilter:
+          description: Active Filter
+          type: boolean
+          nullable: true
+        createDate:
+          description: When was this folder pinned
+          type: string
+          format: date-time
+        displayName:
+          description: The display name to show.  This will be the folder name or an overridable user defined name for this pin
+          type: string
+        folderId:
+          description: The pinned folder ID.  This folder will be the root of the tree
+          type: integer
+          format: int32
+        includeSubfolders:
+          description: Include Subfolders
+          type: boolean
+        lastViewed:
+          description: When was this folder last viewed
+          type: string
+          format: date-time
+          nullable: true
+        searchText:
+          description: Search Text
+          type: string
+        selectedFolderId:
+          description: Expand this folder in the tree
+          type: integer
+          format: int32
+          nullable: true
+        showCards:
+          description: Show Cards
+          type: boolean
+        templateFilter:
+          description: Template Filter
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    FolderSummary:
+      description: Representation of a secret folder object
+      properties:
+        folderName:
+          description: The name of the folder
+          type: string
+        folderPath:
+          description: The path of all folders and subfolders beginning at the root anterminating at this folder.
+          type: string
+        folderTypeId:
+          description: The icon to display for the folder. Depricated in latest UI. Use 1 when setting this value.
+          type: integer
+          format: int32
+        id:
+          description: Folder ID
+          type: integer
+          format: int32
+        inheritPermissions:
+          description: 'Whether the folder should inherit permissions from its parent (default: true)'
+          type: boolean
+        inheritSecretPolicy:
+          description: Whether the folder should inherit the secret policy.  Defaults to true unless creating a root folder.
+          type: boolean
+        parentFolderId:
+          description: The ID of this folder's parent folder.
+          type: integer
+          format: int32
+        secretPolicyId:
+          description: The id of the Secret Policy that sets security and other settings on secrets contained within the folder.
+          type: integer
+          format: int32
+      type: object
+    FolderPermissionModel:
+      description: Folder permission
+      properties:
+        folderAccessRoleId:
+          description: Role ID granted on the folder
+          type: integer
+          format: int32
+        folderAccessRoleName:
+          description: Role name granted on the folder
+          type: string
+        folderId:
+          description: Folder ID
+          type: integer
+          format: int32
+        groupId:
+          description: Group ID having permissions on the folder
+          type: integer
+          format: int32
+        groupName:
+          description: Group name having permissions on the folder
+          type: string
+        id:
+          description: Folder permission ID
+          type: integer
+          format: int32
+        knownAs:
+          description: KnownAs
+          type: string
+        secretAccessRoleId:
+          description: Role ID granted on secrets in the folder
+          type: integer
+          format: int32
+          nullable: true
+        secretAccessRoleName:
+          description: Role name granted on secrets in the folder
+          type: string
+        userId:
+          description: User ID having permissions on the folder
+          type: integer
+          format: int32
+        userName:
+          description: User name having permissions on the folder
+          type: string
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    FolderPermissionsPatchData:
+      description: Apply a subset of permission changes to a folder.  This does not replace existing permissions.
+      properties:
+        addOrUpdateItems:
+          description: All of these groups permissions will be added or updated on the folder
+          items:
+            $ref: '#/components/schemas/FolderPermissionsGroupUpdateModel'
+          type: array
+        allowRemoveOwner:
+          description: When false this call will fail if your request would remove the current user as able to edit.  When true, you can remove your access to the folder.
+          type: boolean
+        inheritPermissions:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        removeItems:
+          description: All of these groups or users will be removed from the folder permissions for this folder
+          items:
+            $ref: '#/components/schemas/FolderPermissionsGroupModel'
+          type: array
+      type: object
+    UpdateFieldValueOfOptionalDateTime:
+      description: Update when the pinned folder was last viewed
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+          format: date-time
+          nullable: true
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    PagingOfPinnedFolderModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/PinnedFolderModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PinFolderData:
+      description: Used to update pinned folder settings
+      properties:
+        activeFilter:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        displayName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        includeSubfolders:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        lastViewed:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalDateTime'
+        searchText:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        selectedFolderId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        showCards:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        templateFilter:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    FolderPatchArgs:
+      description: FolderPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/FolderPatchModel'
+      type: object
+    FolderTemplateArgs:
+      description: Available options for associating a template to a folder
+      required:
+      - folderId
+      - templateId
+      properties:
+        folderId:
+          description: Folder ID to associate. Must match ID in path
+          type: integer
+          format: int32
+          minimum: 1
+        templateId:
+          description: Template ID to associate
+          type: integer
+          format: int32
+          minimum: 1
+      type: object
+    FolderPermissionsGroupUpdateModel:
+      description: All of these groups permissions will be added or updated on the folder
+      properties:
+        folderAccessRoleId:
+          description: FolderAccessRoleId
+          type: integer
+          format: int32
+        groupId:
+          description: The group id of the group or personal group id for the user to update
+          type: integer
+          format: int32
+          nullable: true
+        secretAccessRoleId:
+          description: SecretAccessRoleId
+          type: integer
+          format: int32
+          nullable: true
+        userId:
+          description: The user id of the user.  If GroupId is populated this field will be ignored and can be null
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    PagingOfFolderLookup:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/FolderLookup'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    SecretTemplateSummary:
+      description: Secret template summary
+      properties:
+        active:
+          description: Is Secret template active
+          type: boolean
+        heartbeatEnabled:
+          description: Is heartbeat enabled for this template
+          type: boolean
+        id:
+          description: Secret template ID
+          type: integer
+          format: int32
+        name:
+          description: Secret template name
+          type: string
+        passwordTypeId:
+          description: Password Type that the secret template uses for password change
+          type: integer
+          format: int32
+          nullable: true
+        passwordTypeReady:
+          description: Is the template password type ready
+          type: boolean
+        secretCount:
+          description: Number of Secrets associated to the template. Only populated when IncludeCount is set to true.
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    FolderPermissionsPatchArgs:
+      description: FolderPermissionsPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/FolderPermissionsPatchData'
+      type: object
+    IFolderModel:
+      description: Describes the properties of a secret folder
+      properties:
+        childFolders:
+          description: List of folders within this folder
+          items:
+            $ref: '#/components/schemas/IFolderModel'
+          type: array
+        folderName:
+          description: Folder name
+          type: string
+        folderPath:
+          description: Path of this folder
+          type: string
+        folderTypeId:
+          description: Folder type ID
+          type: integer
+          format: int32
+        id:
+          description: Folder ID
+          type: integer
+          format: int32
+        inheritPermissions:
+          description: Whether the folder inherits permissions from its parent
+          type: boolean
+        inheritSecretPolicy:
+          description: Whether the folder inherits the secret policy
+          type: boolean
+        parentFolderId:
+          description: Parent folder ID
+          type: integer
+          format: int32
+        secretPolicyId:
+          description: Secret policy ID
+          type: integer
+          format: int32
+        secretTemplates:
+          description: Secret templates associated with this folder
+          items:
+            $ref: '#/components/schemas/SecretTemplateSummary'
+          type: array
+      type: object
+    DeletedModel:
+      description: Information about an object that was deleted
+      properties:
+        id:
+          description: ID of the deleted object
+          type: integer
+          format: int32
+        objectType:
+          description: Type of the deleted object
+          type: string
+        responseCodes:
+          description: List of response codes from the delete operation
+          items:
+            type: string
+          type: array
+      type: object
+    FolderAuditSummary:
+      description: Folder Audit Summary
+      properties:
+        action:
+          description: Action
+          type: string
+        auditFolderId:
+          description: Audit Folder Id
+          type: integer
+          format: int32
+        dateRecorded:
+          description: Date Recorded
+          type: string
+          format: date-time
+        displayName:
+          description: Display Name
+          type: string
+        notes:
+          description: Notes
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalBoolean:
+      description: Use RADIUS Username for DUO
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+          nullable: true
+      type: object
+    FolderModel:
+      description: Describes the properties of a secret folder
+      properties:
+        childFolders:
+          description: List of folders within this folder
+          items:
+            $ref: '#/components/schemas/IFolderModel'
+          type: array
+        folderName:
+          description: The name of the folder.
+          type: string
+        folderPath:
+          description: The path of all folders and subfolders beginning at the root anterminating at this folder.
+          type: string
+        folderTypeId:
+          description: The icon to display for the folder. Depricated in latest UI. Use 1 when setting this value.
+          type: integer
+          format: int32
+        id:
+          description: Folder ID
+          type: integer
+          format: int32
+        inheritPermissions:
+          description: 'Whether the folder should inherit permissions from its parent (default: true)'
+          type: boolean
+        inheritSecretPolicy:
+          description: Whether the folder should inherit the secret policy.  Defaults to true unless creating a root folder.
+          type: boolean
+        parentFolderId:
+          description: The ID of this folder's parent folder.
+          type: integer
+          format: int32
+        secretPolicyId:
+          description: The id of the Secret Policy that sets security and other settings on secrets contained within the folder.
+          type: integer
+          format: int32
+        secretTemplates:
+          description: List of templates that may be used to create secrets in this folder
+          items:
+            $ref: '#/components/schemas/SecretTemplateSummary'
+          type: array
+      type: object
+    FolderUpdateArgs:
+      description: Available options for updating a secret folder
+      required:
+      - id
+      - folderTypeId
+      - folderName
+      properties:
+        folderName:
+          description: The name of the folder
+          type: string
+        folderTypeId:
+          description: The icon to display for the folder. Depricated in latest UI. Use 1 when setting this value.
+          type: integer
+          format: int32
+          maximum: 3
+          minimum: 1
+        id:
+          description: Folder ID. Must match ID in path
+          type: integer
+          format: int32
+          minimum: 1
+        inheritPermissions:
+          description: 'Whether the folder should inherit permissions from its parent (default: true)'
+          type: boolean
+        inheritSecretPolicy:
+          description: Whether the folder should inherit the secret policy.  Defaults to true unless creating a root folder.
+          type: boolean
+        parentFolderId:
+          description: The ID of this folder's parent folder.
+          type: integer
+          format: int32
+          minimum: -1
+        secretPolicyId:
+          description: The id of the Secret Policy that sets security and other settings on secrets contained within the folder.
+          type: integer
+          format: int32
+      type: object
+    UnpinFolderResultModel:
+      description: Indicates if the folder was pinned successfully
+      properties:
+        success:
+          description: True to indicate success
+          type: boolean
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    PinFolderArgs:
+      description: PinFolderArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/PinFolderData'
+      type: object
+    FolderCreateArgs:
+      description: Available options for creating a secret folder
+      required:
+      - folderName
+      - folderTypeId
+      - parentFolderId
+      properties:
+        folderName:
+          description: The name of the folder.
+          type: string
+        folderTypeId:
+          description: The icon to display for the folder. Depricated in latest UI. Use 1 when setting this value.
+          type: integer
+          format: int32
+          maximum: 3
+          minimum: 1
+        inheritPermissions:
+          description: 'Whether the folder should inherit permissions from its parent (default: true)'
+          type: boolean
+          nullable: true
+        inheritSecretPolicy:
+          description: Whether the folder should inherit the secret policy.  Defaults to true unless creating a root folder.
+          type: boolean
+          nullable: true
+        parentFolderId:
+          description: The id of this folder's parent folder.
+          type: integer
+          format: int32
+          minimum: -1
+        secretPolicyId:
+          description: The id of the Secret Policy that sets security and other settings on secrets contained within the folder.
+          type: integer
+          format: int32
+      type: object
+    FolderDetailActionType:
+      description: Actions
+      properties: {}
+      type: string
+      enum:
+      - CreateSubfolder
+      - EditFolder
+      - AddSecret
+      - DeleteFolder
+      - MoveFolder
+    TemplateViewModel:
+      description: Template View Model
+      properties:
+        id:
+          description: Template Id
+          type: integer
+          format: int32
+        name:
+          description: Template Name
+          type: string
+      type: object
+    PagingOfFolderAuditSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/FolderAuditSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    SecretPolicyModel:
+      description: SecretPolicies
+      properties:
+        active:
+          description: Whether or not the Secret Policy is Active
+          type: boolean
+        secretPolicyDescription:
+          description: The Description of the Secret Policy
+          type: string
+        secretPolicyId:
+          description: The Id of the Secret Policy
+          type: integer
+          format: int32
+        secretPolicyName:
+          description: The Name of the Secret Policy
+          type: string
+      type: object
+    PagingOfFolderSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/FolderSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    FolderPatchModel:
+      description: Data
+      properties:
+        allowedTemplates:
+          description: AllowedTemplates
+          items:
+            type: integer
+            format: int32
+          type: array
+        allowRemoveOwner:
+          description: AllowRemoveOwner
+          type: boolean
+        enableInheritPermissions:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableInheritSecretPolicy:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        folderName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        permissons:
+          description: Permissons
+          items:
+            $ref: '#/components/schemas/FolderPermissionModel'
+          type: array
+        secretPolicy:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+      type: object
+    FolderTemplateModel:
+      description: Describes the properties of a folder/template association
+      properties:
+        associated:
+          description: Whether the template is associated with the folder
+          type: boolean
+        folderId:
+          description: Folder ID
+          type: integer
+          format: int32
+        templateId:
+          description: Template ID
+          type: integer
+          format: int32
+      type: object
+    PinFolderResultModel:
+      description: Indicates if the folder was pinned successfully
+      properties:
+        success:
+          description: True to indicate success
+          type: boolean
+      type: object
+    FolderDetailViewModel:
+      description: FolderDetailViewModel
+      properties:
+        actions:
+          description: Actions
+          items:
+            $ref: '#/components/schemas/FolderDetailActionType'
+          type: array
+        allowedTemplates:
+          description: AllowedTemplates
+          items:
+            $ref: '#/components/schemas/TemplateViewModel'
+          type: array
+        folderWarning:
+          description: FolderWarning
+          type: string
+        id:
+          description: Id
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+      type: object
+    FolderPermissionsGroupModel:
+      description: All of these groups or users will be removed from the folder permissions for this folder
+      properties:
+        groupId:
+          description: The group id of the group or personal group id for the user to update
+          type: integer
+          format: int32
+          nullable: true
+        userId:
+          description: The user id of the user.  If GroupId is populated this field will be ignored and can be null
+          type: integer
+          format: int32
+          nullable: true
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    FolderPermissionsPatchResultModel:
+      description: FolderPermissionsPatchResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    FolderBasicModel:
+      description: FolderBasicModel
+      properties:
+        allowedTemplates:
+          description: Allowed Templates
+          items:
+            type: integer
+            format: int32
+          type: array
+        enableInheritPermissions:
+          description: Should the folder inherit permissions from the parent folder
+          type: boolean
+        enableInheritSecretPolicy:
+          description: Should the folder inherit the secret policy from the parent folder
+          type: boolean
+        folderName:
+          description: The dispay name for the folder
+          type: string
+        hasEdit:
+          description: If the user can edit the folder
+          type: boolean
+        hasOwner:
+          description: If the user owns the folder
+          type: boolean
+        isPersonalFolder:
+          description: Whether or not this is a personal folder
+          type: boolean
+        parentFolderId:
+          description: The ID of the parent folder
+          type: integer
+          format: int32
+          nullable: true
+        parentFolderPolicyName:
+          description: Policy name on the parent folder
+          type: string
+        secretPolicies:
+          description: SecretPolicies
+          items:
+            $ref: '#/components/schemas/SecretPolicyModel'
+          type: array
+        secretPolicy:
+          description: The secret policy ID that is assigned to the folder
+          type: integer
+          format: int32
+          nullable: true
+        secretTemplates:
+          description: Secret Templates
+          items:
+            $ref: '#/components/schemas/TemplateViewModel'
+          type: array
+      type: object
+    FolderLookup:
+      description: Simple folder representation
+      properties:
+        id:
+          description: Folder ID
+          type: integer
+          format: int32
+        value:
+          description: Folder name
+          type: string
+      type: object
+  securitySchemes:
+    BearerToken:
+      type: apiKey
+      description: 'Perform a POST request to `/oauth2/token`. It should include three form data parameters - `username`, `password`, and `grant_type`.The `grant_type` parameter should always have the value `password`.The access token returned should be included in the header of subsequent requests, like ''Authorization: Bearer <em>token</em>''. The token remains valid for a time period returned in the ''expires_in'' property (in seconds). For details, see the <a href="../OAuth/">token request documentation</a>.'
+      name: Authorization
+      in: header
