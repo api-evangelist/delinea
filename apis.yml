@@ -1,7 +1,20 @@
 aid: delinea
 name: Delinea
 description: Delinea is a privileged access management (PAM) platform providing REST APIs for Secret Server, DevOps Secrets Vault, Privilege Manager, and Cloud Suite. It enables organizations to manage, rotate, and audit privileged credentials, sessions, and access policies across on-premises and cloud infrastructure.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Paid (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/delinea.png
 url: https://raw.githubusercontent.com/api-evangelist/delinea/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -14,77 +27,1081 @@ tags:
   - DevOps
   - Cybersecurity
 apis:
-  - aid: delinea:secret-server-api
-    name: Secret Server REST API
-    description: REST API for Delinea Secret Server enabling programmatic management of privileged credentials, secrets, folders, permissions, and session recording. Supports Bearer token, OAuth 2.0, and Windows Integrated Authentication.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
-    baseURL: https://your-secret-server-instance/api/v1
-    tags:
-      - Secrets
-      - Credentials
-      - Privileged Access
-      - REST
-    properties:
-      - type: Documentation
-        url: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
-      - type: APIReference
-        url: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/rest-api-reference-download/index.htm
-      - type: Authentication
-        url: https://docs.delinea.com/online-help/platform-api/secret-server.htm
-      - type: Examples
-        url: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/examples/index.htm
-      - type: DeveloperResources
-        url: https://docs.delinea.com/online-help/secret-server/api-scripting/developer-resources/index.htm
-    contact:
-      - FN: Delinea Support
-        url: https://delinea.com/support
-  - aid: delinea:devops-secrets-vault-api
-    name: DevOps Secrets Vault API
-    description: REST API for Delinea DevOps Secrets Vault (DSV), a cloud-native secrets management service for DevOps pipelines. Provides endpoints for secrets CRUD, token management, role-based access control, encryption as a service, PKI, and SIEM integration.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.delinea.com/online-help/devops-secrets-vault/start.htm
-    baseURL: https://secretsvaultcloud.com/v1
-    tags:
-      - DevOps
-      - Secrets Management
-      - Cloud
-      - CI/CD
-    properties:
-      - type: Documentation
-        url: https://docs.delinea.com/online-help/devops-secrets-vault/start.htm
-      - type: APIReference
-        url: https://dsv.secretsvaultcloud.com/api
-      - type: SDKs
-        url: https://docs.delinea.com/online-help/devops-secrets-vault/developer-resources/sdk.htm
-      - type: PythonSDK
-        url: https://github.com/DelineaXPM/python-dsv-sdk
-      - type: GoSDK
-        url: https://github.com/DelineaXPM/dsv-sdk-go
-      - type: JavaSDK
-        url: https://github.com/DelineaXPM/dsv-sdk-java
-    contact:
-      - FN: Delinea Support
-        url: https://delinea.com/support
-  - aid: delinea:platform-api
-    name: Delinea Platform API
-    description: Platform-level REST API for Delinea's unified cloud platform enabling OAuth 2.0 authentication, role and group management, service account operations, and integration with Secret Server through the platform layer.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.delinea.com/online-help/delinea-platform/api/index.htm
-    baseURL: https://your-tenant.delinea.app/api
-    tags:
-      - Platform
-      - Identity
-      - OAuth
-      - Access Control
-    properties:
-      - type: Documentation
-        url: https://docs.delinea.com/online-help/delinea-platform/api/index.htm
-      - type: APIReference
-        url: https://docs.delinea.com/online-help/platform-api/secret-server.htm
-    contact:
-      - FN: Delinea Support
-        url: https://delinea.com/support
+- aid: delinea:secret-server-api
+  name: Secret Server REST API
+  description: >-
+    REST API for Delinea Secret Server enabling programmatic management of privileged credentials, secrets,
+    folders, permissions, and session recording. Supports Bearer token, OAuth 2.0, and Windows Integrated
+    Authentication.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Secrets
+  - Credentials
+  - Privileged Access
+  - REST
+  properties:
+  - type: Documentation
+    url: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  - type: APIReference
+    url: >-
+      https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/rest-api-reference-download/index.htm
+  - type: Authentication
+    url: https://docs.delinea.com/online-help/platform-api/secret-server.htm
+  - type: Examples
+    url: >-
+      https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/examples/index.htm
+  - type: DeveloperResources
+    url: >-
+      https://docs.delinea.com/online-help/secret-server/api-scripting/developer-resources/index.htm
+  contact:
+  - FN: Delinea Support
+    url: https://delinea.com/support
+- aid: delinea:devops-secrets-vault-api
+  name: DevOps Secrets Vault API
+  description: >-
+    REST API for Delinea DevOps Secrets Vault (DSV), a cloud-native secrets management service for DevOps
+    pipelines. Provides endpoints for secrets CRUD, token management, role-based access control, encryption
+    as a service, PKI, and SIEM integration.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.delinea.com/online-help/devops-secrets-vault/start.htm
+  baseURL: https://secretsvaultcloud.com/v1
+  tags:
+  - DevOps
+  - Secrets Management
+  - Cloud
+  - CI/CD
+  properties:
+  - type: Documentation
+    url: https://docs.delinea.com/online-help/devops-secrets-vault/start.htm
+  - type: APIReference
+    url: https://dsv.secretsvaultcloud.com/api
+  - type: SDKs
+    url: https://docs.delinea.com/online-help/devops-secrets-vault/developer-resources/sdk.htm
+  - type: PythonSDK
+    url: https://github.com/DelineaXPM/python-dsv-sdk
+  - type: GoSDK
+    url: https://github.com/DelineaXPM/dsv-sdk-go
+  - type: JavaSDK
+    url: https://github.com/DelineaXPM/dsv-sdk-java
+  contact:
+  - FN: Delinea Support
+    url: https://delinea.com/support
+- aid: delinea:platform-api
+  name: Delinea Platform API
+  description: >-
+    Platform-level REST API for Delinea's unified cloud platform enabling OAuth 2.0 authentication, role
+    and group management, service account operations, and integration with Secret Server through the platform
+    layer.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.delinea.com/online-help/delinea-platform/api/index.htm
+  baseURL: https://your-tenant.delinea.app/api
+  tags:
+  - Platform
+  - Identity
+  - OAuth
+  - Access Control
+  properties:
+  - type: Documentation
+    url: https://docs.delinea.com/online-help/delinea-platform/api/index.htm
+  - type: APIReference
+    url: https://docs.delinea.com/online-help/platform-api/secret-server.htm
+  contact:
+  - FN: Delinea Support
+    url: https://delinea.com/support
+- aid: delinea:delinea-activations-api
+  name: Delinea Activations API
+  description: Activate Licenses
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Activations
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-activations-api-openapi.yml
+- aid: delinea:delinea-activedirectory-api
+  name: Delinea ActiveDirectory API
+  description: View and maintain Active Directory
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - ActiveDirectory
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-activedirectory-api-openapi.yml
+- aid: delinea:delinea-advancedconfigsettings-api
+  name: Delinea AdvancedConfigSettings API
+  description: AdvancedConfigSettingsController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - AdvancedConfigSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-advancedconfigsettings-api-openapi.yml
+- aid: delinea:delinea-apitoken-api
+  name: Delinea ApiToken API
+  description: API Token Generation
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - ApiToken
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-apitoken-api-openapi.yml
+- aid: delinea:delinea-appclients-api
+  name: Delinea AppClients API
+  description: View and maintain app clients
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - AppClients
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-appclients-api-openapi.yml
+- aid: delinea:delinea-applicationaccounts-api
+  name: Delinea ApplicationAccounts API
+  description: View and maintain users
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - ApplicationAccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-applicationaccounts-api-openapi.yml
+- aid: delinea:delinea-applicationrequest-api
+  name: Delinea ApplicationRequest API
+  description: ApplicationRequestController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - ApplicationRequest
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-applicationrequest-api-openapi.yml
+- aid: delinea:delinea-appstate-api
+  name: Delinea AppState API
+  description: AppStateController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - AppState
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-appstate-api-openapi.yml
+- aid: delinea:delinea-bulkoperations-api
+  name: Delinea BulkOperations API
+  description: View Bulk Operations
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - BulkOperations
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-bulkoperations-api-openapi.yml
+- aid: delinea:delinea-bulksecretoperations-api
+  name: Delinea BulkSecretOperations API
+  description: Create Bulk Secret Operations
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - BulkSecretOperations
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-bulksecretoperations-api-openapi.yml
+- aid: delinea:delinea-bulkuseroperations-api
+  name: Delinea BulkUserOperations API
+  description: Create Bulk User Operations
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - BulkUserOperations
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-bulkuseroperations-api-openapi.yml
+- aid: delinea:delinea-bundle-api
+  name: Delinea Bundle API
+  description: Export and Import Bundles
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Bundle
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-bundle-api-openapi.yml
+- aid: delinea:delinea-categorizedlists-api
+  name: Delinea CategorizedLists API
+  description: View and maintain lists of options
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - CategorizedLists
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-categorizedlists-api-openapi.yml
+- aid: delinea:delinea-charactersets-api
+  name: Delinea CharacterSets API
+  description: Character Sets used in password requirements
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - CharacterSets
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-charactersets-api-openapi.yml
+- aid: delinea:delinea-clouddiagnostics-api
+  name: Delinea CloudDiagnostics API
+  description: View cloud diagnostics information
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - CloudDiagnostics
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-clouddiagnostics-api-openapi.yml
+- aid: delinea:delinea-configuration-api
+  name: Delinea Configuration API
+  description: Secret Server Configuration
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-configuration-api-openapi.yml
+- aid: delinea:delinea-connectionmanagersettings-api
+  name: Delinea ConnectionManagerSettings API
+  description: ConnectionManagerSettingsController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - ConnectionManagerSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-connectionmanagersettings-api-openapi.yml
+- aid: delinea:delinea-dependencychanger-api
+  name: Delinea DependencyChanger API
+  description: DependencyChangerController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - DependencyChanger
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-dependencychanger-api-openapi.yml
+- aid: delinea:delinea-devopssecretsvaultsync-api
+  name: Delinea DevOpsSecretsVaultSync API
+  description: Manage secrets that are synced to DSV Tenants.
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - DevOpsSecretsVaultSync
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-devopssecretsvaultsync-api-openapi.yml
+- aid: delinea:delinea-devopssecretsvaulttenant-api
+  name: Delinea DevOpsSecretsVaultTenant API
+  description: Manage the tenants SS can communicate with in DevOps Secrets Vault.
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - DevOpsSecretsVaultTenant
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-devopssecretsvaulttenant-api-openapi.yml
+- aid: delinea:delinea-diagnostics-api
+  name: Delinea Diagnostics API
+  description: View diagnostics information
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Diagnostics
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-diagnostics-api-openapi.yml
+- aid: delinea:delinea-diagnosticsv2-api
+  name: Delinea DiagnosticsV2 API
+  description: View diagnostics information
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - DiagnosticsV2
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-diagnosticsv2-api-openapi.yml
+- aid: delinea:delinea-directoryservices-api
+  name: Delinea DirectoryServices API
+  description: View and maintain Directory Services integrations
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - DirectoryServices
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-directoryservices-api-openapi.yml
+- aid: delinea:delinea-disasterrecovery-api
+  name: Delinea DisasterRecovery API
+  description: Disaster Recovery
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - DisasterRecovery
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-disasterrecovery-api-openapi.yml
+- aid: delinea:delinea-discovery-api
+  name: Delinea Discovery API
+  description: DiscoveryController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-discovery-api-openapi.yml
+- aid: delinea:delinea-distributedengine-api
+  name: Delinea DistributedEngine API
+  description: View and maintain Distributed Engine integrations
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - DistributedEngine
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-distributedengine-api-openapi.yml
+- aid: delinea:delinea-domainnameindex-api
+  name: Delinea DomainNameIndex API
+  description: DomainNameIndexController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - DomainNameIndex
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-domainnameindex-api-openapi.yml
+- aid: delinea:delinea-dualcontrols-api
+  name: Delinea DualControls API
+  description: View and maintain dual controls
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - DualControls
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-dualcontrols-api-openapi.yml
+- aid: delinea:delinea-enterprise-api
+  name: Delinea Enterprise API
+  description: View enterprise related data
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Enterprise
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-enterprise-api-openapi.yml
+- aid: delinea:delinea-eventpipeline-api
+  name: Delinea EventPipeline API
+  description: EventPipelineController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - EventPipeline
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-eventpipeline-api-openapi.yml
+- aid: delinea:delinea-eventpipelineaudit-api
+  name: Delinea EventPipelineAudit API
+  description: EventPipelineAuditController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - EventPipelineAudit
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-eventpipelineaudit-api-openapi.yml
+- aid: delinea:delinea-eventpipelinepolicy-api
+  name: Delinea EventPipelinePolicy API
+  description: EventPipelinePolicyController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - EventPipelinePolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-eventpipelinepolicy-api-openapi.yml
+- aid: delinea:delinea-eventpipelinesettings-api
+  name: Delinea EventPipelineSettings API
+  description: EventPipelineSettingsController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - EventPipelineSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-eventpipelinesettings-api-openapi.yml
+- aid: delinea:delinea-eventpipelinetrigger-api
+  name: Delinea EventPipelineTrigger API
+  description: EventPipelineTriggerController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - EventPipelineTrigger
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-eventpipelinetrigger-api-openapi.yml
+- aid: delinea:delinea-eventsubscriptions-api
+  name: Delinea EventSubscriptions API
+  description: EventSubscriptionsController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - EventSubscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-eventsubscriptions-api-openapi.yml
+- aid: delinea:delinea-extendedfields-api
+  name: Delinea ExtendedFields API
+  description: Extended Fields provider
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - ExtendedFields
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-extendedfields-api-openapi.yml
+- aid: delinea:delinea-featureflag-api
+  name: Delinea FeatureFlag API
+  description: FeatureFlagController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - FeatureFlag
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-featureflag-api-openapi.yml
+- aid: delinea:delinea-folderpermissions-api
+  name: Delinea FolderPermissions API
+  description: View and maintain secret folder permissions
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - FolderPermissions
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-folderpermissions-api-openapi.yml
+- aid: delinea:delinea-folders-api
+  name: Delinea Folders API
+  description: View and maintain secret folders
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-folders-api-openapi.yml
+- aid: delinea:delinea-groups-api
+  name: Delinea Groups API
+  description: View and maintain user security groups
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-groups-api-openapi.yml
+- aid: delinea:delinea-healthcheck-api
+  name: Delinea HealthCheck API
+  description: HealthCheckController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - HealthCheck
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-healthcheck-api-openapi.yml
+- aid: delinea:delinea-hsmconfiguration-api
+  name: Delinea HsmConfiguration API
+  description: Secret Server HSM Configuration
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - HsmConfiguration
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-hsmconfiguration-api-openapi.yml
+- aid: delinea:delinea-inbox-api
+  name: Delinea Inbox API
+  description: InboxController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Inbox
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-inbox-api-openapi.yml
+- aid: delinea:delinea-inboxrules-api
+  name: Delinea InboxRules API
+  description: InboxRulesController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - InboxRules
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-inboxrules-api-openapi.yml
+- aid: delinea:delinea-install-api
+  name: Delinea Install API
+  description: InstallController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Install
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-install-api-openapi.yml
+- aid: delinea:delinea-ipaddressrestrictions-api
+  name: Delinea IpAddressRestrictions API
+  description: View and maintain IP Address restrictions
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - IpAddressRestrictions
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-ipaddressrestrictions-api-openapi.yml
+- aid: delinea:delinea-jumpboxroute-api
+  name: Delinea JumpboxRoute API
+  description: JumpboxRouteController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - JumpboxRoute
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-jumpboxroute-api-openapi.yml
+- aid: delinea:delinea-keymanagement-api
+  name: Delinea KeyManagement API
+  description: View and configure Key Management settings
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - KeyManagement
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-keymanagement-api-openapi.yml
+- aid: delinea:delinea-launcheragents-api
+  name: Delinea LauncherAgents API
+  description: Manage Launcher Agents and Launcher Agent Collections for Advanced Session Recording
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - LauncherAgents
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-launcheragents-api-openapi.yml
+- aid: delinea:delinea-launchers-api
+  name: Delinea Launchers API
+  description: View available application launchers
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Launchers
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-launchers-api-openapi.yml
+- aid: delinea:delinea-license-api
+  name: Delinea License API
+  description: LicenseController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - License
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-license-api-openapi.yml
+- aid: delinea:delinea-metadata-api
+  name: Delinea Metadata API
+  description: MetadataController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-metadata-api-openapi.yml
+- aid: delinea:delinea-mobile-api
+  name: Delinea Mobile API
+  description: MobileController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Mobile
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-mobile-api-openapi.yml
+- aid: delinea:delinea-oauthexpiration-api
+  name: Delinea OAuthExpiration API
+  description: Expire the current user session
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - OAuthExpiration
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-oauthexpiration-api-openapi.yml
+- aid: delinea:delinea-onetimepasswordcode-api
+  name: Delinea OneTimePasswordCode API
+  description: View and maintain one time passwords
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - OneTimePasswordCode
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-onetimepasswordcode-api-openapi.yml
+- aid: delinea:delinea-passwordrequirements-api
+  name: Delinea PasswordRequirements API
+  description: Password Requirements
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - PasswordRequirements
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-passwordrequirements-api-openapi.yml
+- aid: delinea:delinea-pbaconfiguration-api
+  name: Delinea PbaConfiguration API
+  description: View and configure Privilege Behavior Analytics
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - PbaConfiguration
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-pbaconfiguration-api-openapi.yml
+- aid: delinea:delinea-platform-api
+  name: Delinea Platform API
+  description: View and maintain Platform integration
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Platform
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-platform-api-openapi.yml
+- aid: delinea:delinea-proxy-api
+  name: Delinea Proxy API
+  description: Retrieve and update SSH and RDP proxy configurations
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Proxy
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-proxy-api-openapi.yml
+- aid: delinea:delinea-remotepasswordchanging-api
+  name: Delinea RemotePasswordChanging API
+  description: View Password Changing Settings
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - RemotePasswordChanging
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-remotepasswordchanging-api-openapi.yml
+- aid: delinea:delinea-reports-api
+  name: Delinea Reports API
+  description: View and maintain Reports
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-reports-api-openapi.yml
+- aid: delinea:delinea-restapidocs-api
+  name: Delinea RestApiDocs API
+  description: REST API Doc Services
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - RestApiDocs
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-restapidocs-api-openapi.yml
+- aid: delinea:delinea-roleaudit-api
+  name: Delinea RoleAudit API
+  description: View User Role Audits
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - RoleAudit
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-roleaudit-api-openapi.yml
+- aid: delinea:delinea-rolepermissions-api
+  name: Delinea RolePermissions API
+  description: RolePermissionsController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - RolePermissions
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-rolepermissions-api-openapi.yml
+- aid: delinea:delinea-roles-api
+  name: Delinea Roles API
+  description: View and maintain User Roles
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-roles-api-openapi.yml
+- aid: delinea:delinea-schedule-api
+  name: Delinea Schedule API
+  description: ScheduleController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Schedule
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-schedule-api-openapi.yml
+- aid: delinea:delinea-script-api
+  name: Delinea Script API
+  description: View Scripts
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Script
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-script-api-openapi.yml
+- aid: delinea:delinea-sdkclientaccounts-api
+  name: Delinea SdkClientAccounts API
+  description: View and maintain SDK Client Accounts
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SdkClientAccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-sdkclientaccounts-api-openapi.yml
+- aid: delinea:delinea-sdkclientaudits-api
+  name: Delinea SdkClientAudits API
+  description: View SDK Client Audits
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SdkClientAudits
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-sdkclientaudits-api-openapi.yml
+- aid: delinea:delinea-sdkclientrules-api
+  name: Delinea SdkClientRules API
+  description: View and maintain SDK Client Rules
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SdkClientRules
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-sdkclientrules-api-openapi.yml
+- aid: delinea:delinea-secretaccessrequests-api
+  name: Delinea SecretAccessRequests API
+  description: SecretAccessRequestsController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretAccessRequests
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secretaccessrequests-api-openapi.yml
+- aid: delinea:delinea-secretdependencies-api
+  name: Delinea SecretDependencies API
+  description: View and maintain Secret Dependencies
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretDependencies
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secretdependencies-api-openapi.yml
+- aid: delinea:delinea-secreteraserequests-api
+  name: Delinea SecretEraseRequests API
+  description: SecretEraseRequestsController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretEraseRequests
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secreteraserequests-api-openapi.yml
+- aid: delinea:delinea-secretextensions-api
+  name: Delinea SecretExtensions API
+  description: "Specialized calls for Thycotic Secret Server Extensions. \r\n                   Thycotic\
+    \ may change the functionality or signatures under the secret-extensions route.\r\n              \
+    \     Use at your own risk."
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretExtensions
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secretextensions-api-openapi.yml
+- aid: delinea:delinea-secrethealth-api
+  name: Delinea SecretHealth API
+  description: SecretHealthController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretHealth
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secrethealth-api-openapi.yml
+- aid: delinea:delinea-secrethooks-api
+  name: Delinea SecretHooks API
+  description: View and maintain Secret hooks
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretHooks
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secrethooks-api-openapi.yml
+- aid: delinea:delinea-secretpermissions-api
+  name: Delinea SecretPermissions API
+  description: View and maintain secret permissions
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretPermissions
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secretpermissions-api-openapi.yml
+- aid: delinea:delinea-secretpolicy-api
+  name: Delinea SecretPolicy API
+  description: Retrieve and update Secret Policies
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secretpolicy-api-openapi.yml
+- aid: delinea:delinea-secrets-api
+  name: Delinea Secrets API
+  description: View and maintain Secrets
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secrets-api-openapi.yml
+- aid: delinea:delinea-secretserversettings-api
+  name: Delinea SecretServerSettings API
+  description: Secret Server Settings
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretServerSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secretserversettings-api-openapi.yml
+- aid: delinea:delinea-secretsessions-api
+  name: Delinea SecretSessions API
+  description: View recorded sessions
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretSessions
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secretsessions-api-openapi.yml
+- aid: delinea:delinea-secrettemplatepermissions-api
+  name: Delinea SecretTemplatePermissions API
+  description: Secret Template Permissions
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretTemplatePermissions
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secrettemplatepermissions-api-openapi.yml
+- aid: delinea:delinea-secrettemplates-api
+  name: Delinea SecretTemplates API
+  description: View secret templates
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecretTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-secrettemplates-api-openapi.yml
+- aid: delinea:delinea-securityauditlogs-api
+  name: Delinea SecurityAuditLogs API
+  description: View Security Audit Logs
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SecurityAuditLogs
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-securityauditlogs-api-openapi.yml
+- aid: delinea:delinea-servernodes-api
+  name: Delinea ServerNodes API
+  description: View nodes and update roles or readonly mode
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - ServerNodes
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-servernodes-api-openapi.yml
+- aid: delinea:delinea-sites-api
+  name: Delinea Sites API
+  description: SitesController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Sites
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-sites-api-openapi.yml
+- aid: delinea:delinea-slack-api
+  name: Delinea Slack API
+  description: SlackController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Slack
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-slack-api-openapi.yml
+- aid: delinea:delinea-sshciphersuite-api
+  name: Delinea SshCipherSuite API
+  description: SshCipherSuiteController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SshCipherSuite
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-sshciphersuite-api-openapi.yml
+- aid: delinea:delinea-sshcommand-api
+  name: Delinea SshCommand API
+  description: View and maintain SSH Commands
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SshCommand
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-sshcommand-api-openapi.yml
+- aid: delinea:delinea-sshcommandblocklist-api
+  name: Delinea SshCommandBlocklist API
+  description: View and maintain SSH Command Blocklists
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SshCommandBlocklist
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-sshcommandblocklist-api-openapi.yml
+- aid: delinea:delinea-sshcommandmenu-api
+  name: Delinea SshCommandMenu API
+  description: View and maintain SSH Command Menus
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - SshCommandMenu
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-sshcommandmenu-api-openapi.yml
+- aid: delinea:delinea-subscriptions-api
+  name: Delinea Subscriptions API
+  description: SubscriptionsController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-subscriptions-api-openapi.yml
+- aid: delinea:delinea-teams-api
+  name: Delinea Teams API
+  description: View and maintain user security teams
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-teams-api-openapi.yml
+- aid: delinea:delinea-ticketsystems-api
+  name: Delinea TicketSystems API
+  description: TicketSystemsController
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - TicketSystems
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-ticketsystems-api-openapi.yml
+- aid: delinea:delinea-users-api
+  name: Delinea Users API
+  description: View and maintain users
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-users-api-openapi.yml
+- aid: delinea:delinea-version-api
+  name: Delinea Version API
+  description: Secret Server Version
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - Version
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-version-api-openapi.yml
+- aid: delinea:delinea-workflowinstances-api
+  name: Delinea WorkflowInstances API
+  description: View and maintain Workflow Instances
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - WorkflowInstances
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-workflowinstances-api-openapi.yml
+- aid: delinea:delinea-workflowsteptemplates-api
+  name: Delinea WorkflowStepTemplates API
+  description: View and maintain Workflow Template Steps
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - WorkflowStepTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-workflowsteptemplates-api-openapi.yml
+- aid: delinea:delinea-workflowtemplates-api
+  name: Delinea WorkflowTemplates API
+  description: View and maintain Workflow Templates
+  humanURL: https://docs.delinea.com/online-help/secret-server/api-scripting/rest-api/index.htm
+  baseURL: https://your-secret-server-instance/api/v1
+  tags:
+  - WorkflowTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/delinea-workflowtemplates-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/delinea-agentic-access.yml
