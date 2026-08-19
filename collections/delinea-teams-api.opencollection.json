@@ -1,0 +1,427 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Teams API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/teams",
+            "params": [
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Include Inactive"
+              },
+              {
+                "name": "filter.searchTerm",
+                "value": "",
+                "type": "query",
+                "description": "Search Term"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page teams"
+        },
+        {
+          "info": {
+            "name": "Create Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/teams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new team"
+        },
+        {
+          "info": {
+            "name": "Get Team Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/teams/stub"
+          },
+          "docs": "Return the default values for a new team"
+        },
+        {
+          "info": {
+            "name": "Get Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/teams/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              }
+            ]
+          },
+          "docs": "Get a single team by ID"
+        },
+        {
+          "info": {
+            "name": "Update Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/teams/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a single team by ID"
+        },
+        {
+          "info": {
+            "name": "Get Team Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/teams/:id/audits",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              },
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page team audits"
+        },
+        {
+          "info": {
+            "name": "Get Users In Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/teams/:id/members",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get members in a team"
+        },
+        {
+          "info": {
+            "name": "Update Team Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/teams/:id/members",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Save members of the team by GroupId"
+        },
+        {
+          "info": {
+            "name": "Search Users In Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/teams/:id/members/search",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              },
+              {
+                "name": "filter.domainId",
+                "value": "",
+                "type": "query",
+                "description": "DomainId"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "SearchText"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search for members in a team"
+        },
+        {
+          "info": {
+            "name": "Get Sites for a Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/teams/:id/sites",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              },
+              {
+                "name": "includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "includeInactive"
+              }
+            ]
+          },
+          "docs": "Get sites a team has associated"
+        },
+        {
+          "info": {
+            "name": "Update Team Sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/teams/:id/sites",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Team ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Save sites of the team by SiteId"
+        },
+        {
+          "info": {
+            "name": "Get a Team's Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/teams/:id/lists",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Team Id"
+              }
+            ]
+          },
+          "docs": "Get the lists of the Team by TeamId"
+        },
+        {
+          "info": {
+            "name": "Update Team Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/teams/:id/lists",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Team Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Save lists of the Team by ListId"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

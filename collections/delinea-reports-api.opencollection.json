@@ -1,0 +1,1117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Reports API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report ID"
+              }
+            ]
+          },
+          "docs": "Gets a Report and returns the Report Model"
+        },
+        {
+          "info": {
+            "name": "Update Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a Report and returns the report"
+        },
+        {
+          "info": {
+            "name": "Delete Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report ID"
+              }
+            ]
+          },
+          "docs": "Delete a report by ID"
+        },
+        {
+          "info": {
+            "name": "Delete Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v2/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report ID"
+              }
+            ]
+          },
+          "docs": "Delete a report by ID"
+        },
+        {
+          "info": {
+            "name": "Get Report Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/categories/:reportCategoryId",
+            "params": [
+              {
+                "name": "reportCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "reportCategoryId"
+              }
+            ]
+          },
+          "docs": "Get Report Category"
+        },
+        {
+          "info": {
+            "name": "Update Report Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/reports/categories/:reportCategoryId",
+            "params": [
+              {
+                "name": "reportCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "reportCategoryId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Report Category"
+        },
+        {
+          "info": {
+            "name": "Delete Report Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/reports/categories/:reportCategoryId",
+            "params": [
+              {
+                "name": "reportCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "reportCategoryId"
+              }
+            ]
+          },
+          "docs": "This will delete the report category and all assigned reports will be set inactive"
+        },
+        {
+          "info": {
+            "name": "Delete Report Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v2/reports/categories/:reportCategoryId",
+            "params": [
+              {
+                "name": "reportCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "reportCategoryId"
+              }
+            ]
+          },
+          "docs": "This will delete the report category and all assigned reports will be set inactive"
+        },
+        {
+          "info": {
+            "name": "Get Report Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/schedules/:reportScheduleId",
+            "params": [
+              {
+                "name": "reportScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "reportScheduleId"
+              }
+            ]
+          },
+          "docs": "Get Report Schedule"
+        },
+        {
+          "info": {
+            "name": "Update Report Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/reports/schedules/:reportScheduleId",
+            "params": [
+              {
+                "name": "reportScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "reportScheduleId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Report Schedule"
+        },
+        {
+          "info": {
+            "name": "Delete Report Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/reports/schedules/:reportScheduleId",
+            "params": [
+              {
+                "name": "reportScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "reportScheduleId"
+              }
+            ]
+          },
+          "docs": "Delete Report Schedule"
+        },
+        {
+          "info": {
+            "name": "Delete Report Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v2/reports/schedules/:reportScheduleId",
+            "params": [
+              {
+                "name": "reportScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "reportScheduleId"
+              }
+            ]
+          },
+          "docs": "Delete Report Schedule"
+        },
+        {
+          "info": {
+            "name": "Get Report Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/:id/audits",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get report audits by report Id"
+        },
+        {
+          "info": {
+            "name": "Get All Report Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/audits",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get all report audits"
+        },
+        {
+          "info": {
+            "name": "Search Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports",
+            "params": [
+              {
+                "name": "filter.categoryId",
+                "value": "",
+                "type": "query",
+                "description": "Category ID"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include inactive Reports in the results"
+              },
+              {
+                "name": "filter.reportName",
+                "value": "",
+                "type": "query",
+                "description": "Report Name - Searching by report name ignores other filters"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search text"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page reports"
+        },
+        {
+          "info": {
+            "name": "Create Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Report and returns the report"
+        },
+        {
+          "info": {
+            "name": "Lookup Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/lookup",
+            "params": [
+              {
+                "name": "filter.categoryId",
+                "value": "",
+                "type": "query",
+                "description": "Category ID"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include inactive Reports in the results"
+              },
+              {
+                "name": "filter.reportName",
+                "value": "",
+                "type": "query",
+                "description": "Report Name - Searching by report name ignores other filters"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search text"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page reports, returning only group ID and name"
+        },
+        {
+          "info": {
+            "name": "List Report Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/categories"
+          },
+          "docs": "List the report categories"
+        },
+        {
+          "info": {
+            "name": "Create Report Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/reports/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Report Category"
+        },
+        {
+          "info": {
+            "name": "List Report Chart Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/charttypes"
+          },
+          "docs": "List the report chart types"
+        },
+        {
+          "info": {
+            "name": "Report Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/:id/defaultparameters",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report ID"
+              }
+            ]
+          },
+          "docs": "Gets the default parameters for the specified report"
+        },
+        {
+          "info": {
+            "name": "Search Report Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/schedules",
+            "params": [
+              {
+                "name": "filter.includeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "When set, deleted reports will be included"
+              },
+              {
+                "name": "filter.reportId",
+                "value": "",
+                "type": "query",
+                "description": "Report Id"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search Report Schedules"
+        },
+        {
+          "info": {
+            "name": "Create Report Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/reports/schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Report Schedule"
+        },
+        {
+          "info": {
+            "name": "Stub Report Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/schedules/stub/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "reportId"
+              }
+            ]
+          },
+          "docs": "Stub Report Schedule"
+        },
+        {
+          "info": {
+            "name": "Search Report Schedule History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/schedules/:reportScheduleId/history/search",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              },
+              {
+                "name": "reportScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "reportScheduleId"
+              }
+            ]
+          },
+          "docs": "Search Report Schedule History"
+        },
+        {
+          "info": {
+            "name": "Get Report Schedule History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/schedules/:reportScheduleHistoryId/history",
+            "params": [
+              {
+                "name": "reportScheduleHistoryId",
+                "value": "",
+                "type": "path",
+                "description": "reportScheduleHistoryId"
+              }
+            ]
+          },
+          "docs": "Get a Report Schedule History"
+        },
+        {
+          "info": {
+            "name": "Get a Report's Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/:reportId/permissions",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "reportId"
+              }
+            ]
+          },
+          "docs": "Get a Report's Permissions"
+        },
+        {
+          "info": {
+            "name": "Update Report Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/reports/:reportId/permissions",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "reportId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Report Permissions"
+        },
+        {
+          "info": {
+            "name": "Get a Report's Permissions from a Report Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/:reportCategoryId/permissions-from-category",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              },
+              {
+                "name": "reportCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "reportCategoryId"
+              }
+            ]
+          },
+          "docs": "Get a Report's Permissions from a Report Category"
+        },
+        {
+          "info": {
+            "name": "Get a Report Category's Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/categories/:reportCategoryId/permissions",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              },
+              {
+                "name": "reportCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "reportCategoryId"
+              }
+            ]
+          },
+          "docs": "Get a Report Category's Permissions"
+        },
+        {
+          "info": {
+            "name": "Update Category Report Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/reports/categories/:reportCategoryId/permissions",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              },
+              {
+                "name": "reportCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "reportCategoryId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Category Report Permissions"
+        },
+        {
+          "info": {
+            "name": "Get Report Permission Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/permissions/options"
+          },
+          "docs": "Get Report Permission Options"
+        },
+        {
+          "info": {
+            "name": "Get Report Category Permission Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/reports/categories/permissions/options"
+          },
+          "docs": "Get Report Category Permission Options"
+        },
+        {
+          "info": {
+            "name": "Export Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/reports/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exports a Report and returns the results"
+        },
+        {
+          "info": {
+            "name": "Execute Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/reports/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Report and returns the results"
+        },
+        {
+          "info": {
+            "name": "Email Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/reports/:id/email",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Email a report"
+        },
+        {
+          "info": {
+            "name": "Download Historical Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/reports/schedules/:reportScheduleHistoryId/history/download",
+            "params": [
+              {
+                "name": "reportScheduleHistoryId",
+                "value": "",
+                "type": "path",
+                "description": "reportScheduleHistoryId"
+              }
+            ]
+          },
+          "docs": "Download historical report from a schedule"
+        },
+        {
+          "info": {
+            "name": "Undelete Report Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/reports/schedules/:reportScheduleId/undelete",
+            "params": [
+              {
+                "name": "reportScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "reportScheduleId"
+              }
+            ]
+          },
+          "docs": "Undelete Report Schedule"
+        },
+        {
+          "info": {
+            "name": "Undelete System Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/reports/:reportId/undelete",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "reportId"
+              }
+            ]
+          },
+          "docs": "Allows user to undelete system reports only.  Non-system reports are required to be edited in order for the SQL to be valdiated properly."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

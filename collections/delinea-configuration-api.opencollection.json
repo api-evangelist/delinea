@@ -1,0 +1,1500 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Configuration API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Saml Identity Provider configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/saml/identity-provider/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Saml Identity Provider Id"
+              }
+            ]
+          },
+          "docs": "Get Saml Identity Provider Configuration"
+        },
+        {
+          "info": {
+            "name": "Delete Saml Configuration Identity Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/configuration/saml/identity-provider/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Delete Saml Configuration Identity Provider"
+        },
+        {
+          "info": {
+            "name": "The allowed permissions for configuration for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/state"
+          },
+          "docs": "The allowed permissions for configuration for the current user"
+        },
+        {
+          "info": {
+            "name": "Audit of system configuration changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/audit",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "filter.searchTerm",
+                "value": "",
+                "type": "query",
+                "description": "SearchTerm"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Audit of system configuration changes"
+        },
+        {
+          "info": {
+            "name": "Get the general configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v3/configuration/general",
+            "params": [
+              {
+                "name": "loadAll",
+                "value": "",
+                "type": "query",
+                "description": "Load all configuration sections"
+              },
+              {
+                "name": "loadApplicationSettings",
+                "value": "",
+                "type": "query",
+                "description": "Load application settings section"
+              },
+              {
+                "name": "loadEmail",
+                "value": "",
+                "type": "query",
+                "description": "Load email section"
+              },
+              {
+                "name": "loadFolders",
+                "value": "",
+                "type": "query",
+                "description": "Load folder configuration section"
+              },
+              {
+                "name": "loadLauncherSettings",
+                "value": "",
+                "type": "query",
+                "description": "Load launcher settings section"
+              },
+              {
+                "name": "loadLocalUserPasswords",
+                "value": "",
+                "type": "query",
+                "description": "Load local user passwords section"
+              },
+              {
+                "name": "loadLogin",
+                "value": "",
+                "type": "query",
+                "description": "Load log in section"
+              },
+              {
+                "name": "loadPermissionOptions",
+                "value": "",
+                "type": "query",
+                "description": "Load permission options configuration section"
+              },
+              {
+                "name": "loadProtocolHandlerSettings",
+                "value": "",
+                "type": "query",
+                "description": "Load security protocol hander section"
+              },
+              {
+                "name": "loadSecurity",
+                "value": "",
+                "type": "query",
+                "description": "Load security section"
+              },
+              {
+                "name": "loadSessionRecording",
+                "value": "",
+                "type": "query",
+                "description": "Load the session recording section"
+              },
+              {
+                "name": "loadUnlimitedAdmin",
+                "value": "",
+                "type": "query",
+                "description": "Load unlimited admin section"
+              },
+              {
+                "name": "loadUserExperience",
+                "value": "",
+                "type": "query",
+                "description": "Load user experience configuration section"
+              },
+              {
+                "name": "loadUserInterface",
+                "value": "",
+                "type": "query",
+                "description": "Load user interface section"
+              }
+            ]
+          },
+          "docs": "Get configuration"
+        },
+        {
+          "info": {
+            "name": "Get settings menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/settings-menu"
+          },
+          "docs": "Get settings needed to build the admin settings menu"
+        },
+        {
+          "info": {
+            "name": "Get the local user password configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/local-user-passwords"
+          },
+          "docs": "Get the local user password configuration.  Password requirements only require an authenticated user.  Extended fields will be null unless you have the View / Administer Configuration role permission."
+        },
+        {
+          "info": {
+            "name": "Update the local user password configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/local-user-passwords",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the local user password configuration"
+        },
+        {
+          "info": {
+            "name": "Get Security configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/security"
+          },
+          "docs": "Get Security Configuration"
+        },
+        {
+          "info": {
+            "name": "Update Security configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/security",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Security Configuration"
+        },
+        {
+          "info": {
+            "name": "Get Login configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v2/configuration/login"
+          },
+          "docs": "Get Login Configuration"
+        },
+        {
+          "info": {
+            "name": "Update Login configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v2/configuration/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Login Configuration"
+        },
+        {
+          "info": {
+            "name": "Get Login Policy configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/login-policy"
+          },
+          "docs": "Get Login Policy Configuration"
+        },
+        {
+          "info": {
+            "name": "Update Login Policy configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/login-policy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Login Policy Configuration"
+        },
+        {
+          "info": {
+            "name": "Get Saml configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/saml"
+          },
+          "docs": "Get Saml Configuration"
+        },
+        {
+          "info": {
+            "name": "Update Saml configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/saml",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Saml Configuration"
+        },
+        {
+          "info": {
+            "name": "Get folder synchronization configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/folder-synchronization"
+          },
+          "docs": "Get the settings for how folders are synchronized with an external system"
+        },
+        {
+          "info": {
+            "name": "Update folder synchronization configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/folder-synchronization",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the settings for how folders are synchronized with an external system"
+        },
+        {
+          "info": {
+            "name": "Get Saml Identity Provider configuration stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/saml/identity-provider/stub"
+          },
+          "docs": "Get Saml Identity Provider Configuration stub"
+        },
+        {
+          "info": {
+            "name": "Get RPC configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/rpc"
+          },
+          "docs": "Get Remote Password Configuration"
+        },
+        {
+          "info": {
+            "name": "Update RPC configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/rpc",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Remote Password Configuration"
+        },
+        {
+          "info": {
+            "name": "Get Session Recording Advanced",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/sessionrecording-advanced"
+          },
+          "docs": "Get Session Recording Advanced Configuration"
+        },
+        {
+          "info": {
+            "name": "Update Session Recording Advanced",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/sessionrecording-advanced",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Session Recording Advanced Configuration"
+        },
+        {
+          "info": {
+            "name": "Site Connectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/site-connector",
+            "params": [
+              {
+                "name": "includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "includeInactive"
+              }
+            ]
+          },
+          "docs": "Site Connectors"
+        },
+        {
+          "info": {
+            "name": "Internal Site Connector Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/internal-site-connector"
+          },
+          "docs": "Internal Site Connector Configuration"
+        },
+        {
+          "info": {
+            "name": "Update Internal Site Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/internal-site-connector",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Internal Site Connector"
+        },
+        {
+          "info": {
+            "name": "Get Unlimited Admin",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/unlimited-admin"
+          },
+          "docs": "Get Unlimited Admin"
+        },
+        {
+          "info": {
+            "name": "Update Unlimited Admin",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/unlimited-admin",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Unlimited Admin"
+        },
+        {
+          "info": {
+            "name": "Get unlimited admin configuration audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/unlimited-admin/audit",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Audit records for unlimited admin configuration changes"
+        },
+        {
+          "info": {
+            "name": "Secret Search Indexer Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/secret-search-indexer"
+          },
+          "docs": "Secret Search Indexer Configuration"
+        },
+        {
+          "info": {
+            "name": "Update Secret Search Indexer Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/secret-search-indexer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Secret Search Indexer Configuration"
+        },
+        {
+          "info": {
+            "name": "Get Platform Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/platform"
+          },
+          "docs": "Retrieve the settings and descriptions for the Platform configuration view model."
+        },
+        {
+          "info": {
+            "name": "Patch Platform Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/platform",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Platform Configuration by sending one or more fields with dirty set to true.  This will return the actual updated view model."
+        },
+        {
+          "info": {
+            "name": "Get Platform Configuration Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/platform-audits",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Retrieve the audits for the Platform configuration."
+        },
+        {
+          "info": {
+            "name": "Get Automatic Export Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/auto-export"
+          },
+          "docs": "Retrieve the settings and descriptions for the automatic export configuration view model."
+        },
+        {
+          "info": {
+            "name": "Patch Automatic Export Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/auto-export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Automatic Export Configuration by sending one or more fields with dirty set to true.  This will return the actual updated view model."
+        },
+        {
+          "info": {
+            "name": "Get Automatic Export Configuration Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/auto-export-audits",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Retrieve the audits for the automatic export configuration."
+        },
+        {
+          "info": {
+            "name": "Get Automatic Export Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/auto-export-logs",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Retrieve the logs for the automatic exports."
+        },
+        {
+          "info": {
+            "name": "Get Automatic Export Storage Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/auto-export-storage",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of the items in automatic export storage."
+        },
+        {
+          "info": {
+            "name": "Get Automatic Export Storage Items For Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/auto-export-storage/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of the items in automatic export storage for a configuration."
+        },
+        {
+          "info": {
+            "name": "Get Automatic Export Storage Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/auto-export-storage/item/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Retrieves the automatic export storage item's contents."
+        },
+        {
+          "info": {
+            "name": "Get Backup Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/backup"
+          },
+          "docs": "Retrieve the settings and descriptions for the backup configuration view model."
+        },
+        {
+          "info": {
+            "name": "Patch Backup Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/backup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Backup Configuration by sending one or more fields with dirty set to true.  This will return the actual updated view model."
+        },
+        {
+          "info": {
+            "name": "Get Backup Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v2/configuration/backup-logs",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Retrieve the logs for the backups run."
+        },
+        {
+          "info": {
+            "name": "Get system log configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/system-log"
+          },
+          "docs": "Get system log configuration"
+        },
+        {
+          "info": {
+            "name": "Patch system log configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/system-log",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch system log configuration"
+        },
+        {
+          "info": {
+            "name": "Clear system log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/system-log/clear"
+          },
+          "docs": "Clear system log"
+        },
+        {
+          "info": {
+            "name": "Public SSH Key Expiration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/public-ssh-key"
+          },
+          "docs": "Public SSH Key Expiration"
+        },
+        {
+          "info": {
+            "name": "Get the ticket system configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/ticket-system"
+          },
+          "docs": "Get the ticket system configuration"
+        },
+        {
+          "info": {
+            "name": "Update the ticket system configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/ticket-system",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the ticket system configuration"
+        },
+        {
+          "info": {
+            "name": "Get the database configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/database"
+          },
+          "docs": "Get the database configuration"
+        },
+        {
+          "info": {
+            "name": "Update the database configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/database",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the database configuration"
+        },
+        {
+          "info": {
+            "name": "Get Read Only Mode Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/read-only-mode"
+          },
+          "docs": "Get Read Only Mode Configuration"
+        },
+        {
+          "info": {
+            "name": "Patch Read Only Mode Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/read-only-mode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Read Only Mode Configuration"
+        },
+        {
+          "info": {
+            "name": "Get Rotate Secret Keys Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/security/rotate-secret-keys-status"
+          },
+          "docs": "Get Rotate Secret Keys Status"
+        },
+        {
+          "info": {
+            "name": "Get DPAPI Encryption State",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/dp/state"
+          },
+          "docs": "Get DPAPI Encryption State"
+        },
+        {
+          "info": {
+            "name": "Get Multifactor Authentication Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/configuration/mfa/get-auth-profiles"
+          },
+          "docs": "Get Multifactor Authentication Profiles"
+        },
+        {
+          "info": {
+            "name": "Update general configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/general",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update general configuration"
+        },
+        {
+          "info": {
+            "name": "Create Saml configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/saml/identity-provider",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Saml Configuration"
+        },
+        {
+          "info": {
+            "name": "Update Saml Identity Provider configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/saml/identity-provider",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Saml Identity Provider Configuration"
+        },
+        {
+          "info": {
+            "name": "Session Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/sessionrecording",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Session Recording Configuration"
+        },
+        {
+          "info": {
+            "name": "Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/folder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Folder Configuration"
+        },
+        {
+          "info": {
+            "name": "Update the application settings configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/application-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the application settings configuration"
+        },
+        {
+          "info": {
+            "name": "Update the permission options configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/permission-options",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the permission options configuration"
+        },
+        {
+          "info": {
+            "name": "Update the launcher settings configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/launcher-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the launcher settings configuration"
+        },
+        {
+          "info": {
+            "name": "Update the protocol handler settings configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/protocol-handler-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the protocol handler settings configuration"
+        },
+        {
+          "info": {
+            "name": "Update the user experience configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/user-experience",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the user experience configuration"
+        },
+        {
+          "info": {
+            "name": "Update the user interface configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v2/configuration/user-interface",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the user interface configuration"
+        },
+        {
+          "info": {
+            "name": "Update the email configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/configuration/email",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the email configuration"
+        },
+        {
+          "info": {
+            "name": "Run RPC Now",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/rpc/run-now"
+          },
+          "docs": "Run RPC Now"
+        },
+        {
+          "info": {
+            "name": "Run Heartbeat Now",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/heartbeat/run-now"
+          },
+          "docs": "Run Heartbeat Now"
+        },
+        {
+          "info": {
+            "name": "Rebuild Secret Search Index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/secret-search-indexer/rebuild-index"
+          },
+          "docs": "Start Rebuilding the Secret Search Index.  This method just indicates that a background process should start to process the index."
+        },
+        {
+          "info": {
+            "name": "Start Automatic Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/auto-export/run-now"
+          },
+          "docs": "Start the automatic export as configured"
+        },
+        {
+          "info": {
+            "name": "Start Backup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/backup/run-now"
+          },
+          "docs": "Start the backup as configured"
+        },
+        {
+          "info": {
+            "name": "Rotate Secret Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/security/rotate-secret-keys"
+          },
+          "docs": "Rotate Secret Keys"
+        },
+        {
+          "info": {
+            "name": "Cancel Rotate Secret Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/security/cancel-rotate-secret-keys"
+          },
+          "docs": "Cancel Rotate Secret Keys"
+        },
+        {
+          "info": {
+            "name": "TestEmail",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/email/test"
+          },
+          "docs": "Send Test Email"
+        },
+        {
+          "info": {
+            "name": "Clear AD Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/login/clear-ad-credentials"
+          },
+          "docs": "Clear AD Credentials"
+        },
+        {
+          "info": {
+            "name": "Test Radius Login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/login/radius/test",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Test a Radius Login"
+        },
+        {
+          "info": {
+            "name": "Test Syslog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/syslog/test"
+          },
+          "docs": "Send a simple message to the configured syslog"
+        },
+        {
+          "info": {
+            "name": "Encrypt using DPAPI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/dp/encrypt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Encrypt using DPAPI"
+        },
+        {
+          "info": {
+            "name": "Decrypt using DPAPI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/configuration/dp/decrypt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Decrypt using DPAPI"
+        },
+        {
+          "info": {
+            "name": "Import Saml configuration Identity Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/configuration/saml/identity-provider/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import Saml configuration Identity Provider"
+        },
+        {
+          "info": {
+            "name": "Set Current Multifactor Authentication Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/configuration/mfa/set-auth-profile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set Current Multifactor Authentication Profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

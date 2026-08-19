@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations EventPipelineSettings API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EventPipelineSettings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Event Pipeline Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-settings/task/list",
+            "params": [
+              {
+                "name": "filter.eventActionId",
+                "value": "",
+                "type": "query",
+                "description": "EventActionId"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get all tasks"
+        },
+        {
+          "info": {
+            "name": "Get Event Pipeline Task Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-settings/task-settings/list/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Task ID"
+              }
+            ]
+          },
+          "docs": "Returns a list of all pipeline task settings"
+        },
+        {
+          "info": {
+            "name": "Get Event Pipeline Filter Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-settings/filter-settings/list/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Filter ID"
+              }
+            ]
+          },
+          "docs": "Get all filter settings for a specific pipeline"
+        },
+        {
+          "info": {
+            "name": "Get Pipeline Task Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-settings/tasks/options",
+            "params": [
+              {
+                "name": "eventEntityTypeId",
+                "value": "",
+                "type": "query",
+                "description": "eventEntityTypeId"
+              }
+            ]
+          },
+          "docs": "Get all available options for tasks"
+        },
+        {
+          "info": {
+            "name": "Get Pipeline Filter Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-settings/filter/options",
+            "params": [
+              {
+                "name": "eventEntityTypeId",
+                "value": "",
+                "type": "query",
+                "description": "eventEntityTypeId"
+              }
+            ]
+          },
+          "docs": "Get all the available filter options"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

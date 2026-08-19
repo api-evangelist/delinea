@@ -1,0 +1,420 @@
+{
+  "item": [
+    {
+      "id": "81752af6-5932-4f14-944b-4be64b9ab67b",
+      "name": "EventPipelineAudit",
+      "description": {
+        "content": "EventPipelineAuditController",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2e515a1-acda-430e-9f2f-2e5dfa679846",
+          "name": "Get Pipeline / Policy Audits",
+          "request": {
+            "name": "Get Pipeline / Policy Audits",
+            "description": {
+              "content": "Retrieve all of the audits for both pipeline and policy audit entries",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-pipeline-audit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "isExporting",
+                  "value": "<boolean>",
+                  "description": "isExporting"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.eventPipelinePolicyId",
+                  "value": "<integer>",
+                  "description": "EventPipelinePolicyId"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9502388e-8855-4e44-8256-8840328bc599",
+              "name": "A paged list of audit entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.eventPipelinePolicyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 7176,\n  \"currentPage\": 3702,\n  \"hasNext\": false,\n  \"hasPrev\": true,\n  \"nextSkip\": 2282,\n  \"pageCount\": 8740,\n  \"prevSkip\": 9685,\n  \"records\": [\n    {\n      \"action\": \"string\",\n      \"auditId\": 9029,\n      \"date\": \"string\",\n      \"isPolicy\": false,\n      \"name\": \"string\",\n      \"notes\": \"string\",\n      \"userDisplayName\": \"string\"\n    },\n    {\n      \"action\": \"string\",\n      \"auditId\": 8007,\n      \"date\": \"string\",\n      \"isPolicy\": true,\n      \"name\": \"string\",\n      \"notes\": \"string\",\n      \"userDisplayName\": \"string\"\n    }\n  ],\n  \"severity\": \"None\",\n  \"skip\": 1926,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 7299\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"None\",\n      \"priority\": 2061\n    }\n  ],\n  \"success\": false,\n  \"take\": 2586,\n  \"total\": 4382\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4de6b8c-347e-4196-b281-884558811e5a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.eventPipelinePolicyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ceb57918-effa-4bda-9b06-a6f116c6f70b",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.eventPipelinePolicyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b798f63-cd74-48ce-b98a-58a5e69825c7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.eventPipelinePolicyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/SecretServer/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6a516d2a-278e-4685-95b8-2ff517e81bc0",
+    "name": "Secret Server Rest Activations EventPipelineAudit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href=\"../OAuth/\">authentication document</a> for more information. The <a href=\"swagger.json\">Swagger specification</a> for this API is also available.\n\nContact Support:\n Name: Support",
+      "type": "text/plain"
+    }
+  }
+}

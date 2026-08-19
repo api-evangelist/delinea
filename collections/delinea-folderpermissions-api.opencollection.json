@@ -1,0 +1,224 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations FolderPermissions API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FolderPermissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Folder Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/folder-permissions/:id",
+            "params": [
+              {
+                "name": "includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include inactive folder permissions in the results"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder permission ID"
+              }
+            ]
+          },
+          "docs": "Get a single folder permission by ID"
+        },
+        {
+          "info": {
+            "name": "Update Folder Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/folder-permissions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder permission ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a single folder permission by ID"
+        },
+        {
+          "info": {
+            "name": "Delete Folder Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/folder-permissions/:id",
+            "params": [
+              {
+                "name": "breakInheritance",
+                "value": "",
+                "type": "query",
+                "description": "Include to remove permission inheritance"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder permission ID"
+              }
+            ]
+          },
+          "docs": "Delete a folder permission by ID"
+        },
+        {
+          "info": {
+            "name": "Search Folder Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/folder-permissions",
+            "params": [
+              {
+                "name": "filter.domainId",
+                "value": "",
+                "type": "query",
+                "description": "Only return users in this domain.  Pass -1 to return local accounts.  Null or empty will not filter by domain."
+              },
+              {
+                "name": "filter.excludeEditors",
+                "value": "",
+                "type": "query",
+                "description": "If populated with true, will filter editors from results. Will default to false"
+              },
+              {
+                "name": "filter.excludeOwners",
+                "value": "",
+                "type": "query",
+                "description": "If populated with true, will filter owners from results. Will default to false"
+              },
+              {
+                "name": "filter.excludeViewers",
+                "value": "",
+                "type": "query",
+                "description": "If populated with true, will filter viewers from results. Will default to false"
+              },
+              {
+                "name": "filter.folderId",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to a certain folder"
+              },
+              {
+                "name": "filter.groupId",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to a certain group"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Will only return results where the user or group name contains this text"
+              },
+              {
+                "name": "filter.userId",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to a certain user"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page folder permissions"
+        },
+        {
+          "info": {
+            "name": "Create Folder Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/folder-permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new folder permission"
+        },
+        {
+          "info": {
+            "name": "Get Folder Permission Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/folder-permissions/stub",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "Folder for which to generate a permission stub"
+              }
+            ]
+          },
+          "docs": "Return the default values for a new folder permission"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

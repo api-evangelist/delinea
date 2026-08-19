@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Slack API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Slack",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Slack Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v3/slack-configuration"
+          },
+          "docs": "Fetches the Slack configuration"
+        },
+        {
+          "info": {
+            "name": "Slack Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v3/slack-configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the Slack configuration"
+        },
+        {
+          "info": {
+            "name": "Test Slack Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v2/slack-test"
+          },
+          "docs": "Sends a test Slack message to test the Slack configuration"
+        },
+        {
+          "info": {
+            "name": "Slack Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/slack/event"
+          },
+          "docs": "Slack event endpoint that only Slack can call, does source validation"
+        },
+        {
+          "info": {
+            "name": "Slack Interaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/slack/interaction"
+          },
+          "docs": "Slack interation endpoint that only Slack can call, does source validation"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

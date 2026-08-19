@@ -1,0 +1,2060 @@
+{
+  "item": [
+    {
+      "id": "6554c89f-eaf5-49f6-9a83-38af73afc5d0",
+      "name": "SshCipherSuite",
+      "description": {
+        "content": "SshCipherSuiteController",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a8a6265-2f3e-443b-b3bd-850a5f692154",
+          "name": "Search SshCipherSuites",
+          "request": {
+            "name": "Search SshCipherSuites",
+            "description": {
+              "content": "Search, filter, sort, and page SSH Cipher Suites",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ssh-cipher-suite",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter.includeActive",
+                  "value": "<boolean>",
+                  "description": "Should include active"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.includeInactive",
+                  "value": "<boolean>",
+                  "description": "Should include inactive"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.searchTerm",
+                  "value": "<string>",
+                  "description": "SSH Cipher Suite search term"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6d45feb-8164-4690-8ac1-b4826affcefc",
+              "name": "SshCipherSuite search result object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.includeActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 9201,\n  \"currentPage\": 9785,\n  \"hasNext\": false,\n  \"hasPrev\": true,\n  \"nextSkip\": 4790,\n  \"pageCount\": 4085,\n  \"prevSkip\": 4318,\n  \"records\": [\n    {\n      \"active\": true,\n      \"description\": \"string\",\n      \"encryptionAlgorithms\": \"string\",\n      \"encryptionAlgorithmsFipsCompliance\": [\n        {\n          \"fipsCompliant\": false,\n          \"name\": \"string\"\n        },\n        {\n          \"fipsCompliant\": true,\n          \"name\": \"string\"\n        }\n      ],\n      \"keyExchangeAlgorithms\": \"string\",\n      \"keyExchangeAlgorithmsFipsCompliance\": [\n        {\n          \"fipsCompliant\": false,\n          \"name\": \"string\"\n        },\n        {\n          \"fipsCompliant\": false,\n          \"name\": \"string\"\n        }\n      ],\n      \"macAlgorithms\": \"string\",\n      \"macAlgorithmsFipsCompliance\": [\n        {\n          \"fipsCompliant\": false,\n          \"name\": \"string\"\n        },\n        {\n          \"fipsCompliant\": false,\n          \"name\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"pkAlgorithms\": \"string\",\n      \"pkAlgorithmsFipsCompliance\": [\n        {\n          \"fipsCompliant\": false,\n          \"name\": \"string\"\n        },\n        {\n          \"fipsCompliant\": true,\n          \"name\": \"string\"\n        }\n      ],\n      \"sshCipherSuiteConfigurationId\": \"f7d73b48-63de-3a14-94f4-002d6ebf85a6\"\n    },\n    {\n      \"active\": true,\n      \"description\": \"string\",\n      \"encryptionAlgorithms\": \"string\",\n      \"encryptionAlgorithmsFipsCompliance\": [\n        {\n          \"fipsCompliant\": true,\n          \"name\": \"string\"\n        },\n        {\n          \"fipsCompliant\": false,\n          \"name\": \"string\"\n        }\n      ],\n      \"keyExchangeAlgorithms\": \"string\",\n      \"keyExchangeAlgorithmsFipsCompliance\": [\n        {\n          \"fipsCompliant\": false,\n          \"name\": \"string\"\n        },\n        {\n          \"fipsCompliant\": true,\n          \"name\": \"string\"\n        }\n      ],\n      \"macAlgorithms\": \"string\",\n      \"macAlgorithmsFipsCompliance\": [\n        {\n          \"fipsCompliant\": false,\n          \"name\": \"string\"\n        },\n        {\n          \"fipsCompliant\": true,\n          \"name\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"pkAlgorithms\": \"string\",\n      \"pkAlgorithmsFipsCompliance\": [\n        {\n          \"fipsCompliant\": true,\n          \"name\": \"string\"\n        },\n        {\n          \"fipsCompliant\": true,\n          \"name\": \"string\"\n        }\n      ],\n      \"sshCipherSuiteConfigurationId\": \"b7df8db0-e2a5-9fcc-7bb4-44e31853703e\"\n    }\n  ],\n  \"severity\": \"Retry\",\n  \"skip\": 3383,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"None\",\n      \"priority\": 9833\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Desc\",\n      \"priority\": 5178\n    }\n  ],\n  \"success\": false,\n  \"take\": 4115,\n  \"total\": 8775\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6434142-cbaa-4a81-b794-6d934082f6df",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.includeActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f9a82e8-81a9-432c-9ca1-cf0cc8fbb3bb",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.includeActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c09292c3-84f0-4c0a-964b-ec30631719b8",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.includeActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3330327e-a5e0-4981-bf42-9fbdaf2c81ac",
+          "name": "Find SshCipherSuite",
+          "request": {
+            "name": "Find SshCipherSuite",
+            "description": {
+              "content": "Find a SSH Cipher Suite by Id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ssh-cipher-suite",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) SSH Cipher Suite Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32f5586e-6463-44a5-b98b-b89aa0cf194a",
+              "name": "SshCipherSuite detail object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) SSH Cipher Suite Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": false,\n  \"description\": \"string\",\n  \"encryptionAlgorithms\": \"string\",\n  \"encryptionAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": false,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    }\n  ],\n  \"keyExchangeAlgorithms\": \"string\",\n  \"keyExchangeAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    }\n  ],\n  \"macAlgorithms\": \"string\",\n  \"macAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": false,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    }\n  ],\n  \"name\": \"string\",\n  \"publicKeyAlgorithms\": \"string\",\n  \"publicKeyAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    }\n  ],\n  \"sshCipherSuiteConfigurationId\": \"343bdef3-2d71-a0c7-df96-6b73205d66bb\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bd1659b-d71c-4fa4-899a-73ac077aec5b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) SSH Cipher Suite Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b369fe53-dcad-402e-9282-b11463215781",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) SSH Cipher Suite Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cec34775-d9e6-4fe1-8fd4-9d7a865a8559",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) SSH Cipher Suite Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b6d7fac-8e3e-4f6b-a1f8-9b1a8f9f01dd",
+          "name": "Udpate a SSH Cipher Suite",
+          "request": {
+            "name": "Udpate a SSH Cipher Suite",
+            "description": {
+              "content": "Update an existing SSH Cipher Suite using the existing SSH Cipher Suite's ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ssh-cipher-suite",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"encryptionAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"keyExchangeAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"macAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"pkAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"sshCipherSuiteConfigurationId\": \"<uuid>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ed26e24-6ec5-406d-a643-bd7b1e1d8a04",
+              "name": "SshCipherSuite Summary Object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"encryptionAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"keyExchangeAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"macAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"pkAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"sshCipherSuiteConfigurationId\": \"<uuid>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": false,\n  \"description\": \"string\",\n  \"encryptionAlgorithms\": \"string\",\n  \"encryptionAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": false,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    }\n  ],\n  \"keyExchangeAlgorithms\": \"string\",\n  \"keyExchangeAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": false,\n      \"name\": \"string\"\n    }\n  ],\n  \"macAlgorithms\": \"string\",\n  \"macAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    }\n  ],\n  \"name\": \"string\",\n  \"pkAlgorithms\": \"string\",\n  \"pkAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": false,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    }\n  ],\n  \"sshCipherSuiteConfigurationId\": \"9f3ac161-ef22-4fa2-126d-76905a2aa9c9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "724c9e55-d14b-4977-989f-0eb74d5bade5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"encryptionAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"keyExchangeAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"macAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"pkAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"sshCipherSuiteConfigurationId\": \"<uuid>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c7edbf6-0965-4251-b61d-bbb3c9c9bfb5",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"encryptionAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"keyExchangeAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"macAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"pkAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"sshCipherSuiteConfigurationId\": \"<uuid>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b54e4eef-55ff-4a04-8063-051e20889b94",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"encryptionAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"keyExchangeAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"macAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"pkAlgorithms\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"sshCipherSuiteConfigurationId\": \"<uuid>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cab66df1-33d0-486c-94c2-2b279bf5449f",
+          "name": "Find SshCiphers",
+          "request": {
+            "name": "Find SshCiphers",
+            "description": {
+              "content": "Find a SSH Ciphers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ssh-ciphers",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter.algorithmType",
+                  "value": "<string>",
+                  "description": "SSH Cipher algorithm type"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.searchTerm",
+                  "value": "<string>",
+                  "description": "SSH Cipher search term"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9751e46-748d-4c54-bd27-9ce5372961fd",
+              "name": "SshCiphers objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-ciphers",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.algorithmType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ciphers\": [\n    {\n      \"fipsCompliant\": false,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": false,\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84717b05-95f9-4ab2-816a-95241bf6e3c9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-ciphers",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.algorithmType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "810a9585-a73e-459c-9834-6aa219b57f8d",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-ciphers",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.algorithmType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f2811e2-a6b4-475f-8fb9-fe90c62b5e59",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-ciphers",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.algorithmType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14531d28-728d-4c83-b129-e8cf850ad943",
+          "name": "Get SSH Cipher Suite Audits",
+          "request": {
+            "name": "Get SSH Cipher Suite Audits",
+            "description": {
+              "content": "Retrieve audits for the SSH Cipher Suites",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ssh-cipher-suite",
+                ":id",
+                "audit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "isExporting",
+                  "value": "<boolean>",
+                  "description": "isExporting"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.searchTerm",
+                  "value": "<string>",
+                  "description": "SSH Cipher Suite Audit Search Term"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6fc19b7-6256-491d-886d-cbe570645c54",
+              "name": "A paged list of audit entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 1805,\n  \"currentPage\": 664,\n  \"hasNext\": true,\n  \"hasPrev\": false,\n  \"nextSkip\": 5787,\n  \"pageCount\": 6331,\n  \"prevSkip\": 6148,\n  \"records\": [\n    {\n      \"action\": \"string\",\n      \"auditId\": \"319d1eb0-6510-cf0a-0138-370586832e81\",\n      \"date\": \"string\",\n      \"displayName\": \"string\",\n      \"notes\": \"string\"\n    },\n    {\n      \"action\": \"string\",\n      \"auditId\": \"882eeda8-ba63-7317-b6aa-a5d97b3ae75a\",\n      \"date\": \"string\",\n      \"displayName\": \"string\",\n      \"notes\": \"string\"\n    }\n  ],\n  \"severity\": \"Critical\",\n  \"skip\": 1981,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"None\",\n      \"priority\": 8201\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Desc\",\n      \"priority\": 9881\n    }\n  ],\n  \"success\": false,\n  \"take\": 281,\n  \"total\": 6058\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2752f3d-8ed5-4b63-a017-3319c1b6cc35",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2091e419-fe59-4f49-9472-72357e8174e1",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8b57ee5-c93c-47af-b742-94b790228b2b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite",
+                    ":id",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac80c986-6842-4cee-9f12-ae62685ff889",
+          "name": "Create SshCipherSuite",
+          "request": {
+            "name": "Create SshCipherSuite",
+            "description": {
+              "content": "Create a new SSH Cipher Suite",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ssh-cipher-suite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"description\": \"<string>\",\n    \"encryptionAlgorithms\": \"<string>\",\n    \"keyExchangeAlgorithms\": \"<string>\",\n    \"macAlgorithms\": \"<string>\",\n    \"name\": \"<string>\",\n    \"publicKeyAlgorithms\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22100bff-1fa1-4443-adb2-b2f3e25b4f3f",
+              "name": "SshCipherSuite Summary Object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"description\": \"<string>\",\n    \"encryptionAlgorithms\": \"<string>\",\n    \"keyExchangeAlgorithms\": \"<string>\",\n    \"macAlgorithms\": \"<string>\",\n    \"name\": \"<string>\",\n    \"publicKeyAlgorithms\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": false,\n  \"description\": \"string\",\n  \"encryptionAlgorithms\": \"string\",\n  \"encryptionAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": false,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    }\n  ],\n  \"keyExchangeAlgorithms\": \"string\",\n  \"keyExchangeAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": false,\n      \"name\": \"string\"\n    }\n  ],\n  \"macAlgorithms\": \"string\",\n  \"macAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    }\n  ],\n  \"name\": \"string\",\n  \"pkAlgorithms\": \"string\",\n  \"pkAlgorithmsFipsCompliance\": [\n    {\n      \"fipsCompliant\": false,\n      \"name\": \"string\"\n    },\n    {\n      \"fipsCompliant\": true,\n      \"name\": \"string\"\n    }\n  ],\n  \"sshCipherSuiteConfigurationId\": \"9f3ac161-ef22-4fa2-126d-76905a2aa9c9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edca180e-dc59-44aa-a81c-f95036210f6c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"description\": \"<string>\",\n    \"encryptionAlgorithms\": \"<string>\",\n    \"keyExchangeAlgorithms\": \"<string>\",\n    \"macAlgorithms\": \"<string>\",\n    \"name\": \"<string>\",\n    \"publicKeyAlgorithms\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "525a6e08-a838-44ba-bb2b-cb78b59d1fc0",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"description\": \"<string>\",\n    \"encryptionAlgorithms\": \"<string>\",\n    \"keyExchangeAlgorithms\": \"<string>\",\n    \"macAlgorithms\": \"<string>\",\n    \"name\": \"<string>\",\n    \"publicKeyAlgorithms\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3accb00a-6d33-4cd6-b84d-7d5ed1416ffc",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ssh-cipher-suite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"description\": \"<string>\",\n    \"encryptionAlgorithms\": \"<string>\",\n    \"keyExchangeAlgorithms\": \"<string>\",\n    \"macAlgorithms\": \"<string>\",\n    \"name\": \"<string>\",\n    \"publicKeyAlgorithms\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/SecretServer/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "558f011f-607d-4e60-bfc9-9469d2e704f4",
+    "name": "Secret Server Rest Activations SshCipherSuite API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href=\"../OAuth/\">authentication document</a> for more information. The <a href=\"swagger.json\">Swagger specification</a> for this API is also available.\n\nContact Support:\n Name: Support",
+      "type": "text/plain"
+    }
+  }
+}

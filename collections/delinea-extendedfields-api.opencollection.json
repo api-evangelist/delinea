@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations ExtendedFields API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ExtendedFields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Extended Regex values by Secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/extended-fields/regex/:secretId",
+            "params": [
+              {
+                "name": "secretId",
+                "value": "",
+                "type": "path",
+                "description": "secretId"
+              }
+            ]
+          },
+          "docs": "Retrieve Extended Regex values for a Secret"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

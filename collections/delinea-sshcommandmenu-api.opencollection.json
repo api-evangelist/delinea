@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations SshCommandMenu API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SshCommandMenu",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search SSH Commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command-menu/search",
+            "params": [
+              {
+                "name": "filter.includeDisabled",
+                "value": "",
+                "type": "query",
+                "description": "IncludeDisabled"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page SSH Commands"
+        },
+        {
+          "info": {
+            "name": "Search Menu Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command-menu/audit/search",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "filter.sshCommandMenuName",
+                "value": "",
+                "type": "query",
+                "description": "SshCommandMenuName"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page audits"
+        },
+        {
+          "info": {
+            "name": "Search SSH Command, Blocklist, and Menu Audits for audit item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command-item/audit/search",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "filter.sshCommandItemNameOrNotes",
+                "value": "",
+                "type": "query",
+                "description": "SshCommandItemNameOrNotes"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page audits for audit item"
+        },
+        {
+          "info": {
+            "name": "Get SSH Command Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command-menu/:sshCommandMenuId",
+            "params": [
+              {
+                "name": "sshCommandMenuId",
+                "value": "",
+                "type": "path",
+                "description": "sshCommandMenuId"
+              }
+            ]
+          },
+          "docs": "Return details for a specific SSH Command Menu item"
+        },
+        {
+          "info": {
+            "name": "Update an SSH Command Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/ssh-command-menu/:sshCommandMenuId",
+            "params": [
+              {
+                "name": "sshCommandMenuId",
+                "value": "",
+                "type": "path",
+                "description": "sshCommandMenuId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an SSH Command Menu"
+        },
+        {
+          "info": {
+            "name": "Get user actions for SSH Commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command-menu/state"
+          },
+          "docs": "Available user actions for commands"
+        },
+        {
+          "info": {
+            "name": "Add an SSH Command Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/ssh-command-menu",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SSH Command Menu item"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

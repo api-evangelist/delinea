@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations EventSubscriptions API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EventSubscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an empty event subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-subscriptions/stub"
+          },
+          "docs": "Returns the empty event subscription"
+        },
+        {
+          "info": {
+            "name": "Get an Event Subscription Types and Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-subscriptions/event-types"
+          },
+          "docs": "Returns the array of Event Subscription Types and Actions"
+        },
+        {
+          "info": {
+            "name": "Search event subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-subscriptions",
+            "params": [
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeInactive"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page event subscriptions"
+        },
+        {
+          "info": {
+            "name": "Create event subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/event-subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new event subscription"
+        },
+        {
+          "info": {
+            "name": "event subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-subscriptions/:eventSubscriptionId",
+            "params": [
+              {
+                "name": "eventSubscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "eventSubscriptionId"
+              }
+            ]
+          },
+          "docs": "Details for a specific event subscription"
+        },
+        {
+          "info": {
+            "name": "Update event subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/event-subscriptions/:eventSubscriptionId",
+            "params": [
+              {
+                "name": "eventSubscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "eventSubscriptionId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an event subscription"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

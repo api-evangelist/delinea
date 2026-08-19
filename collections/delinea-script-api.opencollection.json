@@ -1,0 +1,402 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Script API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Script",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v2/userscripts",
+            "params": [
+              {
+                "name": "filter.scriptCategoryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by script category"
+              },
+              {
+                "name": "filter.scriptType",
+                "value": "",
+                "type": "query",
+                "description": "Script Type (Powershell = 1, SQL = 2, SSH = 3)"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Only return the items that contain this text in their name"
+              },
+              {
+                "name": "filter.status",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include active, inactive, or both.  Defaults to Active only"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page scripts"
+        },
+        {
+          "info": {
+            "name": "Create Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v2/userscripts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Script"
+        },
+        {
+          "info": {
+            "name": "Search script categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/userscripts/categories",
+            "params": [
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Only return the items that contain this text in their name"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and script categories"
+        },
+        {
+          "info": {
+            "name": "Get Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v2/userscripts/:scriptId",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "",
+                "type": "path",
+                "description": "scriptId"
+              }
+            ]
+          },
+          "docs": "Get a single script by ID"
+        },
+        {
+          "info": {
+            "name": "Get Script from History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v2/userscripts/history/:scriptHistoryId",
+            "params": [
+              {
+                "name": "scriptHistoryId",
+                "value": "",
+                "type": "path",
+                "description": "scriptHistoryId"
+              }
+            ]
+          },
+          "docs": "Get an older version of this script from history"
+        },
+        {
+          "info": {
+            "name": "Search script audit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/userscripts/audit",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "filter.scriptId",
+                "value": "",
+                "type": "query",
+                "description": "Only return audit entries for this script"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and script audit"
+        },
+        {
+          "info": {
+            "name": "Search script usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/userscripts/usage",
+            "params": [
+              {
+                "name": "filter.scriptId",
+                "value": "",
+                "type": "query",
+                "description": "Only show where a specific script is used."
+              },
+              {
+                "name": "filter.scriptType",
+                "value": "",
+                "type": "query",
+                "description": "Only show a specific script type."
+              },
+              {
+                "name": "filter.usageType",
+                "value": "",
+                "type": "query",
+                "description": "Only show a specific usage type."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and script usage"
+        },
+        {
+          "info": {
+            "name": "Update Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/userscripts/:scriptId",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "",
+                "type": "path",
+                "description": "scriptId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update or patch a script model"
+        },
+        {
+          "info": {
+            "name": "Test PowerShell Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v2/userscripts/test-ps-script",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run a script to see if PowerShell is configured correctly and if a script will run.  If ScriptId is omitted a very basic test script is attempted."
+        },
+        {
+          "info": {
+            "name": "Test SQL Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v2/userscripts/test-sql-script",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run a script to see if SQL is configured correctly and if a script will run.  If ScriptId is omitted a very basic test script is attempted."
+        },
+        {
+          "info": {
+            "name": "Test Scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v2/userscripts/test-ssh-script",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run a script to see if PowerShell, SQL, or SSH is configured correctly and if a script will run.  If ScriptId is omitted a very basic test script is attempted."
+        },
+        {
+          "info": {
+            "name": "Update Script Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/userscripts/:scriptId/parameters",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "",
+                "type": "path",
+                "description": "scriptId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update all the parameters for a script including any variable parameters and specific settings for this script."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

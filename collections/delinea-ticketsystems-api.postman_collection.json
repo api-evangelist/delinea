@@ -1,0 +1,2017 @@
+{
+  "item": [
+    {
+      "id": "d92de6b6-52c9-4f50-bd1a-e82a106348b5",
+      "name": "TicketSystems",
+      "description": {
+        "content": "TicketSystemsController",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6560c970-056f-4625-8af1-7e80c25553ba",
+          "name": "Gets all ticket systems",
+          "request": {
+            "name": "Gets all ticket systems",
+            "description": {
+              "content": "Gets all ticket systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ticket-systems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeInactive",
+                  "value": "<boolean>",
+                  "description": "includeInactive"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d893f84-38e6-4a07-8181-2c563a47b1a7",
+              "name": "Ticket System Models",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeInactive",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"active\": false,\n    \"description\": \"string\",\n    \"displayMessage\": \"string\",\n    \"forceRequireTicketNumber\": 3946,\n    \"isDefault\": true,\n    \"name\": \"string\",\n    \"ticketSystemId\": 7107,\n    \"ticketSystemTypeId\": 1539,\n    \"viewTicketUrl\": \"string\"\n  },\n  {\n    \"active\": false,\n    \"description\": \"string\",\n    \"displayMessage\": \"string\",\n    \"forceRequireTicketNumber\": 923,\n    \"isDefault\": true,\n    \"name\": \"string\",\n    \"ticketSystemId\": 7535,\n    \"ticketSystemTypeId\": 5408,\n    \"viewTicketUrl\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64152820-3557-436f-bb95-2878c53afcaa",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeInactive",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72a9acbb-bca4-43d8-a7f0-6702e940fe79",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeInactive",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08a94330-2387-49e7-8441-658c45094cc1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeInactive",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40c6b250-6a4b-4ce2-a64f-2f22a29eb84d",
+          "name": "Creates a Ticket System",
+          "request": {
+            "name": "Creates a Ticket System",
+            "description": {
+              "content": "Creates a Ticket System",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ticket-systems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"addCommentsToTicket\": \"<boolean>\",\n    \"bmcChangeManagementCommentWorkType\": \"<string>\",\n    \"bmcIncidentManagementCommentWorkType\": \"<string>\",\n    \"bmcRemedyAuthentication\": \"<string>\",\n    \"bmcRemedyUrlEndpoint\": \"<string>\",\n    \"description\": \"<string>\",\n    \"displayMessage\": \"<string>\",\n    \"forceRequireTicketNumber\": \"BothRequired\",\n    \"hideComment\": \"<boolean>\",\n    \"isDefault\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"powerShellAddCommentScriptArguments\": \"<string>\",\n    \"powerShellAddCommentScriptId\": \"<integer>\",\n    \"powerShellAddTicketCommentScriptArguments\": \"<string>\",\n    \"powerShellAddTicketCommentScriptId\": \"<integer>\",\n    \"powerShellRunAsAccountSecretId\": \"<integer>\",\n    \"powerShellTicketStatusScriptArguments\": \"<string>\",\n    \"powerShellTicketStatusScriptId\": \"<integer>\",\n    \"serviceNowAllowedStatuses\": \"<string>\",\n    \"serviceNowDomainName\": \"<string>\",\n    \"siteId\": \"<integer>\",\n    \"systemCredentialSecretId\": \"<integer>\",\n    \"ticketNumberErrorMessage\": \"<string>\",\n    \"ticketNumberValidation\": \"<string>\",\n    \"ticketSystemType\": \"BmcRemedyChangeManagement\",\n    \"viewTicketUrl\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "108d4e1d-3121-419c-86a7-ec732a7e8ba4",
+              "name": "Ticket System Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"addCommentsToTicket\": \"<boolean>\",\n    \"bmcChangeManagementCommentWorkType\": \"<string>\",\n    \"bmcIncidentManagementCommentWorkType\": \"<string>\",\n    \"bmcRemedyAuthentication\": \"<string>\",\n    \"bmcRemedyUrlEndpoint\": \"<string>\",\n    \"description\": \"<string>\",\n    \"displayMessage\": \"<string>\",\n    \"forceRequireTicketNumber\": \"BothRequired\",\n    \"hideComment\": \"<boolean>\",\n    \"isDefault\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"powerShellAddCommentScriptArguments\": \"<string>\",\n    \"powerShellAddCommentScriptId\": \"<integer>\",\n    \"powerShellAddTicketCommentScriptArguments\": \"<string>\",\n    \"powerShellAddTicketCommentScriptId\": \"<integer>\",\n    \"powerShellRunAsAccountSecretId\": \"<integer>\",\n    \"powerShellTicketStatusScriptArguments\": \"<string>\",\n    \"powerShellTicketStatusScriptId\": \"<integer>\",\n    \"serviceNowAllowedStatuses\": \"<string>\",\n    \"serviceNowDomainName\": \"<string>\",\n    \"siteId\": \"<integer>\",\n    \"systemCredentialSecretId\": \"<integer>\",\n    \"ticketNumberErrorMessage\": \"<string>\",\n    \"ticketNumberValidation\": \"<string>\",\n    \"ticketSystemType\": \"ServiceNowIncidentManagement\",\n    \"viewTicketUrl\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"addCommentsToTicket\": false,\n  \"bmcChangeManagementCommentWorkType\": \"string\",\n  \"bmcIncidentManagementCommentWorkType\": \"string\",\n  \"bmcRemedyAuthentication\": \"string\",\n  \"bmcRemedyUrlEndpoint\": \"string\",\n  \"description\": \"string\",\n  \"displayMessage\": \"string\",\n  \"forceRequireTicketNumber\": \"ReasonOnlyRequired\",\n  \"hideComment\": false,\n  \"isDefault\": false,\n  \"name\": \"string\",\n  \"organizationId\": 2649,\n  \"powerShellAddCommentScriptArguments\": \"string\",\n  \"powerShellAddCommentScriptId\": 7368,\n  \"powerShellAddTicketCommentScriptArguments\": \"string\",\n  \"powerShellAddTicketCommentScriptId\": 6610,\n  \"powerShellRunAsAccountSecretId\": 6241,\n  \"powerShellRunAsAccountSecretName\": \"string\",\n  \"powerShellTicketStatusScriptArguments\": \"string\",\n  \"powerShellTicketStatusScriptId\": 160,\n  \"serviceNowAllowedStatuses\": \"string\",\n  \"serviceNowDomainName\": \"string\",\n  \"siteId\": 6850,\n  \"systemCredentialSecretId\": 8169,\n  \"systemCredentialSecretName\": \"string\",\n  \"ticketNumberErrorMessage\": \"string\",\n  \"ticketNumberValidation\": \"string\",\n  \"ticketSystemId\": 5125,\n  \"ticketSystemType\": \"BmcRemedyChangeManagement\",\n  \"viewTicketUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16231474-c3bb-4b67-9140-d4ce3da2c951",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"addCommentsToTicket\": \"<boolean>\",\n    \"bmcChangeManagementCommentWorkType\": \"<string>\",\n    \"bmcIncidentManagementCommentWorkType\": \"<string>\",\n    \"bmcRemedyAuthentication\": \"<string>\",\n    \"bmcRemedyUrlEndpoint\": \"<string>\",\n    \"description\": \"<string>\",\n    \"displayMessage\": \"<string>\",\n    \"forceRequireTicketNumber\": \"BothRequired\",\n    \"hideComment\": \"<boolean>\",\n    \"isDefault\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"powerShellAddCommentScriptArguments\": \"<string>\",\n    \"powerShellAddCommentScriptId\": \"<integer>\",\n    \"powerShellAddTicketCommentScriptArguments\": \"<string>\",\n    \"powerShellAddTicketCommentScriptId\": \"<integer>\",\n    \"powerShellRunAsAccountSecretId\": \"<integer>\",\n    \"powerShellTicketStatusScriptArguments\": \"<string>\",\n    \"powerShellTicketStatusScriptId\": \"<integer>\",\n    \"serviceNowAllowedStatuses\": \"<string>\",\n    \"serviceNowDomainName\": \"<string>\",\n    \"siteId\": \"<integer>\",\n    \"systemCredentialSecretId\": \"<integer>\",\n    \"ticketNumberErrorMessage\": \"<string>\",\n    \"ticketNumberValidation\": \"<string>\",\n    \"ticketSystemType\": \"ServiceNowIncidentManagement\",\n    \"viewTicketUrl\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1682684d-2097-4e8e-9c49-9de68333c011",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"addCommentsToTicket\": \"<boolean>\",\n    \"bmcChangeManagementCommentWorkType\": \"<string>\",\n    \"bmcIncidentManagementCommentWorkType\": \"<string>\",\n    \"bmcRemedyAuthentication\": \"<string>\",\n    \"bmcRemedyUrlEndpoint\": \"<string>\",\n    \"description\": \"<string>\",\n    \"displayMessage\": \"<string>\",\n    \"forceRequireTicketNumber\": \"BothRequired\",\n    \"hideComment\": \"<boolean>\",\n    \"isDefault\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"powerShellAddCommentScriptArguments\": \"<string>\",\n    \"powerShellAddCommentScriptId\": \"<integer>\",\n    \"powerShellAddTicketCommentScriptArguments\": \"<string>\",\n    \"powerShellAddTicketCommentScriptId\": \"<integer>\",\n    \"powerShellRunAsAccountSecretId\": \"<integer>\",\n    \"powerShellTicketStatusScriptArguments\": \"<string>\",\n    \"powerShellTicketStatusScriptId\": \"<integer>\",\n    \"serviceNowAllowedStatuses\": \"<string>\",\n    \"serviceNowDomainName\": \"<string>\",\n    \"siteId\": \"<integer>\",\n    \"systemCredentialSecretId\": \"<integer>\",\n    \"ticketNumberErrorMessage\": \"<string>\",\n    \"ticketNumberValidation\": \"<string>\",\n    \"ticketSystemType\": \"ServiceNowIncidentManagement\",\n    \"viewTicketUrl\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2de1ca3e-baef-440a-b3b9-214d7a8be3b1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"addCommentsToTicket\": \"<boolean>\",\n    \"bmcChangeManagementCommentWorkType\": \"<string>\",\n    \"bmcIncidentManagementCommentWorkType\": \"<string>\",\n    \"bmcRemedyAuthentication\": \"<string>\",\n    \"bmcRemedyUrlEndpoint\": \"<string>\",\n    \"description\": \"<string>\",\n    \"displayMessage\": \"<string>\",\n    \"forceRequireTicketNumber\": \"BothRequired\",\n    \"hideComment\": \"<boolean>\",\n    \"isDefault\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"powerShellAddCommentScriptArguments\": \"<string>\",\n    \"powerShellAddCommentScriptId\": \"<integer>\",\n    \"powerShellAddTicketCommentScriptArguments\": \"<string>\",\n    \"powerShellAddTicketCommentScriptId\": \"<integer>\",\n    \"powerShellRunAsAccountSecretId\": \"<integer>\",\n    \"powerShellTicketStatusScriptArguments\": \"<string>\",\n    \"powerShellTicketStatusScriptId\": \"<integer>\",\n    \"serviceNowAllowedStatuses\": \"<string>\",\n    \"serviceNowDomainName\": \"<string>\",\n    \"siteId\": \"<integer>\",\n    \"systemCredentialSecretId\": \"<integer>\",\n    \"ticketNumberErrorMessage\": \"<string>\",\n    \"ticketNumberValidation\": \"<string>\",\n    \"ticketSystemType\": \"ServiceNowIncidentManagement\",\n    \"viewTicketUrl\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35b1995d-888f-4207-b5ff-0752fde25d39",
+          "name": "Gets a ticket system by ID",
+          "request": {
+            "name": "Gets a ticket system by ID",
+            "description": {
+              "content": "Gets a ticket system by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ticket-systems",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Ticket System ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb7ccbdb-cc2e-4274-892a-f512ff12360d",
+              "name": "Ticket System Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Ticket System ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"description\": \"string\",\n  \"displayMessage\": \"string\",\n  \"forceRequireTicketNumber\": 5143,\n  \"isDefault\": true,\n  \"name\": \"string\",\n  \"ticketSystemId\": 1005,\n  \"ticketSystemTypeId\": 8631,\n  \"viewTicketUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9da82d9-9739-47b9-bfe2-560fd47b1854",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Ticket System ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b163f44-0e2e-448b-8a1d-ef0245012495",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Ticket System ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5019b366-632b-4f7b-bdf9-633467c94bc5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Ticket System ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad2c741a-12ac-4538-9634-5f5d4ff43677",
+          "name": "Updates a Ticket System",
+          "request": {
+            "name": "Updates a Ticket System",
+            "description": {
+              "content": "Updates a Ticket System",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ticket-systems",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"addCommentsToTicket\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"bmcChangeManagementCommentWorkType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcIncidentManagementCommentWorkType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcRemedyAuthentication\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcRemedyUrlEndpoint\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"displayMessage\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"forceRequireTicketNumber\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"ReasonOnlyRequired\"\n    },\n    \"hideComment\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"isDefault\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddCommentScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddCommentScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellAddTicketCommentScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddTicketCommentScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellRunAsAccountSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellTicketStatusScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellTicketStatusScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"serviceNowAllowedStatuses\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"serviceNowDomainName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"siteId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"systemCredentialSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"ticketNumberErrorMessage\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"ticketNumberValidation\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"ticketSystemId\": \"<integer>\",\n    \"ticketSystemType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"BmcRemedyIncidentManagement\"\n    },\n    \"viewTicketUrl\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f36fc783-f4a1-4c08-b522-b9b55d54ae3d",
+              "name": "Ticket System Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"addCommentsToTicket\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"bmcChangeManagementCommentWorkType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcIncidentManagementCommentWorkType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcRemedyAuthentication\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcRemedyUrlEndpoint\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"displayMessage\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"forceRequireTicketNumber\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"ReasonOnlyRequired\"\n    },\n    \"hideComment\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"isDefault\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddCommentScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddCommentScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellAddTicketCommentScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddTicketCommentScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellRunAsAccountSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellTicketStatusScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellTicketStatusScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"serviceNowAllowedStatuses\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"serviceNowDomainName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"siteId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"systemCredentialSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"ticketNumberErrorMessage\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"ticketNumberValidation\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"ticketSystemId\": \"<integer>\",\n    \"ticketSystemType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"ServiceNowChangeManagement\"\n    },\n    \"viewTicketUrl\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"addCommentsToTicket\": false,\n  \"bmcChangeManagementCommentWorkType\": \"string\",\n  \"bmcIncidentManagementCommentWorkType\": \"string\",\n  \"bmcRemedyAuthentication\": \"string\",\n  \"bmcRemedyUrlEndpoint\": \"string\",\n  \"description\": \"string\",\n  \"displayMessage\": \"string\",\n  \"forceRequireTicketNumber\": \"ReasonOnlyRequired\",\n  \"hideComment\": false,\n  \"isDefault\": false,\n  \"name\": \"string\",\n  \"organizationId\": 2649,\n  \"powerShellAddCommentScriptArguments\": \"string\",\n  \"powerShellAddCommentScriptId\": 7368,\n  \"powerShellAddTicketCommentScriptArguments\": \"string\",\n  \"powerShellAddTicketCommentScriptId\": 6610,\n  \"powerShellRunAsAccountSecretId\": 6241,\n  \"powerShellRunAsAccountSecretName\": \"string\",\n  \"powerShellTicketStatusScriptArguments\": \"string\",\n  \"powerShellTicketStatusScriptId\": 160,\n  \"serviceNowAllowedStatuses\": \"string\",\n  \"serviceNowDomainName\": \"string\",\n  \"siteId\": 6850,\n  \"systemCredentialSecretId\": 8169,\n  \"systemCredentialSecretName\": \"string\",\n  \"ticketNumberErrorMessage\": \"string\",\n  \"ticketNumberValidation\": \"string\",\n  \"ticketSystemId\": 5125,\n  \"ticketSystemType\": \"BmcRemedyChangeManagement\",\n  \"viewTicketUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7aad23ba-3ca9-4bcb-b1df-76ed242b2a02",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"addCommentsToTicket\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"bmcChangeManagementCommentWorkType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcIncidentManagementCommentWorkType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcRemedyAuthentication\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcRemedyUrlEndpoint\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"displayMessage\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"forceRequireTicketNumber\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"ReasonOnlyRequired\"\n    },\n    \"hideComment\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"isDefault\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddCommentScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddCommentScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellAddTicketCommentScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddTicketCommentScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellRunAsAccountSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellTicketStatusScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellTicketStatusScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"serviceNowAllowedStatuses\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"serviceNowDomainName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"siteId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"systemCredentialSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"ticketNumberErrorMessage\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"ticketNumberValidation\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"ticketSystemId\": \"<integer>\",\n    \"ticketSystemType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"ServiceNowChangeManagement\"\n    },\n    \"viewTicketUrl\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "367b0d19-170f-4cd3-92c5-c0cee4160089",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"addCommentsToTicket\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"bmcChangeManagementCommentWorkType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcIncidentManagementCommentWorkType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcRemedyAuthentication\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcRemedyUrlEndpoint\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"displayMessage\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"forceRequireTicketNumber\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"ReasonOnlyRequired\"\n    },\n    \"hideComment\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"isDefault\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddCommentScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddCommentScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellAddTicketCommentScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddTicketCommentScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellRunAsAccountSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellTicketStatusScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellTicketStatusScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"serviceNowAllowedStatuses\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"serviceNowDomainName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"siteId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"systemCredentialSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"ticketNumberErrorMessage\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"ticketNumberValidation\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"ticketSystemId\": \"<integer>\",\n    \"ticketSystemType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"ServiceNowChangeManagement\"\n    },\n    \"viewTicketUrl\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d06f84d8-214a-4a35-97e1-284de459bc3c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"addCommentsToTicket\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"bmcChangeManagementCommentWorkType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcIncidentManagementCommentWorkType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcRemedyAuthentication\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"bmcRemedyUrlEndpoint\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"displayMessage\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"forceRequireTicketNumber\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"ReasonOnlyRequired\"\n    },\n    \"hideComment\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"isDefault\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddCommentScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddCommentScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellAddTicketCommentScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellAddTicketCommentScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellRunAsAccountSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"powerShellTicketStatusScriptArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"powerShellTicketStatusScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"serviceNowAllowedStatuses\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"serviceNowDomainName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"siteId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"systemCredentialSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"ticketNumberErrorMessage\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"ticketNumberValidation\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"ticketSystemId\": \"<integer>\",\n    \"ticketSystemType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"ServiceNowChangeManagement\"\n    },\n    \"viewTicketUrl\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5668f6a8-012e-4efe-b130-8982d31ebaf8",
+          "name": "Gets all ticket systems",
+          "request": {
+            "name": "Gets all ticket systems",
+            "description": {
+              "content": "Gets all ticket systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ticket-systems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeInactive",
+                  "value": "<boolean>",
+                  "description": "includeInactive"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ab0baa1-e944-4ad0-b7bd-4182000dd959",
+              "name": "Ticket System Summaries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 1902,\n  \"currentPage\": 9680,\n  \"hasNext\": true,\n  \"hasPrev\": false,\n  \"nextSkip\": 7339,\n  \"pageCount\": 7283,\n  \"prevSkip\": 8920,\n  \"records\": [\n    {\n      \"active\": false,\n      \"description\": \"string\",\n      \"displayMessage\": \"string\",\n      \"forceRequireTicketNumber\": 6722,\n      \"hideComment\": true,\n      \"isDefault\": false,\n      \"name\": \"string\",\n      \"siteId\": 5407,\n      \"siteName\": \"string\",\n      \"ticketSystemId\": 1383,\n      \"ticketSystemTypeId\": 9852,\n      \"ticketSystemTypeName\": \"string\",\n      \"viewTicketUrl\": \"string\"\n    },\n    {\n      \"active\": false,\n      \"description\": \"string\",\n      \"displayMessage\": \"string\",\n      \"forceRequireTicketNumber\": 9179,\n      \"hideComment\": false,\n      \"isDefault\": true,\n      \"name\": \"string\",\n      \"siteId\": 187,\n      \"siteName\": \"string\",\n      \"ticketSystemId\": 970,\n      \"ticketSystemTypeId\": 8393,\n      \"ticketSystemTypeName\": \"string\",\n      \"viewTicketUrl\": \"string\"\n    }\n  ],\n  \"severity\": \"Critical\",\n  \"skip\": 4461,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 5973\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Desc\",\n      \"priority\": 4595\n    }\n  ],\n  \"success\": false,\n  \"take\": 3352,\n  \"total\": 1689\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ef4e403-717b-42da-928c-38135e214900",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c10f7206-c10e-4634-9baa-add85c2c0964",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ce499f3-9f7d-4bf5-959c-f602002a8411",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticket-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "becab150-151f-4a47-9121-b91d6679c4e5",
+          "name": "Gets a ticket system by ID",
+          "request": {
+            "name": "Gets a ticket system by ID",
+            "description": {
+              "content": "Gets a ticket system by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ticket-systems",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Ticket System ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "328b4d3f-ab16-4d16-ac8e-18253f46171b",
+              "name": "Ticket System Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Ticket System ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"addCommentsToTicket\": false,\n  \"bmcChangeManagementCommentWorkType\": \"string\",\n  \"bmcIncidentManagementCommentWorkType\": \"string\",\n  \"bmcRemedyAuthentication\": \"string\",\n  \"bmcRemedyUrlEndpoint\": \"string\",\n  \"description\": \"string\",\n  \"displayMessage\": \"string\",\n  \"forceRequireTicketNumber\": \"ReasonOnlyRequired\",\n  \"hideComment\": false,\n  \"isDefault\": false,\n  \"name\": \"string\",\n  \"organizationId\": 2649,\n  \"powerShellAddCommentScriptArguments\": \"string\",\n  \"powerShellAddCommentScriptId\": 7368,\n  \"powerShellAddTicketCommentScriptArguments\": \"string\",\n  \"powerShellAddTicketCommentScriptId\": 6610,\n  \"powerShellRunAsAccountSecretId\": 6241,\n  \"powerShellRunAsAccountSecretName\": \"string\",\n  \"powerShellTicketStatusScriptArguments\": \"string\",\n  \"powerShellTicketStatusScriptId\": 160,\n  \"serviceNowAllowedStatuses\": \"string\",\n  \"serviceNowDomainName\": \"string\",\n  \"siteId\": 6850,\n  \"systemCredentialSecretId\": 8169,\n  \"systemCredentialSecretName\": \"string\",\n  \"ticketNumberErrorMessage\": \"string\",\n  \"ticketNumberValidation\": \"string\",\n  \"ticketSystemId\": 5125,\n  \"ticketSystemType\": \"BmcRemedyChangeManagement\",\n  \"viewTicketUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9566be8c-e88b-40be-9f99-d08548f361bc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Ticket System ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcb7cc3a-fbbb-474c-ac5f-26e4792ce639",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Ticket System ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1d7b17a-7441-4213-8da4-4bbdf92b4024",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ticket-systems",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Ticket System ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "451bca4e-388a-41f8-9e18-56a17f24e5b1",
+          "name": "Test Ticket System",
+          "request": {
+            "name": "Test Ticket System",
+            "description": {
+              "content": "Test the ticket system validation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ticket-systems",
+                ":ticketSystemId",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticketSystemId",
+                  "description": "(Required) ticketSystemId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"ticketNumber\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5b28e1d8-524e-43d7-9421-28f03d9467ae",
+              "name": "Test status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":ticketSystemId",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticketSystemId",
+                      "description": "(Required) ticketSystemId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"ticketNumber\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93a8c51e-72c0-4eb8-87df-ea328707af6f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":ticketSystemId",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticketSystemId",
+                      "description": "(Required) ticketSystemId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"ticketNumber\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33268afc-b57a-40ce-a56d-6ba28c91ca60",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":ticketSystemId",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticketSystemId",
+                      "description": "(Required) ticketSystemId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"ticketNumber\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7586512e-da2e-4ff3-995c-a7681edb8780",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ticket-systems",
+                    ":ticketSystemId",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticketSystemId",
+                      "description": "(Required) ticketSystemId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"ticketNumber\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/SecretServer/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "41c43bb1-417b-47cd-98ce-86c3f2f6177a",
+    "name": "Secret Server Rest Activations TicketSystems API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href=\"../OAuth/\">authentication document</a> for more information. The <a href=\"swagger.json\">Swagger specification</a> for this API is also available.\n\nContact Support:\n Name: Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations SdkClientRules API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SdkClientRules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SDK Client Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/sdk-client-rules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "SDK Client Rule Id"
+              }
+            ]
+          },
+          "docs": "Get a single SDK Client rule by ID"
+        },
+        {
+          "info": {
+            "name": "Update SDK Client Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/sdk-client-rules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "SDK Client Rule Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a single SDK Client rule by ID"
+        },
+        {
+          "info": {
+            "name": "Delete SDK Client Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/sdk-client-rules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "SDK Client Rule Id"
+              }
+            ]
+          },
+          "docs": "Delete a SDK Client rule by ID"
+        },
+        {
+          "info": {
+            "name": "Search SDK Client Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/sdk-client-rules",
+            "params": [
+              {
+                "name": "filter.operator",
+                "value": "",
+                "type": "query",
+                "description": "Operator"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "SearchText"
+              },
+              {
+                "name": "filter.userId",
+                "value": "",
+                "type": "query",
+                "description": "UserId"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page app SDK Client rules"
+        },
+        {
+          "info": {
+            "name": "Create New SDK Client Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/sdk-client-rules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SDK Client rule"
+        },
+        {
+          "info": {
+            "name": "Get Onboarding Key for SDK Client Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/sdk-client-rules/:id/onboarding-key",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "SDK Client Rule Id"
+              }
+            ]
+          },
+          "docs": "Get the onboarding key for a single SDK Client rule by ID"
+        },
+        {
+          "info": {
+            "name": "Get SDK Client Rule Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/sdk-client-rules/stub"
+          },
+          "docs": "Return the default values for a new SDK Client rule"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,185 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations SdkClientAccounts API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SdkClientAccounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search SDK Client Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/sdk-client-accounts",
+            "params": [
+              {
+                "name": "filter.operator",
+                "value": "",
+                "type": "query",
+                "description": "Operator"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "SearchText"
+              },
+              {
+                "name": "filter.userId",
+                "value": "",
+                "type": "query",
+                "description": "UserId"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page app SDK Client accounts"
+        },
+        {
+          "info": {
+            "name": "Create SDK Client Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/sdk-client-accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SDK Client account"
+        },
+        {
+          "info": {
+            "name": "Get SDK Client Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/sdk-client-accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "SDK Client Account Id"
+              }
+            ]
+          },
+          "docs": "Get a single SDK Client account by ID"
+        },
+        {
+          "info": {
+            "name": "Update SDK Client Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/sdk-client-accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "SDK Client Account Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a single SDK Client account by ID"
+        },
+        {
+          "info": {
+            "name": "Get Current State",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/sdk-client-accounts/enabled"
+          },
+          "docs": "Get the current state of SDK client account"
+        },
+        {
+          "info": {
+            "name": "Toggle Current State",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/sdk-client-accounts/enabled"
+          },
+          "docs": "Toggle the current state of SDK client account"
+        },
+        {
+          "info": {
+            "name": "Revoke SDK Client Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/sdk-client-accounts/:id/revoke",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "SDK Client Account Id"
+              }
+            ]
+          },
+          "docs": "Revoke a single SDK Client account by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

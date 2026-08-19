@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Install API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Install",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get settings for the initial user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/install/initial-user-settings"
+          },
+          "docs": "Will return initial user settings such as password requirements.  Once the initial user is create this will not be available.  Internal use."
+        },
+        {
+          "info": {
+            "name": "Create initial user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/install/create-initial-user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create the initial user.  Internal use."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

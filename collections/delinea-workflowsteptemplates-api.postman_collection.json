@@ -1,0 +1,1941 @@
+{
+  "item": [
+    {
+      "id": "ff36c323-84c7-4d67-9c62-cf1d6d4eb6d2",
+      "name": "WorkflowStepTemplates",
+      "description": {
+        "content": "View and maintain Workflow Template Steps",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "87147e48-5393-48b9-840d-3b01818a8e3a",
+          "name": "Get Workflow Template Steps",
+          "request": {
+            "name": "Get Workflow Template Steps",
+            "description": {
+              "content": "Get all the steps for a workflow template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workflows",
+                "templates",
+                ":id",
+                "steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Workflow Template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92d92cfb-d7c7-4e36-b23e-a614634125b7",
+              "name": "A list of workflow step models",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 8020,\n  \"currentPage\": 5032,\n  \"hasNext\": false,\n  \"hasPrev\": false,\n  \"nextSkip\": 7537,\n  \"pageCount\": 8276,\n  \"prevSkip\": 3342,\n  \"records\": [\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": 4474,\n            \"displayName\": \"string\",\n            \"groupId\": 1866,\n            \"isOwner\": true,\n            \"isUser\": true,\n            \"workflowStepTemplateId\": 4772,\n            \"workflowTemplateId\": 8064\n          },\n          {\n            \"accessReviewerId\": 408,\n            \"displayName\": \"string\",\n            \"groupId\": 4307,\n            \"isOwner\": false,\n            \"isUser\": true,\n            \"workflowStepTemplateId\": 9570,\n            \"workflowTemplateId\": 6466\n          }\n        ],\n        \"approveStep\": 9206,\n        \"expireStep\": 4209,\n        \"numApprovalsRequired\": 8222\n      },\n      \"expirationMinutes\": 560,\n      \"name\": \"string\",\n      \"order\": 8215,\n      \"workflowStepTemplateId\": 5048,\n      \"workflowTemplateId\": 9040\n    },\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": 3785,\n            \"displayName\": \"string\",\n            \"groupId\": 9977,\n            \"isOwner\": true,\n            \"isUser\": false,\n            \"workflowStepTemplateId\": 9824,\n            \"workflowTemplateId\": 5202\n          },\n          {\n            \"accessReviewerId\": 5973,\n            \"displayName\": \"string\",\n            \"groupId\": 269,\n            \"isOwner\": false,\n            \"isUser\": false,\n            \"workflowStepTemplateId\": 5919,\n            \"workflowTemplateId\": 633\n          }\n        ],\n        \"approveStep\": 4071,\n        \"expireStep\": 6873,\n        \"numApprovalsRequired\": 8994\n      },\n      \"expirationMinutes\": 4781,\n      \"name\": \"string\",\n      \"order\": 68,\n      \"workflowStepTemplateId\": 8143,\n      \"workflowTemplateId\": 8402\n    }\n  ],\n  \"severity\": \"Retry\",\n  \"skip\": 1993,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 2886\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Desc\",\n      \"priority\": 1837\n    }\n  ],\n  \"success\": false,\n  \"take\": 4021,\n  \"total\": 1927\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f356fee-278b-42f3-94a0-78820f4cfcba",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9a93b33-3c9e-4362-a9a8-35dd629a0999",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1cf1b45-abc1-4eec-9b8f-9f5e6e6fa25f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "145fcdf9-09c3-40dd-a16a-df5b218b31e7",
+          "name": "Update Workflow Template Steps",
+          "request": {
+            "name": "Update Workflow Template Steps",
+            "description": {
+              "content": "Update the steps for a workflow template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workflows",
+                "templates",
+                ":id",
+                "steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Workflow Template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workflowStepTemplates\": [\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          },\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          }\n        ],\n        \"approveStep\": \"<integer>\",\n        \"expireStep\": \"<integer>\",\n        \"numApprovalsRequired\": \"<integer>\"\n      },\n      \"expirationMinutes\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"workflowStepTemplateId\": \"<integer>\",\n      \"workflowTemplateId\": \"<integer>\"\n    },\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          },\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          }\n        ],\n        \"approveStep\": \"<integer>\",\n        \"expireStep\": \"<integer>\",\n        \"numApprovalsRequired\": \"<integer>\"\n      },\n      \"expirationMinutes\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"workflowStepTemplateId\": \"<integer>\",\n      \"workflowTemplateId\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3883e402-8c81-4831-a787-2a6b65c593ab",
+              "name": "The workflow template steps",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowStepTemplates\": [\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          },\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          }\n        ],\n        \"approveStep\": \"<integer>\",\n        \"expireStep\": \"<integer>\",\n        \"numApprovalsRequired\": \"<integer>\"\n      },\n      \"expirationMinutes\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"workflowStepTemplateId\": \"<integer>\",\n      \"workflowTemplateId\": \"<integer>\"\n    },\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          },\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          }\n        ],\n        \"approveStep\": \"<integer>\",\n        \"expireStep\": \"<integer>\",\n        \"numApprovalsRequired\": \"<integer>\"\n      },\n      \"expirationMinutes\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"workflowStepTemplateId\": \"<integer>\",\n      \"workflowTemplateId\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"configuration\": {\n      \"approverGroups\": [\n        {\n          \"accessReviewerId\": \"<integer>\",\n          \"displayName\": \"<string>\",\n          \"groupId\": \"<integer>\",\n          \"isOwner\": \"<boolean>\",\n          \"isUser\": \"<boolean>\",\n          \"workflowStepTemplateId\": \"<integer>\",\n          \"workflowTemplateId\": \"<integer>\"\n        },\n        {\n          \"accessReviewerId\": \"<integer>\",\n          \"displayName\": \"<string>\",\n          \"groupId\": \"<integer>\",\n          \"isOwner\": \"<boolean>\",\n          \"isUser\": \"<boolean>\",\n          \"workflowStepTemplateId\": \"<integer>\",\n          \"workflowTemplateId\": \"<integer>\"\n        }\n      ],\n      \"approveStep\": \"<integer>\",\n      \"expireStep\": \"<integer>\",\n      \"numApprovalsRequired\": \"<integer>\"\n    },\n    \"expirationMinutes\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"order\": \"<integer>\",\n    \"workflowStepTemplateId\": \"<integer>\",\n    \"workflowTemplateId\": \"<integer>\"\n  },\n  {\n    \"configuration\": {\n      \"approverGroups\": [\n        {\n          \"accessReviewerId\": \"<integer>\",\n          \"displayName\": \"<string>\",\n          \"groupId\": \"<integer>\",\n          \"isOwner\": \"<boolean>\",\n          \"isUser\": \"<boolean>\",\n          \"workflowStepTemplateId\": \"<integer>\",\n          \"workflowTemplateId\": \"<integer>\"\n        },\n        {\n          \"accessReviewerId\": \"<integer>\",\n          \"displayName\": \"<string>\",\n          \"groupId\": \"<integer>\",\n          \"isOwner\": \"<boolean>\",\n          \"isUser\": \"<boolean>\",\n          \"workflowStepTemplateId\": \"<integer>\",\n          \"workflowTemplateId\": \"<integer>\"\n        }\n      ],\n      \"approveStep\": \"<integer>\",\n      \"expireStep\": \"<integer>\",\n      \"numApprovalsRequired\": \"<integer>\"\n    },\n    \"expirationMinutes\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"order\": \"<integer>\",\n    \"workflowStepTemplateId\": \"<integer>\",\n    \"workflowTemplateId\": \"<integer>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef73b31c-63e9-4f40-9635-a8713cc3cb18",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowStepTemplates\": [\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          },\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          }\n        ],\n        \"approveStep\": \"<integer>\",\n        \"expireStep\": \"<integer>\",\n        \"numApprovalsRequired\": \"<integer>\"\n      },\n      \"expirationMinutes\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"workflowStepTemplateId\": \"<integer>\",\n      \"workflowTemplateId\": \"<integer>\"\n    },\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          },\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          }\n        ],\n        \"approveStep\": \"<integer>\",\n        \"expireStep\": \"<integer>\",\n        \"numApprovalsRequired\": \"<integer>\"\n      },\n      \"expirationMinutes\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"workflowStepTemplateId\": \"<integer>\",\n      \"workflowTemplateId\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e37df55-e170-4f9a-b678-25d477eb07e6",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowStepTemplates\": [\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          },\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          }\n        ],\n        \"approveStep\": \"<integer>\",\n        \"expireStep\": \"<integer>\",\n        \"numApprovalsRequired\": \"<integer>\"\n      },\n      \"expirationMinutes\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"workflowStepTemplateId\": \"<integer>\",\n      \"workflowTemplateId\": \"<integer>\"\n    },\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          },\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          }\n        ],\n        \"approveStep\": \"<integer>\",\n        \"expireStep\": \"<integer>\",\n        \"numApprovalsRequired\": \"<integer>\"\n      },\n      \"expirationMinutes\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"workflowStepTemplateId\": \"<integer>\",\n      \"workflowTemplateId\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7692e93a-7e5b-4a18-843e-23e1edf942cf",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowStepTemplates\": [\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          },\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          }\n        ],\n        \"approveStep\": \"<integer>\",\n        \"expireStep\": \"<integer>\",\n        \"numApprovalsRequired\": \"<integer>\"\n      },\n      \"expirationMinutes\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"workflowStepTemplateId\": \"<integer>\",\n      \"workflowTemplateId\": \"<integer>\"\n    },\n    {\n      \"configuration\": {\n        \"approverGroups\": [\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          },\n          {\n            \"accessReviewerId\": \"<integer>\",\n            \"displayName\": \"<string>\",\n            \"groupId\": \"<integer>\",\n            \"isOwner\": \"<boolean>\",\n            \"isUser\": \"<boolean>\",\n            \"workflowStepTemplateId\": \"<integer>\",\n            \"workflowTemplateId\": \"<integer>\"\n          }\n        ],\n        \"approveStep\": \"<integer>\",\n        \"expireStep\": \"<integer>\",\n        \"numApprovalsRequired\": \"<integer>\"\n      },\n      \"expirationMinutes\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"order\": \"<integer>\",\n      \"workflowStepTemplateId\": \"<integer>\",\n      \"workflowTemplateId\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23354b27-5b9c-4473-8de8-91c3cfb69127",
+          "name": "Create Workflow Step",
+          "request": {
+            "name": "Create Workflow Step",
+            "description": {
+              "content": "Create a step for a Workflow Template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workflows",
+                "templates",
+                ":id",
+                "steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Workflow Template Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowTemplateId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "654868e3-60d0-4075-9fb8-40287ede922f",
+              "name": "New Workflow Template Steps ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowTemplateId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "2493",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f52c115-ee5b-4d81-9abf-c3c141e75d7c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowTemplateId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "897f1a01-3b8f-42dd-a28f-6b821106173f",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowTemplateId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e61c8c0b-fcd2-4108-8eb5-fa47bf942117",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowTemplateId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4128d367-d863-4d4c-9514-d70fefcf0371",
+          "name": "Get a Workflow Template Step Stub",
+          "request": {
+            "name": "Get a Workflow Template Step Stub",
+            "description": {
+              "content": "Get an empty Workflow Template Step",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workflows",
+                "templates",
+                "steps",
+                "stub"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a28b258-c09f-472b-b07f-a3554fa6e678",
+              "name": "An empty workflow step",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    "steps",
+                    "stub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": false,\n  \"configurationJson\": \"string\",\n  \"description\": \"string\",\n  \"expirationMinutes\": 5696,\n  \"name\": \"string\",\n  \"reusable\": true,\n  \"typeName\": \"string\",\n  \"workflowTemplateId\": 7972,\n  \"workflowType\": \"AccessRequest\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31ede210-4116-427f-a2f1-f89d366e6646",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    "steps",
+                    "stub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f41767ff-79df-4c2d-892c-df1537f201a9",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    "steps",
+                    "stub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90a75ecb-7b20-4641-9a58-240681987215",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    "steps",
+                    "stub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "713334fb-a649-4c84-bb8e-42f469fd85c3",
+          "name": "Get a Workflow Template Step",
+          "request": {
+            "name": "Get a Workflow Template Step",
+            "description": {
+              "content": "Get a step for a workflow template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workflows",
+                "templates",
+                ":id",
+                "steps",
+                ":stepNum"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Workflow Template Id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "stepNum",
+                  "description": "(Required) Workflow Step Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3719a1cd-0bac-4c73-a9a4-47aef7ff4af9",
+              "name": "A workflow step model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps",
+                    ":stepNum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stepNum",
+                      "description": "(Required) Workflow Step Number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"expirationMinutes\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowStepTemplateId\": \"<integer>\",\n  \"workflowTemplateId\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a555a4fe-982f-40ed-8e71-beba7c9e763a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps",
+                    ":stepNum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stepNum",
+                      "description": "(Required) Workflow Step Number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5212940d-855f-4999-86cc-15c9751d29a3",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps",
+                    ":stepNum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stepNum",
+                      "description": "(Required) Workflow Step Number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a595c4bf-9046-4f2b-9977-0cad80fc7439",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps",
+                    ":stepNum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stepNum",
+                      "description": "(Required) Workflow Step Number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4290c5e0-e92f-44cd-bbcd-516cf2a8f5ea",
+          "name": "Update a Workflow Template Step",
+          "request": {
+            "name": "Update a Workflow Template Step",
+            "description": {
+              "content": "Updates a single Workflow Template Step by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workflows",
+                "templates",
+                ":id",
+                "steps",
+                ":stepNum"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Workflow Template ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "stepNum",
+                  "description": "(Required) Workflow Step Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"expirationMinutes\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowStepTemplateId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e9cdbe17-2728-445b-9462-1529e7740047",
+              "name": "Workflow Template Step",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps",
+                    ":stepNum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stepNum",
+                      "description": "(Required) Workflow Step Number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"expirationMinutes\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowStepTemplateId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"expirationMinutes\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowStepTemplateId\": \"<integer>\",\n  \"workflowTemplateId\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6093ee10-6ae1-4a38-9f48-08f28afb10c5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps",
+                    ":stepNum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stepNum",
+                      "description": "(Required) Workflow Step Number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"expirationMinutes\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowStepTemplateId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73718d50-ed51-47eb-8ede-bcdd5670b362",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps",
+                    ":stepNum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stepNum",
+                      "description": "(Required) Workflow Step Number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"expirationMinutes\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowStepTemplateId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a5f8f2b-7614-4a94-8c04-5ab3f634543a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "templates",
+                    ":id",
+                    "steps",
+                    ":stepNum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Workflow Template ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "stepNum",
+                      "description": "(Required) Workflow Step Number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"configuration\": {\n    \"approverGroups\": [\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      },\n      {\n        \"accessReviewerId\": \"<integer>\",\n        \"displayName\": \"<string>\",\n        \"groupId\": \"<integer>\",\n        \"isOwner\": \"<boolean>\",\n        \"isUser\": \"<boolean>\",\n        \"workflowStepTemplateId\": \"<integer>\",\n        \"workflowTemplateId\": \"<integer>\"\n      }\n    ],\n    \"approveStep\": \"<integer>\",\n    \"expireStep\": \"<integer>\",\n    \"numApprovalsRequired\": \"<integer>\"\n  },\n  \"expirationMinutes\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"workflowStepTemplateId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/SecretServer/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "57b58b2b-5daa-41bc-892f-006a67f334de",
+    "name": "Secret Server Rest Activations WorkflowStepTemplates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href=\"../OAuth/\">authentication document</a> for more information. The <a href=\"swagger.json\">Swagger specification</a> for this API is also available.\n\nContact Support:\n Name: Support",
+      "type": "text/plain"
+    }
+  }
+}

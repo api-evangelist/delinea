@@ -1,0 +1,368 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Launchers API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Launchers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Launchers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launchers",
+            "params": [
+              {
+                "name": "filter.application",
+                "value": "",
+                "type": "query",
+                "description": "Associated application"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include inactive launchers"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search the launcher names"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page launchers"
+        },
+        {
+          "info": {
+            "name": "Lookup Launchers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launchers/lookup",
+            "params": [
+              {
+                "name": "filter.application",
+                "value": "",
+                "type": "query",
+                "description": "Associated application"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include inactive launchers"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search the launcher names"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page launchers, returning only launcher ID and name"
+        },
+        {
+          "info": {
+            "name": "Get Launcher",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launchers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Launcher ID"
+              }
+            ]
+          },
+          "docs": "Get a single launcher by ID"
+        },
+        {
+          "info": {
+            "name": "Get secret launcher details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v2/launchers/secret",
+            "params": [
+              {
+                "name": "filter.secretId",
+                "value": "",
+                "type": "query",
+                "description": "The secret to get launch information about"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get the details and fields needed for the launchers a secret can use."
+        },
+        {
+          "info": {
+            "name": "Triggers a download of the Protocol Handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launchers/protocol-handler",
+            "params": [
+              {
+                "name": "forceMsi",
+                "value": "",
+                "type": "query",
+                "description": "forceMsi"
+              },
+              {
+                "name": "is32Bit",
+                "value": "",
+                "type": "query",
+                "description": "is32Bit"
+              },
+              {
+                "name": "isRDS",
+                "value": "",
+                "type": "query",
+                "description": "isRDS"
+              }
+            ]
+          },
+          "docs": "Triggers a download of the Protocol Handler"
+        },
+        {
+          "info": {
+            "name": "Get Prepare Launcher Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launchers/prepare/:id/result",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Get result of prepare Launcher Session request."
+        },
+        {
+          "info": {
+            "name": "Get Custom Launcher Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launchers/types/:launcherTypeId",
+            "params": [
+              {
+                "name": "launcherTypeId",
+                "value": "",
+                "type": "path",
+                "description": "launcherTypeId"
+              }
+            ]
+          },
+          "docs": "Get all of the details for a custom launcher"
+        },
+        {
+          "info": {
+            "name": "Patch Custom Launcher Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/launchers/types/:launcherTypeId",
+            "params": [
+              {
+                "name": "launcherTypeId",
+                "value": "",
+                "type": "path",
+                "description": "launcherTypeId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch details or settings for a custom launcher"
+        },
+        {
+          "info": {
+            "name": "Launch a secret.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/launchers/secret",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launch a the secret using the provided secret id, and required fields."
+        },
+        {
+          "info": {
+            "name": "Prepare Launcher Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/launchers/prepare",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Prepare a Launcher Session."
+        },
+        {
+          "info": {
+            "name": "Create Custom Launcher File Attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/launchers/types/file-attachments",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Create a new custom launcher file attachment"
+        },
+        {
+          "info": {
+            "name": "Create Custom Launcher Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/launchers/types",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new custom launcher"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

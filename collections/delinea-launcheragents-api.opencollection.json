@@ -1,0 +1,438 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations LauncherAgents API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LauncherAgents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Launcher Agent Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents/collections",
+            "params": [
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include inactive Launcher Agent Collections in the results"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search text"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page Launcher Agent Collections"
+        },
+        {
+          "info": {
+            "name": "Create Launcher Agent Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/launcheragents/collections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Launcher Agent Collection"
+        },
+        {
+          "info": {
+            "name": "Get Launcher Agent Collection Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents/collections/stub",
+            "params": [
+              {
+                "name": "includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeInactive"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "SearchText"
+              }
+            ]
+          },
+          "docs": "Return the default values for a new Launcher Agent Collection"
+        },
+        {
+          "info": {
+            "name": "Get Launcher Agent Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents/collections/:id",
+            "params": [
+              {
+                "name": "includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include inactive Launcher Agent Collections in the results"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Launcher Agent Collection ID"
+              }
+            ]
+          },
+          "docs": "Get a single Launcher Agent Collection by ID"
+        },
+        {
+          "info": {
+            "name": "Update Launcher Agent Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/launcheragents/collections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Launcher Agent Collection ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a single Launcher Agent Collection by ID"
+        },
+        {
+          "info": {
+            "name": "Get collections audit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents/collections/audit",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "path",
+                "description": "isExporting"
+              }
+            ]
+          },
+          "docs": "Return audit entries for all collections"
+        },
+        {
+          "info": {
+            "name": "Get collection audit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents/collections/:id/audit",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "path",
+                "description": "isExporting"
+              }
+            ]
+          },
+          "docs": "Return audit entries for a single collection"
+        },
+        {
+          "info": {
+            "name": "Search Launcher Agents with Issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents/issues",
+            "params": [
+              {
+                "name": "filter.launcherAgentCollectionId",
+                "value": "",
+                "type": "query",
+                "description": "LauncherAgentCollectionId"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "SearchText"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page Launcher Agent with issues"
+        },
+        {
+          "info": {
+            "name": "Get Launcher Agent configuration state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents/configuration-state"
+          },
+          "docs": "Get all launcher agent  configuration state"
+        },
+        {
+          "info": {
+            "name": "Search Launcher Agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents",
+            "params": [
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeInactive"
+              },
+              {
+                "name": "filter.launcherAgentCollectionId",
+                "value": "",
+                "type": "query",
+                "description": "LauncherAgentCollectionId"
+              },
+              {
+                "name": "filter.outOfDate",
+                "value": "",
+                "type": "query",
+                "description": "OutOfDate"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "SearchText"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page Launcher Agent s"
+        },
+        {
+          "info": {
+            "name": "Get Launcher Agent ",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents/:id",
+            "params": [
+              {
+                "name": "includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include inactive Launcher Agents in the results"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Launcher Agent ID"
+              }
+            ]
+          },
+          "docs": "Get a single Launcher Agent  by ID"
+        },
+        {
+          "info": {
+            "name": "Update Launcher Agent ",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/launcheragents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Launcher Agent ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a single Launcher Agent by ID"
+        },
+        {
+          "info": {
+            "name": "Get Launcher Agent Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents/audit",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "path",
+                "description": "isExporting"
+              }
+            ]
+          },
+          "docs": "Get all launcher agent audits"
+        },
+        {
+          "info": {
+            "name": "Get Launcher Agent Audits by agent ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/launcheragents/:id/audit",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "path",
+                "description": "isExporting"
+              }
+            ]
+          },
+          "docs": "Get launcher agent audits by agent ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

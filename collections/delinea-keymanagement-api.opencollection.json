@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations KeyManagement API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "KeyManagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Key Management Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/key-management"
+          },
+          "docs": "Get the current or previous Key Management configuration"
+        },
+        {
+          "info": {
+            "name": "Update Key Management Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/key-management",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the Key Management configuration"
+        },
+        {
+          "info": {
+            "name": "Get Key Management Config Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/key-management/stub"
+          },
+          "docs": "Return the default values for a new Key Management Config"
+        },
+        {
+          "info": {
+            "name": "Get Master Encryption Key Rotation Status Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/key-management/mekrotationinfo"
+          },
+          "docs": "Gets the status of Master Encryption Key Rotation"
+        },
+        {
+          "info": {
+            "name": "Get a Master Encryption Key Rotation Audit List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/key-management/audit",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "filter.action",
+                "value": "",
+                "type": "query",
+                "description": "Action"
+              },
+              {
+                "name": "filter.date",
+                "value": "",
+                "type": "query",
+                "description": "Date"
+              },
+              {
+                "name": "filter.searchTerm",
+                "value": "",
+                "type": "query",
+                "description": "SearchTerm"
+              },
+              {
+                "name": "filter.userId",
+                "value": "",
+                "type": "query",
+                "description": "UserId"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page Master Encryption Key Rotation Audits."
+        },
+        {
+          "info": {
+            "name": "Get a List of Unique Users from the Master Encryption Key Rotation Audit List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/key-management/audit/users"
+          },
+          "docs": "Get a List of Unique Users from the Master Encryption Key Rotation Audit List"
+        },
+        {
+          "info": {
+            "name": "Rotate Master Encryption Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/key-management/startmekrotation"
+          },
+          "docs": "Rotates the Master Encryption Key and marks data for rotation"
+        },
+        {
+          "info": {
+            "name": "Retry Master Encryption Key Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/key-management/retrymekstatus"
+          },
+          "docs": "Retries Current Status of the Master Encryption Key Process"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

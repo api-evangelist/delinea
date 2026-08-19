@@ -1,0 +1,341 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations EventPipeline API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EventPipeline",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an Event Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline ID"
+              }
+            ]
+          },
+          "docs": "Returns the Event Pipeline for the provided ID"
+        },
+        {
+          "info": {
+            "name": "Update an Event Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/event-pipeline/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing Event Pipeline using the existing Event Pipeline's ID"
+        },
+        {
+          "info": {
+            "name": "Get a list of Event Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline/list",
+            "params": [
+              {
+                "name": "filter.eventEntityTypeId",
+                "value": "",
+                "type": "query",
+                "description": "EventEntityTypeId"
+              },
+              {
+                "name": "filter.eventPipelineName",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelineName"
+              },
+              {
+                "name": "filter.eventPipelinePolicyId",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelinePolicyId"
+              },
+              {
+                "name": "filter.includeActive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeActive"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeInactive"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns a list of Event Pipelines that meet the paging/searching criterea"
+        },
+        {
+          "info": {
+            "name": "Get summaries of Event Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline/summaries",
+            "params": [
+              {
+                "name": "filter.eventEntityTypeId",
+                "value": "",
+                "type": "query",
+                "description": "EventEntityTypeId"
+              },
+              {
+                "name": "filter.eventPipelineName",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelineName"
+              },
+              {
+                "name": "filter.eventPipelinePolicyId",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelinePolicyId"
+              },
+              {
+                "name": "filter.includeActive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeActive"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeInactive"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns a list of Event Pipeline summaries that meet the searching criterea"
+        },
+        {
+          "info": {
+            "name": "Stub an empty Event Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline/stub"
+          },
+          "docs": "Returns an empty Event Pipeline to be filled out."
+        },
+        {
+          "info": {
+            "name": "Get Event Pipeline Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline/runs",
+            "params": [
+              {
+                "name": "filter.eventPipelineId",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelineId"
+              },
+              {
+                "name": "filter.eventPipelinePolicyRunId",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelinePolicyRunId"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get all of the runs for a specific pipeline"
+        },
+        {
+          "info": {
+            "name": "Create a new Event Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/event-pipeline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Event Pipeline with the provided object."
+        },
+        {
+          "info": {
+            "name": "Reorder an Event Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/event-pipeline/:id/order",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reorder an existing Event Pipeline in a policy"
+        },
+        {
+          "info": {
+            "name": "Update an Event Pipeline active value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/event-pipeline/:id/activate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets if an Event Pipeline is active or not"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

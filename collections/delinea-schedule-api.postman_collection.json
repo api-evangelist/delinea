@@ -1,0 +1,865 @@
+{
+  "item": [
+    {
+      "id": "2d1aa8c8-3cf4-467b-8661-791856405044",
+      "name": "Schedule",
+      "description": {
+        "content": "ScheduleController",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0dd2a3b-d1e5-4b3d-914f-9edc059950ad",
+          "name": "Recurring schedule",
+          "request": {
+            "name": "Recurring schedule",
+            "description": {
+              "content": "Get all the details for a recurring schedule by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "schedules",
+                ":scheduleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "scheduleId",
+                  "description": "(Required) scheduleId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5abf2e7-1c19-4a2f-8c22-c8aaa1890091",
+              "name": "The recurring schedule details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scheduleId",
+                      "description": "(Required) scheduleId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"duration\": 1468,\n  \"durationStartDate\": \"1957-06-13T07:41:29.493Z\",\n  \"entity\": {\n    \"entityId\": 4052,\n    \"entityType\": \"InboxRule\",\n    \"id\": 7061\n  },\n  \"notes\": \"string\",\n  \"recurringScheduleId\": 9824,\n  \"recurringScheduleType\": \"Weekly\",\n  \"scheduleConstraints\": [\n    {\n      \"recurrenceValue\": 5539,\n      \"recurrenceValueType\": \"DayOfMonth\"\n    },\n    {\n      \"recurrenceValue\": 8561,\n      \"recurrenceValueType\": \"WeekOfMonthDay\"\n    }\n  ],\n  \"timeZoneId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46f8a8a7-9061-4d10-9d92-ed5711c1e667",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scheduleId",
+                      "description": "(Required) scheduleId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b2ae8b2-5063-4010-aebf-971bab6c7b0c",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scheduleId",
+                      "description": "(Required) scheduleId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a7abd46-8628-4e21-82f9-fe869ccd444f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scheduleId",
+                      "description": "(Required) scheduleId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18430eb3-7fa3-4d5f-b991-60bf31794387",
+          "name": "Update a Recurring Schedule",
+          "request": {
+            "name": "Update a Recurring Schedule",
+            "description": {
+              "content": "Update partial details for a recurring schedule or all constraints",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "schedules",
+                ":scheduleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "scheduleId",
+                  "description": "(Required) scheduleId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"duration\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"durationStartDate\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<dateTime>\"\n    },\n    \"notes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"recurringScheduleId\": \"<integer>\",\n    \"recurringScheduleType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"MonthlyWeeks\"\n    },\n    \"scheduleConstraints\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": [\n        {\n          \"recurrenceValue\": \"<integer>\",\n          \"recurrenceValueType\": \"DayOfWeek\"\n        },\n        {\n          \"recurrenceValue\": \"<integer>\",\n          \"recurrenceValueType\": \"WeekOfMonth\"\n        }\n      ]\n    },\n    \"timeZoneId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "946ab027-7c67-46a4-88b2-a9e8e4daca4a",
+              "name": "The updated recurring schedule details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scheduleId",
+                      "description": "(Required) scheduleId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"duration\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"durationStartDate\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<dateTime>\"\n    },\n    \"notes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"recurringScheduleId\": \"<integer>\",\n    \"recurringScheduleType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"Weekly\"\n    },\n    \"scheduleConstraints\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": [\n        {\n          \"recurrenceValue\": \"<integer>\",\n          \"recurrenceValueType\": \"WeekOfMonth\"\n        },\n        {\n          \"recurrenceValue\": \"<integer>\",\n          \"recurrenceValueType\": \"WeekOfMonth\"\n        }\n      ]\n    },\n    \"timeZoneId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"duration\": 5110,\n  \"durationStartDate\": \"1987-08-22T07:57:48.483Z\",\n  \"entity\": {\n    \"entityId\": 9663,\n    \"entityType\": \"InboxRule\",\n    \"id\": 3590\n  },\n  \"notes\": \"string\",\n  \"recurringScheduleId\": 8413,\n  \"recurringScheduleType\": \"Weekly\",\n  \"scheduleConstraints\": [\n    {\n      \"recurrenceValue\": \"<integer>\",\n      \"recurrenceValueType\": \"DayOfWeek\"\n    },\n    {\n      \"recurrenceValue\": \"<integer>\",\n      \"recurrenceValueType\": \"DayOfMonth\"\n    }\n  ],\n  \"timeZoneId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ce23a8b-8c61-43ce-9f65-ff40ab157ab5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scheduleId",
+                      "description": "(Required) scheduleId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"duration\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"durationStartDate\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<dateTime>\"\n    },\n    \"notes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"recurringScheduleId\": \"<integer>\",\n    \"recurringScheduleType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"Weekly\"\n    },\n    \"scheduleConstraints\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": [\n        {\n          \"recurrenceValue\": \"<integer>\",\n          \"recurrenceValueType\": \"WeekOfMonth\"\n        },\n        {\n          \"recurrenceValue\": \"<integer>\",\n          \"recurrenceValueType\": \"WeekOfMonth\"\n        }\n      ]\n    },\n    \"timeZoneId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b2d16f7-ff98-4e4c-a256-907d2583ab9c",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scheduleId",
+                      "description": "(Required) scheduleId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"duration\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"durationStartDate\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<dateTime>\"\n    },\n    \"notes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"recurringScheduleId\": \"<integer>\",\n    \"recurringScheduleType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"Weekly\"\n    },\n    \"scheduleConstraints\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": [\n        {\n          \"recurrenceValue\": \"<integer>\",\n          \"recurrenceValueType\": \"WeekOfMonth\"\n        },\n        {\n          \"recurrenceValue\": \"<integer>\",\n          \"recurrenceValueType\": \"WeekOfMonth\"\n        }\n      ]\n    },\n    \"timeZoneId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86be4ee8-3c4f-4268-968c-e3ee6a3ee256",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scheduleId",
+                      "description": "(Required) scheduleId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"duration\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"durationStartDate\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<dateTime>\"\n    },\n    \"notes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"recurringScheduleId\": \"<integer>\",\n    \"recurringScheduleType\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"Weekly\"\n    },\n    \"scheduleConstraints\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": [\n        {\n          \"recurrenceValue\": \"<integer>\",\n          \"recurrenceValueType\": \"WeekOfMonth\"\n        },\n        {\n          \"recurrenceValue\": \"<integer>\",\n          \"recurrenceValueType\": \"WeekOfMonth\"\n        }\n      ]\n    },\n    \"timeZoneId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1244b14b-27e9-4912-b5c6-23d56828a73a",
+          "name": "Create a Recurring Schedule",
+          "request": {
+            "name": "Create a Recurring Schedule",
+            "description": {
+              "content": "Create a recurring schedule and all constraints",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"duration\": \"<integer>\",\n    \"durationStartDate\": \"<dateTime>\",\n    \"entity\": {\n      \"entityId\": \"<integer>\",\n      \"entityType\": \"InboxRule\",\n      \"id\": \"<integer>\"\n    },\n    \"notes\": \"<string>\",\n    \"recurringScheduleType\": \"MonthlyWeeks\",\n    \"scheduleConstraints\": [\n      {\n        \"recurrenceValue\": \"<integer>\",\n        \"recurrenceValueType\": \"WeekOfMonth\"\n      },\n      {\n        \"recurrenceValue\": \"<integer>\",\n        \"recurrenceValueType\": \"WeekOfMonth\"\n      }\n    ],\n    \"timeZoneId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9686ce4d-1bd4-44cd-aca0-254bb56c2aa2",
+              "name": "The saved recurring schedule details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"duration\": \"<integer>\",\n    \"durationStartDate\": \"<dateTime>\",\n    \"entity\": {\n      \"entityId\": \"<integer>\",\n      \"entityType\": \"InboxRule\",\n      \"id\": \"<integer>\"\n    },\n    \"notes\": \"<string>\",\n    \"recurringScheduleType\": \"MonthlyDays\",\n    \"scheduleConstraints\": [\n      {\n        \"recurrenceValue\": \"<integer>\",\n        \"recurrenceValueType\": \"DayOfWeek\"\n      },\n      {\n        \"recurrenceValue\": \"<integer>\",\n        \"recurrenceValueType\": \"WeekOfMonth\"\n      }\n    ],\n    \"timeZoneId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"duration\": 1752,\n  \"durationStartDate\": \"1956-09-03T03:05:21.724Z\",\n  \"entity\": {\n    \"entityId\": \"<integer>\",\n    \"entityType\": \"InboxRule\",\n    \"id\": \"<integer>\"\n  },\n  \"notes\": \"string\",\n  \"recurringScheduleId\": 3361,\n  \"recurringScheduleType\": \"Weekly\",\n  \"scheduleConstraints\": [\n    {\n      \"recurrenceValue\": \"<integer>\",\n      \"recurrenceValueType\": \"SpecificTime\"\n    },\n    {\n      \"recurrenceValue\": \"<integer>\",\n      \"recurrenceValueType\": \"DayOfWeek\"\n    }\n  ],\n  \"timeZoneId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0a20522-b4ab-48a3-a8d8-49a45fb5403a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"duration\": \"<integer>\",\n    \"durationStartDate\": \"<dateTime>\",\n    \"entity\": {\n      \"entityId\": \"<integer>\",\n      \"entityType\": \"InboxRule\",\n      \"id\": \"<integer>\"\n    },\n    \"notes\": \"<string>\",\n    \"recurringScheduleType\": \"MonthlyDays\",\n    \"scheduleConstraints\": [\n      {\n        \"recurrenceValue\": \"<integer>\",\n        \"recurrenceValueType\": \"DayOfWeek\"\n      },\n      {\n        \"recurrenceValue\": \"<integer>\",\n        \"recurrenceValueType\": \"WeekOfMonth\"\n      }\n    ],\n    \"timeZoneId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "556e2912-dbe5-4dd9-b359-9d35b106afce",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"duration\": \"<integer>\",\n    \"durationStartDate\": \"<dateTime>\",\n    \"entity\": {\n      \"entityId\": \"<integer>\",\n      \"entityType\": \"InboxRule\",\n      \"id\": \"<integer>\"\n    },\n    \"notes\": \"<string>\",\n    \"recurringScheduleType\": \"MonthlyDays\",\n    \"scheduleConstraints\": [\n      {\n        \"recurrenceValue\": \"<integer>\",\n        \"recurrenceValueType\": \"DayOfWeek\"\n      },\n      {\n        \"recurrenceValue\": \"<integer>\",\n        \"recurrenceValueType\": \"WeekOfMonth\"\n      }\n    ],\n    \"timeZoneId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84becb26-b710-45b5-a4ed-44cfae7f66a7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"duration\": \"<integer>\",\n    \"durationStartDate\": \"<dateTime>\",\n    \"entity\": {\n      \"entityId\": \"<integer>\",\n      \"entityType\": \"InboxRule\",\n      \"id\": \"<integer>\"\n    },\n    \"notes\": \"<string>\",\n    \"recurringScheduleType\": \"MonthlyDays\",\n    \"scheduleConstraints\": [\n      {\n        \"recurrenceValue\": \"<integer>\",\n        \"recurrenceValueType\": \"DayOfWeek\"\n      },\n      {\n        \"recurrenceValue\": \"<integer>\",\n        \"recurrenceValueType\": \"WeekOfMonth\"\n      }\n    ],\n    \"timeZoneId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/SecretServer/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dfdfef67-6940-44d5-89eb-f2e895f05fcd",
+    "name": "Secret Server Rest Activations Schedule API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href=\"../OAuth/\">authentication document</a> for more information. The <a href=\"swagger.json\">Swagger specification</a> for this API is also available.\n\nContact Support:\n Name: Support",
+      "type": "text/plain"
+    }
+  }
+}

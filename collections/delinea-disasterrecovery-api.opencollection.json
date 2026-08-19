@@ -1,0 +1,362 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations DisasterRecovery API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DisasterRecovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Disaster Recovery Data Replica",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/disaster-recovery/data-replication/:replicaId",
+            "params": [
+              {
+                "name": "replicaId",
+                "value": "",
+                "type": "path",
+                "description": "replicaId"
+              }
+            ]
+          },
+          "docs": "Retrieve the settings and descriptions for the Disaster Recovery data replica view model."
+        },
+        {
+          "info": {
+            "name": "Patch Disaster Recovery Data Replica",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/disaster-recovery/data-replication/:replicaId",
+            "params": [
+              {
+                "name": "replicaId",
+                "value": "",
+                "type": "path",
+                "description": "replicaId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Disaster Recovery Data Replica by sending one or more fields with dirty set to true.  This will return the actual updated view model."
+        },
+        {
+          "info": {
+            "name": "Delete Disaster Recovery Data Replica",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/disaster-recovery/data-replication/:replicaId",
+            "params": [
+              {
+                "name": "replicaId",
+                "value": "",
+                "type": "path",
+                "description": "replicaId"
+              }
+            ]
+          },
+          "docs": "Delete the data replica."
+        },
+        {
+          "info": {
+            "name": "Get Disaster Recovery Incoming Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/disaster-recovery/incoming-configuration"
+          },
+          "docs": "Retrieve the settings and descriptions for the Disaster Recovery incoming configuration view model."
+        },
+        {
+          "info": {
+            "name": "Patch Disaster Recovery Incoming Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/disaster-recovery/incoming-configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Disaster Recovery Incoming Configuration by sending one or more fields with dirty set to true.  This will return the actual updated view model."
+        },
+        {
+          "info": {
+            "name": "Get Disaster Recovery Configuration Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/disaster-recovery/audits",
+            "params": [
+              {
+                "name": "auditType",
+                "value": "",
+                "type": "query",
+                "description": "auditType"
+              },
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Retrieve the audits for the Disaster Recovery configuration."
+        },
+        {
+          "info": {
+            "name": "Get Disaster Recovery Outgoing Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/disaster-recovery/outgoing-configuration",
+            "params": [
+              {
+                "name": "filter.location",
+                "value": "",
+                "type": "query",
+                "description": "Only return data replicas with locations containing this text."
+              },
+              {
+                "name": "filter.name",
+                "value": "",
+                "type": "query",
+                "description": "Only return data replicas with names containing this text."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Retrieve the settings and descriptions for the Disaster Recovery Outgoing Configuration view model."
+        },
+        {
+          "info": {
+            "name": "Get Disaster Recovery Replication Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/disaster-recovery/logs",
+            "params": [
+              {
+                "name": "logType",
+                "value": "",
+                "type": "query",
+                "description": "logType"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Retrieve the logs for each run of Disaster Recovery Replication"
+        },
+        {
+          "info": {
+            "name": "Disaster Recovery Handshake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/disaster-recovery/handshake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Try to add the requesting data replica to the receiving data source."
+        },
+        {
+          "info": {
+            "name": "Start Disaster Recovery Data Replication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/disaster-recovery/data-replication/run-now",
+            "params": [
+              {
+                "name": "minutes",
+                "value": "",
+                "type": "query",
+                "description": "minutes"
+              }
+            ]
+          },
+          "docs": "Start Disaster Recovery data replication as configured."
+        },
+        {
+          "info": {
+            "name": "Test Disaster Recovery Data Replication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/disaster-recovery/data-replication/test"
+          },
+          "docs": "Test Disaster Recovery data replication as configured."
+        },
+        {
+          "info": {
+            "name": "Request Disaster Recovery Data Replica Replication Start",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/disaster-recovery/data-replication/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request that data replication be started for the given replica."
+        },
+        {
+          "info": {
+            "name": "Request Disaster Recovery Data Replica Replication Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/disaster-recovery/data-replication/status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request the data replication status for this replica from the Data Source."
+        },
+        {
+          "info": {
+            "name": "Request Disaster Recovery Data Replica Replication Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/disaster-recovery/data-replication/package",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request a data replication package for this replica from the Data Source."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

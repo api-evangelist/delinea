@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations SshCommand API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SshCommand",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an SSH Command",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "SSH Command ID"
+              }
+            ]
+          },
+          "docs": "Returns the SSH Command for the provided ID"
+        },
+        {
+          "info": {
+            "name": "Get a list of SSH Commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command/list",
+            "params": [
+              {
+                "name": "filter.commandPermissionType",
+                "value": "",
+                "type": "query",
+                "description": "CommandPermissionType"
+              },
+              {
+                "name": "filter.nameOrCommand",
+                "value": "",
+                "type": "query",
+                "description": "NameOrCommand"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns a list of SSH Commands that meet the paging/searching critera"
+        },
+        {
+          "info": {
+            "name": "Stub an empty SSH Command",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command/stub"
+          },
+          "docs": "Returns an empty SSH Command to be filled out."
+        },
+        {
+          "info": {
+            "name": "Update an SSH Command",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/ssh-command/:sshCommandId",
+            "params": [
+              {
+                "name": "sshCommandId",
+                "value": "",
+                "type": "path",
+                "description": "sshCommandId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an SSH Command"
+        },
+        {
+          "info": {
+            "name": "Add an SSH Command",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/ssh-command",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an SSH Command"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

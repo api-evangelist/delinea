@@ -1,0 +1,3763 @@
+{
+  "item": [
+    {
+      "id": "91c6e769-1d59-4702-b1e4-32fd0cdb43fb",
+      "name": "Script",
+      "description": {
+        "content": "View Scripts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a0a174b3-a37c-4e9e-b6f0-6970093c841d",
+          "name": "Search scripts",
+          "request": {
+            "name": "Search scripts",
+            "description": {
+              "content": "Search, filter, sort, and page scripts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "userscripts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter.scriptCategoryId",
+                  "value": "<integer>",
+                  "description": "Filter by script category"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.scriptType",
+                  "value": "<string>",
+                  "description": "Script Type (Powershell = 1, SQL = 2, SSH = 3)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.searchText",
+                  "value": "<string>",
+                  "description": "Only return the items that contain this text in their name"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.status",
+                  "value": "<string>",
+                  "description": "Whether to include active, inactive, or both.  Defaults to Active only"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7142f1c4-a0ae-44c3-b2a7-20cb460c4e4a",
+              "name": "scripts search result object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.scriptCategoryId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.scriptType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 7448,\n  \"currentPage\": 654,\n  \"hasNext\": true,\n  \"hasPrev\": true,\n  \"nextSkip\": 6422,\n  \"pageCount\": 4392,\n  \"prevSkip\": 4708,\n  \"records\": [\n    {\n      \"description\": \"string\",\n      \"isActive\": false,\n      \"name\": \"string\",\n      \"scriptCategoryId\": 9644,\n      \"scriptCategoryName\": \"string\",\n      \"scriptId\": 308,\n      \"scriptType\": \"SQL\",\n      \"usageCount\": 2782\n    },\n    {\n      \"description\": \"string\",\n      \"isActive\": true,\n      \"name\": \"string\",\n      \"scriptCategoryId\": 3732,\n      \"scriptCategoryName\": \"string\",\n      \"scriptId\": 4858,\n      \"scriptType\": \"PowerShell\",\n      \"usageCount\": 3304\n    }\n  ],\n  \"severity\": \"None\",\n  \"skip\": 2226,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Desc\",\n      \"priority\": 9178\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 2929\n    }\n  ],\n  \"success\": false,\n  \"take\": 8490,\n  \"total\": 571\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d19a484-4312-4290-ad49-bbc81b96624d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.scriptCategoryId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.scriptType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dff27e0b-6b39-48e4-8497-0df7bc92f40a",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.scriptCategoryId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.scriptType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98e399ba-81fb-488a-b2fe-bd9f2ee5a1e0",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.scriptCategoryId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.scriptType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63dc5be3-55d4-4865-be37-93653906e425",
+          "name": "Create Script",
+          "request": {
+            "name": "Create Script",
+            "description": {
+              "content": "Create a new Script",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "userscripts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"description\": \"<string>\",\n    \"isActive\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"passwordChangerId\": \"<integer>\",\n    \"script\": \"<string>\",\n    \"scriptCategoryId\": \"<integer>\",\n    \"scriptType\": \"SSH\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef6f5d69-6be2-4331-92cd-eb18998930e0",
+              "name": "Script Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"description\": \"<string>\",\n    \"isActive\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"passwordChangerId\": \"<integer>\",\n    \"script\": \"<string>\",\n    \"scriptCategoryId\": \"<integer>\",\n    \"scriptType\": \"SQL\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"additionalData\": {\n    \"sqlSettings\": {\n      \"database\": \"string\",\n      \"parameters\": [\n        {\n          \"parameterDbType\": \"DateTimeOffset\",\n          \"parameterName\": \"string\"\n        },\n        {\n          \"parameterDbType\": \"Date\",\n          \"parameterName\": \"string\"\n        }\n      ],\n      \"passwordChangerId\": 649,\n      \"passwordChangerName\": \"string\",\n      \"port\": 1911\n    },\n    \"sshSettings\": {\n      \"doNotUseEnvironment\": true,\n      \"lineEnding\": \"CarriageReturn\",\n      \"parameters\": [\n        {\n          \"parameterName\": \"string\",\n          \"parameterSshType\": \"Intrepreted\"\n        },\n        {\n          \"parameterName\": \"string\",\n          \"parameterSshType\": \"Literal\"\n        }\n      ],\n      \"port\": 5761\n    }\n  },\n  \"concurrencyId\": \"string\",\n  \"description\": \"string\",\n  \"isActive\": true,\n  \"name\": \"string\",\n  \"script\": \"string\",\n  \"scriptCategoryId\": 1797,\n  \"scriptCategoryName\": \"string\",\n  \"scriptId\": 3716,\n  \"scriptType\": \"PowerShell\",\n  \"usageCount\": 1004\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "309a5668-8efe-4cd5-8d0a-8ad89dedffa0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"description\": \"<string>\",\n    \"isActive\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"passwordChangerId\": \"<integer>\",\n    \"script\": \"<string>\",\n    \"scriptCategoryId\": \"<integer>\",\n    \"scriptType\": \"SQL\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4f19681-5bae-4a1f-b9b1-67cf556702bf",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"description\": \"<string>\",\n    \"isActive\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"passwordChangerId\": \"<integer>\",\n    \"script\": \"<string>\",\n    \"scriptCategoryId\": \"<integer>\",\n    \"scriptType\": \"SQL\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb383311-8628-45a6-b186-94fe5d233192",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"description\": \"<string>\",\n    \"isActive\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"passwordChangerId\": \"<integer>\",\n    \"script\": \"<string>\",\n    \"scriptCategoryId\": \"<integer>\",\n    \"scriptType\": \"SQL\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f2c0d1a-7dea-4f65-9c00-734d376db67b",
+          "name": "Search script categories",
+          "request": {
+            "name": "Search script categories",
+            "description": {
+              "content": "Search, filter, sort, and script categories",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "userscripts",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter.searchText",
+                  "value": "<string>",
+                  "description": "Only return the items that contain this text in their name"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92daaece-6bd8-428f-b26c-993b4a31e73b",
+              "name": "script categories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 8121,\n  \"currentPage\": 201,\n  \"hasNext\": false,\n  \"hasPrev\": true,\n  \"nextSkip\": 290,\n  \"pageCount\": 9425,\n  \"prevSkip\": 9828,\n  \"records\": [\n    {\n      \"scriptCategoryId\": 2110,\n      \"scriptCategoryName\": \"string\"\n    },\n    {\n      \"scriptCategoryId\": 7315,\n      \"scriptCategoryName\": \"string\"\n    }\n  ],\n  \"severity\": \"Retry\",\n  \"skip\": 6062,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 5089\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 5063\n    }\n  ],\n  \"success\": false,\n  \"take\": 8239,\n  \"total\": 7844\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8e1adf8-eb5b-4775-ba39-9bed036cd3b1",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7a11352-19b8-4cc5-979c-eca7fe901a59",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3424f717-6549-4db7-b8d9-be36c1d02f2a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1162102a-d2f4-4fc4-9f26-a5b1ef9aa9b1",
+          "name": "Get Script",
+          "request": {
+            "name": "Get Script",
+            "description": {
+              "content": "Get a single script by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "userscripts",
+                ":scriptId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "scriptId",
+                  "description": "(Required) scriptId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cadb2d27-674b-474d-9f04-35d6306510a9",
+              "name": "Script Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    ":scriptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"additionalData\": {\n    \"sqlSettings\": {\n      \"database\": \"string\",\n      \"parameters\": [\n        {\n          \"parameterDbType\": \"DateTimeOffset\",\n          \"parameterName\": \"string\"\n        },\n        {\n          \"parameterDbType\": \"Time\",\n          \"parameterName\": \"string\"\n        }\n      ],\n      \"passwordChangerId\": 5834,\n      \"passwordChangerName\": \"string\",\n      \"port\": 1125\n    },\n    \"sshSettings\": {\n      \"doNotUseEnvironment\": true,\n      \"lineEnding\": \"CarriageReturn\",\n      \"parameters\": [\n        {\n          \"parameterName\": \"string\",\n          \"parameterSshType\": \"Intrepreted\"\n        },\n        {\n          \"parameterName\": \"string\",\n          \"parameterSshType\": \"Literal\"\n        }\n      ],\n      \"port\": 6755\n    }\n  },\n  \"concurrencyId\": \"string\",\n  \"description\": \"string\",\n  \"isActive\": true,\n  \"name\": \"string\",\n  \"script\": \"string\",\n  \"scriptCategoryId\": 3889,\n  \"scriptCategoryName\": \"string\",\n  \"scriptId\": 856,\n  \"scriptType\": \"SSH\",\n  \"usageCount\": 7343\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a81d4889-e289-4d24-8f1b-8ae0f4a210f5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    ":scriptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d75c406-7d78-430a-a3e1-89bf76a8dcc0",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    ":scriptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34a92b6a-07e1-44c0-8501-512507a5bfa7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    ":scriptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4cfccf55-06cc-4047-b6bd-4b5c800c3859",
+          "name": "Get Script from History",
+          "request": {
+            "name": "Get Script from History",
+            "description": {
+              "content": "Get an older version of this script from history",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "userscripts",
+                "history",
+                ":scriptHistoryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "scriptHistoryId",
+                  "description": "(Required) scriptHistoryId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8823b1d-0f13-47a3-8e48-edd04d557c66",
+              "name": "Script History Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "history",
+                    ":scriptHistoryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptHistoryId",
+                      "description": "(Required) scriptHistoryId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"script\": \"string\",\n  \"scriptName\": \"string\",\n  \"scriptType\": \"PowerShell\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb5b4f75-d6be-483b-8659-1696cb9ca0db",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "history",
+                    ":scriptHistoryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptHistoryId",
+                      "description": "(Required) scriptHistoryId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63ffd68f-623b-4ba5-a498-6f1ea6a2a5b2",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "history",
+                    ":scriptHistoryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptHistoryId",
+                      "description": "(Required) scriptHistoryId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f26450d-fa38-4cde-8ad4-8a24ba54e948",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "history",
+                    ":scriptHistoryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptHistoryId",
+                      "description": "(Required) scriptHistoryId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6d7f9d9-011a-4db6-a3e3-a3c49b5e6725",
+          "name": "Search script audit",
+          "request": {
+            "name": "Search script audit",
+            "description": {
+              "content": "Search, filter, sort, and script audit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "userscripts",
+                "audit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "isExporting",
+                  "value": "<boolean>",
+                  "description": "isExporting"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.scriptId",
+                  "value": "<integer>",
+                  "description": "Only return audit entries for this script"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35933537-173c-4804-9e03-730de44dd6d9",
+              "name": "script audits",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.scriptId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 2943,\n  \"currentPage\": 9446,\n  \"hasNext\": false,\n  \"hasPrev\": true,\n  \"nextSkip\": 7235,\n  \"pageCount\": 1201,\n  \"prevSkip\": 8224,\n  \"records\": [\n    {\n      \"action\": \"string\",\n      \"dateRecorded\": \"1974-11-11T11:32:59.795Z\",\n      \"ipAddress\": \"string\",\n      \"notes\": \"string\",\n      \"scriptHistoryId\": 1310,\n      \"scriptId\": 5771,\n      \"scriptName\": \"string\",\n      \"user\": \"string\",\n      \"userId\": 3863\n    },\n    {\n      \"action\": \"string\",\n      \"dateRecorded\": \"1993-03-31T13:55:40.754Z\",\n      \"ipAddress\": \"string\",\n      \"notes\": \"string\",\n      \"scriptHistoryId\": 835,\n      \"scriptId\": 6756,\n      \"scriptName\": \"string\",\n      \"user\": \"string\",\n      \"userId\": 9824\n    }\n  ],\n  \"severity\": \"Warn\",\n  \"skip\": 9803,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Desc\",\n      \"priority\": 2510\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"None\",\n      \"priority\": 2671\n    }\n  ],\n  \"success\": false,\n  \"take\": 6729,\n  \"total\": 8106\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efa3ab57-82d5-42c2-85bc-5f46cc600f6e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.scriptId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f21f164-49d3-41cb-a84e-69df7095c09e",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.scriptId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6939321f-1d10-45f3-917c-97470c6d3b07",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "isExporting",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.scriptId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a68f8834-ca5e-4112-a1ea-8a5cb9835b3b",
+          "name": "Search script usage",
+          "request": {
+            "name": "Search script usage",
+            "description": {
+              "content": "Search, filter, sort, and script usage",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "userscripts",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter.scriptId",
+                  "value": "<integer>",
+                  "description": "Only show where a specific script is used."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.scriptType",
+                  "value": "<string>",
+                  "description": "Only show a specific script type."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.usageType",
+                  "value": "<string>",
+                  "description": "Only show a specific usage type."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4187deb3-528d-49f6-955f-ee6dffa41365",
+              "name": "script usage",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.scriptId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.scriptType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.usageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 2570,\n  \"currentPage\": 7210,\n  \"hasNext\": false,\n  \"hasPrev\": true,\n  \"nextSkip\": 1816,\n  \"pageCount\": 7537,\n  \"prevSkip\": 3922,\n  \"records\": [\n    {\n      \"scriptId\": 4110,\n      \"scriptName\": \"string\",\n      \"scriptType\": \"string\",\n      \"usageDescription\": \"string\",\n      \"usageType\": \"string\",\n      \"usedBy\": \"string\",\n      \"usedById\": \"string\"\n    },\n    {\n      \"scriptId\": 3163,\n      \"scriptName\": \"string\",\n      \"scriptType\": \"string\",\n      \"usageDescription\": \"string\",\n      \"usageType\": \"string\",\n      \"usedBy\": \"string\",\n      \"usedById\": \"string\"\n    }\n  ],\n  \"severity\": \"None\",\n  \"skip\": 2773,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 6230\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 7931\n    }\n  ],\n  \"success\": true,\n  \"take\": 2666,\n  \"total\": 4733\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bae812c-0e98-4249-a8c5-36c77355bf16",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.scriptId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.scriptType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.usageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1f6b9c7-ed95-4693-86ce-d88799743b75",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.scriptId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.scriptType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.usageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6277badb-7d7f-4586-82b6-0bd37caa8944",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.scriptId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.scriptType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.usageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15e4c9b5-eda5-4952-ac39-0208e97ea29f",
+          "name": "Update Script",
+          "request": {
+            "name": "Update Script",
+            "description": {
+              "content": "Update or patch a script model",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "userscripts",
+                ":scriptId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "scriptId",
+                  "description": "(Required) scriptId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"isActive\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"script\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"scriptCategoryId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2abaf4c-3e30-41db-8921-117e7ff2f8fd",
+              "name": "Script Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    ":scriptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"isActive\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"script\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"scriptCategoryId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"additionalData\": {\n    \"sqlSettings\": {\n      \"database\": \"string\",\n      \"parameters\": [\n        {\n          \"parameterDbType\": \"DateTimeOffset\",\n          \"parameterName\": \"string\"\n        },\n        {\n          \"parameterDbType\": \"Time\",\n          \"parameterName\": \"string\"\n        }\n      ],\n      \"passwordChangerId\": 5834,\n      \"passwordChangerName\": \"string\",\n      \"port\": 1125\n    },\n    \"sshSettings\": {\n      \"doNotUseEnvironment\": true,\n      \"lineEnding\": \"CarriageReturn\",\n      \"parameters\": [\n        {\n          \"parameterName\": \"string\",\n          \"parameterSshType\": \"Intrepreted\"\n        },\n        {\n          \"parameterName\": \"string\",\n          \"parameterSshType\": \"Literal\"\n        }\n      ],\n      \"port\": 6755\n    }\n  },\n  \"concurrencyId\": \"string\",\n  \"description\": \"string\",\n  \"isActive\": true,\n  \"name\": \"string\",\n  \"script\": \"string\",\n  \"scriptCategoryId\": 3889,\n  \"scriptCategoryName\": \"string\",\n  \"scriptId\": 856,\n  \"scriptType\": \"SSH\",\n  \"usageCount\": 7343\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf1d7281-ee4b-47e3-9b39-672f79054e3e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    ":scriptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"isActive\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"script\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"scriptCategoryId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7aae60be-2bf3-4f76-a9ee-11c0294a41f7",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    ":scriptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"isActive\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"script\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"scriptCategoryId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b6825f5-a051-45f8-8c6c-06f3bc45de7a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    ":scriptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"description\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"isActive\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"name\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"script\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"scriptCategoryId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58e7996a-9e29-4c83-b485-d7c9020a4cf1",
+          "name": "Test PowerShell Script",
+          "request": {
+            "name": "Test PowerShell Script",
+            "description": {
+              "content": "Run a script to see if PowerShell is configured correctly and if a script will run.  If ScriptId is omitted a very basic test script is attempted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "userscripts",
+                "test-ps-script"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"domain\": \"<string>\",\n    \"password\": \"<string>\",\n    \"powerShellSettings\": {\n      \"scriptArgs\": \"<string>\"\n    },\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"username\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "80625e2a-2fbf-466c-b079-ac7708da0b1c",
+              "name": "PowerShell Test Result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-ps-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"domain\": \"<string>\",\n    \"password\": \"<string>\",\n    \"powerShellSettings\": {\n      \"scriptArgs\": \"<string>\"\n    },\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"debugOutput\": [\n    \"string\",\n    \"string\"\n  ],\n  \"errorMessage\": \"string\",\n  \"errorOutput\": [\n    \"string\",\n    \"string\"\n  ],\n  \"logMessages\": [\n    \"string\",\n    \"string\"\n  ],\n  \"psObjects\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2941995b-a665-4ef9-8de6-1b06bc8ddd49",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-ps-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"domain\": \"<string>\",\n    \"password\": \"<string>\",\n    \"powerShellSettings\": {\n      \"scriptArgs\": \"<string>\"\n    },\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b05591df-f4a1-4e06-8a05-86d05b9f958e",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-ps-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"domain\": \"<string>\",\n    \"password\": \"<string>\",\n    \"powerShellSettings\": {\n      \"scriptArgs\": \"<string>\"\n    },\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4b8b056-279f-473e-bcd6-7c2742f5749b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-ps-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"domain\": \"<string>\",\n    \"password\": \"<string>\",\n    \"powerShellSettings\": {\n      \"scriptArgs\": \"<string>\"\n    },\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a2dd634-7f82-43cd-880d-a92174f04f2c",
+          "name": "Test SQL Script",
+          "request": {
+            "name": "Test SQL Script",
+            "description": {
+              "content": "Run a script to see if SQL is configured correctly and if a script will run.  If ScriptId is omitted a very basic test script is attempted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "userscripts",
+                "test-sql-script"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"domain\": \"<string>\",\n    \"password\": \"<string>\",\n    \"passwordChangerId\": \"<integer>\",\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"sqlSettings\": {\n      \"asSys\": \"<boolean>\",\n      \"database\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"runAs\": \"Domain\",\n      \"scriptArgs\": [\n        {\n          \"dbType\": \"Time\",\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"dbType\": \"DateTimeOffset\",\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ],\n      \"server\": \"<string>\",\n      \"sqlCertDn\": \"<string>\",\n      \"tnsAdmin\": \"<string>\",\n      \"walletLocation\": \"<string>\"\n    },\n    \"username\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e956c092-9505-44fa-bd86-e9bf738ef52d",
+              "name": "SQL Test Result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-sql-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"domain\": \"<string>\",\n    \"password\": \"<string>\",\n    \"passwordChangerId\": \"<integer>\",\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"sqlSettings\": {\n      \"asSys\": \"<boolean>\",\n      \"database\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"runAs\": \"Domain\",\n      \"scriptArgs\": [\n        {\n          \"dbType\": \"Binary\",\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"dbType\": \"Date\",\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ],\n      \"server\": \"<string>\",\n      \"sqlCertDn\": \"<string>\",\n      \"tnsAdmin\": \"<string>\",\n      \"walletLocation\": \"<string>\"\n    },\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"debugOutput\": [\n    \"string\",\n    \"string\"\n  ],\n  \"errorMessage\": \"string\",\n  \"errorOutput\": [\n    \"string\",\n    \"string\"\n  ],\n  \"logMessages\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a884f4c-2b8d-4746-8062-6816f381e5bf",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-sql-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"domain\": \"<string>\",\n    \"password\": \"<string>\",\n    \"passwordChangerId\": \"<integer>\",\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"sqlSettings\": {\n      \"asSys\": \"<boolean>\",\n      \"database\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"runAs\": \"Domain\",\n      \"scriptArgs\": [\n        {\n          \"dbType\": \"Binary\",\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"dbType\": \"Date\",\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ],\n      \"server\": \"<string>\",\n      \"sqlCertDn\": \"<string>\",\n      \"tnsAdmin\": \"<string>\",\n      \"walletLocation\": \"<string>\"\n    },\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f73f53f0-2455-4584-907a-5e7d8cd5514e",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-sql-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"domain\": \"<string>\",\n    \"password\": \"<string>\",\n    \"passwordChangerId\": \"<integer>\",\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"sqlSettings\": {\n      \"asSys\": \"<boolean>\",\n      \"database\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"runAs\": \"Domain\",\n      \"scriptArgs\": [\n        {\n          \"dbType\": \"Binary\",\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"dbType\": \"Date\",\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ],\n      \"server\": \"<string>\",\n      \"sqlCertDn\": \"<string>\",\n      \"tnsAdmin\": \"<string>\",\n      \"walletLocation\": \"<string>\"\n    },\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de42df31-2a5a-4bad-bbba-da3a73376185",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-sql-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"domain\": \"<string>\",\n    \"password\": \"<string>\",\n    \"passwordChangerId\": \"<integer>\",\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"sqlSettings\": {\n      \"asSys\": \"<boolean>\",\n      \"database\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"runAs\": \"Domain\",\n      \"scriptArgs\": [\n        {\n          \"dbType\": \"Binary\",\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"dbType\": \"Date\",\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ],\n      \"server\": \"<string>\",\n      \"sqlCertDn\": \"<string>\",\n      \"tnsAdmin\": \"<string>\",\n      \"walletLocation\": \"<string>\"\n    },\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95d444c8-4f1f-4f3c-9381-5d371e5451c6",
+          "name": "Test Scripts",
+          "request": {
+            "name": "Test Scripts",
+            "description": {
+              "content": "Run a script to see if PowerShell, SQL, or SSH is configured correctly and if a script will run.  If ScriptId is omitted a very basic test script is attempted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "userscripts",
+                "test-ssh-script"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"password\": \"<string>\",\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"sshSettings\": {\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\",\n          \"parameterValue\": \"<string>\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\",\n          \"parameterValue\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"server\": \"<string>\",\n      \"serverDigest\": \"<string>\",\n      \"sshKey\": \"<string>\"\n    },\n    \"username\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76486c7f-de41-49b6-a90e-cd0d2fa2f449",
+              "name": "PowerShell Test Result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-ssh-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"password\": \"<string>\",\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"sshSettings\": {\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\",\n          \"parameterValue\": \"<string>\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\",\n          \"parameterValue\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"server\": \"<string>\",\n      \"serverDigest\": \"<string>\",\n      \"sshKey\": \"<string>\"\n    },\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"debugOutput\": [\n    \"string\",\n    \"string\"\n  ],\n  \"errorMessage\": \"string\",\n  \"errorOutput\": [\n    \"string\",\n    \"string\"\n  ],\n  \"logMessages\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d2171a2-2655-4249-81a2-029b131a8444",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-ssh-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"password\": \"<string>\",\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"sshSettings\": {\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\",\n          \"parameterValue\": \"<string>\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\",\n          \"parameterValue\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"server\": \"<string>\",\n      \"serverDigest\": \"<string>\",\n      \"sshKey\": \"<string>\"\n    },\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd715d4d-57cc-4fa2-a3f7-fbb3f846bbf5",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-ssh-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"password\": \"<string>\",\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"sshSettings\": {\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\",\n          \"parameterValue\": \"<string>\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\",\n          \"parameterValue\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"server\": \"<string>\",\n      \"serverDigest\": \"<string>\",\n      \"sshKey\": \"<string>\"\n    },\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13b19f96-7d59-4a65-ad6f-81b7ad5a98b8",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "userscripts",
+                    "test-ssh-script"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"password\": \"<string>\",\n    \"scriptId\": \"<integer>\",\n    \"secretId\": \"<integer>\",\n    \"siteId\": \"<integer>\",\n    \"sshSettings\": {\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\",\n          \"parameterValue\": \"<string>\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\",\n          \"parameterValue\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"server\": \"<string>\",\n      \"serverDigest\": \"<string>\",\n      \"sshKey\": \"<string>\"\n    },\n    \"username\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09d9495b-14ee-481b-b89b-506a760422dd",
+          "name": "Update Script Parameters",
+          "request": {
+            "name": "Update Script Parameters",
+            "description": {
+              "content": "Update all the parameters for a script including any variable parameters and specific settings for this script.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "userscripts",
+                ":scriptId",
+                "parameters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "scriptId",
+                  "description": "(Required) scriptId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"sqlSettings\": {\n      \"database\": \"<string>\",\n      \"parameters\": [\n        {\n          \"parameterDbType\": \"Decimal\",\n          \"parameterName\": \"<string>\"\n        },\n        {\n          \"parameterDbType\": \"AnsiString\",\n          \"parameterName\": \"<string>\"\n        }\n      ],\n      \"passwordChangerId\": \"<integer>\",\n      \"port\": \"<integer>\"\n    },\n    \"sshSettings\": {\n      \"doNotUseEnvironment\": \"<boolean>\",\n      \"lineEnding\": \"NewLine\",\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Literal\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Literal\"\n        }\n      ],\n      \"port\": \"<integer>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7ea3045-526a-4546-b19f-38eb0e365fe3",
+              "name": "Script Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    ":scriptId",
+                    "parameters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"sqlSettings\": {\n      \"database\": \"<string>\",\n      \"parameters\": [\n        {\n          \"parameterDbType\": \"Decimal\",\n          \"parameterName\": \"<string>\"\n        },\n        {\n          \"parameterDbType\": \"DateTimeOffset\",\n          \"parameterName\": \"<string>\"\n        }\n      ],\n      \"passwordChangerId\": \"<integer>\",\n      \"port\": \"<integer>\"\n    },\n    \"sshSettings\": {\n      \"doNotUseEnvironment\": \"<boolean>\",\n      \"lineEnding\": \"CarriageReturn\",\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Literal\"\n        }\n      ],\n      \"port\": \"<integer>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"additionalData\": {\n    \"sqlSettings\": {\n      \"database\": \"string\",\n      \"parameters\": [\n        {\n          \"parameterDbType\": \"Decimal\",\n          \"parameterName\": \"<string>\"\n        },\n        {\n          \"parameterDbType\": \"UInt16\",\n          \"parameterName\": \"<string>\"\n        }\n      ],\n      \"passwordChangerId\": 7696,\n      \"passwordChangerName\": \"string\",\n      \"port\": 5983\n    },\n    \"sshSettings\": {\n      \"doNotUseEnvironment\": false,\n      \"lineEnding\": \"NewLine\",\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\"\n        }\n      ],\n      \"port\": 159\n    }\n  },\n  \"concurrencyId\": \"string\",\n  \"description\": \"string\",\n  \"isActive\": false,\n  \"name\": \"string\",\n  \"script\": \"string\",\n  \"scriptCategoryId\": 9773,\n  \"scriptCategoryName\": \"string\",\n  \"scriptId\": 3737,\n  \"scriptType\": \"PowerShell\",\n  \"usageCount\": 1587\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aedaf7ea-e679-4e6a-9e84-0b96c098f82f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    ":scriptId",
+                    "parameters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"sqlSettings\": {\n      \"database\": \"<string>\",\n      \"parameters\": [\n        {\n          \"parameterDbType\": \"Decimal\",\n          \"parameterName\": \"<string>\"\n        },\n        {\n          \"parameterDbType\": \"DateTimeOffset\",\n          \"parameterName\": \"<string>\"\n        }\n      ],\n      \"passwordChangerId\": \"<integer>\",\n      \"port\": \"<integer>\"\n    },\n    \"sshSettings\": {\n      \"doNotUseEnvironment\": \"<boolean>\",\n      \"lineEnding\": \"CarriageReturn\",\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Literal\"\n        }\n      ],\n      \"port\": \"<integer>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fc33668-3f63-42c6-8bc3-778133d70043",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    ":scriptId",
+                    "parameters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"sqlSettings\": {\n      \"database\": \"<string>\",\n      \"parameters\": [\n        {\n          \"parameterDbType\": \"Decimal\",\n          \"parameterName\": \"<string>\"\n        },\n        {\n          \"parameterDbType\": \"DateTimeOffset\",\n          \"parameterName\": \"<string>\"\n        }\n      ],\n      \"passwordChangerId\": \"<integer>\",\n      \"port\": \"<integer>\"\n    },\n    \"sshSettings\": {\n      \"doNotUseEnvironment\": \"<boolean>\",\n      \"lineEnding\": \"CarriageReturn\",\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Literal\"\n        }\n      ],\n      \"port\": \"<integer>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfc90290-56de-4f64-bf29-96ed90323533",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "userscripts",
+                    ":scriptId",
+                    "parameters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scriptId",
+                      "description": "(Required) scriptId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"sqlSettings\": {\n      \"database\": \"<string>\",\n      \"parameters\": [\n        {\n          \"parameterDbType\": \"Decimal\",\n          \"parameterName\": \"<string>\"\n        },\n        {\n          \"parameterDbType\": \"DateTimeOffset\",\n          \"parameterName\": \"<string>\"\n        }\n      ],\n      \"passwordChangerId\": \"<integer>\",\n      \"port\": \"<integer>\"\n    },\n    \"sshSettings\": {\n      \"doNotUseEnvironment\": \"<boolean>\",\n      \"lineEnding\": \"CarriageReturn\",\n      \"parameters\": [\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Intrepreted\"\n        },\n        {\n          \"parameterName\": \"<string>\",\n          \"parameterSshType\": \"Literal\"\n        }\n      ],\n      \"port\": \"<integer>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/SecretServer/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "095301a4-c359-49ed-8d4d-d2e37d249361",
+    "name": "Secret Server Rest Activations Script API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href=\"../OAuth/\">authentication document</a> for more information. The <a href=\"swagger.json\">Swagger specification</a> for this API is also available.\n\nContact Support:\n Name: Support",
+      "type": "text/plain"
+    }
+  }
+}

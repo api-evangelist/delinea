@@ -1,0 +1,511 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Proxy API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Proxy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Updates SSH Terminal client overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/proxy/ssh/client-overrides/:clientOverrideId",
+            "params": [
+              {
+                "name": "clientOverrideId",
+                "value": "",
+                "type": "path",
+                "description": "clientOverrideId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates SSH Terminal client overrides"
+        },
+        {
+          "info": {
+            "name": "Deletes SSH Terminal client overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/proxy/ssh/client-overrides/:clientOverrideId",
+            "params": [
+              {
+                "name": "clientOverrideId",
+                "value": "",
+                "type": "path",
+                "description": "clientOverrideId"
+              }
+            ]
+          },
+          "docs": "Deletes SSH Terminal client overrides"
+        },
+        {
+          "info": {
+            "name": "Get the SSH proxy configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/ssh/config"
+          },
+          "docs": "Get the SSH proxy configuration"
+        },
+        {
+          "info": {
+            "name": "Update the SSH proxy configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/proxy/ssh/config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the SSH proxy configuration"
+        },
+        {
+          "info": {
+            "name": "Get the RDP proxy configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/rdp/config"
+          },
+          "docs": "Get the RDP proxy configuration"
+        },
+        {
+          "info": {
+            "name": "Update the RDP proxy configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/proxy/rdp/config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the RDP proxy configuration"
+        },
+        {
+          "info": {
+            "name": "Get Proxy Explanations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/explanation"
+          },
+          "docs": "Get an explanation of the SSH proxy, SSH terminal, and RDP proxy features"
+        },
+        {
+          "info": {
+            "name": "Get the Proxy Audit List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/audit",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page Proxy Audits."
+        },
+        {
+          "info": {
+            "name": "Get the proxy endpoints list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/endpoints"
+          },
+          "docs": "Get the proxy endpoints list"
+        },
+        {
+          "info": {
+            "name": "Get a notification of where the SSH proxy is running",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/ssh/notification"
+          },
+          "docs": "Get a notification of where the SSH proxy is running"
+        },
+        {
+          "info": {
+            "name": "Get a notification of where the RDP proxy is running",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/rdp/notification"
+          },
+          "docs": "Get a notification of where the RDP proxy is running"
+        },
+        {
+          "info": {
+            "name": "Get endpoint warnings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/endpoints/notification"
+          },
+          "docs": "Get endpoint warnings"
+        },
+        {
+          "info": {
+            "name": "Get SSH Terminal clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/ssh/clients",
+            "params": [
+              {
+                "name": "filter.ipAddress",
+                "value": "",
+                "type": "query",
+                "description": "IpAddress"
+              },
+              {
+                "name": "filter.terminalClientType",
+                "value": "",
+                "type": "query",
+                "description": "TerminalClientType"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get SSH Terminal clients"
+        },
+        {
+          "info": {
+            "name": "Get SSH Terminal client history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/ssh/clienthistory",
+            "params": [
+              {
+                "name": "filter.authenticateResult",
+                "value": "",
+                "type": "query",
+                "description": "AuthenticateResult"
+              },
+              {
+                "name": "filter.endDate",
+                "value": "",
+                "type": "query",
+                "description": "EndDate"
+              },
+              {
+                "name": "filter.engineIdentityGuid",
+                "value": "",
+                "type": "query",
+                "description": "EngineIdentityGuid"
+              },
+              {
+                "name": "filter.ipAddress",
+                "value": "",
+                "type": "query",
+                "description": "IpAddress"
+              },
+              {
+                "name": "filter.startDate",
+                "value": "",
+                "type": "query",
+                "description": "StartDate"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get SSH Terminal client history"
+        },
+        {
+          "info": {
+            "name": "Get SSH Terminal client overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/ssh/client-overrides"
+          },
+          "docs": "Get SSH Terminal client overrides"
+        },
+        {
+          "info": {
+            "name": "Creates SSH Terminal client overrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/proxy/ssh/client-overrides",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates SSH Terminal client overrides"
+        },
+        {
+          "info": {
+            "name": "Get proxy state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/proxy/state"
+          },
+          "docs": "Get proxy state"
+        },
+        {
+          "info": {
+            "name": "Update a node proxy configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/proxy/endpoints/nodes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a node proxy configuration"
+        },
+        {
+          "info": {
+            "name": "Update a site proxy configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/proxy/endpoints/sites/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a site proxy configuration"
+        },
+        {
+          "info": {
+            "name": "Update an engine proxy configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/proxy/endpoints/engines/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an engine proxy configuration"
+        },
+        {
+          "info": {
+            "name": "Updates a SSH Terminal client type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/proxy/ssh/clients/:clientId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "clientId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a SSH Terminal client type"
+        },
+        {
+          "info": {
+            "name": "Generate SSH Host Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/proxy/ssh/generate-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a new SSH host key and returns the SSH configuration with the updated host key"
+        },
+        {
+          "info": {
+            "name": "Generate RDP server certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/proxy/rdp/generate-certificate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a new RDP server certificate and returns the RDP configuration with the updated server certificate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations BulkOperations API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BulkOperations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/bulk-operations/:id/progress",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of Bulk operation to retrieve."
+              }
+            ]
+          },
+          "docs": "Get the progress of a bulk operation by id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

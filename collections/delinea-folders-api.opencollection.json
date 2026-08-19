@@ -1,0 +1,548 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Folders API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/folders/:id",
+            "params": [
+              {
+                "name": "getAllChildren",
+                "value": "",
+                "type": "query",
+                "description": "Whether to retrieve all child folders of the requested folder"
+              },
+              {
+                "name": "includeAssociatedTemplates",
+                "value": "",
+                "type": "query",
+                "description": "Whether to list associated secret templates"
+              },
+              {
+                "name": "folderPath",
+                "value": "",
+                "type": "query",
+                "description": "A full path to a folder including the folder name can be passed as a query string parameter when the folder ID is set to 0.  This will lookup the folder ID by path."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              }
+            ]
+          },
+          "docs": "Get a single folder by ID"
+        },
+        {
+          "info": {
+            "name": "Update Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/folders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a single secret folder by ID"
+        },
+        {
+          "info": {
+            "name": "Delete Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/folders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              }
+            ]
+          },
+          "docs": "Delete a folder by ID"
+        },
+        {
+          "info": {
+            "name": "Disassociate Template from Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/folders/:id/templates/:templateId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              },
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Template ID"
+              }
+            ]
+          },
+          "docs": "Remove the ability to create secrets based on the template in this folder. If the folder has no associated templates, then any template can be used."
+        },
+        {
+          "info": {
+            "name": "Pin Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/folder/:id/pinned",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Pin a single folder or update settings for the pinned folder for the current user"
+        },
+        {
+          "info": {
+            "name": "Unpin Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/folder/:id/pinned",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              }
+            ]
+          },
+          "docs": "Unpin a folder for the current user.  This will remove any settings for this user for this pinned folder.  If not pinned already it will still return success."
+        },
+        {
+          "info": {
+            "name": "Search Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/folders",
+            "params": [
+              {
+                "name": "filter.folderTypeId",
+                "value": "",
+                "type": "query",
+                "description": "The icon to display for the folder. Depricated in latest UI. Use 1 when setting this value."
+              },
+              {
+                "name": "filter.limitToDirectDescendents",
+                "value": "",
+                "type": "query",
+                "description": "When true and ParentFolderId is not null only return immediate child folders"
+              },
+              {
+                "name": "filter.onlyIncludeRootFolders",
+                "value": "",
+                "type": "query",
+                "description": "When true only root folders will be returned and ParentFolderId will be ignored"
+              },
+              {
+                "name": "filter.parentFolderId",
+                "value": "",
+                "type": "query",
+                "description": "Return folders that are descendants of this folder."
+              },
+              {
+                "name": "filter.permissionRequired",
+                "value": "",
+                "type": "query",
+                "description": "Specify whether to filter by Owner, Edit, AddSecret, View folder permission. Default is View."
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search term to match against folder names. Search returns any folder where the search term is contained in the folder name."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page secret folders"
+        },
+        {
+          "info": {
+            "name": "Create Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/folders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new secret folder"
+        },
+        {
+          "info": {
+            "name": "Lookup Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/folders/lookup",
+            "params": [
+              {
+                "name": "filter.folderTypeId",
+                "value": "",
+                "type": "query",
+                "description": "The icon to display for the folder. Depricated in latest UI. Use 1 when setting this value."
+              },
+              {
+                "name": "filter.limitToDirectDescendents",
+                "value": "",
+                "type": "query",
+                "description": "When true and ParentFolderId is not null only return immediate child folders"
+              },
+              {
+                "name": "filter.onlyIncludeRootFolders",
+                "value": "",
+                "type": "query",
+                "description": "When true only root folders will be returned and ParentFolderId will be ignored"
+              },
+              {
+                "name": "filter.parentFolderId",
+                "value": "",
+                "type": "query",
+                "description": "Return folders that are descendants of this folder."
+              },
+              {
+                "name": "filter.permissionRequired",
+                "value": "",
+                "type": "query",
+                "description": "Specify whether to filter by Owner, Edit, AddSecret, View folder permission. Default is View."
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search term to match against folder names. Search returns any folder where the search term is contained in the folder name."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page secret folders, returning only folder ID and name"
+        },
+        {
+          "info": {
+            "name": "Get Folder Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/folders/stub"
+          },
+          "docs": "Return the default values for a new secret folder"
+        },
+        {
+          "info": {
+            "name": "Folder Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/folders/:id/audit",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              },
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of audits for folder by ID."
+        },
+        {
+          "info": {
+            "name": "Get Folder Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/folder-details/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "returnEmptyInsteadOfNoAccessException",
+                "value": "",
+                "type": "query",
+                "description": "returnEmptyInsteadOfNoAccessException"
+              }
+            ]
+          },
+          "docs": "Get Folder Details"
+        },
+        {
+          "info": {
+            "name": "Get Pinned Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/folders/pinned",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Return a list of folders that the current user has pinned"
+        },
+        {
+          "info": {
+            "name": "Patch a Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/folder/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch a single secret folder by ID"
+        },
+        {
+          "info": {
+            "name": "Patch Folder Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/folder/:folderId/permissions",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add, delete, and update some permissions as opposed to a full replace of all permissions for a folder"
+        },
+        {
+          "info": {
+            "name": "Associate Template to Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/folders/:id/templates",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allow secrets based on the template to be created in the folder. If the folder has no associated templates, then any template can be used."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,321 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Platform API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Unlink a group from Platform",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/platform/group/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "groupId"
+              }
+            ]
+          },
+          "docs": "Unlinking a group from Platform will disable the group."
+        },
+        {
+          "info": {
+            "name": "Search in Platform for groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/platform/groups/search-directory",
+            "params": [
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search text. Use * for wildcards, ex: Admin*. Leave empty to return all."
+              }
+            ]
+          },
+          "docs": "Search in Platform for external groups using Platform credentials"
+        },
+        {
+          "info": {
+            "name": "Get Platform Directories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/platform/directories",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get Platform Directories"
+        },
+        {
+          "info": {
+            "name": "Search in platform for members of a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/platform/members",
+            "params": [
+              {
+                "name": "domainIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The unique directory identifier for the group to be linked.  For example, this is ADGuid in Active Directory"
+              },
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the Group"
+              }
+            ]
+          },
+          "docs": "Search in platform for members of a group using the platform credentials"
+        },
+        {
+          "info": {
+            "name": "Search Platform users/groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/platform/users-groups-search",
+            "params": [
+              {
+                "name": "filter.excludeLinkedLocalEntities",
+                "value": "",
+                "type": "query",
+                "description": "Whether to exclude any entities with local linked user and group ids."
+              },
+              {
+                "name": "filter.platformDirectoryUuid",
+                "value": "",
+                "type": "query",
+                "description": "Platform Directory Uuid"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search text. Use * for wildcards, ex: Admin*. Leave empty to return all for local."
+              },
+              {
+                "name": "filter.showLinkedLocalEntities",
+                "value": "",
+                "type": "query",
+                "description": "Whether to return local linked user and group ids."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search in Platform for external users and groups, optionally indicating those linked to local users and groups"
+        },
+        {
+          "info": {
+            "name": "Platform Sync Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/platform/synchronization"
+          },
+          "docs": "Return status of platform synchronization"
+        },
+        {
+          "info": {
+            "name": "Platform Provision Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/platform/provision-status"
+          },
+          "docs": "Return status of platform provisioning"
+        },
+        {
+          "info": {
+            "name": "Platform Provision Requested Date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/platform/provision-requested-date"
+          },
+          "docs": "Return platform provisioning request date"
+        },
+        {
+          "info": {
+            "name": "Platform Get Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/platform/get-platform-regions"
+          },
+          "docs": "Return available platform regions"
+        },
+        {
+          "info": {
+            "name": "Test Platform Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/platform/test-integration"
+          },
+          "docs": "Return platform integration status"
+        },
+        {
+          "info": {
+            "name": "Link a group from Platform",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/platform/group",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Linking or adding a group with Platform will allow permissions to be added before those members log in."
+        },
+        {
+          "info": {
+            "name": "Create Platform users and groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/platform/create-users-and-groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Platform users and groups"
+        },
+        {
+          "info": {
+            "name": "Synchronize Platform user properties and group memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/platform/synchronization-now"
+          },
+          "docs": "Run synchronize to update groups and user properties for Platform users"
+        },
+        {
+          "info": {
+            "name": "Provision Platform",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/platform/provision",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "One-time opt-in call to initiates provisioning of Delinea Platform instance and connecting it to this cloud instance. Recommend using the UI for more details."
+        },
+        {
+          "info": {
+            "name": "Reset Platform User Mappings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/platform/reset-user-mappings"
+          },
+          "docs": "Used to remove user mappings from Platform to Vault"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

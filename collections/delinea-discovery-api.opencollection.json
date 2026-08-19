@@ -1,0 +1,2220 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Discovery API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Discovery Scanner Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/scanners/:discoveryItemScannerId",
+            "params": [
+              {
+                "name": "discoveryItemScannerId",
+                "value": "",
+                "type": "path",
+                "description": "discoveryItemScannerId"
+              },
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              }
+            ]
+          },
+          "docs": "Get the details for a specific discovery scanner"
+        },
+        {
+          "info": {
+            "name": "Remove Scanner from discovery source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/scanners/:discoveryItemScannerId",
+            "params": [
+              {
+                "name": "discoveryItemScannerId",
+                "value": "",
+                "type": "path",
+                "description": "discoveryItemScannerId"
+              },
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              }
+            ]
+          },
+          "docs": "Remove the specified scanner from the discovery source"
+        },
+        {
+          "info": {
+            "name": "Get discovery account rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/rules/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Returns discovery account rule"
+        },
+        {
+          "info": {
+            "name": "Update a discovery account rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/discovery/rules/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the updated discovery account rule"
+        },
+        {
+          "info": {
+            "name": "Delete a discovery account rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/discovery/rules/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Returns the model indicating result of the account rule delete"
+        },
+        {
+          "info": {
+            "name": "Get discovery dependency rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/rules/dependencies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Returns discovery dependency rule"
+        },
+        {
+          "info": {
+            "name": "Update a discovery dependency rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/discovery/rules/dependencies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the updated discovery dependency rule"
+        },
+        {
+          "info": {
+            "name": "Delete a discovery dependency rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/discovery/rules/dependencies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Returns the model indicating result of the dependency rule delete"
+        },
+        {
+          "info": {
+            "name": "Get discovery sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/sources",
+            "params": [
+              {
+                "name": "filter.discoverySourceName",
+                "value": "",
+                "type": "query",
+                "description": "DiscoverySourceName"
+              },
+              {
+                "name": "filter.discoverySourceType",
+                "value": "",
+                "type": "query",
+                "description": "DiscoverySourceType"
+              },
+              {
+                "name": "filter.includeActive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeActive"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeInactive"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns discovery sources"
+        },
+        {
+          "info": {
+            "name": "Get discovery source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/source/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Discovery Source ID"
+              }
+            ]
+          },
+          "docs": "Returns the discovery source"
+        },
+        {
+          "info": {
+            "name": "Update a discovery source",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/discovery/source/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Discovery Source ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing discovery source using the existing discovery source ID"
+        },
+        {
+          "info": {
+            "name": "Get a Discovery Source Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/source/stub/:typeId",
+            "params": [
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "path",
+                "description": "Discovery Source Type ID"
+              }
+            ]
+          },
+          "docs": "Get a Discovery Source Stub"
+        },
+        {
+          "info": {
+            "name": "Get Discovery Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/configuration"
+          },
+          "docs": "Get Discovery Configuration"
+        },
+        {
+          "info": {
+            "name": "Update discovery configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/discovery/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update discovery configuration"
+        },
+        {
+          "info": {
+            "name": "Get Discovery Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/status",
+            "params": [
+              {
+                "name": "includeExtendedMetrics",
+                "value": "",
+                "type": "query",
+                "description": "includeExtendedMetrics"
+              }
+            ]
+          },
+          "docs": "Get Discovery Status"
+        },
+        {
+          "info": {
+            "name": "Get Discovery Source Available Scanners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/available-scanners",
+            "params": [
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              }
+            ]
+          },
+          "docs": "Get all of the scanners that can be created for this specific discovery source"
+        },
+        {
+          "info": {
+            "name": "Search Secret Search Filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/secret-search-filters",
+            "params": [
+              {
+                "name": "filter.status",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include active, inactive, or both.  Defaults to Active only"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search all secret search filters"
+        },
+        {
+          "info": {
+            "name": "Create Secret Search Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/secret-search-filters",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Secret Search Filter."
+        },
+        {
+          "info": {
+            "name": "Get Secret Search Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/secret-search-filters/:secretSearchFilterId",
+            "params": [
+              {
+                "name": "secretSearchFilterId",
+                "value": "",
+                "type": "path",
+                "description": "secretSearchFilterId"
+              }
+            ]
+          },
+          "docs": "Get the details for a single Secret Search Filter"
+        },
+        {
+          "info": {
+            "name": "Patch Secret Search Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/discovery/secret-search-filters/:secretSearchFilterId",
+            "params": [
+              {
+                "name": "secretSearchFilterId",
+                "value": "",
+                "type": "path",
+                "description": "secretSearchFilterId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update values on a Secret Search Filter"
+        },
+        {
+          "info": {
+            "name": "Search Discovery Command Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/command-sets",
+            "params": [
+              {
+                "name": "filter.scanTypeId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the scan type. 1=Find Host Ranges, 2=Find Machine, 3=Find Local Accounts, 4=Find Dependencies"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Only return the items that contain this text in their name"
+              },
+              {
+                "name": "filter.status",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include active, inactive, or both.  Defaults to Active only"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search all discovery command sets"
+        },
+        {
+          "info": {
+            "name": "Create command set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/command-sets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SSH command set."
+        },
+        {
+          "info": {
+            "name": "Get Discovery Command Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/command-sets/:commandSetId",
+            "params": [
+              {
+                "name": "commandSetId",
+                "value": "",
+                "type": "path",
+                "description": "commandSetId"
+              }
+            ]
+          },
+          "docs": "Get the details for a single command set"
+        },
+        {
+          "info": {
+            "name": "Patch Command Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/discovery/command-sets/:commandSetId",
+            "params": [
+              {
+                "name": "commandSetId",
+                "value": "",
+                "type": "path",
+                "description": "commandSetId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update values on a command set"
+        },
+        {
+          "info": {
+            "name": "Get Discovery Command Set Test Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/command-sets/:commandSetId/test-parameters",
+            "params": [
+              {
+                "name": "commandSetId",
+                "value": "",
+                "type": "path",
+                "description": "commandSetId"
+              }
+            ]
+          },
+          "docs": "Get the test parameters for a single command set"
+        },
+        {
+          "info": {
+            "name": "Search Discovery Base Scanners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/base-scanners",
+            "params": [
+              {
+                "name": "filter.isActive",
+                "value": "",
+                "type": "query",
+                "description": "Filter to return Base Scanners that are enabled / Disabled"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search all discovery base scanners"
+        },
+        {
+          "info": {
+            "name": "Search Discovery Scanners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/scanners",
+            "params": [
+              {
+                "name": "filter.discoveryItemScannerId",
+                "value": "",
+                "type": "query",
+                "description": "Only return the scanner with this ID.  This will supercede all other filters."
+              },
+              {
+                "name": "filter.scanTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Only return the scanners of this scan type: 1 = host, 2 = machine, 3 = account, 4 = dependency"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Only return the scanners that contain this text in their name"
+              },
+              {
+                "name": "filter.status",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include active, inactive, or both.  Defaults to Active only"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search all discovery scanners"
+        },
+        {
+          "info": {
+            "name": "Create Scanner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/scanners",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new scanner"
+        },
+        {
+          "info": {
+            "name": "Get Discovery Scanner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/scanners/:itemScannerId",
+            "params": [
+              {
+                "name": "itemScannerId",
+                "value": "",
+                "type": "path",
+                "description": "itemScannerId"
+              }
+            ]
+          },
+          "docs": "Get the details for a single scanner"
+        },
+        {
+          "info": {
+            "name": "Patch Scanner",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/discovery/scanners/:itemScannerId",
+            "params": [
+              {
+                "name": "itemScannerId",
+                "value": "",
+                "type": "path",
+                "description": "itemScannerId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update values on a scanner"
+        },
+        {
+          "info": {
+            "name": "Get Scanner Dependency Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/scanners/dependency-templates",
+            "params": [
+              {
+                "name": "filter.secretDependencyTypeId",
+                "value": "",
+                "type": "query",
+                "description": "If set, include only the given Secret Dependency Type."
+              },
+              {
+                "name": "filter.status",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include active, inactive, or both. Defaults to Active only"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get Scanner Dependency Templates"
+        },
+        {
+          "info": {
+            "name": "Get Scanner Dependency Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/scanners/dependency-types",
+            "params": [
+              {
+                "name": "filter.validForDependencyChanger",
+                "value": "",
+                "type": "query",
+                "description": "Whether to filter types only valid for a dependency changer. Defaults to false"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get Scanner Dependency Types"
+        },
+        {
+          "info": {
+            "name": "Get Scanner Dependency Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/scanners/dependency-template/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Get Scanner Dependency Template"
+        },
+        {
+          "info": {
+            "name": "Patch Dependency Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/discovery/scanners/dependency-template/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update values on a Dependency Template"
+        },
+        {
+          "info": {
+            "name": "Get discovery scan templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/scan-templates",
+            "params": [
+              {
+                "name": "filter.discoveryScanTypeId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the scan type. 1=Find Host Ranges, 2=Find Machine, 3=Find Local Accounts, 4=Find Dependencies"
+              },
+              {
+                "name": "filter.discoverySourceId",
+                "value": "",
+                "type": "query",
+                "description": "Only return scan templates that can be returned from a discovery source"
+              },
+              {
+                "name": "filter.includeInput",
+                "value": "",
+                "type": "query",
+                "description": "Includes the input scan item templates."
+              },
+              {
+                "name": "filter.onlyIncludeBaseScanTemplates",
+                "value": "",
+                "type": "query",
+                "description": "When true only templates that do not have a parent scan template will be included.  These are base or root scan templates."
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Only return the items that contain this text in their name or description"
+              },
+              {
+                "name": "filter.status",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include active, inactive, or both.  Defaults to Active only"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns discovery scan templates"
+        },
+        {
+          "info": {
+            "name": "Create scan template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/scan-templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new scan template"
+        },
+        {
+          "info": {
+            "name": "Get Discovery Scan Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/scan-templates/:scanTemplateId",
+            "params": [
+              {
+                "name": "scanTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "scanTemplateId"
+              }
+            ]
+          },
+          "docs": "Get the details for a scan template"
+        },
+        {
+          "info": {
+            "name": "Patch scan template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/discovery/scan-templates/:scanTemplateId",
+            "params": [
+              {
+                "name": "scanTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "scanTemplateId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update values on a scan template"
+        },
+        {
+          "info": {
+            "name": "Get Scanner Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/scanner-settings/search",
+            "params": [
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              }
+            ]
+          },
+          "docs": "Get all of the scanner settings for a specific discovery source"
+        },
+        {
+          "info": {
+            "name": "Get Discovery Scan Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/scan-types"
+          },
+          "docs": "Get all of the scan types"
+        },
+        {
+          "info": {
+            "name": "Get Discovery Source Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery-source/audit",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "filter.discoverySourceId",
+                "value": "",
+                "type": "query",
+                "description": "DiscoverySourceId"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get Discovery Source Audits"
+        },
+        {
+          "info": {
+            "name": "Get and include or exclude for discovery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/ou",
+            "params": [
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Only return items that can be included"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search for OU items containing this text"
+              },
+              {
+                "name": "selectedIds",
+                "value": "",
+                "type": "query",
+                "description": "When include is false only include items within these exisitng IDs"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return"
+              }
+            ]
+          },
+          "docs": "Returns the discovery source OU"
+        },
+        {
+          "info": {
+            "name": "Get the source filter for a discovery source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/source/:id/filter",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Get the source filter for a discovery source"
+        },
+        {
+          "info": {
+            "name": "Search network tree for discovery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/network/tree",
+            "params": [
+              {
+                "name": "filter.discoverySourceId",
+                "value": "",
+                "type": "query",
+                "description": "Discovery Source Id. When null, returns all"
+              },
+              {
+                "name": "filter.parentId",
+                "value": "",
+                "type": "query",
+                "description": "Parent Id. When null, uses root"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search network tree for discovery"
+        },
+        {
+          "info": {
+            "name": "Search discovery network items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/network/items",
+            "params": [
+              {
+                "name": "filter.createdEndDate",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to return results that have a created date less than or equal to the value."
+              },
+              {
+                "name": "filter.createdStartDate",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to return results that have a created date greater than or equal to the value."
+              },
+              {
+                "name": "filter.discoveryRuleId",
+                "value": "",
+                "type": "query",
+                "description": "Filter for items that will be imported by a specific rule"
+              },
+              {
+                "name": "filter.discoverySourceId",
+                "value": "",
+                "type": "query",
+                "description": "Search for items with this Discovery Source Id"
+              },
+              {
+                "name": "filter.hasComputerAccounts",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to filter whether the item has computer accounts"
+              },
+              {
+                "name": "filter.itemType",
+                "value": "",
+                "type": "query",
+                "description": "Used to filter the item type that should be returned.  Empty will return all item types or use: account, computer, key, service-account..."
+              },
+              {
+                "name": "filter.lastPolledEndDate",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to return results that have a last polled date less than or equal to the value."
+              },
+              {
+                "name": "filter.lastPolledStartDate",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to return results that have a last polled date greater than or equal to the value."
+              },
+              {
+                "name": "filter.lastReachedEndDate",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to return results that have a last reached date less than or equal to the value."
+              },
+              {
+                "name": "filter.lastReachedStartDate",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to return results that have a last reached date greater than or equal to the value."
+              },
+              {
+                "name": "filter.managed",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to filter whether the item is managed or unmanaged"
+              },
+              {
+                "name": "filter.operatingSystem",
+                "value": "",
+                "type": "query",
+                "description": "Search for items with this operating system"
+              },
+              {
+                "name": "filter.organizationalUnitId",
+                "value": "",
+                "type": "query",
+                "description": "Search for items with this Organizational Unit Id"
+              },
+              {
+                "name": "filter.scanItemTemplateId",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to filter the scan template id"
+              },
+              {
+                "name": "filter.searchChildren",
+                "value": "",
+                "type": "query",
+                "description": "If set then return all descendants, if false only return immediate children."
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search for items with this name"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns items that have been discovered and are linked in a discovery source and network tree"
+        },
+        {
+          "info": {
+            "name": "Get discovery network computer detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/network/item/computer/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Returns details for a computer that has been discovered and are linked in a discovery source and network tree"
+        },
+        {
+          "info": {
+            "name": "Gets the computer scan logs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/network/item/computer/scan/logs",
+            "params": [
+              {
+                "name": "filter.computerId",
+                "value": "",
+                "type": "query",
+                "description": "Computer Id to filter on."
+              },
+              {
+                "name": "filter.discoveryItemScannerId",
+                "value": "",
+                "type": "query",
+                "description": "Scanner Id to filter on."
+              },
+              {
+                "name": "filter.discoverySourceId",
+                "value": "",
+                "type": "query",
+                "description": "Discovery Source Id to filter on."
+              },
+              {
+                "name": "filter.logLevel",
+                "value": "",
+                "type": "query",
+                "description": "If null it will return all, if false it will return errors, if true it will return successes"
+              },
+              {
+                "name": "filter.scanEndDate",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to return results that have a scan date less than or equal to the value."
+              },
+              {
+                "name": "filter.scanItemTemplateId",
+                "value": "",
+                "type": "query",
+                "description": "Template Id to filter on."
+              },
+              {
+                "name": "filter.scanStartDate",
+                "value": "",
+                "type": "query",
+                "description": "If set, used to return results that have a scan date greater than or equal to the value."
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Will filter the log message based on the search text"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Gets the computer scan logs based on the filter criteria."
+        },
+        {
+          "info": {
+            "name": "Get discovery network computer account detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/network/item/computer-account/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Returns a computer account that has been discovered and is linked in a discovery source and network tree"
+        },
+        {
+          "info": {
+            "name": "Get discovery network service account detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/network/item/service-account/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Returns a service account that has been discovered and is linked in a discovery source and network tree"
+        },
+        {
+          "info": {
+            "name": "Get discovery network public key detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/network/item/public-key/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Returns a public key that has been discovered and is linked in a discovery source and network tree"
+        },
+        {
+          "info": {
+            "name": "Get discovery network directory account detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/network/item/directory-account/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Returns a directory account that has been discovered and is linked in a discovery source and network tree"
+        },
+        {
+          "info": {
+            "name": "Search discovery account rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/rules/accounts",
+            "params": [
+              {
+                "name": "filter.discoverySourceId",
+                "value": "",
+                "type": "query",
+                "description": "Only include rules that apply to this discovery source"
+              },
+              {
+                "name": "filter.statusFilter",
+                "value": "",
+                "type": "query",
+                "description": "Which status types to include: All, Active, Inactive"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns discovery account rules"
+        },
+        {
+          "info": {
+            "name": "Create a discovery account rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/rules/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the created discovery account rule"
+        },
+        {
+          "info": {
+            "name": "Search discovery dependency rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/rules/dependencies",
+            "params": [
+              {
+                "name": "filter.discoverySourceId",
+                "value": "",
+                "type": "query",
+                "description": "Only include rules that apply to this discovery source"
+              },
+              {
+                "name": "filter.statusFilter",
+                "value": "",
+                "type": "query",
+                "description": "Which status types to include: All, Active, Inactive"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns discovery dependency rules"
+        },
+        {
+          "info": {
+            "name": "Create a discovery dependency rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/rules/dependencies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the created discovery dependency rule"
+        },
+        {
+          "info": {
+            "name": "Get discovery account rule state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/rules/accounts/state"
+          },
+          "docs": "Returns discovery account rule state"
+        },
+        {
+          "info": {
+            "name": "Get discovery account rule info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/rules/accounts/info/:secretTemplateId",
+            "params": [
+              {
+                "name": "secretTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "secretTemplateId"
+              }
+            ]
+          },
+          "docs": "Returns discovery account rule info"
+        },
+        {
+          "info": {
+            "name": "Get discovery rule secret templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/rules/secret-templates/:scanTemplateId",
+            "params": [
+              {
+                "name": "scanTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "scanTemplateId"
+              }
+            ]
+          },
+          "docs": "Returns discovery rule secret templates"
+        },
+        {
+          "info": {
+            "name": "Get discovery rule scan item fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/rules/scan-item-fields/:scanTemplateId",
+            "params": [
+              {
+                "name": "scanTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "scanTemplateId"
+              }
+            ]
+          },
+          "docs": "Returns discovery rule scan item fields"
+        },
+        {
+          "info": {
+            "name": "Get discovery dependency rule info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/rules/dependencies/info/:scanTemplateId",
+            "params": [
+              {
+                "name": "scanTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "scanTemplateId"
+              }
+            ]
+          },
+          "docs": "Returns discovery dependency rule info"
+        },
+        {
+          "info": {
+            "name": "Get discovery rules for a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/discovery/rules/folder/:folderId",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path",
+                "description": "folderId"
+              }
+            ]
+          },
+          "docs": "Returns discovery rules for a folder"
+        },
+        {
+          "info": {
+            "name": "Patches discovery source filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/filter/:memberId",
+            "params": [
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              },
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "path",
+                "description": "memberId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patches the properties on a single discovery source filter"
+        },
+        {
+          "info": {
+            "name": "Create a new discovery source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v2/discovery/source",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an empty discovery source that does not have any scanners."
+        },
+        {
+          "info": {
+            "name": "Create a new active directory discovery source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/source/active-directory",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new active directory discovery source"
+        },
+        {
+          "info": {
+            "name": "Run a discovery command",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/run",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run a discovery command"
+        },
+        {
+          "info": {
+            "name": "Test Discovery Command Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/command-sets/:commandSetId/test",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Test the discover command set"
+        },
+        {
+          "info": {
+            "name": "Duplicate Scanner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/scanners/duplicate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Duplicate a new scanner"
+        },
+        {
+          "info": {
+            "name": "Create a Dependency Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/scanners/dependency-template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Dependency Template"
+        },
+        {
+          "info": {
+            "name": "Add Scanner to discovery source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/scanners",
+            "params": [
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add the specified scanner to this discovery source.  After adding the scanner the scanner it will initially be invalid until the scanner map and scanner credentials have been updated."
+        },
+        {
+          "info": {
+            "name": "Sort Scanner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/scanners/sort",
+            "params": [
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sorts the scanners for execution."
+        },
+        {
+          "info": {
+            "name": "Create scanner setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/scanner-settings",
+            "params": [
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a scanner setting on a discovery source"
+        },
+        {
+          "info": {
+            "name": "Run a scan on the specified computer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/network/item/computer/scan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run a scan on the specified computer"
+        },
+        {
+          "info": {
+            "name": "Delete the specified computers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/network/item/computer/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete the specified computers"
+        },
+        {
+          "info": {
+            "name": "Discovery Dependency Import Bulk Operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/rules/dependencies/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a discovery dependency import bulk operation"
+        },
+        {
+          "info": {
+            "name": "Discovery Account Import Bulk Operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/rules/account/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a discovery account import bulk operation"
+        },
+        {
+          "info": {
+            "name": "Sort Rule Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/rules/accounts/sort",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sorts the Rule Accounts."
+        },
+        {
+          "info": {
+            "name": "Sort Rule Dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/discovery/rules/dependencies/sort",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sorts the Rule Dependencies."
+        },
+        {
+          "info": {
+            "name": "Save scanner credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/scanners/:discoveryItemScannerId/credentials",
+            "params": [
+              {
+                "name": "discoveryItemScannerId",
+                "value": "",
+                "type": "path",
+                "description": "discoveryItemScannerId"
+              },
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Completely replace all the scanner credentials with this list"
+        },
+        {
+          "info": {
+            "name": "Save scanner settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/scanners/:discoveryItemScannerId/settings",
+            "params": [
+              {
+                "name": "discoveryItemScannerId",
+                "value": "",
+                "type": "path",
+                "description": "discoveryItemScannerId"
+              },
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Completely replace all the scanner settings for this scanner"
+        },
+        {
+          "info": {
+            "name": "Updates discovery source filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/discovery/source/:discoverySourceId/filters",
+            "params": [
+              {
+                "name": "discoverySourceId",
+                "value": "",
+                "type": "path",
+                "description": "discoverySourceId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the full collection of discovery source filters for a discovery source"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

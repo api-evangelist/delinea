@@ -1,0 +1,412 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations DirectoryServices API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DirectoryServices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Unlink a group from domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/directory-services/domains/:domainId/group/:groupId",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "domainId"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "groupId"
+              }
+            ]
+          },
+          "docs": "Unlinking a group from a domain will disable future synchronization updates. The group will also be disabled."
+        },
+        {
+          "info": {
+            "name": "Get Synchronization Log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/directory-services/synchronization/logs",
+            "params": [
+              {
+                "name": "filter.endDate",
+                "value": "",
+                "type": "query",
+                "description": "EndDate"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "SearchText"
+              },
+              {
+                "name": "filter.startDate",
+                "value": "",
+                "type": "query",
+                "description": "StartDate"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get Synchronization Log"
+        },
+        {
+          "info": {
+            "name": "Directory Services Sync Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/directory-services/synchronization"
+          },
+          "docs": "Return status of directory services synchronization"
+        },
+        {
+          "info": {
+            "name": "Search Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/directory-services/domains",
+            "params": [
+              {
+                "name": "filter.domainName",
+                "value": "",
+                "type": "query",
+                "description": "DomainName"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeInactive"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search Domains"
+        },
+        {
+          "info": {
+            "name": "Create Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/directory-services/domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new domain to be used for directory services synchronization / integration"
+        },
+        {
+          "info": {
+            "name": "Get a Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/directory-services/domains/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Get a Domain"
+        },
+        {
+          "info": {
+            "name": "Get Ldap synchronization settings for a domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/directory-services/domains/ldap-settings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Get Ldap synchronization settings for a domain"
+        },
+        {
+          "info": {
+            "name": "Get a Domain Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/directory-services/domains/stub",
+            "params": [
+              {
+                "name": "domainType",
+                "value": "",
+                "type": "query",
+                "description": "domainType"
+              }
+            ]
+          },
+          "docs": "Get a Domain Stub"
+        },
+        {
+          "info": {
+            "name": "Search in the directory for groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/directory-services/domains/:domainId/groups/search-directory",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "domainId"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search text. Use * for wildcards, ex: Admin*. Leave empty to return all."
+              }
+            ]
+          },
+          "docs": "Using the credentials defined on the domain search within the directory for groups"
+        },
+        {
+          "info": {
+            "name": "Search in the directory for members of a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/directory-services/domains/:domainId/members",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "domainId"
+              },
+              {
+                "name": "domainIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The unique directory identifier for the group to be linked.  For example, this is ADGuid in Active Directory"
+              },
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the Group"
+              }
+            ]
+          },
+          "docs": "Using the credentials defined on the domain find members of a group within the directory"
+        },
+        {
+          "info": {
+            "name": "Directory Services Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/directory-services/configuration"
+          },
+          "docs": "Retrieve the current settings for Directory Services configuration"
+        },
+        {
+          "info": {
+            "name": "Update Directory Services Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/directory-services/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the current settings for Directory Services configuration"
+        },
+        {
+          "info": {
+            "name": "Patch Ldap Sync Settings for a domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/directory-services/domains/ldap-settings/:domainId",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "domainId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Ldap Sync Settings for a domain"
+        },
+        {
+          "info": {
+            "name": "Patch a domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/directory-services/domains/:domainId",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "domainId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch a domain"
+        },
+        {
+          "info": {
+            "name": "Synchronize all directory services",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/directory-services/synchronization-now"
+          },
+          "docs": "Run synchronize to update users and groups for all configurated and enabled domains in all directories and domains"
+        },
+        {
+          "info": {
+            "name": "Link a group from the directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/directory-services/domains/:domainId/group",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "domainId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Linking or adding a group to a domain will synchronize all users from the directory to SS that are members of this group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

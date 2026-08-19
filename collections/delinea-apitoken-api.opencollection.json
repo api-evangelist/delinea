@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations ApiToken API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ApiToken",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/api-token/generate-token"
+          },
+          "docs": "Generate API Token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

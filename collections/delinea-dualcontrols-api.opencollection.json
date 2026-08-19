@@ -1,0 +1,227 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations DualControls API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DualControls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Dual Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/dual-controls/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Dual control ID"
+              }
+            ]
+          },
+          "docs": "Get a single dual control by ID"
+        },
+        {
+          "info": {
+            "name": "Update Dual Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/dual-controls/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Dual control ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a single dual control by ID"
+        },
+        {
+          "info": {
+            "name": "Delete Dual Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/dual-controls/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Dual control ID"
+              }
+            ]
+          },
+          "docs": "Delete a dual control by ID"
+        },
+        {
+          "info": {
+            "name": "Get dual control state for the current item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/dual-controls/state/:dualControlType/:id",
+            "params": [
+              {
+                "name": "dualControlType",
+                "value": "",
+                "type": "path",
+                "description": "dualControlType"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Get dual control state for the current item"
+        },
+        {
+          "info": {
+            "name": "Search Dual Controls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/dual-controls",
+            "params": [
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include inactive items"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page dual controls"
+        },
+        {
+          "info": {
+            "name": "Create Dual Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/dual-controls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new dual control"
+        },
+        {
+          "info": {
+            "name": "Get Dual Control Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/dual-controls/types"
+          },
+          "docs": "Return a list of Dual Control Types"
+        },
+        {
+          "info": {
+            "name": "Get Dual Control Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/dual-controls/stub"
+          },
+          "docs": "Return the default values for a new dual control"
+        },
+        {
+          "info": {
+            "name": "Authorize a dual control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/dual-controls/auth/:dualControlType/:id",
+            "params": [
+              {
+                "name": "dualControlType",
+                "value": "",
+                "type": "path",
+                "description": "dualControlType"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authorize a dual control"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

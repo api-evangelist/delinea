@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations FeatureFlag API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FeatureFlag",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Clear Feature Flag Cache",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/featureflag"
+          },
+          "docs": "Clear any feature flag values which have been cached"
+        },
+        {
+          "info": {
+            "name": "Check if Feature is Enabled",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/featureflag/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "key"
+              }
+            ]
+          },
+          "docs": "Check if Feature is Enabled"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,591 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Inbox API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inbox",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get inbox resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox/templates/resources/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Get inbox resource"
+        },
+        {
+          "info": {
+            "name": "Delete inbox resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/inbox/templates/resources/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Delete inbox resource"
+        },
+        {
+          "info": {
+            "name": "Search inbox messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox/messages/:messageTypeId?",
+            "params": [
+              {
+                "name": "messageTypeId",
+                "value": "",
+                "type": "query",
+                "description": "messageTypeId"
+              },
+              {
+                "name": "filter.endDate",
+                "value": "",
+                "type": "query",
+                "description": "EndDate"
+              },
+              {
+                "name": "messageDataFilters[0].displayValue",
+                "value": "",
+                "type": "query",
+                "description": "Search specifically display values"
+              },
+              {
+                "name": "messageDataFilters[0].inboxDataName",
+                "value": "",
+                "type": "query",
+                "description": "Which field is being searched"
+              },
+              {
+                "name": "messageDataFilters[0].valueBool",
+                "value": "",
+                "type": "query",
+                "description": "Search specifically for boolean values"
+              },
+              {
+                "name": "messageDataFilters[0].valueDateTimeEnd",
+                "value": "",
+                "type": "query",
+                "description": "Search specifically for date values less than this date"
+              },
+              {
+                "name": "messageDataFilters[0].valueDateTimeStart",
+                "value": "",
+                "type": "query",
+                "description": "Search specifically for date values greater than this date"
+              },
+              {
+                "name": "messageDataFilters[0].valueInt",
+                "value": "",
+                "type": "query",
+                "description": "Search specifically for int values"
+              },
+              {
+                "name": "messageDataFilters[0].valueString",
+                "value": "",
+                "type": "query",
+                "description": "Search specifically for string values"
+              },
+              {
+                "name": "filter.messageTypeIds",
+                "value": "",
+                "type": "query",
+                "description": "MessageTypeIds"
+              },
+              {
+                "name": "filter.readStatusFilter",
+                "value": "",
+                "type": "query",
+                "description": "ReadStatusFilter"
+              },
+              {
+                "name": "filter.startDate",
+                "value": "",
+                "type": "query",
+                "description": "StartDate"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page inbox messages"
+        },
+        {
+          "info": {
+            "name": "Get Inbox Message by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox/message/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "messageId"
+              }
+            ]
+          },
+          "docs": "Gets the message summary by id"
+        },
+        {
+          "info": {
+            "name": "Inbox Message Type Data Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox/data-names",
+            "params": [
+              {
+                "name": "messageTypeIds",
+                "value": "",
+                "type": "query",
+                "description": "messageTypeIds"
+              }
+            ]
+          },
+          "docs": "Get the data names by type for inbox messages"
+        },
+        {
+          "info": {
+            "name": "Get inbox templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox/templates",
+            "params": [
+              {
+                "name": "filter.templateType",
+                "value": "",
+                "type": "query",
+                "description": "Only return templates of this type.  When null returns all types"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get, sort, and page inbox templates"
+        },
+        {
+          "info": {
+            "name": "Create inbox template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/inbox/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create inbox template"
+        },
+        {
+          "info": {
+            "name": "Get inbox template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "templateId"
+              }
+            ]
+          },
+          "docs": "Get inbox template"
+        },
+        {
+          "info": {
+            "name": "Patch inbox template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/inbox/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "templateId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch inbox template"
+        },
+        {
+          "info": {
+            "name": "Get inbox template locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox/templates/:templateId/locales/:localeId",
+            "params": [
+              {
+                "name": "localeId",
+                "value": "",
+                "type": "path",
+                "description": "localeId"
+              },
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "templateId"
+              }
+            ]
+          },
+          "docs": "Get inbox template locale"
+        },
+        {
+          "info": {
+            "name": "Patch inbox template locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/inbox/templates/:templateId/locales/:localeId",
+            "params": [
+              {
+                "name": "localeId",
+                "value": "",
+                "type": "path",
+                "description": "localeId"
+              },
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "templateId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch inbox template locale"
+        },
+        {
+          "info": {
+            "name": "Get inbox message types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox/message-types",
+            "params": [
+              {
+                "name": "includeCurrentUserMessageCounts",
+                "value": "",
+                "type": "query",
+                "description": "When true the number of each message type the current user has will be added to the response and only message types with a count > 0 will be returned."
+              }
+            ]
+          },
+          "docs": "Get inbox message types"
+        },
+        {
+          "info": {
+            "name": "Get inbox resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox/templates/resources",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get, sort, and page inbox resources"
+        },
+        {
+          "info": {
+            "name": "Upload an embedded resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/inbox/templates/resources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload an embedded resource"
+        },
+        {
+          "info": {
+            "name": "Get inbox notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/notifications",
+            "params": [
+              {
+                "name": "includeArchived",
+                "value": "",
+                "type": "query",
+                "description": "includeArchived"
+              },
+              {
+                "name": "markAlertsAsViewed",
+                "value": "",
+                "type": "query",
+                "description": "markAlertsAsViewed"
+              }
+            ]
+          },
+          "docs": "Get inbox notifications"
+        },
+        {
+          "info": {
+            "name": "Notification Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/notifications/status"
+          },
+          "docs": "Get the notification status"
+        },
+        {
+          "info": {
+            "name": "Send Test Inbox Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/inbox/send-test-message",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a test message to another user that will appear in their inbox."
+        },
+        {
+          "info": {
+            "name": "Copy an  inbox template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/inbox/templates/copy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a copy of an inbox template"
+        },
+        {
+          "info": {
+            "name": "Create inbox template locale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/inbox/templates/template-locale",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create inbox template locale"
+        },
+        {
+          "info": {
+            "name": "Mark messages read or unread",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/inbox/update-read",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mark messages read or unread"
+        },
+        {
+          "info": {
+            "name": "Mark alert notification as read",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/notifications/notification-read",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mark alert notification as read"
+        },
+        {
+          "info": {
+            "name": "Mark alert notification as unread",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/notifications/notification-unread",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mark alert notification as unread"
+        },
+        {
+          "info": {
+            "name": "Clear New Message Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/notifications/clear-new-message-status"
+          },
+          "docs": "Indicates that the Inbox has been viewed and the new message alert status indicator should clear"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

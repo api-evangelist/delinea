@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations PbaConfiguration API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PbaConfiguration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Pba Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/pba-configuration"
+          },
+          "docs": "Get Pba Configuration"
+        },
+        {
+          "info": {
+            "name": "Update Pba Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/pba-configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Pba Configuration"
+        },
+        {
+          "info": {
+            "name": "Get Historical Import Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/pba-configuration/get-historical-import-status"
+          },
+          "docs": "Get Historical Import Status."
+        },
+        {
+          "info": {
+            "name": "Process Pba Historical Import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/pba-history-import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Process Pba Historical Import"
+        },
+        {
+          "info": {
+            "name": "Test Pba Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/pba-test-connection"
+          },
+          "docs": "Test Pba Connection"
+        },
+        {
+          "info": {
+            "name": "Confirm Pba Pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/pba-confirm-pair"
+          },
+          "docs": "Confirm SS Key Pair with Pba"
+        },
+        {
+          "info": {
+            "name": "Sync Pba Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/pba-sync-metadata"
+          },
+          "docs": "Sync Pba Metadata"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

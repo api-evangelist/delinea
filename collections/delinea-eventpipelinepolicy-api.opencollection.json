@@ -1,0 +1,574 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations EventPipelinePolicy API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EventPipelinePolicy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Remove Event Pipeline From Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:policyId/pipeline/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline ID"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ]
+          },
+          "docs": "Remove a pipeline from a specific policy"
+        },
+        {
+          "info": {
+            "name": "Get Event Pipeline Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ]
+          },
+          "docs": "Get a specific policy by ID"
+        },
+        {
+          "info": {
+            "name": "Add Pipeline To Event Pipeline Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns data pertaining to children of a folder that has a particular pipeline policy assigned"
+        },
+        {
+          "info": {
+            "name": "Update Event Pipeline Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a policy"
+        },
+        {
+          "info": {
+            "name": "Get Event Pipeline Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/list",
+            "params": [
+              {
+                "name": "filter.eventPipelineId",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelineId"
+              },
+              {
+                "name": "filter.eventPipelinePolicyName",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelinePolicyName"
+              },
+              {
+                "name": "filter.folderId",
+                "value": "",
+                "type": "query",
+                "description": "FolderId"
+              },
+              {
+                "name": "filter.includeActive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeActive"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeInactive"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get all pipeline policies"
+        },
+        {
+          "info": {
+            "name": "Get Event Pipeline Policy Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/runs",
+            "params": [
+              {
+                "name": "filter.eventPipelinePolicyId",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelinePolicyId"
+              },
+              {
+                "name": "filter.eventPipelinePolicyRunId",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelinePolicyRunId"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get all runs by specific search criteria"
+        },
+        {
+          "info": {
+            "name": "Get Event Pipeline Policy Run Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/activity",
+            "params": [
+              {
+                "name": "eventPipelineId",
+                "value": "",
+                "type": "query",
+                "description": "eventPipelineId"
+              },
+              {
+                "name": "eventPipelinePolicyRunId",
+                "value": "",
+                "type": "query",
+                "description": "Event Pipeline Policy Run ID"
+              }
+            ]
+          },
+          "docs": "Get all activity for a specific policy run ID"
+        },
+        {
+          "info": {
+            "name": "Get Secret Policies For Pipeline Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id/secretpolicies",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              },
+              {
+                "name": "filter.eventPipelinePolicyId",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelinePolicyId"
+              },
+              {
+                "name": "filter.eventPipelinePolicyName",
+                "value": "",
+                "type": "query",
+                "description": "EventPipelinePolicyName"
+              },
+              {
+                "name": "filter.includeActive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeActive"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get all of the secret polocies that are related to this pipeline"
+        },
+        {
+          "info": {
+            "name": "Get Folders For Pipeline Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id/folders",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ]
+          },
+          "docs": "Get all of the folders for a policy pipeline"
+        },
+        {
+          "info": {
+            "name": "Update Event Pipeline Policy Folder Maps",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id/folders",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds or updates the Pipeline Policy Folder Maps to reflect the collection of folder maps for the pipeline policy that was passed in."
+        },
+        {
+          "info": {
+            "name": "Get Groups For Pipeline Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id/groups",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ]
+          },
+          "docs": "Get all of the groups that apply this pipeline"
+        },
+        {
+          "info": {
+            "name": "Update Event Pipeline Policy Group Maps",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id/groups",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds or updates the Pipeline Policy Group Maps to reflect the collection of group maps for the pipeline policy that was passed in."
+        },
+        {
+          "info": {
+            "name": "Get Group Count For Pipeline Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id/groups/count",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ]
+          },
+          "docs": "Returns the count of groups that have a particular pipeline policy assigned"
+        },
+        {
+          "info": {
+            "name": "Get Child Folder Data For Pipeline Policy Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id/folders/:folderId/childdata",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path",
+                "description": "Folder ID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ]
+          },
+          "docs": "Get all of the child data for a specific folder"
+        },
+        {
+          "info": {
+            "name": "Export Event Pipeline Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/export/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ]
+          },
+          "docs": "Export a policy"
+        },
+        {
+          "info": {
+            "name": "Create Pipeline Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/event-pipeline-policy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Pipeline Policy"
+        },
+        {
+          "info": {
+            "name": "Duplicate Event Pipeline Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/duplicate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a duplicate of a policy"
+        },
+        {
+          "info": {
+            "name": "Import Event Pipeline Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import a policy"
+        },
+        {
+          "info": {
+            "name": "Update Event Pipeline Policy Sort Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id/order",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the sort order of a policy"
+        },
+        {
+          "info": {
+            "name": "Activate Event Pipeline Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/event-pipeline-policy/:id/activate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Event Pipeline Policy ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activate a specific policy"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,520 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations CategorizedLists API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CategorizedLists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              }
+            ]
+          },
+          "docs": "Returns the list for the provided ID"
+        },
+        {
+          "info": {
+            "name": "Update a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given list"
+        },
+        {
+          "info": {
+            "name": "Delete List",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "ID of list to be deleted"
+              }
+            ]
+          },
+          "docs": "Delete a List by ID"
+        },
+        {
+          "info": {
+            "name": "Get a list's items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/options",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              },
+              {
+                "name": "filter.category",
+                "value": "",
+                "type": "query",
+                "description": "Category text to filter by. If empty or not included, will return items for all categories."
+              },
+              {
+                "name": "filter.nullCategoryIsUncategorized",
+                "value": "",
+                "type": "query",
+                "description": "If true and Category value is an empty string or not included, will return only uncategorized items; otherwise, an empty category filter is treated as no category filter."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns the list's options for the provided ID"
+        },
+        {
+          "info": {
+            "name": "Adds options to a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/options",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds the options to the list with the provided ID"
+        },
+        {
+          "info": {
+            "name": "Updates options in a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/options",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the options in the list with the provided ID"
+        },
+        {
+          "info": {
+            "name": "Delete all list options from a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/options",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              }
+            ]
+          },
+          "docs": "Delete all list options from a list"
+        },
+        {
+          "info": {
+            "name": "Delete a list option from a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/lists/:listId/options/:optionId",
+            "params": [
+              {
+                "name": "listId",
+                "value": "",
+                "type": "path",
+                "description": "List id"
+              },
+              {
+                "name": "optionId",
+                "value": "",
+                "type": "path",
+                "description": "List option id"
+              }
+            ]
+          },
+          "docs": "Delete a list option from a list"
+        },
+        {
+          "info": {
+            "name": "Search Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/lists",
+            "params": [
+              {
+                "name": "filter.includeActive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include active lists in results (when excluded equals true)"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include inactive lists in results"
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search text"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page lists"
+        },
+        {
+          "info": {
+            "name": "Create a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates the given list"
+        },
+        {
+          "info": {
+            "name": "Get a list of lists available to current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/lists/summary"
+          },
+          "docs": "Returns a list of lists for the current user"
+        },
+        {
+          "info": {
+            "name": "Get a list's current categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/categories",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              }
+            ]
+          },
+          "docs": "Returns the list's categories for the provided ID"
+        },
+        {
+          "info": {
+            "name": "Get Audits for List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/audits",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List Id"
+              },
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page List Audits."
+        },
+        {
+          "info": {
+            "name": "Adds an option to a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/options/single",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds an option to the list with the provided ID"
+        },
+        {
+          "info": {
+            "name": "Updates an option in a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/options/single",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an option in the list with the provided ID"
+        },
+        {
+          "info": {
+            "name": "Adds options to the list with the specified category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/options/:category",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "path",
+                "description": "Category to assign"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds the options to the list with the provided ID with the specified category"
+        },
+        {
+          "info": {
+            "name": "Upload a file of list options",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/options/file",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds the options from the given file to the list with the provided ID"
+        },
+        {
+          "info": {
+            "name": "Replaces options in a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/lists/:categorizedListId/options/replace",
+            "params": [
+              {
+                "name": "categorizedListId",
+                "value": "",
+                "type": "path",
+                "description": "List ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces all options currently in the list with the given options"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

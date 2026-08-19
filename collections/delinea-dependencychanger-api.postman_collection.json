@@ -1,0 +1,2076 @@
+{
+  "item": [
+    {
+      "id": "3c2bbce9-09f2-4751-9d77-43c551dc057e",
+      "name": "DependencyChanger",
+      "description": {
+        "content": "DependencyChangerController",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "29453a69-9e12-4cd0-b5a1-c407a264f4d5",
+          "name": "Get Dependency Changers",
+          "request": {
+            "name": "Get Dependency Changers",
+            "description": {
+              "content": "Get Dependency Changers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dependency-changers",
+                "dependency-changers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter.secretDependencyTypeId",
+                  "value": "<integer>",
+                  "description": "If set, include only the given Secret Dependency Type."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.status",
+                  "value": "<string>",
+                  "description": "Whether to include active, inactive, or both. Defaults to Active only"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1a6da91-674a-4923-8d3f-9e7ea7c4a34a",
+              "name": "Dependency Changers List",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.secretDependencyTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 2185,\n  \"currentPage\": 4252,\n  \"hasNext\": false,\n  \"hasPrev\": true,\n  \"nextSkip\": 6705,\n  \"pageCount\": 5333,\n  \"prevSkip\": 9669,\n  \"records\": [\n    {\n      \"active\": false,\n      \"secretDependencyChangerId\": 8655,\n      \"secretDependencyChangerName\": \"string\",\n      \"secretDependencyTypeId\": 3665,\n      \"secretDependencyTypeName\": \"string\"\n    },\n    {\n      \"active\": true,\n      \"secretDependencyChangerId\": 2065,\n      \"secretDependencyChangerName\": \"string\",\n      \"secretDependencyTypeId\": 8815,\n      \"secretDependencyTypeName\": \"string\"\n    }\n  ],\n  \"severity\": \"Retry\",\n  \"skip\": 3567,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Desc\",\n      \"priority\": 5832\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Desc\",\n      \"priority\": 5292\n    }\n  ],\n  \"success\": false,\n  \"take\": 122,\n  \"total\": 5739\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a940068-08f1-48be-9306-9d0111327de0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.secretDependencyTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32de48d7-181f-451c-908a-91ad3ed3c814",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.secretDependencyTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fb4d2b0-e63d-4615-9b41-e5d9695323ee",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.secretDependencyTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter.status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db266658-853e-40ab-acd2-f9626d10447c",
+          "name": "Get Dependency Changer",
+          "request": {
+            "name": "Get Dependency Changer",
+            "description": {
+              "content": "Get Dependency Changer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dependency-changers",
+                "dependency-changer",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba19ab47-6ca4-4310-a83c-4f69f261bb6e",
+              "name": "Dependency Changer Details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"canEdit\": false,\n  \"changeFailScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 110,\n    \"secretDependencyChangerId\": 8047,\n    \"secretDependencyChangerScriptId\": 9368,\n    \"username\": \"string\",\n    \"useTokens\": false\n  },\n  \"changeSuccessScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 8692,\n    \"secretDependencyChangerId\": 2065,\n    \"secretDependencyChangerScriptId\": 3903,\n    \"username\": \"string\",\n    \"useTokens\": false\n  },\n  \"hasDependencies\": false,\n  \"hasImportRules\": true,\n  \"passwordChangeScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 2156,\n    \"secretDependencyChangerId\": 8946,\n    \"secretDependencyChangerScriptId\": 4711,\n    \"username\": \"string\",\n    \"useTokens\": true\n  },\n  \"scanItemTemplateId\": 364,\n  \"secretDependencyChangerDescription\": \"string\",\n  \"secretDependencyChangerId\": 6933,\n  \"secretDependencyChangerName\": \"string\",\n  \"secretDependencyTypeId\": 6587,\n  \"settings\": [\n    {\n      \"settingName\": \"string\",\n      \"usingDefault\": false,\n      \"value\": \"string\"\n    },\n    {\n      \"settingName\": \"string\",\n      \"usingDefault\": false,\n      \"value\": \"string\"\n    }\n  ],\n  \"verificationScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 2472,\n    \"secretDependencyChangerId\": 7986,\n    \"secretDependencyChangerScriptId\": 6415,\n    \"username\": \"string\",\n    \"useTokens\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "166b1f65-3ffd-4dc9-96e9-eced893c80d8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3b135ed-54c4-4e7d-b72a-30a30ca5eebf",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6779f57c-ebf5-4eea-998b-20289dcf845b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06aef4a9-f705-4b6c-963b-c05c40cd46d7",
+          "name": "Patch Dependency Changer",
+          "request": {
+            "name": "Patch Dependency Changer",
+            "description": {
+              "content": "Update values on a Dependency Changer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dependency-changers",
+                "dependency-changer",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"changeFailScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"changeSuccessScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"passwordChangeScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"scanItemTemplateId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"secretDependencyChangerDescription\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"secretDependencyChangerName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"secretDependencyTypeId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"settings\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": [\n        {\n          \"settingName\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"settingName\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"verificationScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10a05e94-132c-46b2-941c-a09e3b262898",
+              "name": "Updated Dependency Changer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"changeFailScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"changeSuccessScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"passwordChangeScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"scanItemTemplateId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"secretDependencyChangerDescription\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"secretDependencyChangerName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"secretDependencyTypeId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"settings\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": [\n        {\n          \"settingName\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"settingName\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"verificationScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": false,\n  \"canEdit\": false,\n  \"changeFailScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 2576,\n    \"secretDependencyChangerId\": 7653,\n    \"secretDependencyChangerScriptId\": 4437,\n    \"username\": \"string\",\n    \"useTokens\": true\n  },\n  \"changeSuccessScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 3289,\n    \"secretDependencyChangerId\": 5871,\n    \"secretDependencyChangerScriptId\": 2579,\n    \"username\": \"string\",\n    \"useTokens\": true\n  },\n  \"hasDependencies\": true,\n  \"hasImportRules\": true,\n  \"passwordChangeScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 1304,\n    \"secretDependencyChangerId\": 594,\n    \"secretDependencyChangerScriptId\": 97,\n    \"username\": \"string\",\n    \"useTokens\": true\n  },\n  \"scanItemTemplateId\": 2625,\n  \"secretDependencyChangerDescription\": \"string\",\n  \"secretDependencyChangerId\": 5468,\n  \"secretDependencyChangerName\": \"string\",\n  \"secretDependencyTypeId\": 675,\n  \"settings\": [\n    {\n      \"settingName\": \"string\",\n      \"usingDefault\": false,\n      \"value\": \"string\"\n    },\n    {\n      \"settingName\": \"string\",\n      \"usingDefault\": true,\n      \"value\": \"string\"\n    }\n  ],\n  \"verificationScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 4717,\n    \"secretDependencyChangerId\": 6795,\n    \"secretDependencyChangerScriptId\": 1510,\n    \"username\": \"string\",\n    \"useTokens\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f01a4f95-34f8-453a-a5fb-036c013f00e3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"changeFailScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"changeSuccessScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"passwordChangeScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"scanItemTemplateId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"secretDependencyChangerDescription\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"secretDependencyChangerName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"secretDependencyTypeId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"settings\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": [\n        {\n          \"settingName\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"settingName\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"verificationScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4679c20a-67e4-459d-8afb-f971a8a76479",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"changeFailScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"changeSuccessScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"passwordChangeScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"scanItemTemplateId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"secretDependencyChangerDescription\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"secretDependencyChangerName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"secretDependencyTypeId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"settings\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": [\n        {\n          \"settingName\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"settingName\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"verificationScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c355570d-cd2f-45c1-9289-0bf8f2b6bf94",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"changeFailScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"changeSuccessScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"passwordChangeScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    },\n    \"scanItemTemplateId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"secretDependencyChangerDescription\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"secretDependencyChangerName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"secretDependencyTypeId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"settings\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": [\n        {\n          \"settingName\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"settingName\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    \"verificationScript\": {\n      \"arguments\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"key\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"odbcParameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"parameters\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"passphrase\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"password\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"scriptId\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<integer>\"\n      },\n      \"username\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<string>\"\n      },\n      \"useTokens\": {\n        \"dirty\": \"<boolean>\",\n        \"value\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c1bb636-e266-4e57-953c-f1555dd6142b",
+          "name": "Get Dependency Changer Settings",
+          "request": {
+            "name": "Get Dependency Changer Settings",
+            "description": {
+              "content": "Get Dependency Changer Settings",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dependency-changers",
+                "dependency-changer-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "add72af7-83c1-4b15-93f2-cef4065efd18",
+              "name": "Dependency Changer Settings List",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 7932,\n  \"currentPage\": 887,\n  \"hasNext\": true,\n  \"hasPrev\": true,\n  \"nextSkip\": 3420,\n  \"pageCount\": 1276,\n  \"prevSkip\": 1592,\n  \"records\": [\n    {\n      \"defaultValue\": \"string\",\n      \"settingId\": 4549,\n      \"settingName\": \"string\"\n    },\n    {\n      \"defaultValue\": \"string\",\n      \"settingId\": 2891,\n      \"settingName\": \"string\"\n    }\n  ],\n  \"severity\": \"Warn\",\n  \"skip\": 9168,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 2638\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 5923\n    }\n  ],\n  \"success\": false,\n  \"take\": 8107,\n  \"total\": 2004\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6faa603d-afc2-4ef8-a989-2a6026716ebb",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "548b1cf4-964a-42a0-8b55-cbab75e772c6",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fb73095-8ba8-41ec-b69f-e0f45abd1ee7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef9721b8-1410-4295-9886-9edbb0c6c141",
+          "name": "Get Dependency Changer Scripts",
+          "request": {
+            "name": "Get Dependency Changer Scripts",
+            "description": {
+              "content": "Get Dependency Changer Scripts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dependency-changers",
+                "dependency-changer-scripts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "secretDependencyChangerId",
+                  "value": "<integer>",
+                  "description": "SecretDependencyChangerId"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8268c70-ba4b-4b6d-8f57-ac2a99293ff9",
+              "name": "Dependency Changer Scripts List",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer-scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "secretDependencyChangerId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"databasePlaceholder\": \"string\",\n    \"id\": 7648,\n    \"name\": \"string\",\n    \"odbcConnectionStringArgs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"portPlaceholder\": \"string\",\n    \"scriptType\": 1804\n  },\n  {\n    \"databasePlaceholder\": \"string\",\n    \"id\": 9811,\n    \"name\": \"string\",\n    \"odbcConnectionStringArgs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"portPlaceholder\": \"string\",\n    \"scriptType\": 8491\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a86dc23d-9307-4f39-8ccf-ab93b7617b1a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer-scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "secretDependencyChangerId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3c35c07-8883-46cb-bcf8-4a295b3ed76a",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer-scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "secretDependencyChangerId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5e4fd31-da49-4228-8026-5977bbba6420",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer-scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "secretDependencyChangerId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bad9afff-de7a-48ff-bcb7-b5bb36b1ea8e",
+          "name": "Get Dependency Changer Scan Fields",
+          "request": {
+            "name": "Get Dependency Changer Scan Fields",
+            "description": {
+              "content": "Get Dependency Changer Scan Fields",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dependency-changers",
+                "scan-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "scanTemplateId",
+                  "value": "<integer>",
+                  "description": "ScanTemplateId"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf3e71cc-1bc5-4a4e-8fbd-4f2e81adb228",
+              "name": "Dependency Changer Scan Fields List",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "scan-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "scanTemplateId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"includeInMatch\": true,\n    \"isActive\": false,\n    \"isRequired\": false,\n    \"parentScanItemFieldId\": 9281,\n    \"parentScanItemFieldName\": \"string\",\n    \"scanItemFieldId\": 3971,\n    \"scanItemFieldName\": \"string\",\n    \"scanItemTemplateId\": 2555,\n    \"sortOrder\": 1795,\n    \"systemField\": false\n  },\n  {\n    \"includeInMatch\": true,\n    \"isActive\": true,\n    \"isRequired\": false,\n    \"parentScanItemFieldId\": 7763,\n    \"parentScanItemFieldName\": \"string\",\n    \"scanItemFieldId\": 9689,\n    \"scanItemFieldName\": \"string\",\n    \"scanItemTemplateId\": 3554,\n    \"sortOrder\": 4475,\n    \"systemField\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5422c21e-9b5e-4e8f-aa3e-2acfca05753b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "scan-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "scanTemplateId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d11638f3-c04f-4607-982c-38de61ac1ec8",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "scan-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "scanTemplateId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9662a079-153f-4877-b55c-50dcd09c10f7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "scan-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "scanTemplateId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf3cd56d-e023-4f04-9212-0f5b386657e9",
+          "name": "Create a Dependency Changer",
+          "request": {
+            "name": "Create a Dependency Changer",
+            "description": {
+              "content": "Create a new Dependency Changer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dependency-changers",
+                "dependency-changer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"changeFailScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"changeSuccessScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"createDependencyTemplate\": \"<boolean>\",\n    \"passwordChangeScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"scanItemTemplateId\": \"<integer>\",\n    \"secretDependencyChangerDescription\": \"<string>\",\n    \"secretDependencyChangerName\": \"<string>\",\n    \"secretDependencyTypeId\": \"<integer>\",\n    \"settings\": [\n      {\n        \"settingName\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"settingName\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"verificationScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a0c0e58-7856-4551-8d44-bb5bb0c70829",
+              "name": "The newly created Dependency Changer details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"changeFailScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"changeSuccessScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"createDependencyTemplate\": \"<boolean>\",\n    \"passwordChangeScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"scanItemTemplateId\": \"<integer>\",\n    \"secretDependencyChangerDescription\": \"<string>\",\n    \"secretDependencyChangerName\": \"<string>\",\n    \"secretDependencyTypeId\": \"<integer>\",\n    \"settings\": [\n      {\n        \"settingName\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"settingName\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"verificationScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": false,\n  \"canEdit\": false,\n  \"changeFailScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 1773,\n    \"secretDependencyChangerId\": 7288,\n    \"secretDependencyChangerScriptId\": 9090,\n    \"username\": \"string\",\n    \"useTokens\": false\n  },\n  \"changeSuccessScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 9970,\n    \"secretDependencyChangerId\": 6595,\n    \"secretDependencyChangerScriptId\": 154,\n    \"username\": \"string\",\n    \"useTokens\": true\n  },\n  \"hasDependencies\": true,\n  \"hasImportRules\": true,\n  \"passwordChangeScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 5242,\n    \"secretDependencyChangerId\": 2615,\n    \"secretDependencyChangerScriptId\": 4908,\n    \"username\": \"string\",\n    \"useTokens\": true\n  },\n  \"scanItemTemplateId\": 3775,\n  \"secretDependencyChangerDescription\": \"string\",\n  \"secretDependencyChangerId\": 2995,\n  \"secretDependencyChangerName\": \"string\",\n  \"secretDependencyTypeId\": 256,\n  \"settings\": [\n    {\n      \"settingName\": \"string\",\n      \"usingDefault\": true,\n      \"value\": \"string\"\n    },\n    {\n      \"settingName\": \"string\",\n      \"usingDefault\": false,\n      \"value\": \"string\"\n    }\n  ],\n  \"verificationScript\": {\n    \"arguments\": \"string\",\n    \"key\": \"string\",\n    \"odbcParameters\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"parameters\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"passphrase\": \"string\",\n    \"password\": \"string\",\n    \"scriptId\": 6057,\n    \"secretDependencyChangerId\": 332,\n    \"secretDependencyChangerScriptId\": 8101,\n    \"username\": \"string\",\n    \"useTokens\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5081345-d40e-42c9-b04c-c7a758e4ac53",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"changeFailScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"changeSuccessScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"createDependencyTemplate\": \"<boolean>\",\n    \"passwordChangeScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"scanItemTemplateId\": \"<integer>\",\n    \"secretDependencyChangerDescription\": \"<string>\",\n    \"secretDependencyChangerName\": \"<string>\",\n    \"secretDependencyTypeId\": \"<integer>\",\n    \"settings\": [\n      {\n        \"settingName\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"settingName\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"verificationScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cb8ba73-d216-4ac1-83fa-b45a6df58447",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"changeFailScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"changeSuccessScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"createDependencyTemplate\": \"<boolean>\",\n    \"passwordChangeScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"scanItemTemplateId\": \"<integer>\",\n    \"secretDependencyChangerDescription\": \"<string>\",\n    \"secretDependencyChangerName\": \"<string>\",\n    \"secretDependencyTypeId\": \"<integer>\",\n    \"settings\": [\n      {\n        \"settingName\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"settingName\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"verificationScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ceef8ca-d794-425d-9efb-cdcd274ef897",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dependency-changers",
+                    "dependency-changer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"changeFailScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"changeSuccessScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"createDependencyTemplate\": \"<boolean>\",\n    \"passwordChangeScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    },\n    \"scanItemTemplateId\": \"<integer>\",\n    \"secretDependencyChangerDescription\": \"<string>\",\n    \"secretDependencyChangerName\": \"<string>\",\n    \"secretDependencyTypeId\": \"<integer>\",\n    \"settings\": [\n      {\n        \"settingName\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"settingName\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"verificationScript\": {\n      \"arguments\": \"<string>\",\n      \"key\": \"<string>\",\n      \"odbcParameters\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"passphrase\": \"<string>\",\n      \"password\": \"<string>\",\n      \"scriptId\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"useTokens\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/SecretServer/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a1153fe-ef24-440c-a789-ddcca703a61e",
+    "name": "Secret Server Rest Activations DependencyChanger API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href=\"../OAuth/\">authentication document</a> for more information. The <a href=\"swagger.json\">Swagger specification</a> for this API is also available.\n\nContact Support:\n Name: Support",
+      "type": "text/plain"
+    }
+  }
+}

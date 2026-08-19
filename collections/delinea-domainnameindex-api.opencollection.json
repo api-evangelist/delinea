@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations DomainNameIndex API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DomainNameIndex",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete all domain name index records",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/domain-index/delete-all"
+          },
+          "docs": "Delete existing domain name index records"
+        },
+        {
+          "info": {
+            "name": "Get a domain name index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/domain-index",
+            "params": [
+              {
+                "name": "filter.discoverySourceIdScanned",
+                "value": "",
+                "type": "query",
+                "description": "DiscoverySourceIdScanned"
+              },
+              {
+                "name": "filter.domainName",
+                "value": "",
+                "type": "query",
+                "description": "DomainName"
+              },
+              {
+                "name": "filter.domainResolveType",
+                "value": "",
+                "type": "query",
+                "description": "DomainResolveType"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns the domain name index"
+        },
+        {
+          "info": {
+            "name": "Update a domain name index",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/domain-index/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Domain Name Index ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing domain name index using the existing domain name index ID"
+        },
+        {
+          "info": {
+            "name": "Create a new domain name index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/domain-index/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new domain name index with suggested discovery source id"
+        },
+        {
+          "info": {
+            "name": "Expire a domain name index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/domain-index/expire/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Domain Name Index ID"
+              }
+            ]
+          },
+          "docs": "Expire an existing domain name index using the existing domain name index ID"
+        },
+        {
+          "info": {
+            "name": "Expire all domain name index records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/domain-index/expire-all",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Expire existing domain name index records"
+        },
+        {
+          "info": {
+            "name": "Delete a domain name index",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/domain-index/delete/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Delete success"
+              }
+            ]
+          },
+          "docs": "Delete an existing domain name index using the existing domain name index ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

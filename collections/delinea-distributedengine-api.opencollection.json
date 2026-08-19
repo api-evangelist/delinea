@@ -1,0 +1,831 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations DistributedEngine API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DistributedEngine",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Distributed Engine Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/configuration"
+          },
+          "docs": "Retrieve the current settings for Distributed Engine configuration"
+        },
+        {
+          "info": {
+            "name": "Update Distributed Engine Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/distributed-engine/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the current settings for Distributed Engine configuration"
+        },
+        {
+          "info": {
+            "name": "Search Site Connectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/site-connectors",
+            "params": [
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeInactive"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search Site Connectors"
+        },
+        {
+          "info": {
+            "name": "Get Site Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/site-connector/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Get Site Connector for passed in Id"
+        },
+        {
+          "info": {
+            "name": "Update Site Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/distributed-engine/site-connector/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Site Connector object with passed in Id"
+        },
+        {
+          "info": {
+            "name": "Get Site Connector Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/site-connector/stub",
+            "params": [
+              {
+                "name": "queueType",
+                "value": "",
+                "type": "query",
+                "description": "QueueType"
+              }
+            ]
+          },
+          "docs": "Get Site Connector for passed in args"
+        },
+        {
+          "info": {
+            "name": "Get Site Connector Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/site-connector/:siteConnectorId/credentials",
+            "params": [
+              {
+                "name": "siteConnectorId",
+                "value": "",
+                "type": "path",
+                "description": "siteConnectorId"
+              }
+            ]
+          },
+          "docs": "Get Site Connector Credentials"
+        },
+        {
+          "info": {
+            "name": "Search Engines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/engines",
+            "params": [
+              {
+                "name": "filter.activationStatus",
+                "value": "",
+                "type": "query",
+                "description": "Only return engines with this activation status"
+              },
+              {
+                "name": "filter.connectionStatus",
+                "value": "",
+                "type": "query",
+                "description": "Only return engines with this connection status"
+              },
+              {
+                "name": "filter.friendlyName",
+                "value": "",
+                "type": "query",
+                "description": "Only return engines with a friendly name that contains this text"
+              },
+              {
+                "name": "filter.onlyIncludeRequiringAction",
+                "value": "",
+                "type": "query",
+                "description": "Only include engines that require action.  For example, pending but not deleted or no site assigned."
+              },
+              {
+                "name": "filter.siteId",
+                "value": "",
+                "type": "query",
+                "description": "Only return engines for this site"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search Engines"
+        },
+        {
+          "info": {
+            "name": "Get Default Engine Settings for Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/engine-settings/site/:siteId",
+            "params": [
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "siteId"
+              }
+            ]
+          },
+          "docs": "Get Default Engine Settings object having passed in Site Id"
+        },
+        {
+          "info": {
+            "name": "Get Engine Audits for Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/site/:siteId/engine-audits",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "filter.engineId",
+                "value": "",
+                "type": "query",
+                "description": "EngineId"
+              },
+              {
+                "name": "filter.searchTerm",
+                "value": "",
+                "type": "query",
+                "description": "SearchTerm"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "siteId"
+              }
+            ]
+          },
+          "docs": "Get Engine Audits having passed in Site Id"
+        },
+        {
+          "info": {
+            "name": "Get Engine Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/engine-settings/:engineId",
+            "params": [
+              {
+                "name": "engineId",
+                "value": "",
+                "type": "path",
+                "description": "engineId"
+              }
+            ]
+          },
+          "docs": "Get Engine Settings object having passed in Engine Id"
+        },
+        {
+          "info": {
+            "name": "Search Sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/sites",
+            "params": [
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Include inactive sites"
+              },
+              {
+                "name": "filter.includeSiteMetrics",
+                "value": "",
+                "type": "query",
+                "description": "When true metrics are included for returned sites such as how many inactive or active sites"
+              },
+              {
+                "name": "filter.onlyIncludeSitesThatCanAddNewEngines",
+                "value": "",
+                "type": "query",
+                "description": "Only returns sites that can have new engines added"
+              },
+              {
+                "name": "filter.siteId",
+                "value": "",
+                "type": "query",
+                "description": "Return the site with this ID"
+              },
+              {
+                "name": "filter.siteName",
+                "value": "",
+                "type": "query",
+                "description": "Return sites that partially match this name"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search Sites"
+        },
+        {
+          "info": {
+            "name": "Get Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/site/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Get Site for passed in Id"
+        },
+        {
+          "info": {
+            "name": "Patch Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/distributed-engine/site/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Site object having passed in Id"
+        },
+        {
+          "info": {
+            "name": "Get Site Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/site/stub"
+          },
+          "docs": "Get Site for passed in args"
+        },
+        {
+          "info": {
+            "name": "GetSiteAudits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/site/:id/audit",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get audits by Site Id"
+        },
+        {
+          "info": {
+            "name": "SearchSiteLogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/site/:id/logs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "filter.engineId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a specific engine ID"
+              },
+              {
+                "name": "filter.searchTerm",
+                "value": "",
+                "type": "query",
+                "description": "Term used to search the Engine Name and/or the Message of the Site Log"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search site logs by Site Id"
+        },
+        {
+          "info": {
+            "name": "Download Memory MQ",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/site-connector/:id/download-memorymq",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Downloads MemoryMQ"
+        },
+        {
+          "info": {
+            "name": "Get Server Capabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/:id/server-capabilities",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Gets the server capabilities of an engine's server"
+        },
+        {
+          "info": {
+            "name": "Download Distributed Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/distributed-engine/download-distributed-engine",
+            "params": [
+              {
+                "name": "is64Bit",
+                "value": "",
+                "type": "query",
+                "description": "is64Bit"
+              },
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "query",
+                "description": "siteId"
+              }
+            ]
+          },
+          "docs": "Downloads Distributed Engine"
+        },
+        {
+          "info": {
+            "name": "Updated Distributed Engine Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/distributed-engine/configuration/engine-latest-version"
+          },
+          "docs": "Update the current settings for Distributed Engine configuration with the latest DE version specified in latest version file if it exists."
+        },
+        {
+          "info": {
+            "name": "Patch Engine Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/distributed-engine/engine-settings/:engineSettingsId",
+            "params": [
+              {
+                "name": "engineSettingsId",
+                "value": "",
+                "type": "path",
+                "description": "engineSettingsId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Engine Settings object having passed in the Id"
+        },
+        {
+          "info": {
+            "name": "Patch Engine Settings For Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/distributed-engine/engine-settings/engine/:engineId",
+            "params": [
+              {
+                "name": "engineId",
+                "value": "",
+                "type": "path",
+                "description": "engineId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Engine Settings object having passed in the Engine Id"
+        },
+        {
+          "info": {
+            "name": "Create Site Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/distributed-engine/site-connector",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Site Connector and returns model"
+        },
+        {
+          "info": {
+            "name": "Validate Site Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/distributed-engine/site-connector/:siteConnectorId/validate",
+            "params": [
+              {
+                "name": "siteConnectorId",
+                "value": "",
+                "type": "path",
+                "description": "siteConnectorId"
+              }
+            ]
+          },
+          "docs": "Validate Site Connector and returns model"
+        },
+        {
+          "info": {
+            "name": "Activate Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/distributed-engine/update-engine-status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activate the specified engine"
+        },
+        {
+          "info": {
+            "name": "Validate Site Connectivity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/distributed-engine/site/:siteId/validate-connectivity",
+            "params": [
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "Id of Site"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate Site Connectivity within a timeout."
+        },
+        {
+          "info": {
+            "name": "Create Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/distributed-engine/site",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Site and returns model"
+        },
+        {
+          "info": {
+            "name": "Reassign Secrets From the Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/distributed-engine/site/:id/reassign",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reassign Secrets From the Site"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

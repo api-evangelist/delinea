@@ -1,0 +1,3645 @@
+{
+  "item": [
+    {
+      "id": "a8befc52-cc08-4daf-8c3b-aea3a6fbed51",
+      "name": "Launchers",
+      "description": {
+        "content": "View available application launchers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1ca1f8de-8999-48ff-a5b4-fc23e48a068e",
+          "name": "Search Launchers",
+          "request": {
+            "name": "Search Launchers",
+            "description": {
+              "content": "Search, filter, sort, and page launchers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter.application",
+                  "value": "<string>",
+                  "description": "Associated application"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.includeInactive",
+                  "value": "<boolean>",
+                  "description": "Whether to include inactive launchers"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.searchText",
+                  "value": "<string>",
+                  "description": "Search the launcher names"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "566f6343-b6e1-4e3b-9829-a796b40b80b7",
+              "name": "Launcher search result object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 1592,\n  \"currentPage\": 2567,\n  \"hasNext\": true,\n  \"hasPrev\": false,\n  \"nextSkip\": 9198,\n  \"pageCount\": 5875,\n  \"prevSkip\": 8892,\n  \"records\": [\n    {\n      \"active\": true,\n      \"application\": \"string\",\n      \"id\": 9069,\n      \"isCustom\": false,\n      \"name\": \"string\"\n    },\n    {\n      \"active\": true,\n      \"application\": \"string\",\n      \"id\": 8502,\n      \"isCustom\": false,\n      \"name\": \"string\"\n    }\n  ],\n  \"severity\": \"Fatal\",\n  \"skip\": 5294,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 316\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"None\",\n      \"priority\": 8017\n    }\n  ],\n  \"success\": false,\n  \"take\": 6714,\n  \"total\": 8586\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e4c46dd-6716-45c9-8d4e-9e241aed37e5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55945617-513a-460c-8930-3ad0ce515262",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "703b821b-d714-419b-a3a2-7ed1a7264e85",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "843896a0-0b00-4ff3-909d-9e846295ebbd",
+          "name": "Lookup Launchers",
+          "request": {
+            "name": "Lookup Launchers",
+            "description": {
+              "content": "Search, filter, sort, and page launchers, returning only launcher ID and name",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers",
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter.application",
+                  "value": "<string>",
+                  "description": "Associated application"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.includeInactive",
+                  "value": "<boolean>",
+                  "description": "Whether to include inactive launchers"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter.searchText",
+                  "value": "<string>",
+                  "description": "Search the launcher names"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0807b60-deeb-4421-a284-faa13a8eb051",
+              "name": "Launcher search result object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 4121,\n  \"currentPage\": 2516,\n  \"hasNext\": true,\n  \"hasPrev\": true,\n  \"nextSkip\": 1772,\n  \"pageCount\": 8227,\n  \"prevSkip\": 3667,\n  \"records\": [\n    {\n      \"id\": 8879,\n      \"value\": \"string\"\n    },\n    {\n      \"id\": 1622,\n      \"value\": \"string\"\n    }\n  ],\n  \"severity\": \"Retry\",\n  \"skip\": 4659,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"None\",\n      \"priority\": 3372\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 1776\n    }\n  ],\n  \"success\": false,\n  \"take\": 6895,\n  \"total\": 5785\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f53b688-fc02-4cda-9863-17cf7d6ae9e0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d35b40c-ad3b-436e-873a-9947b3a5b378",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "202d6494-77d1-4aef-a9f5-28eca9553c5b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter.includeInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter.searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae5ebcd0-d1bd-4e87-a32b-9177b1823bdd",
+          "name": "Get Launcher",
+          "request": {
+            "name": "Get Launcher",
+            "description": {
+              "content": "Get a single launcher by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Launcher ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8af4387-2e60-4f80-ad46-ff1ac96e247d",
+              "name": "Launcher object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Launcher ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": false,\n  \"application\": \"string\",\n  \"customLauncherId\": 7154,\n  \"customLauncherProcessName\": \"string\",\n  \"customParameters\": \"string\",\n  \"id\": 9886,\n  \"isCustom\": true,\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bed711c-5714-406f-b632-b822c7c14d26",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Launcher ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "796ce4f0-1827-489d-9de0-a53a2bfd1f63",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Launcher ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f726423-f885-4c29-9512-3cf0e32e88d4",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Launcher ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcbadf32-e92c-444b-8f82-2eaf36e80cc6",
+          "name": "Get secret launcher details.",
+          "request": {
+            "name": "Get secret launcher details.",
+            "description": {
+              "content": "Get the details and fields needed for the launchers a secret can use.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "launchers",
+                "secret"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter.secretId",
+                  "value": "<integer>",
+                  "description": "The secret to get launch information about"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ff127f4-ad5f-4b08-bc70-c16136a38e80",
+              "name": "Secret's Launcher details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "launchers",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.secretId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 9429,\n  \"currentPage\": 2281,\n  \"hasNext\": false,\n  \"hasPrev\": false,\n  \"nextSkip\": 6733,\n  \"pageCount\": 8698,\n  \"prevSkip\": 4620,\n  \"records\": [\n    {\n      \"application\": \"string\",\n      \"approvedList\": false,\n      \"customLauncherId\": 9662,\n      \"customLauncherProcessName\": \"string\",\n      \"customParameters\": \"string\",\n      \"isCustom\": true,\n      \"launcherId\": 9006,\n      \"launcherName\": \"string\",\n      \"promptedField\": {\n        \"allowDefault\": false,\n        \"concurrencyId\": \"string\",\n        \"defaultType\": \"string\",\n        \"defaultTypeIntMax\": 1256,\n        \"defaultTypeIntMin\": 3375,\n        \"launcherTypeFieldId\": 1326,\n        \"launcherTypeId\": 7066,\n        \"name\": \"string\",\n        \"promptableField\": true\n      },\n      \"restrictedHost\": true,\n      \"restrictedHosts\": [\n        {\n          \"category\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"category\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"application\": \"string\",\n      \"approvedList\": true,\n      \"customLauncherId\": 285,\n      \"customLauncherProcessName\": \"string\",\n      \"customParameters\": \"string\",\n      \"isCustom\": true,\n      \"launcherId\": 7141,\n      \"launcherName\": \"string\",\n      \"promptedField\": {\n        \"allowDefault\": false,\n        \"concurrencyId\": \"string\",\n        \"defaultType\": \"string\",\n        \"defaultTypeIntMax\": 3538,\n        \"defaultTypeIntMin\": 9753,\n        \"launcherTypeFieldId\": 8814,\n        \"launcherTypeId\": 3508,\n        \"name\": \"string\",\n        \"promptableField\": false\n      },\n      \"restrictedHost\": true,\n      \"restrictedHosts\": [\n        {\n          \"category\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"category\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"severity\": \"Critical\",\n  \"skip\": 2005,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 3918\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Asc\",\n      \"priority\": 3996\n    }\n  ],\n  \"success\": false,\n  \"take\": 5257,\n  \"total\": 7929\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aeb6b9b9-3cca-43d3-a9a4-3c504e4e3020",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "launchers",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.secretId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "adaf700f-d6ba-4339-ab72-eae6712d0d27",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "launchers",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.secretId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69d0be33-c5a3-45bb-952a-e4dcb11f95c2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "launchers",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.secretId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4999536-cc92-4a48-8809-bfe3a21d6d1b",
+          "name": "Triggers a download of the Protocol Handler",
+          "request": {
+            "name": "Triggers a download of the Protocol Handler",
+            "description": {
+              "content": "Triggers a download of the Protocol Handler",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers",
+                "protocol-handler"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "forceMsi",
+                  "value": "<boolean>",
+                  "description": "forceMsi"
+                },
+                {
+                  "disabled": false,
+                  "key": "is32Bit",
+                  "value": "<boolean>",
+                  "description": "is32Bit"
+                },
+                {
+                  "disabled": false,
+                  "key": "isRDS",
+                  "value": "<boolean>",
+                  "description": "isRDS"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8bca743f-4810-4267-bdeb-5492cba1c985",
+              "name": "Unknown or empty response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "protocol-handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "forceMsi",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is32Bit",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isRDS",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3d6c0bb8-1405-4328-9001-756eb7a0cd6a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "protocol-handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "forceMsi",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is32Bit",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isRDS",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9089b4d1-67f6-4f28-bb1f-f3b825d9edad",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "protocol-handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "forceMsi",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is32Bit",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isRDS",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0cf577a-71ef-45a0-915e-a7197d678904",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "protocol-handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "forceMsi",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is32Bit",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isRDS",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6fabef4-f1df-47e0-9b9f-ea81869b95ff",
+          "name": "Get Prepare Launcher Result",
+          "request": {
+            "name": "Get Prepare Launcher Result",
+            "description": {
+              "content": "Get result of prepare Launcher Session request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers",
+                "prepare",
+                ":id",
+                "result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db59644c-732e-49ff-b2af-5a7af6343124",
+              "name": "Prepare Launcher Query Result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "prepare",
+                    ":id",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8edfeaf-b801-4b27-9d96-b4d2d90b4825",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "prepare",
+                    ":id",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e41d38ff-1189-4fc5-9ec9-2a6ae737c8ce",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "prepare",
+                    ":id",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b512b43-9bf0-4fe7-9b17-d52a71fbda6d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "prepare",
+                    ":id",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71ebfe10-39bd-4c8e-891d-f70b397c2965",
+          "name": "Get Custom Launcher Type",
+          "request": {
+            "name": "Get Custom Launcher Type",
+            "description": {
+              "content": "Get all of the details for a custom launcher",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers",
+                "types",
+                ":launcherTypeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "launcherTypeId",
+                  "description": "(Required) launcherTypeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a8ba53b-6bd0-41ce-8b79-b7731f0ed282",
+              "name": "A definition for a launcher",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    ":launcherTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "launcherTypeId",
+                      "description": "(Required) launcherTypeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"additionalPromptField\": false,\n  \"additionalPromptFieldName\": \"string\",\n  \"application\": \"string\",\n  \"canGetProxyCredentials\": true,\n  \"canUseSSHKey\": true,\n  \"concurrencyId\": \"string\",\n  \"customLauncher\": {\n    \"additionalProcessesToRecord\": \"string\",\n    \"batchFileData\": \"string\",\n    \"batchFileId\": 255,\n    \"batchFileName\": \"string\",\n    \"charactersToEscape\": \"string\",\n    \"childLauncherId\": 7867,\n    \"escapeCharacter\": \"string\",\n    \"launchAsSecretCredentials\": false,\n    \"loadUserProfile\": true,\n    \"macProcessArguments\": \"string\",\n    \"macProcessName\": \"string\",\n    \"overrideDisallowAdditionalParametersInQuotes\": false,\n    \"preserveSSHClientProcess\": true,\n    \"processArguments\": \"string\",\n    \"processName\": \"string\",\n    \"rdsCredentialsSecretId\": 2448,\n    \"rdsCredentialsSecretName\": \"string\",\n    \"rdsServerHostname\": \"string\",\n    \"rdsServerPort\": 5412,\n    \"recordKeystrokes\": false,\n    \"recordMultipleWindows\": true,\n    \"runType\": 6692,\n    \"shellScriptData\": \"string\",\n    \"shellScriptId\": 405,\n    \"shellScriptName\": \"string\",\n    \"useSFTPTunnel\": false,\n    \"useShellExecute\": true,\n    \"useSSHTunnel\": false\n  },\n  \"customLauncherId\": 4853,\n  \"isCustomLauncher\": true,\n  \"isPuttyLauncherType\": true,\n  \"isRDPReady\": false,\n  \"isSessionConnectorLauncher\": true,\n  \"isSystemInternalLauncherType\": true,\n  \"lastModifiedDate\": \"1952-02-21T00:25:03.312Z\",\n  \"launcherTypeId\": 6604,\n  \"launcherTypeName\": \"string\",\n  \"mstscLauncherOption\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "626b7c02-1390-40c6-8994-070bace196d9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    ":launcherTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "launcherTypeId",
+                      "description": "(Required) launcherTypeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bc7433b-a05e-4a23-8ce4-48510565799b",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    ":launcherTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "launcherTypeId",
+                      "description": "(Required) launcherTypeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "316b0776-bb23-475e-82ac-38c62a920e75",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    ":launcherTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "launcherTypeId",
+                      "description": "(Required) launcherTypeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f26888f3-6a90-4be1-b3c8-a6fc171d11be",
+          "name": "Patch Custom Launcher Type",
+          "request": {
+            "name": "Patch Custom Launcher Type",
+            "description": {
+              "content": "Patch details or settings for a custom launcher",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers",
+                "types",
+                ":launcherTypeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "launcherTypeId",
+                  "description": "(Required) launcherTypeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"additionalProcessesToRecord\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"additionalPromptField\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"additionalPromptFieldName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"batchFileId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"canUseSSHKey\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"charactersToEscape\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"childLauncherId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"customLauncherId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"escapeCharacter\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"launchAsSecretCredentials\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"launcherTypeName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"loadUserProfile\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"macProcessArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"macProcessName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"mstscLauncherOption\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"overrideDisallowAdditionalParametersInQuotes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"preserveSSHClientProcess\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"processArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"processName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"rdsCredentialsSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"rdsServerHostname\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"rdsServerPort\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"recordKeystrokes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"recordMultipleWindows\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"shellScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"useSFTPTunnel\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"useShellExecute\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"useSSHTunnel\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b71cf42-d706-477c-8a22-ae6dc5099b01",
+              "name": "Launcher Type Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    ":launcherTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "launcherTypeId",
+                      "description": "(Required) launcherTypeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"additionalProcessesToRecord\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"additionalPromptField\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"additionalPromptFieldName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"batchFileId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"canUseSSHKey\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"charactersToEscape\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"childLauncherId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"customLauncherId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"escapeCharacter\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"launchAsSecretCredentials\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"launcherTypeName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"loadUserProfile\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"macProcessArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"macProcessName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"mstscLauncherOption\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"overrideDisallowAdditionalParametersInQuotes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"preserveSSHClientProcess\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"processArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"processName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"rdsCredentialsSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"rdsServerHostname\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"rdsServerPort\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"recordKeystrokes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"recordMultipleWindows\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"shellScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"useSFTPTunnel\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"useShellExecute\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"useSSHTunnel\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"additionalPromptField\": false,\n  \"additionalPromptFieldName\": \"string\",\n  \"application\": \"string\",\n  \"canGetProxyCredentials\": true,\n  \"canUseSSHKey\": true,\n  \"concurrencyId\": \"string\",\n  \"customLauncher\": {\n    \"additionalProcessesToRecord\": \"string\",\n    \"batchFileData\": \"string\",\n    \"batchFileId\": 255,\n    \"batchFileName\": \"string\",\n    \"charactersToEscape\": \"string\",\n    \"childLauncherId\": 7867,\n    \"escapeCharacter\": \"string\",\n    \"launchAsSecretCredentials\": false,\n    \"loadUserProfile\": true,\n    \"macProcessArguments\": \"string\",\n    \"macProcessName\": \"string\",\n    \"overrideDisallowAdditionalParametersInQuotes\": false,\n    \"preserveSSHClientProcess\": true,\n    \"processArguments\": \"string\",\n    \"processName\": \"string\",\n    \"rdsCredentialsSecretId\": 2448,\n    \"rdsCredentialsSecretName\": \"string\",\n    \"rdsServerHostname\": \"string\",\n    \"rdsServerPort\": 5412,\n    \"recordKeystrokes\": false,\n    \"recordMultipleWindows\": true,\n    \"runType\": 6692,\n    \"shellScriptData\": \"string\",\n    \"shellScriptId\": 405,\n    \"shellScriptName\": \"string\",\n    \"useSFTPTunnel\": false,\n    \"useShellExecute\": true,\n    \"useSSHTunnel\": false\n  },\n  \"customLauncherId\": 4853,\n  \"isCustomLauncher\": true,\n  \"isPuttyLauncherType\": true,\n  \"isRDPReady\": false,\n  \"isSessionConnectorLauncher\": true,\n  \"isSystemInternalLauncherType\": true,\n  \"lastModifiedDate\": \"1952-02-21T00:25:03.312Z\",\n  \"launcherTypeId\": 6604,\n  \"launcherTypeName\": \"string\",\n  \"mstscLauncherOption\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dd9ea35-2314-4eca-8d40-1c54b3016c6f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    ":launcherTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "launcherTypeId",
+                      "description": "(Required) launcherTypeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"additionalProcessesToRecord\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"additionalPromptField\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"additionalPromptFieldName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"batchFileId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"canUseSSHKey\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"charactersToEscape\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"childLauncherId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"customLauncherId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"escapeCharacter\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"launchAsSecretCredentials\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"launcherTypeName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"loadUserProfile\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"macProcessArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"macProcessName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"mstscLauncherOption\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"overrideDisallowAdditionalParametersInQuotes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"preserveSSHClientProcess\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"processArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"processName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"rdsCredentialsSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"rdsServerHostname\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"rdsServerPort\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"recordKeystrokes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"recordMultipleWindows\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"shellScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"useSFTPTunnel\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"useShellExecute\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"useSSHTunnel\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef352452-03fc-497d-8dbc-41a896f259f3",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    ":launcherTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "launcherTypeId",
+                      "description": "(Required) launcherTypeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"additionalProcessesToRecord\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"additionalPromptField\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"additionalPromptFieldName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"batchFileId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"canUseSSHKey\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"charactersToEscape\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"childLauncherId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"customLauncherId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"escapeCharacter\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"launchAsSecretCredentials\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"launcherTypeName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"loadUserProfile\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"macProcessArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"macProcessName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"mstscLauncherOption\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"overrideDisallowAdditionalParametersInQuotes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"preserveSSHClientProcess\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"processArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"processName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"rdsCredentialsSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"rdsServerHostname\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"rdsServerPort\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"recordKeystrokes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"recordMultipleWindows\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"shellScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"useSFTPTunnel\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"useShellExecute\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"useSSHTunnel\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de28fcde-b9b9-4510-9757-631aa5508bf1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    ":launcherTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "launcherTypeId",
+                      "description": "(Required) launcherTypeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"additionalProcessesToRecord\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"additionalPromptField\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"additionalPromptFieldName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"batchFileId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"canUseSSHKey\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"charactersToEscape\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"childLauncherId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"customLauncherId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"escapeCharacter\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"launchAsSecretCredentials\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"launcherTypeName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"loadUserProfile\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"macProcessArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"macProcessName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"mstscLauncherOption\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"overrideDisallowAdditionalParametersInQuotes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"preserveSSHClientProcess\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"processArguments\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"processName\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"rdsCredentialsSecretId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"rdsServerHostname\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<string>\"\n    },\n    \"rdsServerPort\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"recordKeystrokes\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"recordMultipleWindows\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"shellScriptId\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<integer>\"\n    },\n    \"useSFTPTunnel\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"useShellExecute\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    },\n    \"useSSHTunnel\": {\n      \"dirty\": \"<boolean>\",\n      \"value\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4eda9770-3805-4c1c-b431-3f1f71f711f7",
+          "name": "Launch a secret.",
+          "request": {
+            "name": "Launch a secret.",
+            "description": {
+              "content": "Launch a the secret using the provided secret id, and required fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers",
+                "secret"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"launcherId\": \"<integer>\",\n  \"promptFieldValue\": \"<string>\",\n  \"secretId\": \"<integer>\",\n  \"siteId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "372116e0-e206-40e0-8cc1-c41cd4ef0c64",
+              "name": "Launched Secret details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"launcherId\": \"<integer>\",\n  \"promptFieldValue\": \"<string>\",\n  \"secretId\": \"<integer>\",\n  \"siteId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": 8473,\n  \"baseUrl\": \"string\",\n  \"encodedUrl\": \"string\",\n  \"guid\": \"bf2bb56a-a286-818d-68e1-3019547e8e66\",\n  \"launcherType\": \"string\",\n  \"launcherTypeId\": 2756,\n  \"sessionGuid\": \"40de04f4-e949-1eb8-ff39-b7b3f1c0e40f\",\n  \"ssUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9a31844-0507-4eb5-bd9c-2549c5ba5984",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"launcherId\": \"<integer>\",\n  \"promptFieldValue\": \"<string>\",\n  \"secretId\": \"<integer>\",\n  \"siteId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e83d214-1607-4a62-a96a-dd9144f8dd95",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"launcherId\": \"<integer>\",\n  \"promptFieldValue\": \"<string>\",\n  \"secretId\": \"<integer>\",\n  \"siteId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2515a4da-3909-47a2-ad24-b52dfb277474",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"launcherId\": \"<integer>\",\n  \"promptFieldValue\": \"<string>\",\n  \"secretId\": \"<integer>\",\n  \"siteId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11274222-c0e9-4067-9d9e-69bb9eb48b8e",
+          "name": "Prepare Launcher Session",
+          "request": {
+            "name": "Prepare Launcher Session",
+            "description": {
+              "content": "Prepare a Launcher Session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers",
+                "prepare"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"secretId\": \"<integer>\",\n  \"launcherTypeId\": \"<integer>\",\n  \"promptFieldValue\": \"<string>\",\n  \"siteId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8e0c5a1-be47-4534-a529-4b9f5474fb28",
+              "name": "PrepareLauncherResult",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "prepare"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"secretId\": \"<integer>\",\n  \"launcherTypeId\": \"<integer>\",\n  \"promptFieldValue\": \"<string>\",\n  \"siteId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"fileDownload\": {\n    \"contentType\": \"string\",\n    \"description\": \"string\",\n    \"fileContents\": \"string\",\n    \"fileName\": \"string\"\n  },\n  \"launcherPopupTimeoutSeconds\": 8560,\n  \"launcherUrl\": {\n    \"apiVersion\": 9907,\n    \"autoUpdateEnabled\": true,\n    \"baseUrl\": \"string\",\n    \"encodedUrl\": \"string\",\n    \"launcherFileDownload\": {\n      \"contentType\": \"string\",\n      \"description\": \"string\",\n      \"fileContents\": \"string\",\n      \"fileName\": \"string\"\n    },\n    \"requestGuid\": \"55f231c3-084c-ae63-3a68-94b194d89b19\",\n    \"secretSessionId\": 619,\n    \"sessionGuid\": \"628f7efe-31d7-f688-2ecd-10246dc4d697\",\n    \"ssUrl\": \"string\",\n    \"type\": \"string\"\n  },\n  \"redirectUrl\": \"string\",\n  \"shouldDownload\": false,\n  \"shouldRedirect\": true,\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48678b09-dcee-4f01-911c-efff9986539b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "prepare"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"secretId\": \"<integer>\",\n  \"launcherTypeId\": \"<integer>\",\n  \"promptFieldValue\": \"<string>\",\n  \"siteId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecd2beff-6c1c-45c5-8a98-6da743d71609",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "prepare"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"secretId\": \"<integer>\",\n  \"launcherTypeId\": \"<integer>\",\n  \"promptFieldValue\": \"<string>\",\n  \"siteId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e64e993-7e9c-40b5-b0ac-4e308bd34ae6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "prepare"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"secretId\": \"<integer>\",\n  \"launcherTypeId\": \"<integer>\",\n  \"promptFieldValue\": \"<string>\",\n  \"siteId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "678c10a1-b7c6-4e4e-9ef5-14897469cf04",
+          "name": "Create Custom Launcher File Attachment",
+          "request": {
+            "name": "Create Custom Launcher File Attachment",
+            "description": {
+              "content": "Create a new custom launcher file attachment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers",
+                "types",
+                "file-attachments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "Details for the item to create"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "41f5d12a-55e6-4585-8fe0-bc4596ab3508",
+              "name": "File Attachment Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    "file-attachments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Details for the item to create",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fileAttachmentId\": 5494\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aaca65b9-241e-4c06-9e54-56096a097950",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    "file-attachments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Details for the item to create",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "286f9040-200e-49a5-989d-abfb8b226a78",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    "file-attachments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Details for the item to create",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58220c4f-2e98-4959-b51f-99e2c57678ef",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types",
+                    "file-attachments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Details for the item to create",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5e401d8-609a-4d8e-a542-b8a13b50e390",
+          "name": "Create Custom Launcher Type",
+          "request": {
+            "name": "Create Custom Launcher Type",
+            "description": {
+              "content": "Create a new custom launcher",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "launchers",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"additionalProcessesToRecord\": \"<string>\",\n    \"additionalPromptField\": \"<boolean>\",\n    \"additionalPromptFieldName\": \"<string>\",\n    \"application\": \"<string>\",\n    \"batchFileId\": \"<integer>\",\n    \"charactersToEscape\": \"<string>\",\n    \"childLauncherId\": \"<integer>\",\n    \"escapeCharacter\": \"<string>\",\n    \"launchAsSecretCredentials\": \"<boolean>\",\n    \"launcherTypeName\": \"<string>\",\n    \"loadUserProfile\": \"<boolean>\",\n    \"macProcessArguments\": \"<string>\",\n    \"macProcessName\": \"<string>\",\n    \"mstscLauncherOption\": \"<boolean>\",\n    \"overrideDisallowAdditionalParametersInQuotes\": \"<boolean>\",\n    \"preserveSSHClientProcess\": \"<boolean>\",\n    \"processArguments\": \"<string>\",\n    \"processName\": \"<string>\",\n    \"rdsCredentialsSecretId\": \"<integer>\",\n    \"rdsServerHostname\": \"<string>\",\n    \"rdsServerPort\": \"<integer>\",\n    \"recordKeystrokes\": \"<boolean>\",\n    \"recordMultipleWindows\": \"<boolean>\",\n    \"runType\": \"<integer>\",\n    \"shellScriptId\": \"<integer>\",\n    \"useSFTPTunnel\": \"<boolean>\",\n    \"useShellExecute\": \"<boolean>\",\n    \"useSSHTunnel\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39bf06fe-10ec-442a-9c08-719c05b3551c",
+              "name": "Launcher Detail Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"additionalProcessesToRecord\": \"<string>\",\n    \"additionalPromptField\": \"<boolean>\",\n    \"additionalPromptFieldName\": \"<string>\",\n    \"application\": \"<string>\",\n    \"batchFileId\": \"<integer>\",\n    \"charactersToEscape\": \"<string>\",\n    \"childLauncherId\": \"<integer>\",\n    \"escapeCharacter\": \"<string>\",\n    \"launchAsSecretCredentials\": \"<boolean>\",\n    \"launcherTypeName\": \"<string>\",\n    \"loadUserProfile\": \"<boolean>\",\n    \"macProcessArguments\": \"<string>\",\n    \"macProcessName\": \"<string>\",\n    \"mstscLauncherOption\": \"<boolean>\",\n    \"overrideDisallowAdditionalParametersInQuotes\": \"<boolean>\",\n    \"preserveSSHClientProcess\": \"<boolean>\",\n    \"processArguments\": \"<string>\",\n    \"processName\": \"<string>\",\n    \"rdsCredentialsSecretId\": \"<integer>\",\n    \"rdsServerHostname\": \"<string>\",\n    \"rdsServerPort\": \"<integer>\",\n    \"recordKeystrokes\": \"<boolean>\",\n    \"recordMultipleWindows\": \"<boolean>\",\n    \"runType\": \"<integer>\",\n    \"shellScriptId\": \"<integer>\",\n    \"useSFTPTunnel\": \"<boolean>\",\n    \"useShellExecute\": \"<boolean>\",\n    \"useSSHTunnel\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"additionalPromptField\": false,\n  \"additionalPromptFieldName\": \"string\",\n  \"application\": \"string\",\n  \"canGetProxyCredentials\": true,\n  \"canUseSSHKey\": true,\n  \"concurrencyId\": \"string\",\n  \"customLauncher\": {\n    \"additionalProcessesToRecord\": \"string\",\n    \"batchFileData\": \"string\",\n    \"batchFileId\": 255,\n    \"batchFileName\": \"string\",\n    \"charactersToEscape\": \"string\",\n    \"childLauncherId\": 7867,\n    \"escapeCharacter\": \"string\",\n    \"launchAsSecretCredentials\": false,\n    \"loadUserProfile\": true,\n    \"macProcessArguments\": \"string\",\n    \"macProcessName\": \"string\",\n    \"overrideDisallowAdditionalParametersInQuotes\": false,\n    \"preserveSSHClientProcess\": true,\n    \"processArguments\": \"string\",\n    \"processName\": \"string\",\n    \"rdsCredentialsSecretId\": 2448,\n    \"rdsCredentialsSecretName\": \"string\",\n    \"rdsServerHostname\": \"string\",\n    \"rdsServerPort\": 5412,\n    \"recordKeystrokes\": false,\n    \"recordMultipleWindows\": true,\n    \"runType\": 6692,\n    \"shellScriptData\": \"string\",\n    \"shellScriptId\": 405,\n    \"shellScriptName\": \"string\",\n    \"useSFTPTunnel\": false,\n    \"useShellExecute\": true,\n    \"useSSHTunnel\": false\n  },\n  \"customLauncherId\": 4853,\n  \"isCustomLauncher\": true,\n  \"isPuttyLauncherType\": true,\n  \"isRDPReady\": false,\n  \"isSessionConnectorLauncher\": true,\n  \"isSystemInternalLauncherType\": true,\n  \"lastModifiedDate\": \"1952-02-21T00:25:03.312Z\",\n  \"launcherTypeId\": 6604,\n  \"launcherTypeName\": \"string\",\n  \"mstscLauncherOption\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2e189f0-6b27-4aeb-af22-7065db404c47",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"additionalProcessesToRecord\": \"<string>\",\n    \"additionalPromptField\": \"<boolean>\",\n    \"additionalPromptFieldName\": \"<string>\",\n    \"application\": \"<string>\",\n    \"batchFileId\": \"<integer>\",\n    \"charactersToEscape\": \"<string>\",\n    \"childLauncherId\": \"<integer>\",\n    \"escapeCharacter\": \"<string>\",\n    \"launchAsSecretCredentials\": \"<boolean>\",\n    \"launcherTypeName\": \"<string>\",\n    \"loadUserProfile\": \"<boolean>\",\n    \"macProcessArguments\": \"<string>\",\n    \"macProcessName\": \"<string>\",\n    \"mstscLauncherOption\": \"<boolean>\",\n    \"overrideDisallowAdditionalParametersInQuotes\": \"<boolean>\",\n    \"preserveSSHClientProcess\": \"<boolean>\",\n    \"processArguments\": \"<string>\",\n    \"processName\": \"<string>\",\n    \"rdsCredentialsSecretId\": \"<integer>\",\n    \"rdsServerHostname\": \"<string>\",\n    \"rdsServerPort\": \"<integer>\",\n    \"recordKeystrokes\": \"<boolean>\",\n    \"recordMultipleWindows\": \"<boolean>\",\n    \"runType\": \"<integer>\",\n    \"shellScriptId\": \"<integer>\",\n    \"useSFTPTunnel\": \"<boolean>\",\n    \"useShellExecute\": \"<boolean>\",\n    \"useSSHTunnel\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c28a6a79-76d1-4462-bb20-cda5865d990f",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"additionalProcessesToRecord\": \"<string>\",\n    \"additionalPromptField\": \"<boolean>\",\n    \"additionalPromptFieldName\": \"<string>\",\n    \"application\": \"<string>\",\n    \"batchFileId\": \"<integer>\",\n    \"charactersToEscape\": \"<string>\",\n    \"childLauncherId\": \"<integer>\",\n    \"escapeCharacter\": \"<string>\",\n    \"launchAsSecretCredentials\": \"<boolean>\",\n    \"launcherTypeName\": \"<string>\",\n    \"loadUserProfile\": \"<boolean>\",\n    \"macProcessArguments\": \"<string>\",\n    \"macProcessName\": \"<string>\",\n    \"mstscLauncherOption\": \"<boolean>\",\n    \"overrideDisallowAdditionalParametersInQuotes\": \"<boolean>\",\n    \"preserveSSHClientProcess\": \"<boolean>\",\n    \"processArguments\": \"<string>\",\n    \"processName\": \"<string>\",\n    \"rdsCredentialsSecretId\": \"<integer>\",\n    \"rdsServerHostname\": \"<string>\",\n    \"rdsServerPort\": \"<integer>\",\n    \"recordKeystrokes\": \"<boolean>\",\n    \"recordMultipleWindows\": \"<boolean>\",\n    \"runType\": \"<integer>\",\n    \"shellScriptId\": \"<integer>\",\n    \"useSFTPTunnel\": \"<boolean>\",\n    \"useShellExecute\": \"<boolean>\",\n    \"useSSHTunnel\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d955182d-8654-4e88-b186-7f6fc633b930",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "launchers",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"active\": \"<boolean>\",\n    \"additionalProcessesToRecord\": \"<string>\",\n    \"additionalPromptField\": \"<boolean>\",\n    \"additionalPromptFieldName\": \"<string>\",\n    \"application\": \"<string>\",\n    \"batchFileId\": \"<integer>\",\n    \"charactersToEscape\": \"<string>\",\n    \"childLauncherId\": \"<integer>\",\n    \"escapeCharacter\": \"<string>\",\n    \"launchAsSecretCredentials\": \"<boolean>\",\n    \"launcherTypeName\": \"<string>\",\n    \"loadUserProfile\": \"<boolean>\",\n    \"macProcessArguments\": \"<string>\",\n    \"macProcessName\": \"<string>\",\n    \"mstscLauncherOption\": \"<boolean>\",\n    \"overrideDisallowAdditionalParametersInQuotes\": \"<boolean>\",\n    \"preserveSSHClientProcess\": \"<boolean>\",\n    \"processArguments\": \"<string>\",\n    \"processName\": \"<string>\",\n    \"rdsCredentialsSecretId\": \"<integer>\",\n    \"rdsServerHostname\": \"<string>\",\n    \"rdsServerPort\": \"<integer>\",\n    \"recordKeystrokes\": \"<boolean>\",\n    \"recordMultipleWindows\": \"<boolean>\",\n    \"runType\": \"<integer>\",\n    \"shellScriptId\": \"<integer>\",\n    \"useSFTPTunnel\": \"<boolean>\",\n    \"useShellExecute\": \"<boolean>\",\n    \"useSSHTunnel\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/SecretServer/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7326b887-7f00-42c0-a601-b0b55827192d",
+    "name": "Secret Server Rest Activations Launchers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href=\"../OAuth/\">authentication document</a> for more information. The <a href=\"swagger.json\">Swagger specification</a> for this API is also available.\n\nContact Support:\n Name: Support",
+      "type": "text/plain"
+    }
+  }
+}

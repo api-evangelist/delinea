@@ -1,0 +1,526 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations InboxRules API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "InboxRules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Subscribe Current User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/inbox-rules/:ruleId/subscribe",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "ruleId"
+              }
+            ]
+          },
+          "docs": "Subscribe the current user from the rule"
+        },
+        {
+          "info": {
+            "name": "Unsubscribe current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/inbox-rules/:ruleId/subscribe",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "ruleId"
+              }
+            ]
+          },
+          "docs": "Unsubscribe the current user from the rule"
+        },
+        {
+          "info": {
+            "name": "Search inbox rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox-rules",
+            "params": [
+              {
+                "name": "filter.includeCurrentUserSubscriptionStatus",
+                "value": "",
+                "type": "query",
+                "description": "Return the subscription status of the current user whether subscribed directly or via a group."
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "Include inactive rules."
+              },
+              {
+                "name": "filter.isImmediate",
+                "value": "",
+                "type": "query",
+                "description": "Only return rules that run immediately or on a schedule, depending on value."
+              },
+              {
+                "name": "filter.messageId",
+                "value": "",
+                "type": "query",
+                "description": "Return all rules that will apply to this message id, does not account for time or schedule."
+              },
+              {
+                "name": "filter.messageTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Only return rules that apply to this message type.  If a MessageId is passed then this value will be replaced with that message's MessageTypeId."
+              },
+              {
+                "name": "ruleConditionFilters[0].displayValue",
+                "value": "",
+                "type": "query",
+                "description": "Search specifically display values"
+              },
+              {
+                "name": "ruleConditionFilters[0].inboxDataId",
+                "value": "",
+                "type": "query",
+                "description": "Which field is being searched.  This value can be null if InboxDataName is passed instead."
+              },
+              {
+                "name": "ruleConditionFilters[0].inboxDataName",
+                "value": "",
+                "type": "query",
+                "description": "Which field is being searched.  If InboxDataId is passed this value is ignored."
+              },
+              {
+                "name": "ruleConditionFilters[0].valueBool",
+                "value": "",
+                "type": "query",
+                "description": "Search specifically for boolean values"
+              },
+              {
+                "name": "ruleConditionFilters[0].valueInt",
+                "value": "",
+                "type": "query",
+                "description": "Search specifically for int values"
+              },
+              {
+                "name": "ruleConditionFilters[0].valueString",
+                "value": "",
+                "type": "query",
+                "description": "Search specifically for string values with a partial match"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page inbox rules"
+        },
+        {
+          "info": {
+            "name": "Create Inbox Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/inbox-rules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new inbox rule"
+        },
+        {
+          "info": {
+            "name": "Get Inbox Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox-rules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Retrieve inbox rule by Id"
+        },
+        {
+          "info": {
+            "name": "Patch Inbox Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/inbox-rules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change properties of an inbox rule"
+        },
+        {
+          "info": {
+            "name": "Get Inbox Rule Stub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox-rules/stub"
+          },
+          "docs": "Retrieve an empty inbox rule"
+        },
+        {
+          "info": {
+            "name": "Get Inbox Rule Condition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox-rules/conditions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Retrieve inbox rule condition by Id"
+        },
+        {
+          "info": {
+            "name": "Search Inbox Rule Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox-rules/:id/conditions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Search Inbox Rule Conditions"
+        },
+        {
+          "info": {
+            "name": "Search inbox rule subscribers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox-rules/:inboxRuleId/subscribers",
+            "params": [
+              {
+                "name": "inboxRuleId",
+                "value": "",
+                "type": "path",
+                "description": "inboxRuleId"
+              },
+              {
+                "name": "filter.accountTypes",
+                "value": "",
+                "type": "query",
+                "description": "AccountTypes"
+              },
+              {
+                "name": "filter.onlyIncludeUnsubscribableUsers",
+                "value": "",
+                "type": "query",
+                "description": "This will ignore most other filters and return only User accounts that belong to groups that are subscribed.  The results will not include users that are directly subscribed as they must be removed from the subscription, not unsubscribed."
+              },
+              {
+                "name": "filter.searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search text to filter users from the unsubscribable users"
+              },
+              {
+                "name": "filter.status",
+                "value": "",
+                "type": "query",
+                "description": "Status"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page inbox subscribers"
+        },
+        {
+          "info": {
+            "name": "Get Inbox Rule Logs By Inbox Rule Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/inbox-rules/:inboxRuleId/action-log",
+            "params": [
+              {
+                "name": "inboxRuleId",
+                "value": "",
+                "type": "path",
+                "description": "inboxRuleId"
+              },
+              {
+                "name": "filter.endDate",
+                "value": "",
+                "type": "query",
+                "description": "EndDate"
+              },
+              {
+                "name": "filter.ruleActionStatus",
+                "value": "",
+                "type": "query",
+                "description": "RuleActionStatus"
+              },
+              {
+                "name": "filter.startDate",
+                "value": "",
+                "type": "query",
+                "description": "StartDate"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get Inbox Rule Logs By Inbox Rule Id"
+        },
+        {
+          "info": {
+            "name": "Patch Inbox Rule Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/inbox-rules/:id/actions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change Inbox Rule Actions"
+        },
+        {
+          "info": {
+            "name": "Patch Inbox Rule Subscribers",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/inbox-rules/:ruleId/subscribers",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "ruleId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add, Remove, or unsubscribe groups, users, and external emails to a specific rule"
+        },
+        {
+          "info": {
+            "name": "Copy Inbox Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/inbox-rules/copy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copy an inbox rule"
+        },
+        {
+          "info": {
+            "name": "Create Inbox Rule Condition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/inbox-rules/:inboxRuleId/conditions",
+            "params": [
+              {
+                "name": "inboxRuleId",
+                "value": "",
+                "type": "path",
+                "description": "inboxRuleId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new inbox rule condition"
+        },
+        {
+          "info": {
+            "name": "Update Inbox Rule Condition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/SecretServer/api/v1/inbox-rules/:inboxRuleId/conditions",
+            "params": [
+              {
+                "name": "inboxRuleId",
+                "value": "",
+                "type": "path",
+                "description": "inboxRuleId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update inbox rule condition"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

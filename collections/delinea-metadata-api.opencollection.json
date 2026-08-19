@@ -1,0 +1,362 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations Metadata API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/SecretServer/api/v1/metadata/:itemType/:itemId/:metadataItemDataId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The item ID of the entity to which this metadata is associated"
+              },
+              {
+                "name": "itemType",
+                "value": "",
+                "type": "path",
+                "description": "The type of entity to which this metadata is associated"
+              },
+              {
+                "name": "metadataItemDataId",
+                "value": "",
+                "type": "path",
+                "description": "The sequence ID of the metadata record to delete"
+              }
+            ]
+          },
+          "docs": "Deletes the metadata value and all history for that item"
+        },
+        {
+          "info": {
+            "name": "Search metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/metadata",
+            "params": [
+              {
+                "name": "filter.itemId",
+                "value": "",
+                "type": "query",
+                "description": "Will only return metadata for this entity ID.  MetadataType will also be required."
+              },
+              {
+                "name": "filter.metaDataFieldId",
+                "value": "",
+                "type": "query",
+                "description": "Return a specific metadata field"
+              },
+              {
+                "name": "filter.metadataType",
+                "value": "",
+                "type": "query",
+                "description": "Will only return metadata for this type.  ItemId will also be required."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page metadata"
+        },
+        {
+          "info": {
+            "name": "Search metadata history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/metadata/history",
+            "params": [
+              {
+                "name": "isExporting",
+                "value": "",
+                "type": "query",
+                "description": "isExporting"
+              },
+              {
+                "name": "filter.endDate",
+                "value": "",
+                "type": "query",
+                "description": "Only return history metadata values that were entered before this time"
+              },
+              {
+                "name": "filter.itemId",
+                "value": "",
+                "type": "query",
+                "description": "Will only return metadata for this entity ID.  MetadataType will also be required."
+              },
+              {
+                "name": "filter.metaDataFieldId",
+                "value": "",
+                "type": "query",
+                "description": "Return a specific metadata field"
+              },
+              {
+                "name": "filter.metadataType",
+                "value": "",
+                "type": "query",
+                "description": "Will only return metadata for this type.  ItemId will also be required."
+              },
+              {
+                "name": "filter.startDate",
+                "value": "",
+                "type": "query",
+                "description": "Only return history metadata values that were entered after this time"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Search, filter, sort, and page metadata history"
+        },
+        {
+          "info": {
+            "name": "Get metadata field sections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/metadata/field-sections",
+            "params": [
+              {
+                "name": "filter.itemId",
+                "value": "",
+                "type": "query",
+                "description": "Return sections that have metadata for this specific item id.  MetadataType will be required."
+              },
+              {
+                "name": "filter.metadataSectionFilterId",
+                "value": "",
+                "type": "query",
+                "description": "Return a specific Metadata Section Field ID."
+              },
+              {
+                "name": "filter.metadataType",
+                "value": "",
+                "type": "query",
+                "description": "Only return metadata for a specific type of item.  Will also required an ItemId"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Return all of the metadata sections that have metadata for a specific item."
+        },
+        {
+          "info": {
+            "name": "Get metadata fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/metadata/fields"
+          },
+          "docs": "Returns a list of all of the metadata sections and fields that exist"
+        },
+        {
+          "info": {
+            "name": "Create Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/metadata/:itemType/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The item ID of the entity to which this metadata is associated"
+              },
+              {
+                "name": "itemType",
+                "value": "",
+                "type": "path",
+                "description": "The type of entity to which this metadata is associated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a metadata field for an item"
+        },
+        {
+          "info": {
+            "name": "Update or Create Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/metadata/:itemType/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The item ID of the entity to which this metadata is associated"
+              },
+              {
+                "name": "itemType",
+                "value": "",
+                "type": "path",
+                "description": "The type of entity to which this metadata is associated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update or create a metadata field for an item"
+        },
+        {
+          "info": {
+            "name": "Update a metadata field section",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/metadata/field-sections/:fieldSectionId",
+            "params": [
+              {
+                "name": "fieldSectionId",
+                "value": "",
+                "type": "path",
+                "description": "The section ID of the field to which this metadata is associated"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "query",
+                "description": "The item ID of the entity to which this metadata is associated"
+              },
+              {
+                "name": "itemType",
+                "value": "",
+                "type": "query",
+                "description": "The type of entity to which this metadata is associated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a metadata field section"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

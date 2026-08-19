@@ -1,0 +1,204 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations SshCommandBlocklist API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SshCommandBlocklist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an SSH Command Blocklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command-blocklist/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "SSH Command Blocklist ID"
+              }
+            ]
+          },
+          "docs": "Returns the SSH Command Blocklist for the provided ID"
+        },
+        {
+          "info": {
+            "name": "Get a list of SSH Command Blocklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command-blocklist/list",
+            "params": [
+              {
+                "name": "filter.includeActive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeActive"
+              },
+              {
+                "name": "filter.includeInactive",
+                "value": "",
+                "type": "query",
+                "description": "IncludeInactive"
+              },
+              {
+                "name": "filter.name",
+                "value": "",
+                "type": "query",
+                "description": "Name"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns a list of SSH Command Blocklists that meet the paging/searching critera"
+        },
+        {
+          "info": {
+            "name": "Stub an empty SSH Command Blocklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command-blocklist/stub"
+          },
+          "docs": "Returns an empty SSH Command Blocklist to be filled out."
+        },
+        {
+          "info": {
+            "name": "Get a list of Secret Policies that use the given blocklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/ssh-command-blocklist/policies",
+            "params": [
+              {
+                "name": "filter.sshCommandBlocklistId",
+                "value": "",
+                "type": "query",
+                "description": "Results will be associated to the provided blocklist id"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Returns a list of Secret Policies that meet the paging/searching critera"
+        },
+        {
+          "info": {
+            "name": "Update an SSH Command Blocklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/ssh-command-blocklist/:sshCommandBlocklistId",
+            "params": [
+              {
+                "name": "sshCommandBlocklistId",
+                "value": "",
+                "type": "path",
+                "description": "sshCommandBlocklistId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an SSH Command Blocklist"
+        },
+        {
+          "info": {
+            "name": "Add an SSH Command Blocklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/ssh-command-blocklist",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an SSH Command Blocklist"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

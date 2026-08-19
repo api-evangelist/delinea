@@ -1,0 +1,1440 @@
+{
+  "item": [
+    {
+      "id": "586a89e6-9ef0-4a1c-8c5c-49be051f40be",
+      "name": "EventPipelineSettings",
+      "description": {
+        "content": "EventPipelineSettingsController",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30900332-4607-4996-b672-609c507aa152",
+          "name": "Get Event Pipeline Tasks",
+          "request": {
+            "name": "Get Event Pipeline Tasks",
+            "description": {
+              "content": "Get all tasks",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-pipeline-settings",
+                "task",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter.eventActionId",
+                  "value": "<integer>",
+                  "description": "EventActionId"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip before taking results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].direction",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].name",
+                  "value": "<string>",
+                  "description": "Sort field name"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy[0].priority",
+                  "value": "<integer>",
+                  "description": "Priority index. Sorts with lower values are executed earlier"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c61a396-0c25-4b2e-9f1b-5a65c0e75c50",
+              "name": "Paged list of tasks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "task",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.eventActionId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchCount\": 1182,\n  \"currentPage\": 7432,\n  \"hasNext\": true,\n  \"hasPrev\": false,\n  \"nextSkip\": 8664,\n  \"pageCount\": 526,\n  \"prevSkip\": 5750,\n  \"records\": [\n    {\n      \"eventEntityTypeId\": 7035,\n      \"eventPipelineTaskDescription\": \"string\",\n      \"eventPipelineTaskId\": 9447,\n      \"eventPipelineTaskName\": \"string\",\n      \"isMultiSelect\": true\n    },\n    {\n      \"eventEntityTypeId\": 3149,\n      \"eventPipelineTaskDescription\": \"string\",\n      \"eventPipelineTaskId\": 120,\n      \"eventPipelineTaskName\": \"string\",\n      \"isMultiSelect\": false\n    }\n  ],\n  \"severity\": \"Retry\",\n  \"skip\": 5355,\n  \"sortBy\": [\n    {\n      \"name\": \"string\",\n      \"direction\": \"Desc\",\n      \"priority\": 9762\n    },\n    {\n      \"name\": \"string\",\n      \"direction\": \"Desc\",\n      \"priority\": 5973\n    }\n  ],\n  \"success\": false,\n  \"take\": 1582,\n  \"total\": 8202\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc08ace6-b812-4fdf-9e78-b1dfdd6d9607",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "task",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.eventActionId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bac6c797-815b-414a-8606-9901a410312c",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "task",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.eventActionId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "467c6fcc-2c0d-4223-9371-d0fc82cd5e55",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "task",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter.eventActionId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy[0].direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy[0].priority",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9db83955-a3d0-4457-9d23-e068189de8dd",
+          "name": "Get Event Pipeline Task Settings",
+          "request": {
+            "name": "Get Event Pipeline Task Settings",
+            "description": {
+              "content": "Returns a list of all pipeline task settings",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-pipeline-settings",
+                "task-settings",
+                "list",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Event Pipeline Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6aec2b61-edd9-459a-8699-ff2fad20e8f0",
+              "name": "Pipeline task settings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "task-settings",
+                    "list",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event Pipeline Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"eventPipelineTaskId\": 1307,\n    \"eventPipelineTaskSettingMapId\": 1002,\n    \"setting\": {\n      \"active\": true,\n      \"canEdit\": true,\n      \"canEditValue\": true,\n      \"childLoadSQL\": \"string\",\n      \"childSettings\": [\n        {\n          \"active\": true,\n          \"canEdit\": true,\n          \"canEditValue\": true,\n          \"childLoadSQL\": \"string\",\n          \"defaultValue\": \"string\",\n          \"isVisible\": true,\n          \"nameLocalizeKey\": \"string\",\n          \"parentSettingId\": 1052,\n          \"regexValidation\": \"string\",\n          \"settingId\": 9244,\n          \"settingName\": \"string\",\n          \"settingSectionId\": 3983,\n          \"settingType\": \"MultilineString\",\n          \"sortOrder\": 1714,\n          \"subSettingSectionId\": 9920,\n          \"tooltipLocalizeKey\": \"string\"\n        },\n        {\n          \"active\": false,\n          \"canEdit\": true,\n          \"canEditValue\": true,\n          \"childLoadSQL\": \"string\",\n          \"defaultValue\": \"string\",\n          \"isVisible\": false,\n          \"nameLocalizeKey\": \"string\",\n          \"parentSettingId\": 3870,\n          \"regexValidation\": \"string\",\n          \"settingId\": 3300,\n          \"settingName\": \"string\",\n          \"settingSectionId\": 1632,\n          \"settingType\": \"DropDownItem\",\n          \"sortOrder\": 1439,\n          \"subSettingSectionId\": 3566,\n          \"tooltipLocalizeKey\": \"string\"\n        }\n      ],\n      \"defaultValue\": \"string\",\n      \"isVisible\": true,\n      \"nameLocalizeKey\": \"string\",\n      \"parentSettingId\": 7150,\n      \"regexValidation\": \"string\",\n      \"settingId\": 8437,\n      \"settingName\": \"string\",\n      \"settingSectionId\": 8446,\n      \"settingType\": \"DropDownItem\",\n      \"sortOrder\": 1895,\n      \"subSettingSectionId\": 5685,\n      \"tooltipLocalizeKey\": \"string\"\n    },\n    \"settingDisplay\": \"string\",\n    \"settingId\": 165,\n    \"settingValue\": \"string\",\n    \"sortOrder\": 7179,\n    \"usingDefault\": false\n  },\n  {\n    \"eventPipelineTaskId\": 4860,\n    \"eventPipelineTaskSettingMapId\": 3495,\n    \"setting\": {\n      \"active\": false,\n      \"canEdit\": true,\n      \"canEditValue\": true,\n      \"childLoadSQL\": \"string\",\n      \"childSettings\": [\n        {\n          \"active\": true,\n          \"canEdit\": true,\n          \"canEditValue\": false,\n          \"childLoadSQL\": \"string\",\n          \"defaultValue\": \"string\",\n          \"isVisible\": false,\n          \"nameLocalizeKey\": \"string\",\n          \"parentSettingId\": 215,\n          \"regexValidation\": \"string\",\n          \"settingId\": 5794,\n          \"settingName\": \"string\",\n          \"settingSectionId\": 4152,\n          \"settingType\": \"DropDownItem\",\n          \"sortOrder\": 4297,\n          \"subSettingSectionId\": 8284,\n          \"tooltipLocalizeKey\": \"string\"\n        },\n        {\n          \"active\": true,\n          \"canEdit\": false,\n          \"canEditValue\": true,\n          \"childLoadSQL\": \"string\",\n          \"defaultValue\": \"string\",\n          \"isVisible\": true,\n          \"nameLocalizeKey\": \"string\",\n          \"parentSettingId\": 1074,\n          \"regexValidation\": \"string\",\n          \"settingId\": 5323,\n          \"settingName\": \"string\",\n          \"settingSectionId\": 8644,\n          \"settingType\": \"Radio\",\n          \"sortOrder\": 6845,\n          \"subSettingSectionId\": 605,\n          \"tooltipLocalizeKey\": \"string\"\n        }\n      ],\n      \"defaultValue\": \"string\",\n      \"isVisible\": false,\n      \"nameLocalizeKey\": \"string\",\n      \"parentSettingId\": 8491,\n      \"regexValidation\": \"string\",\n      \"settingId\": 6255,\n      \"settingName\": \"string\",\n      \"settingSectionId\": 8473,\n      \"settingType\": \"DropDown\",\n      \"sortOrder\": 6385,\n      \"subSettingSectionId\": 7048,\n      \"tooltipLocalizeKey\": \"string\"\n    },\n    \"settingDisplay\": \"string\",\n    \"settingId\": 2491,\n    \"settingValue\": \"string\",\n    \"sortOrder\": 2894,\n    \"usingDefault\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8905bec2-c87a-4c76-98ff-bfd47a683d4f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "task-settings",
+                    "list",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event Pipeline Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6071d07-541d-4b34-a997-59090c226d7b",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "task-settings",
+                    "list",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event Pipeline Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a605cc8-4786-4eb3-9e56-59431aa6fabb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "task-settings",
+                    "list",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event Pipeline Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66c171f8-6bc0-4931-9053-b2243ecacc24",
+          "name": "Get Event Pipeline Filter Settings",
+          "request": {
+            "name": "Get Event Pipeline Filter Settings",
+            "description": {
+              "content": "Get all filter settings for a specific pipeline",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-pipeline-settings",
+                "filter-settings",
+                "list",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Event Pipeline Filter ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e97e745-d7c5-4eaf-927b-992724fb2671",
+              "name": "filter settings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "filter-settings",
+                    "list",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event Pipeline Filter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"eventPipelineFilterId\": 3738,\n    \"eventPipelineFilterSettingMapId\": 6377,\n    \"setting\": {\n      \"active\": true,\n      \"canEdit\": true,\n      \"canEditValue\": false,\n      \"childLoadSQL\": \"string\",\n      \"childSettings\": [\n        {\n          \"active\": false,\n          \"canEdit\": false,\n          \"canEditValue\": false,\n          \"childLoadSQL\": \"string\",\n          \"defaultValue\": \"string\",\n          \"isVisible\": false,\n          \"nameLocalizeKey\": \"string\",\n          \"parentSettingId\": 36,\n          \"regexValidation\": \"string\",\n          \"settingId\": 1738,\n          \"settingName\": \"string\",\n          \"settingSectionId\": 2992,\n          \"settingType\": \"Integer\",\n          \"sortOrder\": 3937,\n          \"subSettingSectionId\": 612,\n          \"tooltipLocalizeKey\": \"string\"\n        },\n        {\n          \"active\": false,\n          \"canEdit\": false,\n          \"canEditValue\": false,\n          \"childLoadSQL\": \"string\",\n          \"defaultValue\": \"string\",\n          \"isVisible\": true,\n          \"nameLocalizeKey\": \"string\",\n          \"parentSettingId\": 2265,\n          \"regexValidation\": \"string\",\n          \"settingId\": 2977,\n          \"settingName\": \"string\",\n          \"settingSectionId\": 8197,\n          \"settingType\": \"Default\",\n          \"sortOrder\": 929,\n          \"subSettingSectionId\": 8921,\n          \"tooltipLocalizeKey\": \"string\"\n        }\n      ],\n      \"defaultValue\": \"string\",\n      \"isVisible\": true,\n      \"nameLocalizeKey\": \"string\",\n      \"parentSettingId\": 3964,\n      \"regexValidation\": \"string\",\n      \"settingId\": 7779,\n      \"settingName\": \"string\",\n      \"settingSectionId\": 5048,\n      \"settingType\": \"Boolean\",\n      \"sortOrder\": 2780,\n      \"subSettingSectionId\": 4681,\n      \"tooltipLocalizeKey\": \"string\"\n    },\n    \"settingDisplay\": \"string\",\n    \"settingId\": 3859,\n    \"settingValue\": \"string\",\n    \"sortOrder\": 5715,\n    \"usingDefault\": true\n  },\n  {\n    \"eventPipelineFilterId\": 9166,\n    \"eventPipelineFilterSettingMapId\": 4407,\n    \"setting\": {\n      \"active\": false,\n      \"canEdit\": true,\n      \"canEditValue\": false,\n      \"childLoadSQL\": \"string\",\n      \"childSettings\": [\n        {\n          \"active\": true,\n          \"canEdit\": true,\n          \"canEditValue\": true,\n          \"childLoadSQL\": \"string\",\n          \"defaultValue\": \"string\",\n          \"isVisible\": true,\n          \"nameLocalizeKey\": \"string\",\n          \"parentSettingId\": 7808,\n          \"regexValidation\": \"string\",\n          \"settingId\": 6301,\n          \"settingName\": \"string\",\n          \"settingSectionId\": 3252,\n          \"settingType\": \"DropDown\",\n          \"sortOrder\": 6612,\n          \"subSettingSectionId\": 3491,\n          \"tooltipLocalizeKey\": \"string\"\n        },\n        {\n          \"active\": false,\n          \"canEdit\": true,\n          \"canEditValue\": true,\n          \"childLoadSQL\": \"string\",\n          \"defaultValue\": \"string\",\n          \"isVisible\": false,\n          \"nameLocalizeKey\": \"string\",\n          \"parentSettingId\": 2282,\n          \"regexValidation\": \"string\",\n          \"settingId\": 8494,\n          \"settingName\": \"string\",\n          \"settingSectionId\": 106,\n          \"settingType\": \"DropDown\",\n          \"sortOrder\": 6937,\n          \"subSettingSectionId\": 2217,\n          \"tooltipLocalizeKey\": \"string\"\n        }\n      ],\n      \"defaultValue\": \"string\",\n      \"isVisible\": false,\n      \"nameLocalizeKey\": \"string\",\n      \"parentSettingId\": 5465,\n      \"regexValidation\": \"string\",\n      \"settingId\": 3113,\n      \"settingName\": \"string\",\n      \"settingSectionId\": 5040,\n      \"settingType\": \"RadioItem\",\n      \"sortOrder\": 1296,\n      \"subSettingSectionId\": 5882,\n      \"tooltipLocalizeKey\": \"string\"\n    },\n    \"settingDisplay\": \"string\",\n    \"settingId\": 6968,\n    \"settingValue\": \"string\",\n    \"sortOrder\": 3910,\n    \"usingDefault\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca8d97b9-5f9c-478b-8618-e4dd8e505d70",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "filter-settings",
+                    "list",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event Pipeline Filter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "412fc53b-b0cb-4d9d-9251-6630953b79c1",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "filter-settings",
+                    "list",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event Pipeline Filter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9c2a317-313b-42ea-85cf-94784791b21c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "filter-settings",
+                    "list",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Event Pipeline Filter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db4ec42f-361b-4f7c-8200-afe5f1d3fd92",
+          "name": "Get Pipeline Task Options",
+          "request": {
+            "name": "Get Pipeline Task Options",
+            "description": {
+              "content": "Get all available options for tasks",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-pipeline-settings",
+                "tasks",
+                "options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "eventEntityTypeId",
+                  "value": "<integer>",
+                  "description": "eventEntityTypeId"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2af231c-2773-4a38-a6a7-170fc39bd074",
+              "name": "List of task options",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "tasks",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventEntityTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"eventEntityTypeId\": \"string\",\n    \"eventPipelineTaskDescription\": \"string\",\n    \"eventPipelineTaskDisplayName\": \"string\",\n    \"eventPipelineTaskId\": 576,\n    \"eventPipelineTaskMapId\": 9680,\n    \"eventPipelineTaskName\": \"string\",\n    \"isMultiSelect\": true,\n    \"sortOrder\": 7428\n  },\n  {\n    \"eventEntityTypeId\": \"string\",\n    \"eventPipelineTaskDescription\": \"string\",\n    \"eventPipelineTaskDisplayName\": \"string\",\n    \"eventPipelineTaskId\": 3272,\n    \"eventPipelineTaskMapId\": 1008,\n    \"eventPipelineTaskName\": \"string\",\n    \"isMultiSelect\": true,\n    \"sortOrder\": 913\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53be3212-0798-406b-bbfc-c9808292d407",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "tasks",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventEntityTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db9c4d8e-ab59-46da-951b-313ef67367f6",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "tasks",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventEntityTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a475c042-1001-4db0-a13a-c77440f5d805",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "tasks",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventEntityTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b84b5cbb-c3e6-4c82-873d-18c4d2bc03fd",
+          "name": "Get Pipeline Filter Options",
+          "request": {
+            "name": "Get Pipeline Filter Options",
+            "description": {
+              "content": "Get all the available filter options",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "event-pipeline-settings",
+                "filter",
+                "options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "eventEntityTypeId",
+                  "value": "<integer>",
+                  "description": "eventEntityTypeId"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f3d7f23-ba8f-47fb-8eed-984bc2eb62cd",
+              "name": "List of filter options",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "filter",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventEntityTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"eventEntityTypeId\": 9914,\n    \"eventPipelineFilterDescription\": \"string\",\n    \"eventPipelineFilterDisplayName\": \"string\",\n    \"eventPipelineFilterId\": 4642,\n    \"eventPipelineFilterMapId\": 1924,\n    \"eventPipelineFilterName\": \"string\",\n    \"sortOrder\": 149\n  },\n  {\n    \"eventEntityTypeId\": 2071,\n    \"eventPipelineFilterDescription\": \"string\",\n    \"eventPipelineFilterDisplayName\": \"string\",\n    \"eventPipelineFilterId\": 5823,\n    \"eventPipelineFilterMapId\": 1312,\n    \"eventPipelineFilterName\": \"string\",\n    \"sortOrder\": 8833\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98e00714-19e2-46a9-91d0-396e26f2240b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "filter",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventEntityTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messageDetail\": \"string\",\n  \"errorCode\": \"string\",\n  \"modelState\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e7af1a8-ec4d-4ac9-9a29-8b6c68bc5860",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "filter",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventEntityTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff19c224-f180-4c7b-bbbd-65ad1c8e0a1e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "event-pipeline-settings",
+                    "filter",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventEntityTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"exceptionMessage\": \"string\",\n  \"exceptionType\": \"string\",\n  \"stackTrace\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/SecretServer/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1c79660a-4664-4350-91b9-0cc4462a3a9d",
+    "name": "Secret Server Rest Activations EventPipelineSettings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href=\"../OAuth/\">authentication document</a> for more information. The <a href=\"swagger.json\">Swagger specification</a> for this API is also available.\n\nContact Support:\n Name: Support",
+      "type": "text/plain"
+    }
+  }
+}

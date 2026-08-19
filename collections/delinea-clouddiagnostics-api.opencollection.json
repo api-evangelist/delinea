@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations CloudDiagnostics API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CloudDiagnostics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Background Processes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/diagnostics/background-processes"
+          },
+          "docs": "Get Background Process Information"
+        },
+        {
+          "info": {
+            "name": "Get long running tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/diagnostics/long-running-tasks"
+          },
+          "docs": "List of long running tasks (on prem only)"
+        },
+        {
+          "info": {
+            "name": "Recycle background processes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/diagnostics/recycle-background-processes"
+          },
+          "docs": "Attempts to recycle background processes (on prem only)"
+        },
+        {
+          "info": {
+            "name": "Clear long running task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/diagnostics/long-running-tasks/clear/:taskName",
+            "params": [
+              {
+                "name": "taskName",
+                "value": "",
+                "type": "path",
+                "description": "taskName"
+              }
+            ]
+          },
+          "docs": "Attempts to clear a long running task (on prem only)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,219 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Secret Server Rest Activations DependencyChanger API",
+    "version": "11.7.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DependencyChanger",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Dependency Changers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/dependency-changers/dependency-changers",
+            "params": [
+              {
+                "name": "filter.secretDependencyTypeId",
+                "value": "",
+                "type": "query",
+                "description": "If set, include only the given Secret Dependency Type."
+              },
+              {
+                "name": "filter.status",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include active, inactive, or both. Defaults to Active only"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get Dependency Changers"
+        },
+        {
+          "info": {
+            "name": "Get Dependency Changer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/dependency-changers/dependency-changer/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ]
+          },
+          "docs": "Get Dependency Changer"
+        },
+        {
+          "info": {
+            "name": "Patch Dependency Changer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/SecretServer/api/v1/dependency-changers/dependency-changer/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update values on a Dependency Changer"
+        },
+        {
+          "info": {
+            "name": "Get Dependency Changer Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/dependency-changers/dependency-changer-settings",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip before taking results"
+              },
+              {
+                "name": "sortBy[0].direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "sortBy[0].name",
+                "value": "",
+                "type": "query",
+                "description": "Sort field name"
+              },
+              {
+                "name": "sortBy[0].priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority index. Sorts with lower values are executed earlier"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in results"
+              }
+            ]
+          },
+          "docs": "Get Dependency Changer Settings"
+        },
+        {
+          "info": {
+            "name": "Get Dependency Changer Scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/dependency-changers/dependency-changer-scripts",
+            "params": [
+              {
+                "name": "secretDependencyChangerId",
+                "value": "",
+                "type": "query",
+                "description": "SecretDependencyChangerId"
+              }
+            ]
+          },
+          "docs": "Get Dependency Changer Scripts"
+        },
+        {
+          "info": {
+            "name": "Get Dependency Changer Scan Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/SecretServer/api/v1/dependency-changers/scan-fields",
+            "params": [
+              {
+                "name": "scanTemplateId",
+                "value": "",
+                "type": "query",
+                "description": "ScanTemplateId"
+              }
+            ]
+          },
+          "docs": "Get Dependency Changer Scan Fields"
+        },
+        {
+          "info": {
+            "name": "Create a Dependency Changer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/SecretServer/api/v1/dependency-changers/dependency-changer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Dependency Changer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
