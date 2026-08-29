@@ -1,0 +1,309 @@
+slug: delinea
+provider: Delinea
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 29
+edges:
+- tag: BulkUserOperations
+  spec_file: delinea-bulkuseroperations-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /v1/bulk-user-operations/enable  Enable; POST /v1/bulk-user-operations/enable-email-two-factor  Enable
+    Email Two Factor; schemas ForceLogoutForUsersModel, RemoveUsersFromGroupModel
+  reason: Enabling/disabling user accounts, MFA enrolment (TOTP, Duo, FIDO2, RADIUS), forced logout and
+    group membership changes are plainly identity and access administration operations.
+- tag: Groups
+  spec_file: delinea-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: '"Remove User From Group", "Add roles to existing group", schemas GroupMembershipAssignmentResponse,
+    RoleAssignments'
+  reason: Group, membership and role assignment administration in a privileged access management platform
+    is directly Identity & Access Management.
+- tag: Roles
+  spec_file: delinea-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: '''Create Role'', ''Update Role Permission Assignments'', ''Get Role Groups'', ''Patch Role
+    Group Assignments'''
+  reason: Full CRUD over security roles plus assignment of permissions and groups to roles — this is role-based
+    access control administration, squarely Identity & Access Management.
+- tag: SecretAccessRequests
+  spec_file: delinea-secretaccessrequests-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /v1/secret-access-requests SecretAccessRequestsService_CreateRequest Create a new Secret
+    Access Request; GET /v1/secret-access-requests/{id}/pending ... with Current and Eligible Reviewers
+  reason: Request/approval workflow with reviewers for access to privileged secrets — canonical access-request
+    and approval process of Identity & Access Management.
+- tag: SecretPermissions
+  spec_file: delinea-secretpermissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /v1/secret-permissions SecretPermissionsService_AddSecretPermission Create Secret Permission;
+    POST /v1/secret-permissions/platform-permission ... Grants level of access for a platform service
+    account on a secret
+  reason: Grants, roles and sharing of access rights over privileged secrets for users and service accounts
+    — plainly Identity & Access Management.
+- tag: Secrets
+  spec_file: delinea-secrets-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: '"Update Secret", "Deactivate a Secret", "Search Secrets", schemas SecretModel, SshKeyArgs,
+    SecretDetailSecurityPasswordRequirements'
+  reason: Core credential vault CRUD for privileged secrets (passwords, SSH keys) — plainly privileged
+    credential/identity and access management.
+- tag: Users
+  spec_file: delinea-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: '"Get User", "Update all roles on user", "Get User Groups", MultifactorAuthenticationProviderTypes,
+    UserIpAddressRestrictionModel'
+  reason: Full user lifecycle plus role/group assignment and MFA settings in a privileged access platform
+    — clearly Identity & Access Management, not HR employee records.
+- tag: ActiveDirectory
+  spec_file: delinea-activedirectory-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /v1/active-directory/synchronize  ActiveDirectoryService_Synchronize  Synchronize Active
+    Directory Groups and Users
+  reason: Synchronisation of directory users and groups into the privileged access platform is directory-driven
+    identity and access administration.
+- tag: DirectoryServices
+  spec_file: delinea-directoryservices-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '"Get Ldap synchronization settings for a domain", "Search in the directory for members of
+    a group", "Unlink a group from domain", schema "MultifactorAuthenticationProviderTypes"'
+  reason: Domain/LDAP directory integration, group linking and user synchronisation are identity federation
+    and access administration operations.
+- tag: FolderPermissions
+  spec_file: delinea-folderpermissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '"Create Folder Permission", "Update Folder Permission", schema FolderPermissionSummary'
+  reason: CRUD over access permissions granting users/groups rights to credential folders in a privileged
+    access management vault — squarely Identity & Access Management.
+- tag: SecretTemplatePermissions
+  spec_file: delinea-secrettemplatepermissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '"Update Secret Templates Permissions", "Get Secret Template Permission Roles", schema SecretTemplatePermissionRole'
+  reason: Grants and roles controlling who may use secret templates — permission/role administration within
+    a privileged access platform.
+- tag: ApplicationRequest
+  spec_file: delinea-applicationrequest-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: GET /v1/application-access-requests  Get Application Access Requests by Status for Current
+    User; PATCH /v1/application-access-request/{deviceId}  Update Application Access Requests; GET /v1/application-access-request-audits
+  reason: Operations create/retrieve/approve and audit access requests to applications by device — the
+    request-and-approve leg of access administration, i.e. Identity & Access Management, not a domain
+    business process.
+- tag: BulkSecretOperations
+  spec_file: delinea-bulksecretoperations-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /v1/bulk-secret-operations/change-password-remotely  Change Password Remotely; POST /v1/bulk-secret-operations/assign-secret-policy  Assign
+    Secret Policy; POST /v1/bulk-secret-operations/disable-checkout  Disable Checkout
+  reason: Operations perform privileged-credential administration in bulk — remote password change/rotation,
+    secret policy assignment, checkout and heartbeat controls — which is privileged access / credential
+    management under Identity & Access Management.
+- tag: SecretPolicy
+  spec_file: delinea-secretpolicy-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: '"Create a Secret Policy", "Update a Secret Policy", schemas UserGroupMapModel, SecretPolicySecurityItemsModel,
+    SecretPolicyDataItemOfAutoChangeScheduleDataModel'
+  reason: Policies governing privileged credential (secret) security, user/group mapping and auto-change
+    schedules in a PAM vault — access policy administration, i.e. Identity & Access Management.
+- tag: IpAddressRestrictions
+  spec_file: delinea-ipaddressrestrictions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: '"Get User IP Address restriction"; "Search groups assigned to an IP Address restriction";
+    GroupIpAddressRestrictionCreateArgs'
+  reason: Creates and assigns IP-based access restrictions to users and groups — access control policy
+    administration, i.e. Identity & Access Management.
+- tag: DisasterRecovery
+  spec_file: delinea-disasterrecovery-api-openapi.yml
+  capability_id: BC-160.20
+  capability_id_l1: BC-160
+  capability_name: Disaster Recovery Management
+  confidence: 0.75
+  evidence: '"Start Disaster Recovery Data Replication", "Test Disaster Recovery Data Replication", "Get
+    Disaster Recovery Replication Logs"'
+  reason: Operations configure, run and test data replication to a DR replica of the vault — IT disaster
+    recovery management. Could also be read as product-level resilience operations, hence not maximal
+    confidence.
+- tag: Platform
+  spec_file: delinea-platform-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: '''Link a group from Platform'', ''Search in Platform for groups'', ''Get Platform Directories'',
+    ''Create Platform users and groups'', ''Platform Sync Status'''
+  reason: 'Directory integration: linking/unlinking external groups, searching directories, creating users
+    and groups, synchronisation status. That is federation and user/group provisioning, i.e. Identity
+    & Access Management, despite the generic ''Platform'' tag string.'
+- tag: RemotePasswordChanging
+  spec_file: delinea-remotepasswordchanging-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: '''Create Password Type'', ''Update Password Type Auth'', ''Custom Command List'' under /v1/remote-password-changing'
+  reason: Defines the password types, authentication and custom commands used to rotate credentials on
+    remote target systems — privileged credential lifecycle management, which sits under Identity & Access
+    Management.
+- tag: RolePermissions
+  spec_file: delinea-rolepermissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: GET /v1/rolepermissions/unassigned 'Permissions not assigned to any Role'; schema UnassignedPermissionsModel
+  reason: Inspection of permissions relative to role assignments — role-based access control administration,
+    i.e. Identity & Access Management. Single operation, so confidence moderated.
+- tag: SecretSessions
+  spec_file: delinea-secretsessions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: '"Search Recorded Sessions", "Get Recorded Session Video Stream", "Recorded Session Points
+    of Interest"'
+  reason: Privileged session recording, retrieval and review is a core privileged access management control
+    surface, mapping to Identity & Access Management (PAM).
+- tag: SecretTemplates
+  spec_file: delinea-secrettemplates-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: '"Search Secret Templates", "Gets password dictionary items by ID", schemas SecretTemplatePasswordTypeModel,
+    SecretTemplateLauncherFieldValueModel'
+  reason: Defines the structure, password requirements and launchers for stored privileged credentials
+    — credential management under IAM/PAM.
+- tag: FeatureFlag
+  spec_file: delinea-featureflag-api-openapi.yml
+  capability_id: BC-4210.50
+  capability_id_l1: BC-4210
+  capability_name: Feature Flag Management
+  confidence: 0.72
+  evidence: GET /v1/featureflag/{key} "Check if Feature is Enabled"; DELETE /v1/featureflag "Clear Feature
+    Flag Cache"
+  reason: The operations evaluate and invalidate feature flags at runtime, which is the runtime-control
+    aspect of Feature Flag Management; confidence tempered because the surface is only read/cache-clear
+    rather than full flag lifecycle.
+- tag: KeyManagement
+  spec_file: delinea-keymanagement-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.72
+  evidence: PUT /v1/key-management/startmekrotation — "Rotate Master Encryption Key"; "Get a Master Encryption
+    Key Rotation Audit List"
+  reason: Master encryption key configuration, rotation and rotation audit — a cryptographic security
+    control; maps to Cybersecurity Management at L1, with no sub-capability specifically covering key
+    management.
+- tag: Launchers
+  spec_file: delinea-launchers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /v1/launchers/secret — "Launch a secret."; POST /v1/launchers/prepare — "Prepare Launcher
+    Session"
+  reason: Establishes privileged sessions to target systems using stored secrets, which is the access-granting
+    path of a PAM platform (Identity & Access Management); some of the surface is launcher-type/protocol-handler
+    configuration, hence not top confidence.
+- tag: PasswordRequirements
+  spec_file: delinea-passwordrequirements-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /v1/password-requirements 'Create Password Requirement'; PUT /v1/password-requirements/{id}/rules
+    'Update Password Requirement Rules'; schema CharacterSetSummary
+  reason: Defines and audits password complexity rules governing credentials managed by the PAM platform
+    — credential/access policy administration under Identity & Access Management. Could alternatively
+    be read as security policy governance, hence 0.7.
+- tag: SdkClientAccounts
+  spec_file: delinea-sdkclientaccounts-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /v1/sdk-client-accounts SdkClientAccountsService_CreateClientAccount Create SDK Client
+    Account; POST /v1/sdk-client-accounts/{id}/revoke ... Revoke SDK Client Account
+  reason: Issuance and revocation of machine/SDK client accounts that authenticate to the credential vault
+    — non-human identity and access administration within a PAM product, i.e. Identity & Access Management.
+- tag: SdkClientRules
+  spec_file: delinea-sdkclientrules-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /v1/sdk-client-rules SdkClientRulesService_CreateClientRule Create New SDK Client Rule;
+    GET /v1/sdk-client-rules/{id}/onboarding-key ... Get Onboarding Key
+  reason: Rules and onboarding keys that govern which SDK clients may enrol and obtain vault access —
+    access policy administration for non-human identities, mapping to Identity & Access Management.
+- tag: SecurityAuditLogs
+  spec_file: delinea-securityauditlogs-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: '"Search Security Audit Logs", schema SecurityAuditLogSummary'
+  reason: Retrieval of security audit log events supports security monitoring/governance; single generic
+    operation makes the specific sub-capability (detection vs governance) uncertain, so only L1 is asserted.
+- tag: SshCommand
+  spec_file: delinea-sshcommand-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"Add an SSH Command", schema CommandPermissionType'
+  reason: Definition of permitted/blocked SSH commands with a CommandPermissionType controls what privileged
+    users may execute — command-level privilege restriction under IAM/PAM.
