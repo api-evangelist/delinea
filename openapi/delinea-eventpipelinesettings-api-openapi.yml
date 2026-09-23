@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Secret Server Rest Activations EventPipelineSettings API
-  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  title: Secret Server Rest Event Pipeline Settings API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the authentication document for more information. The Swagger specification for this API is also available.
   termsOfService: https://delinea.com/eula
   contact:
     name: Support
@@ -269,102 +269,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    EventPipelineTaskSettingMapSummary:
-      description: EventPipelineTaskSettingMapSummary[]
-      properties:
-        eventPipelineTaskId:
-          description: Event Pipeline Task ID
-          type: integer
-          format: int32
-        eventPipelineTaskSettingMapId:
-          description: Event Pipeline Task Setting Map ID
-          type: integer
-          format: int32
-          nullable: true
-        setting:
-          $ref: '#/components/schemas/SettingForDisplay'
-        settingDisplay:
-          description: Setting Display
-          type: string
-        settingId:
-          description: Setting ID
-          type: integer
-          format: int32
-        settingValue:
-          description: Setting Value
-          type: string
-        sortOrder:
-          description: Event Pipeline Sort Order
-          type: integer
-          format: int32
-        usingDefault:
-          description: Using Default
-          type: boolean
-      type: object
-    EventPipelineFilterSummary:
-      description: EventPipelineFilterSummary[]
-      properties:
-        eventEntityTypeId:
-          description: Event Entity Type ID
-          type: integer
-          format: int32
-          nullable: true
-        eventPipelineFilterDescription:
-          description: Event Pipeline Filter Description
-          type: string
-        eventPipelineFilterDisplayName:
-          description: Event Pipeline Filter Display Name
-          type: string
-        eventPipelineFilterId:
-          description: Event Pipeline Filter Id
-          type: integer
-          format: int32
-        eventPipelineFilterMapId:
-          description: Event Pipeline Filter Map ID
-          type: integer
-          format: int32
-        eventPipelineFilterName:
-          description: Event Pipeline Filter Name
-          type: string
-        sortOrder:
-          description: Sort Order
-          type: integer
-          format: int32
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
     EventPipelineFilterSettingMapSummary:
       description: EventPipelineFilterSettingMapSummary[]
       properties:
@@ -396,64 +300,6 @@ components:
           description: Using Default
           type: boolean
       type: object
-    Setting:
-      description: ChildSettings
-      properties:
-        active:
-          description: Active
-          type: boolean
-        canEdit:
-          description: CanEdit
-          type: boolean
-        canEditValue:
-          description: CanEditValue
-          type: boolean
-        childLoadSQL:
-          description: ChildLoadSQL
-          type: string
-        defaultValue:
-          description: DefaultValue
-          type: string
-        isVisible:
-          description: IsVisible
-          type: boolean
-        nameLocalizeKey:
-          description: NameLocalizeKey
-          type: string
-        parentSettingId:
-          description: ParentSettingId
-          type: integer
-          format: int32
-          nullable: true
-        regexValidation:
-          description: RegexValidation
-          type: string
-        settingId:
-          description: SettingId
-          type: integer
-          format: int32
-        settingName:
-          description: SettingName
-          type: string
-        settingSectionId:
-          description: SettingSectionId
-          type: integer
-          format: int32
-        settingType:
-          $ref: '#/components/schemas/SettingType'
-        sortOrder:
-          description: SortOrder
-          type: integer
-          format: int32
-        subSettingSectionId:
-          description: SubSettingSectionId
-          type: integer
-          format: int32
-          nullable: true
-        tooltipLocalizeKey:
-          description: TooltipLocalizeKey
-          type: string
-      type: object
     SortDirection:
       description: Sort direction
       properties: {}
@@ -462,6 +308,47 @@ components:
       - None
       - Asc
       - Desc
+    EventPipelineFilterSummary:
+      description: EventPipelineFilterSummary[]
+      properties:
+        eventEntityTypeId:
+          description: Event Entity Type ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        eventPipelineFilterDescription:
+          description: Event Pipeline Filter Description
+          type: string
+        eventPipelineFilterDisplayName:
+          description: Event Pipeline Filter Display Name
+          type: string
+        eventPipelineFilterId:
+          description: Event Pipeline Filter Id
+          type: integer
+          format: int32
+        eventPipelineFilterMapId:
+          description: Event Pipeline Filter Map ID
+          type: integer
+          format: int32
+        eventPipelineFilterName:
+          description: Event Pipeline Filter Name
+          type: string
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
     PagingOfEventPipelineTask:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -519,116 +406,6 @@ components:
           type: integer
           format: int32
       type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    EventPipelineTask:
-      description: Query results
-      properties:
-        eventEntityTypeId:
-          description: EventEntityTypeId
-          type: integer
-          format: int32
-          nullable: true
-        eventPipelineTaskDescription:
-          description: EventPipelineTaskDescription
-          type: string
-        eventPipelineTaskId:
-          description: EventPipelineTaskId
-          type: integer
-          format: int32
-        eventPipelineTaskName:
-          description: EventPipelineTaskName
-          type: string
-        isMultiSelect:
-          description: IsMultiSelect
-          type: boolean
-      type: object
-    SettingType:
-      description: SettingType
-      properties: {}
-      type: string
-      enum:
-      - Default
-      - Integer
-      - String
-      - Boolean
-      - StringArray
-      - DropDown
-      - DropDownItem
-      - MultilineString
-      - IntegerArray
-      - Radio
-      - RadioItem
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    EventPipelineTaskSummary:
-      description: EventPipelineTaskSummary[]
-      properties:
-        eventEntityTypeId:
-          description: Event Entity Type ID
-          type: string
-          nullable: true
-        eventPipelineTaskDescription:
-          description: Event Pipeline Task Description
-          type: string
-        eventPipelineTaskDisplayName:
-          description: Event Pipeline Task Display Name
-          type: string
-        eventPipelineTaskId:
-          description: Event Pipeline Task ID
-          type: integer
-          format: int32
-        eventPipelineTaskMapId:
-          description: Event Pipeline Task Map ID
-          type: integer
-          format: int32
-        eventPipelineTaskName:
-          description: Event Pipeline Task Name
-          type: string
-        isMultiSelect:
-          description: Is Multi Select
-          type: boolean
-        sortOrder:
-          description: Sort Order
-          type: integer
-          format: int32
-      type: object
     SettingForDisplay:
       description: Setting
       properties:
@@ -660,9 +437,10 @@ components:
           type: string
         parentSettingId:
           description: ParentSettingId
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         regexValidation:
           description: RegexValidation
           type: string
@@ -685,12 +463,242 @@ components:
           format: int32
         subSettingSectionId:
           description: SubSettingSectionId
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         tooltipLocalizeKey:
           description: TooltipLocalizeKey
           type: string
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    EventPipelineTaskSummary:
+      description: EventPipelineTaskSummary[]
+      properties:
+        eventEntityTypeId:
+          description: Event Entity Type ID
+          type:
+          - string
+          - 'null'
+        eventPipelineTaskDescription:
+          description: Event Pipeline Task Description
+          type: string
+        eventPipelineTaskDisplayName:
+          description: Event Pipeline Task Display Name
+          type: string
+        eventPipelineTaskId:
+          description: Event Pipeline Task ID
+          type: integer
+          format: int32
+        eventPipelineTaskMapId:
+          description: Event Pipeline Task Map ID
+          type: integer
+          format: int32
+        eventPipelineTaskName:
+          description: Event Pipeline Task Name
+          type: string
+        isMultiSelect:
+          description: Is Multi Select
+          type: boolean
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+      type: object
+    EventPipelineTaskSettingMapSummary:
+      description: EventPipelineTaskSettingMapSummary[]
+      properties:
+        eventPipelineTaskId:
+          description: Event Pipeline Task ID
+          type: integer
+          format: int32
+        eventPipelineTaskSettingMapId:
+          description: Event Pipeline Task Setting Map ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        setting:
+          $ref: '#/components/schemas/SettingForDisplay'
+        settingDisplay:
+          description: Setting Display
+          type: string
+        settingId:
+          description: Setting ID
+          type: integer
+          format: int32
+        settingValue:
+          description: Setting Value
+          type: string
+        sortOrder:
+          description: Event Pipeline Sort Order
+          type: integer
+          format: int32
+        usingDefault:
+          description: Using Default
+          type: boolean
+      type: object
+    SettingType:
+      description: SettingType
+      properties: {}
+      type: string
+      enum:
+      - Default
+      - Integer
+      - String
+      - Boolean
+      - StringArray
+      - DropDown
+      - DropDownItem
+      - MultilineString
+      - IntegerArray
+      - Radio
+      - RadioItem
+    Setting:
+      description: ChildSettings
+      properties:
+        active:
+          description: Active
+          type: boolean
+        canEdit:
+          description: CanEdit
+          type: boolean
+        canEditValue:
+          description: CanEditValue
+          type: boolean
+        childLoadSQL:
+          description: ChildLoadSQL
+          type: string
+        defaultValue:
+          description: DefaultValue
+          type: string
+        isVisible:
+          description: IsVisible
+          type: boolean
+        nameLocalizeKey:
+          description: NameLocalizeKey
+          type: string
+        parentSettingId:
+          description: ParentSettingId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        regexValidation:
+          description: RegexValidation
+          type: string
+        settingId:
+          description: SettingId
+          type: integer
+          format: int32
+        settingName:
+          description: SettingName
+          type: string
+        settingSectionId:
+          description: SettingSectionId
+          type: integer
+          format: int32
+        settingType:
+          $ref: '#/components/schemas/SettingType'
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+        subSettingSectionId:
+          description: SubSettingSectionId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        tooltipLocalizeKey:
+          description: TooltipLocalizeKey
+          type: string
+      type: object
+    EventPipelineTask:
+      description: Query results
+      properties:
+        eventEntityTypeId:
+          description: EventEntityTypeId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        eventPipelineTaskDescription:
+          description: EventPipelineTaskDescription
+          type: string
+        eventPipelineTaskId:
+          description: EventPipelineTaskId
+          type: integer
+          format: int32
+        eventPipelineTaskName:
+          description: EventPipelineTaskName
+          type: string
+        isMultiSelect:
+          description: IsMultiSelect
+          type: boolean
       type: object
   securitySchemes:
     BearerToken:

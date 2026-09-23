@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Secret Server Rest Activations Teams API
-  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  title: Secret Server Rest Teams API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the authentication document for more information. The Swagger specification for this API is also available.
   termsOfService: https://delinea.com/eula
   contact:
     name: Support
@@ -737,451 +737,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    TeamDetailModel:
-      description: Query results
-      properties:
-        active:
-          description: Active
-          type: boolean
-        concurrencyId:
-          description: ConcurrencyId
-          type: string
-        domainId:
-          description: Domain Id
-          type: integer
-          format: int32
-          nullable: true
-        domainName:
-          description: Domain Name
-          type: string
-        shouldRestrictLists:
-          description: Should Restrict Lists
-          type: boolean
-        shouldRestrictSites:
-          description: Should Restrict Sites
-          type: boolean
-        teamDescription:
-          description: Team Description
-          type: string
-        teamId:
-          description: Team Id
-          type: integer
-          format: int32
-        teamName:
-          description: Team Name
-          type: string
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    PagingOfTeamDetailModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/TeamDetailModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    TeamAuditModel:
-      description: Query results
-      properties:
-        action:
-          description: Action
-          type: string
-        databaseName:
-          description: Database Name
-          type: string
-        dateRecorded:
-          description: Date Recordd
-          type: string
-          format: date-time
-        delegatedUserId:
-          description: Delegated User Id
-          type: integer
-          format: int32
-          nullable: true
-        displayName:
-          description: Display Name
-          type: string
-        ipAddress:
-          description: IP Address
-          type: string
-        machineName:
-          description: Machine Name
-          type: string
-        notes:
-          description: Notes
-          type: string
-        teamAuditId:
-          description: TeamAuditId
-          type: integer
-          format: int32
-        teamId:
-          description: Team Id
-          type: integer
-          format: int32
-        userId:
-          description: User Id
-          type: integer
-          format: int32
-        userName:
-          description: User Name
-          type: string
-      type: object
-    UpdateFieldValueOfInt32Array:
-      description: FolderIds
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          items:
-            type: integer
-            format: int32
-          type: array
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    TeamCreateArgs:
-      description: Available options for creating a team
-      required:
-      - teamName
-      properties:
-        domainId:
-          description: Id of domain team is in
-          type: integer
-          format: int32
-          nullable: true
-        teamDescription:
-          description: User description of team
-          type: string
-        teamName:
-          description: Name of the team
-          type: string
-      type: object
-    UpdateFieldValueOfOptionalInt32:
-      description: The minimum length required for local user passwords
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: integer
-          format: int32
-          nullable: true
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    TeamMemberUpdateArgs:
-      description: TeamMemberUpdateArgs
-      properties:
-        domainId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        groupIds:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
-      type: object
-    TeamGroupMembershipModel:
-      description: TeamGroupMembershipModel[]
-      properties:
-        groupDisplayName:
-          description: GroupDisplayName
-          type: string
-        groupId:
-          description: GroupId
-          type: integer
-          format: int32
-        teamGroupMembershipId:
-          description: TeamGroupMembershipId
-          type: integer
-          format: int32
-        teamId:
-          description: TeamId
-          type: integer
-          format: int32
-        type:
-          description: Type
-          type: string
-      type: object
-    UpdateFieldValueOfOptionalBoolean:
-      description: Use RADIUS Username for DUO
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-          nullable: true
-      type: object
-    PagingOfTeamAuditModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/TeamAuditModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    TeamCategorizedListUpdateArgs:
-      description: TeamCategorizedListUpdateArgs
-      properties:
-        listIds:
-          $ref: '#/components/schemas/UpdateFieldValueOfGuidArray'
-        shouldRestrictLists:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-      type: object
-    UpdateFieldValueOfGuidArray:
-      description: SshCommandIds
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          items:
-            type: string
-            format: uuid
-          type: array
-      type: object
-    TeamSiteMap:
-      description: TeamSiteMap[]
-      properties:
-        siteId:
-          description: SiteId
-          type: integer
-          format: int32
-        siteName:
-          description: SiteName
-          type: string
-        teamId:
-          description: TeamId
-          type: integer
-          format: int32
-        teamSiteMapId:
-          description: TeamSiteMapId
-          type: integer
-          format: int32
-      type: object
-    TeamDetailUpdateModel:
-      description: TeamDetailUpdateModel
-      properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        domainId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        teamDescription:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        teamName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
-    TeamMembershipSearchModel:
-      description: Query results
-      properties:
-        displayName:
-          description: Display name for the team member
-          type: string
-        domainName:
-          description: Domainn name for the team member
-          type: string
-        groupId:
-          description: Group Id
-          type: integer
-          format: int32
-        teamId:
-          description: Team Id
-          type: integer
-          format: int32
-        userId:
-          description: User Id
-          type: integer
-          format: int32
-          nullable: true
-        username:
-          description: User name for the team member
-          type: string
-      type: object
-    TeamSiteUpdateArgs:
-      description: TeamSiteUpdateArgs
-      properties:
-        shouldRestrictSites:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        siteIds:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
     TeamCategorizedListSummary:
       description: TeamCategorizedListSummary
       properties:
@@ -1194,17 +749,6 @@ components:
           description: TeamId
           type: integer
           format: int32
-      type: object
-    SimpleCategorizedList:
-      description: Query results
-      properties:
-        categorizedListId:
-          description: List Id
-          type: string
-          format: uuid
-        name:
-          description: Name of the list
-          type: string
       type: object
     PagingOfTeamMembershipSearchModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -1263,6 +807,49 @@ components:
           type: integer
           format: int32
       type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    TeamCreateArgs:
+      description: Available options for creating a team
+      required:
+      - teamName
+      properties:
+        domainId:
+          description: Id of domain team is in
+          type:
+          - integer
+          - 'null'
+          format: int32
+        teamDescription:
+          description: User description of team
+          type: string
+        teamName:
+          description: Name of the team
+          type: string
+      type: object
+    TeamDetailUpdateModel:
+      description: TeamDetailUpdateModel
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        domainId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        teamDescription:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        teamName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
     UpdateFieldValueOfString:
       description: Description
       properties:
@@ -1271,6 +858,425 @@ components:
           type: boolean
         value:
           description: Value
+          type: string
+      type: object
+    TeamMemberUpdateArgs:
+      description: TeamMemberUpdateArgs
+      properties:
+        domainId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        groupIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    SimpleCategorizedList:
+      description: Query results
+      properties:
+        categorizedListId:
+          description: List Id
+          type: string
+          format: uuid
+        name:
+          description: Name of the list
+          type: string
+      type: object
+    PagingOfTeamAuditModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/TeamAuditModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    TeamMembershipSearchModel:
+      description: Query results
+      properties:
+        displayName:
+          description: Display name for the team member
+          type: string
+        domainName:
+          description: Domainn name for the team member
+          type: string
+        groupId:
+          description: Group Id
+          type: integer
+          format: int32
+        teamId:
+          description: Team Id
+          type: integer
+          format: int32
+        userId:
+          description: User Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        username:
+          description: User name for the team member
+          type: string
+      type: object
+    PagingOfTeamDetailModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/TeamDetailModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    TeamSiteUpdateArgs:
+      description: TeamSiteUpdateArgs
+      properties:
+        shouldRestrictSites:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        siteIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    TeamSiteMap:
+      description: TeamSiteMap[]
+      properties:
+        siteId:
+          description: SiteId
+          type: integer
+          format: int32
+        siteName:
+          description: SiteName
+          type: string
+        teamId:
+          description: TeamId
+          type: integer
+          format: int32
+        teamSiteMapId:
+          description: TeamSiteMapId
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfGuidArray:
+      description: SshCommandIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: string
+            format: uuid
+          type: array
+      type: object
+    TeamCategorizedListUpdateArgs:
+      description: TeamCategorizedListUpdateArgs
+      properties:
+        listIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfGuidArray'
+        shouldRestrictLists:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+      type: object
+    UpdateFieldValueOfOptionalBoolean:
+      description: Use RADIUS Username for DUO
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - boolean
+          - 'null'
+      type: object
+    UpdateFieldValueOfInt32Array:
+      description: FolderIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    TeamGroupMembershipModel:
+      description: TeamGroupMembershipModel[]
+      properties:
+        groupDisplayName:
+          description: GroupDisplayName
+          type: string
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+        teamGroupMembershipId:
+          description: TeamGroupMembershipId
+          type: integer
+          format: int32
+        teamId:
+          description: TeamId
+          type: integer
+          format: int32
+        type:
+          description: Type
+          type: string
+      type: object
+    TeamDetailModel:
+      description: Query results
+      properties:
+        active:
+          description: Active
+          type: boolean
+        concurrencyId:
+          description: ConcurrencyId
+          type: string
+        domainId:
+          description: Domain Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        domainName:
+          description: Domain Name
+          type: string
+        shouldRestrictLists:
+          description: Should Restrict Lists
+          type: boolean
+        shouldRestrictSites:
+          description: Should Restrict Sites
+          type: boolean
+        teamDescription:
+          description: Team Description
+          type: string
+        teamId:
+          description: Team Id
+          type: integer
+          format: int32
+        teamName:
+          description: Team Name
+          type: string
+      type: object
+    TeamAuditModel:
+      description: Query results
+      properties:
+        action:
+          description: Action
+          type: string
+        databaseName:
+          description: Database Name
+          type: string
+        dateRecorded:
+          description: Date Recordd
+          type: string
+          format: date-time
+        delegatedUserId:
+          description: Delegated User Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        displayName:
+          description: Display Name
+          type: string
+        ipAddress:
+          description: IP Address
+          type: string
+        machineName:
+          description: Machine Name
+          type: string
+        notes:
+          description: Notes
+          type: string
+        teamAuditId:
+          description: TeamAuditId
+          type: integer
+          format: int32
+        teamId:
+          description: Team Id
+          type: integer
+          format: int32
+        userId:
+          description: User Id
+          type: integer
+          format: int32
+        userName:
+          description: User Name
+          type: string
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
           type: string
       type: object
   securitySchemes:

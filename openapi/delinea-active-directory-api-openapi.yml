@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Secret Server Rest Activations FeatureFlag API
-  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  title: Secret Server Rest Active Directory API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the authentication document for more information. The Swagger specification for this API is also available.
   termsOfService: https://delinea.com/eula
   contact:
     name: Support
@@ -12,60 +12,19 @@ servers:
 security:
 - BearerToken: []
 tags:
-- name: FeatureFlag
-  description: FeatureFlagController
+- name: Active Directory
+  description: View and maintain Active Directory
 paths:
-  /v1/featureflag:
-    delete:
+  /v1/active-directory/synchronize:
+    post:
       tags:
-      - FeatureFlag
-      summary: Clear Feature Flag Cache
-      description: Clear any feature flag values which have been cached
-      operationId: FeatureFlagService_ClearFeatureFlagCache
+      - Active Directory
+      summary: Synchronize Active Directory Groups and Users
+      description: Synchronize Members from Active Directory Groups that have Sync enabled
+      operationId: ActiveDirectoryService_Synchronize
       responses:
         '200':
-          description: Was Cache Clear Successful
-          content:
-            application/json:
-              schema:
-                description: Boolean
-                type: boolean
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestResponse'
-        '403':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthenticationFailedResponse'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerErrorResponse'
-      deprecated: false
-  /v1/featureflag/{key}:
-    get:
-      tags:
-      - FeatureFlag
-      summary: Check if Feature is Enabled
-      description: Check if Feature is Enabled
-      operationId: FeatureFlagService_IsFeatureEnabled
-      parameters:
-      - name: key
-        in: path
-        description: key
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Is Feature Enabled?
+          description: Bool
           content:
             application/json:
               schema:
@@ -92,24 +51,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -139,6 +80,24 @@ components:
         message:
           description: Error message
           type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
       type: object
   securitySchemes:
     BearerToken:

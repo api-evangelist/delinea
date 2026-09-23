@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Secret Server Rest Rest API Docs API
+  title: Secret Server Rest Health Check API
   description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the authentication document for more information. The Swagger specification for this API is also available.
   termsOfService: https://delinea.com/eula
   contact:
@@ -12,26 +12,30 @@ servers:
 security:
 - BearerToken: []
 tags:
-- name: RestApiDocs
-  description: REST API Doc Services
+- name: Health Check
+  description: HealthCheckController
 paths:
-  /v1/rest-documentation/services:
+  /v1/healthcheck:
     get:
       tags:
-      - RestApiDocs
-      summary: Get REST API Services
-      description: Return a list of all REST API service names
-      operationId: RestApiDocsService_GetRestApiServices
+      - Health Check
+      summary: Health Check
+      description: Returns the current health check of the system
+      operationId: HealthCheckService_Get
+      parameters:
+      - name: noBus
+        in: path
+        description: noBus
+        required: true
+        schema:
+          type: boolean
       responses:
         '200':
-          description: List of REST API service names
+          description: The health status
           content:
             application/json:
               schema:
-                description: List of REST API service names
-                items:
-                  $ref: '#/components/schemas/RestApiDocSummary'
-                type: array
+                $ref: '#/components/schemas/HealthCheckModel'
         '400':
           description: Bad request
           content:
@@ -74,6 +78,53 @@ components:
           description: Exception stack trace
           type: string
       type: object
+    HealthCheckModel:
+      description: HealthCheckModel
+      properties:
+        databaseHealthy:
+          description: DatabaseHealthy
+          type:
+          - boolean
+          - 'null'
+        databaseMismatch:
+          description: DatabaseMismatch
+          type: boolean
+        healthy:
+          description: Healthy
+          type: boolean
+        now:
+          description: Now
+          type: string
+          format: date-time
+        provisionDeletionDateTime:
+          description: ProvisionDeletionDateTime
+          type:
+          - string
+          - 'null'
+          format: date-time
+        readOnlyMode:
+          description: ReadOnlyMode
+          type: boolean
+        scheduledForDeletion:
+          description: ScheduledForDeletion
+          type:
+          - boolean
+          - 'null'
+        serviceBusHealthy:
+          description: ServiceBusHealthy
+          type:
+          - boolean
+          - 'null'
+        storageAccountHealthy:
+          description: StorageAccountHealthy
+          type:
+          - boolean
+          - 'null'
+        utcNow:
+          description: UtcNow
+          type: string
+          format: date-time
+      type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures
       required:
@@ -81,19 +132,6 @@ components:
       properties:
         message:
           description: Error message
-          type: string
-      type: object
-    RestApiDocSummary:
-      description: RestApiDocSummary[]
-      properties:
-        description:
-          description: Description of the service
-          type: string
-        serviceDisplayName:
-          description: Display Name of the service
-          type: string
-        serviceName:
-          description: Name of the service
           type: string
       type: object
     BadRequestResponse:

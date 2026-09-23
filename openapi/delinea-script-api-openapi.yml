@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Secret Server Rest Activations Script API
-  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  title: Secret Server Rest Script API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the authentication document for more information. The Swagger specification for this API is also available.
   termsOfService: https://delinea.com/eula
   contact:
     name: Support
@@ -522,7 +522,7 @@ paths:
       tags:
       - Script
       summary: Test PowerShell Script
-      description: Run a script to see if PowerShell is configured correctly and if a script will run.  If ScriptId is omitted a very basic test script is attempted.
+      description: Run a script to see if PowerShell is configured correctly and if a script will run. If ScriptId is omitted a very basic test script is attempted.
       operationId: ScriptService_TestPsScript
       requestBody:
         content:
@@ -561,7 +561,7 @@ paths:
       tags:
       - Script
       summary: Test SQL Script
-      description: Run a script to see if SQL is configured correctly and if a script will run.  If ScriptId is omitted a very basic test script is attempted.
+      description: Run a script to see if SQL is configured correctly and if a script will run. If ScriptId is omitted a very basic test script is attempted.
       operationId: ScriptService_TestSqlScript
       requestBody:
         content:
@@ -600,7 +600,7 @@ paths:
       tags:
       - Script
       summary: Test Scripts
-      description: Run a script to see if PowerShell, SQL, or SSH is configured correctly and if a script will run.  If ScriptId is omitted a very basic test script is attempted.
+      description: Run a script to see if PowerShell, SQL, or SSH is configured correctly and if a script will run. If ScriptId is omitted a very basic test script is attempted.
       operationId: ScriptService_TestSshScript
       requestBody:
         content:
@@ -683,6 +683,165 @@ paths:
       deprecated: false
 components:
   schemas:
+    ScriptCreateModel:
+      description: Create a script
+      properties:
+        description:
+          description: Script Description
+          type: string
+        isActive:
+          description: Whether the Script is Active
+          type: boolean
+        name:
+          description: Script Name
+          type: string
+        passwordChangerId:
+          description: Default Password Changer
+          type:
+          - integer
+          - 'null'
+          format: int32
+        script:
+          description: Script Text
+          type: string
+        scriptCategoryId:
+          description: Script Category Id
+          type: integer
+          format: int32
+        scriptType:
+          $ref: '#/components/schemas/UserScriptType'
+      type: object
+    PagingOfScriptCategorySummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/ScriptCategorySummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    RemoteScriptSshTestData:
+      description: If this is a Ssh script populate these settings
+      properties:
+        parameters:
+          description: Parameters
+          items:
+            $ref: '#/components/schemas/ScriptSshParameterValueModel'
+          type: array
+        passphrase:
+          description: Passphrase
+          type: string
+        port:
+          description: Port
+          type:
+          - integer
+          - 'null'
+          format: int32
+        server:
+          description: Server
+          type: string
+        serverDigest:
+          description: ServerDigest
+          type: string
+        sshKey:
+          description: SshKey
+          type: string
+      type: object
+    ScriptSqlAdditionalDataModel:
+      description: Additional settings for SQL scripts
+      properties:
+        database:
+          description: The database name to connect to
+          type: string
+        parameters:
+          description: Parameters for this sql script
+          items:
+            $ref: '#/components/schemas/ScriptSqlParamModel'
+          type: array
+        passwordChangerId:
+          description: Which password changer this is used with
+          type: integer
+          format: int32
+        passwordChangerName:
+          description: Which password changer this is used with
+          type: string
+        port:
+          description: A specific port to use
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    ScriptHistoryModel:
+      description: Retrieve the script from history
+      properties:
+        script:
+          description: The script that was saved at this time
+          type: string
+        scriptName:
+          description: The current name of this script
+          type: string
+        scriptType:
+          $ref: '#/components/schemas/UserScriptType'
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
     Sort:
       description: Sort options. Multiple sort options can be provided in the query string.
       required:
@@ -699,112 +858,28 @@ components:
           type: integer
           format: int32
       type: object
-    ScriptSshAdditionalDataModel:
-      description: Additional settings for SSH scripts
+    TestRemoteScriptSqlResponseModel:
+      description: Output from a sql script test
       properties:
-        doNotUseEnvironment:
-          description: Do not use environment variables in script
-          type: boolean
-        lineEnding:
-          $ref: '#/components/schemas/SshScriptLineEndingType'
-        parameters:
-          description: Any parameters that can be used in the script
+        debugOutput:
+          description: Debug output from test
           items:
-            $ref: '#/components/schemas/ScriptSshParameterModel'
+            type: string
           type: array
-        port:
-          description: The port that should be used by an SSH script
-          type: integer
-          format: int32
-          nullable: true
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    ScriptSshParameterValueModel:
-      description: Parameters
-      properties:
-        parameterName:
-          description: ParameterName
+        errorMessage:
+          description: Error messages from test
           type: string
-        parameterSshType:
-          $ref: '#/components/schemas/ScriptSshParamType'
-        parameterValue:
-          description: ParameterValue
-          type: string
-      type: object
-    ScriptSqlAdditionalDataUpdateModel:
-      description: Additional settings for SQL scripts.  Script type must be SQL
-      properties:
-        database:
-          description: The database to update
-          type: string
-        parameters:
-          description: All of the parameters that will be used in this script
+        errorOutput:
+          description: Error output from test
           items:
-            $ref: '#/components/schemas/ScriptSqlParamModel'
+            type: string
           type: array
-        passwordChangerId:
-          description: Which password changer to use
-          type: integer
-          format: int32
-        port:
-          description: Any specific port
-          type: integer
-          format: int32
-          nullable: true
+        logMessages:
+          description: Log Messages from test
+          items:
+            type: string
+          type: array
       type: object
-    RemoteScriptPsTestData:
-      description: If this is a PS script populate these settings
-      properties:
-        scriptArgs:
-          description: Any args that will get passed to the script
-          type: string
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    RemoteScriptTestSqlArgs:
-      description: PowerShell test args
-      properties:
-        data:
-          $ref: '#/components/schemas/RemoteScriptTestSqlData'
-      type: object
-    RemoteScriptTestPsArgs:
-      description: PowerShell test args
-      properties:
-        data:
-          $ref: '#/components/schemas/RemoteScriptTestPsData'
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    ScriptSshParamType:
-      description: ParameterSshType
-      properties: {}
-      type: string
-      enum:
-      - Intrepreted
-      - Literal
     PagingOfScriptSummaryModel:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -862,31 +937,467 @@ components:
           type: integer
           format: int32
       type: object
+    RemoteScriptTestPsArgs:
+      description: PowerShell test args
+      properties:
+        data:
+          $ref: '#/components/schemas/RemoteScriptTestPsData'
+      type: object
+    RemoteScriptSqlRunAsType:
+      description: RunAs
+      properties: {}
+      type: string
+      enum:
+      - Database
+      - Domain
+    TestRemoteScriptSshResponseModel:
+      description: Output from a ssh script test
+      properties:
+        debugOutput:
+          description: Debug output from test
+          items:
+            type: string
+          type: array
+        errorMessage:
+          description: Error message from test
+          type: string
+        errorOutput:
+          description: Error output from test
+          items:
+            type: string
+          type: array
+        logMessages:
+          description: Log Messages from test
+          items:
+            type: string
+          type: array
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    ScriptSummaryModel:
+      description: Script summary for search results
+      properties:
+        description:
+          description: Script Description
+          type: string
+        isActive:
+          description: Whether the Script is Active
+          type: boolean
+        name:
+          description: Script Name
+          type: string
+        scriptCategoryId:
+          description: Script Category Id
+          type: integer
+          format: int32
+        scriptCategoryName:
+          description: Script Category Name
+          type: string
+        scriptId:
+          description: Script Id
+          type: integer
+          format: int32
+        scriptType:
+          $ref: '#/components/schemas/UserScriptType'
+        usageCount:
+          description: Usage Count
+          type: integer
+          format: int32
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    RemoteScriptTestPsData:
+      description: Test powershell
+      properties:
+        domain:
+          description: Domain (ignored if SecretId)
+          type: string
+        password:
+          description: Password (ignored if SecretId)
+          type: string
+        powerShellSettings:
+          $ref: '#/components/schemas/RemoteScriptPsTestData'
+        scriptId:
+          description: Test a specific script to test if that script runs.  If left empty then a basic test script will be run.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        secretId:
+          description: Run the script as these credentials.  The selected secret needs to be accessible for permissions, approval, doublelock, checkout, and all restricted actions otherwise this will fail.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        siteId:
+          description: The site that should run this script
+          type: integer
+          format: int32
+        username:
+          description: User name (ignored if SecretId)
+          type: string
+      type: object
+    ScriptSshParameterModel:
+      description: Any parameters that can be used in the script
+      properties:
+        parameterName:
+          description: ParameterName
+          type: string
+        parameterSshType:
+          $ref: '#/components/schemas/ScriptSshParamType'
+      type: object
+    RemoteScriptTestSshArgs:
+      description: PowerShell test args
+      properties:
+        data:
+          $ref: '#/components/schemas/RemoteScriptTestSshData'
+      type: object
     ScriptCreateArgsV2:
       description: Create script args
       properties:
         data:
           $ref: '#/components/schemas/ScriptCreateModel'
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
+    ScriptParameterUpdateData:
+      description: Update additional data, settings, and parameters.  All values will be saved and replace the existing settings.
+      properties:
+        sqlSettings:
+          $ref: '#/components/schemas/ScriptSqlAdditionalDataUpdateModel'
+        sshSettings:
+          $ref: '#/components/schemas/ScriptSshAdditionalDataUpdateModel'
+      type: object
+    RemoteScriptTestSqlData:
+      description: Test SQL
+      properties:
+        domain:
+          description: Domain (ignored if SecretId)
+          type: string
+        password:
+          description: Password (ignored if SecretId)
+          type: string
+        passwordChangerId:
+          description: Test a sql script against a specific password changer.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        scriptId:
+          description: Test a specific script to test if that script runs.  If left empty then a basic test script will be run.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        secretId:
+          description: Run the script as these credentials.  The selected secret needs to be accessible for permissions, approval, doublelock, checkout, and all restricted actions otherwise this will fail.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        siteId:
+          description: The site that should run this script
+          type: integer
+          format: int32
+        sqlSettings:
+          $ref: '#/components/schemas/RemoteScriptSqlTestData'
+        username:
+          description: User name (ignored if SecretId)
+          type: string
+      type: object
+    ScriptSshParameterValueModel:
+      description: Parameters
+      properties:
+        parameterName:
+          description: ParameterName
+          type: string
+        parameterSshType:
+          $ref: '#/components/schemas/ScriptSshParamType'
+        parameterValue:
+          description: ParameterValue
+          type: string
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    RemoteScriptTestSshData:
+      description: Test SSH
+      properties:
+        password:
+          description: Password (ignored if SecretId)
+          type: string
+        scriptId:
+          description: Test a specific script to test if that script runs.  If left empty then a basic test script will be run.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        secretId:
+          description: Run the script as these credentials.  The selected secret needs to be accessible for permissions, approval, doublelock, checkout, and all restricted actions otherwise this will fail.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        siteId:
+          description: The site that should run this script
+          type: integer
+          format: int32
+        sshSettings:
+          $ref: '#/components/schemas/RemoteScriptSshTestData'
+        username:
+          description: User name (ignored if SecretId)
+          type: string
+      type: object
+    ScriptSqlParamType:
+      description: ParameterDbType
+      properties: {}
+      type: string
+      enum:
+      - AnsiString
+      - Binary
+      - Byte
+      - Boolean
+      - Currency
+      - Date
+      - DateTime
+      - Decimal
+      - Double
+      - Guid
+      - Int16
+      - Int32
+      - Int64
+      - Object
+      - SByte
+      - Single
+      - String
+      - Time
+      - UInt16
+      - UInt32
+      - UInt64
+      - VarNumeric
+      - AnsiStringFixedLength
+      - StringFixedLength
+      - Xml
+      - DateTime2
+      - DateTimeOffset
+    ScriptCategorySummary:
+      description: Script categories
+      properties:
+        scriptCategoryId:
+          description: Unique ID for script category
+          type: integer
+          format: int32
+        scriptCategoryName:
+          description: Script category name
+          type: string
+      type: object
+    UserScriptType:
+      description: Script Type (Powershell = 1, SQL = 2, SSH = 3)
+      properties: {}
+      type: string
+      enum:
+      - PowerShell
+      - SQL
+      - SSH
+    ScriptAdditionalDataModel:
+      description: Additional data for this script including parameters and settings
+      properties:
+        sqlSettings:
+          $ref: '#/components/schemas/ScriptSqlAdditionalDataModel'
+        sshSettings:
+          $ref: '#/components/schemas/ScriptSshAdditionalDataModel'
+      type: object
+    RemoteScriptPsTestData:
+      description: If this is a PS script populate these settings
+      properties:
+        scriptArgs:
+          description: Any args that will get passed to the script
+          type: string
+      type: object
+    ScriptSqlAdditionalDataUpdateModel:
+      description: Additional settings for SQL scripts.  Script type must be SQL
+      properties:
+        database:
+          description: The database to update
+          type: string
+        parameters:
+          description: All of the parameters that will be used in this script
+          items:
+            $ref: '#/components/schemas/ScriptSqlParamModel'
+          type: array
+        passwordChangerId:
+          description: Which password changer to use
+          type: integer
+          format: int32
+        port:
+          description: Any specific port
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    ScriptModelV2:
+      description: Script
+      properties:
+        additionalData:
+          $ref: '#/components/schemas/ScriptAdditionalDataModel'
+        concurrencyId:
+          description: Script Global Id
+          type: string
+        description:
+          description: Script Description
+          type: string
+        isActive:
+          description: Whether the Script is Active
+          type: boolean
+        name:
+          description: Script Name
+          type: string
+        script:
+          description: Script Text
+          type: string
+        scriptCategoryId:
+          description: Script Category Id
+          type: integer
+          format: int32
+        scriptCategoryName:
+          description: Script Category Name
+          type: string
+        scriptId:
+          description: Script Id
+          type: integer
+          format: int32
+        scriptType:
+          $ref: '#/components/schemas/UserScriptType'
+        usageCount:
+          description: Usage Count
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
       required:
       - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
       properties:
         message:
           description: Error message
           type: string
-        exceptionMessage:
-          description: Error message from exception
+      type: object
+    RemoteSqlTestScriptArgument:
+      description: ScriptArgs
+      properties:
+        dbType:
+          $ref: '#/components/schemas/ScriptSqlParamType'
+        name:
+          description: Name
           type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
+        value:
+          $ref: '#/components/schemas/Object'
+      type: object
+    ScriptSshParamType:
+      description: ParameterSshType
+      properties: {}
+      type: string
+      enum:
+      - Intrepreted
+      - Literal
+    ScriptUpdateArgs:
+      description: Update script args
+      properties:
+        data:
+          $ref: '#/components/schemas/ScriptUpdateModel'
+      type: object
+    PagingOfScriptUsageSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/ScriptUsageSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    ScriptSqlParamModel:
+      description: Parameters for this sql script
+      properties:
+        parameterDbType:
+          $ref: '#/components/schemas/ScriptSqlParamType'
+        parameterName:
+          description: ParameterName
           type: string
       type: object
     PagingOfScriptAuditSummary:
@@ -946,170 +1457,21 @@ components:
           type: integer
           format: int32
       type: object
-    RemoteScriptTestSshData:
-      description: Test SSH
+    RemoteScriptTestSqlArgs:
+      description: PowerShell test args
       properties:
-        password:
-          description: Password (ignored if SecretId)
-          type: string
-        scriptId:
-          description: Test a specific script to test if that script runs.  If left empty then a basic test script will be run.
-          type: integer
-          format: int32
-          nullable: true
-        secretId:
-          description: Run the script as these credentials.  The selected secret needs to be accessible for permissions, approval, doublelock, checkout, and all restricted actions otherwise this will fail.
-          type: integer
-          format: int32
-          nullable: true
-        siteId:
-          description: The site that should run this script
-          type: integer
-          format: int32
-        sshSettings:
-          $ref: '#/components/schemas/RemoteScriptSshTestData'
-        username:
-          description: User name (ignored if SecretId)
-          type: string
-      type: object
-    UpdateFieldValueOfInt32:
-      description: How many days until the password expires.
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: integer
-          format: int32
-      type: object
-    RemoteScriptTestPsData:
-      description: Test powershell
-      properties:
-        domain:
-          description: Domain (ignored if SecretId)
-          type: string
-        password:
-          description: Password (ignored if SecretId)
-          type: string
-        powerShellSettings:
-          $ref: '#/components/schemas/RemoteScriptPsTestData'
-        scriptId:
-          description: Test a specific script to test if that script runs.  If left empty then a basic test script will be run.
-          type: integer
-          format: int32
-          nullable: true
-        secretId:
-          description: Run the script as these credentials.  The selected secret needs to be accessible for permissions, approval, doublelock, checkout, and all restricted actions otherwise this will fail.
-          type: integer
-          format: int32
-          nullable: true
-        siteId:
-          description: The site that should run this script
-          type: integer
-          format: int32
-        username:
-          description: User name (ignored if SecretId)
-          type: string
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    Object:
-      description: ItemId
-      properties: {}
-      type: object
-    ScriptSshAdditionalDataUpdateModel:
-      description: Additional settings for SSH scripts.  Script type must be SSH
-      properties:
-        doNotUseEnvironment:
-          description: Do not use environment variables in script
-          type: boolean
-        lineEnding:
-          $ref: '#/components/schemas/SshScriptLineEndingType'
-        parameters:
-          description: Any parameters that can be used in the script
-          items:
-            $ref: '#/components/schemas/ScriptSshParameterModel'
-          type: array
-        port:
-          description: The port that should be used by an SSH script
-          type: integer
-          format: int32
-          nullable: true
-      type: object
-    ScriptModelV2:
-      description: Script
-      properties:
-        additionalData:
-          $ref: '#/components/schemas/ScriptAdditionalDataModel'
-        concurrencyId:
-          description: Script Global Id
-          type: string
-        description:
-          description: Script Description
-          type: string
-        isActive:
-          description: Whether the Script is Active
-          type: boolean
-        name:
-          description: Script Name
-          type: string
-        script:
-          description: Script Text
-          type: string
-        scriptCategoryId:
-          description: Script Category Id
-          type: integer
-          format: int32
-        scriptCategoryName:
-          description: Script Category Name
-          type: string
-        scriptId:
-          description: Script Id
-          type: integer
-          format: int32
-        scriptType:
-          $ref: '#/components/schemas/UserScriptType'
-        usageCount:
-          description: Usage Count
-          type: integer
-          format: int32
-      type: object
-    RemoteSqlTestScriptArgument:
-      description: ScriptArgs
-      properties:
-        dbType:
-          $ref: '#/components/schemas/ScriptSqlParamType'
-        name:
-          description: Name
-          type: string
-        value:
-          $ref: '#/components/schemas/Object'
+        data:
+          $ref: '#/components/schemas/RemoteScriptTestSqlData'
       type: object
     ScriptUsageSummary:
       description: Script usage summary
       properties:
         scriptId:
           description: Id of the script.
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         scriptName:
           description: Name of the script.
           type: string
@@ -1129,68 +1491,141 @@ components:
           description: Id of what is using the script.
           type: string
       type: object
-    ScriptSqlParamType:
-      description: ParameterDbType
-      properties: {}
-      type: string
-      enum:
-      - AnsiString
-      - Binary
-      - Byte
-      - Boolean
-      - Currency
-      - Date
-      - DateTime
-      - Decimal
-      - Double
-      - Guid
-      - Int16
-      - Int32
-      - Int64
-      - Object
-      - SByte
-      - Single
-      - String
-      - Time
-      - UInt16
-      - UInt32
-      - UInt64
-      - VarNumeric
-      - AnsiStringFixedLength
-      - StringFixedLength
-      - Xml
-      - DateTime2
-      - DateTimeOffset
-    RemoteScriptTestSshArgs:
-      description: PowerShell test args
+    ScriptUpdateModel:
+      description: Update script data
+      properties:
+        description:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        isActive:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        script:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        scriptCategoryId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    ScriptParameterUpdateArgs:
+      description: Update script parameter args
       properties:
         data:
-          $ref: '#/components/schemas/RemoteScriptTestSshData'
+          $ref: '#/components/schemas/ScriptParameterUpdateData'
       type: object
-    RemoteScriptSshTestData:
-      description: If this is a Ssh script populate these settings
+    ScriptSshAdditionalDataUpdateModel:
+      description: Additional settings for SSH scripts.  Script type must be SSH
       properties:
+        doNotUseEnvironment:
+          description: Do not use environment variables in script
+          type: boolean
+        lineEnding:
+          $ref: '#/components/schemas/SshScriptLineEndingType'
         parameters:
-          description: Parameters
+          description: Any parameters that can be used in the script
           items:
-            $ref: '#/components/schemas/ScriptSshParameterValueModel'
+            $ref: '#/components/schemas/ScriptSshParameterModel'
           type: array
-        passphrase:
-          description: Passphrase
+        port:
+          description: The port that should be used by an SSH script
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    RemoteScriptSqlTestData:
+      description: If this is a PS script populate these settings
+      properties:
+        asSys:
+          description: AsSys
+          type: boolean
+        database:
+          description: Database
           type: string
         port:
           description: Port
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
+        runAs:
+          $ref: '#/components/schemas/RemoteScriptSqlRunAsType'
+        scriptArgs:
+          description: ScriptArgs
+          items:
+            $ref: '#/components/schemas/RemoteSqlTestScriptArgument'
+          type: array
         server:
           description: Server
           type: string
-        serverDigest:
-          description: ServerDigest
+        sqlCertDn:
+          description: SqlCertDn
           type: string
-        sshKey:
-          description: SshKey
+        tnsAdmin:
+          description: TnsAdmin
+          type: string
+        walletLocation:
+          description: WalletLocation
+          type: string
+      type: object
+    ScriptSshAdditionalDataModel:
+      description: Additional settings for SSH scripts
+      properties:
+        doNotUseEnvironment:
+          description: Do not use environment variables in script
+          type: boolean
+        lineEnding:
+          $ref: '#/components/schemas/SshScriptLineEndingType'
+        parameters:
+          description: Any parameters that can be used in the script
+          items:
+            $ref: '#/components/schemas/ScriptSshParameterModel'
+          type: array
+        port:
+          description: The port that should be used by an SSH script
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
           type: string
       type: object
     TestRemoteScriptPsResponseModel:
@@ -1220,314 +1655,9 @@ components:
             type: string
           type: array
       type: object
-    SshScriptLineEndingType:
-      description: The type of line ending that should be sent to the script
+    Object:
+      description: ItemId
       properties: {}
-      type: string
-      enum:
-      - NewLine
-      - CarriageReturn
-      - CarriageReturnNewLine
-    ScriptSshParameterModel:
-      description: Any parameters that can be used in the script
-      properties:
-        parameterName:
-          description: ParameterName
-          type: string
-        parameterSshType:
-          $ref: '#/components/schemas/ScriptSshParamType'
-      type: object
-    UserScriptType:
-      description: Script Type (Powershell = 1, SQL = 2, SSH = 3)
-      properties: {}
-      type: string
-      enum:
-      - PowerShell
-      - SQL
-      - SSH
-    PagingOfScriptUsageSummary:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/ScriptUsageSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    ScriptAdditionalDataModel:
-      description: Additional data for this script including parameters and settings
-      properties:
-        sqlSettings:
-          $ref: '#/components/schemas/ScriptSqlAdditionalDataModel'
-        sshSettings:
-          $ref: '#/components/schemas/ScriptSshAdditionalDataModel'
-      type: object
-    TestRemoteScriptSshResponseModel:
-      description: Output from a ssh script test
-      properties:
-        debugOutput:
-          description: Debug output from test
-          items:
-            type: string
-          type: array
-        errorMessage:
-          description: Error message from test
-          type: string
-        errorOutput:
-          description: Error output from test
-          items:
-            type: string
-          type: array
-        logMessages:
-          description: Log Messages from test
-          items:
-            type: string
-          type: array
-      type: object
-    RemoteScriptTestSqlData:
-      description: Test SQL
-      properties:
-        domain:
-          description: Domain (ignored if SecretId)
-          type: string
-        password:
-          description: Password (ignored if SecretId)
-          type: string
-        passwordChangerId:
-          description: Test a sql script against a specific password changer.
-          type: integer
-          format: int32
-          nullable: true
-        scriptId:
-          description: Test a specific script to test if that script runs.  If left empty then a basic test script will be run.
-          type: integer
-          format: int32
-          nullable: true
-        secretId:
-          description: Run the script as these credentials.  The selected secret needs to be accessible for permissions, approval, doublelock, checkout, and all restricted actions otherwise this will fail.
-          type: integer
-          format: int32
-          nullable: true
-        siteId:
-          description: The site that should run this script
-          type: integer
-          format: int32
-        sqlSettings:
-          $ref: '#/components/schemas/RemoteScriptSqlTestData'
-        username:
-          description: User name (ignored if SecretId)
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    RemoteScriptSqlRunAsType:
-      description: RunAs
-      properties: {}
-      type: string
-      enum:
-      - Database
-      - Domain
-    ScriptParameterUpdateArgs:
-      description: Update script parameter args
-      properties:
-        data:
-          $ref: '#/components/schemas/ScriptParameterUpdateData'
-      type: object
-    ScriptParameterUpdateData:
-      description: Update additional data, settings, and parameters.  All values will be saved and replace the existing settings.
-      properties:
-        sqlSettings:
-          $ref: '#/components/schemas/ScriptSqlAdditionalDataUpdateModel'
-        sshSettings:
-          $ref: '#/components/schemas/ScriptSshAdditionalDataUpdateModel'
-      type: object
-    TestRemoteScriptSqlResponseModel:
-      description: Output from a sql script test
-      properties:
-        debugOutput:
-          description: Debug output from test
-          items:
-            type: string
-          type: array
-        errorMessage:
-          description: Error messages from test
-          type: string
-        errorOutput:
-          description: Error output from test
-          items:
-            type: string
-          type: array
-        logMessages:
-          description: Log Messages from test
-          items:
-            type: string
-          type: array
-      type: object
-    PagingOfScriptCategorySummary:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/ScriptCategorySummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    ScriptSummaryModel:
-      description: Script summary for search results
-      properties:
-        description:
-          description: Script Description
-          type: string
-        isActive:
-          description: Whether the Script is Active
-          type: boolean
-        name:
-          description: Script Name
-          type: string
-        scriptCategoryId:
-          description: Script Category Id
-          type: integer
-          format: int32
-        scriptCategoryName:
-          description: Script Category Name
-          type: string
-        scriptId:
-          description: Script Id
-          type: integer
-          format: int32
-        scriptType:
-          $ref: '#/components/schemas/UserScriptType'
-        usageCount:
-          description: Usage Count
-          type: integer
-          format: int32
-      type: object
-    ScriptSqlAdditionalDataModel:
-      description: Additional settings for SQL scripts
-      properties:
-        database:
-          description: The database name to connect to
-          type: string
-        parameters:
-          description: Parameters for this sql script
-          items:
-            $ref: '#/components/schemas/ScriptSqlParamModel'
-          type: array
-        passwordChangerId:
-          description: Which password changer this is used with
-          type: integer
-          format: int32
-        passwordChangerName:
-          description: Which password changer this is used with
-          type: string
-        port:
-          description: A specific port to use
-          type: integer
-          format: int32
-          nullable: true
       type: object
     ScriptAuditSummary:
       description: Script Audit
@@ -1547,9 +1677,10 @@ components:
           type: string
         scriptHistoryId:
           description: The ID to retrieve the script.  Null if the script was not updated.
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         scriptId:
           description: Script ID
           type: integer
@@ -1565,129 +1696,14 @@ components:
           type: integer
           format: int32
       type: object
-    ScriptCreateModel:
-      description: Create a script
-      properties:
-        description:
-          description: Script Description
-          type: string
-        isActive:
-          description: Whether the Script is Active
-          type: boolean
-        name:
-          description: Script Name
-          type: string
-        passwordChangerId:
-          description: Default Password Changer
-          type: integer
-          format: int32
-          nullable: true
-        script:
-          description: Script Text
-          type: string
-        scriptCategoryId:
-          description: Script Category Id
-          type: integer
-          format: int32
-        scriptType:
-          $ref: '#/components/schemas/UserScriptType'
-      type: object
-    ScriptUpdateModel:
-      description: Update script data
-      properties:
-        description:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        isActive:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        name:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        script:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        scriptCategoryId:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-      type: object
-    ScriptHistoryModel:
-      description: Retrieve the script from history
-      properties:
-        script:
-          description: The script that was saved at this time
-          type: string
-        scriptName:
-          description: The current name of this script
-          type: string
-        scriptType:
-          $ref: '#/components/schemas/UserScriptType'
-      type: object
-    ScriptUpdateArgs:
-      description: Update script args
-      properties:
-        data:
-          $ref: '#/components/schemas/ScriptUpdateModel'
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    ScriptSqlParamModel:
-      description: Parameters for this sql script
-      properties:
-        parameterDbType:
-          $ref: '#/components/schemas/ScriptSqlParamType'
-        parameterName:
-          description: ParameterName
-          type: string
-      type: object
-    ScriptCategorySummary:
-      description: Script categories
-      properties:
-        scriptCategoryId:
-          description: Unique ID for script category
-          type: integer
-          format: int32
-        scriptCategoryName:
-          description: Script category name
-          type: string
-      type: object
-    RemoteScriptSqlTestData:
-      description: If this is a PS script populate these settings
-      properties:
-        asSys:
-          description: AsSys
-          type: boolean
-        database:
-          description: Database
-          type: string
-        port:
-          description: Port
-          type: integer
-          format: int32
-          nullable: true
-        runAs:
-          $ref: '#/components/schemas/RemoteScriptSqlRunAsType'
-        scriptArgs:
-          description: ScriptArgs
-          items:
-            $ref: '#/components/schemas/RemoteSqlTestScriptArgument'
-          type: array
-        server:
-          description: Server
-          type: string
-        sqlCertDn:
-          description: SqlCertDn
-          type: string
-        tnsAdmin:
-          description: TnsAdmin
-          type: string
-        walletLocation:
-          description: WalletLocation
-          type: string
-      type: object
+    SshScriptLineEndingType:
+      description: The type of line ending that should be sent to the script
+      properties: {}
+      type: string
+      enum:
+      - NewLine
+      - CarriageReturn
+      - CarriageReturnNewLine
   securitySchemes:
     BearerToken:
       type: apiKey

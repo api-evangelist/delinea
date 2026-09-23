@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Secret Server Rest Activations DistributedEngine API
-  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  title: Secret Server Rest Distributed Engine API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the authentication document for more information. The Swagger specification for this API is also available.
   termsOfService: https://delinea.com/eula
   contact:
     name: Support
@@ -91,7 +91,6 @@ paths:
       tags:
       - DistributedEngine
       summary: Search Site Connectors
-      description: Search Site Connectors
       operationId: DistributedEngineService_SearchSiteConnectors
       parameters:
       - name: filter.includeInactive
@@ -291,7 +290,6 @@ paths:
       tags:
       - DistributedEngine
       summary: Get Site Connector Credentials
-      description: Get Site Connector Credentials
       operationId: DistributedEngineService_GetSiteConnectorCredentials
       parameters:
       - name: siteConnectorId
@@ -332,7 +330,6 @@ paths:
       tags:
       - DistributedEngine
       summary: Search Engines
-      description: Search Engines
       operationId: DistributedEngineService_SearchEngines
       parameters:
       - name: filter.activationStatus
@@ -609,7 +606,6 @@ paths:
       tags:
       - DistributedEngine
       summary: Search Sites
-      description: Search Sites
       operationId: DistributedEngineService_SearchSites
       parameters:
       - name: filter.includeInactive
@@ -1453,7 +1449,6 @@ paths:
       tags:
       - DistributedEngine
       summary: Reassign Secrets From the Site
-      description: Reassign Secrets From the Site
       operationId: DistributedEngineService_ReassignSecrets
       parameters:
       - name: id
@@ -1497,97 +1492,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    PagingOfEngineAuditSummary:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/EngineAuditSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    SiteConnectorSummaryModel:
-      description: Site Connector Summary
-      properties:
-        active:
-          description: Whether Site Connector is active or not
-          type: boolean
-        hostName:
-          description: Host Name of Site Connector
-          type: string
-        queueType:
-          description: Queue Type of Site Connector
-          type: string
-        siteConnectorId:
-          description: Id of Site Connector
-          type: integer
-          format: int32
-        siteConnectorName:
-          description: Name of Site Connector
-          type: string
-        validated:
-          description: Whether Site Connector has been validated or not
-          type: boolean
-        version:
-          description: Version of Site Connector
-          type: string
-      type: object
     UpdateFieldValueOfOptionalInt32:
       description: The minimum length required for local user passwords
       properties:
@@ -1596,175 +1500,35 @@ components:
           type: boolean
         value:
           description: Value
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
       type: object
-    SiteConnectivityValidationResult:
-      description: Result of site connectivity validation
+    UpdateFieldValueOfProcessingLocationType:
+      description: Processing Location of Site
       properties:
-        validationMessage:
-          description: When false, may contain reason for failure
-          type: string
-        validationSuccess:
-          description: True if successfully validated
+        dirty:
+          description: Dirty
           type: boolean
-      type: object
-    EngineServerCapabilitiesSummary:
-      description: EngineServerCapabilitiesSummary[]
-      properties:
-        lastModifiedDate:
-          description: When the capability was last updated
-          type: string
-          format: date-time
-        name:
-          description: Which capability
-          type: string
         value:
-          description: The server's capability
-          type: string
+          $ref: '#/components/schemas/ProcessingLocationType'
       type: object
-    ViewFieldLink:
-      description: AdditionalLinks
+    DistributedEngineConfigurationUpdateArgs:
+      description: DistributedEngineConfigurationUpdateArgs
       properties:
-        isExternal:
-          description: IsExternal
-          type: boolean
-        linkText:
-          description: LinkText
-          type: string
-        url:
-          description: Url
-          type: string
+        data:
+          $ref: '#/components/schemas/DistributedEngineConfigurationUpdateModel'
       type: object
-    IntPtr:
-      description: Handle
-      properties: {}
-      type: object
-    SiteConnectorValidationResult:
-      description: Result of site connector validation
+    ViewFieldDropDownOption:
+      description: DropDownOptions
       properties:
-        validationMessage:
-          description: When false, may contain reason for failure
+        fieldDisplay:
+          description: FieldDisplay
           type: string
-        validationSuccess:
-          description: True if successfully validated
-          type: boolean
-      type: object
-    ViewFieldValueOfBoolean:
-      description: When enabled, the log will be able to be viewed online
-      properties:
-        additionalLinks:
-          description: AdditionalLinks
-          items:
-            $ref: '#/components/schemas/ViewFieldLink'
-          type: array
-        description:
-          description: Description
+        fieldValue:
+          description: FieldValue
           type: string
-        fieldInputType:
-          description: FieldInputType
-          type: string
-          nullable: true
-        hasHistory:
-          description: HasHistory
-          type: boolean
-          nullable: true
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type: boolean
-          nullable: true
-        hideOnView:
-          description: HideOnView
-          type: boolean
-          nullable: true
-        isRequired:
-          description: IsRequired
-          type: boolean
-          nullable: true
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type: integer
-          format: int32
-          nullable: true
-        name:
-          description: Name
-          type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type: boolean
-          nullable: true
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type: integer
-          format: int32
-          nullable: true
-        value:
-          description: Value
-          type: boolean
-      type: object
-    EngineActivationResult:
-      description: The result of the engine status update
-      properties:
-        engineId:
-          description: Engine ID
-          type: integer
-          format: int32
-        engineName:
-          description: The name of the engine
-          type: string
-        error:
-          description: If there was an error
-          type: string
-        success:
-          description: Whether or not the status change was successful
-          type: boolean
-      type: object
-    SiteConnectorCreateModel:
-      description: Site Connector Create Model
-      properties:
-        active:
-          description: Whether Site Connector is active or not
-          type: boolean
-        hostName:
-          description: Host Name of Site Connector
-          type: string
-        port:
-          description: Port of Site Connector
-          type: integer
-          format: int32
-        queueType:
-          $ref: '#/components/schemas/MessageQueueType'
-        sharedAccessKeyName:
-          description: Shared Access Key Name of Site Connector
-          type: string
-        sharedAccessKeyValue:
-          description: Shared Access Key Value of Site Connector
-          type: string
-        siteConnectorName:
-          description: Name of Site Connector
-          type: string
-        sslCertificateThumbprint:
-          description: SSL Certificate Thumbprint of Site Connector
-          type: string
-        useSsl:
-          description: Whether Site Connector uses SSL or not
-          type: boolean
       type: object
     SiteCreateArgs:
       description: SiteCreateArgs
@@ -1772,59 +1536,23 @@ components:
         data:
           $ref: '#/components/schemas/SiteCreateModel'
       type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
+    BadRequestResponse:
+      description: Response object for invalid requests
       required:
-      - name
-      - direction
+      - message
       properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
+        message:
+          description: Error message
           type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    SiteConnectorViewModel:
-      description: Site Connector View Model
-      properties:
-        active:
-          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
-        hostName:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-        port:
-          $ref: '#/components/schemas/ViewFieldValueOfInt32'
-        queueType:
-          $ref: '#/components/schemas/ViewFieldDropDownValueOfMessageQueueType'
-        sharedAccessKeyName:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-        sharedAccessKeyValue:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-        siteConnectorId:
-          description: Id of Site Connector
-          type: integer
-          format: int32
-        siteConnectorName:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-        sslCertificateThumbprint:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-        useSsl:
-          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
-        validated:
-          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
       type: object
     PagingOfSiteConnectorSummaryModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -1883,15 +1611,6 @@ components:
           type: integer
           format: int32
       type: object
-    UpdateFieldValueOfProcessingLocationType:
-      description: Processing Location of Site
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          $ref: '#/components/schemas/ProcessingLocationType'
-      type: object
     SiteBasicModel:
       description: Basic Site Model
       properties:
@@ -1900,8 +1619,9 @@ components:
           type: boolean
         enableCredSspForWinRm:
           description: Enable CredSSP For WinRM
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         enableRdpProxy:
           description: Enable RDP Proxy
           type: boolean
@@ -1917,16 +1637,18 @@ components:
           type: string
         powershellSecretId:
           description: Powershell Secret Id of Site if set
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         processingLocation:
           $ref: '#/components/schemas/ProcessingLocationType'
         rdpProxyPort:
           description: RDP Proxy Port
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         rdpProxyPortInherited:
           description: RDP Proxy Port Inherited
           type: boolean
@@ -1936,9 +1658,10 @@ components:
           format: int32
         siteConnectorId:
           description: Id of Site Connector of Site
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         siteId:
           description: Id of Site
           type: integer
@@ -1948,9 +1671,10 @@ components:
           type: string
         sshProxyPort:
           description: SSH Proxy Port
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         sshProxyPortInherited:
           description: SSH Proxy Port Inherited
           type: boolean
@@ -1961,387 +1685,17 @@ components:
           description: WinRM End Point URL of Site
           type: string
       type: object
-    DistributedEngineConfigurationUpdateArgs:
-      description: DistributedEngineConfigurationUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/DistributedEngineConfigurationUpdateModel'
-      type: object
-    ViewFieldValueOfString:
-      description: GeneratedToken
-      properties:
-        additionalLinks:
-          description: AdditionalLinks
-          items:
-            $ref: '#/components/schemas/ViewFieldLink'
-          type: array
-        description:
-          description: Description
-          type: string
-        fieldInputType:
-          description: FieldInputType
-          type: string
-          nullable: true
-        hasHistory:
-          description: HasHistory
-          type: boolean
-          nullable: true
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type: boolean
-          nullable: true
-        hideOnView:
-          description: HideOnView
-          type: boolean
-          nullable: true
-        isRequired:
-          description: IsRequired
-          type: boolean
-          nullable: true
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type: integer
-          format: int32
-          nullable: true
-        name:
-          description: Name
-          type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type: boolean
-          nullable: true
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type: integer
-          format: int32
-          nullable: true
-        value:
-          description: Value
-          type: string
-      type: object
-    SiteCreateModel:
-      description: Site Create Model
-      properties:
-        active:
-          description: Is Site Active
-          type: boolean
-        enableCredSspForWinRm:
-          description: Enable CredSSP For WinRM
-          type: boolean
-          nullable: true
-        enableRdpProxy:
-          description: Enable RDP Proxy
-          type: boolean
-        enableSshProxy:
-          description: Enable SSH Proxy
-          type: boolean
-        heartbeatInterval:
-          description: Heartbeat Interval of Site
-          type: integer
-          format: int32
-        powershellSecretId:
-          description: Powershell Secret Id of Site if set
-          type: integer
-          format: int32
-          nullable: true
-        rdpProxyPort:
-          description: RDP Proxy Port
-          type: integer
-          format: int32
-          nullable: true
-        siteConnectorId:
-          description: Id of Site Connector of Site
-          type: integer
-          format: int32
-        siteName:
-          description: Name of Site
-          type: string
-        sshProxyPort:
-          description: SSH Proxy Port
-          type: integer
-          format: int32
-          nullable: true
-        winRmEndPointUrl:
-          description: WinRM End Point URL of Site
-          type: string
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    PagingOfEngineSummaryModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/EngineSummaryModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    EngineSettingsUpdateArgs:
-      description: EngineSettingsUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/EngineSettingsUpdateModel'
-      type: object
-    EngineStatusChangeModel:
-      description: Change engine status
-      properties:
-        callbackInterval:
-          description: When activating an engine if SiteId is null this will be the default callback interval
-          type: integer
-          format: int32
-        changeType:
-          $ref: '#/components/schemas/EngineStatusChangeType'
-        engineId:
-          description: The ID of the engine to change status
-          type: integer
-          format: int32
-        siteConnectorId:
-          description: When activating an engine if SiteId is null this is the site connector that will be used.
-          type: integer
-          format: int32
-          nullable: true
-        siteId:
-          description: When activating an engine SiteId is required
-          type: integer
-          format: int32
-          nullable: true
-        siteName:
-          description: When activating an engine if SiteId is null you can pass a SiteName and it will create the site and then activate the engine
-          type: string
-      type: object
-    EngineActivationRequestArgs:
-      description: EngineActivationRequestArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/EngineActivationRequestModel'
-      type: object
-    MessageQueueType:
-      description: Value
-      properties: {}
-      type: string
-      enum:
-      - MemoryMq
-      - RabbitMq
-      - AzureServiceBus
-    ProcessingLocationType:
-      description: Processing Location of Site
-      properties: {}
-      type: string
-      enum:
-      - UseWebSite
-      - UseDistributedEngine
-    EngineActivationRequestModel:
-      description: Data
-      properties:
-        engines:
-          description: Engines
-          items:
-            $ref: '#/components/schemas/EngineStatusChangeModel'
-          type: array
-      type: object
-    UpdateFieldValueOfOptionalLog4NetLevel:
-      description: Log Level
+    UpdateFieldValueOfOptionalBoolean:
+      description: Use RADIUS Username for DUO
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
           description: Value
-          type: string
-          nullable: true
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    SiteAuditSummary:
-      description: Site Audit Summary
-      properties:
-        action:
-          description: Site Audit Action
-          type: string
-        dateRecorded:
-          description: Site Audit DateRecorded
-          type: string
-          format: date-time
-        notes:
-          description: Site Audit Notes
-          type: string
-        siteAuditId:
-          description: Site Audit Id
-          type: integer
-          format: int32
-        userName:
-          description: Site Audit UserName
-          type: string
-      type: object
-    EngineSummaryModel:
-      description: Query results
-      properties:
-        activationStatus:
-          $ref: '#/components/schemas/EngineActivationStatusType'
-        bindAddress:
-          description: BindAddress
-          type: string
-        canCancelUpdateVersion:
-          description: CanCancelUpdateVersion
-          type: boolean
-        canUpdateVersion:
-          description: CanUpdateVersion
-          type: boolean
-        connectionStatus:
-          $ref: '#/components/schemas/EngineConnectionStatusType'
-        currentVersion:
-          description: CurrentVersion
-          type: string
-        engineId:
-          description: EngineId
-          type: integer
-          format: int32
-        friendlyName:
-          description: FriendlyName
-          type: string
-        hostName:
-          description: HostName
-          type: string
-        isBlockedByNet48:
-          description: IsBlockedByNet48
-          type: boolean
-        lastConnected:
-          description: LastConnected
-          type: string
-          format: date-time
-          nullable: true
-        latestVersion:
-          description: LatestVersion
-          type: string
-        pendingUpdate:
-          description: PendingUpdate
-          type: boolean
-        timeMismatch:
-          description: TimeMismatch
-          type: boolean
-        timeMismatchSeconds:
-          description: TimeMismatchSeconds
-          type: integer
-          format: int64
-          nullable: true
-      type: object
-    SafeFileHandle:
-      description: SafeFileHandle
-      properties:
-        isClosed:
-          description: IsClosed
-          type: boolean
-        isInvalid:
-          description: IsInvalid
-          type: boolean
-      type: object
-    ReassignSecretsModel:
-      description: Data
-      properties:
-        disableSite:
-          description: Should the site be disabled as part of the reassign
-          type: boolean
-          nullable: true
-        newSiteId:
-          description: The new site ID to reassign to
-          type: integer
-          format: int32
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
+          type:
+          - boolean
+          - 'null'
       type: object
     FileStream:
       description: FileStream
@@ -2385,137 +1739,11 @@ components:
           type: integer
           format: int32
       type: object
-    EngineActivationStatusType:
-      description: ActivationStatus
-      properties: {}
-      type: string
-      enum:
-      - Pending
-      - Activated
-      - Inactive
-      - Deleted
-    EngineActivationResultModel:
-      description: EngineActivationResultModel
-      properties:
-        results:
-          description: Results
-          items:
-            $ref: '#/components/schemas/EngineActivationResult'
-          type: array
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    SiteUpdateArgs:
-      description: SiteUpdateArgs
+    EngineSettingsUpdateArgs:
+      description: EngineSettingsUpdateArgs
       properties:
         data:
-          $ref: '#/components/schemas/SiteUpdateModel'
-      type: object
-    EngineSettingsUpdateModel:
-      description: Data
-      properties:
-        adSyncEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        advancedAuditingEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        fipsEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        localAccountDiscoveryEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        logLevel:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalLog4NetLevel'
-        passwordChangingEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        rdpProxyEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        secretWorkflowEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        securityAnalyticsEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        serviceAccountManagementEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        sshProxyEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        sshTerminalEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-      type: object
-    UpdateFieldValueOfAzureServiceBusTransportType:
-      description: Azure Service Bus Transport Type
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          $ref: '#/components/schemas/AzureServiceBusTransportType'
-      type: object
-    UpdateFieldValueOfInt32:
-      description: How many days until the password expires.
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: integer
-          format: int32
-      type: object
-    SiteConnectivityValidationArgs:
-      description: SiteConnectivityValidationArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/SiteConnectivityValidationModel'
-      type: object
-    EngineSettingsModel:
-      description: EngineSettingsModel
-      properties:
-        adSyncEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
-        advancedAuditingEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
-        engineId:
-          description: EngineId
-          type: integer
-          format: int32
-          nullable: true
-        engineSettingsId:
-          description: EngineSettingsId
-          type: integer
-          format: int32
-        fipsEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
-        localAccountDiscoveryEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
-        logLevel:
-          description: LogLevel
-          type: string
-          nullable: true
-        passwordChangingEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
-        rdpProxyEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
-        secretWorkflowEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
-        securityAnalyticsEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
-        serviceAccountManagementEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
-        siteId:
-          description: SiteId
-          type: integer
-          format: int32
-          nullable: true
-        sshProxyEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
-        sshTerminalEnabled:
-          $ref: '#/components/schemas/EngineSettingBool'
+          $ref: '#/components/schemas/EngineSettingsUpdateModel'
       type: object
     EngineSettingBool:
       description: AdSyncEnabled
@@ -2530,62 +1758,266 @@ components:
           description: Enabled
           type: boolean
       type: object
-    PagingOfSiteAuditSummary:
-      description: Specify paging and sorting options for querying records and returning results
+    DistributedEngineProtocol:
+      description: Protocol used by Distibuted Engines
+      properties: {}
+      type: string
+      enum:
+      - Http
+      - Https
+      - Tcp
+    SiteConnectorCredentialsModel:
+      description: The credentials that should exist in the site connector service
       properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
+        password:
+          description: The password that should exist in the site connector service
+          type: string
+        username:
+          description: The username that should exist in the site connector service
+          type: string
+      type: object
+    SiteConnectorValidationResult:
+      description: Result of site connector validation
+      properties:
+        validationMessage:
+          description: When false, may contain reason for failure
+          type: string
+        validationSuccess:
+          description: True if successfully validated
           type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
+      type: object
+    EngineStatusChangeModel:
+      description: Change engine status
+      properties:
+        callbackInterval:
+          description: When activating an engine if SiteId is null this will be the default callback interval
+          type: integer
+          format: int32
+        changeType:
+          $ref: '#/components/schemas/EngineStatusChangeType'
+        engineId:
+          description: The ID of the engine to change status
+          type: integer
+          format: int32
+        siteConnectorId:
+          description: When activating an engine if SiteId is null this is the site connector that will be used.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        siteId:
+          description: When activating an engine SiteId is required
+          type:
+          - integer
+          - 'null'
+          format: int32
+        siteName:
+          description: When activating an engine if SiteId is null you can pass a SiteName and it will create the site and then activate the engine
+          type: string
+      type: object
+    EngineStatusChangeType:
+      description: The action to perform on the engine
+      properties: {}
+      type: string
+      enum:
+      - Activate
+      - Deactivate
+      - RemoveFromSite
+      - Delete
+      - UpdateVersion
+      - CancelUpdateVersion
+      - AssignToSite
+    SiteMetric:
+      description: List of Metrics for this site such as ConnectionStatusOffline, ConnectionStatusOnline, ActivationStatusPending, LostConnection, and more.  Only returned on a search when IncludeSiteMetrics is true.
+      properties:
+        metricDisplayName:
+          description: MetricDisplayName
+          type: string
+        metricName:
+          description: MetricName
+          type: string
+        metricValue:
+          description: MetricValue
+          type: integer
+          format: int32
+      type: object
+    SafeFileHandle:
+      description: SafeFileHandle
+      properties:
+        isClosed:
+          description: IsClosed
           type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
+        isInvalid:
+          description: IsInvalid
+          type: boolean
+      type: object
+    ViewFieldValueOfBoolean:
+      description: When enabled, the log will be able to be viewed online
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
           items:
-            $ref: '#/components/schemas/SiteAuditSummary'
+            $ref: '#/components/schemas/ViewFieldLink'
           type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
           format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value:
+          description: Value
           type: boolean
-        take:
-          description: Maximum number of records to include in results
+      type: object
+    SiteConnectorCreateModel:
+      description: Site Connector Create Model
+      properties:
+        active:
+          description: Whether Site Connector is active or not
+          type: boolean
+        hostName:
+          description: Host Name of Site Connector
+          type: string
+        port:
+          description: Port of Site Connector
           type: integer
           format: int32
-        total:
-          description: Total number of results available
+        queueType:
+          $ref: '#/components/schemas/MessageQueueType'
+        sharedAccessKeyName:
+          description: Shared Access Key Name of Site Connector
+          type: string
+        sharedAccessKeyValue:
+          description: Shared Access Key Value of Site Connector
+          type: string
+        siteConnectorName:
+          description: Name of Site Connector
+          type: string
+        sslCertificateThumbprint:
+          description: SSL Certificate Thumbprint of Site Connector
+          type: string
+        useSsl:
+          description: Whether Site Connector uses SSL or not
+          type: boolean
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    SiteConnectorSummaryModel:
+      description: Site Connector Summary
+      properties:
+        active:
+          description: Whether Site Connector is active or not
+          type: boolean
+        hostName:
+          description: Host Name of Site Connector
+          type: string
+        queueType:
+          description: Queue Type of Site Connector
+          type: string
+        siteConnectorId:
+          description: Id of Site Connector
           type: integer
           format: int32
+        siteConnectorName:
+          description: Name of Site Connector
+          type: string
+        validated:
+          description: Whether Site Connector has been validated or not
+          type: boolean
+        version:
+          description: Version of Site Connector
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalLog4NetLevel:
+      description: Log Level
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - string
+          - 'null'
+      type: object
+    SiteLogSummaryModel:
+      description: Site Log Summary Model
+      properties:
+        dateRecorded:
+          description: Date Log Message was Recorded
+          type: string
+          format: date-time
+        engineName:
+          description: Name of Engine
+          type: string
+        message:
+          description: Message that was Logged
+          type: string
       type: object
     DistributedEngineConfigurationUpdateModel:
       description: The fields to update on the Distributed Engine Configuration
@@ -2617,27 +2049,245 @@ components:
         secretPasswordChangeMessageRetryMinutes:
           $ref: '#/components/schemas/UpdateFieldValueOfInt32'
       type: object
-    EngineStatusChangeType:
-      description: The action to perform on the engine
+    SiteConnectorViewModel:
+      description: Site Connector View Model
+      properties:
+        active:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        hostName:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        port:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        queueType:
+          $ref: '#/components/schemas/ViewFieldDropDownValueOfMessageQueueType'
+        sharedAccessKeyName:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        sharedAccessKeyValue:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        siteConnectorId:
+          description: Id of Site Connector
+          type: integer
+          format: int32
+        siteConnectorName:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        sslCertificateThumbprint:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        useSsl:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        validated:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+      type: object
+    ReassignSecretsModel:
+      description: Data
+      properties:
+        disableSite:
+          description: Should the site be disabled as part of the reassign
+          type:
+          - boolean
+          - 'null'
+        newSiteId:
+          description: The new site ID to reassign to
+          type: integer
+          format: int32
+      type: object
+    Severity:
+      description: Error severity level
       properties: {}
       type: string
       enum:
-      - Activate
-      - Deactivate
-      - RemoveFromSite
-      - Delete
-      - UpdateVersion
-      - CancelUpdateVersion
-      - AssignToSite
-    SiteConnectorCredentialsModel:
-      description: The credentials that should exist in the site connector service
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    ViewFieldDropDownValueOfMessageQueueType:
+      description: Queue Type of Site Connector
       properties:
-        password:
-          description: The password that should exist in the site connector service
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
           type: string
-        username:
-          description: The username that should exist in the site connector service
+        dropDownOptions:
+          description: DropDownOptions
+          items:
+            $ref: '#/components/schemas/ViewFieldDropDownOption'
+          type: array
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
           type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value:
+          $ref: '#/components/schemas/MessageQueueType'
+      type: object
+    ProcessingLocationType:
+      description: Processing Location of Site
+      properties: {}
+      type: string
+      enum:
+      - UseWebSite
+      - UseDistributedEngine
+    ReassignSecretsArgs:
+      description: ReassignSecretsArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/ReassignSecretsModel'
+      type: object
+    ViewFieldValueOfInt32:
+      description: OrganizationId
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
       type: object
     SiteConnectorUpdateModel:
       description: Site Connector Update Model
@@ -2661,261 +2311,20 @@ components:
         useSsl:
           $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
       type: object
-    EngineConnectionStatusType:
-      description: ConnectionStatus
-      properties: {}
-      type: string
-      enum:
-      - Offline
-      - Online
-      - Invalid
-      - OldVersion
-    ViewFieldValueOfInt32:
-      description: OrganizationId
+    EngineActivationResultModel:
+      description: EngineActivationResultModel
       properties:
-        additionalLinks:
-          description: AdditionalLinks
+        results:
+          description: Results
           items:
-            $ref: '#/components/schemas/ViewFieldLink'
+            $ref: '#/components/schemas/EngineActivationResult'
           type: array
-        description:
-          description: Description
-          type: string
-        fieldInputType:
-          description: FieldInputType
-          type: string
-          nullable: true
-        hasHistory:
-          description: HasHistory
-          type: boolean
-          nullable: true
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type: boolean
-          nullable: true
-        hideOnView:
-          description: HideOnView
-          type: boolean
-          nullable: true
-        isRequired:
-          description: IsRequired
-          type: boolean
-          nullable: true
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type: integer
-          format: int32
-          nullable: true
-        name:
-          description: Name
-          type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type: boolean
-          nullable: true
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type: integer
-          format: int32
-          nullable: true
-        value:
-          description: Value
-          type: integer
-          format: int32
       type: object
-    DistributedEngineConfigurationModel:
-      description: Distributed Engine Configuration
-      properties:
-        autoUpdateEnginesVersion:
-          description: Always Update Engines Version
-          type: boolean
-        azureServiceBusTransportType:
-          $ref: '#/components/schemas/AzureServiceBusTransportType'
-        callbackPort:
-          description: Port of the Distributed Engines
-          type: integer
-          format: int32
-          nullable: true
-        callbackUrl:
-          description: Url of the Distributed Engines
-          type: string
-        defaultCallbackIntervalSeconds:
-          description: Default Callback Interval Seconds
-          type: integer
-          format: int32
-        enableDistributedEngines:
-          description: Whether Distributed Engines are enabled or not
-          type: boolean
-        engineVersionUpdateAvailable:
-          description: Engine Version Update Available
-          type: boolean
-        latestDistributedEnginesVersion:
-          description: Latest Distributed Engines Version
-          type: string
-        minimumRequiredDistributedEnginesVersion:
-          description: Minimum Required Distributed Engines Version
-          type: string
-        protocol:
-          $ref: '#/components/schemas/DistributedEngineProtocol'
-        responseBusSiteConnectorId:
-          description: Response Bus Site Connector
-          type: integer
-          format: int32
-          nullable: true
-        secretHeartbeatMessageMinutesToLive:
-          description: Secret Heartbeat Message Time to Live in Minutes
-          type: integer
-          format: int32
-        secretHeartbeatMessageRetryMinutes:
-          description: Secret Heartbeat Message Retry Time in Minutes
-          type: integer
-          format: int32
-        secretPasswordChangeMessageMinutesToLive:
-          description: Secret Password Change Message Time to Live in Minutes
-          type: integer
-          format: int32
-        secretPasswordChangeMessageRetryMinutes:
-          description: Secret Password Change Message Retry Time in Minutes
-          type: integer
-          format: int32
-        updateEnginesBannerMessage:
-          description: Update Engines Banner Message
-          type: string
-      type: object
-    EngineAuditSummary:
-      description: Query results
-      properties:
-        action:
-          description: Action
-          type: string
-        auditId:
-          description: AuditId
-          type: integer
-          format: int32
-        dateRecorded:
-          description: DateRecorded
-          type: string
-          format: date-time
-        engineName:
-          description: EngineName
-          type: string
-        notes:
-          description: Notes
-          type: string
-        user:
-          description: User
-          type: string
-      type: object
-    ViewFieldDropDownOption:
-      description: DropDownOptions
-      properties:
-        fieldDisplay:
-          description: FieldDisplay
-          type: string
-        fieldValue:
-          description: FieldValue
-          type: string
-      type: object
-    ReassignSecretsArgs:
-      description: ReassignSecretsArgs
+    EngineActivationRequestArgs:
+      description: EngineActivationRequestArgs
       properties:
         data:
-          $ref: '#/components/schemas/ReassignSecretsModel'
-      type: object
-    UpdateFieldValueOfDistributedEngineProtocol:
-      description: Protocol used by Distibuted Engine
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          $ref: '#/components/schemas/DistributedEngineProtocol'
-      type: object
-    ViewFieldDropDownValueOfMessageQueueType:
-      description: Queue Type of Site Connector
-      properties:
-        additionalLinks:
-          description: AdditionalLinks
-          items:
-            $ref: '#/components/schemas/ViewFieldLink'
-          type: array
-        description:
-          description: Description
-          type: string
-        dropDownOptions:
-          description: DropDownOptions
-          items:
-            $ref: '#/components/schemas/ViewFieldDropDownOption'
-          type: array
-        fieldInputType:
-          description: FieldInputType
-          type: string
-          nullable: true
-        hasHistory:
-          description: HasHistory
-          type: boolean
-          nullable: true
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type: boolean
-          nullable: true
-        hideOnView:
-          description: HideOnView
-          type: boolean
-          nullable: true
-        isRequired:
-          description: IsRequired
-          type: boolean
-          nullable: true
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type: integer
-          format: int32
-          nullable: true
-        name:
-          description: Name
-          type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type: boolean
-          nullable: true
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type: integer
-          format: int32
-          nullable: true
-        value:
-          $ref: '#/components/schemas/MessageQueueType'
+          $ref: '#/components/schemas/EngineActivationRequestModel'
       type: object
     PagingOfSiteSummaryModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -2974,49 +2383,155 @@ components:
           type: integer
           format: int32
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
       required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
+      - name
+      - direction
       properties:
-        message:
-          description: Error message
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
           type: string
-        exceptionMessage:
-          description: Error message from exception
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    DistributedEngineConfigurationModel:
+      description: Distributed Engine Configuration
+      properties:
+        autoUpdateEnginesVersion:
+          description: Always Update Engines Version
+          type: boolean
+        azureServiceBusTransportType:
+          $ref: '#/components/schemas/AzureServiceBusTransportType'
+        callbackPort:
+          description: Port of the Distributed Engines
+          type:
+          - integer
+          - 'null'
+          format: int32
+        callbackUrl:
+          description: Url of the Distributed Engines
           type: string
-        exceptionType:
-          description: Exception type
+        defaultCallbackIntervalSeconds:
+          description: Default Callback Interval Seconds
+          type: integer
+          format: int32
+        enableDistributedEngines:
+          description: Whether Distributed Engines are enabled or not
+          type: boolean
+        engineVersionUpdateAvailable:
+          description: Engine Version Update Available
+          type: boolean
+        latestDistributedEnginesVersion:
+          description: Latest Distributed Engines Version
           type: string
-        stackTrace:
-          description: Exception stack trace
+        minimumRequiredDistributedEnginesVersion:
+          description: Minimum Required Distributed Engines Version
+          type: string
+        protocol:
+          $ref: '#/components/schemas/DistributedEngineProtocol'
+        responseBusSiteConnectorId:
+          description: Response Bus Site Connector
+          type:
+          - integer
+          - 'null'
+          format: int32
+        secretHeartbeatMessageMinutesToLive:
+          description: Secret Heartbeat Message Time to Live in Minutes
+          type: integer
+          format: int32
+        secretHeartbeatMessageRetryMinutes:
+          description: Secret Heartbeat Message Retry Time in Minutes
+          type: integer
+          format: int32
+        secretPasswordChangeMessageMinutesToLive:
+          description: Secret Password Change Message Time to Live in Minutes
+          type: integer
+          format: int32
+        secretPasswordChangeMessageRetryMinutes:
+          description: Secret Password Change Message Retry Time in Minutes
+          type: integer
+          format: int32
+        updateEnginesBannerMessage:
+          description: Update Engines Banner Message
           type: string
       type: object
-    SiteLogSummaryModel:
-      description: Site Log Summary Model
+    PagingOfEngineAuditSummary:
+      description: Specify paging and sorting options for querying records and returning results
       properties:
-        dateRecorded:
-          description: Date Log Message was Recorded
-          type: string
-          format: date-time
-        engineName:
-          description: Name of Engine
-          type: string
-        message:
-          description: Message that was Logged
-          type: string
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EngineAuditSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
       type: object
-    DistributedEngineProtocol:
-      description: Protocol used by Distibuted Engines
-      properties: {}
-      type: string
-      enum:
-      - Http
-      - Https
-      - Tcp
+    UpdateFieldValueOfDistributedEngineProtocol:
+      description: Protocol used by Distibuted Engine
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/DistributedEngineProtocol'
+      type: object
+    SiteConnectivityValidationArgs:
+      description: SiteConnectivityValidationArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/SiteConnectivityValidationModel'
+      type: object
     UpdateFieldValueOfOptionalGuid:
       description: SSH Cipher Suite
       properties:
@@ -3025,9 +2540,10 @@ components:
           type: boolean
         value:
           description: Value
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
       type: object
     SiteConnectorUpdateArgs:
       description: SiteConnectorUpdateArgs
@@ -3035,6 +2551,13 @@ components:
         data:
           $ref: '#/components/schemas/SiteConnectorUpdateModel'
       type: object
+    AzureServiceBusTransportType:
+      description: Azure Service Bus Transport Type
+      properties: {}
+      type: string
+      enum:
+      - Amqp
+      - AmqpWebSockets
     EngineLatestVersionResult:
       description: Result of Engine Latest Version Command
       properties:
@@ -3042,34 +2565,24 @@ components:
           description: Latest Available Version of Distributed Engine
           type: string
       type: object
-    UpdateFieldValueOfMessageQueueType:
-      description: Queue Type of Site Connector
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
       properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          $ref: '#/components/schemas/MessageQueueType'
+        message:
+          description: Error message
+          type: string
       type: object
-    SiteConnectivityValidationModel:
-      description: Data
-      properties:
-        timeout:
-          description: Millisecond timeout length for testing connectivity.
-          type: integer
-          format: int32
-      type: object
-    UpdateFieldValueOfOptionalBoolean:
-      description: Use RADIUS Username for DUO
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-          nullable: true
-      type: object
+    EngineConnectionStatusType:
+      description: ConnectionStatus
+      properties: {}
+      type: string
+      enum:
+      - Offline
+      - Online
+      - Invalid
+      - OldVersion
     PagingOfSiteLogSummaryModel:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -3127,62 +2640,82 @@ components:
           type: integer
           format: int32
       type: object
+    SiteConnectivityValidationResult:
+      description: Result of site connectivity validation
+      properties:
+        validationMessage:
+          description: When false, may contain reason for failure
+          type: string
+        validationSuccess:
+          description: True if successfully validated
+          type: boolean
+      type: object
     SiteConnectorCreateArgs:
       description: SiteConnectorCreateArgs
       properties:
         data:
           $ref: '#/components/schemas/SiteConnectorCreateModel'
       type: object
-    AzureServiceBusTransportType:
-      description: Azure Service Bus Transport Type
-      properties: {}
-      type: string
-      enum:
-      - Amqp
-      - AmqpWebSockets
-    SiteUpdateModel:
-      description: Data
+    PagingOfEngineSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
       properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        enableCredSspForWinRm:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        enableRdpProxy:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        enableSshProxy:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        heartbeatInterval:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        powershellSecretId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        processingLocation:
-          $ref: '#/components/schemas/UpdateFieldValueOfProcessingLocationType'
-        rdpProxyPort:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        siteConnectorId:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        siteName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        sshCipherSuite:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalGuid'
-        sshProxyPort:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        winRmEndPointUrl:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
-    SiteMetric:
-      description: List of Metrics for this site such as ConnectionStatusOffline, ConnectionStatusOnline, ActivationStatusPending, LostConnection, and more.  Only returned on a search when IncludeSiteMetrics is true.
-      properties:
-        metricDisplayName:
-          description: MetricDisplayName
-          type: string
-        metricName:
-          description: MetricName
-          type: string
-        metricValue:
-          description: MetricValue
+        batchCount:
+          description: Number of result batches available with current query options
           type: integer
           format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EngineSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    IntPtr:
+      description: Handle
+      properties: {}
       type: object
     SiteSummaryModel:
       description: Site Summary
@@ -3195,9 +2728,10 @@ components:
           type: boolean
         lastActivity:
           description: Last Date of Activity of Site
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         numEnginesMissingNetFramework:
           description: The number of engines on the site missing the minimum DotNet Framework
           type: integer
@@ -3228,6 +2762,523 @@ components:
           type: array
         siteName:
           description: Name of Site
+          type: string
+      type: object
+    EngineActivationResult:
+      description: The result of the engine status update
+      properties:
+        engineId:
+          description: Engine ID
+          type: integer
+          format: int32
+        engineName:
+          description: The name of the engine
+          type: string
+        error:
+          description: If there was an error
+          type: string
+        success:
+          description: Whether or not the status change was successful
+          type: boolean
+      type: object
+    SiteUpdateModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableCredSspForWinRm:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        enableRdpProxy:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableSshProxy:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        heartbeatInterval:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        powershellSecretId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        processingLocation:
+          $ref: '#/components/schemas/UpdateFieldValueOfProcessingLocationType'
+        rdpProxyPort:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        siteConnectorId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        siteName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        sshCipherSuite:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalGuid'
+        sshProxyPort:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        winRmEndPointUrl:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    EngineSummaryModel:
+      description: Query results
+      properties:
+        activationStatus:
+          $ref: '#/components/schemas/EngineActivationStatusType'
+        bindAddress:
+          description: BindAddress
+          type: string
+        canCancelUpdateVersion:
+          description: CanCancelUpdateVersion
+          type: boolean
+        canUpdateVersion:
+          description: CanUpdateVersion
+          type: boolean
+        connectionStatus:
+          $ref: '#/components/schemas/EngineConnectionStatusType'
+        currentVersion:
+          description: CurrentVersion
+          type: string
+        engineId:
+          description: EngineId
+          type: integer
+          format: int32
+        friendlyName:
+          description: FriendlyName
+          type: string
+        hostName:
+          description: HostName
+          type: string
+        isBlockedByNet48:
+          description: IsBlockedByNet48
+          type: boolean
+        lastConnected:
+          description: LastConnected
+          type:
+          - string
+          - 'null'
+          format: date-time
+        latestVersion:
+          description: LatestVersion
+          type: string
+        pendingUpdate:
+          description: PendingUpdate
+          type: boolean
+        timeMismatch:
+          description: TimeMismatch
+          type: boolean
+        timeMismatchSeconds:
+          description: TimeMismatchSeconds
+          type:
+          - integer
+          - 'null'
+          format: int64
+      type: object
+    EngineActivationRequestModel:
+      description: Data
+      properties:
+        engines:
+          description: Engines
+          items:
+            $ref: '#/components/schemas/EngineStatusChangeModel'
+          type: array
+      type: object
+    EngineSettingsModel:
+      description: EngineSettingsModel
+      properties:
+        adSyncEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        advancedAuditingEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        engineId:
+          description: EngineId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        engineSettingsId:
+          description: EngineSettingsId
+          type: integer
+          format: int32
+        fipsEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        localAccountDiscoveryEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        logLevel:
+          description: LogLevel
+          type:
+          - string
+          - 'null'
+        passwordChangingEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        rdpProxyEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        secretWorkflowEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        securityAnalyticsEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        serviceAccountManagementEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        siteId:
+          description: SiteId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        sshProxyEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+        sshTerminalEnabled:
+          $ref: '#/components/schemas/EngineSettingBool'
+      type: object
+    SiteUpdateArgs:
+      description: SiteUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/SiteUpdateModel'
+      type: object
+    EngineActivationStatusType:
+      description: ActivationStatus
+      properties: {}
+      type: string
+      enum:
+      - Pending
+      - Activated
+      - Inactive
+      - Deleted
+    EngineAuditSummary:
+      description: Query results
+      properties:
+        action:
+          description: Action
+          type: string
+        auditId:
+          description: AuditId
+          type: integer
+          format: int32
+        dateRecorded:
+          description: DateRecorded
+          type: string
+          format: date-time
+        engineName:
+          description: EngineName
+          type: string
+        notes:
+          description: Notes
+          type: string
+        user:
+          description: User
+          type: string
+      type: object
+    SiteAuditSummary:
+      description: Site Audit Summary
+      properties:
+        action:
+          description: Site Audit Action
+          type: string
+        dateRecorded:
+          description: Site Audit DateRecorded
+          type: string
+          format: date-time
+        notes:
+          description: Site Audit Notes
+          type: string
+        siteAuditId:
+          description: Site Audit Id
+          type: integer
+          format: int32
+        userName:
+          description: Site Audit UserName
+          type: string
+      type: object
+    SiteCreateModel:
+      description: Site Create Model
+      properties:
+        active:
+          description: Is Site Active
+          type: boolean
+        enableCredSspForWinRm:
+          description: Enable CredSSP For WinRM
+          type:
+          - boolean
+          - 'null'
+        enableRdpProxy:
+          description: Enable RDP Proxy
+          type: boolean
+        enableSshProxy:
+          description: Enable SSH Proxy
+          type: boolean
+        heartbeatInterval:
+          description: Heartbeat Interval of Site
+          type: integer
+          format: int32
+        powershellSecretId:
+          description: Powershell Secret Id of Site if set
+          type:
+          - integer
+          - 'null'
+          format: int32
+        rdpProxyPort:
+          description: RDP Proxy Port
+          type:
+          - integer
+          - 'null'
+          format: int32
+        siteConnectorId:
+          description: Id of Site Connector of Site
+          type: integer
+          format: int32
+        siteName:
+          description: Name of Site
+          type: string
+        sshProxyPort:
+          description: SSH Proxy Port
+          type:
+          - integer
+          - 'null'
+          format: int32
+        winRmEndPointUrl:
+          description: WinRM End Point URL of Site
+          type: string
+      type: object
+    MessageQueueType:
+      description: Value
+      properties: {}
+      type: string
+      enum:
+      - MemoryMq
+      - RabbitMq
+      - AzureServiceBus
+    UpdateFieldValueOfMessageQueueType:
+      description: Queue Type of Site Connector
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/MessageQueueType'
+      type: object
+    EngineSettingsUpdateModel:
+      description: Data
+      properties:
+        adSyncEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        advancedAuditingEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        fipsEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        localAccountDiscoveryEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        logLevel:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalLog4NetLevel'
+        passwordChangingEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        rdpProxyEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        secretWorkflowEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        securityAnalyticsEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        serviceAccountManagementEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        sshProxyEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        sshTerminalEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+      type: object
+    ViewFieldValueOfString:
+      description: GeneratedToken
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value:
+          description: Value
+          type: string
+      type: object
+    UpdateFieldValueOfAzureServiceBusTransportType:
+      description: Azure Service Bus Transport Type
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/AzureServiceBusTransportType'
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    PagingOfSiteAuditSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SiteAuditSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    EngineServerCapabilitiesSummary:
+      description: EngineServerCapabilitiesSummary[]
+      properties:
+        lastModifiedDate:
+          description: When the capability was last updated
+          type: string
+          format: date-time
+        name:
+          description: Which capability
+          type: string
+        value:
+          description: The server's capability
+          type: string
+      type: object
+    SiteConnectivityValidationModel:
+      description: Data
+      properties:
+        timeout:
+          description: Millisecond timeout length for testing connectivity.
+          type: integer
+          format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    ViewFieldLink:
+      description: AdditionalLinks
+      properties:
+        isExternal:
+          description: IsExternal
+          type: boolean
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
           type: string
       type: object
   requestBodies:

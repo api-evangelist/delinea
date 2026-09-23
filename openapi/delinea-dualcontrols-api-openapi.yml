@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Secret Server Rest Activations DualControls API
-  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  title: Secret Server Rest Dual Controls API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the authentication document for more information. The Swagger specification for this API is also available.
   termsOfService: https://delinea.com/eula
   contact:
     name: Support
@@ -147,7 +147,6 @@ paths:
       tags:
       - DualControls
       summary: Get dual control state for the current item
-      description: Get dual control state for the current item
       operationId: DualControlsService_GetAllReports
       parameters:
       - name: dualControlType
@@ -374,7 +373,6 @@ paths:
       tags:
       - DualControls
       summary: Authorize a dual control
-      description: Authorize a dual control
       operationId: DualControlsService_AuthorizeDualControl
       parameters:
       - name: dualControlType
@@ -424,6 +422,79 @@ paths:
       deprecated: false
 components:
   schemas:
+    DualControlSummary:
+      description: Dual control summary
+      properties:
+        active:
+          description: Whether this dual control is active
+          type: boolean
+        dualControlTypeId:
+          $ref: '#/components/schemas/DualControlType'
+        dualControlTypeName:
+          description: Dual control type name
+          type: string
+        id:
+          description: Dual control ID
+          type: integer
+          format: int32
+        itemId:
+          description: Dual control item ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        itemName:
+          description: Dual control item name
+          type: string
+      type: object
+    DeletedModel:
+      description: Information about an object that was deleted
+      properties:
+        id:
+          description: ID of the deleted object
+          type: integer
+          format: int32
+        objectType:
+          description: Type of the deleted object
+          type: string
+        responseCodes:
+          description: List of response codes from the delete operation
+          items:
+            type: string
+          type: array
+      type: object
+    DualControlModel:
+      description: Dual control
+      properties:
+        active:
+          description: Whether this dual control is active
+          type: boolean
+        dualControlApprovalGroups:
+          description: Dual control approval groups
+          items:
+            $ref: '#/components/schemas/IDualControlApprovalGroup'
+          type: array
+        dualControlTypeId:
+          description: Dual control type ID
+          type: integer
+          format: int32
+        dualControlTypeName:
+          description: Dual control type name
+          type: string
+        id:
+          description: Dual control ID
+          type: integer
+          format: int32
+        itemId:
+          description: Dual control item ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        itemName:
+          description: Dual control item name
+          type: string
+      type: object
     Sort:
       description: Sort options. Multiple sort options can be provided in the query string.
       required:
@@ -439,6 +510,73 @@ components:
           description: Priority index. Sorts with lower values are executed earlier
           type: integer
           format: int32
+      type: object
+    DualControlStateModel:
+      description: Whether or not dual control access has been authorized
+      properties:
+        stateResult:
+          $ref: '#/components/schemas/DualControlStateResultType'
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    DualControlStateResultType:
+      description: The status for the dual control entity
+      properties: {}
+      type: string
+      enum:
+      - ApprovalRequired
+      - AccessAllowed
+    DualControlAuthDataModel:
+      description: Used to authorize dual controls
+      properties:
+        domain:
+          description: Domain for the user, null if local
+          type:
+          - integer
+          - 'null'
+          format: int32
+        password:
+          description: User password
+          type: string
+        twoFactorToken:
+          description: Two Factor Token to login
+          type: string
+        username:
+          description: Username that can login
+          type: string
+      type: object
+    DualControlAuthResult:
+      description: The result of the authorization request
+      properties:
+        success:
+          description: True if the auth succeeded
+          type: boolean
       type: object
     DualControlUpdateArgs:
       description: Dual control update options
@@ -463,9 +601,10 @@ components:
           format: int32
         itemId:
           description: ItemId
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
       type: object
     SortDirection:
       description: Sort direction
@@ -475,40 +614,48 @@ components:
       - None
       - Asc
       - Desc
-    DualControlSummary:
-      description: Dual control summary
+    IDualControlApprovalGroup:
+      description: Dual control approval groups
       properties:
-        active:
-          description: Whether this dual control is active
+        dualControlId:
+          description: DualControlId
+          type: integer
+          format: int32
+        enabled:
+          description: Enabled
           type: boolean
-        dualControlTypeId:
-          $ref: '#/components/schemas/DualControlType'
-        dualControlTypeName:
-          description: Dual control type name
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+        groupName:
+          description: GroupName
           type: string
         id:
-          description: Dual control ID
+          description: Id
           type: integer
           format: int32
-        itemId:
-          description: Dual control item ID
-          type: integer
-          format: int32
-          nullable: true
-        itemName:
-          description: Dual control item name
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
           type: string
       type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
+    DualControlTypeModel:
+      description: DualControlTypeModel[]
+      properties:
+        id:
+          description: Id
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+      type: object
     PagingOfDualControlSummary:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -566,6 +713,30 @@ components:
           type: integer
           format: int32
       type: object
+    DualControlCreateArgs:
+      description: Dual control creation options
+      properties:
+        active:
+          description: Create the dual control as active or not
+          type:
+          - boolean
+          - 'null'
+        dualControlApprovalGroups:
+          description: Dual control approval groups
+          items:
+            $ref: '#/components/schemas/IDualControlApprovalGroup'
+          type: array
+        dualControlTypeId:
+          description: Dual control type ID
+          type: integer
+          format: int32
+        itemId:
+          description: ItemId
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -586,173 +757,6 @@ components:
         stackTrace:
           description: Exception stack trace
           type: string
-      type: object
-    DualControlStateModel:
-      description: Whether or not dual control access has been authorized
-      properties:
-        stateResult:
-          $ref: '#/components/schemas/DualControlStateResultType'
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    IDualControlApprovalGroup:
-      description: Dual control approval groups
-      properties:
-        dualControlId:
-          description: DualControlId
-          type: integer
-          format: int32
-        enabled:
-          description: Enabled
-          type: boolean
-        groupId:
-          description: GroupId
-          type: integer
-          format: int32
-        groupName:
-          description: GroupName
-          type: string
-        id:
-          description: Id
-          type: integer
-          format: int32
-      type: object
-    DeletedModel:
-      description: Information about an object that was deleted
-      properties:
-        id:
-          description: ID of the deleted object
-          type: integer
-          format: int32
-        objectType:
-          description: Type of the deleted object
-          type: string
-        responseCodes:
-          description: List of response codes from the delete operation
-          items:
-            type: string
-          type: array
-      type: object
-    DualControlStateResultType:
-      description: The status for the dual control entity
-      properties: {}
-      type: string
-      enum:
-      - ApprovalRequired
-      - AccessAllowed
-    DualControlTypeModel:
-      description: DualControlTypeModel[]
-      properties:
-        id:
-          description: Id
-          type: integer
-          format: int32
-        name:
-          description: Name
-          type: string
-      type: object
-    DualControlAuthDataModel:
-      description: Used to authorize dual controls
-      properties:
-        domain:
-          description: Domain for the user, null if local
-          type: integer
-          format: int32
-          nullable: true
-        password:
-          description: User password
-          type: string
-        twoFactorToken:
-          description: Two Factor Token to login
-          type: string
-        username:
-          description: Username that can login
-          type: string
-      type: object
-    DualControlCreateArgs:
-      description: Dual control creation options
-      properties:
-        active:
-          description: Create the dual control as active or not
-          type: boolean
-          nullable: true
-        dualControlApprovalGroups:
-          description: Dual control approval groups
-          items:
-            $ref: '#/components/schemas/IDualControlApprovalGroup'
-          type: array
-        dualControlTypeId:
-          description: Dual control type ID
-          type: integer
-          format: int32
-        itemId:
-          description: ItemId
-          type: integer
-          format: int32
-          nullable: true
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    DualControlModel:
-      description: Dual control
-      properties:
-        active:
-          description: Whether this dual control is active
-          type: boolean
-        dualControlApprovalGroups:
-          description: Dual control approval groups
-          items:
-            $ref: '#/components/schemas/IDualControlApprovalGroup'
-          type: array
-        dualControlTypeId:
-          description: Dual control type ID
-          type: integer
-          format: int32
-        dualControlTypeName:
-          description: Dual control type name
-          type: string
-        id:
-          description: Dual control ID
-          type: integer
-          format: int32
-        itemId:
-          description: Dual control item ID
-          type: integer
-          format: int32
-          nullable: true
-        itemName:
-          description: Dual control item name
-          type: string
-      type: object
-    DualControlAuthResult:
-      description: The result of the authorization request
-      properties:
-        success:
-          description: True if the auth succeeded
-          type: boolean
       type: object
     DualControlAuthArgs:
       description: 'Dual control auth args '

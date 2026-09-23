@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Secret Server Rest Activations Metadata API
-  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  title: Secret Server Rest Metadata API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the authentication document for more information. The Swagger specification for this API is also available.
   termsOfService: https://delinea.com/eula
   contact:
     name: Support
@@ -500,7 +500,6 @@ paths:
       tags:
       - Metadata
       summary: Update a metadata field section
-      description: Update a metadata field section
       operationId: MetadataService_UpdateMetadataFieldSection
       parameters:
       - name: fieldSectionId
@@ -559,6 +558,130 @@ paths:
       deprecated: false
 components:
   schemas:
+    MetadataFieldSectionUpdateModel:
+      description: Model to update a metadata field section
+      properties:
+        metadataFieldSectionDescription:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        metadataFieldSectionName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        metadataFieldSectionRequiresAdministerMetadata:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        metadataFieldSectionRequiresEntityEdit:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+      type: object
+    MetadataHistorySummaryModel:
+      description: Query results
+      properties:
+        containsPersonalInformation:
+          description: When this is set to true, the metadata will be obfuscated during export
+          type: boolean
+        createDateTime:
+          description: When the field value was created
+          type: string
+          format: date-time
+        createUserId:
+          description: The user id of who entered the field value
+          type: integer
+          format: int32
+        createUserName:
+          description: Who entered the field value
+          type: string
+        itemId:
+          description: The ID of the item to which this metadata is associated
+          type: integer
+          format: int32
+        metadataFieldDataType:
+          $ref: '#/components/schemas/MetadataFieldDataType'
+        metadataFieldId:
+          description: The metadata field id
+          type: integer
+          format: int32
+        metadataFieldName:
+          description: The metadata field name
+          type: string
+        metadataFieldSectionId:
+          description: The Metadata section ID
+          type: integer
+          format: int32
+        metadataFieldSectionName:
+          description: The metadata section name
+          type: string
+        metadataFieldTypeName:
+          description: Not currently populated, see MetadataFieldDataType
+          type: string
+        metadataItemDataHistoryId:
+          description: The sequence for this history ID
+          type: integer
+          format: int32
+        metadataItemDataId:
+          description: The parent sequence ID for all associated history records
+          type: integer
+          format: int32
+        metadataType:
+          $ref: '#/components/schemas/MetadataType'
+        metadataTypeName:
+          description: Not currently populated, see MetadataType
+          type: string
+        sortOrder:
+          description: The order in which to sort the metadata fields.  This is currently not utilized.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        valueBit:
+          description: When this metadata field is a boolean this will be the value
+          type:
+          - boolean
+          - 'null'
+        valueDateTime:
+          description: When this metadata field is a datetime this will be the value
+          type:
+          - string
+          - 'null'
+          format: date-time
+        valueInt:
+          description: When this metadata field is a user this will be the user id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        valueNumber:
+          description: When this metadata field is a number this will be the value
+          type:
+          - number
+          - 'null'
+          format: double
+        valueString:
+          description: When this metadata field is a string this will be the value
+          type: string
+        valueUserDisplayName:
+          description: When this metadata field is a user this will be the user display name
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
     Sort:
       description: Sort options. Multiple sort options can be provided in the query string.
       required:
@@ -575,221 +698,18 @@ components:
           type: integer
           format: int32
       type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
+    UpdateFieldValueOfOptionalDouble:
+      description: The value when the field is a number
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
           description: Value
-          type: boolean
-      type: object
-    MetadataType:
-      description: The types of entities that metadata can be associated to
-      properties: {}
-      type: string
-      enum:
-      - User
-      - Secret
-      - Folder
-      - Group
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    UpdateFieldValueOfOptionalDateTime:
-      description: Update when the pinned folder was last viewed
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-          format: date-time
-          nullable: true
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    PagingOfMetadataFieldSummaryModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/MetadataFieldSummaryModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    PagingOfMetadataHistorySummaryModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/MetadataHistorySummaryModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    UpdateFieldValueOfOptionalInt32:
-      description: The minimum length required for local user passwords
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: integer
-          format: int32
-          nullable: true
-      type: object
-    MetadataUpdateModel:
-      description: Metadata item to update
-      properties:
-        containsPersonalInformation:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        metadataItemDataId:
-          description: The sequence ID for the metadata field
-          type: integer
-          format: int32
-        valueBit:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        valueDateTime:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalDateTime'
-        valueInt:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        valueNumber:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalDouble'
-        valueString:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
+          type:
+          - number
+          - 'null'
+          format: double
       type: object
     PagingOfMetadataSummaryModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -848,6 +768,198 @@ components:
           type: integer
           format: int32
       type: object
+    MetadataFieldSectionActionType:
+      description: Specific actions a user can take on metadata sections
+      properties: {}
+      type: string
+      enum:
+      - EditSection
+      - AddField
+      - EditItem
+      - DeleteItem
+    MetadataModel:
+      description: A single record of metadata that is associated to one entity
+      properties:
+        containsPersonalInformation:
+          description: When this is set to true, the metadata will be obfuscated during export
+          type: boolean
+        createDateTime:
+          description: When was this field value entered
+          type: string
+          format: date-time
+        createUserId:
+          description: The user id of the user who entered this field value
+          type: integer
+          format: int32
+        createUserName:
+          description: Who entered this field value
+          type: string
+        itemId:
+          description: The ID of the entity to which this value is associated
+          type: integer
+          format: int32
+        metadataFieldId:
+          description: The metadata field ID for this value
+          type:
+          - integer
+          - 'null'
+          format: int32
+        metadataFieldName:
+          description: The field name for this metadata value
+          type: string
+        metadataFieldSectionId:
+          description: The section ID in which this metadata value resides
+          type: integer
+          format: int32
+        metadataFieldSectionName:
+          description: The section name in which this metadata value resides
+          type: string
+        metadataFieldTypeId:
+          description: The ID for the field type in which this metadata value resides
+          type:
+          - integer
+          - 'null'
+          format: int32
+        metadataFieldTypeName:
+          description: The field name in which this metadata value resides
+          type: string
+        metadataItemDataId:
+          description: The sequence ID for this specific metadata value record
+          type:
+          - integer
+          - 'null'
+          format: int32
+        metadataTypeName:
+          description: The type name in which this metadata value resides
+          type: string
+        sortOrder:
+          description: Not currently utilized, but the sort order for the metadata
+          type:
+          - integer
+          - 'null'
+          format: int32
+        valueBit:
+          description: The value when the metadata field is a boolean
+          type:
+          - boolean
+          - 'null'
+        valueDateTime:
+          description: The value when the metadata field is a date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        valueInt:
+          description: The value when the metadata field is a user
+          type:
+          - integer
+          - 'null'
+          format: int32
+        valueNumber:
+          description: The value when the metadata field is a number
+          type:
+          - number
+          - 'null'
+          format: double
+        valueString:
+          description: The value when the metadata field is a string
+          type: string
+        valueUserDisplayName:
+          description: The user display name when the metadata field is a user type
+          type: string
+      type: object
+    MetadataFieldSectionSummaryModel:
+      description: Summary of metadata sections
+      properties:
+        actions:
+          description: What actions can the current user perform
+          items:
+            $ref: '#/components/schemas/MetadataFieldSectionActionType'
+          type: array
+        metadataFieldSectionDescription:
+          description: The description of this section
+          type: string
+        metadataFieldSectionId:
+          description: The sequence ID for this section
+          type: integer
+          format: int32
+        metadataFieldSectionName:
+          description: The name of this section
+          type: string
+        requiresAdministerMetadata:
+          description: Is the user required to have the Administer Metadata role permission in order to edit fields in this metadata section
+          type: boolean
+        requiresEntityEdit:
+          description: Is the user required to be able to edit the entity to which the metadata is associated to in order to edit metadata
+          type: boolean
+      type: object
+    PagingOfMetadataFieldSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/MetadataFieldSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
     BadRequestResponse:
       description: Response object for invalid requests
       required:
@@ -866,161 +978,6 @@ components:
           description: An object describing validation errors
           type: object
       type: object
-    MetadataSummaryModel:
-      description: Query results
-      properties:
-        containsPersonalInformation:
-          description: When this is set to true, the metadata will be obfuscated during export
-          type: boolean
-        createDateTime:
-          description: When the field value was created
-          type: string
-          format: date-time
-        createUserId:
-          description: The user id of who entered the field value
-          type: integer
-          format: int32
-        createUserName:
-          description: Who entered the field value
-          type: string
-        itemId:
-          description: The ID of the item to which this metadata is associated
-          type: integer
-          format: int32
-        metadataFieldDataType:
-          $ref: '#/components/schemas/MetadataFieldDataType'
-        metadataFieldId:
-          description: The metadata field id
-          type: integer
-          format: int32
-        metadataFieldName:
-          description: The metadata field name
-          type: string
-        metadataFieldSectionId:
-          description: The Metadata section ID
-          type: integer
-          format: int32
-        metadataFieldSectionName:
-          description: The metadata section name
-          type: string
-        metadataFieldTypeName:
-          description: Not currently populated, see MetadataFieldDataType
-          type: string
-        metadataItemDataId:
-          description: The sequence id for this specific metadata field
-          type: integer
-          format: int32
-        metadataType:
-          $ref: '#/components/schemas/MetadataType'
-        metadataTypeName:
-          description: Not currently populated, see MetadataType
-          type: string
-        sortOrder:
-          description: The order in which to sort the metadata fields.  This is currently not utilized.
-          type: integer
-          format: int32
-          nullable: true
-        valueBit:
-          description: When this metadata field is a boolean this will be the value
-          type: boolean
-          nullable: true
-        valueDateTime:
-          description: When this metadata field is a datetime this will be the value
-          type: string
-          format: date-time
-          nullable: true
-        valueInt:
-          description: When this metadata field is a user this will be the user id
-          type: integer
-          format: int32
-          nullable: true
-        valueNumber:
-          description: When this metadata field is a number this will be the value
-          type: number
-          format: double
-          nullable: true
-        valueString:
-          description: When this metadata field is a string this will be the value
-          type: string
-        valueUserDisplayName:
-          description: When this metadata field is a user this will be the user display name
-          type: string
-      type: object
-    MetadataCreateArgs:
-      description: Create metadata args
-      properties:
-        data:
-          $ref: '#/components/schemas/MetadataCreateModel'
-      type: object
-    MetadataFieldSectionActionType:
-      description: Specific actions a user can take on metadata sections
-      properties: {}
-      type: string
-      enum:
-      - EditSection
-      - AddField
-      - EditItem
-      - DeleteItem
-    UpdateFieldValueOfOptionalBoolean:
-      description: Use RADIUS Username for DUO
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-          nullable: true
-      type: object
-    MetadataFieldSectionUpdateModel:
-      description: Model to update a metadata field section
-      properties:
-        metadataFieldSectionDescription:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        metadataFieldSectionName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        metadataFieldSectionRequiresAdministerMetadata:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        metadataFieldSectionRequiresEntityEdit:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-      type: object
-    MetadataFieldSummaryModel:
-      description: Metadata field summary
-      properties:
-        containsPersonalInformation:
-          description: When this is set to true, the metadata will be obfuscated during export
-          type: boolean
-        defaultSortOrder:
-          description: Not currently utilized but the sort order for the metadata
-          type: integer
-          format: int32
-          nullable: true
-        fieldDataType:
-          $ref: '#/components/schemas/EntityMetadataFieldDataType'
-        metadataFieldId:
-          description: The sequence ID for this metadata field
-          type: integer
-          format: int32
-          nullable: true
-        metadataFieldName:
-          description: The name of this metadata field
-          type: string
-        metadataFieldSectionId:
-          description: The field section id that contains this field
-          type: integer
-          format: int32
-          nullable: true
-        metadataFieldSectionName:
-          description: The name of the field section
-          type: string
-      type: object
-    MetadataDeleteResponse:
-      description: Response message when deleting a metadata value
-      properties:
-        success:
-          description: Did the delete succeed
-          type: boolean
-      type: object
     MetadataCreateModel:
       description: Model to create a new metadata field value
       properties:
@@ -1029,13 +986,15 @@ components:
           type: boolean
         fieldDataType:
           description: Specify the specific data type desired.  Only required when also creating a new field.  If field MetadataFieldId is passed or a field already exists with the passed MetadataFieldName this is ignored.  Certain data types can also be inferred from which value field is set, but some require this to be explicitly set like User.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         metadataFieldId:
           description: The specific field ID can be passed and in this case MetadataFieldName and MetadataFieldTypeId are ignored
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         metadataFieldName:
           description: When the field ID is not know this will create a field with this name.  If the field name does not already exist a new one will be created.
           type: string
@@ -1044,132 +1003,123 @@ components:
           type: string
         metadataFieldSectionId:
           description: The specific field section ID can be passed and in this case MetadataFieldSectionName is ignored
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         metadataFieldSectionName:
           description: When the field section ID is not know this will create a field section with this name.  If the field section name does not already exist a new one will be created.  If MetadataFieldSectionId is passed this field is ignored.
           type: string
         metadataFieldSectionRequiresAdministerMetadata:
           description: When the field section ID is not know this will create a field section with this setting as to whether the Administer Metadata permission is required for edit.  If MetadataFieldSectionId is passed or a section with the name MetadataFieldSectionName, this field is ignored.
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         metadataFieldSectionRequiresEntityEdit:
           description: When the field section ID is not know this will create a field section with this setting as to whether edit permission is required for edit. Otherwise view will be required.  If MetadataFieldSectionId is passed or a section with the name MetadataFieldSectionName, this field is ignored.
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         valueBit:
           description: When the field is a boolean it should assign this field on create for the value
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         valueDateTime:
           description: When the field is a date it should assign this field on create for the value
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         valueInt:
           description: When the field is a user it should assign this field on create for the value
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         valueNumber:
           description: When the field is a number it should assign this field on create for the value
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
-          nullable: true
         valueString:
           description: When the field is a string it should assign this field on create for the value
           type: string
       type: object
-    MetadataHistorySummaryModel:
-      description: Query results
-      properties:
-        containsPersonalInformation:
-          description: When this is set to true, the metadata will be obfuscated during export
-          type: boolean
-        createDateTime:
-          description: When the field value was created
-          type: string
-          format: date-time
-        createUserId:
-          description: The user id of who entered the field value
-          type: integer
-          format: int32
-        createUserName:
-          description: Who entered the field value
-          type: string
-        itemId:
-          description: The ID of the item to which this metadata is associated
-          type: integer
-          format: int32
-        metadataFieldDataType:
-          $ref: '#/components/schemas/MetadataFieldDataType'
-        metadataFieldId:
-          description: The metadata field id
-          type: integer
-          format: int32
-        metadataFieldName:
-          description: The metadata field name
-          type: string
-        metadataFieldSectionId:
-          description: The Metadata section ID
-          type: integer
-          format: int32
-        metadataFieldSectionName:
-          description: The metadata section name
-          type: string
-        metadataFieldTypeName:
-          description: Not currently populated, see MetadataFieldDataType
-          type: string
-        metadataItemDataHistoryId:
-          description: The sequence for this history ID
-          type: integer
-          format: int32
-        metadataItemDataId:
-          description: The parent sequence ID for all associated history records
-          type: integer
-          format: int32
-        metadataType:
-          $ref: '#/components/schemas/MetadataType'
-        metadataTypeName:
-          description: Not currently populated, see MetadataType
-          type: string
-        sortOrder:
-          description: The order in which to sort the metadata fields.  This is currently not utilized.
-          type: integer
-          format: int32
-          nullable: true
-        valueBit:
-          description: When this metadata field is a boolean this will be the value
-          type: boolean
-          nullable: true
-        valueDateTime:
-          description: When this metadata field is a datetime this will be the value
-          type: string
-          format: date-time
-          nullable: true
-        valueInt:
-          description: When this metadata field is a user this will be the user id
-          type: integer
-          format: int32
-          nullable: true
-        valueNumber:
-          description: When this metadata field is a number this will be the value
-          type: number
-          format: double
-          nullable: true
-        valueString:
-          description: When this metadata field is a string this will be the value
-          type: string
-        valueUserDisplayName:
-          description: When this metadata field is a user this will be the user display name
-          type: string
-      type: object
-    MetadataFieldSectionUpdateArgs:
-      description: Metadata field section update args
+    EntityMetadataFieldDataType:
+      description: The data type for this field (string, number, date, etc)
+      properties: {}
+      type: string
+      enum:
+      - String
+      - Boolean
+      - Number
+      - DateTime
+      - User
+    MetadataType:
+      description: The types of entities that metadata can be associated to
+      properties: {}
+      type: string
+      enum:
+      - User
+      - Secret
+      - Folder
+      - Group
+    MetadataUpdateArgs:
+      description: Metadata update args
       properties:
         data:
-          $ref: '#/components/schemas/MetadataFieldSectionUpdateModel'
+          $ref: '#/components/schemas/MetadataUpdateModel'
+      type: object
+    UpdateFieldValueOfOptionalBoolean:
+      description: Use RADIUS Username for DUO
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - boolean
+          - 'null'
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    UpdateFieldValueOfOptionalDateTime:
+      description: Update when the pinned folder was last viewed
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - string
+          - 'null'
+          format: date-time
+      type: object
+    MetadataDeleteResponse:
+      description: Response message when deleting a metadata value
+      properties:
+        success:
+          description: Did the delete succeed
+          type: boolean
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
       type: object
     PagingOfMetadataFieldSectionSummaryModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -1228,163 +1178,246 @@ components:
           type: integer
           format: int32
       type: object
-    MetadataFieldSectionSummaryModel:
-      description: Summary of metadata sections
+    MetadataFieldSummaryModel:
+      description: Metadata field summary
       properties:
-        actions:
-          description: What actions can the current user perform
-          items:
-            $ref: '#/components/schemas/MetadataFieldSectionActionType'
-          type: array
-        metadataFieldSectionDescription:
-          description: The description of this section
+        containsPersonalInformation:
+          description: When this is set to true, the metadata will be obfuscated during export
+          type: boolean
+        defaultSortOrder:
+          description: Not currently utilized but the sort order for the metadata
+          type:
+          - integer
+          - 'null'
+          format: int32
+        fieldDataType:
+          $ref: '#/components/schemas/EntityMetadataFieldDataType'
+        metadataFieldId:
+          description: The sequence ID for this metadata field
+          type:
+          - integer
+          - 'null'
+          format: int32
+        metadataFieldName:
+          description: The name of this metadata field
           type: string
         metadataFieldSectionId:
-          description: The sequence ID for this section
-          type: integer
+          description: The field section id that contains this field
+          type:
+          - integer
+          - 'null'
           format: int32
         metadataFieldSectionName:
-          description: The name of this section
+          description: The name of the field section
           type: string
-        requiresAdministerMetadata:
-          description: Is the user required to have the Administer Metadata role permission in order to edit fields in this metadata section
-          type: boolean
-        requiresEntityEdit:
-          description: Is the user required to be able to edit the entity to which the metadata is associated to in order to edit metadata
-          type: boolean
       type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
+    PagingOfMetadataHistorySummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
       properties:
-        message:
-          description: Error message
-          type: string
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/MetadataHistorySummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
       type: object
-    UpdateFieldValueOfOptionalDouble:
-      description: The value when the field is a number
+    UpdateFieldValueOfBoolean:
+      description: Active
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
           description: Value
-          type: number
-          format: double
-          nullable: true
+          type: boolean
       type: object
-    MetadataFieldDataType:
-      description: Field types for metadata values
-      properties: {}
-      type: string
-      enum:
-      - String
-      - Boolean
-      - Number
-      - DateTime
-      - User
-    MetadataModel:
-      description: A single record of metadata that is associated to one entity
+    MetadataSummaryModel:
+      description: Query results
       properties:
         containsPersonalInformation:
           description: When this is set to true, the metadata will be obfuscated during export
           type: boolean
         createDateTime:
-          description: When was this field value entered
+          description: When the field value was created
           type: string
           format: date-time
         createUserId:
-          description: The user id of the user who entered this field value
+          description: The user id of who entered the field value
           type: integer
           format: int32
         createUserName:
-          description: Who entered this field value
+          description: Who entered the field value
           type: string
         itemId:
-          description: The ID of the entity to which this value is associated
+          description: The ID of the item to which this metadata is associated
           type: integer
           format: int32
+        metadataFieldDataType:
+          $ref: '#/components/schemas/MetadataFieldDataType'
         metadataFieldId:
-          description: The metadata field ID for this value
+          description: The metadata field id
           type: integer
           format: int32
-          nullable: true
         metadataFieldName:
-          description: The field name for this metadata value
+          description: The metadata field name
           type: string
         metadataFieldSectionId:
-          description: The section ID in which this metadata value resides
+          description: The Metadata section ID
           type: integer
           format: int32
         metadataFieldSectionName:
-          description: The section name in which this metadata value resides
+          description: The metadata section name
           type: string
-        metadataFieldTypeId:
-          description: The ID for the field type in which this metadata value resides
-          type: integer
-          format: int32
-          nullable: true
         metadataFieldTypeName:
-          description: The field name in which this metadata value resides
+          description: Not currently populated, see MetadataFieldDataType
           type: string
         metadataItemDataId:
-          description: The sequence ID for this specific metadata value record
+          description: The sequence id for this specific metadata field
           type: integer
           format: int32
-          nullable: true
+        metadataType:
+          $ref: '#/components/schemas/MetadataType'
         metadataTypeName:
-          description: The type name in which this metadata value resides
+          description: Not currently populated, see MetadataType
           type: string
         sortOrder:
-          description: Not currently utilized, but the sort order for the metadata
-          type: integer
+          description: The order in which to sort the metadata fields.  This is currently not utilized.
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         valueBit:
-          description: The value when the metadata field is a boolean
-          type: boolean
-          nullable: true
+          description: When this metadata field is a boolean this will be the value
+          type:
+          - boolean
+          - 'null'
         valueDateTime:
-          description: The value when the metadata field is a date
-          type: string
+          description: When this metadata field is a datetime this will be the value
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         valueInt:
-          description: The value when the metadata field is a user
-          type: integer
+          description: When this metadata field is a user this will be the user id
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         valueNumber:
-          description: The value when the metadata field is a number
-          type: number
+          description: When this metadata field is a number this will be the value
+          type:
+          - number
+          - 'null'
           format: double
-          nullable: true
         valueString:
-          description: The value when the metadata field is a string
+          description: When this metadata field is a string this will be the value
           type: string
         valueUserDisplayName:
-          description: The user display name when the metadata field is a user type
+          description: When this metadata field is a user this will be the user display name
           type: string
       type: object
-    MetadataUpdateArgs:
-      description: Metadata update args
+    MetadataCreateArgs:
+      description: Create metadata args
       properties:
         data:
-          $ref: '#/components/schemas/MetadataUpdateModel'
+          $ref: '#/components/schemas/MetadataCreateModel'
       type: object
-    UpdateFieldValueOfString:
-      description: Description
+    MetadataFieldSectionUpdateArgs:
+      description: Metadata field section update args
       properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
+        data:
+          $ref: '#/components/schemas/MetadataFieldSectionUpdateModel'
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
           type: string
       type: object
-    EntityMetadataFieldDataType:
-      description: The data type for this field (string, number, date, etc)
+    MetadataUpdateModel:
+      description: Metadata item to update
+      properties:
+        containsPersonalInformation:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        metadataItemDataId:
+          description: The sequence ID for the metadata field
+          type: integer
+          format: int32
+        valueBit:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        valueDateTime:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalDateTime'
+        valueInt:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        valueNumber:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalDouble'
+        valueString:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    MetadataFieldDataType:
+      description: Field types for metadata values
       properties: {}
       type: string
       enum:

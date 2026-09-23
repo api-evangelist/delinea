@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Secret Server Rest Activations Enterprise API
-  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the <a href="../OAuth/">authentication document</a> for more information. The <a href="swagger.json">Swagger specification</a> for this API is also available.
+  title: Secret Server Rest Enterprise API
+  description: REST API documentation for Secret Server. This document describes how to use the REST API. All requests require an authentication token; please see the authentication document for more information. The Swagger specification for this API is also available.
   termsOfService: https://delinea.com/eula
   contact:
     name: Support
@@ -97,23 +97,11 @@ paths:
       deprecated: false
 components:
   schemas:
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
+    EnterpriseSearchRequestArgs:
+      description: Arguments for an Enterprise Search Request
       properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
+        data:
+          $ref: '#/components/schemas/EnterpriseSearchRequestFilter'
       type: object
     EnterpriseSearchResultDataModel:
       description: Enterprise Search Result Data Model
@@ -139,43 +127,41 @@ components:
           description: Name of user that accessed the enterprise
           type: string
       type: object
-    EnterpriseSearchResultModel:
-      description: Enterprise Search Result Model
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
       properties:
-        data:
-          description: Date enterprise was accessed
-          items:
-            $ref: '#/components/schemas/EnterpriseSearchResultDataModel'
-          type: array
-        processEndDate:
-          description: Date process was completed
+        message:
+          description: Error message
           type: string
-          format: date-time
-          nullable: true
-        processStartDate:
-          description: Date process was started
+        messageDetail:
+          description: Error message detail
           type: string
-          format: date-time
-          nullable: true
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
       type: object
-    EnterpriseSearchRequestFieldModel:
-      description: Enterprise Search Request Field Model
+    EnterpriseSearchRequestModel:
+      description: Enterprise Search Request Model
       properties:
-        fieldName:
-          description: Field of scan template to filter by
-          type: string
-        fieldValue:
-          description: Value of field to filter by
-          type: string
+        requestId:
+          description: Id of Request
+          type: integer
+          format: int32
       type: object
     EnterpriseSearchRequestFilter:
       description: Enterprise Search Request Filter
       properties:
         endDate:
           description: End Date of date range to filter
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         enterpriseName:
           description: Specify this for filtering data by the Enterprise Name
           type: string
@@ -186,9 +172,10 @@ components:
           type: array
         startDate:
           description: Start Date of date range to filter
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
       type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
@@ -211,12 +198,6 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    EnterpriseSearchRequestArgs:
-      description: Arguments for an Enterprise Search Request
-      properties:
-        data:
-          $ref: '#/components/schemas/EnterpriseSearchRequestFilter'
-      type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures
       required:
@@ -226,13 +207,36 @@ components:
           description: Error message
           type: string
       type: object
-    EnterpriseSearchRequestModel:
-      description: Enterprise Search Request Model
+    EnterpriseSearchRequestFieldModel:
+      description: Enterprise Search Request Field Model
       properties:
-        requestId:
-          description: Id of Request
-          type: integer
-          format: int32
+        fieldName:
+          description: Field of scan template to filter by
+          type: string
+        fieldValue:
+          description: Value of field to filter by
+          type: string
+      type: object
+    EnterpriseSearchResultModel:
+      description: Enterprise Search Result Model
+      properties:
+        data:
+          description: Date enterprise was accessed
+          items:
+            $ref: '#/components/schemas/EnterpriseSearchResultDataModel'
+          type: array
+        processEndDate:
+          description: Date process was completed
+          type:
+          - string
+          - 'null'
+          format: date-time
+        processStartDate:
+          description: Date process was started
+          type:
+          - string
+          - 'null'
+          format: date-time
       type: object
   securitySchemes:
     BearerToken:
