@@ -50,11 +50,31 @@ paths:
       deprecated: false
 components:
   schemas:
-    VersionSummary:
-      description: Version Summary
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
       properties:
-        version:
-          description: Instance Version Number
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
           type: string
       type: object
     InternalServerErrorResponse:
@@ -78,32 +98,12 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
+    VersionSummary:
+      description: Version Summary
       properties:
-        message:
-          description: Error message
+        version:
+          description: Instance Version Number
           type: string
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
       type: object
   securitySchemes:
     BearerToken:

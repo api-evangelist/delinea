@@ -393,48 +393,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    SshCipherModel:
-      description: SSH Cipher
-      properties:
-        fipsCompliant:
-          description: SSH Cipher is FIPS compliant
-          type: boolean
-        name:
-          description: SSH Cipher name
-          type: string
-      type: object
-    SshCipherSuiteCreateArgs:
-      description: SSH Cipher Suite Creation Arguments
-      properties:
-        data:
-          $ref: '#/components/schemas/SshCipherSuiteCreateModel'
-      type: object
     PagingOfSshCipherSuiteAuditModel:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -492,8 +450,8 @@ components:
           type: integer
           format: int32
       type: object
-    SshCipherSuiteModel:
-      description: SSH Cipher Suite
+    SshCipherSuiteCreateModel:
+      description: SSH Cipher Suite Create
       properties:
         active:
           description: Indicates if the SSH Cipher Suite is active
@@ -504,97 +462,17 @@ components:
         encryptionAlgorithms:
           description: SSH Cipher Suite Encryption Algorithms
           type: string
-        encryptionAlgorithmsFipsCompliance:
-          description: SSH Cipher Suite Encryption Algorithms with FIPS Compliance
-          items:
-            $ref: '#/components/schemas/SshCipherModel'
-          type: array
         keyExchangeAlgorithms:
           description: SSH Cipher Suite Key Exchange Algorithms
           type: string
-        keyExchangeAlgorithmsFipsCompliance:
-          description: SSH Cipher Suite Key Exchange Algorithms with FIPS Compliance
-          items:
-            $ref: '#/components/schemas/SshCipherModel'
-          type: array
         macAlgorithms:
           description: SSH Cipher Suite Mac Algorithms
           type: string
-        macAlgorithmsFipsCompliance:
-          description: SSH Cipher Suite Mac Algorithms with FIPS Compliance
-          items:
-            $ref: '#/components/schemas/SshCipherModel'
-          type: array
         name:
           description: SSH Cipher Suite Name
           type: string
         publicKeyAlgorithms:
           description: SSH Cipher Suite Public Key Algorithms
-          type: string
-        publicKeyAlgorithmsFipsCompliance:
-          description: SSH Cipher Suite PublicKey Algorithms with FIPS Compliance
-          items:
-            $ref: '#/components/schemas/SshCipherModel'
-          type: array
-        sshCipherSuiteConfigurationId:
-          description: SSH Cipher Suite Id
-          type: string
-          format: uuid
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    SshCipherSuiteAuditModel:
-      description: SSH Cipher Suite audit
-      properties:
-        action:
-          description: Action
-          type: string
-        auditId:
-          description: Audit ID
-          type: string
-          format: uuid
-        date:
-          description: Date
-          type: string
-        displayName:
-          description: User Display Name
-          type: string
-        notes:
-          description: Notes
           type: string
       type: object
     SshCipherSuiteSummaryModel:
@@ -647,6 +525,215 @@ components:
           - string
           - 'null'
           format: uuid
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    SshCiphersModel:
+      description: SSH Ciphers
+      properties:
+        ciphers:
+          description: SSH Ciphers list
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+      type: object
+    SshCipherSuiteModel:
+      description: SSH Cipher Suite
+      properties:
+        active:
+          description: Indicates if the SSH Cipher Suite is active
+          type: boolean
+        description:
+          description: SSH Cipher Suite Descrition
+          type: string
+        encryptionAlgorithms:
+          description: SSH Cipher Suite Encryption Algorithms
+          type: string
+        encryptionAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite Encryption Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        keyExchangeAlgorithms:
+          description: SSH Cipher Suite Key Exchange Algorithms
+          type: string
+        keyExchangeAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite Key Exchange Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        macAlgorithms:
+          description: SSH Cipher Suite Mac Algorithms
+          type: string
+        macAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite Mac Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        name:
+          description: SSH Cipher Suite Name
+          type: string
+        publicKeyAlgorithms:
+          description: SSH Cipher Suite Public Key Algorithms
+          type: string
+        publicKeyAlgorithmsFipsCompliance:
+          description: SSH Cipher Suite PublicKey Algorithms with FIPS Compliance
+          items:
+            $ref: '#/components/schemas/SshCipherModel'
+          type: array
+        sshCipherSuiteConfigurationId:
+          description: SSH Cipher Suite Id
+          type: string
+          format: uuid
+      type: object
+    SshCipherSuiteAuditModel:
+      description: SSH Cipher Suite audit
+      properties:
+        action:
+          description: Action
+          type: string
+        auditId:
+          description: Audit ID
+          type: string
+          format: uuid
+        date:
+          description: Date
+          type: string
+        displayName:
+          description: User Display Name
+          type: string
+        notes:
+          description: Notes
+          type: string
+      type: object
+    SshCipherSuitePatchModel:
+      description: SSH Cipher Suite Patch
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        description:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        encryptionAlgorithms:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        keyExchangeAlgorithms:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        macAlgorithms:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        pkAlgorithms:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        sshCipherSuiteConfigurationId:
+          description: SSH Cipher Suite Id
+          type: string
+          format: uuid
+      type: object
+    SshCipherModel:
+      description: SSH Cipher
+      properties:
+        fipsCompliant:
+          description: SSH Cipher is FIPS compliant
+          type: boolean
+        name:
+          description: SSH Cipher name
+          type: string
+      type: object
+    SshCipherSuiteCreateArgs:
+      description: SSH Cipher Suite Creation Arguments
+      properties:
+        data:
+          $ref: '#/components/schemas/SshCipherSuiteCreateModel'
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
       type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures
@@ -714,98 +801,11 @@ components:
           type: integer
           format: int32
       type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    SshCipherSuiteCreateModel:
-      description: SSH Cipher Suite Create
-      properties:
-        active:
-          description: Indicates if the SSH Cipher Suite is active
-          type: boolean
-        description:
-          description: SSH Cipher Suite Descrition
-          type: string
-        encryptionAlgorithms:
-          description: SSH Cipher Suite Encryption Algorithms
-          type: string
-        keyExchangeAlgorithms:
-          description: SSH Cipher Suite Key Exchange Algorithms
-          type: string
-        macAlgorithms:
-          description: SSH Cipher Suite Mac Algorithms
-          type: string
-        name:
-          description: SSH Cipher Suite Name
-          type: string
-        publicKeyAlgorithms:
-          description: SSH Cipher Suite Public Key Algorithms
-          type: string
-      type: object
-    SshCiphersModel:
-      description: SSH Ciphers
-      properties:
-        ciphers:
-          description: SSH Ciphers list
-          items:
-            $ref: '#/components/schemas/SshCipherModel'
-          type: array
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
     SshCipherSuitePatchArgs:
       description: SSH Cipher Suite Patch arguments
       properties:
         data:
           $ref: '#/components/schemas/SshCipherSuitePatchModel'
-      type: object
-    SshCipherSuitePatchModel:
-      description: SSH Cipher Suite Patch
-      properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        description:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        encryptionAlgorithms:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        keyExchangeAlgorithms:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        macAlgorithms:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        name:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        pkAlgorithms:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        sshCipherSuiteConfigurationId:
-          description: SSH Cipher Suite Id
-          type: string
-          format: uuid
       type: object
   securitySchemes:
     BearerToken:

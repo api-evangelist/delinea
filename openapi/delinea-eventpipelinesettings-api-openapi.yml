@@ -269,45 +269,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    EventPipelineFilterSettingMapSummary:
-      description: EventPipelineFilterSettingMapSummary[]
-      properties:
-        eventPipelineFilterId:
-          description: Event Pipeline Filter ID
-          type: integer
-          format: int32
-        eventPipelineFilterSettingMapId:
-          description: Event Pipeline Filter Setting Map ID
-          type: integer
-          format: int32
-        setting:
-          $ref: '#/components/schemas/SettingForDisplay'
-        settingDisplay:
-          description: Setting Display
-          type: string
-        settingId:
-          description: Setting ID
-          type: integer
-          format: int32
-        settingValue:
-          description: Setting Value
-          type: string
-        sortOrder:
-          description: Sort Order
-          type: integer
-          format: int32
-        usingDefault:
-          description: Using Default
-          type: boolean
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
     EventPipelineFilterSummary:
       description: EventPipelineFilterSummary[]
       properties:
@@ -339,6 +300,39 @@ components:
           type: integer
           format: int32
       type: object
+    EventPipelineTaskSummary:
+      description: EventPipelineTaskSummary[]
+      properties:
+        eventEntityTypeId:
+          description: Event Entity Type ID
+          type:
+          - string
+          - 'null'
+        eventPipelineTaskDescription:
+          description: Event Pipeline Task Description
+          type: string
+        eventPipelineTaskDisplayName:
+          description: Event Pipeline Task Display Name
+          type: string
+        eventPipelineTaskId:
+          description: Event Pipeline Task ID
+          type: integer
+          format: int32
+        eventPipelineTaskMapId:
+          description: Event Pipeline Task Map ID
+          type: integer
+          format: int32
+        eventPipelineTaskName:
+          description: Event Pipeline Task Name
+          type: string
+        isMultiSelect:
+          description: Is Multi Select
+          type: boolean
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+      type: object
     Severity:
       description: Error severity level
       properties: {}
@@ -349,63 +343,30 @@ components:
       - Warn
       - Critical
       - Fatal
-    PagingOfEventPipelineTask:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/EventPipelineTask'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
+    SettingType:
+      description: SettingType
+      properties: {}
+      type: string
+      enum:
+      - Default
+      - Integer
+      - String
+      - Boolean
+      - StringArray
+      - DropDown
+      - DropDownItem
+      - MultilineString
+      - IntegerArray
+      - Radio
+      - RadioItem
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
     SettingForDisplay:
       description: Setting
       properties:
@@ -471,6 +432,37 @@ components:
           description: TooltipLocalizeKey
           type: string
       type: object
+    EventPipelineFilterSettingMapSummary:
+      description: EventPipelineFilterSettingMapSummary[]
+      properties:
+        eventPipelineFilterId:
+          description: Event Pipeline Filter ID
+          type: integer
+          format: int32
+        eventPipelineFilterSettingMapId:
+          description: Event Pipeline Filter Setting Map ID
+          type: integer
+          format: int32
+        setting:
+          $ref: '#/components/schemas/SettingForDisplay'
+        settingDisplay:
+          description: Setting Display
+          type: string
+        settingId:
+          description: Setting ID
+          type: integer
+          format: int32
+        settingValue:
+          description: Setting Value
+          type: string
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+        usingDefault:
+          description: Using Default
+          type: boolean
+      type: object
     Sort:
       description: Sort options. Multiple sort options can be provided in the query string.
       required:
@@ -487,44 +479,28 @@ components:
           type: integer
           format: int32
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
+    EventPipelineTask:
+      description: Query results
       properties:
-        message:
-          description: Error message
+        eventEntityTypeId:
+          description: EventEntityTypeId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        eventPipelineTaskDescription:
+          description: EventPipelineTaskDescription
           type: string
-        exceptionMessage:
-          description: Error message from exception
+        eventPipelineTaskId:
+          description: EventPipelineTaskId
+          type: integer
+          format: int32
+        eventPipelineTaskName:
+          description: EventPipelineTaskName
           type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
+        isMultiSelect:
+          description: IsMultiSelect
+          type: boolean
       type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures
@@ -534,39 +510,6 @@ components:
         message:
           description: Error message
           type: string
-      type: object
-    EventPipelineTaskSummary:
-      description: EventPipelineTaskSummary[]
-      properties:
-        eventEntityTypeId:
-          description: Event Entity Type ID
-          type:
-          - string
-          - 'null'
-        eventPipelineTaskDescription:
-          description: Event Pipeline Task Description
-          type: string
-        eventPipelineTaskDisplayName:
-          description: Event Pipeline Task Display Name
-          type: string
-        eventPipelineTaskId:
-          description: Event Pipeline Task ID
-          type: integer
-          format: int32
-        eventPipelineTaskMapId:
-          description: Event Pipeline Task Map ID
-          type: integer
-          format: int32
-        eventPipelineTaskName:
-          description: Event Pipeline Task Name
-          type: string
-        isMultiSelect:
-          description: Is Multi Select
-          type: boolean
-        sortOrder:
-          description: Sort Order
-          type: integer
-          format: int32
       type: object
     EventPipelineTaskSettingMapSummary:
       description: EventPipelineTaskSettingMapSummary[]
@@ -601,22 +544,102 @@ components:
           description: Using Default
           type: boolean
       type: object
-    SettingType:
-      description: SettingType
-      properties: {}
-      type: string
-      enum:
-      - Default
-      - Integer
-      - String
-      - Boolean
-      - StringArray
-      - DropDown
-      - DropDownItem
-      - MultilineString
-      - IntegerArray
-      - Radio
-      - RadioItem
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    PagingOfEventPipelineTask:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EventPipelineTask'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
     Setting:
       description: ChildSettings
       properties:
@@ -676,29 +699,6 @@ components:
         tooltipLocalizeKey:
           description: TooltipLocalizeKey
           type: string
-      type: object
-    EventPipelineTask:
-      description: Query results
-      properties:
-        eventEntityTypeId:
-          description: EventEntityTypeId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        eventPipelineTaskDescription:
-          description: EventPipelineTaskDescription
-          type: string
-        eventPipelineTaskId:
-          description: EventPipelineTaskId
-          type: integer
-          format: int32
-        eventPipelineTaskName:
-          description: EventPipelineTaskName
-          type: string
-        isMultiSelect:
-          description: IsMultiSelect
-          type: boolean
       type: object
   securitySchemes:
     BearerToken:

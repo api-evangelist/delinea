@@ -57,26 +57,23 @@ paths:
       deprecated: false
 components:
   schemas:
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
+    BadRequestResponse:
+      description: Response object for invalid requests
       required:
       - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
       properties:
         message:
           description: Error message
           type: string
-        exceptionMessage:
-          description: Error message from exception
+        messageDetail:
+          description: Error message detail
           type: string
-        exceptionType:
-          description: Exception type
+        errorCode:
+          description: Error message code
           type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
       type: object
     HealthCheckModel:
       description: HealthCheckModel
@@ -134,23 +131,26 @@ components:
           description: Error message
           type: string
       type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
       required:
       - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
       properties:
         message:
           description: Error message
           type: string
-        messageDetail:
-          description: Error message detail
+        exceptionMessage:
+          description: Error message from exception
           type: string
-        errorCode:
-          description: Error message code
+        exceptionType:
+          description: Exception type
           type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
+        stackTrace:
+          description: Exception stack trace
+          type: string
       type: object
   securitySchemes:
     BearerToken:

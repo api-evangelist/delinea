@@ -633,7 +633,68 @@ paths:
       deprecated: false
 components:
   schemas:
-    PagingOfLauncherSummary:
+    ICategorizedListItemValue:
+      description: The restricted hosts.
+      properties:
+        category:
+          description: Category
+          type: string
+        value:
+          description: Value
+          type: string
+      type: object
+    PrepareLauncherResult:
+      description: PrepareLauncherResult
+      properties:
+        errorMessage:
+          description: ErrorMessage
+          type: string
+        fileDownload:
+          $ref: '#/components/schemas/LauncherFileDownload'
+        launcherPopupTimeoutSeconds:
+          description: LauncherPopupTimeoutSeconds
+          type: integer
+          format: int32
+        launcherUrl:
+          $ref: '#/components/schemas/RedirectToLauncherUrl'
+        redirectUrl:
+          description: RedirectUrl
+          type: string
+        shouldDownload:
+          description: ShouldDownload
+          type: boolean
+        shouldRedirect:
+          description: ShouldRedirect
+          type: boolean
+        success:
+          description: Success
+          type: boolean
+      type: object
+    PrepareLauncherArgs:
+      description: Prepare Launcher Options
+      required:
+      - secretId
+      - launcherTypeId
+      properties:
+        launcherTypeId:
+          description: Launcher Type Id
+          type: integer
+          format: int32
+        promptFieldValue:
+          description: User-provided response to prompt, e.g. machine name
+          type: string
+        secretId:
+          description: Secret Id
+          type: integer
+          format: int32
+        siteId:
+          description: Site Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    PagingOfLauncherLookup:
       description: Specify paging and sorting options for querying records and returning results
       properties:
         batchCount:
@@ -665,7 +726,7 @@ components:
         records:
           description: Query results
           items:
-            $ref: '#/components/schemas/LauncherSummary'
+            $ref: '#/components/schemas/LauncherLookup'
           type: array
         severity:
           $ref: '#/components/schemas/Severity'
@@ -703,62 +764,28 @@ components:
           - 'null'
           format: int32
       type: object
-    PagingOfLauncherDetailsV2:
-      description: Specify paging and sorting options for querying records and returning results
+    LauncherFileDownload:
+      description: FileDownload
       properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/LauncherDetailsV2'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
+        contentType:
+          description: ContentType
+          type: string
+        description:
+          description: Description
+          type: string
+        fileContents:
+          description: FileContents
+          type: string
+        fileName:
+          description: FileName
+          type: string
+      type: object
+    PrepareLauncherQueryResultModel:
+      description: Prepare Launcher Query Result
+      properties:
         success:
-          description: Whether the query executed successfully
+          description: True when Prepare Launcher succeeds, otherwise false.
           type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
       type: object
     LauncherTypeModelV2:
       description: A definition for a launcher
@@ -822,149 +849,110 @@ components:
           description: Determines whether mstsc option is enabled
           type: boolean
       type: object
-    UpdateFieldValueOfString:
-      description: Description
+    PagingOfLauncherDetailsV2:
+      description: Specify paging and sorting options for querying records and returning results
       properties:
-        dirty:
-          description: Dirty
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
           type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    LauncherFileDownload:
-      description: FileDownload
-      properties:
-        contentType:
-          description: ContentType
-          type: string
-        description:
-          description: Description
-          type: string
-        fileContents:
-          description: FileContents
-          type: string
-        fileName:
-          description: FileName
-          type: string
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/LauncherDetailsV2'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
           type: integer
           format: int32
       type: object
-    ILauncherTypeField:
-      description: Fields required by the launcher
+    LaunchSecretArgs:
+      description: LaunchSecretArgs
       properties:
-        allowDefault:
-          description: AllowDefault
-          type: boolean
-        concurrencyId:
-          description: ConcurrencyId
+        launcherId:
+          description: The Id of the launcher to use.
+          type: integer
+          format: int32
+        promptFieldValue:
+          description: The value to apply to the prompted field.
           type: string
-        defaultType:
-          description: DefaultType
-          type: string
-        defaultTypeIntMax:
-          description: DefaultTypeIntMax
+        secretId:
+          description: The Id of the secret to launch.
+          type: integer
+          format: int32
+        siteId:
+          description: The site used to launch when using RDP proxy
           type:
           - integer
           - 'null'
           format: int32
-        defaultTypeIntMin:
-          description: DefaultTypeIntMin
-          type:
-          - integer
-          - 'null'
-          format: int32
-        launcherTypeFieldId:
-          description: LauncherTypeFieldId
-          type: integer
-          format: int32
-        launcherTypeId:
-          description: LauncherTypeId
-          type: integer
-          format: int32
-        name:
-          description: Name
-          type: string
-        promptableField:
-          description: PromptableField
-          type: boolean
       type: object
-    LauncherTypePatchData:
-      description: Data to update on a launcher type
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    FileAttachmentModel:
+      description: A definition for a file attachment
       properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        additionalProcessesToRecord:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        additionalPromptField:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        additionalPromptFieldName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        batchFileId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        canUseSSHKey:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        charactersToEscape:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        childLauncherId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        customLauncherId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        escapeCharacter:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        launchAsSecretCredentials:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        launcherTypeName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        loadUserProfile:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        macProcessArguments:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        macProcessName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        mstscLauncherOption:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        overrideDisallowAdditionalParametersInQuotes:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        preserveSSHClientProcess:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        processArguments:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        processName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        rdsCredentialsSecretId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        rdsServerHostname:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        rdsServerPort:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        recordKeystrokes:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        recordMultipleWindows:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        shellScriptId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        useSFTPTunnel:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        useShellExecute:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        useSSHTunnel:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        fileAttachmentId:
+          description: File attachment id
+          type: integer
+          format: int32
       type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
     CustomLauncherModel:
       description: CustomLauncher
       properties:
@@ -1071,63 +1059,11 @@ components:
           description: Determines whether to us ssh tunnel
           type: boolean
       type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
+    LauncherTypeCreateArgs:
+      description: Create a launcher type
       properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    LauncherSummary:
-      description: Launcher summary
-      properties:
-        active:
-          description: Whether the launcher is active
-          type: boolean
-        application:
-          description: Associated application
-          type: string
-        id:
-          description: Launcher ID
-          type: integer
-          format: int32
-        isCustom:
-          description: Whether this is a custom launcher
-          type: boolean
-        name:
-          description: Launcher name
-          type: string
-      type: object
-    ICategorizedListItemValue:
-      description: The restricted hosts.
-      properties:
-        category:
-          description: Category
-          type: string
-        value:
-          description: Value
-          type: string
+        data:
+          $ref: '#/components/schemas/LauncherTypeCreateData'
       type: object
     RedirectToLauncherUrl:
       description: LauncherUrl
@@ -1166,277 +1102,44 @@ components:
           description: Type
           type: string
       type: object
-    LauncherDetailsV2:
-      description: Launcher And Fields
+    ILauncherTypeField:
+      description: Fields required by the launcher
       properties:
-        application:
-          description: Associated application
-          type: string
-        approvedList:
-          description: If the restricted host is on the allowed list
+        allowDefault:
+          description: AllowDefault
           type: boolean
-        customLauncherId:
-          description: Associated custom launcher ID
-          type: integer
-          format: int32
-        customLauncherProcessName:
-          description: Associated custom launcher process name
+        concurrencyId:
+          description: ConcurrencyId
           type: string
-        customParameters:
-          description: Associated custom launcher parameters
+        defaultType:
+          description: DefaultType
           type: string
-        isCustom:
-          description: Whether this is a custom launcher
-          type: boolean
-        launcherId:
-          description: Launcher ID
-          type: integer
-          format: int32
-        launcherName:
-          description: Launcher name
-          type: string
-        promptedField:
-          $ref: '#/components/schemas/ILauncherTypeField'
-        restrictedHost:
-          description: Whether there is a host restriction
-          type: boolean
-        restrictedHosts:
-          description: The restricted hosts.
-          items:
-            $ref: '#/components/schemas/ICategorizedListItemValue'
-          type: array
-      type: object
-    PrepareLauncherQueryResultModel:
-      description: Prepare Launcher Query Result
-      properties:
-        success:
-          description: True when Prepare Launcher succeeds, otherwise false.
-          type: boolean
-      type: object
-    LauncherModel:
-      description: Launcher
-      properties:
-        active:
-          description: Whether the launcher is active
-          type: boolean
-        application:
-          description: Associated application
-          type: string
-        customLauncherId:
-          description: Associated custom launcher ID
-          type: integer
-          format: int32
-        customLauncherProcessName:
-          description: Associated custom launcher process name
-          type: string
-        customParameters:
-          description: Associated custom launcher parameters
-          type: string
-        id:
-          description: Launcher ID
-          type: integer
-          format: int32
-        isCustom:
-          description: Whether this is a custom launcher
-          type: boolean
-        name:
-          description: Launcher name
-          type: string
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    FileAttachmentModel:
-      description: A definition for a file attachment
-      properties:
-        fileAttachmentId:
-          description: File attachment id
-          type: integer
-          format: int32
-      type: object
-    LaunchSecretArgs:
-      description: LaunchSecretArgs
-      properties:
-        launcherId:
-          description: The Id of the launcher to use.
-          type: integer
-          format: int32
-        promptFieldValue:
-          description: The value to apply to the prompted field.
-          type: string
-        secretId:
-          description: The Id of the secret to launch.
-          type: integer
-          format: int32
-        siteId:
-          description: The site used to launch when using RDP proxy
+        defaultTypeIntMax:
+          description: DefaultTypeIntMax
           type:
           - integer
           - 'null'
           format: int32
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    PagingOfLauncherLookup:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
+        defaultTypeIntMin:
+          description: DefaultTypeIntMin
+          type:
+          - integer
+          - 'null'
+          format: int32
+        launcherTypeFieldId:
+          description: LauncherTypeFieldId
           type: integer
           format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/LauncherLookup'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    LauncherTypePatchArgs:
-      description: Patch a launcher type
-      properties:
-        data:
-          $ref: '#/components/schemas/LauncherTypePatchData'
-      type: object
-    LauncherTypeFileAttachmentArgs:
-      description: Create a launcher type file attachment
-      properties:
-        file:
-          description: Details for the item to create
-          type: string
-          format: binary
-      type: object
-    PrepareLauncherResult:
-      description: PrepareLauncherResult
-      properties:
-        errorMessage:
-          description: ErrorMessage
-          type: string
-        fileDownload:
-          $ref: '#/components/schemas/LauncherFileDownload'
-        launcherPopupTimeoutSeconds:
-          description: LauncherPopupTimeoutSeconds
-          type: integer
-          format: int32
-        launcherUrl:
-          $ref: '#/components/schemas/RedirectToLauncherUrl'
-        redirectUrl:
-          description: RedirectUrl
-          type: string
-        shouldDownload:
-          description: ShouldDownload
-          type: boolean
-        shouldRedirect:
-          description: ShouldRedirect
-          type: boolean
-        success:
-          description: Success
-          type: boolean
-      type: object
-    LauncherLookup:
-      description: Simple launcher representation
-      properties:
-        id:
-          description: Launcher ID
-          type: integer
-          format: int32
-        value:
-          description: Launcher name
-          type: string
-      type: object
-    LauncherTypeCreateArgs:
-      description: Create a launcher type
-      properties:
-        data:
-          $ref: '#/components/schemas/LauncherTypeCreateData'
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    PrepareLauncherArgs:
-      description: Prepare Launcher Options
-      required:
-      - secretId
-      - launcherTypeId
-      properties:
         launcherTypeId:
-          description: Launcher Type Id
+          description: LauncherTypeId
           type: integer
           format: int32
-        promptFieldValue:
-          description: User-provided response to prompt, e.g. machine name
+        name:
+          description: Name
           type: string
-        secretId:
-          description: Secret Id
-          type: integer
-          format: int32
-        siteId:
-          description: Site Id
-          type:
-          - integer
-          - 'null'
-          format: int32
+        promptableField:
+          description: PromptableField
+          type: boolean
       type: object
     LauncherTypeCreateData:
       description: Create launcher type definition
@@ -1545,6 +1248,171 @@ components:
           description: Determines whether to us ssh tunnel
           type: boolean
       type: object
+    LauncherTypeFileAttachmentArgs:
+      description: Create a launcher type file attachment
+      properties:
+        file:
+          description: Details for the item to create
+          type: string
+          format: binary
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    LauncherLookup:
+      description: Simple launcher representation
+      properties:
+        id:
+          description: Launcher ID
+          type: integer
+          format: int32
+        value:
+          description: Launcher name
+          type: string
+      type: object
+    LauncherTypePatchData:
+      description: Data to update on a launcher type
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        additionalProcessesToRecord:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        additionalPromptField:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        additionalPromptFieldName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        batchFileId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        canUseSSHKey:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        charactersToEscape:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        childLauncherId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        customLauncherId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        escapeCharacter:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        launchAsSecretCredentials:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        launcherTypeName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        loadUserProfile:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        macProcessArguments:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        macProcessName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        mstscLauncherOption:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        overrideDisallowAdditionalParametersInQuotes:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        preserveSSHClientProcess:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        processArguments:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        processName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        rdsCredentialsSecretId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        rdsServerHostname:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        rdsServerPort:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        recordKeystrokes:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        recordMultipleWindows:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        shellScriptId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        useSFTPTunnel:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        useShellExecute:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        useSSHTunnel:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+      type: object
+    LauncherSummary:
+      description: Launcher summary
+      properties:
+        active:
+          description: Whether the launcher is active
+          type: boolean
+        application:
+          description: Associated application
+          type: string
+        id:
+          description: Launcher ID
+          type: integer
+          format: int32
+        isCustom:
+          description: Whether this is a custom launcher
+          type: boolean
+        name:
+          description: Launcher name
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    LauncherModel:
+      description: Launcher
+      properties:
+        active:
+          description: Whether the launcher is active
+          type: boolean
+        application:
+          description: Associated application
+          type: string
+        customLauncherId:
+          description: Associated custom launcher ID
+          type: integer
+          format: int32
+        customLauncherProcessName:
+          description: Associated custom launcher process name
+          type: string
+        customParameters:
+          description: Associated custom launcher parameters
+          type: string
+        id:
+          description: Launcher ID
+          type: integer
+          format: int32
+        isCustom:
+          description: Whether this is a custom launcher
+          type: boolean
+        name:
+          description: Launcher name
+          type: string
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -1564,6 +1432,138 @@ components:
           type: string
         stackTrace:
           description: Exception stack trace
+          type: string
+      type: object
+    LauncherDetailsV2:
+      description: Launcher And Fields
+      properties:
+        application:
+          description: Associated application
+          type: string
+        approvedList:
+          description: If the restricted host is on the allowed list
+          type: boolean
+        customLauncherId:
+          description: Associated custom launcher ID
+          type: integer
+          format: int32
+        customLauncherProcessName:
+          description: Associated custom launcher process name
+          type: string
+        customParameters:
+          description: Associated custom launcher parameters
+          type: string
+        isCustom:
+          description: Whether this is a custom launcher
+          type: boolean
+        launcherId:
+          description: Launcher ID
+          type: integer
+          format: int32
+        launcherName:
+          description: Launcher name
+          type: string
+        promptedField:
+          $ref: '#/components/schemas/ILauncherTypeField'
+        restrictedHost:
+          description: Whether there is a host restriction
+          type: boolean
+        restrictedHosts:
+          description: The restricted hosts.
+          items:
+            $ref: '#/components/schemas/ICategorizedListItemValue'
+          type: array
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    LauncherTypePatchArgs:
+      description: Patch a launcher type
+      properties:
+        data:
+          $ref: '#/components/schemas/LauncherTypePatchData'
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    PagingOfLauncherSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/LauncherSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
           type: string
       type: object
     LaunchedSecretModel:

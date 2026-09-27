@@ -660,48 +660,6 @@ components:
             $ref: '#/components/schemas/ExternalServicesGroupModel'
           type: array
       type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    PlatformCreateUsersAndGroupsCommand:
-      description: PlatformCreateUsersAndGroupsCommand
-      properties:
-        data:
-          description: Data
-          items:
-            $ref: '#/components/schemas/PlatformCreateEntityItem'
-          type: array
-      type: object
-    LinkExternalGroupSettings:
-      description: Information about the directory group that is needed to create a link
-      properties:
-        domainIdentifier:
-          description: The unique directory identifier for the group to be linked. For Active Directory this must be in hex format, NOT guid format.  For example, this is ADGuid in Active Directory
-          type: string
-        name:
-          description: Name of the group in the directory
-          type: string
-      type: object
-    PlatformCreateEntityType:
-      description: Type
-      properties: {}
-      type: string
-      enum:
-      - User
-      - Group
     PlatformCreateEntityResponse:
       description: Data
       properties:
@@ -726,81 +684,6 @@ components:
           - 'null'
           format: int32
       type: object
-    PlatformDirectorySummary:
-      description: Query results
-      properties:
-        displayName:
-          description: DisplayName
-          type: string
-        platformDirectoryServiceUuid:
-          description: PlatformDirectoryServiceUuid
-          type: string
-          format: uuid
-      type: object
-    PlatformGetRegionsResponse:
-      description: Platform Get Region Response
-      properties:
-        regions:
-          description: The collection of available regions.
-          items:
-            $ref: '#/components/schemas/PlatformRegion'
-          type: array
-      type: object
-    TestIntegrationResponse:
-      description: Platform Test Integration Response
-      properties:
-        hasAuthenticatedCurrentUser:
-          description: Whether the JWT Identity was able to be authenticated in Secret Server.
-          type: boolean
-        hasIntegrationConfigured:
-          description: Whether Platform Integration has been configured.
-          type: boolean
-        hasMatchingIntegrationUris:
-          description: Whether Platform Configuration Login Uri and JWT Issuer claim uris match.
-          type: boolean
-        hasReceivedIntegrationResponse:
-          description: Whether Platform Integration was able to retrieve a successful response.
-          type: boolean
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    IdentityEntityType:
-      description: EntityType
-      properties: {}
-      type: string
-      enum:
-      - Entity
-      - User
-      - DirectoryGroup
-      - XpmGroup
-      - XpmServiceUser
-      - NotFound
     ExternalServicesGroupModel:
       description: Directory Group
       properties:
@@ -809,70 +692,6 @@ components:
           type: string
         name:
           description: Name Guid of the Group
-          type: string
-      type: object
-    LinkExternalGroupArgs:
-      description: LinkExternalGroupArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/LinkExternalGroupSettings'
-      type: object
-    ProvisionPlatformRequestArgs:
-      description: Values needed for provisioning request
-      properties:
-        adminEmail:
-          description: Platform Initial Admin Email
-          type: string
-        adminUsername:
-          description: Platform Initial Admin Username
-          type: string
-        optinToPlatformAcknowledgement:
-          description: Platform Acknowledgement for being one-time opt-in
-          type: boolean
-        platformRegion:
-          description: Platform Region
-          type: string
-        tenantName:
-          description: Platform Host Name
-          type: string
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    PlatformCreateEntityItem:
-      description: Data
-      properties:
-        displayName:
-          description: DisplayName
-          type: string
-        entityName:
-          description: EntityName
-          type: string
-        platformUuid:
-          description: PlatformUuid
-          type: string
-        type:
-          $ref: '#/components/schemas/PlatformCreateEntityType'
-      type: object
-    DirectoryGroupUserViewModel:
-      description: Directory Group User
-      properties:
-        displayName:
-          description: Display Name of the user
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
           type: string
       type: object
     PlatformSynchronizationStatus:
@@ -916,49 +735,42 @@ components:
           - 'null'
           format: date-time
       type: object
-    PlatformUserAndGroupSearchSummary:
-      description: Query results
+    ProvisionPlatformRequestArgs:
+      description: Values needed for provisioning request
+      properties:
+        adminEmail:
+          description: Platform Initial Admin Email
+          type: string
+        adminUsername:
+          description: Platform Initial Admin Username
+          type: string
+        optinToPlatformAcknowledgement:
+          description: Platform Acknowledgement for being one-time opt-in
+          type: boolean
+        platformRegion:
+          description: Platform Region
+          type: string
+        tenantName:
+          description: Platform Host Name
+          type: string
+      type: object
+    DirectoryGroupUserViewModel:
+      description: Directory Group User
       properties:
         displayName:
-          description: DisplayName
+          description: Display Name of the user
           type: string
-        domainName:
-          description: DomainName
-          type: string
-        entityType:
-          $ref: '#/components/schemas/IdentityEntityType'
-        existingEntity:
-          description: ExistingEntity
-          type: boolean
-        groupId:
-          description: GroupId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        platformEntityUuid:
-          description: PlatformEntityUuid
-          type: string
-        userId:
-          description: UserId
-          type:
-          - integer
-          - 'null'
-          format: int32
       type: object
-    PlatformProvisionRequestedDateResponse:
-      description: Platform Provision Requested Date Response
-      properties:
-        requestDateTime:
-          description: The date and time that platform provisioning was requested.
-          type:
-          - string
-          - 'null'
-          format: date-time
-      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
     PagingOfPlatformDirectorySummary:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -1016,6 +828,40 @@ components:
           type: integer
           format: int32
       type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    PlatformProvisionRequestedDateResponse:
+      description: Platform Provision Requested Date Response
+      properties:
+        requestDateTime:
+          description: The date and time that platform provisioning was requested.
+          type:
+          - string
+          - 'null'
+          format: date-time
+      type: object
+    TestIntegrationResponse:
+      description: Platform Test Integration Response
+      properties:
+        hasAuthenticatedCurrentUser:
+          description: Whether the JWT Identity was able to be authenticated in Secret Server.
+          type: boolean
+        hasIntegrationConfigured:
+          description: Whether Platform Integration has been configured.
+          type: boolean
+        hasMatchingIntegrationUris:
+          description: Whether Platform Configuration Login Uri and JWT Issuer claim uris match.
+          type: boolean
+        hasReceivedIntegrationResponse:
+          description: Whether Platform Integration was able to retrieve a successful response.
+          type: boolean
+      type: object
     PlatformCreateUsersAndGroupsResponse:
       description: PlatformCreateUsersAndGroupsResponse
       properties:
@@ -1027,6 +873,101 @@ components:
         error:
           description: Error
           type: string
+      type: object
+    PlatformUserAndGroupSearchSummary:
+      description: Query results
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        domainName:
+          description: DomainName
+          type: string
+        entityType:
+          $ref: '#/components/schemas/IdentityEntityType'
+        existingEntity:
+          description: ExistingEntity
+          type: boolean
+        groupId:
+          description: GroupId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        platformEntityUuid:
+          description: PlatformEntityUuid
+          type: string
+        userId:
+          description: UserId
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    IdentityEntityType:
+      description: EntityType
+      properties: {}
+      type: string
+      enum:
+      - Entity
+      - User
+      - DirectoryGroup
+      - XpmGroup
+      - XpmServiceUser
+      - NotFound
+    PlatformDirectorySummary:
+      description: Query results
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        platformDirectoryServiceUuid:
+          description: PlatformDirectoryServiceUuid
+          type: string
+          format: uuid
+      type: object
+    PlatformCreateEntityItem:
+      description: Data
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        entityName:
+          description: EntityName
+          type: string
+        platformUuid:
+          description: PlatformUuid
+          type: string
+        type:
+          $ref: '#/components/schemas/PlatformCreateEntityType'
+      type: object
+    PlatformCreateUsersAndGroupsCommand:
+      description: PlatformCreateUsersAndGroupsCommand
+      properties:
+        data:
+          description: Data
+          items:
+            $ref: '#/components/schemas/PlatformCreateEntityItem'
+          type: array
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
       type: object
     PlatformRegion:
       description: Platform Region
@@ -1041,6 +982,36 @@ components:
         name:
           description: The name of the region.
           type: string
+      type: object
+    DirectoryServicesGroupMemberResponse:
+      description: Group Member Response
+      properties:
+        errorMessage:
+          description: Indicates if an error message occurred
+          type: string
+        members:
+          description: Members of the group
+          items:
+            $ref: '#/components/schemas/DirectoryGroupUserViewModel'
+          type: array
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
       type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
@@ -1063,22 +1034,19 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    PlatformProvisionStatus:
-      description: Platform Provisioning Status
+    LinkExternalGroupArgs:
+      description: LinkExternalGroupArgs
       properties:
-        oneTimePlatformLoginURL:
-          description: One-time use platform login URL
-          type: string
-        openIdConnectEnabled:
-          description: Whether Platform integration is enabled.
-          type: boolean
-        requestStartDateTime:
-          description: The date and time that the provisioning started.  This will be empty if it has never been run.
-          type:
-          - string
-          - 'null'
-          format: date-time
+        data:
+          $ref: '#/components/schemas/LinkExternalGroupSettings'
       type: object
+    PlatformCreateEntityType:
+      description: Type
+      properties: {}
+      type: string
+      enum:
+      - User
+      - Group
     PagingOfPlatformUserAndGroupSearchSummary:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -1136,16 +1104,48 @@ components:
           type: integer
           format: int32
       type: object
-    DirectoryServicesGroupMemberResponse:
-      description: Group Member Response
+    PlatformProvisionStatus:
+      description: Platform Provisioning Status
       properties:
-        errorMessage:
-          description: Indicates if an error message occurred
+        oneTimePlatformLoginURL:
+          description: One-time use platform login URL
           type: string
-        members:
-          description: Members of the group
+        openIdConnectEnabled:
+          description: Whether Platform integration is enabled.
+          type: boolean
+        requestStartDateTime:
+          description: The date and time that the provisioning started.  This will be empty if it has never been run.
+          type:
+          - string
+          - 'null'
+          format: date-time
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    LinkExternalGroupSettings:
+      description: Information about the directory group that is needed to create a link
+      properties:
+        domainIdentifier:
+          description: The unique directory identifier for the group to be linked. For Active Directory this must be in hex format, NOT guid format.  For example, this is ADGuid in Active Directory
+          type: string
+        name:
+          description: Name of the group in the directory
+          type: string
+      type: object
+    PlatformGetRegionsResponse:
+      description: Platform Get Region Response
+      properties:
+        regions:
+          description: The collection of available regions.
           items:
-            $ref: '#/components/schemas/DirectoryGroupUserViewModel'
+            $ref: '#/components/schemas/PlatformRegion'
           type: array
       type: object
   requestBodies:

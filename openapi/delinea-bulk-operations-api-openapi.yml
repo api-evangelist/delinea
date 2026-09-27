@@ -57,6 +57,25 @@ paths:
       deprecated: false
 components:
   schemas:
+    BulkOperationErrorModel:
+      description: A list of errors related to this Bulk Operation.
+      properties:
+        errorMessage:
+          description: A message describing the error that occurred.
+          type: string
+        itemName:
+          description: The name of the item that the error relates to.
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
     BulkOperationProgressModel:
       description: BulkOperationProgressModel
       properties:
@@ -116,25 +135,6 @@ components:
           type: string
         stackTrace:
           description: Exception stack trace
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    BulkOperationErrorModel:
-      description: A list of errors related to this Bulk Operation.
-      properties:
-        errorMessage:
-          description: A message describing the error that occurred.
-          type: string
-        itemName:
-          description: The name of the item that the error relates to.
           type: string
       type: object
   securitySchemes:

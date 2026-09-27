@@ -89,13 +89,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    CreateInitialUserResponseModel:
-      description: CreateInitialUserResponseModel
-      properties:
-        success:
-          description: Success
-          type: boolean
-      type: object
     CreateInitialUserData:
       description: Create initial user
       properties:
@@ -111,6 +104,42 @@ components:
         userName:
           description: The login username or user id used to login
           type: string
+      type: object
+    InitialUserSettingsModel:
+      description: InitialUserSettingsModel
+      properties:
+        passwordMinLength:
+          description: PasswordMinLength
+          type: integer
+          format: int32
+        passwordRequireLowercase:
+          description: PasswordRequireLowercase
+          type: boolean
+        passwordRequireNumbers:
+          description: PasswordRequireNumbers
+          type: boolean
+        passwordRequireSymbols:
+          description: PasswordRequireSymbols
+          type: boolean
+        passwordRequireUppercase:
+          description: PasswordRequireUppercase
+          type: boolean
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    CreateInitialUserResponseModel:
+      description: CreateInitialUserResponseModel
+      properties:
+        success:
+          description: Success
+          type: boolean
       type: object
     BadRequestResponse:
       description: Response object for invalid requests
@@ -156,35 +185,6 @@ components:
         stackTrace:
           description: Exception stack trace
           type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    InitialUserSettingsModel:
-      description: InitialUserSettingsModel
-      properties:
-        passwordMinLength:
-          description: PasswordMinLength
-          type: integer
-          format: int32
-        passwordRequireLowercase:
-          description: PasswordRequireLowercase
-          type: boolean
-        passwordRequireNumbers:
-          description: PasswordRequireNumbers
-          type: boolean
-        passwordRequireSymbols:
-          description: PasswordRequireSymbols
-          type: boolean
-        passwordRequireUppercase:
-          description: PasswordRequireUppercase
-          type: boolean
       type: object
   securitySchemes:
     BearerToken:

@@ -322,6 +322,16 @@ paths:
       deprecated: false
 components:
   schemas:
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
     SortDirection:
       description: Sort direction
       properties: {}
@@ -330,6 +340,139 @@ components:
       - None
       - Asc
       - Desc
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    WorkflowType:
+      description: WorkflowType
+      properties: {}
+      type: string
+      enum:
+      - AccessRequest
+      - SecretEraseRequest
+    WorkflowStepTemplateUpdateArgs:
+      description: WorkflowStepTemplateUpdateArgs
+      properties:
+        workflowStepTemplates:
+          description: WorkflowStepTemplates
+          items:
+            $ref: '#/components/schemas/WorkflowStepTemplateDetailModel'
+          type: array
+      type: object
+    WorkflowStepTemplateCreateArgs:
+      description: WorkflowStepTemplateCreateArgs
+      properties:
+        configuration:
+          $ref: '#/components/schemas/AccessRequestStepConfigurationModel'
+        name:
+          description: Name
+          type: string
+        order:
+          description: Order
+          type: integer
+          format: int32
+        workflowTemplateId:
+          description: WorkflowTemplateId
+          type: integer
+          format: int32
+      type: object
+    WorkflowStepTemplateUpdateModel:
+      description: WorkflowStepTemplateUpdateModel
+      properties:
+        configuration:
+          $ref: '#/components/schemas/AccessRequestStepConfigurationModel'
+        expirationMinutes:
+          description: ExpirationMinutes
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        order:
+          description: Order
+          type: integer
+          format: int32
+        workflowStepTemplateId:
+          description: WorkflowStepTemplateId
+          type: integer
+          format: int32
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    WorkflowTemplateDetailModel:
+      description: WorkflowTemplateDetailModel
+      properties:
+        active:
+          description: Active
+          type: boolean
+        configurationJson:
+          description: ConfigurationJson
+          type: string
+        description:
+          description: Description
+          type: string
+        expirationMinutes:
+          description: ExpirationMinutes
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        reusable:
+          description: Reusable
+          type: boolean
+        typeName:
+          description: TypeName
+          type: string
+        workflowTemplateId:
+          description: WorkflowTemplateId
+          type: integer
+          format: int32
+        workflowType:
+          $ref: '#/components/schemas/WorkflowType'
+      type: object
     AccessReviewerModel:
       description: ApproverGroups
       properties:
@@ -365,44 +508,6 @@ components:
           - 'null'
           format: int32
       type: object
-    AccessRequestStepConfigurationModel:
-      description: Configuration
-      properties:
-        approverGroups:
-          description: ApproverGroups
-          items:
-            $ref: '#/components/schemas/AccessReviewerModel'
-          type: array
-        approveStep:
-          description: ApproveStep
-          type: integer
-          format: int32
-        expireStep:
-          description: ExpireStep
-          type: integer
-          format: int32
-        numApprovalsRequired:
-          description: NumApprovalsRequired
-          type: integer
-          format: int32
-      type: object
-    WorkflowType:
-      description: WorkflowType
-      properties: {}
-      type: string
-      enum:
-      - AccessRequest
-      - SecretEraseRequest
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
     WorkflowStepTemplateDetailModel:
       description: Query results
       properties:
@@ -429,6 +534,27 @@ components:
           description: WorkflowTemplateId
           type: integer
           format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
       type: object
     PagingOfWorkflowStepTemplateDetailModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -487,150 +613,24 @@ components:
           type: integer
           format: int32
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
+    AccessRequestStepConfigurationModel:
+      description: Configuration
       properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    WorkflowTemplateDetailModel:
-      description: WorkflowTemplateDetailModel
-      properties:
-        active:
-          description: Active
-          type: boolean
-        configurationJson:
-          description: ConfigurationJson
-          type: string
-        description:
-          description: Description
-          type: string
-        expirationMinutes:
-          description: ExpirationMinutes
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        reusable:
-          description: Reusable
-          type: boolean
-        typeName:
-          description: TypeName
-          type: string
-        workflowTemplateId:
-          description: WorkflowTemplateId
-          type: integer
-          format: int32
-        workflowType:
-          $ref: '#/components/schemas/WorkflowType'
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    WorkflowStepTemplateUpdateArgs:
-      description: WorkflowStepTemplateUpdateArgs
-      properties:
-        workflowStepTemplates:
-          description: WorkflowStepTemplates
+        approverGroups:
+          description: ApproverGroups
           items:
-            $ref: '#/components/schemas/WorkflowStepTemplateDetailModel'
+            $ref: '#/components/schemas/AccessReviewerModel'
           type: array
-      type: object
-    WorkflowStepTemplateCreateArgs:
-      description: WorkflowStepTemplateCreateArgs
-      properties:
-        configuration:
-          $ref: '#/components/schemas/AccessRequestStepConfigurationModel'
-        name:
-          description: Name
-          type: string
-        order:
-          description: Order
+        approveStep:
+          description: ApproveStep
           type: integer
           format: int32
-        workflowTemplateId:
-          description: WorkflowTemplateId
+        expireStep:
+          description: ExpireStep
           type: integer
           format: int32
-      type: object
-    WorkflowStepTemplateUpdateModel:
-      description: WorkflowStepTemplateUpdateModel
-      properties:
-        configuration:
-          $ref: '#/components/schemas/AccessRequestStepConfigurationModel'
-        expirationMinutes:
-          description: ExpirationMinutes
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        order:
-          description: Order
-          type: integer
-          format: int32
-        workflowStepTemplateId:
-          description: WorkflowStepTemplateId
+        numApprovalsRequired:
+          description: NumApprovalsRequired
           type: integer
           format: int32
       type: object

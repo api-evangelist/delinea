@@ -103,14 +103,16 @@ paths:
       deprecated: false
 components:
   schemas:
-    SortDirection:
-      description: Sort direction
+    Severity:
+      description: Error severity level
       properties: {}
       type: string
       enum:
       - None
-      - Asc
-      - Desc
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
     PagingOfUserLookup:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -168,16 +170,39 @@ components:
           type: integer
           format: int32
       type: object
-    Severity:
-      description: Error severity level
+    SortDirection:
+      description: Sort direction
       properties: {}
       type: string
       enum:
       - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
+      - Asc
+      - Desc
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
     BadRequestResponse:
       description: Response object for invalid requests
       required:
@@ -196,21 +221,16 @@ components:
           description: An object describing validation errors
           type: object
       type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
+    UserLookup:
+      description: Simple user representation
       properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
+        id:
+          description: User ID
           type: integer
           format: int32
+        value:
+          description: User name
+          type: string
       type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
@@ -231,26 +251,6 @@ components:
           type: string
         stackTrace:
           description: Exception stack trace
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    UserLookup:
-      description: Simple user representation
-      properties:
-        id:
-          description: User ID
-          type: integer
-          format: int32
-        value:
-          description: User name
           type: string
       type: object
   securitySchemes:

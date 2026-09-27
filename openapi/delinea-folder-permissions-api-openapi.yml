@@ -362,6 +362,100 @@ paths:
       deprecated: false
 components:
   schemas:
+    FolderPermissionUpdateArgs:
+      description: Folder permission update options
+      required:
+      - id
+      - folderId
+      - folderAccessRoleName
+      properties:
+        breakInheritance:
+          description: Allow updating of inherited permissions
+          type: boolean
+          default: true
+        folderAccessRoleName:
+          description: Role to grant on the folder (View, Edit, Add Secret, Owner)
+          type: string
+        folderId:
+          description: Folder ID
+          type: integer
+          format: int32
+        id:
+          description: Folder permission ID. Must match ID in path
+          type: integer
+          format: int32
+        secretAccessRoleName:
+          description: Role to grant on secrets in the folder (View, Edit, List, Owner, None)
+          type: string
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    DeletedModel:
+      description: Information about an object that was deleted
+      properties:
+        id:
+          description: ID of the deleted object
+          type: integer
+          format: int32
+        objectType:
+          description: Type of the deleted object
+          type: string
+        responseCodes:
+          description: List of response codes from the delete operation
+          items:
+            type: string
+          type: array
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
     FolderPermissionCreateArgs:
       description: FolderPermissionCreateArgs
       properties:
@@ -392,21 +486,14 @@ components:
           - 'null'
           format: int32
       type: object
-    DeletedModel:
-      description: Information about an object that was deleted
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
       properties:
-        id:
-          description: ID of the deleted object
-          type: integer
-          format: int32
-        objectType:
-          description: Type of the deleted object
+        message:
+          description: Error message
           type: string
-        responseCodes:
-          description: List of response codes from the delete operation
-          items:
-            type: string
-          type: array
       type: object
     FolderPermissionSummary:
       description: Folder permission summary
@@ -458,79 +545,6 @@ components:
           format: int32
         userName:
           description: User name having permissions on the folder
-          type: string
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
           type: string
       type: object
     PagingOfFolderPermissionSummary:
@@ -590,41 +604,6 @@ components:
           type: integer
           format: int32
       type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    FolderPermissionUpdateArgs:
-      description: Folder permission update options
-      required:
-      - id
-      - folderId
-      - folderAccessRoleName
-      properties:
-        breakInheritance:
-          description: Allow updating of inherited permissions
-          type: boolean
-          default: true
-        folderAccessRoleName:
-          description: Role to grant on the folder (View, Edit, Add Secret, Owner)
-          type: string
-        folderId:
-          description: Folder ID
-          type: integer
-          format: int32
-        id:
-          description: Folder permission ID. Must match ID in path
-          type: integer
-          format: int32
-        secretAccessRoleName:
-          description: Role to grant on secrets in the folder (View, Edit, List, Owner, None)
-          type: string
-      type: object
     FolderPermissionModel:
       description: Folder permission
       properties:
@@ -668,6 +647,27 @@ components:
           format: int32
         userName:
           description: User name having permissions on the folder
+          type: string
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
           type: string
       type: object
   securitySchemes:

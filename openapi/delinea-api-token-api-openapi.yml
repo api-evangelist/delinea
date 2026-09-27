@@ -49,6 +49,19 @@ paths:
       deprecated: false
 components:
   schemas:
+    ViewFieldLink:
+      description: AdditionalLinks
+      properties:
+        isExternal:
+          description: IsExternal
+          type: boolean
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
+          type: string
+      type: object
     ViewFieldValueOfString:
       description: GeneratedToken
       properties:
@@ -124,6 +137,15 @@ components:
           description: Value
           type: string
       type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
     ApiTokenViewModel:
       description: ApiTokenViewModel
       properties:
@@ -167,28 +189,6 @@ components:
           type: string
         stackTrace:
           description: Exception stack trace
-          type: string
-      type: object
-    ViewFieldLink:
-      description: AdditionalLinks
-      properties:
-        isExternal:
-          description: IsExternal
-          type: boolean
-        linkText:
-          description: LinkText
-          type: string
-        url:
-          description: Url
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
           type: string
       type: object
   securitySchemes:

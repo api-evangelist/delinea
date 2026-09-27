@@ -238,6 +238,30 @@ components:
             type: string
           type: array
       type: object
+    AppClientUpdateArgs:
+      description: App client update options
+      required:
+      - id
+      - redirectUri
+      properties:
+        id:
+          description: App client ID. Must match ID in path
+          type: integer
+          format: int32
+        redirectUri:
+          description: Authorized redirect URI for this app client
+          type: string
+          maxLength: 1000
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
     AppClientCreateArgs:
       description: App client creation options
       properties:
@@ -263,21 +287,6 @@ components:
           description: An object describing validation errors
           type: object
       type: object
-    AppClientUpdateArgs:
-      description: App client update options
-      required:
-      - id
-      - redirectUri
-      properties:
-        id:
-          description: App client ID. Must match ID in path
-          type: integer
-          format: int32
-        redirectUri:
-          description: Authorized redirect URI for this app client
-          type: string
-          maxLength: 1000
-      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -297,15 +306,6 @@ components:
           type: string
         stackTrace:
           description: Exception stack trace
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
           type: string
       type: object
     AppClientModel:

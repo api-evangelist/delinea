@@ -344,34 +344,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    UpdateFieldValueOfTicketSystemTypes:
-      description: Ticket System Type
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          $ref: '#/components/schemas/TicketSystemTypes'
-      type: object
-    TicketSystemPatchArgs:
-      description: TicketSystemPatchArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/TicketSystemPatchModel'
-      type: object
-    UpdateFieldValueOfOptionalInt32:
-      description: The minimum length required for local user passwords
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
     TicketSystemModelV2:
       description: List of Ticket Systems
       properties:
@@ -493,32 +465,6 @@ components:
           description: Ticket System URL pattern
           type: string
       type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
     TicketSystemModel:
       description: TicketSystemModel[]
       properties:
@@ -553,60 +499,95 @@ components:
           description: ViewTicketUrl
           type: string
       type: object
-    TicketSystemSummary:
-      description: Ticket system integration for use with approvals and secret workflow
+    UpdateFieldValueOfTicketSystemTypes:
+      description: Ticket System Type
       properties:
-        active:
-          description: Indicates if this ticket system is enabled and able to be selected
+        dirty:
+          description: Dirty
           type: boolean
-        description:
-          description: Ticket system description
-          type: string
-        displayMessage:
-          description: The message to display when a ticket is invalid
-          type: string
-        forceRequireTicketNumber:
-          description: Indicates if a ticket number is required when selecting this ticket system
-          type: integer
-          format: int32
-        hideComment:
-          description: Hide comment box on secret access request.
+        value:
+          $ref: '#/components/schemas/TicketSystemTypes'
+      type: object
+    TicketSystemTypes:
+      description: Value
+      properties: {}
+      type: string
+      enum:
+      - TicketNumberValidation
+      - BmcRemedyIncidentManagement
+      - BmcRemedyChangeManagement
+      - PowerShell
+      - ServiceNowChangeManagement
+      - ServiceNowIncidentManagement
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
           type: boolean
-        isDefault:
-          description: Only one ticket system will be the default and will be selected by default
-          type: boolean
-        name:
-          description: Name of the ticket system that shows when creating secret access requests
-          type: string
-        siteId:
-          description: Site ID
+        value:
+          description: Value
           type:
           - integer
           - 'null'
           format: int32
-        siteName:
-          description: Site Name
-          type: string
-        ticketSystemId:
-          description: Unique ID for a ticket system
-          type: integer
-          format: int32
-        ticketSystemTypeId:
-          description: The ID type of the ticket system
-          type: integer
-          format: int32
-        ticketSystemTypeName:
-          description: The type of ticket system integration
-          type: string
-        viewTicketUrl:
-          description: The URL pattern to view a ticket that has been created
-          type: string
       type: object
-    TicketSystemCreateArgs:
-      description: TicketSystemCreateArgs
+    PagingOfTicketSystemSummary:
+      description: Specify paging and sorting options for querying records and returning results
       properties:
-        data:
-          $ref: '#/components/schemas/TicketSystemCreateModel'
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/TicketSystemSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
       type: object
     Severity:
       description: Error severity level
@@ -618,6 +599,85 @@ components:
       - Warn
       - Critical
       - Fatal
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    UpdateFieldValueOfOptionalBmcIncidentManagementCommentWorkType:
+      description: BMC Remedy Incident Management integration only.  Select work type for comments added.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - string
+          - 'null'
+      type: object
+    UpdateFieldValueOfOptionalBmcChangeManagementCommentWorkType:
+      description: BMC Remedy Change Management integration only.  Select work type for comments added.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - string
+          - 'null'
+      type: object
+    ForceRequireTicketSystemOptions:
+      description: Value
+      properties: {}
+      type: string
+      enum:
+      - ReasonOnlyRequired
+      - BothRequired
+      - TicketNumberOrReasonRequired
+      - TicketNumberOnlyRequired
+    UpdateFieldValueOfForceRequireTicketSystemOptions:
+      description: Ticket System Comment and/or Number Requirement
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/ForceRequireTicketSystemOptions'
+      type: object
+    TicketSystemCreateArgs:
+      description: TicketSystemCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/TicketSystemCreateModel'
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    TicketSystemTestData:
+      description: Data
+      properties:
+        ticketNumber:
+          description: TicketNumber
+          type: string
+      type: object
     BadRequestResponse:
       description: Response object for invalid requests
       required:
@@ -636,151 +696,26 @@ components:
           description: An object describing validation errors
           type: object
       type: object
-    TicketSystemTestData:
-      description: Data
-      properties:
-        ticketNumber:
-          description: TicketNumber
-          type: string
-      type: object
-    ForceRequireTicketSystemOptions:
-      description: Value
-      properties: {}
-      type: string
-      enum:
-      - ReasonOnlyRequired
-      - BothRequired
-      - TicketNumberOrReasonRequired
-      - TicketNumberOnlyRequired
-    TicketSystemPatchModel:
-      description: Data
-      properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        addCommentsToTicket:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        bmcChangeManagementCommentWorkType:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBmcChangeManagementCommentWorkType'
-        bmcIncidentManagementCommentWorkType:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBmcIncidentManagementCommentWorkType'
-        bmcRemedyAuthentication:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        bmcRemedyUrlEndpoint:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        description:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        displayMessage:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        forceRequireTicketNumber:
-          $ref: '#/components/schemas/UpdateFieldValueOfForceRequireTicketSystemOptions'
-        hideComment:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        isDefault:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        name:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        powerShellAddCommentScriptArguments:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        powerShellAddCommentScriptId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        powerShellAddTicketCommentScriptArguments:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        powerShellAddTicketCommentScriptId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        powerShellRunAsAccountSecretId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        powerShellTicketStatusScriptArguments:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        powerShellTicketStatusScriptId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        serviceNowAllowedStatuses:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        serviceNowDomainName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        siteId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        systemCredentialSecretId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        ticketNumberErrorMessage:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        ticketNumberValidation:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        ticketSystemId:
-          description: TicketSystemId
-          type: integer
-          format: int32
-        ticketSystemType:
-          $ref: '#/components/schemas/UpdateFieldValueOfTicketSystemTypes'
-        viewTicketUrl:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
-    TicketSystemTestArgs:
-      description: TicketSystemTestArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/TicketSystemTestData'
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
       required:
       - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
       properties:
         message:
           description: Error message
           type: string
-      type: object
-    UpdateFieldValueOfOptionalBmcChangeManagementCommentWorkType:
-      description: BMC Remedy Change Management integration only.  Select work type for comments added.
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type:
-          - string
-          - 'null'
-      type: object
-    TicketSystemTestResultModel:
-      description: TicketSystemTestResultModel
-      properties:
-        errorMessage:
-          description: ErrorMessage
+        exceptionMessage:
+          description: Error message from exception
           type: string
-        success:
-          description: Success
-          type: boolean
-      type: object
-    TicketSystemTypes:
-      description: Value
-      properties: {}
-      type: string
-      enum:
-      - TicketNumberValidation
-      - BmcRemedyIncidentManagement
-      - BmcRemedyChangeManagement
-      - PowerShell
-      - ServiceNowChangeManagement
-      - ServiceNowIncidentManagement
-    UpdateFieldValueOfOptionalBmcIncidentManagementCommentWorkType:
-      description: BMC Remedy Incident Management integration only.  Select work type for comments added.
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type:
-          - string
-          - 'null'
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
       type: object
     UpdateFieldValueOfBoolean:
       description: Active
@@ -792,14 +727,37 @@ components:
           description: Value
           type: boolean
       type: object
-    UpdateFieldValueOfForceRequireTicketSystemOptions:
-      description: Ticket System Comment and/or Number Requirement
+    TicketSystemTestResultModel:
+      description: TicketSystemTestResultModel
+      properties:
+        errorMessage:
+          description: ErrorMessage
+          type: string
+        success:
+          description: Success
+          type: boolean
+      type: object
+    TicketSystemTestArgs:
+      description: TicketSystemTestArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/TicketSystemTestData'
+      type: object
+    TicketSystemPatchArgs:
+      description: TicketSystemPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/TicketSystemPatchModel'
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
-          $ref: '#/components/schemas/ForceRequireTicketSystemOptions'
+          description: Value
+          type: string
       type: object
     TicketSystemCreateModel:
       description: Data used to create the new ticket system.
@@ -906,83 +864,125 @@ components:
           description: Ticket System URL pattern
           type: string
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
+    TicketSystemSummary:
+      description: Ticket system integration for use with approvals and secret workflow
+      properties:
+        active:
+          description: Indicates if this ticket system is enabled and able to be selected
+          type: boolean
+        description:
+          description: Ticket system description
+          type: string
+        displayMessage:
+          description: The message to display when a ticket is invalid
+          type: string
+        forceRequireTicketNumber:
+          description: Indicates if a ticket number is required when selecting this ticket system
+          type: integer
+          format: int32
+        hideComment:
+          description: Hide comment box on secret access request.
+          type: boolean
+        isDefault:
+          description: Only one ticket system will be the default and will be selected by default
+          type: boolean
+        name:
+          description: Name of the ticket system that shows when creating secret access requests
+          type: string
+        siteId:
+          description: Site ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        siteName:
+          description: Site Name
+          type: string
+        ticketSystemId:
+          description: Unique ID for a ticket system
+          type: integer
+          format: int32
+        ticketSystemTypeId:
+          description: The ID type of the ticket system
+          type: integer
+          format: int32
+        ticketSystemTypeName:
+          description: The type of ticket system integration
+          type: string
+        viewTicketUrl:
+          description: The URL pattern to view a ticket that has been created
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
       required:
       - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
       properties:
         message:
           description: Error message
           type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
       type: object
-    PagingOfTicketSystemSummary:
-      description: Specify paging and sorting options for querying records and returning results
+    TicketSystemPatchModel:
+      description: Data
       properties:
-        batchCount:
-          description: Number of result batches available with current query options
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        addCommentsToTicket:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        bmcChangeManagementCommentWorkType:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBmcChangeManagementCommentWorkType'
+        bmcIncidentManagementCommentWorkType:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBmcIncidentManagementCommentWorkType'
+        bmcRemedyAuthentication:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        bmcRemedyUrlEndpoint:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        description:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        displayMessage:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        forceRequireTicketNumber:
+          $ref: '#/components/schemas/UpdateFieldValueOfForceRequireTicketSystemOptions'
+        hideComment:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        isDefault:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        powerShellAddCommentScriptArguments:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        powerShellAddCommentScriptId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        powerShellAddTicketCommentScriptArguments:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        powerShellAddTicketCommentScriptId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        powerShellRunAsAccountSecretId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        powerShellTicketStatusScriptArguments:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        powerShellTicketStatusScriptId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        serviceNowAllowedStatuses:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        serviceNowDomainName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        siteId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        systemCredentialSecretId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        ticketNumberErrorMessage:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        ticketNumberValidation:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        ticketSystemId:
+          description: TicketSystemId
           type: integer
           format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/TicketSystemSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
+        ticketSystemType:
+          $ref: '#/components/schemas/UpdateFieldValueOfTicketSystemTypes'
+        viewTicketUrl:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
       type: object
   securitySchemes:
     BearerToken:

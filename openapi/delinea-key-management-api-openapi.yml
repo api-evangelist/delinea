@@ -356,16 +356,60 @@ paths:
       deprecated: false
 components:
   schemas:
-    MasterEncryptionKeyRotationInfoAuditUserViewModel:
-      description: MasterEncryptionKeyRotationInfoAuditUserViewModel[]
+    MasterEncryptionKeyRotationStatus:
+      description: CurrentStatus
+      properties: {}
+      type: string
+      enum:
+      - NeverRun
+      - RotationRequested
+      - KeyRotationStarted
+      - KeyRotationCompleted
+      - PendingRestart
+      - MarkDataStarted
+      - MarkDataCompleted
+      - DataRotationStarted
+      - DataRotationCompleted
+      - SessionDataRotationStarted
+      - SessionDataRotationCompleted
+      - ProcessCompletedWithErrorsBeforeRotation
+      - ProcessFailedAfterRotation
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    KeyManagementConfigModel:
+      description: KeyManagementConfigModel
       properties:
-        displayName:
-          description: DisplayName
+        awsKmsAccessKeyId:
+          description: AwsKmsAccessKeyId
           type: string
-        userId:
-          description: UserId
+        awsKmsKeyArn:
+          description: AwsKmsKeyArn
+          type: string
+        awsKmsKeyId:
+          description: AwsKmsKeyId
+          type: string
+        awsKmsSecretAccessKey:
+          description: AwsKmsSecretAccessKey
+          type: string
+        keyManagementConfigId:
+          description: KeyManagementConfigId
           type: integer
           format: int32
+        keyManagementTypeId:
+          description: KeyManagementTypeId
+          type: integer
+          format: int32
+        keyManagementTypeName:
+          description: KeyManagementTypeName
+          type: string
       type: object
     SortDirection:
       description: Sort direction
@@ -375,6 +419,41 @@ components:
       - None
       - Asc
       - Desc
+    KeyManagementConfigUpdateArgs:
+      description: KeyManagementConfigUpdateArgs
+      properties:
+        awsKmsAccessKeyId:
+          description: AwsKmsAccessKeyId
+          type: string
+        awsKmsKeyArn:
+          description: AwsKmsKeyArn
+          type: string
+        awsKmsKeyId:
+          description: AwsKmsKeyId
+          type: string
+        awsKmsSecretAccessKey:
+          description: AwsKmsSecretAccessKey
+          type: string
+        azureKeyVaultBaseUrl:
+          description: AzureKeyVaultBaseUrl
+          type: string
+        azureKeyVaultKeyName:
+          description: AzureKeyVaultKeyName
+          type: string
+        azureKeyVaultKeyVersion:
+          description: AzureKeyVaultKeyVersion
+          type: string
+        azureKeyVaultPrincipalId:
+          description: AzureKeyVaultPrincipalId
+          type: string
+        azureKeyVaultPrincipalSecret:
+          description: AzureKeyVaultPrincipalSecret
+          type: string
+        keyManagementTypeId:
+          description: KeyManagementTypeId
+          type: integer
+          format: int32
+      type: object
     PagingOfMasterEncryptionKeyRotationInfoAuditViewModel:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -432,98 +511,6 @@ components:
           type: integer
           format: int32
       type: object
-    MEKRotationProcessStateTypes:
-      description: ProcessState
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Completed
-      - Pending
-      - Running
-      - Retry
-      - Failed
-    MasterEncryptionKeyRotationStatus:
-      description: CurrentStatus
-      properties: {}
-      type: string
-      enum:
-      - NeverRun
-      - RotationRequested
-      - KeyRotationStarted
-      - KeyRotationCompleted
-      - PendingRestart
-      - MarkDataStarted
-      - MarkDataCompleted
-      - DataRotationStarted
-      - DataRotationCompleted
-      - SessionDataRotationStarted
-      - SessionDataRotationCompleted
-      - ProcessCompletedWithErrorsBeforeRotation
-      - ProcessFailedAfterRotation
-    KeyManagementConfigUpdateArgs:
-      description: KeyManagementConfigUpdateArgs
-      properties:
-        awsKmsAccessKeyId:
-          description: AwsKmsAccessKeyId
-          type: string
-        awsKmsKeyArn:
-          description: AwsKmsKeyArn
-          type: string
-        awsKmsKeyId:
-          description: AwsKmsKeyId
-          type: string
-        awsKmsSecretAccessKey:
-          description: AwsKmsSecretAccessKey
-          type: string
-        azureKeyVaultBaseUrl:
-          description: AzureKeyVaultBaseUrl
-          type: string
-        azureKeyVaultKeyName:
-          description: AzureKeyVaultKeyName
-          type: string
-        azureKeyVaultKeyVersion:
-          description: AzureKeyVaultKeyVersion
-          type: string
-        azureKeyVaultPrincipalId:
-          description: AzureKeyVaultPrincipalId
-          type: string
-        azureKeyVaultPrincipalSecret:
-          description: AzureKeyVaultPrincipalSecret
-          type: string
-        keyManagementTypeId:
-          description: KeyManagementTypeId
-          type: integer
-          format: int32
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
     Sort:
       description: Sort options. Multiple sort options can be provided in the query string.
       required:
@@ -540,25 +527,41 @@ components:
           type: integer
           format: int32
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
+    MasterEncryptionKeyRotationInfoAuditViewModel:
+      description: Query results
       properties:
-        message:
-          description: Error message
+        action:
+          description: Action
           type: string
-        exceptionMessage:
-          description: Error message from exception
+        currentStatus:
+          $ref: '#/components/schemas/MasterEncryptionKeyRotationStatus'
+        date:
+          description: Date
           type: string
-        exceptionType:
-          description: Exception type
+          format: date-time
+        displayName:
+          description: DisplayName
           type: string
-        stackTrace:
-          description: Exception stack trace
+        formattedDate:
+          description: FormattedDate
+          type: string
+        masterEncryptionKeyRotationInfoAuditId:
+          description: MasterEncryptionKeyRotationInfoAuditId
+          type: integer
+          format: int32
+        masterEncryptionKeyRotationInfoId:
+          description: MasterEncryptionKeyRotationInfoId
+          type: integer
+          format: int32
+        notes:
+          description: Notes
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+        userName:
+          description: UserName
           type: string
       type: object
     MEKRotationInfoModel:
@@ -599,70 +602,17 @@ components:
           description: Error message
           type: string
       type: object
-    KeyManagementConfigModel:
-      description: KeyManagementConfigModel
-      properties:
-        awsKmsAccessKeyId:
-          description: AwsKmsAccessKeyId
-          type: string
-        awsKmsKeyArn:
-          description: AwsKmsKeyArn
-          type: string
-        awsKmsKeyId:
-          description: AwsKmsKeyId
-          type: string
-        awsKmsSecretAccessKey:
-          description: AwsKmsSecretAccessKey
-          type: string
-        keyManagementConfigId:
-          description: KeyManagementConfigId
-          type: integer
-          format: int32
-        keyManagementTypeId:
-          description: KeyManagementTypeId
-          type: integer
-          format: int32
-        keyManagementTypeName:
-          description: KeyManagementTypeName
-          type: string
-      type: object
-    MasterEncryptionKeyRotationInfoAuditViewModel:
-      description: Query results
-      properties:
-        action:
-          description: Action
-          type: string
-        currentStatus:
-          $ref: '#/components/schemas/MasterEncryptionKeyRotationStatus'
-        date:
-          description: Date
-          type: string
-          format: date-time
-        displayName:
-          description: DisplayName
-          type: string
-        formattedDate:
-          description: FormattedDate
-          type: string
-        masterEncryptionKeyRotationInfoAuditId:
-          description: MasterEncryptionKeyRotationInfoAuditId
-          type: integer
-          format: int32
-        masterEncryptionKeyRotationInfoId:
-          description: MasterEncryptionKeyRotationInfoId
-          type: integer
-          format: int32
-        notes:
-          description: Notes
-          type: string
-        userId:
-          description: UserId
-          type: integer
-          format: int32
-        userName:
-          description: UserName
-          type: string
-      type: object
+    MEKRotationProcessStateTypes:
+      description: ProcessState
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Completed
+      - Pending
+      - Running
+      - Retry
+      - Failed
     MEKRotationInfoResponseViewModel:
       description: MEKRotationInfoResponseViewModel
       properties:
@@ -701,6 +651,56 @@ components:
           format: int32
         warningMessage:
           description: WarningMessage
+          type: string
+      type: object
+    MasterEncryptionKeyRotationInfoAuditUserViewModel:
+      description: MasterEncryptionKeyRotationInfoAuditUserViewModel[]
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
           type: string
       type: object
   securitySchemes:

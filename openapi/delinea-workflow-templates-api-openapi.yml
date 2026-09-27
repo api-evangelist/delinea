@@ -429,6 +429,169 @@ paths:
       deprecated: false
 components:
   schemas:
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    WorkflowType:
+      description: WorkflowType
+      properties: {}
+      type: string
+      enum:
+      - AccessRequest
+      - SecretEraseRequest
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    PagingOfWorkflowTemplateAuditModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/WorkflowTemplateAuditModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    WorkflowTemplateCreateArgs:
+      description: WorkflowTemplateCreateArgs
+      required:
+      - workflowType
+      - name
+      properties:
+        configurationJson:
+          description: ConfigurationJson
+          type: string
+        description:
+          description: Description
+          type: string
+        expirationMinutes:
+          description: ExpirationMinutes
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        workflowType:
+          $ref: '#/components/schemas/WorkflowType'
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalBoolean:
+      description: Use RADIUS Username for DUO
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - boolean
+          - 'null'
+      type: object
     WorkflowTemplateAuditModel:
       description: Query results
       properties:
@@ -495,246 +658,6 @@ components:
           - 'null'
           format: int32
       type: object
-    WorkflowTemplateCreateArgs:
-      description: WorkflowTemplateCreateArgs
-      required:
-      - workflowType
-      - name
-      properties:
-        configurationJson:
-          description: ConfigurationJson
-          type: string
-        description:
-          description: Description
-          type: string
-        expirationMinutes:
-          description: ExpirationMinutes
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        workflowType:
-          $ref: '#/components/schemas/WorkflowType'
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    PagingOfWorkflowTemplateAuditModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/WorkflowTemplateAuditModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    WorkflowType:
-      description: WorkflowType
-      properties: {}
-      type: string
-      enum:
-      - AccessRequest
-      - SecretEraseRequest
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    WorkflowTemplateUpdateModel:
-      description: WorkflowTemplateUpdateModel
-      properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        configurationJson:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        description:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        expirationMinutes:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        isCopy:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
-        name:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    WorkflowTemplateDetailModel:
-      description: WorkflowTemplateDetailModel
-      properties:
-        active:
-          description: Active
-          type: boolean
-        configurationJson:
-          description: ConfigurationJson
-          type: string
-        description:
-          description: Description
-          type: string
-        expirationMinutes:
-          description: ExpirationMinutes
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        reusable:
-          description: Reusable
-          type: boolean
-        typeName:
-          description: TypeName
-          type: string
-        workflowTemplateId:
-          description: WorkflowTemplateId
-          type: integer
-          format: int32
-        workflowType:
-          $ref: '#/components/schemas/WorkflowType'
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
     PagingOfWorkflowTemplateDetailModel:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -792,17 +715,94 @@ components:
           type: integer
           format: int32
       type: object
-    UpdateFieldValueOfOptionalBoolean:
-      description: Use RADIUS Username for DUO
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
       properties:
-        dirty:
-          description: Dirty
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    WorkflowTemplateUpdateModel:
+      description: WorkflowTemplateUpdateModel
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        configurationJson:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        description:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        expirationMinutes:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        isCopy:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    WorkflowTemplateDetailModel:
+      description: WorkflowTemplateDetailModel
+      properties:
+        active:
+          description: Active
           type: boolean
-        value:
-          description: Value
+        configurationJson:
+          description: ConfigurationJson
+          type: string
+        description:
+          description: Description
+          type: string
+        expirationMinutes:
+          description: ExpirationMinutes
           type:
-          - boolean
+          - integer
           - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        reusable:
+          description: Reusable
+          type: boolean
+        typeName:
+          description: TypeName
+          type: string
+        workflowTemplateId:
+          description: WorkflowTemplateId
+          type: integer
+          format: int32
+        workflowType:
+          $ref: '#/components/schemas/WorkflowType'
       type: object
   securitySchemes:
     BearerToken:

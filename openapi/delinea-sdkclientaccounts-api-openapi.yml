@@ -338,36 +338,16 @@ paths:
       deprecated: false
 components:
   schemas:
-    SdkClientAccountSummary:
-      description: Query results
-      properties:
-        clientId:
-          description: ClientId
-          type: string
-          format: uuid
-        details:
-          description: Details
-          type: string
-        id:
-          description: Id
-          type: integer
-          format: int32
-        ipAddress:
-          description: IpAddress
-          type: string
-        name:
-          description: Name
-          type: string
-        userDisplayName:
-          description: UserDisplayName
-          type: string
-        userId:
-          description: UserId
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
     SortDirection:
       description: Sort direction
       properties: {}
@@ -376,14 +356,6 @@ components:
       - None
       - Asc
       - Desc
-    FilterOperator:
-      description: Operator
-      properties: {}
-      type: string
-      enum:
-      - All
-      - Include
-      - Exclude
     SdkClientAccountFilter:
       description: Additional query options
       properties:
@@ -399,59 +371,21 @@ components:
           - 'null'
           format: int32
       type: object
-    SdkClientAccountUpdateArgs:
-      description: SdkClientAccountUpdateArgs
-      required:
-      - name
-      properties:
-        name:
-          description: Name
-          type: string
-        userId:
-          description: UserId
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    Severity:
-      description: Error severity level
+    FilterOperator:
+      description: Operator
       properties: {}
       type: string
       enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    SdkClientAccountModel:
-      description: SdkClientAccountModel
+      - All
+      - Include
+      - Exclude
+    SdkClientAccountSummary:
+      description: Query results
       properties:
         clientId:
           description: ClientId
           type: string
           format: uuid
-        clientSecret:
-          description: ClientSecret
-          type: string
         details:
           description: Details
           type: string
@@ -550,36 +484,6 @@ components:
           type: integer
           format: int32
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
     SdkClientAccountCreateArgs:
       description: SdkClientAccountCreateArgs
       required:
@@ -602,6 +506,102 @@ components:
           type: string
         ruleName:
           description: RuleName
+          type: string
+      type: object
+    SdkClientAccountModel:
+      description: SdkClientAccountModel
+      properties:
+        clientId:
+          description: ClientId
+          type: string
+          format: uuid
+        clientSecret:
+          description: ClientSecret
+          type: string
+        details:
+          description: Details
+          type: string
+        id:
+          description: Id
+          type: integer
+          format: int32
+        ipAddress:
+          description: IpAddress
+          type: string
+        name:
+          description: Name
+          type: string
+        userDisplayName:
+          description: UserDisplayName
+          type: string
+        userId:
+          description: UserId
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    SdkClientAccountUpdateArgs:
+      description: SdkClientAccountUpdateArgs
+      required:
+      - name
+      properties:
+        name:
+          description: Name
+          type: string
+        userId:
+          description: UserId
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
           type: string
       type: object
   securitySchemes:

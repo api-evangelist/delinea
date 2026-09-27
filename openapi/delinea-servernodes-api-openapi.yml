@@ -134,6 +134,30 @@ paths:
       deprecated: false
 components:
   schemas:
+    ServerNodeConfigurationModel:
+      description: Server Node Roles
+      properties:
+        enableBackgroundWorker:
+          description: Background Worker Role Enabled
+          type: boolean
+        enableEngineWorker:
+          description: Engine Worker Role Enabled
+          type: boolean
+        enableSessionRecordingWorker:
+          description: Session Recording Worker Role Enabled
+          type: boolean
+        inCluster:
+          description: Whether or not the node is in the cluster
+          type: boolean
+        logLevel:
+          description: Log Level
+          type:
+          - string
+          - 'null'
+        readonlyModeEnabled:
+          description: Readonly Mode Enabled
+          type: boolean
+      type: object
     ServerNodeModel:
       description: ServerNodeModel[]
       properties:
@@ -198,29 +222,14 @@ components:
           description: Session Recording Worker Error
           type: string
       type: object
-    ServerNodeConfigurationModel:
-      description: Server Node Roles
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
       properties:
-        enableBackgroundWorker:
-          description: Background Worker Role Enabled
-          type: boolean
-        enableEngineWorker:
-          description: Engine Worker Role Enabled
-          type: boolean
-        enableSessionRecordingWorker:
-          description: Session Recording Worker Role Enabled
-          type: boolean
-        inCluster:
-          description: Whether or not the node is in the cluster
-          type: boolean
-        logLevel:
-          description: Log Level
-          type:
-          - string
-          - 'null'
-        readonlyModeEnabled:
-          description: Readonly Mode Enabled
-          type: boolean
+        message:
+          description: Error message
+          type: string
       type: object
     BadRequestResponse:
       description: Response object for invalid requests
@@ -259,15 +268,6 @@ components:
           type: string
         stackTrace:
           description: Exception stack trace
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
           type: string
       type: object
   securitySchemes:

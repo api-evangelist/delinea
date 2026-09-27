@@ -65,6 +65,15 @@ components:
           description: Additional information about the app state
           type: string
       type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
     AppStateType:
       description: Current setup state of application
       properties: {}
@@ -114,15 +123,6 @@ components:
           type: string
         stackTrace:
           description: Exception stack trace
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
           type: string
       type: object
   securitySchemes:

@@ -760,6 +760,303 @@ paths:
       deprecated: false
 components:
   schemas:
+    LauncherAgentSummary:
+      description: Query results
+      properties:
+        active:
+          description: Whether or not the agent is running
+          type: boolean
+        collectionId:
+          description: The identifier of the collection to which this agent belongs
+          type: integer
+          format: int32
+        collectionName:
+          description: The name of the collection to which this agent belongs
+          type: string
+        collectionRecordKeystrokes:
+          description: Whether or not this agent will record keystrokes as the default setting for the Collection
+          type: boolean
+        collectionRecordStandaloneSessions:
+          description: Whether or not headless session recording is enabled as the default setting for the Collection
+          type: boolean
+        created:
+          description: The date the agent was installed
+          type: string
+          format: date-time
+        hostName:
+          description: Name of the computer which the agent is running on
+          type: string
+        id:
+          description: Unique ID for this agent
+          type: integer
+          format: int32
+        issue:
+          description: Any issues with this agent regarding its version and configuration
+          type: string
+        lastActivity:
+          description: The date the agent was last active
+          type: string
+          format: date-time
+        recordKeystrokes:
+          description: Whether or not this agent will record keystrokes, or using the Collection Default
+          type:
+          - boolean
+          - 'null'
+        recordStandaloneSessions:
+          description: Whether or not headless session recording is enabled, or using the Collection Default
+          type:
+          - boolean
+          - 'null'
+        version:
+          description: The version number currently installed
+          type: string
+      type: object
+    LauncherAgentCollectionCreateArgs:
+      description: Launcher Agent Collection create options
+      required:
+      - name
+      - recordStandaloneSessions
+      - recordKeystrokes
+      properties:
+        name:
+          description: Collection Name
+          type: string
+        recordKeystrokes:
+          description: Record Keystrokes
+          type: boolean
+        recordStandaloneSessions:
+          description: Record Standalone Sessions
+          type: boolean
+      type: object
+    LauncherAgentCollectionModel:
+      description: Launcher Agent Collection
+      properties:
+        active:
+          description: Active
+          type: boolean
+        activeAgentCount:
+          description: ActiveAgentCount
+          type: integer
+          format: int32
+        created:
+          description: Created
+          type: string
+          format: date-time
+        id:
+          description: Id
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+        recordKeystrokes:
+          description: RecordKeystrokes
+          type: boolean
+        recordStandaloneSessions:
+          description: RecordStandaloneSessions
+          type: boolean
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    Object:
+      description: ItemId
+      properties: {}
+      type: object
+    LauncherAgentUpdateArgs:
+      description: Launcher Agent update options
+      properties:
+        active:
+          description: Whether the Launcher Agent is active
+          type: boolean
+        id:
+          description: Launcher Agent ID. Must match ID in path
+          type: integer
+          format: int32
+          minimum: 1
+        recordKeystrokes:
+          description: Whether or not this agent is allowed to record keystroke data
+          type:
+          - boolean
+          - 'null'
+        recordStandaloneSessions:
+          description: Whether or not this agent is allowed to record headless sessions
+          type:
+          - boolean
+          - 'null'
+      type: object
+    LauncherAgentCollectionSummary:
+      description: Launcher Agent Collection summary
+      properties:
+        active:
+          description: Whether the Collection is enabled
+          type: boolean
+        activeAgentCount:
+          description: Total number of active Launcher Agents in this Collection
+          type: integer
+          format: int32
+        id:
+          description: User ID
+          type: integer
+          format: int32
+        name:
+          description: Collection Name
+          type: string
+      type: object
+    PagingOfLauncherAgentCollectionSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/LauncherAgentCollectionSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    LauncherAgentCollectionAudit:
+      description: LauncherAgentCollectionAudit[]
+      properties:
+        action:
+          description: Action
+          type: string
+        auditSubject:
+          description: AuditSubject
+          type: string
+        date:
+          description: Date
+          type: string
+          format: date-time
+        displayName:
+          description: DisplayName
+          type: string
+        formattedDate:
+          description: FormattedDate
+          type: string
+        itemId:
+          $ref: '#/components/schemas/Object'
+        launcherAgentCollectionAuditId:
+          description: LauncherAgentCollectionAuditId
+          type: integer
+          format: int32
+        launcherAgentCollectionId:
+          description: LauncherAgentCollectionId
+          type: integer
+          format: int32
+        notes:
+          description: Notes
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+        userName:
+          description: UserName
+          type: string
+      type: object
+    LauncherAgentModel:
+      description: LauncherAgentModel
+      properties:
+        active:
+          description: Whether or not the agent is active
+          type: boolean
+        collectionId:
+          description: The ID of the collection the agent belongs to
+          type: integer
+          format: int32
+        collectionName:
+          description: The name of the collection the agent belongs to
+          type: string
+        created:
+          description: When the agent was created
+          type: string
+          format: date-time
+        hostName:
+          description: The hostname of the machine the agent is installed on
+          type: string
+        id:
+          description: The ID of the agent
+          type: integer
+          format: int32
+        lastActivity:
+          description: The date the agent was last active
+          type: string
+          format: date-time
+        recordKeystrokes:
+          description: Whether or not this agent will record keystrokes
+          type:
+          - boolean
+          - 'null'
+        recordStandaloneSessions:
+          description: Whether or not headless session recording is enabled
+          type:
+          - boolean
+          - 'null'
+        version:
+          description: The version number currently installed
+          type: string
+      type: object
     Sort:
       description: Sort options. Multiple sort options can be provided in the query string.
       required:
@@ -776,11 +1073,126 @@ components:
           type: integer
           format: int32
       type: object
+    LauncherAgentAudit:
+      description: LauncherAgentAudit[]
+      properties:
+        action:
+          description: Action
+          type: string
+        auditSubject:
+          description: AuditSubject
+          type: string
+        date:
+          description: Date
+          type: string
+          format: date-time
+        displayName:
+          description: DisplayName
+          type: string
+        formattedDate:
+          description: FormattedDate
+          type: string
+        itemId:
+          $ref: '#/components/schemas/Object'
+        launcherAgentAuditId:
+          description: LauncherAgentAuditId
+          type: integer
+          format: int32
+        launcherAgentCollectionId:
+          description: LauncherAgentCollectionId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        launcherAgentId:
+          description: LauncherAgentId
+          type: integer
+          format: int32
+        notes:
+          description: Notes
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+        userName:
+          description: UserName
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
     LauncherAgentConfigurationState:
       description: Object that contains overall status of the launcher agent
       properties:
         minimumRecommendedVersion:
           description: Launcher agent minimum recommended version
+          type: string
+      type: object
+    LauncherAgentCollectionUpdateArgs:
+      description: Launcher Agent Collection update options
+      properties:
+        active:
+          description: Whether the Launcher Agent Collection is active
+          type: boolean
+        id:
+          description: Launcher Agent ID. Must match ID in path
+          type: integer
+          format: int32
+          minimum: 1
+        name:
+          description: Collection Name
+          type: string
+        recordKeystrokes:
+          description: Whether or not agents in this collection will record standalone sessions by default
+          type: boolean
+        recordStandaloneSessions:
+          description: Whether or not agents in this collection will record standalone sessions by default
+          type: boolean
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
           type: string
       type: object
     PagingOfLauncherAgentSummary:
@@ -839,418 +1251,6 @@ components:
           description: Total number of results available
           type: integer
           format: int32
-      type: object
-    LauncherAgentCollectionUpdateArgs:
-      description: Launcher Agent Collection update options
-      properties:
-        active:
-          description: Whether the Launcher Agent Collection is active
-          type: boolean
-        id:
-          description: Launcher Agent ID. Must match ID in path
-          type: integer
-          format: int32
-          minimum: 1
-        name:
-          description: Collection Name
-          type: string
-        recordKeystrokes:
-          description: Whether or not agents in this collection will record standalone sessions by default
-          type: boolean
-        recordStandaloneSessions:
-          description: Whether or not agents in this collection will record standalone sessions by default
-          type: boolean
-      type: object
-    LauncherAgentAudit:
-      description: LauncherAgentAudit[]
-      properties:
-        action:
-          description: Action
-          type: string
-        auditSubject:
-          description: AuditSubject
-          type: string
-        date:
-          description: Date
-          type: string
-          format: date-time
-        displayName:
-          description: DisplayName
-          type: string
-        formattedDate:
-          description: FormattedDate
-          type: string
-        itemId:
-          $ref: '#/components/schemas/Object'
-        launcherAgentAuditId:
-          description: LauncherAgentAuditId
-          type: integer
-          format: int32
-        launcherAgentCollectionId:
-          description: LauncherAgentCollectionId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        launcherAgentId:
-          description: LauncherAgentId
-          type: integer
-          format: int32
-        notes:
-          description: Notes
-          type: string
-        userId:
-          description: UserId
-          type: integer
-          format: int32
-        userName:
-          description: UserName
-          type: string
-      type: object
-    LauncherAgentUpdateArgs:
-      description: Launcher Agent update options
-      properties:
-        active:
-          description: Whether the Launcher Agent is active
-          type: boolean
-        id:
-          description: Launcher Agent ID. Must match ID in path
-          type: integer
-          format: int32
-          minimum: 1
-        recordKeystrokes:
-          description: Whether or not this agent is allowed to record keystroke data
-          type:
-          - boolean
-          - 'null'
-        recordStandaloneSessions:
-          description: Whether or not this agent is allowed to record headless sessions
-          type:
-          - boolean
-          - 'null'
-      type: object
-    LauncherAgentCollectionSummary:
-      description: Launcher Agent Collection summary
-      properties:
-        active:
-          description: Whether the Collection is enabled
-          type: boolean
-        activeAgentCount:
-          description: Total number of active Launcher Agents in this Collection
-          type: integer
-          format: int32
-        id:
-          description: User ID
-          type: integer
-          format: int32
-        name:
-          description: Collection Name
-          type: string
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    PagingOfLauncherAgentCollectionSummary:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/LauncherAgentCollectionSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    LauncherAgentModel:
-      description: LauncherAgentModel
-      properties:
-        active:
-          description: Whether or not the agent is active
-          type: boolean
-        collectionId:
-          description: The ID of the collection the agent belongs to
-          type: integer
-          format: int32
-        collectionName:
-          description: The name of the collection the agent belongs to
-          type: string
-        created:
-          description: When the agent was created
-          type: string
-          format: date-time
-        hostName:
-          description: The hostname of the machine the agent is installed on
-          type: string
-        id:
-          description: The ID of the agent
-          type: integer
-          format: int32
-        lastActivity:
-          description: The date the agent was last active
-          type: string
-          format: date-time
-        recordKeystrokes:
-          description: Whether or not this agent will record keystrokes
-          type:
-          - boolean
-          - 'null'
-        recordStandaloneSessions:
-          description: Whether or not headless session recording is enabled
-          type:
-          - boolean
-          - 'null'
-        version:
-          description: The version number currently installed
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    LauncherAgentSummary:
-      description: Query results
-      properties:
-        active:
-          description: Whether or not the agent is running
-          type: boolean
-        collectionId:
-          description: The identifier of the collection to which this agent belongs
-          type: integer
-          format: int32
-        collectionName:
-          description: The name of the collection to which this agent belongs
-          type: string
-        collectionRecordKeystrokes:
-          description: Whether or not this agent will record keystrokes as the default setting for the Collection
-          type: boolean
-        collectionRecordStandaloneSessions:
-          description: Whether or not headless session recording is enabled as the default setting for the Collection
-          type: boolean
-        created:
-          description: The date the agent was installed
-          type: string
-          format: date-time
-        hostName:
-          description: Name of the computer which the agent is running on
-          type: string
-        id:
-          description: Unique ID for this agent
-          type: integer
-          format: int32
-        issue:
-          description: Any issues with this agent regarding its version and configuration
-          type: string
-        lastActivity:
-          description: The date the agent was last active
-          type: string
-          format: date-time
-        recordKeystrokes:
-          description: Whether or not this agent will record keystrokes, or using the Collection Default
-          type:
-          - boolean
-          - 'null'
-        recordStandaloneSessions:
-          description: Whether or not headless session recording is enabled, or using the Collection Default
-          type:
-          - boolean
-          - 'null'
-        version:
-          description: The version number currently installed
-          type: string
-      type: object
-    LauncherAgentCollectionModel:
-      description: Launcher Agent Collection
-      properties:
-        active:
-          description: Active
-          type: boolean
-        activeAgentCount:
-          description: ActiveAgentCount
-          type: integer
-          format: int32
-        created:
-          description: Created
-          type: string
-          format: date-time
-        id:
-          description: Id
-          type: integer
-          format: int32
-        name:
-          description: Name
-          type: string
-        recordKeystrokes:
-          description: RecordKeystrokes
-          type: boolean
-        recordStandaloneSessions:
-          description: RecordStandaloneSessions
-          type: boolean
-      type: object
-    Object:
-      description: ItemId
-      properties: {}
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    LauncherAgentCollectionAudit:
-      description: LauncherAgentCollectionAudit[]
-      properties:
-        action:
-          description: Action
-          type: string
-        auditSubject:
-          description: AuditSubject
-          type: string
-        date:
-          description: Date
-          type: string
-          format: date-time
-        displayName:
-          description: DisplayName
-          type: string
-        formattedDate:
-          description: FormattedDate
-          type: string
-        itemId:
-          $ref: '#/components/schemas/Object'
-        launcherAgentCollectionAuditId:
-          description: LauncherAgentCollectionAuditId
-          type: integer
-          format: int32
-        launcherAgentCollectionId:
-          description: LauncherAgentCollectionId
-          type: integer
-          format: int32
-        notes:
-          description: Notes
-          type: string
-        userId:
-          description: UserId
-          type: integer
-          format: int32
-        userName:
-          description: UserName
-          type: string
-      type: object
-    LauncherAgentCollectionCreateArgs:
-      description: Launcher Agent Collection create options
-      required:
-      - name
-      - recordStandaloneSessions
-      - recordKeystrokes
-      properties:
-        name:
-          description: Collection Name
-          type: string
-        recordKeystrokes:
-          description: Record Keystrokes
-          type: boolean
-        recordStandaloneSessions:
-          description: Record Standalone Sessions
-          type: boolean
       type: object
   securitySchemes:
     BearerToken:

@@ -295,64 +295,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    CharacterSetAuditSummary:
-      description: Query results
-      properties:
-        action:
-          description: Action
-          type: string
-        characterSetAuditId:
-          description: CharacterSetAuditId
-          type: integer
-          format: int32
-        characterSetId:
-          description: CharacterSetId
-          type: integer
-          format: int32
-        dateRecorded:
-          description: DateRecorded
-          type: string
-          format: date-time
-        displayName:
-          description: DisplayName
-          type: string
-        notes:
-          description: Notes
-          type: string
-        userId:
-          description: UserId
-          type: integer
-          format: int32
-        userName:
-          description: UserName
-          type: string
-      type: object
-    CharacterSetModel:
-      description: Character Set that is used in password requirements
-      properties:
-        abbreviation:
-          description: Abbreviated view of the character set
-          type: string
-        active:
-          description: Is this character set active
-          type: boolean
-        characterSetId:
-          description: Sequence ID for character set
-          type: integer
-          format: int32
-        description:
-          description: Description
-          type: string
-        isStandard:
-          description: Is this a standard character set
-          type: boolean
-        name:
-          description: Name
-          type: string
-        value:
-          description: The actual characters in the character set
-          type: string
-      type: object
     PagingOfCharacterSetSummary:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -410,6 +352,16 @@ components:
           type: integer
           format: int32
       type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
     CharacterSetSummary:
       description: Character Set that is used in password requirements
       properties:
@@ -436,50 +388,6 @@ components:
           description: The actual characters in the character set
           type: string
       type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    CharacterSetPatchArgs:
-      description: Character Set Patch Args
-      properties:
-        data:
-          $ref: '#/components/schemas/CharacterSetPatchModel'
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
     BadRequestResponse:
       description: Response object for invalid requests
       required:
@@ -497,6 +405,24 @@ components:
         modelState:
           description: An object describing validation errors
           type: object
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
       type: object
     PagingOfCharacterSetAuditSummary:
       description: Specify paging and sorting options for querying records and returning results
@@ -571,26 +497,11 @@ components:
           type: integer
           format: int32
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
+    CharacterSetPatchArgs:
+      description: Character Set Patch Args
       properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
+        data:
+          $ref: '#/components/schemas/CharacterSetPatchModel'
       type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures
@@ -601,11 +512,31 @@ components:
           description: Error message
           type: string
       type: object
-    CharacterSetCreateArgs:
-      description: Character Set Create Args
+    CharacterSetModel:
+      description: Character Set that is used in password requirements
       properties:
-        data:
-          $ref: '#/components/schemas/CharacterSetCreateModel'
+        abbreviation:
+          description: Abbreviated view of the character set
+          type: string
+        active:
+          description: Is this character set active
+          type: boolean
+        characterSetId:
+          description: Sequence ID for character set
+          type: integer
+          format: int32
+        description:
+          description: Description
+          type: string
+        isStandard:
+          description: Is this a standard character set
+          type: boolean
+        name:
+          description: Name
+          type: string
+        value:
+          description: The actual characters in the character set
+          type: string
       type: object
     CharacterSetPatchModel:
       description: Character Set Patch Model
@@ -620,6 +551,38 @@ components:
           $ref: '#/components/schemas/UpdateFieldValueOfString'
         value:
           $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    CharacterSetAuditSummary:
+      description: Query results
+      properties:
+        action:
+          description: Action
+          type: string
+        characterSetAuditId:
+          description: CharacterSetAuditId
+          type: integer
+          format: int32
+        characterSetId:
+          description: CharacterSetId
+          type: integer
+          format: int32
+        dateRecorded:
+          description: DateRecorded
+          type: string
+          format: date-time
+        displayName:
+          description: DisplayName
+          type: string
+        notes:
+          description: Notes
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+        userName:
+          description: UserName
+          type: string
       type: object
     CharacterSetCreateModel:
       description: Character Set Create Model
@@ -641,6 +604,43 @@ components:
         value:
           description: The actual characters in the character set
           type: string
+      type: object
+    CharacterSetCreateArgs:
+      description: Character Set Create Args
+      properties:
+        data:
+          $ref: '#/components/schemas/CharacterSetCreateModel'
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
       type: object
   securitySchemes:
     BearerToken:

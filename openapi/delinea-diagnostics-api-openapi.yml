@@ -614,12 +614,43 @@ paths:
       deprecated: false
 components:
   schemas:
-    CollectLogCollectionResultModel:
-      description: CollectLogCollectionResultModel
+    LogCollectionSourceType:
+      description: SourceType
+      properties: {}
+      type: string
+      enum:
+      - Node
+      - Engine
+    LogCollectionStatus:
+      description: Status
+      properties: {}
+      type: string
+      enum:
+      - Collecting
+      - Done
+      - Failed
+    AppSettingModel:
+      description: AppSettingModel[]
       properties:
-        success:
-          description: Success
-          type: boolean
+        key:
+          description: App setting key
+          type: string
+        value:
+          description: App setting value
+          type: string
+      type: object
+    StreamContentResult:
+      description: StreamContentResult
+      properties: {}
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
       type: object
     LogCollectionModel:
       description: LogCollection
@@ -640,73 +671,15 @@ components:
         status:
           $ref: '#/components/schemas/LogCollectionStatus'
       type: object
-    AppSettingModel:
-      description: AppSettingModel[]
-      properties:
-        key:
-          description: App setting key
-          type: string
-        value:
-          description: App setting value
-          type: string
-      type: object
-    LogCollectionSourceType:
-      description: SourceType
-      properties: {}
-      type: string
-      enum:
-      - Node
-      - Engine
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
     ClearLogCollectionResultModel:
       description: ClearLogCollectionResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    ClearCacheResultModel:
+      description: ClearCacheResultModel
       properties:
         success:
           description: Success
@@ -740,6 +713,60 @@ components:
           format: date-time
         triggerState:
           description: TriggerState
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    LogCollectionSummaryModel:
+      description: LogCollectionSummaryModel
+      properties:
+        logCollection:
+          description: LogCollection
+          items:
+            $ref: '#/components/schemas/LogCollectionModel'
+          type: array
+        startDate:
+          description: StartDate
+          type:
+          - string
+          - 'null'
+          format: date-time
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
           type: string
       type: object
     DiagnosticsSummary:
@@ -860,39 +887,12 @@ components:
           description: Up Time
           type: string
       type: object
-    StreamContentResult:
-      description: StreamContentResult
-      properties: {}
-      type: object
-    ClearCacheResultModel:
-      description: ClearCacheResultModel
+    CollectLogCollectionResultModel:
+      description: CollectLogCollectionResultModel
       properties:
         success:
           description: Success
           type: boolean
-      type: object
-    LogCollectionStatus:
-      description: Status
-      properties: {}
-      type: string
-      enum:
-      - Collecting
-      - Done
-      - Failed
-    LogCollectionSummaryModel:
-      description: LogCollectionSummaryModel
-      properties:
-        logCollection:
-          description: LogCollection
-          items:
-            $ref: '#/components/schemas/LogCollectionModel'
-          type: array
-        startDate:
-          description: StartDate
-          type:
-          - string
-          - 'null'
-          format: date-time
       type: object
   securitySchemes:
     BearerToken:

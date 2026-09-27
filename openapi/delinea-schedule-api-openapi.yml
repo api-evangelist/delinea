@@ -143,22 +143,67 @@ paths:
       deprecated: false
 components:
   schemas:
-    RecurringScheduleUpdateArgs:
-      description: RecurringScheduleUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/RecurringScheduleUpdateModel'
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
+    RecurringScheduleType:
+      description: The iteration period for the schedule.  The schedule will restart after this cycle.
+      properties: {}
+      type: string
+      enum:
+      - Daily
+      - Weekly
+      - MonthlyDays
+      - MonthlyWeeks
+    RecurringScheduleValueType:
+      description: The type of schedule constraint
+      properties: {}
+      type: string
+      enum:
+      - SpecificTime
+      - DayOfWeek
+      - DayOfMonth
+      - WeekOfMonth
+      - WeekOfMonthDay
+    UpdateFieldValueOfRecurringScheduleValueModelArray:
+      description: Passing any constraints will update all of them and remove any not specified.
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
           description: Value
-          type: string
+          items:
+            $ref: '#/components/schemas/RecurringScheduleValueModel'
+          type: array
       type: object
+    RecurringScheduleEntityModel:
+      description: These are entities that subcribe to this schedule
+      properties:
+        entityId:
+          description: The ID of the entity that is subscribing to this schedule
+          type: integer
+          format: int32
+        entityType:
+          $ref: '#/components/schemas/RecurringScheduleEntityType'
+        id:
+          description: The id of schedule entity map
+          type: integer
+          format: int32
+      type: object
+    RecurringScheduleValueModel:
+      description: A defined constraint for a schedule
+      properties:
+        recurrenceValue:
+          description: The value that applies to the constraint.
+          type: integer
+          format: int32
+        recurrenceValueType:
+          $ref: '#/components/schemas/RecurringScheduleValueType'
+      type: object
+    RecurringScheduleEntityType:
+      description: This is the type of entity
+      properties: {}
+      type: string
+      enum:
+      - InboxRule
     RecurringScheduleCreateModel:
       description: Data
       properties:
@@ -189,17 +234,16 @@ components:
           description: Time Zone of the times the schedule is run
           type: string
       type: object
-    UpdateFieldValueOfRecurringScheduleValueModelArray:
-      description: Passing any constraints will update all of them and remove any not specified.
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
           description: Value
-          items:
-            $ref: '#/components/schemas/RecurringScheduleValueModel'
-          type: array
+          type: integer
+          format: int32
       type: object
     RecurringScheduleUpdateModel:
       description: Data
@@ -223,6 +267,12 @@ components:
         timeZoneId:
           $ref: '#/components/schemas/UpdateFieldValueOfString'
       type: object
+    RecurringScheduleCreateArgs:
+      description: RecurringScheduleCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/RecurringScheduleCreateModel'
+      type: object
     BadRequestResponse:
       description: Response object for invalid requests
       required:
@@ -241,14 +291,47 @@ components:
           description: An object describing validation errors
           type: object
       type: object
-    UpdateFieldValueOfRecurringScheduleType:
-      description: The iteration period for the schedule.  The schedule will restart after this cycle.
+    UpdateFieldValueOfDateTime:
+      description: BackupStartDateTime
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
-          $ref: '#/components/schemas/RecurringScheduleType'
+          description: Value
+          type: string
+          format: date-time
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
       type: object
     RecurringScheduleModel:
       description: A recurring schedule defines an interval that can trigger tasks
@@ -284,25 +367,16 @@ components:
           description: Time Zone of the times the schedule is run
           type: string
       type: object
-    RecurringScheduleValueModel:
-      description: A defined constraint for a schedule
+    UpdateFieldValueOfString:
+      description: Description
       properties:
-        recurrenceValue:
-          description: The value that applies to the constraint.
-          type: integer
-          format: int32
-        recurrenceValueType:
-          $ref: '#/components/schemas/RecurringScheduleValueType'
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
       type: object
-    RecurringScheduleType:
-      description: The iteration period for the schedule.  The schedule will restart after this cycle.
-      properties: {}
-      type: string
-      enum:
-      - Daily
-      - Weekly
-      - MonthlyDays
-      - MonthlyWeeks
     AuthenticationFailedResponse:
       description: Response object for authentication failures
       required:
@@ -312,94 +386,20 @@ components:
           description: Error message
           type: string
       type: object
-    UpdateFieldValueOfDateTime:
-      description: BackupStartDateTime
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-          format: date-time
-      type: object
-    UpdateFieldValueOfInt32:
-      description: How many days until the password expires.
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: integer
-          format: int32
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    RecurringScheduleValueType:
-      description: The type of schedule constraint
-      properties: {}
-      type: string
-      enum:
-      - SpecificTime
-      - DayOfWeek
-      - DayOfMonth
-      - WeekOfMonth
-      - WeekOfMonthDay
-    RecurringScheduleEntityType:
-      description: This is the type of entity
-      properties: {}
-      type: string
-      enum:
-      - InboxRule
-    RecurringScheduleEntityModel:
-      description: These are entities that subcribe to this schedule
-      properties:
-        entityId:
-          description: The ID of the entity that is subscribing to this schedule
-          type: integer
-          format: int32
-        entityType:
-          $ref: '#/components/schemas/RecurringScheduleEntityType'
-        id:
-          description: The id of schedule entity map
-          type: integer
-          format: int32
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    RecurringScheduleCreateArgs:
-      description: RecurringScheduleCreateArgs
+    RecurringScheduleUpdateArgs:
+      description: RecurringScheduleUpdateArgs
       properties:
         data:
-          $ref: '#/components/schemas/RecurringScheduleCreateModel'
+          $ref: '#/components/schemas/RecurringScheduleUpdateModel'
+      type: object
+    UpdateFieldValueOfRecurringScheduleType:
+      description: The iteration period for the schedule.  The schedule will restart after this cycle.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/RecurringScheduleType'
       type: object
   securitySchemes:
     BearerToken:

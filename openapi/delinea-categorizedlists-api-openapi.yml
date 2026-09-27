@@ -914,460 +914,9 @@ paths:
       deprecated: false
 components:
   schemas:
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    CategorizedListUpdateModel:
-      description: Data
-      properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        description:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        name:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    SimpleCategorizedList:
-      description: Query results
-      properties:
-        categorizedListId:
-          description: List Id
-          type: string
-          format: uuid
-        name:
-          description: Name of the list
-          type: string
-      type: object
-    CategorizedListItemCreateArgs:
-      description: List Option Create Argument
-      properties:
-        data:
-          description: Value(s) of the list options to add
-          items:
-            $ref: '#/components/schemas/CategorizedListItemCreateModel'
-          type: array
-      type: object
-    CategorizedListAuditModel:
-      description: Query results
-      properties:
-        action:
-          description: Action
-          type: string
-        categorizedListAuditId:
-          description: CategorizedListAuditId
-          type: integer
-          format: int32
-        categorizedListId:
-          description: CategorizedListId
-          type: string
-          format: uuid
-        databaseName:
-          description: DatabaseName
-          type: string
-        dateRecorded:
-          description: DateRecorded
-          type: string
-          format: date-time
-        delegatedUserId:
-          description: DelegatedUserId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        delegatedUserName:
-          description: DelegatedUserName
-          type: string
-        displayName:
-          description: DisplayName
-          type: string
-        formattedDate:
-          description: FormattedDate
-          type: string
-        ipAddress:
-          description: IpAddress
-          type: string
-        machineName:
-          description: MachineName
-          type: string
-        notes:
-          description: Notes
-          type: string
-        userId:
-          description: UserId
-          type: integer
-          format: int32
-        userName:
-          description: UserName
-          type: string
-      type: object
     Char:
       description: Delimiter used in the file
       properties: {}
-      type: object
-    CategorizedListModel:
-      description: CategorizedListModel
-      properties:
-        active:
-          description: Whether or not the list is active
-          type: boolean
-        categorizedListId:
-          description: List Id
-          type: string
-          format: uuid
-        description:
-          description: Description of the list
-          type: string
-        name:
-          description: Name of the list
-          type: string
-      type: object
-    PagingOfCategorizedListItemViewModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/CategorizedListItemViewModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    CategorizedListItemDeleteModel:
-      description: CategorizedListItemDeleteModel
-      properties:
-        isDeleted:
-          description: IsDeleted
-          type: boolean
-      type: object
-    CategorizedListItemSingleCreateArgs:
-      description: Single List Option Create Argument
-      properties:
-        option:
-          $ref: '#/components/schemas/CategorizedListItemCreateModel'
-      type: object
-    PagingOfCategorizedListItemModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/CategorizedListItemModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    CategorizedListDeleteModel:
-      description: CategorizedListDeleteModel
-      properties:
-        id:
-          description: Id
-          type: string
-          format: uuid
-        objectType:
-          description: ObjectType
-          type: string
-        responseCodes:
-          description: ResponseCodes
-          items:
-            type: string
-          type: array
-      type: object
-    PagingOfCategorizedListSummary:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/CategorizedListSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    CategorizedListItemCreateWithFileArgs:
-      description: List option create argument using a file
-      properties:
-        delimiter:
-          $ref: '#/components/schemas/Char'
-        file:
-          description: Uploaded file containing list options to add
-          type: string
-          format: binary
-      type: object
-    CategorizedListItemModel:
-      description: Query results
-      properties:
-        categorizedListId:
-          description: Categorized List Id
-          type: string
-          format: uuid
-        categorizedListItemId:
-          description: Categorized List Item Id
-          type: string
-          format: uuid
-        category:
-          description: Categorized List Item Category
-          type: string
-        value:
-          description: Categorized List Item Value
-          type: string
-      type: object
-    PagingOfSimpleCategorizedList:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/SimpleCategorizedList'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    CategorizedListItemSingleUpdateArgs:
-      description: List Option Update Argument
-      properties:
-        option:
-          $ref: '#/components/schemas/CategorizedListItemUpdateModel'
-      type: object
-    CategorizedListUpdateArgs:
-      description: CategorizedListUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/CategorizedListUpdateModel'
       type: object
     ViewFieldValueOfString:
       description: GeneratedToken
@@ -1444,37 +993,7 @@ components:
           description: Value
           type: string
       type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    CategorizedListItemViewModel:
-      description: Query results
-      properties:
-        categorizedListId:
-          description: CategorizedListId
-          type: string
-          format: uuid
-        categorizedListItemId:
-          description: CategorizedListItemId
-          type: string
-          format: uuid
-        category:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-        value:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-      type: object
-    CategorizedListCreateArgs:
-      description: CategorizedListCreateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/CategorizedListUpdateModel'
-      type: object
-    PagingOfCategorizedListAuditModel:
+    PagingOfCategorizedListItemModel:
       description: Specify paging and sorting options for querying records and returning results
       properties:
         batchCount:
@@ -1506,7 +1025,7 @@ components:
         records:
           description: Query results
           items:
-            $ref: '#/components/schemas/CategorizedListAuditModel'
+            $ref: '#/components/schemas/CategorizedListItemModel'
           type: array
         severity:
           $ref: '#/components/schemas/Severity'
@@ -1531,85 +1050,62 @@ components:
           type: integer
           format: int32
       type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
+    CategorizedListCreateArgs:
+      description: CategorizedListCreateArgs
       properties:
-        message:
-          description: Error message
+        data:
+          $ref: '#/components/schemas/CategorizedListUpdateModel'
+      type: object
+    CategorizedListItemSingleCreateArgs:
+      description: Single List Option Create Argument
+      properties:
+        option:
+          $ref: '#/components/schemas/CategorizedListItemCreateModel'
+      type: object
+    SimpleCategorizedList:
+      description: Query results
+      properties:
+        categorizedListId:
+          description: List Id
+          type: string
+          format: uuid
+        name:
+          description: Name of the list
           type: string
       type: object
-    CategorizedListItemCreateModel:
-      description: Value(s) of the list options to add
+    CategorizedListItemModel:
+      description: Query results
       properties:
+        categorizedListId:
+          description: Categorized List Id
+          type: string
+          format: uuid
+        categorizedListItemId:
+          description: Categorized List Item Id
+          type: string
+          format: uuid
         category:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
+          description: Categorized List Item Category
+          type: string
         value:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
+          description: Categorized List Item Value
+          type: string
       type: object
-    CategorizedListItemUpdateModel:
-      description: Value(s) of the list options to update
+    CategorizedListItemViewModel:
+      description: Query results
       properties:
+        categorizedListId:
+          description: CategorizedListId
+          type: string
+          format: uuid
         categorizedListItemId:
           description: CategorizedListItemId
           type: string
           format: uuid
         category:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
+          $ref: '#/components/schemas/ViewFieldValueOfString'
         value:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    CategorizedListSummary:
-      description: Query results
-      properties:
-        active:
-          description: Whether or not the list is active
-          type: boolean
-        categorizedListId:
-          description: List Id
-          type: string
-        description:
-          description: Description of the list
-          type: string
-        name:
-          description: Name of the list
-          type: string
-        numOptions:
-          description: The number of options in the list
-          type: integer
-          format: int32
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
+          $ref: '#/components/schemas/ViewFieldValueOfString'
       type: object
     ViewFieldLink:
       description: AdditionalLinks
@@ -1623,6 +1119,128 @@ components:
         url:
           description: Url
           type: string
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    CategorizedListDeleteModel:
+      description: CategorizedListDeleteModel
+      properties:
+        id:
+          description: Id
+          type: string
+          format: uuid
+        objectType:
+          description: ObjectType
+          type: string
+        responseCodes:
+          description: ResponseCodes
+          items:
+            type: string
+          type: array
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    CategorizedListUpdateArgs:
+      description: CategorizedListUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/CategorizedListUpdateModel'
+      type: object
+    CategorizedListUpdateModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        description:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    CategorizedListItemUpdateArgs:
+      description: List Option Update Argument
+      properties:
+        data:
+          description: Value(s) of the list options to update
+          items:
+            $ref: '#/components/schemas/CategorizedListItemUpdateModel'
+          type: array
+      type: object
+    CategorizedListItemSingleUpdateArgs:
+      description: List Option Update Argument
+      properties:
+        option:
+          $ref: '#/components/schemas/CategorizedListItemUpdateModel'
+      type: object
+    PagingOfCategorizedListItemViewModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/CategorizedListItemViewModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
       type: object
     PagingOfString:
       description: Specify paging and sorting options for querying records and returning results
@@ -1681,14 +1299,396 @@ components:
           type: integer
           format: int32
       type: object
-    CategorizedListItemUpdateArgs:
-      description: List Option Update Argument
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    CategorizedListItemUpdateModel:
+      description: Value(s) of the list options to update
+      properties:
+        categorizedListItemId:
+          description: CategorizedListItemId
+          type: string
+          format: uuid
+        category:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        value:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    CategorizedListSummary:
+      description: Query results
+      properties:
+        active:
+          description: Whether or not the list is active
+          type: boolean
+        categorizedListId:
+          description: List Id
+          type: string
+        description:
+          description: Description of the list
+          type: string
+        name:
+          description: Name of the list
+          type: string
+        numOptions:
+          description: The number of options in the list
+          type: integer
+          format: int32
+      type: object
+    CategorizedListItemDeleteModel:
+      description: CategorizedListItemDeleteModel
+      properties:
+        isDeleted:
+          description: IsDeleted
+          type: boolean
+      type: object
+    CategorizedListItemCreateWithFileArgs:
+      description: List option create argument using a file
+      properties:
+        delimiter:
+          $ref: '#/components/schemas/Char'
+        file:
+          description: Uploaded file containing list options to add
+          type: string
+          format: binary
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    PagingOfSimpleCategorizedList:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SimpleCategorizedList'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    CategorizedListItemCreateArgs:
+      description: List Option Create Argument
       properties:
         data:
-          description: Value(s) of the list options to update
+          description: Value(s) of the list options to add
           items:
-            $ref: '#/components/schemas/CategorizedListItemUpdateModel'
+            $ref: '#/components/schemas/CategorizedListItemCreateModel'
           type: array
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    CategorizedListModel:
+      description: CategorizedListModel
+      properties:
+        active:
+          description: Whether or not the list is active
+          type: boolean
+        categorizedListId:
+          description: List Id
+          type: string
+          format: uuid
+        description:
+          description: Description of the list
+          type: string
+        name:
+          description: Name of the list
+          type: string
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    PagingOfCategorizedListAuditModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/CategorizedListAuditModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    PagingOfCategorizedListSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/CategorizedListSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    CategorizedListAuditModel:
+      description: Query results
+      properties:
+        action:
+          description: Action
+          type: string
+        categorizedListAuditId:
+          description: CategorizedListAuditId
+          type: integer
+          format: int32
+        categorizedListId:
+          description: CategorizedListId
+          type: string
+          format: uuid
+        databaseName:
+          description: DatabaseName
+          type: string
+        dateRecorded:
+          description: DateRecorded
+          type: string
+          format: date-time
+        delegatedUserId:
+          description: DelegatedUserId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        delegatedUserName:
+          description: DelegatedUserName
+          type: string
+        displayName:
+          description: DisplayName
+          type: string
+        formattedDate:
+          description: FormattedDate
+          type: string
+        ipAddress:
+          description: IpAddress
+          type: string
+        machineName:
+          description: MachineName
+          type: string
+        notes:
+          description: Notes
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+        userName:
+          description: UserName
+          type: string
+      type: object
+    CategorizedListItemCreateModel:
+      description: Value(s) of the list options to add
+      properties:
+        category:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        value:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
       type: object
   requestBodies:
     CategorizedListItemCreateArgs:
