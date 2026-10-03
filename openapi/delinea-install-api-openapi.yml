@@ -89,22 +89,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    CreateInitialUserData:
-      description: Create initial user
-      properties:
-        displayName:
-          description: The full display name for the user
-          type: string
-        emailAddress:
-          description: A valid email address
-          type: string
-        password:
-          description: Password
-          type: string
-        userName:
-          description: The login username or user id used to login
-          type: string
-      type: object
     InitialUserSettingsModel:
       description: InitialUserSettingsModel
       properties:
@@ -125,21 +109,21 @@ components:
           description: PasswordRequireUppercase
           type: boolean
       type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
+    CreateInitialUserData:
+      description: Create initial user
       properties:
-        message:
-          description: Error message
+        displayName:
+          description: The full display name for the user
           type: string
-      type: object
-    CreateInitialUserResponseModel:
-      description: CreateInitialUserResponseModel
-      properties:
-        success:
-          description: Success
-          type: boolean
+        emailAddress:
+          description: A valid email address
+          type: string
+        password:
+          description: Password
+          type: string
+        userName:
+          description: The login username or user id used to login
+          type: string
       type: object
     BadRequestResponse:
       description: Response object for invalid requests
@@ -158,12 +142,6 @@ components:
         modelState:
           description: An object describing validation errors
           type: object
-      type: object
-    CreateInitialUserArgs:
-      description: CreateInitialUserArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/CreateInitialUserData'
       type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
@@ -185,6 +163,28 @@ components:
         stackTrace:
           description: Exception stack trace
           type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    CreateInitialUserResponseModel:
+      description: CreateInitialUserResponseModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    CreateInitialUserArgs:
+      description: CreateInitialUserArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateInitialUserData'
       type: object
   securitySchemes:
     BearerToken:

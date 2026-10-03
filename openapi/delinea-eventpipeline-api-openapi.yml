@@ -563,8 +563,8 @@ paths:
       deprecated: false
 components:
   schemas:
-    ViewFieldValueOfString:
-      description: GeneratedToken
+    ViewFieldValueOfBoolean:
+      description: When enabled, the log will be able to be viewed online
       properties:
         additionalLinks:
           description: AdditionalLinks
@@ -636,7 +636,373 @@ components:
           format: int32
         value:
           description: Value
+          type: boolean
+      type: object
+    SettingForDisplay:
+      description: Setting
+      properties:
+        active:
+          description: Active
+          type: boolean
+        canEdit:
+          description: CanEdit
+          type: boolean
+        canEditValue:
+          description: CanEditValue
+          type: boolean
+        childLoadSQL:
+          description: ChildLoadSQL
           type: string
+        childSettings:
+          description: ChildSettings
+          items:
+            $ref: '#/components/schemas/Setting'
+          type: array
+        defaultValue:
+          description: DefaultValue
+          type: string
+        isVisible:
+          description: IsVisible
+          type: boolean
+        nameLocalizeKey:
+          description: NameLocalizeKey
+          type: string
+        parentSettingId:
+          description: ParentSettingId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        regexValidation:
+          description: RegexValidation
+          type: string
+        settingId:
+          description: SettingId
+          type: integer
+          format: int32
+        settingName:
+          description: SettingName
+          type: string
+        settingSectionId:
+          description: SettingSectionId
+          type: integer
+          format: int32
+        settingType:
+          $ref: '#/components/schemas/SettingType'
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+        subSettingSectionId:
+          description: SubSettingSectionId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        tooltipLocalizeKey:
+          description: TooltipLocalizeKey
+          type: string
+      type: object
+    EventPipelineTaskViewModel:
+      description: TaskList
+      properties:
+        eventEntityTypeId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum'
+        eventPipelineTaskDescription:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        eventPipelineTaskDisplayName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        eventPipelineTaskId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        eventPipelineTaskMapId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfInt32'
+        eventPipelineTaskName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        isMultiSelect:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfBoolean'
+        settings:
+          $ref: '#/components/schemas/ViewFieldValueOfEventPipelineTaskSettingValueMapViewModelArray'
+        sortOrder:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+      type: object
+    EventPipelineViewModel:
+      description: Query results
+      properties:
+        active:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        createdDate:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfDateTime'
+        eventEntityTypeId:
+          description: EventEntityTypeId
+          type: integer
+          format: int32
+        eventPipelineDescription:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        eventPipelineId:
+          description: EventPipelineId
+          type: integer
+          format: int32
+        eventPipelineName:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        eventPipelinePolicyId:
+          description: EventPipelinePolicyId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        eventPipelinePolicyMapId:
+          description: EventPipelinePolicyMapId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        filterList:
+          description: FilterList
+          items:
+            $ref: '#/components/schemas/EventPipelineFilterViewModel'
+          type: array
+        isSystem:
+          description: IsSystem
+          type: boolean
+        lastModifiedDate:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfDateTime'
+        lastModifiedDisplayName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        sortOrder:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        taskList:
+          description: TaskList
+          items:
+            $ref: '#/components/schemas/EventPipelineTaskViewModel'
+          type: array
+        triggers:
+          description: Triggers
+          items:
+            $ref: '#/components/schemas/EventPipelineTriggerViewModel'
+          type: array
+      type: object
+    PagingOfEventPipelineSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EventPipelineSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    EventPipelineTaskSettingValueMapModel:
+      description: Event Pipeline Task Setting Value Map
+      properties:
+        eventPipelineTaskMapId:
+          description: Event Pipeline Task Map Id
+          type: integer
+          format: int32
+        eventPipelineTaskSettingValueMapId:
+          description: Event Pipeline Task Setting Value Map Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        overrideDefault:
+          description: Override Default
+          type: boolean
+        setting:
+          $ref: '#/components/schemas/SettingForDisplay'
+        settingDisplay:
+          description: Setting Display
+          type: string
+        settingDisplayValue:
+          description: Setting Display Value
+          type: string
+        settingId:
+          description: Setting Id
+          type: integer
+          format: int32
+        settingValue:
+          description: Setting Value
+          type: string
+        usingDefault:
+          description: Whether or not to use the setting's default value.
+          type: boolean
+      type: object
+    EventPipelineRunViewModel:
+      description: Query results
+      properties:
+        description:
+          description: Description
+          type: string
+        duration:
+          description: Duration
+          type: string
+        endDate:
+          description: EndDate
+          type:
+          - string
+          - 'null'
+          format: date-time
+        entityTypeName:
+          description: EntityTypeName
+          type: string
+        eventDateTime:
+          description: EventDateTime
+          type: string
+          format: date-time
+        eventDetails:
+          description: EventDetails
+          type: string
+        eventName:
+          description: EventName
+          type: string
+        eventPipelineId:
+          description: EventPipelineId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        eventPipelinePolicyRunId:
+          description: EventPipelinePolicyRunId
+          type: string
+          format: uuid
+        itemId:
+          description: ItemId
+          type: integer
+          format: int32
+        itemName:
+          description: ItemName
+          type: string
+        name:
+          description: Name
+          type: string
+        queuedDate:
+          description: QueuedDate
+          type: string
+          format: date-time
+        startDate:
+          description: StartDate
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          $ref: '#/components/schemas/EventPipelineStatus'
+      type: object
+    EventPipelineTriggerViewModel:
+      description: Triggers
+      properties:
+        entityTypeDisplayName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        eventActionId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        eventEntityTypeId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum'
+        eventPipelineId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfInt32'
+        eventPipelineTriggerId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        triggerDisplayName:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+      type: object
+    SettingType:
+      description: SettingType
+      properties: {}
+      type: string
+      enum:
+      - Default
+      - Integer
+      - String
+      - Boolean
+      - StringArray
+      - DropDown
+      - DropDownItem
+      - MultilineString
+      - IntegerArray
+      - Radio
+      - RadioItem
+    EventPipelineTaskModel:
+      description: Event Pipeline Task
+      properties:
+        eventEntityTypeId:
+          description: Event Entity Type Id
+          type:
+          - string
+          - 'null'
+        eventPipelineTaskDescription:
+          description: Event Pipeline Task Description
+          type: string
+        eventPipelineTaskDisplayName:
+          description: Event Pipeline Task Display Name
+          type: string
+        eventPipelineTaskId:
+          description: Event Pipeline Task Id
+          type: integer
+          format: int32
+        eventPipelineTaskMapId:
+          description: Event Pipeline Task Map Id
+          type: integer
+          format: int32
+        eventPipelineTaskName:
+          description: Event Pipeline Name
+          type: string
+        isMultiSelect:
+          description: Multiselect
+          type: boolean
+        settings:
+          description: Settings
+          items:
+            $ref: '#/components/schemas/EventPipelineTaskSettingValueMapModel'
+          type: array
+        sortOrder:
+          description: Sort ORder
+          type: integer
+          format: int32
       type: object
     PagingOfEventPipelineViewModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -731,11 +1097,413 @@ components:
           type: integer
           format: int32
       type: object
-    EventPipelineTriggerUpdateModel:
-      description: Value
+    EventPipelineModel:
+      description: Event Pipeline
       properties:
+        active:
+          description: Active
+          type: boolean
+        createdDate:
+          description: Event Pipeline Created Date
+          type: string
+          format: date-time
+        eventEntityTypeId:
+          description: Entity Type Id
+          type: integer
+          format: int32
+        eventPipelineDescription:
+          description: Event Pipeline Description
+          type: string
+        eventPipelineId:
+          description: Event Pipeline Id
+          type: integer
+          format: int32
+        eventPipelineName:
+          description: Event Pipeline Name
+          type: string
+        eventPipelinePolicyId:
+          description: Event Pipeline Policy Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        eventPipelinePolicyMapId:
+          description: Event Pipeline Policy Map Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        filterList:
+          description: Event Pipeline Filters
+          items:
+            $ref: '#/components/schemas/EventPipelineFilterModel'
+          type: array
+        isSystem:
+          description: Event pipeline used by the system
+          type: boolean
+        lastModifiedDate:
+          description: Event Pipeline Modified Date
+          type: string
+          format: date-time
+        lastModifiedDisplayName:
+          description: Event Pipeline Last Modified Date
+          type: string
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
+        taskList:
+          description: Event Pipeline Tasks
+          items:
+            $ref: '#/components/schemas/EventPipelineTaskModel'
+          type: array
+        triggers:
+          description: Event Pipeline Triggers
+          items:
+            $ref: '#/components/schemas/EventPipelineTriggerModel'
+          type: array
+      type: object
+    EventPipelineTriggerModel:
+      description: Event Pipeline Trigger
+      properties:
+        entityTypeDisplayName:
+          description: Entity Type Display Name
+          type: string
         eventActionId:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+          description: Event Action Id
+          type: integer
+          format: int32
+        eventPipelineId:
+          description: Event Pipeline Id
+          type: integer
+          format: int32
+        eventPipelineTriggerId:
+          description: Event Pipeline Trigger Id
+          type: integer
+          format: int32
+        triggerDisplayName:
+          description: Trigger Display Name
+          type: string
+      type: object
+    EventPipelineUpdateArgs:
+      description: EventPipelineUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EventPipelineUpdateModel'
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    ViewFieldValueReadOnlyOfEventPipelineFilterSettingValueMapViewModelArray:
+      description: Settings
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineFilterSettingValueMapViewModel'
+          type: array
+      type: object
+    UpdateFieldValueOfEventPipelineTaskMapUpdateModelArray:
+      description: Tasks
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineTaskMapUpdateModel'
+          type: array
+      type: object
+    Setting:
+      description: ChildSettings
+      properties:
+        active:
+          description: Active
+          type: boolean
+        canEdit:
+          description: CanEdit
+          type: boolean
+        canEditValue:
+          description: CanEditValue
+          type: boolean
+        childLoadSQL:
+          description: ChildLoadSQL
+          type: string
+        defaultValue:
+          description: DefaultValue
+          type: string
+        isVisible:
+          description: IsVisible
+          type: boolean
+        nameLocalizeKey:
+          description: NameLocalizeKey
+          type: string
+        parentSettingId:
+          description: ParentSettingId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        regexValidation:
+          description: RegexValidation
+          type: string
+        settingId:
+          description: SettingId
+          type: integer
+          format: int32
+        settingName:
+          description: SettingName
+          type: string
+        settingSectionId:
+          description: SettingSectionId
+          type: integer
+          format: int32
+        settingType:
+          $ref: '#/components/schemas/SettingType'
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+        subSettingSectionId:
+          description: SubSettingSectionId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        tooltipLocalizeKey:
+          description: TooltipLocalizeKey
+          type: string
+      type: object
+    ViewFieldValueReadOnlyOfInt32:
+      description: ID of the mapping between the Tenant and Secret.
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfEventPipelineFilterMapUpdateModelArray:
+      description: Filters
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/EventPipelineFilterMapUpdateModel'
+          type: array
+      type: object
+    EventPipelineSummaryModel:
+      description: Query results
+      properties:
+        active:
+          description: Active
+          type: boolean
+        createdDate:
+          description: Event Pipeline Created Date
+          type: string
+          format: date-time
+        eventEntityTypeId:
+          description: Entity Type Id
+          type: integer
+          format: int32
+        eventPipelineDescription:
+          description: Event Pipeline Description
+          type: string
+        eventPipelineId:
+          description: Event Pipeline Id
+          type: integer
+          format: int32
+        eventPipelineName:
+          description: Event Pipeline Name
+          type: string
+        eventPipelinePolicyId:
+          description: Event Pipeline Policy Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        eventPipelinePolicyMapId:
+          description: Event Pipeline Policy Map Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        isSystem:
+          description: Event pipeline used by the system
+          type: boolean
+        lastModifiedDate:
+          description: Event Pipeline Modified Date
+          type: string
+          format: date-time
+        lastModifiedDisplayName:
+          description: Event Pipeline Last Modified Date
+          type: string
+        sortOrder:
+          description: Sort Order
+          type: integer
+          format: int32
       type: object
     EventPipeline:
       description: EventPipeline
@@ -784,236 +1552,39 @@ components:
           type: integer
           format: int32
       type: object
-    ViewFieldValueReadOnlyOfBoolean:
-      description: IsMultiSelect
-      properties:
-        additionalLinks:
-          description: AdditionalLinks
-          items:
-            $ref: '#/components/schemas/ViewFieldLink'
-          type: array
-        description:
-          description: Description
-          type: string
-        fieldInputType:
-          description: FieldInputType
-          type:
-          - string
-          - 'null'
-        hasHistory:
-          description: HasHistory
-          type:
-          - boolean
-          - 'null'
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type:
-          - boolean
-          - 'null'
-        hideOnView:
-          description: HideOnView
-          type:
-          - boolean
-          - 'null'
-        isRequired:
-          description: IsRequired
-          type:
-          - boolean
-          - 'null'
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type:
-          - boolean
-          - 'null'
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value:
-          description: Value
-          type: boolean
-      type: object
-    UpdateFieldValueOfOptionalInt32:
-      description: The minimum length required for local user passwords
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    EventPipelineFilterSettingValueMapModel:
-      description: Event Pipeline Filter Setting Value Map
-      properties:
-        eventPipelineFilterMapId:
-          description: Event Pipeline Filter Map Id
-          type: integer
-          format: int32
-        eventPipelineFilterSettingValueMapId:
-          description: Event Pipeline Filter Setting Value Map Id
-          type:
-          - integer
-          - 'null'
-          format: int32
-        overrideDefault:
-          description: Whether to override the default value
-          type: boolean
-        setting:
-          $ref: '#/components/schemas/SettingForDisplay'
-        settingDisplay:
-          description: Setting Display
-          type: string
-        settingDisplayValue:
-          description: Setting Display Value
-          type: string
-        settingId:
-          description: Setting Id
-          type: integer
-          format: int32
-        settingValue:
-          description: Setting Value
-          type: string
-        usingDefault:
-          description: Whether or not to use the setting's default value.
-          type: boolean
-      type: object
-    ViewFieldValueOfInt32:
-      description: OrganizationId
-      properties:
-        additionalLinks:
-          description: AdditionalLinks
-          items:
-            $ref: '#/components/schemas/ViewFieldLink'
-          type: array
-        description:
-          description: Description
-          type: string
-        fieldInputType:
-          description: FieldInputType
-          type:
-          - string
-          - 'null'
-        hasHistory:
-          description: HasHistory
-          type:
-          - boolean
-          - 'null'
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type:
-          - boolean
-          - 'null'
-        hideOnView:
-          description: HideOnView
-          type:
-          - boolean
-          - 'null'
-        isRequired:
-          description: IsRequired
-          type:
-          - boolean
-          - 'null'
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type:
-          - boolean
-          - 'null'
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value:
-          description: Value
-          type: integer
-          format: int32
-      type: object
-    EventPipelinePolicyMap:
-      description: EventPipelinePolicyMap[]
-      properties:
-        eventPipelineId:
-          description: EventPipelineId
-          type: integer
-          format: int32
-        eventPipelinePolicyId:
-          description: EventPipelinePolicyId
-          type: integer
-          format: int32
-        eventPipelinePolicyMapId:
-          description: EventPipelinePolicyMapId
-          type: integer
-          format: int32
-        sortOrder:
-          description: SortOrder
-          type: integer
-          format: int32
-      type: object
-    EventPipelineStatus:
-      description: Status
+    SortDirection:
+      description: Sort direction
       properties: {}
       type: string
       enum:
-      - Failed
-      - Success
-      - Skipped
-      - Processing
-      - Pending
-      - Scheduled
+      - None
+      - Asc
+      - Desc
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    EventPipelineUpdateModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        eventPipelineDescription:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        eventPipelineName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        filters:
+          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineFilterMapUpdateModelArray'
+        tasks:
+          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineTaskMapUpdateModelArray'
+        triggers:
+          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineTriggerUpdateModelArray'
+      type: object
     ViewFieldValueReadOnlyOfString:
       description: Name of the Secret.
       properties:
@@ -1089,412 +1660,60 @@ components:
           description: Value
           type: string
       type: object
-    PagingOfEventPipelineSummaryModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/EventPipelineSummaryModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    ViewFieldLink:
-      description: AdditionalLinks
-      properties:
-        isExternal:
-          description: IsExternal
-          type: boolean
-        linkText:
-          description: LinkText
-          type: string
-        url:
-          description: Url
-          type: string
-      type: object
-    ViewFieldValueReadOnlyOfDateTime:
-      description: When the Secret was originally mapped to the Tenant.
-      properties:
-        additionalLinks:
-          description: AdditionalLinks
-          items:
-            $ref: '#/components/schemas/ViewFieldLink'
-          type: array
-        description:
-          description: Description
-          type: string
-        fieldInputType:
-          description: FieldInputType
-          type:
-          - string
-          - 'null'
-        hasHistory:
-          description: HasHistory
-          type:
-          - boolean
-          - 'null'
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type:
-          - boolean
-          - 'null'
-        hideOnView:
-          description: HideOnView
-          type:
-          - boolean
-          - 'null'
-        isRequired:
-          description: IsRequired
-          type:
-          - boolean
-          - 'null'
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type:
-          - boolean
-          - 'null'
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value:
-          description: Value
-          type: string
-          format: date-time
-      type: object
-    EventPipelineUpdateModel:
-      description: Data
-      properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        eventPipelineDescription:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        eventPipelineName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        filters:
-          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineFilterMapUpdateModelArray'
-        tasks:
-          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineTaskMapUpdateModelArray'
-        triggers:
-          $ref: '#/components/schemas/UpdateFieldValueOfEventPipelineTriggerUpdateModelArray'
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    EventPipelineUpdateArgs:
-      description: EventPipelineUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/EventPipelineUpdateModel'
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    SettingForDisplay:
-      description: Setting
-      properties:
-        active:
-          description: Active
-          type: boolean
-        canEdit:
-          description: CanEdit
-          type: boolean
-        canEditValue:
-          description: CanEditValue
-          type: boolean
-        childLoadSQL:
-          description: ChildLoadSQL
-          type: string
-        childSettings:
-          description: ChildSettings
-          items:
-            $ref: '#/components/schemas/Setting'
-          type: array
-        defaultValue:
-          description: DefaultValue
-          type: string
-        isVisible:
-          description: IsVisible
-          type: boolean
-        nameLocalizeKey:
-          description: NameLocalizeKey
-          type: string
-        parentSettingId:
-          description: ParentSettingId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        regexValidation:
-          description: RegexValidation
-          type: string
-        settingId:
-          description: SettingId
-          type: integer
-          format: int32
-        settingName:
-          description: SettingName
-          type: string
-        settingSectionId:
-          description: SettingSectionId
-          type: integer
-          format: int32
-        settingType:
-          $ref: '#/components/schemas/SettingType'
-        sortOrder:
-          description: SortOrder
-          type: integer
-          format: int32
-        subSettingSectionId:
-          description: SubSettingSectionId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        tooltipLocalizeKey:
-          description: TooltipLocalizeKey
-          type: string
-      type: object
-    ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum:
-      description: EventEntityTypeId
-      properties:
-        additionalLinks:
-          description: AdditionalLinks
-          items:
-            $ref: '#/components/schemas/ViewFieldLink'
-          type: array
-        description:
-          description: Description
-          type: string
-        fieldInputType:
-          description: FieldInputType
-          type:
-          - string
-          - 'null'
-        hasHistory:
-          description: HasHistory
-          type:
-          - boolean
-          - 'null'
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type:
-          - boolean
-          - 'null'
-        hideOnView:
-          description: HideOnView
-          type:
-          - boolean
-          - 'null'
-        isRequired:
-          description: IsRequired
-          type:
-          - boolean
-          - 'null'
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type:
-          - boolean
-          - 'null'
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value:
-          description: Value
-          type:
-          - string
-          - 'null'
-      type: object
-    EventPipelineFilterMapUpdateModel:
+    EventPipelineTaskMapUpdateModel:
       description: Value
       properties:
-        eventPipelineFilterId:
+        eventPipelineTaskId:
           $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        eventPipelineFilterMapId:
+        eventPipelineTaskMapId:
           $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        eventPipelineFilterName:
+        eventPipelineTaskName:
           $ref: '#/components/schemas/UpdateFieldValueOfString'
         settings:
           $ref: '#/components/schemas/UpdateFieldValueOfSettingUpdateModelArray'
         sortOrder:
           $ref: '#/components/schemas/UpdateFieldValueOfInt32'
       type: object
-    EventPipelineModel:
-      description: Event Pipeline
+    EventPipelinePolicyMap:
+      description: EventPipelinePolicyMap[]
       properties:
-        active:
-          description: Active
-          type: boolean
-        createdDate:
-          description: Event Pipeline Created Date
-          type: string
-          format: date-time
-        eventEntityTypeId:
-          description: Entity Type Id
-          type: integer
-          format: int32
-        eventPipelineDescription:
-          description: Event Pipeline Description
-          type: string
         eventPipelineId:
-          description: Event Pipeline Id
+          description: EventPipelineId
           type: integer
           format: int32
-        eventPipelineName:
-          description: Event Pipeline Name
-          type: string
         eventPipelinePolicyId:
-          description: Event Pipeline Policy Id
-          type:
-          - integer
-          - 'null'
+          description: EventPipelinePolicyId
+          type: integer
           format: int32
         eventPipelinePolicyMapId:
-          description: Event Pipeline Policy Map Id
-          type:
-          - integer
-          - 'null'
-          format: int32
-        filterList:
-          description: Event Pipeline Filters
-          items:
-            $ref: '#/components/schemas/EventPipelineFilterModel'
-          type: array
-        isSystem:
-          description: Event pipeline used by the system
-          type: boolean
-        lastModifiedDate:
-          description: Event Pipeline Modified Date
-          type: string
-          format: date-time
-        lastModifiedDisplayName:
-          description: Event Pipeline Last Modified Date
-          type: string
-        sortOrder:
-          description: Sort Order
+          description: EventPipelinePolicyMapId
           type: integer
           format: int32
-        taskList:
-          description: Event Pipeline Tasks
+        sortOrder:
+          description: SortOrder
+          type: integer
+          format: int32
+      type: object
+    EventPipelineOrderUpdateModel:
+      description: Data
+      properties:
+        eventPipelinePolicyId:
+          description: EventPipelinePolicyId
+          type: integer
+          format: int32
+        sortOrder:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    UpdateFieldValueOfEventPipelineTriggerUpdateModelArray:
+      description: Triggers
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
           items:
-            $ref: '#/components/schemas/EventPipelineTaskModel'
-          type: array
-        triggers:
-          description: Event Pipeline Triggers
-          items:
-            $ref: '#/components/schemas/EventPipelineTriggerModel'
+            $ref: '#/components/schemas/EventPipelineTriggerUpdateModel'
           type: array
       type: object
     ViewFieldValueReadOnlyOfOptionalInt32:
@@ -1575,292 +1794,28 @@ components:
           - 'null'
           format: int32
       type: object
-    EventPipelineViewModel:
-      description: Query results
+    ViewFieldLink:
+      description: AdditionalLinks
       properties:
-        active:
-          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
-        createdDate:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfDateTime'
-        eventEntityTypeId:
-          description: EventEntityTypeId
-          type: integer
-          format: int32
-        eventPipelineDescription:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-        eventPipelineId:
-          description: EventPipelineId
-          type: integer
-          format: int32
-        eventPipelineName:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-        eventPipelinePolicyId:
-          description: EventPipelinePolicyId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        eventPipelinePolicyMapId:
-          description: EventPipelinePolicyMapId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        filterList:
-          description: FilterList
-          items:
-            $ref: '#/components/schemas/EventPipelineFilterViewModel'
-          type: array
-        isSystem:
-          description: IsSystem
+        isExternal:
+          description: IsExternal
           type: boolean
-        lastModifiedDate:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfDateTime'
-        lastModifiedDisplayName:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
-        sortOrder:
-          $ref: '#/components/schemas/ViewFieldValueOfInt32'
-        taskList:
-          description: TaskList
-          items:
-            $ref: '#/components/schemas/EventPipelineTaskViewModel'
-          type: array
-        triggers:
-          description: Triggers
-          items:
-            $ref: '#/components/schemas/EventPipelineTriggerViewModel'
-          type: array
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
+          type: string
       type: object
-    UpdateFieldValueOfEventPipelineTriggerUpdateModelArray:
-      description: Triggers
+    UpdateFieldValueOfString:
+      description: Description
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
           description: Value
-          items:
-            $ref: '#/components/schemas/EventPipelineTriggerUpdateModel'
-          type: array
-      type: object
-    SettingUpdateModel:
-      description: Value
-      properties:
-        settingName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        settingValue:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
-    ViewFieldValueReadOnlyOfEventPipelineFilterSettingValueMapViewModelArray:
-      description: Settings
-      properties:
-        additionalLinks:
-          description: AdditionalLinks
-          items:
-            $ref: '#/components/schemas/ViewFieldLink'
-          type: array
-        description:
-          description: Description
           type: string
-        fieldInputType:
-          description: FieldInputType
-          type:
-          - string
-          - 'null'
-        hasHistory:
-          description: HasHistory
-          type:
-          - boolean
-          - 'null'
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type:
-          - boolean
-          - 'null'
-        hideOnView:
-          description: HideOnView
-          type:
-          - boolean
-          - 'null'
-        isRequired:
-          description: IsRequired
-          type:
-          - boolean
-          - 'null'
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type:
-          - boolean
-          - 'null'
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value:
-          description: Value
-          items:
-            $ref: '#/components/schemas/EventPipelineFilterSettingValueMapViewModel'
-          type: array
-      type: object
-    EventPipelineTaskViewModel:
-      description: TaskList
-      properties:
-        eventEntityTypeId:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum'
-        eventPipelineTaskDescription:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
-        eventPipelineTaskDisplayName:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
-        eventPipelineTaskId:
-          $ref: '#/components/schemas/ViewFieldValueOfInt32'
-        eventPipelineTaskMapId:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfInt32'
-        eventPipelineTaskName:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
-        isMultiSelect:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfBoolean'
-        settings:
-          $ref: '#/components/schemas/ViewFieldValueOfEventPipelineTaskSettingValueMapViewModelArray'
-        sortOrder:
-          $ref: '#/components/schemas/ViewFieldValueOfInt32'
-      type: object
-    EventPipelineRunViewModel:
-      description: Query results
-      properties:
-        description:
-          description: Description
-          type: string
-        duration:
-          description: Duration
-          type: string
-        endDate:
-          description: EndDate
-          type:
-          - string
-          - 'null'
-          format: date-time
-        entityTypeName:
-          description: EntityTypeName
-          type: string
-        eventDateTime:
-          description: EventDateTime
-          type: string
-          format: date-time
-        eventDetails:
-          description: EventDetails
-          type: string
-        eventName:
-          description: EventName
-          type: string
-        eventPipelineId:
-          description: EventPipelineId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        eventPipelinePolicyRunId:
-          description: EventPipelinePolicyRunId
-          type: string
-          format: uuid
-        itemId:
-          description: ItemId
-          type: integer
-          format: int32
-        itemName:
-          description: ItemName
-          type: string
-        name:
-          description: Name
-          type: string
-        queuedDate:
-          description: QueuedDate
-          type: string
-          format: date-time
-        startDate:
-          description: StartDate
-          type:
-          - string
-          - 'null'
-          format: date-time
-        status:
-          $ref: '#/components/schemas/EventPipelineStatus'
-      type: object
-    EventPipelineSummaryModel:
-      description: Query results
-      properties:
-        active:
-          description: Active
-          type: boolean
-        createdDate:
-          description: Event Pipeline Created Date
-          type: string
-          format: date-time
-        eventEntityTypeId:
-          description: Entity Type Id
-          type: integer
-          format: int32
-        eventPipelineDescription:
-          description: Event Pipeline Description
-          type: string
-        eventPipelineId:
-          description: Event Pipeline Id
-          type: integer
-          format: int32
-        eventPipelineName:
-          description: Event Pipeline Name
-          type: string
-        eventPipelinePolicyId:
-          description: Event Pipeline Policy Id
-          type:
-          - integer
-          - 'null'
-          format: int32
-        eventPipelinePolicyMapId:
-          description: Event Pipeline Policy Map Id
-          type:
-          - integer
-          - 'null'
-          format: int32
-        isSystem:
-          description: Event pipeline used by the system
-          type: boolean
-        lastModifiedDate:
-          description: Event Pipeline Modified Date
-          type: string
-          format: date-time
-        lastModifiedDisplayName:
-          description: Event Pipeline Last Modified Date
-          type: string
-        sortOrder:
-          description: Sort Order
-          type: integer
-          format: int32
       type: object
     EventPipelineFilterViewModel:
       description: FilterList
@@ -1882,8 +1837,8 @@ components:
         sortOrder:
           $ref: '#/components/schemas/ViewFieldValueReadOnlyOfInt32'
       type: object
-    ViewFieldValueOfBoolean:
-      description: When enabled, the log will be able to be viewed online
+    ViewFieldValueOfInt32:
+      description: OrganizationId
       properties:
         additionalLinks:
           description: AdditionalLinks
@@ -1955,29 +1910,85 @@ components:
           format: int32
         value:
           description: Value
-          type: boolean
-      type: object
-    EventPipelineOrderUpdateModel:
-      description: Data
-      properties:
-        eventPipelinePolicyId:
-          description: EventPipelinePolicyId
           type: integer
           format: int32
-        sortOrder:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
       type: object
-    UpdateFieldValueOfEventPipelineTaskMapUpdateModelArray:
-      description: Tasks
+    ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum:
+      description: EventEntityTypeId
       properties:
-        dirty:
-          description: Dirty
-          type: boolean
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
         value:
           description: Value
-          items:
-            $ref: '#/components/schemas/EventPipelineTaskMapUpdateModel'
-          type: array
+          type:
+          - string
+          - 'null'
       type: object
     EventPipelineActivateUpdateArgs:
       description: EventPipelineActivateUpdateArgs
@@ -1985,90 +1996,6 @@ components:
         activate:
           description: Activate
           type: boolean
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    UpdateFieldValueOfInt32:
-      description: How many days until the password expires.
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: integer
-          format: int32
-      type: object
-    PagingOfEventPipelineRunViewModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/EventPipelineRunViewModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
       type: object
     EventPipelineCreateArgs:
       description: EventPipelineCreateArgs
@@ -2086,26 +2013,19 @@ components:
           - 'null'
           format: int32
       type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
       properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
       type: object
-    ViewFieldValueReadOnlyOfInt32:
-      description: ID of the mapping between the Tenant and Secret.
+    ViewFieldValueOfString:
+      description: GeneratedToken
       properties:
         additionalLinks:
           description: AdditionalLinks
@@ -2177,143 +2097,7 @@ components:
           format: int32
         value:
           description: Value
-          type: integer
-          format: int32
-      type: object
-    EventPipelineTriggerModel:
-      description: Event Pipeline Trigger
-      properties:
-        entityTypeDisplayName:
-          description: Entity Type Display Name
           type: string
-        eventActionId:
-          description: Event Action Id
-          type: integer
-          format: int32
-        eventPipelineId:
-          description: Event Pipeline Id
-          type: integer
-          format: int32
-        eventPipelineTriggerId:
-          description: Event Pipeline Trigger Id
-          type: integer
-          format: int32
-        triggerDisplayName:
-          description: Trigger Display Name
-          type: string
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    Setting:
-      description: ChildSettings
-      properties:
-        active:
-          description: Active
-          type: boolean
-        canEdit:
-          description: CanEdit
-          type: boolean
-        canEditValue:
-          description: CanEditValue
-          type: boolean
-        childLoadSQL:
-          description: ChildLoadSQL
-          type: string
-        defaultValue:
-          description: DefaultValue
-          type: string
-        isVisible:
-          description: IsVisible
-          type: boolean
-        nameLocalizeKey:
-          description: NameLocalizeKey
-          type: string
-        parentSettingId:
-          description: ParentSettingId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        regexValidation:
-          description: RegexValidation
-          type: string
-        settingId:
-          description: SettingId
-          type: integer
-          format: int32
-        settingName:
-          description: SettingName
-          type: string
-        settingSectionId:
-          description: SettingSectionId
-          type: integer
-          format: int32
-        settingType:
-          $ref: '#/components/schemas/SettingType'
-        sortOrder:
-          description: SortOrder
-          type: integer
-          format: int32
-        subSettingSectionId:
-          description: SubSettingSectionId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        tooltipLocalizeKey:
-          description: TooltipLocalizeKey
-          type: string
-      type: object
-    SettingType:
-      description: SettingType
-      properties: {}
-      type: string
-      enum:
-      - Default
-      - Integer
-      - String
-      - Boolean
-      - StringArray
-      - DropDown
-      - DropDownItem
-      - MultilineString
-      - IntegerArray
-      - Radio
-      - RadioItem
-    EventPipelineOrderUpdateArgs:
-      description: EventPipelineOrderUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/EventPipelineOrderUpdateModel'
       type: object
     ViewFieldValueOfEventPipelineTaskSettingValueMapViewModelArray:
       description: Settings
@@ -2392,29 +2176,80 @@ components:
             $ref: '#/components/schemas/EventPipelineTaskSettingValueMapViewModel'
           type: array
       type: object
-    EventPipelineTaskMapUpdateModel:
-      description: Value
+    ViewFieldValueReadOnlyOfBoolean:
+      description: IsMultiSelect
       properties:
-        eventPipelineTaskId:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        eventPipelineTaskMapId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        eventPipelineTaskName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        settings:
-          $ref: '#/components/schemas/UpdateFieldValueOfSettingUpdateModelArray'
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
         sortOrder:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
         value:
           description: Value
-          type: string
+          type: boolean
       type: object
     ViewFieldValueOfSettingForDisplay:
       description: Setting
@@ -2490,43 +2325,40 @@ components:
         value:
           $ref: '#/components/schemas/SettingForDisplay'
       type: object
-    EventPipelineTaskModel:
-      description: Event Pipeline Task
+    EventPipelineFilterSettingValueMapViewModel:
+      description: Value
       properties:
-        eventEntityTypeId:
-          description: Event Entity Type Id
-          type:
-          - string
-          - 'null'
-        eventPipelineTaskDescription:
-          description: Event Pipeline Task Description
+        eventPipelineFilterMapId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        eventPipelineFilterSettingValueMapId:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalInt32'
+        overrideDefault:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        setting:
+          $ref: '#/components/schemas/ViewFieldValueOfSettingForDisplay'
+        settingDisplay:
+          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
+        settingDisplayValue:
+          description: SettingDisplayValue
           type: string
-        eventPipelineTaskDisplayName:
-          description: Event Pipeline Task Display Name
-          type: string
-        eventPipelineTaskId:
-          description: Event Pipeline Task Id
-          type: integer
-          format: int32
-        eventPipelineTaskMapId:
-          description: Event Pipeline Task Map Id
-          type: integer
-          format: int32
-        eventPipelineTaskName:
-          description: Event Pipeline Name
-          type: string
-        isMultiSelect:
-          description: Multiselect
-          type: boolean
-        settings:
-          description: Settings
-          items:
-            $ref: '#/components/schemas/EventPipelineTaskSettingValueMapModel'
-          type: array
-        sortOrder:
-          description: Sort ORder
-          type: integer
-          format: int32
+        settingId:
+          $ref: '#/components/schemas/ViewFieldValueOfInt32'
+        settingValue:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+        usingDefault:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+      type: object
+    EventPipelineOrderUpdateArgs:
+      description: EventPipelineOrderUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EventPipelineOrderUpdateModel'
+      type: object
+    EventPipelineTriggerUpdateModel:
+      description: Value
+      properties:
+        eventActionId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
       type: object
     EventPipelineTaskSettingValueMapViewModel:
       description: Value
@@ -2551,81 +2383,91 @@ components:
         usingDefault:
           $ref: '#/components/schemas/ViewFieldValueOfBoolean'
       type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
+    PagingOfEventPipelineRunViewModel:
+      description: Specify paging and sorting options for querying records and returning results
       properties:
-        message:
-          description: Error message
-          type: string
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EventPipelineRunViewModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
       type: object
-    UpdateFieldValueOfSettingUpdateModelArray:
-      description: Settings
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
           description: Value
-          items:
-            $ref: '#/components/schemas/SettingUpdateModel'
-          type: array
+          type:
+          - integer
+          - 'null'
+          format: int32
       type: object
-    EventPipelineTriggerViewModel:
-      description: Triggers
-      properties:
-        entityTypeDisplayName:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
-        eventActionId:
-          $ref: '#/components/schemas/ViewFieldValueOfInt32'
-        eventEntityTypeId:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum'
-        eventPipelineId:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfInt32'
-        eventPipelineTriggerId:
-          $ref: '#/components/schemas/ViewFieldValueOfInt32'
-        triggerDisplayName:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
-      type: object
-    EventPipelineFilterSettingValueMapViewModel:
-      description: Value
+    EventPipelineFilterSettingValueMapModel:
+      description: Event Pipeline Filter Setting Value Map
       properties:
         eventPipelineFilterMapId:
-          $ref: '#/components/schemas/ViewFieldValueOfInt32'
-        eventPipelineFilterSettingValueMapId:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfOptionalInt32'
-        overrideDefault:
-          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
-        setting:
-          $ref: '#/components/schemas/ViewFieldValueOfSettingForDisplay'
-        settingDisplay:
-          $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
-        settingDisplayValue:
-          description: SettingDisplayValue
-          type: string
-        settingId:
-          $ref: '#/components/schemas/ViewFieldValueOfInt32'
-        settingValue:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-        usingDefault:
-          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
-      type: object
-    EventPipelineTaskSettingValueMapModel:
-      description: Event Pipeline Task Setting Value Map
-      properties:
-        eventPipelineTaskMapId:
-          description: Event Pipeline Task Map Id
+          description: Event Pipeline Filter Map Id
           type: integer
           format: int32
-        eventPipelineTaskSettingValueMapId:
-          description: Event Pipeline Task Setting Value Map Id
+        eventPipelineFilterSettingValueMapId:
+          description: Event Pipeline Filter Setting Value Map Id
           type:
           - integer
           - 'null'
           format: int32
         overrideDefault:
-          description: Override Default
+          description: Whether to override the default value
           type: boolean
         setting:
           $ref: '#/components/schemas/SettingForDisplay'
@@ -2646,8 +2488,8 @@ components:
           description: Whether or not to use the setting's default value.
           type: boolean
       type: object
-    UpdateFieldValueOfEventPipelineFilterMapUpdateModelArray:
-      description: Filters
+    UpdateFieldValueOfSettingUpdateModelArray:
+      description: Settings
       properties:
         dirty:
           description: Dirty
@@ -2655,8 +2497,166 @@ components:
         value:
           description: Value
           items:
-            $ref: '#/components/schemas/EventPipelineFilterMapUpdateModel'
+            $ref: '#/components/schemas/SettingUpdateModel'
           type: array
+      type: object
+    SettingUpdateModel:
+      description: Value
+      properties:
+        settingName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        settingValue:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    EventPipelineFilterMapUpdateModel:
+      description: Value
+      properties:
+        eventPipelineFilterId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        eventPipelineFilterMapId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        eventPipelineFilterName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        settings:
+          $ref: '#/components/schemas/UpdateFieldValueOfSettingUpdateModelArray'
+        sortOrder:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+      type: object
+    EventPipelineStatus:
+      description: Status
+      properties: {}
+      type: string
+      enum:
+      - Failed
+      - Success
+      - Skipped
+      - Processing
+      - Pending
+      - Scheduled
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    ViewFieldValueReadOnlyOfDateTime:
+      description: When the Secret was originally mapped to the Tenant.
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value:
+          description: Value
+          type: string
+          format: date-time
       type: object
   securitySchemes:
     BearerToken:

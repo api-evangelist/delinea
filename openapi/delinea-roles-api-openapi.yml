@@ -593,19 +593,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    RolePermissionModel:
-      description: Role Permission
-      properties:
-        name:
-          description: Role Name
-          type: string
-        rolePermissionId:
-          description: Role Permission ID
-          type: integer
-          format: int32
-        roleType:
-          $ref: '#/components/schemas/RoleTypes'
-      type: object
     RolePatchArgs:
       description: RolePatchArgs
       properties:
@@ -671,6 +658,26 @@ components:
           type: integer
           format: int32
       type: object
+    RoleCreateArgs:
+      description: Role create options
+      required:
+      - name
+      - enabled
+      properties:
+        enabled:
+          description: Whether the Role is active
+          type: boolean
+        name:
+          description: Role name
+          type: string
+      type: object
+    RoleGroupsPatchResult:
+      description: RoleGroupsPatchResult
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
     Severity:
       description: Error severity level
       properties: {}
@@ -681,6 +688,90 @@ components:
       - Warn
       - Critical
       - Fatal
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    RoleModel:
+      description: Role
+      properties:
+        created:
+          description: Created
+          type: string
+          format: date-time
+        enabled:
+          description: Enabled
+          type: boolean
+        id:
+          description: Role Id
+          type: integer
+          format: int32
+        isSystem:
+          description: Is System Role
+          type: boolean
+        name:
+          description: Name
+          type: string
+      type: object
+    RoleGroupSummary:
+      description: Group
+      properties:
+        created:
+          description: Created Date
+          type: string
+          format: date-time
+        displayName:
+          description: Group display name
+          type: string
+        domainName:
+          description: Active Directory domain name
+          type: string
+        enabled:
+          description: Whether the group is active
+          type: boolean
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+        name:
+          description: Group name
+          type: string
+        personal:
+          description: Whether the group is for a single user
+          type: boolean
+      type: object
+    RolePermissionsAssignmentResponse:
+      description: The status of the Role Permissions change action.
+      properties:
+        success:
+          description: The success or failure of the Role Permissions action.
+          type: boolean
+      type: object
+    GroupMembershipFilter:
+      description: Group membership filter
+      properties:
+        includeInactiveUsersForGroup:
+          description: Whether to include inactive users in the results
+          type: boolean
+        userDomainId:
+          description: Filter only users in a specific domain
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
     SortDirection:
       description: Sort direction
       properties: {}
@@ -689,6 +780,34 @@ components:
       - None
       - Asc
       - Desc
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    RoleGroupsPatchArgs:
+      description: RoleGroupsPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleGroupsPatchModel'
+      type: object
+    RolePermissionModel:
+      description: Role Permission
+      properties:
+        name:
+          description: Role Name
+          type: string
+        rolePermissionId:
+          description: Role Permission ID
+          type: integer
+          format: int32
+        roleType:
+          $ref: '#/components/schemas/RoleTypes'
+      type: object
     PagingOfRolePermissionModel:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -746,6 +865,37 @@ components:
           type: integer
           format: int32
       type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    UpdateFieldValueOfInt32Array:
+      description: FolderIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    RolePatchModel:
+      description: Patch Role
+      properties:
+        enabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
     RoleTypes:
       description: Role Type
       properties: {}
@@ -757,25 +907,52 @@ components:
       - SecretTemplateRoleType
       - ReportRoleType
       - ReportCategoryRoleType
-    RolePermissionsAssignmentResponse:
-      description: The status of the Role Permissions change action.
+    RoleGroupsPatchModel:
+      description: Data
       properties:
-        success:
-          description: The success or failure of the Role Permissions action.
-          type: boolean
+        groupIdsToAdd:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+        groupIdsToRemove:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
       type: object
-    GroupMembershipFilter:
-      description: Group membership filter
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
       properties:
-        includeInactiveUsersForGroup:
-          description: Whether to include inactive users in the results
-          type: boolean
-        userDomainId:
-          description: Filter only users in a specific domain
-          type:
-          - integer
-          - 'null'
-          format: int32
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
       type: object
     PagingOfRoleModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -834,92 +1011,6 @@ components:
           type: integer
           format: int32
       type: object
-    RoleGroupsPatchResult:
-      description: RoleGroupsPatchResult
-      properties:
-        success:
-          description: Success
-          type: boolean
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    RolePatchModel:
-      description: Patch Role
-      properties:
-        enabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        name:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    RoleGroupsPatchArgs:
-      description: RoleGroupsPatchArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/RoleGroupsPatchModel'
-      type: object
-    RolePermissionsAssignmentRequest:
-      description: RolePermissionsAssignmentRequest
-      properties:
-        rolePermissionIds:
-          description: This list will be the exact RolePermissions for the Role
-          items:
-            type: integer
-            format: int32
-          type: array
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
     UpdateFieldValueOfBoolean:
       description: Active
       properties:
@@ -930,102 +1021,11 @@ components:
           description: Value
           type: boolean
       type: object
-    RoleGroupSummary:
-      description: Group
+    RolePermissionsAssignmentRequest:
+      description: RolePermissionsAssignmentRequest
       properties:
-        created:
-          description: Created Date
-          type: string
-          format: date-time
-        displayName:
-          description: Group display name
-          type: string
-        domainName:
-          description: Active Directory domain name
-          type: string
-        enabled:
-          description: Whether the group is active
-          type: boolean
-        groupId:
-          description: Group ID
-          type: integer
-          format: int32
-        name:
-          description: Group name
-          type: string
-        personal:
-          description: Whether the group is for a single user
-          type: boolean
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    RoleCreateArgs:
-      description: Role create options
-      required:
-      - name
-      - enabled
-      properties:
-        enabled:
-          description: Whether the Role is active
-          type: boolean
-        name:
-          description: Role name
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    RoleGroupsPatchModel:
-      description: Data
-      properties:
-        groupIdsToAdd:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
-        groupIdsToRemove:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
-      type: object
-    RoleModel:
-      description: Role
-      properties:
-        created:
-          description: Created
-          type: string
-          format: date-time
-        enabled:
-          description: Enabled
-          type: boolean
-        id:
-          description: Role Id
-          type: integer
-          format: int32
-        isSystem:
-          description: Is System Role
-          type: boolean
-        name:
-          description: Name
-          type: string
-      type: object
-    UpdateFieldValueOfInt32Array:
-      description: FolderIds
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
+        rolePermissionIds:
+          description: This list will be the exact RolePermissions for the Role
           items:
             type: integer
             format: int32

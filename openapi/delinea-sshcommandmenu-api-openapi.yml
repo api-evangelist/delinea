@@ -406,56 +406,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    SshCommandMenuModel:
-      description: SSH Command Menu
-      properties:
-        active:
-          description: Active
-          type: boolean
-        description:
-          description: Description
-          type: string
-        name:
-          description: Name
-          type: string
-        sshCommandMenuGuid:
-          description: Ssh Command Menu Guid Id
-          type: string
-          format: uuid
-        sshCommandMenuId:
-          description: Ssh Command Menu Id
-          type: integer
-          format: int32
-        sshCommands:
-          description: SshCommands
-          type: string
-      type: object
-    SshCommandMenuAuditSummaryModel:
-      description: SSH Command Menu Audits
-      properties:
-        action:
-          description: Action
-          type: string
-        dateRecorded:
-          description: The date of the change
-          type: string
-          format: date-time
-        newCommands:
-          description: New Commands
-          type: string
-        notes:
-          description: Notes
-          type: string
-        oldCommands:
-          description: Old Commands
-          type: string
-        sshCommandMenuName:
-          description: The name of the command menu
-          type: string
-        userDisplayName:
-          description: Display name of the user making the change
-          type: string
-      type: object
     SshCommandItemAuditSummaryModel:
       description: SSH Command Info Audits (Menu, Blocklist, Command)
       properties:
@@ -484,6 +434,23 @@ components:
         userDisplayName:
           description: Display name of the user making the change
           type: string
+      type: object
+    SshCommandMenuSummaryModel:
+      description: SSH Command Menu Summary
+      properties:
+        active:
+          description: Active
+          type: boolean
+        description:
+          description: Description
+          type: string
+        name:
+          description: Name
+          type: string
+        sshCommandMenuId:
+          description: ID of the SSH Command Menu
+          type: integer
+          format: int32
       type: object
     SshCommandMenuPatchArgs:
       description: SshCommandMenuPatchArgs
@@ -522,158 +489,6 @@ components:
       - Warn
       - Critical
       - Fatal
-    SshCommandMenuPatchModel:
-      description: Patch SSH Command Menu
-      properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        description:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        name:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        sshCommandMenuGuid:
-          description: Ssh Command Menu Guid Id
-          type:
-          - string
-          - 'null'
-          format: uuid
-        sshCommandMenuId:
-          description: Ssh Command Menu Id
-          type:
-          - integer
-          - 'null'
-          format: int32
-        sshCommands:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    PagingOfSshCommandMenuAuditSummaryModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/SshCommandMenuAuditSummaryModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    PagingOfSshCommandItemAuditSummaryModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/SshCommandItemAuditSummaryModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    SshCommandMenuActions:
-      description: Actions the current user can perform
-      properties: {}
-      type: string
-      enum:
-      - CanCreate
     Sort:
       description: Sort options. Multiple sort options can be provided in the query string.
       required:
@@ -690,88 +505,14 @@ components:
           type: integer
           format: int32
       type: object
-    SshCommandMenuCreateArgs:
-      description: Options to create SSH Command Menu
-      properties:
-        data:
-          $ref: '#/components/schemas/SshCommandMenuCreateModel'
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    SshCommandMenuSummaryModel:
-      description: SSH Command Menu Summary
-      properties:
-        active:
-          description: Active
-          type: boolean
-        description:
-          description: Description
-          type: string
-        name:
-          description: Name
-          type: string
-        sshCommandMenuId:
-          description: ID of the SSH Command Menu
-          type: integer
-          format: int32
-      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
     AuthenticationFailedResponse:
       description: Response object for authentication failures
       required:
@@ -838,6 +579,16 @@ components:
           type: integer
           format: int32
       type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
     SshCommandMenuStateModel:
       description: Available state that can be performed on the SSH command feature such as actions
       properties:
@@ -849,6 +600,255 @@ components:
         viewPolicy:
           description: ViewPolicy
           type: boolean
+      type: object
+    SshCommandMenuPatchModel:
+      description: Patch SSH Command Menu
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        description:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        sshCommandMenuGuid:
+          description: Ssh Command Menu Guid Id
+          type:
+          - string
+          - 'null'
+          format: uuid
+        sshCommandMenuId:
+          description: Ssh Command Menu Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        sshCommands:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    PagingOfSshCommandItemAuditSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SshCommandItemAuditSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    SshCommandMenuCreateArgs:
+      description: Options to create SSH Command Menu
+      properties:
+        data:
+          $ref: '#/components/schemas/SshCommandMenuCreateModel'
+      type: object
+    SshCommandMenuActions:
+      description: Actions the current user can perform
+      properties: {}
+      type: string
+      enum:
+      - CanCreate
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    SshCommandMenuModel:
+      description: SSH Command Menu
+      properties:
+        active:
+          description: Active
+          type: boolean
+        description:
+          description: Description
+          type: string
+        name:
+          description: Name
+          type: string
+        sshCommandMenuGuid:
+          description: Ssh Command Menu Guid Id
+          type: string
+          format: uuid
+        sshCommandMenuId:
+          description: Ssh Command Menu Id
+          type: integer
+          format: int32
+        sshCommands:
+          description: SshCommands
+          type: string
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    SshCommandMenuAuditSummaryModel:
+      description: SSH Command Menu Audits
+      properties:
+        action:
+          description: Action
+          type: string
+        dateRecorded:
+          description: The date of the change
+          type: string
+          format: date-time
+        newCommands:
+          description: New Commands
+          type: string
+        notes:
+          description: Notes
+          type: string
+        oldCommands:
+          description: Old Commands
+          type: string
+        sshCommandMenuName:
+          description: The name of the command menu
+          type: string
+        userDisplayName:
+          description: Display name of the user making the change
+          type: string
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    PagingOfSshCommandMenuAuditSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/SshCommandMenuAuditSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
       type: object
   securitySchemes:
     BearerToken:

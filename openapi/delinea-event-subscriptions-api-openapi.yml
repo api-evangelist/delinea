@@ -284,246 +284,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    EventSubscriptionEntity:
-      description: The type of item that can be monitored.  Secret, folder, engine, etc..
-      properties: {}
-      type: string
-      enum:
-      - User
-      - Folder
-      - Role
-      - RolePermission
-      - Configuration
-      - Group
-      - IpAddressRange
-      - Secret
-      - UnlimitedAdmin
-      - ExportSecrets
-      - ImportSecrets
-      - UserAudit
-      - SecretTemplate
-      - Licenses
-      - ScriptPowerShell
-      - SecretPolicy
-      - ScriptSsh
-      - ScriptSql
-      - Encryption
-      - Site
-      - Engine
-      - SiteConnector
-      - SecurityAnalyticsConfiguration
-      - DualControl
-      - Tls
-      - PasswordChanger
-      - CharacterSet
-      - PasswordRequirement
-      - Domain
-      - BackupConfiguration
-      - SecretServerSettings
-      - AutoExport
-      - SshProxy
-      - RdpProxy
-      - Node
-      - DisasterRecovery
-      - Platform
-      - Other
-    EventSubscriptionTypeActionModel:
-      description: The list of actions available for the entity
-      properties:
-        conditions:
-          description: A list of available conditions to apply to the action/entity combination
-          items:
-            $ref: '#/components/schemas/EventSubscriptionConditionType'
-          type: array
-        displayName:
-          description: The localized name
-          type: string
-        eventActionId:
-          description: The ID of the event action
-          type: integer
-          format: int32
-      type: object
-    EventSubscriptionCreateModel:
-      description: Data
-      properties:
-        active:
-          description: Active
-          type: boolean
-        entityActions:
-          description: EntityActions
-          items:
-            $ref: '#/components/schemas/EventSubscriptionEntityActionModel'
-          type: array
-        sendEmail:
-          description: SendEmail
-          type: boolean
-        sendSlack:
-          description: SendSlack
-          type: boolean
-        subscriptionName:
-          description: SubscriptionName
-          type: string
-      type: object
-    EventSubscriptionStubViewModel:
-      description: EventSubscriptionStubViewModel
-      properties:
-        sendEmail:
-          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
-        sendSlack:
-          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
-      type: object
-    EntityTypeModel:
-      description: EntityTypeModel[]
-      properties:
-        actions:
-          description: The list of actions available for the entity
-          items:
-            $ref: '#/components/schemas/EventSubscriptionTypeActionModel'
-          type: array
-        conditionTypeOptions:
-          description: The list of condition type options available for the entity
-          items:
-            $ref: '#/components/schemas/EventSubscriptionConditionTypeOptionModel'
-          type: array
-        displayName:
-          description: The localized name of the entity type, such as Secret, IP Address Range, or Folder
-          type: string
-        entity:
-          $ref: '#/components/schemas/EventSubscriptionEntity'
-        id:
-          $ref: '#/components/schemas/EventSubscriptionEntity'
-      type: object
-    ViewFieldLink:
-      description: AdditionalLinks
-      properties:
-        isExternal:
-          description: IsExternal
-          type: boolean
-        linkText:
-          description: LinkText
-          type: string
-        url:
-          description: Url
-          type: string
-      type: object
-    EventSubscriptionUpdateArgs:
-      description: EventSubscriptionUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/EventSubscriptionUpdateModel'
-      type: object
-    PagingOfEventSubscriptionSummary:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/EventSubscriptionSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    EventSubscriptionCreateArgs:
-      description: EventSubscriptionCreateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/EventSubscriptionCreateModel'
-      type: object
-    EventSubscriptionSubscriberModel:
-      description: A list of the groups subscribed to the event
-      properties:
-        displayName:
-          description: DisplayName
-          type: string
-        groupId:
-          description: GroupId
-          type: integer
-          format: int32
-        isGroup:
-          description: IsGroup
-          type: boolean
-      type: object
-    EventSubscriptionConditionType:
-      description: A list of available conditions to apply to the action/entity combination
-      properties: {}
-      type: string
-      enum:
-      - All
-      - InFolder
-      - ShowSubfolder
-      - ThisFolder
-      - Secret
-      - User
-      - Group
-      - Role
-      - Permission
-      - PasswordChanger
-      - PasswordRequirement
-      - CharacterSet
     ViewFieldValueOfBoolean:
       description: When enabled, the log will be able to be viewed online
       properties:
@@ -599,81 +359,18 @@ components:
           description: Value
           type: boolean
       type: object
-    EventSubscriptionConditionTypeOptionModel:
-      description: The list of condition type options available for the entity
+    EventSubscriptionSummary:
+      description: Query results
       properties:
-        optionId:
-          description: OptionId
-          type: integer
-          format: int32
-        optionName:
-          description: OptionName
-          type: string
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    UpdateFieldValueOfInt32:
-      description: How many days until the password expires.
-      properties:
-        dirty:
-          description: Dirty
+        active:
+          description: Active
           type: boolean
-        value:
-          description: Value
+        eventSubscriptionId:
+          description: EventSubscriptionId
           type: integer
           format: int32
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
+        name:
+          description: Name
           type: string
       type: object
     EventSubscriptionModel:
@@ -722,8 +419,164 @@ components:
         subscriptionName:
           $ref: '#/components/schemas/UpdateFieldValueOfString'
       type: object
-    UpdateFieldValueOfEventSubscriptionEntityActionModelArray:
-      description: A list of the entity actions that file the subscription
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    EventSubscriptionTypeActionModel:
+      description: The list of actions available for the entity
+      properties:
+        conditions:
+          description: A list of available conditions to apply to the action/entity combination
+          items:
+            $ref: '#/components/schemas/EventSubscriptionConditionType'
+          type: array
+        displayName:
+          description: The localized name
+          type: string
+        eventActionId:
+          description: The ID of the event action
+          type: integer
+          format: int32
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    EventSubscriptionCreateArgs:
+      description: EventSubscriptionCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EventSubscriptionCreateModel'
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    PagingOfEventSubscriptionSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/EventSubscriptionSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    ViewFieldLink:
+      description: AdditionalLinks
+      properties:
+        isExternal:
+          description: IsExternal
+          type: boolean
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
+          type: string
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    EventSubscriptionConditionTypeOptionModel:
+      description: The list of condition type options available for the entity
+      properties:
+        optionId:
+          description: OptionId
+          type: integer
+          format: int32
+        optionName:
+          description: OptionName
+          type: string
+      type: object
+    UpdateFieldValueOfInt32Array:
+      description: FolderIds
       properties:
         dirty:
           description: Dirty
@@ -731,18 +584,90 @@ components:
         value:
           description: Value
           items:
-            $ref: '#/components/schemas/EventSubscriptionEntityActionModel'
+            type: integer
+            format: int32
           type: array
       type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
+    EntityTypeModel:
+      description: EntityTypeModel[]
+      properties:
+        actions:
+          description: The list of actions available for the entity
+          items:
+            $ref: '#/components/schemas/EventSubscriptionTypeActionModel'
+          type: array
+        conditionTypeOptions:
+          description: The list of condition type options available for the entity
+          items:
+            $ref: '#/components/schemas/EventSubscriptionConditionTypeOptionModel'
+          type: array
+        displayName:
+          description: The localized name of the entity type, such as Secret, IP Address Range, or Folder
+          type: string
+        entity:
+          $ref: '#/components/schemas/EventSubscriptionEntity'
+        id:
+          $ref: '#/components/schemas/EventSubscriptionEntity'
+      type: object
+    EventSubscriptionStubViewModel:
+      description: EventSubscriptionStubViewModel
+      properties:
+        sendEmail:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+        sendSlack:
+          $ref: '#/components/schemas/ViewFieldValueOfBoolean'
+      type: object
+    EventSubscriptionSubscriberModel:
+      description: A list of the groups subscribed to the event
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+        isGroup:
+          description: IsGroup
+          type: boolean
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
           description: Value
+          type: integer
+          format: int32
+      type: object
+    EventSubscriptionUpdateArgs:
+      description: EventSubscriptionUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/EventSubscriptionUpdateModel'
+      type: object
+    EventSubscriptionCreateModel:
+      description: Data
+      properties:
+        active:
+          description: Active
           type: boolean
+        entityActions:
+          description: EntityActions
+          items:
+            $ref: '#/components/schemas/EventSubscriptionEntityActionModel'
+          type: array
+        sendEmail:
+          description: SendEmail
+          type: boolean
+        sendSlack:
+          description: SendSlack
+          type: boolean
+        subscriptionName:
+          description: SubscriptionName
+          type: string
       type: object
     EventSubscriptionEntityActionModel:
       description: EntityActions
@@ -789,41 +714,8 @@ components:
           description: ItemName
           type: string
       type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    EventSubscriptionSummary:
-      description: Query results
-      properties:
-        active:
-          description: Active
-          type: boolean
-        eventSubscriptionId:
-          description: EventSubscriptionId
-          type: integer
-          format: int32
-        name:
-          description: Name
-          type: string
-      type: object
-    UpdateFieldValueOfInt32Array:
-      description: FolderIds
+    UpdateFieldValueOfEventSubscriptionEntityActionModelArray:
+      description: A list of the entity actions that file the subscription
       properties:
         dirty:
           description: Dirty
@@ -831,10 +723,118 @@ components:
         value:
           description: Value
           items:
-            type: integer
-            format: int32
+            $ref: '#/components/schemas/EventSubscriptionEntityActionModel'
           type: array
       type: object
+    EventSubscriptionEntity:
+      description: The type of item that can be monitored.  Secret, folder, engine, etc..
+      properties: {}
+      type: string
+      enum:
+      - User
+      - Folder
+      - Role
+      - RolePermission
+      - Configuration
+      - Group
+      - IpAddressRange
+      - Secret
+      - UnlimitedAdmin
+      - ExportSecrets
+      - ImportSecrets
+      - UserAudit
+      - SecretTemplate
+      - Licenses
+      - ScriptPowerShell
+      - SecretPolicy
+      - ScriptSsh
+      - ScriptSql
+      - Encryption
+      - Site
+      - Engine
+      - SiteConnector
+      - SecurityAnalyticsConfiguration
+      - DualControl
+      - Tls
+      - PasswordChanger
+      - CharacterSet
+      - PasswordRequirement
+      - Domain
+      - BackupConfiguration
+      - SecretServerSettings
+      - AutoExport
+      - SshProxy
+      - RdpProxy
+      - Node
+      - DisasterRecovery
+      - Platform
+      - Other
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    EventSubscriptionConditionType:
+      description: A list of available conditions to apply to the action/entity combination
+      properties: {}
+      type: string
+      enum:
+      - All
+      - InFolder
+      - ShowSubfolder
+      - ThisFolder
+      - Secret
+      - User
+      - Group
+      - Role
+      - Permission
+      - PasswordChanger
+      - PasswordRequirement
+      - CharacterSet
   securitySchemes:
     BearerToken:
       type: apiKey

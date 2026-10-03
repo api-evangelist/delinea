@@ -356,69 +356,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    MasterEncryptionKeyRotationStatus:
-      description: CurrentStatus
-      properties: {}
-      type: string
-      enum:
-      - NeverRun
-      - RotationRequested
-      - KeyRotationStarted
-      - KeyRotationCompleted
-      - PendingRestart
-      - MarkDataStarted
-      - MarkDataCompleted
-      - DataRotationStarted
-      - DataRotationCompleted
-      - SessionDataRotationStarted
-      - SessionDataRotationCompleted
-      - ProcessCompletedWithErrorsBeforeRotation
-      - ProcessFailedAfterRotation
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    KeyManagementConfigModel:
-      description: KeyManagementConfigModel
-      properties:
-        awsKmsAccessKeyId:
-          description: AwsKmsAccessKeyId
-          type: string
-        awsKmsKeyArn:
-          description: AwsKmsKeyArn
-          type: string
-        awsKmsKeyId:
-          description: AwsKmsKeyId
-          type: string
-        awsKmsSecretAccessKey:
-          description: AwsKmsSecretAccessKey
-          type: string
-        keyManagementConfigId:
-          description: KeyManagementConfigId
-          type: integer
-          format: int32
-        keyManagementTypeId:
-          description: KeyManagementTypeId
-          type: integer
-          format: int32
-        keyManagementTypeName:
-          description: KeyManagementTypeName
-          type: string
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
     KeyManagementConfigUpdateArgs:
       description: KeyManagementConfigUpdateArgs
       properties:
@@ -454,6 +391,84 @@ components:
           type: integer
           format: int32
       type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    MasterEncryptionKeyRotationInfoAuditUserViewModel:
+      description: MasterEncryptionKeyRotationInfoAuditUserViewModel[]
+      properties:
+        displayName:
+          description: DisplayName
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    MasterEncryptionKeyRotationStatus:
+      description: CurrentStatus
+      properties: {}
+      type: string
+      enum:
+      - NeverRun
+      - RotationRequested
+      - KeyRotationStarted
+      - KeyRotationCompleted
+      - PendingRestart
+      - MarkDataStarted
+      - MarkDataCompleted
+      - DataRotationStarted
+      - DataRotationCompleted
+      - SessionDataRotationStarted
+      - SessionDataRotationCompleted
+      - ProcessCompletedWithErrorsBeforeRotation
+      - ProcessFailedAfterRotation
     PagingOfMasterEncryptionKeyRotationInfoAuditViewModel:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -511,95 +526,31 @@ components:
           type: integer
           format: int32
       type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
+    KeyManagementConfigModel:
+      description: KeyManagementConfigModel
       properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
+        awsKmsAccessKeyId:
+          description: AwsKmsAccessKeyId
           type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
+        awsKmsKeyArn:
+          description: AwsKmsKeyArn
+          type: string
+        awsKmsKeyId:
+          description: AwsKmsKeyId
+          type: string
+        awsKmsSecretAccessKey:
+          description: AwsKmsSecretAccessKey
+          type: string
+        keyManagementConfigId:
+          description: KeyManagementConfigId
           type: integer
           format: int32
-      type: object
-    MasterEncryptionKeyRotationInfoAuditViewModel:
-      description: Query results
-      properties:
-        action:
-          description: Action
-          type: string
-        currentStatus:
-          $ref: '#/components/schemas/MasterEncryptionKeyRotationStatus'
-        date:
-          description: Date
-          type: string
-          format: date-time
-        displayName:
-          description: DisplayName
-          type: string
-        formattedDate:
-          description: FormattedDate
-          type: string
-        masterEncryptionKeyRotationInfoAuditId:
-          description: MasterEncryptionKeyRotationInfoAuditId
+        keyManagementTypeId:
+          description: KeyManagementTypeId
           type: integer
           format: int32
-        masterEncryptionKeyRotationInfoId:
-          description: MasterEncryptionKeyRotationInfoId
-          type: integer
-          format: int32
-        notes:
-          description: Notes
-          type: string
-        userId:
-          description: UserId
-          type: integer
-          format: int32
-        userName:
-          description: UserName
-          type: string
-      type: object
-    MEKRotationInfoModel:
-      description: RotationInfo
-      properties:
-        lastEndDateUtc:
-          description: LastEndDateUtc
-          type:
-          - string
-          - 'null'
-          format: date-time
-        startedDateUtc:
-          description: StartedDateUtc
-          type:
-          - string
-          - 'null'
-          format: date-time
-        status:
-          description: Status
-          type: string
-        statusUpdatedDateUtc:
-          description: StatusUpdatedDateUtc
-          type:
-          - string
-          - 'null'
-          format: date-time
-        statusValue:
-          description: StatusValue
-          type: integer
-          format: int32
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
+        keyManagementTypeName:
+          description: KeyManagementTypeName
           type: string
       type: object
     MEKRotationProcessStateTypes:
@@ -653,54 +604,103 @@ components:
           description: WarningMessage
           type: string
       type: object
-    MasterEncryptionKeyRotationInfoAuditUserViewModel:
-      description: MasterEncryptionKeyRotationInfoAuditUserViewModel[]
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
       properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    MEKRotationInfoModel:
+      description: RotationInfo
+      properties:
+        lastEndDateUtc:
+          description: LastEndDateUtc
+          type:
+          - string
+          - 'null'
+          format: date-time
+        startedDateUtc:
+          description: StartedDateUtc
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          description: Status
+          type: string
+        statusUpdatedDateUtc:
+          description: StatusUpdatedDateUtc
+          type:
+          - string
+          - 'null'
+          format: date-time
+        statusValue:
+          description: StatusValue
+          type: integer
+          format: int32
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    MasterEncryptionKeyRotationInfoAuditViewModel:
+      description: Query results
+      properties:
+        action:
+          description: Action
+          type: string
+        currentStatus:
+          $ref: '#/components/schemas/MasterEncryptionKeyRotationStatus'
+        date:
+          description: Date
+          type: string
+          format: date-time
         displayName:
           description: DisplayName
+          type: string
+        formattedDate:
+          description: FormattedDate
+          type: string
+        masterEncryptionKeyRotationInfoAuditId:
+          description: MasterEncryptionKeyRotationInfoAuditId
+          type: integer
+          format: int32
+        masterEncryptionKeyRotationInfoId:
+          description: MasterEncryptionKeyRotationInfoId
+          type: integer
+          format: int32
+        notes:
+          description: Notes
           type: string
         userId:
           description: UserId
           type: integer
           format: int32
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
+        userName:
+          description: UserName
           type: string
       type: object
   securitySchemes:

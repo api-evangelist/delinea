@@ -95,6 +95,16 @@ paths:
       deprecated: false
 components:
   schemas:
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
     ViewFieldLink:
       description: AdditionalLinks
       properties:
@@ -107,6 +117,121 @@ components:
         url:
           description: Url
           type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    ViewFieldValueReadOnlyOfInt32:
+      description: ID of the mapping between the Tenant and Secret.
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value:
+          description: Value
+          type: integer
+          format: int32
       type: object
     PagingOfHsmConfigurationAuditViewModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -165,40 +290,6 @@ components:
           type: integer
           format: int32
       type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
     HsmConfigurationAuditViewModel:
       description: Query results
       properties:
@@ -213,6 +304,14 @@ components:
         notes:
           $ref: '#/components/schemas/ViewFieldValueReadOnlyOfString'
       type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
     AuthenticationFailedResponse:
       description: Response object for authentication failures
       required:
@@ -297,120 +396,21 @@ components:
           description: Value
           type: string
       type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
       required:
-      - message
+      - name
+      - direction
       properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    ViewFieldValueReadOnlyOfInt32:
-      description: ID of the mapping between the Tenant and Secret.
-      properties:
-        additionalLinks:
-          description: AdditionalLinks
-          items:
-            $ref: '#/components/schemas/ViewFieldLink'
-          type: array
-        description:
-          description: Description
-          type: string
-        fieldInputType:
-          description: FieldInputType
-          type:
-          - string
-          - 'null'
-        hasHistory:
-          description: HasHistory
-          type:
-          - boolean
-          - 'null'
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type:
-          - boolean
-          - 'null'
-        hideOnView:
-          description: HideOnView
-          type:
-          - boolean
-          - 'null'
-        isRequired:
-          description: IsRequired
-          type:
-          - boolean
-          - 'null'
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type:
-          - integer
-          - 'null'
-          format: int32
+        direction:
+          $ref: '#/components/schemas/SortDirection'
         name:
-          description: Name
+          description: Sort field name
           type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type:
-          - boolean
-          - 'null'
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value:
-          description: Value
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
           type: integer
           format: int32
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
       type: object
   securitySchemes:
     BearerToken:

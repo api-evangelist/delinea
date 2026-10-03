@@ -50,6 +50,75 @@ paths:
       deprecated: false
 components:
   schemas:
+    CloudSubscriptionSummaryModel:
+      description: Subscriptions
+      properties:
+        description:
+          description: Description
+          type: string
+        displayName:
+          description: DisplayName
+          type: string
+        endDate:
+          description: EndDate
+          type:
+          - string
+          - 'null'
+          format: date-time
+        note:
+          description: Note
+          type: string
+        recurrence:
+          description: Recurrence
+          type: string
+        startDate:
+          description: StartDate
+          type: string
+          format: date-time
+        units:
+          description: Units
+          type: integer
+          format: int32
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
     SubscriptionsModel:
       description: Cloud subscriptions
       properties:
@@ -125,75 +194,6 @@ components:
       properties:
         message:
           description: Error message
-          type: string
-      type: object
-    CloudSubscriptionSummaryModel:
-      description: Subscriptions
-      properties:
-        description:
-          description: Description
-          type: string
-        displayName:
-          description: DisplayName
-          type: string
-        endDate:
-          description: EndDate
-          type:
-          - string
-          - 'null'
-          format: date-time
-        note:
-          description: Note
-          type: string
-        recurrence:
-          description: Recurrence
-          type: string
-        startDate:
-          description: StartDate
-          type: string
-          format: date-time
-        units:
-          description: Units
-          type: integer
-          format: int32
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
           type: string
       type: object
   securitySchemes:

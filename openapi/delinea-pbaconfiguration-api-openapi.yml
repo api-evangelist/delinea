@@ -256,6 +256,25 @@ paths:
       deprecated: false
 components:
   schemas:
+    PbaHistoricalImportViewModel:
+      description: PBA Historical Import
+      properties:
+        numberOfEventsProcessed:
+          description: Number Of Events Processed
+          type:
+          - integer
+          - 'null'
+          format: int32
+        success:
+          description: Success
+          type: boolean
+      type: object
+    PbaConfigurationUpdateArgs:
+      description: PbaConfigurationUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/PbaConfigurationUpdateModel'
+      type: object
     PbaConfigurationUpdateModel:
       description: Update PBA Configuration
       properties:
@@ -289,6 +308,132 @@ components:
           $ref: '#/components/schemas/UpdateFieldValueOfInt32'
         storageDirectoryPath:
           $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    ApplicationKeyStatus:
+      description: PBA Key Status
+      properties: {}
+      type: string
+      enum:
+      - Unapproved
+      - Approved
+      - Disabled
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    PbaConfirmPairModel:
+      description: PBA Confirm Pair
+      properties:
+        alreadyApproved:
+          description: Already Approved
+          type: boolean
+        success:
+          description: Success
+          type: boolean
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    DayOfWeek:
+      description: DayOfWeek
+      properties: {}
+      type: string
+      enum:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    PbaHistoricalImportArgs:
+      description: PbaHistoricalImportArgs
+      properties:
+        endDate:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+        processImport:
+          description: ProcessImport
+          type: boolean
+        startDate:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+      type: object
+    PbaHistoricalImportStatusResponseMessage:
+      description: PbaHistoricalImportStatusResponseMessage
+      properties:
+        totalHistoricalEvents:
+          description: TotalHistoricalEvents
+          type: integer
+          format: int32
+        unprocessedHistoricalEvents:
+          description: UnprocessedHistoricalEvents
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
       type: object
     OptionalDateTimeOffset:
       description: CreationDate
@@ -360,56 +505,6 @@ components:
           type: integer
           format: int32
       type: object
-    PbaConfigurationUpdateArgs:
-      description: PbaConfigurationUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/PbaConfigurationUpdateModel'
-      type: object
-    PbaConfirmPairModel:
-      description: PBA Confirm Pair
-      properties:
-        alreadyApproved:
-          description: Already Approved
-          type: boolean
-        success:
-          description: Success
-          type: boolean
-      type: object
-    PbaHistoricalImportViewModel:
-      description: PBA Historical Import
-      properties:
-        numberOfEventsProcessed:
-          description: Number Of Events Processed
-          type:
-          - integer
-          - 'null'
-          format: int32
-        success:
-          description: Success
-          type: boolean
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    UpdateFieldValueOfInt32:
-      description: How many days until the password expires.
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: integer
-          format: int32
-      type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures
       required:
@@ -419,79 +514,15 @@ components:
           description: Error message
           type: string
       type: object
-    DayOfWeek:
-      description: DayOfWeek
-      properties: {}
-      type: string
-      enum:
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
-      - Saturday
-    PbaHistoricalImportArgs:
-      description: PbaHistoricalImportArgs
-      properties:
-        endDate:
-          $ref: '#/components/schemas/OptionalDateTimeOffset'
-        processImport:
-          description: ProcessImport
-          type: boolean
-        startDate:
-          $ref: '#/components/schemas/OptionalDateTimeOffset'
-      type: object
-    ApplicationKeyStatus:
-      description: PBA Key Status
-      properties: {}
-      type: string
-      enum:
-      - Unapproved
-      - Approved
-      - Disabled
-    PbaHistoricalImportStatusResponseMessage:
-      description: PbaHistoricalImportStatusResponseMessage
-      properties:
-        totalHistoricalEvents:
-          description: TotalHistoricalEvents
-          type: integer
-          format: int32
-        unprocessedHistoricalEvents:
-          description: UnprocessedHistoricalEvents
-          type: integer
-          format: int32
-      type: object
-    UpdateFieldValueOfOptionalInt32:
-      description: The minimum length required for local user passwords
+    UpdateFieldValueOfBoolean:
+      description: Active
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
           description: Value
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
+          type: boolean
       type: object
     PbaConfigurationModel:
       description: PBA Configuration
@@ -594,37 +625,6 @@ components:
         warningMessage:
           description: Warning Message
           type: string
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
       type: object
   securitySchemes:
     BearerToken:

@@ -96,16 +96,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
     PagingOfSecurityAuditLogSummaryAndSecurityAuditLogFilter:
       description: Specify filtering, paging, sorting options for querying records and returning results
       properties:
@@ -165,48 +155,44 @@ components:
           type: integer
           format: int32
       type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
       required:
-      - name
-      - direction
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
       properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
+        message:
+          description: Error message
           type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
       type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
+    BadRequestResponse:
+      description: Response object for invalid requests
       required:
       - message
       properties:
         message:
           description: Error message
           type: string
-      type: object
-    SecurityAuditLogFilter:
-      description: Additional query options
-      properties:
-        isExporting:
-          description: IsExporting
-          type: boolean
-        searchText:
-          description: SearchText
+        messageDetail:
+          description: Error message detail
           type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
       type: object
     SecurityAuditLogSummary:
       description: Query results
@@ -243,44 +229,58 @@ components:
           description: Notes
           type: string
       type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
       required:
       - message
       properties:
         message:
           description: Error message
           type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
+    SecurityAuditLogFilter:
+      description: Additional query options
       properties:
-        message:
-          description: Error message
+        isExporting:
+          description: IsExporting
+          type: boolean
+        searchText:
+          description: SearchText
           type: string
-        exceptionMessage:
-          description: Error message from exception
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
           type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
       type: object
   securitySchemes:
     BearerToken:

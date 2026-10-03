@@ -614,65 +614,19 @@ paths:
       deprecated: false
 components:
   schemas:
-    LogCollectionSourceType:
-      description: SourceType
-      properties: {}
-      type: string
-      enum:
-      - Node
-      - Engine
-    LogCollectionStatus:
-      description: Status
-      properties: {}
-      type: string
-      enum:
-      - Collecting
-      - Done
-      - Failed
-    AppSettingModel:
-      description: AppSettingModel[]
-      properties:
-        key:
-          description: App setting key
-          type: string
-        value:
-          description: App setting value
-          type: string
-      type: object
     StreamContentResult:
       description: StreamContentResult
       properties: {}
       type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    LogCollectionModel:
-      description: LogCollection
-      properties:
-        logCollectionId:
-          description: LogCollectionId
-          type: integer
-          format: int32
-        name:
-          description: Name
-          type: string
-        sourceId:
-          description: SourceId
-          type: integer
-          format: int32
-        sourceType:
-          $ref: '#/components/schemas/LogCollectionSourceType'
-        status:
-          $ref: '#/components/schemas/LogCollectionStatus'
-      type: object
     ClearLogCollectionResultModel:
       description: ClearLogCollectionResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    CollectLogCollectionResultModel:
+      description: CollectLogCollectionResultModel
       properties:
         success:
           description: Success
@@ -684,36 +638,6 @@ components:
         success:
           description: Success
           type: boolean
-      type: object
-    QuartzTrigger:
-      description: QuartzTrigger[]
-      properties:
-        jobName:
-          description: JobName
-          type: string
-        nextFireTicks:
-          description: NextFireTicks
-          type: integer
-          format: int64
-        nextFireTime:
-          description: NextFireTime
-          type:
-          - string
-          - 'null'
-          format: date-time
-        previousFireTicks:
-          description: PreviousFireTicks
-          type: integer
-          format: int64
-        previousFireTime:
-          description: PreviousFireTime
-          type:
-          - string
-          - 'null'
-          format: date-time
-        triggerState:
-          description: TriggerState
-          type: string
       type: object
     BadRequestResponse:
       description: Response object for invalid requests
@@ -732,21 +656,6 @@ components:
         modelState:
           description: An object describing validation errors
           type: object
-      type: object
-    LogCollectionSummaryModel:
-      description: LogCollectionSummaryModel
-      properties:
-        logCollection:
-          description: LogCollection
-          items:
-            $ref: '#/components/schemas/LogCollectionModel'
-          type: array
-        startDate:
-          description: StartDate
-          type:
-          - string
-          - 'null'
-          format: date-time
       type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
@@ -767,6 +676,16 @@ components:
           type: string
         stackTrace:
           description: Exception stack trace
+          type: string
+      type: object
+    AppSettingModel:
+      description: AppSettingModel[]
+      properties:
+        key:
+          description: App setting key
+          type: string
+        value:
+          description: App setting value
           type: string
       type: object
     DiagnosticsSummary:
@@ -887,12 +806,93 @@ components:
           description: Up Time
           type: string
       type: object
-    CollectLogCollectionResultModel:
-      description: CollectLogCollectionResultModel
+    QuartzTrigger:
+      description: QuartzTrigger[]
       properties:
-        success:
-          description: Success
-          type: boolean
+        jobName:
+          description: JobName
+          type: string
+        nextFireTicks:
+          description: NextFireTicks
+          type: integer
+          format: int64
+        nextFireTime:
+          description: NextFireTime
+          type:
+          - string
+          - 'null'
+          format: date-time
+        previousFireTicks:
+          description: PreviousFireTicks
+          type: integer
+          format: int64
+        previousFireTime:
+          description: PreviousFireTime
+          type:
+          - string
+          - 'null'
+          format: date-time
+        triggerState:
+          description: TriggerState
+          type: string
+      type: object
+    LogCollectionSourceType:
+      description: SourceType
+      properties: {}
+      type: string
+      enum:
+      - Node
+      - Engine
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    LogCollectionStatus:
+      description: Status
+      properties: {}
+      type: string
+      enum:
+      - Collecting
+      - Done
+      - Failed
+    LogCollectionSummaryModel:
+      description: LogCollectionSummaryModel
+      properties:
+        logCollection:
+          description: LogCollection
+          items:
+            $ref: '#/components/schemas/LogCollectionModel'
+          type: array
+        startDate:
+          description: StartDate
+          type:
+          - string
+          - 'null'
+          format: date-time
+      type: object
+    LogCollectionModel:
+      description: LogCollection
+      properties:
+        logCollectionId:
+          description: LogCollectionId
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+        sourceId:
+          description: SourceId
+          type: integer
+          format: int32
+        sourceType:
+          $ref: '#/components/schemas/LogCollectionSourceType'
+        status:
+          $ref: '#/components/schemas/LogCollectionStatus'
       type: object
   securitySchemes:
     BearerToken:

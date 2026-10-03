@@ -49,32 +49,24 @@ paths:
       deprecated: false
 components:
   schemas:
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
+    ConnectionManagerSettingsModel:
+      description: Connection Manager Settings
       properties:
-        message:
-          description: Error message
+        allowLocalConnections:
+          description: Allow Local Connections
+          type: boolean
+        allowSavingCredentials:
+          description: Allow Saving Credentials
+          type: boolean
+        downloadUrl:
+          description: Download Url
           type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
+        hasValidLicense:
+          description: Has Valid License
+          type: boolean
+        isTrialLicense:
+          description: Is Trial License
+          type: boolean
       type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
@@ -97,24 +89,32 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    ConnectionManagerSettingsModel:
-      description: Connection Manager Settings
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
       properties:
-        allowLocalConnections:
-          description: Allow Local Connections
-          type: boolean
-        allowSavingCredentials:
-          description: Allow Saving Credentials
-          type: boolean
-        downloadUrl:
-          description: Download Url
+        message:
+          description: Error message
           type: string
-        hasValidLicense:
-          description: Has Valid License
-          type: boolean
-        isTrialLicense:
-          description: Is Trial License
-          type: boolean
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
       type: object
   securitySchemes:
     BearerToken:

@@ -56,50 +56,12 @@ paths:
       deprecated: false
 components:
   schemas:
-    ScriptSshAdditionalDataModel:
-      description: Additional settings for SSH scripts
+    DiscoveryScanTemplateActionsModel:
+      description: Actions that the current user can perforom on the scan template
       properties:
-        doNotUseEnvironment:
-          description: Do not use environment variables in script
+        canEdit:
+          description: Can the current user edit the scan template
           type: boolean
-        lineEnding:
-          $ref: '#/components/schemas/SshScriptLineEndingType'
-        parameters:
-          description: Any parameters that can be used in the script
-          items:
-            $ref: '#/components/schemas/ScriptSshParameterModel'
-          type: array
-        port:
-          description: The port that should be used by an SSH script
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    SshScriptLineEndingType:
-      description: The type of line ending that should be sent to the script
-      properties: {}
-      type: string
-      enum:
-      - NewLine
-      - CarriageReturn
-      - CarriageReturnNewLine
-    UserScriptType:
-      description: Script Type (Powershell = 1, SQL = 2, SSH = 3)
-      properties: {}
-      type: string
-      enum:
-      - PowerShell
-      - SQL
-      - SSH
-    ScriptSqlParamModel:
-      description: Parameters for this sql script
-      properties:
-        parameterDbType:
-          $ref: '#/components/schemas/ScriptSqlParamType'
-        parameterName:
-          description: ParameterName
-          type: string
       type: object
     DropDownOption:
       description: DropDownOptions
@@ -110,6 +72,71 @@ components:
         optionValue:
           description: OptionValue
           type: string
+      type: object
+    DiscoveryScannerDetailModel:
+      description: Scanner details
+      properties:
+        canEdit:
+          description: Can the scanner be edited
+          type: boolean
+        credentials:
+          description: The credentials used by this discovery source
+          items:
+            $ref: '#/components/schemas/DiscoveryScannerCredentialModel'
+          type: array
+        discoveryItemScannerDescription:
+          description: The description of the scanner
+          type: string
+        discoveryItemScannerDisplayName:
+          description: The localized name of the scanner
+          type: string
+        discoveryItemScannerId:
+          description: The ID for the instance of this scanner type for this discovery source
+          type: integer
+          format: int32
+        discoveryItemScannerName:
+          description: The name of the scanner
+          type: string
+        discoveryScannerId:
+          description: The ID for the type of scanner
+          type: integer
+          format: int32
+        discoverySourceId:
+          description: Which discovery source is this scanner associated to
+          type: integer
+          format: int32
+        inputScanItemTemplateDisplayName:
+          description: The localized name of the input template
+          type: string
+        inputScanItemTemplateId:
+          description: The input template for this scanner
+          type: integer
+          format: int32
+        inputScanItemTemplateName:
+          description: The name of the input template
+          type: string
+        isActive:
+          description: Is this scanner active
+          type: boolean
+        outputScanItemTemplateDisplayName:
+          description: The localized name of the output scan template
+          type: string
+        outputScanItemTemplateId:
+          description: The output scan template ID
+          type: integer
+          format: int32
+        outputScanItemTemplateName:
+          description: The name of the output scan template
+          type: string
+        scannerItems:
+          description: The scanner settings for this scanner on this discovery source
+          items:
+            $ref: '#/components/schemas/DiscoveryScannerDetailItemModel'
+          type: array
+        sortOrder:
+          description: The sort order for this scanner
+          type: integer
+          format: int32
       type: object
     DiscoveryCommandSetModel:
       description: Discovery Command Set
@@ -144,36 +171,273 @@ components:
           description: The name of the scan type
           type: string
       type: object
-    SecretTemplateModel:
-      description: Secret template
+    DiscoveryScannerActionsModel:
+      description: Defines the actions that the current user can perform on the scanner
       properties:
-        concurrencyId:
-          description: Global unique identifier
+        canEdit:
+          description: Can the current user edit this scanner
+          type: boolean
+        canEditInputTemplate:
+          description: Can the current user change the input template
+          type: boolean
+        canEditOutputTemplate:
+          description: Can the current user change the output template
+          type: boolean
+      type: object
+    DiscoveryCommandSetActionsModel:
+      description: Indicates the actions the current user can perform on this command set
+      properties:
+        canEdit:
+          description: Indicates if the current user can edit this command set
+          type: boolean
+      type: object
+    DiscoveryScannerCredentialModel:
+      description: The credentials used by this discovery source
+      properties:
+        secretId:
+          description: SecretId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        secretName:
+          description: SecretName
           type: string
-        fields:
-          description: Secret template fields
-          items:
-            $ref: '#/components/schemas/SecretTemplateField'
-          type: array
-        id:
-          description: Secret template Id
+        secretNameSearchPattern:
+          description: SecretNameSearchPattern
+          type: string
+        secretSearchFilterId:
+          description: SecretSearchFilterId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        sortOrder:
+          description: SortOrder
           type: integer
           format: int32
+      type: object
+    RequiredScanTypes:
+      description: RequiredScanTypes
+      properties:
+        hostRangeScannerIds:
+          description: HostRangeScannerIds
+          items:
+            type: integer
+            format: int32
+          type: array
+        machineScannerIds:
+          description: MachineScannerIds
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    ExportBundleSettingsModel:
+      description: Data
+      properties:
+        discoverySourceId:
+          description: DiscoverySourceId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        passwordTypeIds:
+          description: PasswordTypeIds
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    IRestPasswordTypeField:
+      description: Password Type Fields
+      properties:
+        isOptional:
+          description: IsOptional
+          type: boolean
         name:
-          description: Secret template name
+          description: Name
           type: string
-        passwordTypeId:
-          description: Password Type Id
+        passwordTypeFieldId:
+          description: PasswordTypeFieldId
+          type: integer
+          format: int32
+        scanItemFieldId:
+          description: ScanItemFieldId
           type:
           - integer
           - 'null'
           format: int32
       type: object
-    ExportBundleArgs:
-      description: ExportBundleArgs
+    UserScriptType:
+      description: Script Type (Powershell = 1, SQL = 2, SSH = 3)
+      properties: {}
+      type: string
+      enum:
+      - PowerShell
+      - SQL
+      - SSH
+    EditRequiresOptions:
+      description: What option is required to edit this field including Owner, Edit, and Not Editable
+      properties: {}
+      type: string
+      enum:
+      - Edit
+      - Owner
+      - NotEditable
+    ScannerBundle:
+      description: Scanners
       properties:
-        data:
-          $ref: '#/components/schemas/ExportBundleSettingsModel'
+        defaultDiscoverySettingForDisplays:
+          description: DefaultDiscoverySettingForDisplays
+          items:
+            $ref: '#/components/schemas/DefaultDiscoverySettingForDisplay'
+          type: array
+        discoveryScannerDetail:
+          $ref: '#/components/schemas/DiscoveryScannerDetailModel'
+        scanner:
+          $ref: '#/components/schemas/DiscoveryScannerModel'
+      type: object
+    DiscoveryScannerDetailItemModel:
+      description: The scanner settings for this scanner on this discovery source
+      properties:
+        determinesAuthentication:
+          description: DeterminesAuthentication
+          type: boolean
+        displayName:
+          description: DisplayName
+          type: string
+        dropDownOptions:
+          description: DropDownOptions
+          items:
+            $ref: '#/components/schemas/ViewFieldDropDownOption'
+          type: array
+        editable:
+          description: Editable
+          type: boolean
+        fieldType:
+          description: FieldType
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+        regexValidation:
+          description: RegexValidation
+          type: string
+        tooltip:
+          description: Tooltip
+          type: string
+        value:
+          description: Value
+          type: string
+        visible:
+          description: Visible
+          type: boolean
+      type: object
+    DropDownOptionForDisplay:
+      description: DropDownOptionsForDisplay
+      properties:
+        localizeKey:
+          description: LocalizeKey
+          type: string
+        nameForDisplay:
+          description: NameForDisplay
+          type: string
+        optionValue:
+          description: OptionValue
+          type: string
+      type: object
+    SshScriptLineEndingType:
+      description: The type of line ending that should be sent to the script
+      properties: {}
+      type: string
+      enum:
+      - NewLine
+      - CarriageReturn
+      - CarriageReturnNewLine
+    SettingDependency:
+      description: SettingDependency
+      properties:
+        dependentOnValue:
+          description: DependentOnValue
+          type: boolean
+        dependentScanType:
+          description: DependentScanType
+          type: integer
+          format: int32
+      type: object
+    ScriptSshParamType:
+      description: ParameterSshType
+      properties: {}
+      type: string
+      enum:
+      - Intrepreted
+      - Literal
+    ScriptSqlParamType:
+      description: ParameterDbType
+      properties: {}
+      type: string
+      enum:
+      - AnsiString
+      - Binary
+      - Byte
+      - Boolean
+      - Currency
+      - Date
+      - DateTime
+      - Decimal
+      - Double
+      - Guid
+      - Int16
+      - Int32
+      - Int64
+      - Object
+      - SByte
+      - Single
+      - String
+      - Time
+      - UInt16
+      - UInt32
+      - UInt64
+      - VarNumeric
+      - AnsiStringFixedLength
+      - StringFixedLength
+      - Xml
+      - DateTime2
+      - DateTimeOffset
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    RunnerType:
+      description: Runner Type
+      properties: {}
+      type: string
+      enum:
+      - Standard
+      - Legacy
+    MachineNameResolutionType:
+      description: Use machine name and FQDM or only use machine name
+      properties: {}
+      type: string
+      enum:
+      - UseMachineNameAndFQDM
+      - OnlyUseMachineName
+    ViewFieldDropDownOption:
+      description: DropDownOptions
+      properties:
+        fieldDisplay:
+          description: FieldDisplay
+          type: string
+        fieldValue:
+          description: FieldValue
+          type: string
       type: object
     BundleSettingsModel:
       description: BundleSettingsModel
@@ -223,165 +487,6 @@ components:
             $ref: '#/components/schemas/SecretTemplateModel'
           type: array
       type: object
-    ScriptSqlParamType:
-      description: ParameterDbType
-      properties: {}
-      type: string
-      enum:
-      - AnsiString
-      - Binary
-      - Byte
-      - Boolean
-      - Currency
-      - Date
-      - DateTime
-      - Decimal
-      - Double
-      - Guid
-      - Int16
-      - Int32
-      - Int64
-      - Object
-      - SByte
-      - Single
-      - String
-      - Time
-      - UInt16
-      - UInt32
-      - UInt64
-      - VarNumeric
-      - AnsiStringFixedLength
-      - StringFixedLength
-      - Xml
-      - DateTime2
-      - DateTimeOffset
-    ScriptAdditionalDataModel:
-      description: Additional data for this script including parameters and settings
-      properties:
-        sqlSettings:
-          $ref: '#/components/schemas/ScriptSqlAdditionalDataModel'
-        sshSettings:
-          $ref: '#/components/schemas/ScriptSshAdditionalDataModel'
-      type: object
-    ScannerBundle:
-      description: Scanners
-      properties:
-        defaultDiscoverySettingForDisplays:
-          description: DefaultDiscoverySettingForDisplays
-          items:
-            $ref: '#/components/schemas/DefaultDiscoverySettingForDisplay'
-          type: array
-        discoveryScannerDetail:
-          $ref: '#/components/schemas/DiscoveryScannerDetailModel'
-        scanner:
-          $ref: '#/components/schemas/DiscoveryScannerModel'
-      type: object
-    DiscoveryScannerCredentialModel:
-      description: The credentials used by this discovery source
-      properties:
-        secretId:
-          description: SecretId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        secretName:
-          description: SecretName
-          type: string
-        secretNameSearchPattern:
-          description: SecretNameSearchPattern
-          type: string
-        secretSearchFilterId:
-          description: SecretSearchFilterId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        sortOrder:
-          description: SortOrder
-          type: integer
-          format: int32
-      type: object
-    ViewFieldDropDownOption:
-      description: DropDownOptions
-      properties:
-        fieldDisplay:
-          description: FieldDisplay
-          type: string
-        fieldValue:
-          description: FieldValue
-          type: string
-      type: object
-    DiscoveryCommandSetActionsModel:
-      description: Indicates the actions the current user can perform on this command set
-      properties:
-        canEdit:
-          description: Indicates if the current user can edit this command set
-          type: boolean
-      type: object
-    DefaultDiscoverySettingForDisplay:
-      description: DefaultDiscoverySettingForDisplays
-      properties:
-        determinesAuthentication:
-          description: DeterminesAuthentication
-          type: boolean
-        dropDownOptions:
-          description: DropDownOptions
-          items:
-            $ref: '#/components/schemas/DropDownOption'
-          type: array
-        dropDownOptionsForDisplay:
-          description: DropDownOptionsForDisplay
-          items:
-            $ref: '#/components/schemas/DropDownOptionForDisplay'
-          type: array
-        editable:
-          description: Editable
-          type: boolean
-        hasError:
-          description: HasError
-          type: boolean
-        name:
-          description: Name
-          type: string
-        nameForDisplay:
-          description: NameForDisplay
-          type: string
-        nameLocalizeKey:
-          description: NameLocalizeKey
-          type: string
-        regexValidation:
-          description: RegexValidation
-          type: string
-        requiredScanTypes:
-          $ref: '#/components/schemas/RequiredScanTypes'
-        settingDependency:
-          $ref: '#/components/schemas/SettingDependency'
-        tooltipForDisplay:
-          description: TooltipForDisplay
-          type: string
-        tooltipLocalizeKey:
-          description: TooltipLocalizeKey
-          type: string
-        type:
-          description: Type
-          type: integer
-          format: int32
-        value:
-          description: Value
-          type: string
-        visible:
-          description: Visible
-          type: boolean
-      type: object
-    ListType:
-      description: What type of contents does this list field contain
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Generic
-      - URL
     DiscoverySourceSettingsModel:
       description: Additional settings for discovery source
       properties:
@@ -411,345 +516,11 @@ components:
           description: Use secure LDAP
           type: boolean
       type: object
-    DiscoveryScanTemplateModel:
-      description: Discovery scan template
+    ExportBundleArgs:
+      description: ExportBundleArgs
       properties:
-        actions:
-          $ref: '#/components/schemas/DiscoveryScanTemplateActionsModel'
-        concurrencyId:
-          description: Globally unique ID for this scan template
-          type: string
-        isActive:
-          description: Indicates if this template is active
-          type: boolean
-        isInUse:
-          description: Will return true if in use.  A scan template cannot be modified once it is in use.
-          type: boolean
-        parentConcurrencyId:
-          description: The globally unique id of the parent template if it has one
-          type: string
-        parentScanTemplateId:
-          description: The ID of the parent template if it has one
-          type:
-          - integer
-          - 'null'
-          format: int32
-        parentScanTemplateName:
-          description: The name of the parent scan template
-          type: string
-        scanTemplateFields:
-          description: The fields on this template
-          items:
-            $ref: '#/components/schemas/DiscoveryScanTemplateFieldModel'
-          type: array
-        scanTemplateId:
-          description: The unique ID for this scan template
-          type: integer
-          format: int32
-        scanTemplateName:
-          description: The name of this template
-          type: string
-        scanTypeId:
-          description: The scan type ID
-          type: integer
-          format: int32
-        scanTypeName:
-          description: The name of the scan type
-          type: string
-      type: object
-    ScriptSqlAdditionalDataModel:
-      description: Additional settings for SQL scripts
-      properties:
-        database:
-          description: The database name to connect to
-          type: string
-        parameters:
-          description: Parameters for this sql script
-          items:
-            $ref: '#/components/schemas/ScriptSqlParamModel'
-          type: array
-        passwordChangerId:
-          description: Which password changer this is used with
-          type: integer
-          format: int32
-        passwordChangerName:
-          description: Which password changer this is used with
-          type: string
-        port:
-          description: A specific port to use
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    EditRequiresOptions:
-      description: What option is required to edit this field including Owner, Edit, and Not Editable
-      properties: {}
-      type: string
-      enum:
-      - Edit
-      - Owner
-      - NotEditable
-    DiscoveryScanTemplateActionsModel:
-      description: Actions that the current user can perforom on the scan template
-      properties:
-        canEdit:
-          description: Can the current user edit the scan template
-          type: boolean
-      type: object
-    MachineNameResolutionType:
-      description: Use machine name and FQDM or only use machine name
-      properties: {}
-      type: string
-      enum:
-      - UseMachineNameAndFQDM
-      - OnlyUseMachineName
-    ScriptModelV2:
-      description: Script
-      properties:
-        additionalData:
-          $ref: '#/components/schemas/ScriptAdditionalDataModel'
-        concurrencyId:
-          description: Script Global Id
-          type: string
-        description:
-          description: Script Description
-          type: string
-        isActive:
-          description: Whether the Script is Active
-          type: boolean
-        name:
-          description: Script Name
-          type: string
-        script:
-          description: Script Text
-          type: string
-        scriptCategoryId:
-          description: Script Category Id
-          type: integer
-          format: int32
-        scriptCategoryName:
-          description: Script Category Name
-          type: string
-        scriptId:
-          description: Script Id
-          type: integer
-          format: int32
-        scriptType:
-          $ref: '#/components/schemas/UserScriptType'
-        usageCount:
-          description: Usage Count
-          type: integer
-          format: int32
-      type: object
-    DiscoveryScannerActionsModel:
-      description: Defines the actions that the current user can perform on the scanner
-      properties:
-        canEdit:
-          description: Can the current user edit this scanner
-          type: boolean
-        canEditInputTemplate:
-          description: Can the current user change the input template
-          type: boolean
-        canEditOutputTemplate:
-          description: Can the current user change the output template
-          type: boolean
-      type: object
-    RequiredScanTypes:
-      description: RequiredScanTypes
-      properties:
-        hostRangeScannerIds:
-          description: HostRangeScannerIds
-          items:
-            type: integer
-            format: int32
-          type: array
-        machineScannerIds:
-          description: MachineScannerIds
-          items:
-            type: integer
-            format: int32
-          type: array
-      type: object
-    DiscoveryScanTemplateFieldModel:
-      description: Scan template field
-      properties:
-        includeInMatch:
-          description: Include this field in the matching to find unique items
-          type: boolean
-        isActive:
-          description: indicates if this field is active
-          type: boolean
-        isRequired:
-          description: Indicates if this field is required
-          type: boolean
-        parentScanItemFieldId:
-          description: The ID of the parent field
-          type:
-          - integer
-          - 'null'
-          format: int32
-        parentScanItemFieldName:
-          description: The name of the parent field
-          type: string
-        scanItemFieldId:
-          description: Scan template field ID
-          type: integer
-          format: int32
-        scanItemFieldName:
-          description: The name of the field
-          type: string
-        scanItemTemplateId:
-          description: Which scan template does this field belong to
-          type: integer
-          format: int32
-        sortOrder:
-          description: The sort order for this field
-          type: integer
-          format: int32
-        systemField:
-          description: IS this a system field
-          type: boolean
-      type: object
-    DiscoveryScannerDetailItemModel:
-      description: The scanner settings for this scanner on this discovery source
-      properties:
-        determinesAuthentication:
-          description: DeterminesAuthentication
-          type: boolean
-        displayName:
-          description: DisplayName
-          type: string
-        dropDownOptions:
-          description: DropDownOptions
-          items:
-            $ref: '#/components/schemas/ViewFieldDropDownOption'
-          type: array
-        editable:
-          description: Editable
-          type: boolean
-        fieldType:
-          description: FieldType
-          type: integer
-          format: int32
-        name:
-          description: Name
-          type: string
-        regexValidation:
-          description: RegexValidation
-          type: string
-        tooltip:
-          description: Tooltip
-          type: string
-        value:
-          description: Value
-          type: string
-        visible:
-          description: Visible
-          type: boolean
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    SecretTemplateField:
-      description: Secret template field
-      properties:
-        description:
-          description: Field description
-          type: string
-        displayName:
-          description: Field display name
-          type: string
-        editablePermission:
-          description: Who has editing rights
-          type: integer
-          format: int32
-        editRequires:
-          $ref: '#/components/schemas/EditRequiresOptions'
-        fieldSlugName:
-          description: Field Slug Name
-          type: string
-        generatePasswordCharacterSet:
-          description: Generate password character set. Only returned if user can manage secret templates
-          type: string
-        generatePasswordLength:
-          description: Generate password length.  Only returned if user can manage secret templates
-          type:
-          - integer
-          - 'null'
-          format: int32
-        hideOnView:
-          description: Hide this field when viewing
-          type: boolean
-        historyLength:
-          description: History length
-          type: integer
-          format: int32
-        isExpirationField:
-          description: Is expiration field
-          type: boolean
-        isFile:
-          description: Is this field a file type
-          type: boolean
-        isIndexable:
-          description: Is able to be indexed
-          type: boolean
-        isList:
-          description: Is this field a list field type
-          type: boolean
-        isNotes:
-          description: Is this field a notes field type
-          type: boolean
-        isPassword:
-          description: Is this field a password field type
-          type: boolean
-        isRequired:
-          description: Is this field required
-          type: boolean
-        isUrl:
-          description: Is this field a url field type
-          type: boolean
-        listType:
-          $ref: '#/components/schemas/ListType'
-        mustEncrypt:
-          description: Must encrypt.  Only returned if user can manage secret templates
-          type:
-          - boolean
-          - 'null'
-        name:
-          description: Field name
-          type: string
-        passwordRequirementId:
-          description: ID For Password Requirement assigned to field
-          type: integer
-          format: int32
-        passwordTypeFieldId:
-          description: Type of password field
-          type: integer
-          format: int32
-        secretTemplateFieldId:
-          description: Field Id
-          type: integer
-          format: int32
-        sortOrder:
-          description: Sort Order for Field
-          type: integer
-          format: int32
+        data:
+          $ref: '#/components/schemas/ExportBundleSettingsModel'
       type: object
     PasswordTypeModel:
       description: Displays the properties of a Password Type
@@ -871,6 +642,149 @@ components:
           description: Custom Ports for Windows
           type: string
       type: object
+    SecretTemplateField:
+      description: Secret template field
+      properties:
+        description:
+          description: Field description
+          type: string
+        displayName:
+          description: Field display name
+          type: string
+        editablePermission:
+          description: Who has editing rights
+          type: integer
+          format: int32
+        editRequires:
+          $ref: '#/components/schemas/EditRequiresOptions'
+        fieldSlugName:
+          description: Field Slug Name
+          type: string
+        generatePasswordCharacterSet:
+          description: Generate password character set. Only returned if user can manage secret templates
+          type: string
+        generatePasswordLength:
+          description: Generate password length.  Only returned if user can manage secret templates
+          type:
+          - integer
+          - 'null'
+          format: int32
+        hideOnView:
+          description: Hide this field when viewing
+          type: boolean
+        historyLength:
+          description: History length
+          type: integer
+          format: int32
+        isExpirationField:
+          description: Is expiration field
+          type: boolean
+        isFile:
+          description: Is this field a file type
+          type: boolean
+        isIndexable:
+          description: Is able to be indexed
+          type: boolean
+        isList:
+          description: Is this field a list field type
+          type: boolean
+        isNotes:
+          description: Is this field a notes field type
+          type: boolean
+        isPassword:
+          description: Is this field a password field type
+          type: boolean
+        isRequired:
+          description: Is this field required
+          type: boolean
+        isUrl:
+          description: Is this field a url field type
+          type: boolean
+        listType:
+          $ref: '#/components/schemas/ListType'
+        mustEncrypt:
+          description: Must encrypt.  Only returned if user can manage secret templates
+          type:
+          - boolean
+          - 'null'
+        name:
+          description: Field name
+          type: string
+        passwordRequirementId:
+          description: ID For Password Requirement assigned to field
+          type: integer
+          format: int32
+        passwordTypeFieldId:
+          description: Type of password field
+          type: integer
+          format: int32
+        secretTemplateFieldId:
+          description: Field Id
+          type: integer
+          format: int32
+        sortOrder:
+          description: Sort Order for Field
+          type: integer
+          format: int32
+      type: object
+    ScriptSshParameterModel:
+      description: Any parameters that can be used in the script
+      properties:
+        parameterName:
+          description: ParameterName
+          type: string
+        parameterSshType:
+          $ref: '#/components/schemas/ScriptSshParamType'
+      type: object
+    ScriptAdditionalDataModel:
+      description: Additional data for this script including parameters and settings
+      properties:
+        sqlSettings:
+          $ref: '#/components/schemas/ScriptSqlAdditionalDataModel'
+        sshSettings:
+          $ref: '#/components/schemas/ScriptSshAdditionalDataModel'
+      type: object
+    ListType:
+      description: What type of contents does this list field contain
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Generic
+      - URL
+    LineEnding:
+      description: Line ending type
+      properties: {}
+      type: string
+      enum:
+      - NewLine
+      - CarriageReturn
+      - CarriageReturnNewLine
+    SecretTemplateModel:
+      description: Secret template
+      properties:
+        concurrencyId:
+          description: Global unique identifier
+          type: string
+        fields:
+          description: Secret template fields
+          items:
+            $ref: '#/components/schemas/SecretTemplateField'
+          type: array
+        id:
+          description: Secret template Id
+          type: integer
+          format: int32
+        name:
+          description: Secret template name
+          type: string
+        passwordTypeId:
+          description: Password Type Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -891,6 +805,303 @@ components:
         stackTrace:
           description: Exception stack trace
           type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    DiscoverySourceModel:
+      description: Discovery Source Settings
+      properties:
+        active:
+          description: Is discovery source active
+          type: boolean
+        daysToKeepMachines:
+          description: Days To Keep Machines
+          type: integer
+          format: int32
+        discoverSpecificOUs:
+          description: Discover specific OUs
+          type: boolean
+        discoveryScannerId:
+          description: Discovery scanner ID
+          type:
+          - string
+          - 'null'
+        discoverySourceId:
+          description: The discovery source ID
+          type: integer
+          format: int32
+        discoverySourceSettings:
+          $ref: '#/components/schemas/DiscoverySourceSettingsModel'
+        lastDiscoveryRunDate:
+          description: Last discovery run date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        machineNameResolutionType:
+          $ref: '#/components/schemas/MachineNameResolutionType'
+        name:
+          description: The discovery source naame
+          type: string
+        secretId:
+          description: Default Discovery Secret credentials
+          type:
+          - integer
+          - 'null'
+          format: int32
+        siteId:
+          description: The site ID
+          type: integer
+          format: int32
+      type: object
+    ScriptModelV2:
+      description: Script
+      properties:
+        additionalData:
+          $ref: '#/components/schemas/ScriptAdditionalDataModel'
+        concurrencyId:
+          description: Script Global Id
+          type: string
+        description:
+          description: Script Description
+          type: string
+        isActive:
+          description: Whether the Script is Active
+          type: boolean
+        name:
+          description: Script Name
+          type: string
+        script:
+          description: Script Text
+          type: string
+        scriptCategoryId:
+          description: Script Category Id
+          type: integer
+          format: int32
+        scriptCategoryName:
+          description: Script Category Name
+          type: string
+        scriptId:
+          description: Script Id
+          type: integer
+          format: int32
+        scriptType:
+          $ref: '#/components/schemas/UserScriptType'
+        usageCount:
+          description: Usage Count
+          type: integer
+          format: int32
+      type: object
+    ScriptSqlAdditionalDataModel:
+      description: Additional settings for SQL scripts
+      properties:
+        database:
+          description: The database name to connect to
+          type: string
+        parameters:
+          description: Parameters for this sql script
+          items:
+            $ref: '#/components/schemas/ScriptSqlParamModel'
+          type: array
+        passwordChangerId:
+          description: Which password changer this is used with
+          type: integer
+          format: int32
+        passwordChangerName:
+          description: Which password changer this is used with
+          type: string
+        port:
+          description: A specific port to use
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    ScriptSshAdditionalDataModel:
+      description: Additional settings for SSH scripts
+      properties:
+        doNotUseEnvironment:
+          description: Do not use environment variables in script
+          type: boolean
+        lineEnding:
+          $ref: '#/components/schemas/SshScriptLineEndingType'
+        parameters:
+          description: Any parameters that can be used in the script
+          items:
+            $ref: '#/components/schemas/ScriptSshParameterModel'
+          type: array
+        port:
+          description: The port that should be used by an SSH script
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    ScriptSqlParamModel:
+      description: Parameters for this sql script
+      properties:
+        parameterDbType:
+          $ref: '#/components/schemas/ScriptSqlParamType'
+        parameterName:
+          description: ParameterName
+          type: string
+      type: object
+    DefaultDiscoverySettingForDisplay:
+      description: DefaultDiscoverySettingForDisplays
+      properties:
+        determinesAuthentication:
+          description: DeterminesAuthentication
+          type: boolean
+        dropDownOptions:
+          description: DropDownOptions
+          items:
+            $ref: '#/components/schemas/DropDownOption'
+          type: array
+        dropDownOptionsForDisplay:
+          description: DropDownOptionsForDisplay
+          items:
+            $ref: '#/components/schemas/DropDownOptionForDisplay'
+          type: array
+        editable:
+          description: Editable
+          type: boolean
+        hasError:
+          description: HasError
+          type: boolean
+        name:
+          description: Name
+          type: string
+        nameForDisplay:
+          description: NameForDisplay
+          type: string
+        nameLocalizeKey:
+          description: NameLocalizeKey
+          type: string
+        regexValidation:
+          description: RegexValidation
+          type: string
+        requiredScanTypes:
+          $ref: '#/components/schemas/RequiredScanTypes'
+        settingDependency:
+          $ref: '#/components/schemas/SettingDependency'
+        tooltipForDisplay:
+          description: TooltipForDisplay
+          type: string
+        tooltipLocalizeKey:
+          description: TooltipLocalizeKey
+          type: string
+        type:
+          description: Type
+          type: integer
+          format: int32
+        value:
+          description: Value
+          type: string
+        visible:
+          description: Visible
+          type: boolean
+      type: object
+    DiscoveryScanTemplateModel:
+      description: Discovery scan template
+      properties:
+        actions:
+          $ref: '#/components/schemas/DiscoveryScanTemplateActionsModel'
+        concurrencyId:
+          description: Globally unique ID for this scan template
+          type: string
+        isActive:
+          description: Indicates if this template is active
+          type: boolean
+        isInUse:
+          description: Will return true if in use.  A scan template cannot be modified once it is in use.
+          type: boolean
+        parentConcurrencyId:
+          description: The globally unique id of the parent template if it has one
+          type: string
+        parentScanTemplateId:
+          description: The ID of the parent template if it has one
+          type:
+          - integer
+          - 'null'
+          format: int32
+        parentScanTemplateName:
+          description: The name of the parent scan template
+          type: string
+        scanTemplateFields:
+          description: The fields on this template
+          items:
+            $ref: '#/components/schemas/DiscoveryScanTemplateFieldModel'
+          type: array
+        scanTemplateId:
+          description: The unique ID for this scan template
+          type: integer
+          format: int32
+        scanTemplateName:
+          description: The name of this template
+          type: string
+        scanTypeId:
+          description: The scan type ID
+          type: integer
+          format: int32
+        scanTypeName:
+          description: The name of the scan type
+          type: string
+      type: object
+    DiscoveryScanTemplateFieldModel:
+      description: Scan template field
+      properties:
+        includeInMatch:
+          description: Include this field in the matching to find unique items
+          type: boolean
+        isActive:
+          description: indicates if this field is active
+          type: boolean
+        isRequired:
+          description: Indicates if this field is required
+          type: boolean
+        parentScanItemFieldId:
+          description: The ID of the parent field
+          type:
+          - integer
+          - 'null'
+          format: int32
+        parentScanItemFieldName:
+          description: The name of the parent field
+          type: string
+        scanItemFieldId:
+          description: Scan template field ID
+          type: integer
+          format: int32
+        scanItemFieldName:
+          description: The name of the field
+          type: string
+        scanItemTemplateId:
+          description: Which scan template does this field belong to
+          type: integer
+          format: int32
+        sortOrder:
+          description: The sort order for this field
+          type: integer
+          format: int32
+        systemField:
+          description: IS this a system field
+          type: boolean
       type: object
     DiscoveryScannerModel:
       description: Scanner Model
@@ -986,217 +1197,6 @@ components:
         scriptName:
           description: If this is a PS scanner this is the associated script name
           type: string
-      type: object
-    DiscoveryScannerDetailModel:
-      description: Scanner details
-      properties:
-        canEdit:
-          description: Can the scanner be edited
-          type: boolean
-        credentials:
-          description: The credentials used by this discovery source
-          items:
-            $ref: '#/components/schemas/DiscoveryScannerCredentialModel'
-          type: array
-        discoveryItemScannerDescription:
-          description: The description of the scanner
-          type: string
-        discoveryItemScannerDisplayName:
-          description: The localized name of the scanner
-          type: string
-        discoveryItemScannerId:
-          description: The ID for the instance of this scanner type for this discovery source
-          type: integer
-          format: int32
-        discoveryItemScannerName:
-          description: The name of the scanner
-          type: string
-        discoveryScannerId:
-          description: The ID for the type of scanner
-          type: integer
-          format: int32
-        discoverySourceId:
-          description: Which discovery source is this scanner associated to
-          type: integer
-          format: int32
-        inputScanItemTemplateDisplayName:
-          description: The localized name of the input template
-          type: string
-        inputScanItemTemplateId:
-          description: The input template for this scanner
-          type: integer
-          format: int32
-        inputScanItemTemplateName:
-          description: The name of the input template
-          type: string
-        isActive:
-          description: Is this scanner active
-          type: boolean
-        outputScanItemTemplateDisplayName:
-          description: The localized name of the output scan template
-          type: string
-        outputScanItemTemplateId:
-          description: The output scan template ID
-          type: integer
-          format: int32
-        outputScanItemTemplateName:
-          description: The name of the output scan template
-          type: string
-        scannerItems:
-          description: The scanner settings for this scanner on this discovery source
-          items:
-            $ref: '#/components/schemas/DiscoveryScannerDetailItemModel'
-          type: array
-        sortOrder:
-          description: The sort order for this scanner
-          type: integer
-          format: int32
-      type: object
-    LineEnding:
-      description: Line ending type
-      properties: {}
-      type: string
-      enum:
-      - NewLine
-      - CarriageReturn
-      - CarriageReturnNewLine
-    ScriptSshParamType:
-      description: ParameterSshType
-      properties: {}
-      type: string
-      enum:
-      - Intrepreted
-      - Literal
-    ScriptSshParameterModel:
-      description: Any parameters that can be used in the script
-      properties:
-        parameterName:
-          description: ParameterName
-          type: string
-        parameterSshType:
-          $ref: '#/components/schemas/ScriptSshParamType'
-      type: object
-    ExportBundleSettingsModel:
-      description: Data
-      properties:
-        discoverySourceId:
-          description: DiscoverySourceId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        passwordTypeIds:
-          description: PasswordTypeIds
-          items:
-            type: integer
-            format: int32
-          type: array
-      type: object
-    DropDownOptionForDisplay:
-      description: DropDownOptionsForDisplay
-      properties:
-        localizeKey:
-          description: LocalizeKey
-          type: string
-        nameForDisplay:
-          description: NameForDisplay
-          type: string
-        optionValue:
-          description: OptionValue
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    RunnerType:
-      description: Runner Type
-      properties: {}
-      type: string
-      enum:
-      - Standard
-      - Legacy
-    IRestPasswordTypeField:
-      description: Password Type Fields
-      properties:
-        isOptional:
-          description: IsOptional
-          type: boolean
-        name:
-          description: Name
-          type: string
-        passwordTypeFieldId:
-          description: PasswordTypeFieldId
-          type: integer
-          format: int32
-        scanItemFieldId:
-          description: ScanItemFieldId
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    DiscoverySourceModel:
-      description: Discovery Source Settings
-      properties:
-        active:
-          description: Is discovery source active
-          type: boolean
-        daysToKeepMachines:
-          description: Days To Keep Machines
-          type: integer
-          format: int32
-        discoverSpecificOUs:
-          description: Discover specific OUs
-          type: boolean
-        discoveryScannerId:
-          description: Discovery scanner ID
-          type:
-          - string
-          - 'null'
-        discoverySourceId:
-          description: The discovery source ID
-          type: integer
-          format: int32
-        discoverySourceSettings:
-          $ref: '#/components/schemas/DiscoverySourceSettingsModel'
-        lastDiscoveryRunDate:
-          description: Last discovery run date
-          type:
-          - string
-          - 'null'
-          format: date-time
-        machineNameResolutionType:
-          $ref: '#/components/schemas/MachineNameResolutionType'
-        name:
-          description: The discovery source naame
-          type: string
-        secretId:
-          description: Default Discovery Secret credentials
-          type:
-          - integer
-          - 'null'
-          format: int32
-        siteId:
-          description: The site ID
-          type: integer
-          format: int32
-      type: object
-    SettingDependency:
-      description: SettingDependency
-      properties:
-        dependentOnValue:
-          description: DependentOnValue
-          type: boolean
-        dependentScanType:
-          description: DependentScanType
-          type: integer
-          format: int32
       type: object
   securitySchemes:
     BearerToken:

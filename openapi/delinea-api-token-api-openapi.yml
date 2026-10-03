@@ -62,6 +62,45 @@ components:
           description: Url
           type: string
       type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
     ViewFieldValueOfString:
       description: GeneratedToken
       properties:
@@ -137,6 +176,12 @@ components:
           description: Value
           type: string
       type: object
+    ApiTokenViewModel:
+      description: ApiTokenViewModel
+      properties:
+        generatedToken:
+          $ref: '#/components/schemas/ViewFieldValueOfString'
+      type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures
       required:
@@ -144,51 +189,6 @@ components:
       properties:
         message:
           description: Error message
-          type: string
-      type: object
-    ApiTokenViewModel:
-      description: ApiTokenViewModel
-      properties:
-        generatedToken:
-          $ref: '#/components/schemas/ViewFieldValueOfString'
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
           type: string
       type: object
   securitySchemes:
