@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-distributed-engine-configuration-model-schema.json",
+  "title": "DistributedEngineConfigurationModel",
+  "description": "Distributed Engine Configuration",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-distributedengine-api-openapi.yml#/components/schemas/DistributedEngineConfigurationModel",
+  "properties": {
+    "autoUpdateEnginesVersion": {
+      "description": "Always Update Engines Version",
+      "type": "boolean"
+    },
+    "azureServiceBusTransportType": {
+      "$ref": "#/$defs/AzureServiceBusTransportType"
+    },
+    "callbackPort": {
+      "description": "Port of the Distributed Engines",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "callbackUrl": {
+      "description": "Url of the Distributed Engines",
+      "type": "string"
+    },
+    "defaultCallbackIntervalSeconds": {
+      "description": "Default Callback Interval Seconds",
+      "type": "integer",
+      "format": "int32"
+    },
+    "enableDistributedEngines": {
+      "description": "Whether Distributed Engines are enabled or not",
+      "type": "boolean"
+    },
+    "engineVersionUpdateAvailable": {
+      "description": "Engine Version Update Available",
+      "type": "boolean"
+    },
+    "latestDistributedEnginesVersion": {
+      "description": "Latest Distributed Engines Version",
+      "type": "string"
+    },
+    "minimumRequiredDistributedEnginesVersion": {
+      "description": "Minimum Required Distributed Engines Version",
+      "type": "string"
+    },
+    "protocol": {
+      "$ref": "#/$defs/DistributedEngineProtocol"
+    },
+    "responseBusSiteConnectorId": {
+      "description": "Response Bus Site Connector",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "secretHeartbeatMessageMinutesToLive": {
+      "description": "Secret Heartbeat Message Time to Live in Minutes",
+      "type": "integer",
+      "format": "int32"
+    },
+    "secretHeartbeatMessageRetryMinutes": {
+      "description": "Secret Heartbeat Message Retry Time in Minutes",
+      "type": "integer",
+      "format": "int32"
+    },
+    "secretPasswordChangeMessageMinutesToLive": {
+      "description": "Secret Password Change Message Time to Live in Minutes",
+      "type": "integer",
+      "format": "int32"
+    },
+    "secretPasswordChangeMessageRetryMinutes": {
+      "description": "Secret Password Change Message Retry Time in Minutes",
+      "type": "integer",
+      "format": "int32"
+    },
+    "updateEnginesBannerMessage": {
+      "description": "Update Engines Banner Message",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AzureServiceBusTransportType": {
+      "description": "Azure Service Bus Transport Type",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Amqp",
+        "AmqpWebSockets"
+      ]
+    },
+    "DistributedEngineProtocol": {
+      "description": "Protocol used by Distibuted Engines",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Http",
+        "Https",
+        "Tcp"
+      ]
+    }
+  }
+}

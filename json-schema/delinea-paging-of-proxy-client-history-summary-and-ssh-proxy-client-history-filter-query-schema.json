@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-paging-of-proxy-client-history-summary-and-ssh-proxy-client-history-filter-query-schema.json",
+  "title": "PagingOfProxyClientHistorySummaryAndSshProxyClientHistoryFilterQuery",
+  "description": "Specify filtering, paging, sorting options for querying records and returning results",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-proxy-api-openapi.yml#/components/schemas/PagingOfProxyClientHistorySummaryAndSshProxyClientHistoryFilterQuery",
+  "properties": {
+    "batchCount": {
+      "description": "Number of result batches available with current query options",
+      "type": "integer",
+      "format": "int32"
+    },
+    "currentPage": {
+      "description": "Index of current result page",
+      "type": "integer",
+      "format": "int32"
+    },
+    "filter": {
+      "$ref": "#/$defs/SshProxyClientHistoryFilterQuery"
+    },
+    "hasNext": {
+      "description": "Whether there are any results in additional pages",
+      "type": "boolean"
+    },
+    "hasPrev": {
+      "description": "Whether there are any results in previous pages",
+      "type": "boolean"
+    },
+    "nextSkip": {
+      "description": "Correct value of 'skip' for the next page of results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "pageCount": {
+      "description": "Number of result pages available with current query options",
+      "type": "integer",
+      "format": "int32"
+    },
+    "prevSkip": {
+      "description": "Correct value of 'skip' for the previous page of results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "records": {
+      "description": "Query results",
+      "items": {
+        "$ref": "#/$defs/ProxyClientHistorySummary"
+      },
+      "type": "array"
+    },
+    "severity": {
+      "$ref": "#/$defs/Severity"
+    },
+    "skip": {
+      "description": "Number of records to skip before taking results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "sortBy": {
+      "description": "List of sort properties",
+      "items": {
+        "$ref": "#/$defs/Sort"
+      },
+      "type": "array"
+    },
+    "success": {
+      "description": "Whether the query executed successfully",
+      "type": "boolean"
+    },
+    "take": {
+      "description": "Maximum number of records to include in results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "total": {
+      "description": "Total number of results available",
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ProxyClientHistorySummary": {
+      "description": "Query results",
+      "properties": {
+        "authenticateResult": {
+          "$ref": "#/$defs/TerminalAuthenticateResult"
+        },
+        "createdDate": {
+          "description": "CreatedDate",
+          "type": "string",
+          "format": "date-time"
+        },
+        "engineIdentityGuid": {
+          "description": "EngineIdentityGuid",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "IpAddress",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Severity": {
+      "description": "Error severity level",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Retry",
+        "Warn",
+        "Critical",
+        "Fatal"
+      ]
+    },
+    "Sort": {
+      "description": "Sort options. Multiple sort options can be provided in the query string.",
+      "required": [
+        "name",
+        "direction"
+      ],
+      "properties": {
+        "direction": {
+          "$ref": "#/$defs/SortDirection"
+        },
+        "name": {
+          "description": "Sort field name",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Priority index. Sorts with lower values are executed earlier",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "SortDirection": {
+      "description": "Sort direction",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Asc",
+        "Desc"
+      ]
+    },
+    "SshProxyClientHistoryFilterQuery": {
+      "description": "Additional query options",
+      "properties": {
+        "authenticateResult": {
+          "description": "AuthenticateResult",
+          "type": "string"
+        },
+        "endDate": {
+          "description": "EndDate",
+          "type": "string"
+        },
+        "engineIdentityGuid": {
+          "description": "EngineIdentityGuid",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "IpAddress",
+          "type": "string"
+        },
+        "startDate": {
+          "description": "StartDate",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TerminalAuthenticateResult": {
+      "description": "AuthenticateResult",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Unknown",
+        "Successful",
+        "Failed",
+        "Refused"
+      ]
+    }
+  }
+}

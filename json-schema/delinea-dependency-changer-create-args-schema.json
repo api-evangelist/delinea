@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-dependency-changer-create-args-schema.json",
+  "title": "DependencyChangerCreateArgs",
+  "description": "Scanner Dependency Changer create args",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-dependencychanger-api-openapi.yml#/components/schemas/DependencyChangerCreateArgs",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/DependencyChangerCreateModel"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "DependencyChangerCreateModel": {
+      "description": "Create a Dependency Changer model",
+      "properties": {
+        "active": {
+          "description": "Indicates if this Dependency Changer is active",
+          "type": "boolean"
+        },
+        "changeFailScript": {
+          "$ref": "#/$defs/DependencyChangerScriptCreateModel"
+        },
+        "changeSuccessScript": {
+          "$ref": "#/$defs/DependencyChangerScriptCreateModel"
+        },
+        "createDependencyTemplate": {
+          "description": "Create a Dependency Template when creating the Dependency Changer",
+          "type": "boolean"
+        },
+        "passwordChangeScript": {
+          "$ref": "#/$defs/DependencyChangerScriptCreateModel"
+        },
+        "scanItemTemplateId": {
+          "description": "The Scan Template ID of the Dependency Changer",
+          "type": "integer",
+          "format": "int32"
+        },
+        "secretDependencyChangerDescription": {
+          "description": "The description of the Dependency Changer",
+          "type": "string"
+        },
+        "secretDependencyChangerName": {
+          "description": "The name of the Dependency Changer",
+          "type": "string"
+        },
+        "secretDependencyTypeId": {
+          "description": "The Dependency Type of the Dependency Changer",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settings": {
+          "description": "Dynamic Settings based on the DependencyTemplate",
+          "items": {
+            "$ref": "#/$defs/DependencyChangerSettingModel"
+          },
+          "type": "array"
+        },
+        "verificationScript": {
+          "$ref": "#/$defs/DependencyChangerScriptCreateModel"
+        }
+      },
+      "type": "object"
+    },
+    "DependencyChangerScriptCreateModel": {
+      "description": "Model for creating a Scanner Dependency Changer Script",
+      "properties": {
+        "arguments": {
+          "description": "Arguments used for Powershell scripts",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key",
+          "type": "string"
+        },
+        "odbcParameters": {
+          "description": "ODBC Parameters for Scripts",
+          "items": {
+            "$ref": "#/$defs/DependencyScriptOdbcParameterModel"
+          },
+          "type": "array"
+        },
+        "parameters": {
+          "description": "Parameters for Scripts",
+          "items": {
+            "$ref": "#/$defs/DependencyScriptParameterModel"
+          },
+          "type": "array"
+        },
+        "passphrase": {
+          "description": "Passphrase",
+          "type": "string"
+        },
+        "password": {
+          "description": "Password",
+          "type": "string"
+        },
+        "scriptId": {
+          "description": "The Id of the Script.",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "username": {
+          "description": "Username",
+          "type": "string"
+        },
+        "useTokens": {
+          "description": "Use Tokens",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DependencyChangerSettingModel": {
+      "description": "Model for creating a Scanner Dependency Changer Setting",
+      "properties": {
+        "settingName": {
+          "description": "Setting Name",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DependencyScriptOdbcParameterModel": {
+      "description": "Model for a Dependency Script ODBC Parameter",
+      "properties": {
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DependencyScriptParameterModel": {
+      "description": "Model for a Dependency Script Parameter",
+      "properties": {
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

@@ -49,6 +49,15 @@ paths:
       deprecated: false
 components:
   schemas:
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
     ViewFieldLink:
       description: AdditionalLinks
       properties:
@@ -181,15 +190,6 @@ components:
       properties:
         generatedToken:
           $ref: '#/components/schemas/ViewFieldValueOfString'
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
       type: object
   securitySchemes:
     BearerToken:

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-notification-status-model-schema.json",
+  "title": "NotificationStatusModel",
+  "description": "Inbox notification status",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-inbox-api-openapi.yml#/components/schemas/NotificationStatusModel",
+  "properties": {
+    "applicationRequestPendingTotal": {
+      "description": "The number of pending application requests that are pending approval from the current user.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "hasAlerts": {
+      "description": "Does the current user have any alerts",
+      "type": "boolean"
+    },
+    "inboxNotificationTotal": {
+      "description": "The number of notifications since notifications were last viewed online.  If they have never been viewed then in the last seven days.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "notificationsLastViewed": {
+      "description": "The last time the current user viewed their alerts",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "secretAccessRequestPendingTotal": {
+      "description": "The number of pending secret access requests that are pending approval from the current user.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "secretEraseRequestPendingTotal": {
+      "description": "The number of pending secret erase requests that are pending approval from the current user.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "systemAlertTotal": {
+      "description": "The number of system alerts.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "type": "object"
+}

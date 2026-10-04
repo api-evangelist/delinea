@@ -1246,42 +1246,7 @@ paths:
       deprecated: false
 components:
   schemas:
-    GroupPatchArgs:
-      description: GroupPatchArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/GroupPatchModel'
-      type: object
-    GroupUserCreateArgs:
-      description: Group memberhsip create options
-      properties:
-        userId:
-          description: User ID to add
-          type: integer
-          format: int32
-      type: object
-    AdminAuditItem:
-      description: Audit entries for administration items
-      properties:
-        action:
-          description: The action that occurred
-          type: string
-        dateRecorded:
-          description: The date the audit entry was recorded
-          type: string
-          format: date-time
-        notes:
-          description: Extended information for the audit
-          type: string
-        userDisplayName:
-          description: Display Name for the user that made the audit
-          type: string
-        userId:
-          description: The user id of the user that made the audit
-          type: integer
-          format: int32
-      type: object
-    PagingOfGroupSummary:
+    PagingOfGroupMemberSummary:
       description: Specify paging and sorting options for querying records and returning results
       properties:
         batchCount:
@@ -1313,7 +1278,7 @@ components:
         records:
           description: Query results
           items:
-            $ref: '#/components/schemas/GroupSummary'
+            $ref: '#/components/schemas/GroupMemberSummary'
           type: array
         severity:
           $ref: '#/components/schemas/Severity'
@@ -1338,25 +1303,98 @@ components:
           type: integer
           format: int32
       type: object
-    GroupOwner:
-      description: The owners for the group
+    GroupSummary:
+      description: Group summary
       properties:
-        groupId:
-          description: The group ID, or personal group ID in the case of a user
+        created:
+          description: Created Date
+          type: string
+          format: date-time
+        domainGuid:
+          description: If this a synchronized group and the user requesting access has access this will be populated with the unique guid for the directory with a group search.
+          type: string
+        domainId:
+          description: Active Directory domain ID
           type: integer
           format: int32
-        name:
-          description: The display name for the user or group
+        domainName:
+          description: Active Directory domain name
           type: string
-        userId:
-          description: The user ID, or null in the case of a group
+        enabled:
+          description: Whether the group is active
+          type: boolean
+        id:
+          description: Group ID
+          type: integer
+          format: int32
+        isPlatform:
+          description: If this is synchronized with Platform
+          type: boolean
+        memberCount:
+          description: Number of members in group
           type:
           - integer
           - 'null'
           format: int32
+        name:
+          description: Group name
+          type: string
+        synchronized:
+          description: Whether the group is synchronized with Active Directory
+          type: boolean
+        synchronizeNow:
+          description: Active Directory Sync will only pull in members for domain groups that have this set to true.
+          type: boolean
       type: object
-    RoleAssignments:
-      description: Roles to be assigned
+    GroupMembershipAssignmentResponse:
+      description: GroupMembershipAssignmentResponse
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    GroupUserModel:
+      description: Represents a single user's membership in a group
+      properties:
+        groupDomainId:
+          description: Group Active Directory domain ID
+          type: integer
+          format: int32
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+        groupName:
+          description: Group name
+          type: string
+        userDomainId:
+          description: User Active Directory domain ID
+          type: integer
+          format: int32
+        userId:
+          description: User ID
+          type: integer
+          format: int32
+        userName:
+          description: User name
+          type: string
+      type: object
+    DictionaryOfInt32AndString:
+      description: Hash of GroupIds and GroupNames that own this group. Only used if HasGroupOwners is true.
+      properties: {}
+      type: object
+    RoleRemovals:
+      description: Roles to be removed
       properties:
         roleIds:
           description: Role IDs
@@ -1364,89 +1402,6 @@ components:
             type: integer
             format: int32
           type: array
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    PagingOfGroupUserSummary:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/GroupUserSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
       type: object
     GroupUpdateArgs:
       description: Group update options
@@ -1512,64 +1467,30 @@ components:
           description: Active Directory Sync will only pull in members for domain groups that have this set to true.
           type: boolean
       type: object
-    GroupSummary:
-      description: Group summary
+    GroupPatchArgs:
+      description: GroupPatchArgs
       properties:
-        created:
-          description: Created Date
-          type: string
-          format: date-time
-        domainGuid:
-          description: If this a synchronized group and the user requesting access has access this will be populated with the unique guid for the directory with a group search.
-          type: string
-        domainId:
-          description: Active Directory domain ID
-          type: integer
-          format: int32
-        domainName:
-          description: Active Directory domain name
-          type: string
-        enabled:
-          description: Whether the group is active
-          type: boolean
-        id:
-          description: Group ID
-          type: integer
-          format: int32
-        isPlatform:
-          description: If this is synchronized with Platform
-          type: boolean
-        memberCount:
-          description: Number of members in group
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Group name
-          type: string
-        synchronized:
-          description: Whether the group is synchronized with Active Directory
-          type: boolean
-        synchronizeNow:
-          description: Active Directory Sync will only pull in members for domain groups that have this set to true.
-          type: boolean
+        data:
+          $ref: '#/components/schemas/GroupPatchModel'
       type: object
-    GroupIpAddressRestrictionSummaryModel:
-      description: Group IP Address Restriction Model
+    GroupMembersSearchResult:
+      description: GroupMembersSearchResult
       properties:
-        id:
-          description: Id of Address Restriction
+        success:
+          description: Success
+          type: boolean
+        totalAssigned:
+          description: TotalAssigned
           type: integer
           format: int32
-        name:
-          description: Name of IP Address Restriction
-          type: string
-        range:
-          description: Range of IP Address Restriction
-          type: string
+        totalUnassigned:
+          description: TotalUnassigned
+          type: integer
+          format: int32
+        users:
+          $ref: '#/components/schemas/PagingOfGroupMemberSummary'
       type: object
-    PagingOfGroupLookup:
+    PagingOfGroupSummary:
       description: Specify paging and sorting options for querying records and returning results
       properties:
         batchCount:
@@ -1601,7 +1522,7 @@ components:
         records:
           description: Query results
           items:
-            $ref: '#/components/schemas/GroupLookup'
+            $ref: '#/components/schemas/GroupSummary'
           type: array
         severity:
           $ref: '#/components/schemas/Severity'
@@ -1626,47 +1547,79 @@ components:
           type: integer
           format: int32
       type: object
-    DeletedModel:
-      description: Information about an object that was deleted
+    GroupMembershipPatchModel:
+      description: Patch group membership
       properties:
-        id:
-          description: ID of the deleted object
-          type: integer
-          format: int32
-        objectType:
-          description: Type of the deleted object
+        addedUserIds:
+          description: Only the group IDs to add as members
+          items:
+            type: integer
+            format: int32
+          type: array
+        removeUserIds:
+          description: Only the group IDs to removed as members
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    GroupCreateArgs:
+      description: Group create options
+      required:
+      - name
+      - enabled
+      properties:
+        adGuid:
+          description: The Object GUID of the Active Directory Group (Hexadecimal)
           type: string
-        responseCodes:
-          description: List of response codes from the delete operation
+        domainId:
+          description: Active Directory Domain ID
+          type:
+          - integer
+          - 'null'
+          format: int32
+        enabled:
+          description: Whether the group is active
+          type: boolean
+        hasGroupOwners:
+          description: If true, the group is owned by specific other users/groups. If false, if it is owned by Group Administrators.
+          type:
+          - boolean
+          - 'null'
+        isPlatform:
+          description: Whether the group is a Platform Group
+          type: boolean
+        name:
+          description: Group name
+          type: string
+        ownerGroupIds:
+          description: List of owner GroupIds. Only used if HasGroupOwners is true.
+          items:
+            type: integer
+            format: int32
+          type: array
+        ownerGroupNames:
+          description: List of owner Group Names. Only used if HasGroupOwners is true.
           items:
             type: string
           type: array
-      type: object
-    GroupUserModel:
-      description: Represents a single user's membership in a group
-      properties:
-        groupDomainId:
-          description: Group Active Directory domain ID
-          type: integer
-          format: int32
-        groupId:
-          description: Group ID
-          type: integer
-          format: int32
-        groupName:
-          description: Group name
-          type: string
-        userDomainId:
-          description: User Active Directory domain ID
-          type: integer
-          format: int32
-        userId:
-          description: User ID
-          type: integer
-          format: int32
-        userName:
-          description: User name
-          type: string
+        ownerUserIds:
+          description: List of owner UserIds. Only used if HasGroupOwners is true.
+          items:
+            type: integer
+            format: int32
+          type: array
+        ownerUserNames:
+          description: List of owner Usernames. Only used if HasGroupOwners is true.
+          items:
+            type: string
+          type: array
+        synchronized:
+          description: Whether the group is synchronized with Active Directory
+          type: boolean
+        synchronizeNow:
+          description: Active Directory Sync will only pull in members for domain groups that have this set to true.
+          type: boolean
       type: object
     SortDirection:
       description: Sort direction
@@ -1676,14 +1629,16 @@ components:
       - None
       - Asc
       - Desc
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
+    RoleSummary:
+      description: Role Summary
       properties:
-        message:
-          description: Error message
+        name:
+          description: Role Name
           type: string
+        roleId:
+          description: Role ID
+          type: integer
+          format: int32
       type: object
     PagingOfRoleSummary:
       description: Specify paging and sorting options for querying records and returning results
@@ -1741,64 +1696,6 @@ components:
           description: Total number of results available
           type: integer
           format: int32
-      type: object
-    RoleChangeStatusModel:
-      description: The status of the Role change action.
-      properties:
-        success:
-          description: The success or failure of the user or group role action.
-          type: boolean
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    GroupLookup:
-      description: Simple group representation
-      properties:
-        id:
-          description: Group ID
-          type: integer
-          format: int32
-        value:
-          description: Group name
-          type: string
-      type: object
-    GroupMembershipPatchResult:
-      description: GroupMembershipPatchResult
-      properties:
-        success:
-          description: Success of the patch
-          type: boolean
-      type: object
-    GroupMemberAssignmentRequest:
-      description: GroupMemberAssignmentRequest
-      properties:
-        userIds:
-          description: This list will be the exact members for the group
-          items:
-            type: integer
-            format: int32
-          type: array
-      type: object
-    UpdateFieldValueOfInt32Array:
-      description: FolderIds
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          items:
-            type: integer
-            format: int32
-          type: array
       type: object
     GroupModel:
       description: Group
@@ -1865,63 +1762,243 @@ components:
           description: Whether the group is an Active Directory system group
           type: boolean
       type: object
-    GroupCreateArgs:
-      description: Group create options
-      required:
-      - name
-      - enabled
+    GroupLookup:
+      description: Simple group representation
       properties:
-        adGuid:
-          description: The Object GUID of the Active Directory Group (Hexadecimal)
+        id:
+          description: Group ID
+          type: integer
+          format: int32
+        value:
+          description: Group name
           type: string
-        domainId:
-          description: Active Directory Domain ID
+      type: object
+    RoleChangeStatusModel:
+      description: The status of the Role change action.
+      properties:
+        success:
+          description: The success or failure of the user or group role action.
+          type: boolean
+      type: object
+    GroupMemberAssignmentRequest:
+      description: GroupMemberAssignmentRequest
+      properties:
+        userIds:
+          description: This list will be the exact members for the group
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    UpdateFieldValueOfInt32Array:
+      description: FolderIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    GroupOwner:
+      description: The owners for the group
+      properties:
+        groupId:
+          description: The group ID, or personal group ID in the case of a user
+          type: integer
+          format: int32
+        name:
+          description: The display name for the user or group
+          type: string
+        userId:
+          description: The user ID, or null in the case of a group
           type:
           - integer
           - 'null'
           format: int32
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    DeletedModel:
+      description: Information about an object that was deleted
+      properties:
+        id:
+          description: ID of the deleted object
+          type: integer
+          format: int32
+        objectType:
+          description: Type of the deleted object
+          type: string
+        responseCodes:
+          description: List of response codes from the delete operation
+          items:
+            type: string
+          type: array
+      type: object
+    RoleAssignments:
+      description: Roles to be assigned
+      properties:
+        roleIds:
+          description: Role IDs
+          items:
+            type: integer
+            format: int32
+          type: array
+      type: object
+    GroupMembershipPatchResult:
+      description: GroupMembershipPatchResult
+      properties:
+        success:
+          description: Success of the patch
+          type: boolean
+      type: object
+    GroupUsersLookupViewModel:
+      description: GroupUsersLookupViewModel
+      properties:
+        users:
+          description: Users
+          items:
+            type: string
+          type: array
+      type: object
+    GroupUserSummary:
+      description: Query results
+      properties:
+        displayName:
+          description: User display name
+          type: string
         enabled:
-          description: Whether the group is active
+          description: User Enabled
           type: boolean
-        hasGroupOwners:
-          description: If true, the group is owned by specific other users/groups. If false, if it is owned by Group Administrators.
-          type:
-          - boolean
-          - 'null'
-        isPlatform:
-          description: Whether the group is a Platform Group
-          type: boolean
-        name:
+        groupDomainId:
+          description: Group Active Directory domain ID
+          type: integer
+          format: int32
+        groupDomainName:
+          description: Group Domain Name
+          type: string
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+        groupName:
           description: Group name
           type: string
+        userDomainId:
+          description: User Active Directory domain ID
+          type: integer
+          format: int32
+        userDomainName:
+          description: User Active Directory domain name
+          type: string
+        userId:
+          description: User ID
+          type: integer
+          format: int32
+        userName:
+          description: User name
+          type: string
+      type: object
+    GroupIpAddressRestrictionSummaryModel:
+      description: Group IP Address Restriction Model
+      properties:
+        id:
+          description: Id of Address Restriction
+          type: integer
+          format: int32
+        name:
+          description: Name of IP Address Restriction
+          type: string
+        range:
+          description: Range of IP Address Restriction
+          type: string
+      type: object
+    GroupPatchModel:
+      description: Patch group
+      properties:
+        addedOwnerGroupIds:
+          description: Only the group IDs to add as owners, this take precedence over the OwnerGroupIds
+          items:
+            type: integer
+            format: int32
+          type: array
+        enabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        ipAddressRestrictionIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
         ownerGroupIds:
-          description: List of owner GroupIds. Only used if HasGroupOwners is true.
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+        removedOwnerGroupIds:
+          description: Only the group IDs to removed as owners, this take precedence over the OwnerGroupIds
           items:
             type: integer
             format: int32
           type: array
-        ownerGroupNames:
-          description: List of owner Group Names. Only used if HasGroupOwners is true.
-          items:
-            type: string
-          type: array
-        ownerUserIds:
-          description: List of owner UserIds. Only used if HasGroupOwners is true.
-          items:
-            type: integer
-            format: int32
-          type: array
-        ownerUserNames:
-          description: List of owner Usernames. Only used if HasGroupOwners is true.
-          items:
-            type: string
-          type: array
-        synchronized:
-          description: Whether the group is synchronized with Active Directory
+      type: object
+    GroupMemberSummary:
+      description: Query results
+      properties:
+        assigned:
+          description: User assigned to Group
           type: boolean
-        synchronizeNow:
-          description: Active Directory Sync will only pull in members for domain groups that have this set to true.
+        displayName:
+          description: User display name
+          type: string
+        domainName:
+          description: User Active Directory domain name
+          type: string
+        enabled:
+          description: User Enabled
           type: boolean
+        groupId:
+          description: Group ID
+          type: integer
+          format: int32
+        userId:
+          description: User ID
+          type: integer
+          format: int32
+        userName:
+          description: User name
+          type: string
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
       type: object
     PagingOfAdminAuditItem:
       description: Specify paging and sorting options for querying records and returning results
@@ -1980,101 +2057,15 @@ components:
           type: integer
           format: int32
       type: object
-    RoleSummary:
-      description: Role Summary
+    GroupUserCreateArgs:
+      description: Group memberhsip create options
       properties:
-        name:
-          description: Role Name
-          type: string
-        roleId:
-          description: Role ID
+        userId:
+          description: User ID to add
           type: integer
           format: int32
       type: object
-    RoleRemovals:
-      description: Roles to be removed
-      properties:
-        roleIds:
-          description: Role IDs
-          items:
-            type: integer
-            format: int32
-          type: array
-      type: object
-    GroupMembersSearchResult:
-      description: GroupMembersSearchResult
-      properties:
-        success:
-          description: Success
-          type: boolean
-        totalAssigned:
-          description: TotalAssigned
-          type: integer
-          format: int32
-        totalUnassigned:
-          description: TotalUnassigned
-          type: integer
-          format: int32
-        users:
-          $ref: '#/components/schemas/PagingOfGroupMemberSummary'
-      type: object
-    GroupMembershipAssignmentResponse:
-      description: GroupMembershipAssignmentResponse
-      properties:
-        success:
-          description: Success
-          type: boolean
-      type: object
-    GroupPatchModel:
-      description: Patch group
-      properties:
-        addedOwnerGroupIds:
-          description: Only the group IDs to add as owners, this take precedence over the OwnerGroupIds
-          items:
-            type: integer
-            format: int32
-          type: array
-        enabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        ipAddressRestrictionIds:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
-        name:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        ownerGroupIds:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
-        removedOwnerGroupIds:
-          description: Only the group IDs to removed as owners, this take precedence over the OwnerGroupIds
-          items:
-            type: integer
-            format: int32
-          type: array
-      type: object
-    GroupMembershipPatchModel:
-      description: Patch group membership
-      properties:
-        addedUserIds:
-          description: Only the group IDs to add as members
-          items:
-            type: integer
-            format: int32
-          type: array
-        removeUserIds:
-          description: Only the group IDs to removed as members
-          items:
-            type: integer
-            format: int32
-          type: array
-      type: object
-    GroupUsersLookupViewModel:
-      description: GroupUsersLookupViewModel
-      properties:
-        users:
-          description: Users
-          items:
-            type: string
-          type: array
-      type: object
-    PagingOfGroupMemberSummary:
+    PagingOfGroupUserSummary:
       description: Specify paging and sorting options for querying records and returning results
       properties:
         batchCount:
@@ -2106,7 +2097,7 @@ components:
         records:
           description: Query results
           items:
-            $ref: '#/components/schemas/GroupMemberSummary'
+            $ref: '#/components/schemas/GroupUserSummary'
           type: array
         severity:
           $ref: '#/components/schemas/Severity'
@@ -2131,6 +2122,81 @@ components:
           type: integer
           format: int32
       type: object
+    PagingOfGroupLookup:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/GroupLookup'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -2152,88 +2218,26 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
+    AdminAuditItem:
+      description: Audit entries for administration items
       properties:
-        message:
-          description: Error message
+        action:
+          description: The action that occurred
           type: string
-        messageDetail:
-          description: Error message detail
+        dateRecorded:
+          description: The date the audit entry was recorded
           type: string
-        errorCode:
-          description: Error message code
+          format: date-time
+        notes:
+          description: Extended information for the audit
           type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    GroupUserSummary:
-      description: Query results
-      properties:
-        displayName:
-          description: User display name
-          type: string
-        enabled:
-          description: User Enabled
-          type: boolean
-        groupDomainId:
-          description: Group Active Directory domain ID
-          type: integer
-          format: int32
-        groupDomainName:
-          description: Group Domain Name
-          type: string
-        groupId:
-          description: Group ID
-          type: integer
-          format: int32
-        groupName:
-          description: Group name
-          type: string
-        userDomainId:
-          description: User Active Directory domain ID
-          type: integer
-          format: int32
-        userDomainName:
-          description: User Active Directory domain name
+        userDisplayName:
+          description: Display Name for the user that made the audit
           type: string
         userId:
-          description: User ID
+          description: The user id of the user that made the audit
           type: integer
           format: int32
-        userName:
-          description: User name
-          type: string
-      type: object
-    GroupMemberSummary:
-      description: Query results
-      properties:
-        assigned:
-          description: User assigned to Group
-          type: boolean
-        displayName:
-          description: User display name
-          type: string
-        domainName:
-          description: User Active Directory domain name
-          type: string
-        enabled:
-          description: User Enabled
-          type: boolean
-        groupId:
-          description: Group ID
-          type: integer
-          format: int32
-        userId:
-          description: User ID
-          type: integer
-          format: int32
-        userName:
-          description: User name
-          type: string
       type: object
     UpdateFieldValueOfBoolean:
       description: Active
@@ -2245,22 +2249,18 @@ components:
           description: Value
           type: boolean
       type: object
-    DictionaryOfInt32AndString:
-      description: Hash of GroupIds and GroupNames that own this group. Only used if HasGroupOwners is true.
-      properties: {}
-      type: object
   requestBodies:
-    RoleAssignments:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RoleAssignments'
-      description: args
     RoleRemovals:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/RoleRemovals'
+      description: args
+    RoleAssignments:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RoleAssignments'
       description: args
   securitySchemes:
     BearerToken:

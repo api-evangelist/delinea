@@ -1,0 +1,1446 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-bundle-settings-model-schema.json",
+  "title": "BundleSettingsModel",
+  "description": "BundleSettingsModel",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-bundle-api-openapi.yml#/components/schemas/BundleSettingsModel",
+  "properties": {
+    "configurationVersion": {
+      "description": "Export Configuration Version",
+      "type": "string"
+    },
+    "discoveryCommandSets": {
+      "description": "Discovery Command Sets",
+      "items": {
+        "$ref": "#/$defs/DiscoveryCommandSetModel"
+      },
+      "type": "array"
+    },
+    "discoveryScanTemplates": {
+      "description": "Scan Item Templates",
+      "items": {
+        "$ref": "#/$defs/DiscoveryScanTemplateModel"
+      },
+      "type": "array"
+    },
+    "discoverySource": {
+      "$ref": "#/$defs/DiscoverySourceModel"
+    },
+    "externalInstanceId": {
+      "description": "ID for specific instance",
+      "type": "string",
+      "format": "uuid"
+    },
+    "passwordChangers": {
+      "description": "Password Changers",
+      "items": {
+        "$ref": "#/$defs/PasswordTypeModel"
+      },
+      "type": "array"
+    },
+    "scanItemTemplates": {
+      "description": "Scan Item Templates",
+      "items": {
+        "$ref": "#/$defs/DiscoveryScanTemplateModel"
+      },
+      "type": "array"
+    },
+    "scanners": {
+      "description": "Scanners",
+      "items": {
+        "$ref": "#/$defs/ScannerBundle"
+      },
+      "type": "array"
+    },
+    "scripts": {
+      "description": "Scripts",
+      "items": {
+        "$ref": "#/$defs/ScriptModelV2"
+      },
+      "type": "array"
+    },
+    "secretTemplates": {
+      "description": "Secret Templates",
+      "items": {
+        "$ref": "#/$defs/SecretTemplateModel"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "DefaultDiscoverySettingForDisplay": {
+      "description": "DefaultDiscoverySettingForDisplays",
+      "properties": {
+        "determinesAuthentication": {
+          "description": "DeterminesAuthentication",
+          "type": "boolean"
+        },
+        "dropDownOptions": {
+          "description": "DropDownOptions",
+          "items": {
+            "$ref": "#/$defs/DropDownOption"
+          },
+          "type": "array"
+        },
+        "dropDownOptionsForDisplay": {
+          "description": "DropDownOptionsForDisplay",
+          "items": {
+            "$ref": "#/$defs/DropDownOptionForDisplay"
+          },
+          "type": "array"
+        },
+        "editable": {
+          "description": "Editable",
+          "type": "boolean"
+        },
+        "hasError": {
+          "description": "HasError",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "nameForDisplay": {
+          "description": "NameForDisplay",
+          "type": "string"
+        },
+        "nameLocalizeKey": {
+          "description": "NameLocalizeKey",
+          "type": "string"
+        },
+        "regexValidation": {
+          "description": "RegexValidation",
+          "type": "string"
+        },
+        "requiredScanTypes": {
+          "$ref": "#/$defs/RequiredScanTypes"
+        },
+        "settingDependency": {
+          "$ref": "#/$defs/SettingDependency"
+        },
+        "tooltipForDisplay": {
+          "description": "TooltipForDisplay",
+          "type": "string"
+        },
+        "tooltipLocalizeKey": {
+          "description": "TooltipLocalizeKey",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type",
+          "type": "integer",
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        },
+        "visible": {
+          "description": "Visible",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryCommandSetActionsModel": {
+      "description": "Indicates the actions the current user can perform on this command set",
+      "properties": {
+        "canEdit": {
+          "description": "Indicates if the current user can edit this command set",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryCommandSetModel": {
+      "description": "Discovery Command Set",
+      "properties": {
+        "actions": {
+          "$ref": "#/$defs/DiscoveryCommandSetActionsModel"
+        },
+        "commands": {
+          "description": "The actual commands that will run in the shell for this command set",
+          "type": "string"
+        },
+        "commandSetId": {
+          "description": "Unique ID for the command set",
+          "type": "integer",
+          "format": "int32"
+        },
+        "commandSetName": {
+          "description": "Name of the command set",
+          "type": "string"
+        },
+        "discoveryScannerId": {
+          "description": "Defines the scan type ID:  1 = SSH, 2 = ODBC",
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "description": "Indicates if this command set is active",
+          "type": "boolean"
+        },
+        "isStandard": {
+          "description": "Indicates if this is a standard out of the box command set",
+          "type": "boolean"
+        },
+        "scanTypeId": {
+          "description": "Defines the scan type ID:  1 = host, 2 = machine, 3 = account, 4 = dependency",
+          "type": "integer",
+          "format": "int32"
+        },
+        "scanTypeName": {
+          "description": "The name of the scan type",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryScanTemplateActionsModel": {
+      "description": "Actions that the current user can perforom on the scan template",
+      "properties": {
+        "canEdit": {
+          "description": "Can the current user edit the scan template",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryScanTemplateFieldModel": {
+      "description": "Scan template field",
+      "properties": {
+        "includeInMatch": {
+          "description": "Include this field in the matching to find unique items",
+          "type": "boolean"
+        },
+        "isActive": {
+          "description": "indicates if this field is active",
+          "type": "boolean"
+        },
+        "isRequired": {
+          "description": "Indicates if this field is required",
+          "type": "boolean"
+        },
+        "parentScanItemFieldId": {
+          "description": "The ID of the parent field",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "parentScanItemFieldName": {
+          "description": "The name of the parent field",
+          "type": "string"
+        },
+        "scanItemFieldId": {
+          "description": "Scan template field ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "scanItemFieldName": {
+          "description": "The name of the field",
+          "type": "string"
+        },
+        "scanItemTemplateId": {
+          "description": "Which scan template does this field belong to",
+          "type": "integer",
+          "format": "int32"
+        },
+        "sortOrder": {
+          "description": "The sort order for this field",
+          "type": "integer",
+          "format": "int32"
+        },
+        "systemField": {
+          "description": "IS this a system field",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryScanTemplateModel": {
+      "description": "Discovery scan template",
+      "properties": {
+        "actions": {
+          "$ref": "#/$defs/DiscoveryScanTemplateActionsModel"
+        },
+        "concurrencyId": {
+          "description": "Globally unique ID for this scan template",
+          "type": "string"
+        },
+        "isActive": {
+          "description": "Indicates if this template is active",
+          "type": "boolean"
+        },
+        "isInUse": {
+          "description": "Will return true if in use.  A scan template cannot be modified once it is in use.",
+          "type": "boolean"
+        },
+        "parentConcurrencyId": {
+          "description": "The globally unique id of the parent template if it has one",
+          "type": "string"
+        },
+        "parentScanTemplateId": {
+          "description": "The ID of the parent template if it has one",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "parentScanTemplateName": {
+          "description": "The name of the parent scan template",
+          "type": "string"
+        },
+        "scanTemplateFields": {
+          "description": "The fields on this template",
+          "items": {
+            "$ref": "#/$defs/DiscoveryScanTemplateFieldModel"
+          },
+          "type": "array"
+        },
+        "scanTemplateId": {
+          "description": "The unique ID for this scan template",
+          "type": "integer",
+          "format": "int32"
+        },
+        "scanTemplateName": {
+          "description": "The name of this template",
+          "type": "string"
+        },
+        "scanTypeId": {
+          "description": "The scan type ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "scanTypeName": {
+          "description": "The name of the scan type",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryScannerActionsModel": {
+      "description": "Defines the actions that the current user can perform on the scanner",
+      "properties": {
+        "canEdit": {
+          "description": "Can the current user edit this scanner",
+          "type": "boolean"
+        },
+        "canEditInputTemplate": {
+          "description": "Can the current user change the input template",
+          "type": "boolean"
+        },
+        "canEditOutputTemplate": {
+          "description": "Can the current user change the output template",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryScannerCredentialModel": {
+      "description": "The credentials used by this discovery source",
+      "properties": {
+        "secretId": {
+          "description": "SecretId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "secretName": {
+          "description": "SecretName",
+          "type": "string"
+        },
+        "secretNameSearchPattern": {
+          "description": "SecretNameSearchPattern",
+          "type": "string"
+        },
+        "secretSearchFilterId": {
+          "description": "SecretSearchFilterId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryScannerDetailItemModel": {
+      "description": "The scanner settings for this scanner on this discovery source",
+      "properties": {
+        "determinesAuthentication": {
+          "description": "DeterminesAuthentication",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "DisplayName",
+          "type": "string"
+        },
+        "dropDownOptions": {
+          "description": "DropDownOptions",
+          "items": {
+            "$ref": "#/$defs/ViewFieldDropDownOption"
+          },
+          "type": "array"
+        },
+        "editable": {
+          "description": "Editable",
+          "type": "boolean"
+        },
+        "fieldType": {
+          "description": "FieldType",
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "regexValidation": {
+          "description": "RegexValidation",
+          "type": "string"
+        },
+        "tooltip": {
+          "description": "Tooltip",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        },
+        "visible": {
+          "description": "Visible",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryScannerDetailModel": {
+      "description": "Scanner details",
+      "properties": {
+        "canEdit": {
+          "description": "Can the scanner be edited",
+          "type": "boolean"
+        },
+        "credentials": {
+          "description": "The credentials used by this discovery source",
+          "items": {
+            "$ref": "#/$defs/DiscoveryScannerCredentialModel"
+          },
+          "type": "array"
+        },
+        "discoveryItemScannerDescription": {
+          "description": "The description of the scanner",
+          "type": "string"
+        },
+        "discoveryItemScannerDisplayName": {
+          "description": "The localized name of the scanner",
+          "type": "string"
+        },
+        "discoveryItemScannerId": {
+          "description": "The ID for the instance of this scanner type for this discovery source",
+          "type": "integer",
+          "format": "int32"
+        },
+        "discoveryItemScannerName": {
+          "description": "The name of the scanner",
+          "type": "string"
+        },
+        "discoveryScannerId": {
+          "description": "The ID for the type of scanner",
+          "type": "integer",
+          "format": "int32"
+        },
+        "discoverySourceId": {
+          "description": "Which discovery source is this scanner associated to",
+          "type": "integer",
+          "format": "int32"
+        },
+        "inputScanItemTemplateDisplayName": {
+          "description": "The localized name of the input template",
+          "type": "string"
+        },
+        "inputScanItemTemplateId": {
+          "description": "The input template for this scanner",
+          "type": "integer",
+          "format": "int32"
+        },
+        "inputScanItemTemplateName": {
+          "description": "The name of the input template",
+          "type": "string"
+        },
+        "isActive": {
+          "description": "Is this scanner active",
+          "type": "boolean"
+        },
+        "outputScanItemTemplateDisplayName": {
+          "description": "The localized name of the output scan template",
+          "type": "string"
+        },
+        "outputScanItemTemplateId": {
+          "description": "The output scan template ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "outputScanItemTemplateName": {
+          "description": "The name of the output scan template",
+          "type": "string"
+        },
+        "scannerItems": {
+          "description": "The scanner settings for this scanner on this discovery source",
+          "items": {
+            "$ref": "#/$defs/DiscoveryScannerDetailItemModel"
+          },
+          "type": "array"
+        },
+        "sortOrder": {
+          "description": "The sort order for this scanner",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryScannerModel": {
+      "description": "Scanner Model",
+      "properties": {
+        "actions": {
+          "$ref": "#/$defs/DiscoveryScannerActionsModel"
+        },
+        "baseScannerId": {
+          "description": "The base scanner ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "baseScannerName": {
+          "description": "The name of the base scanner",
+          "type": "string"
+        },
+        "commandSetId": {
+          "description": "The specific command set ID if this is an SSH scanner",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "commandSetName": {
+          "description": "The specific command set ID if this is an SSH scanner",
+          "type": "string"
+        },
+        "concurrencyId": {
+          "description": "Globally unique ID for this scan template",
+          "type": "string"
+        },
+        "dependencyItemScannerDisplayName": {
+          "description": "A localized version of the scanner item name",
+          "type": "string"
+        },
+        "discoveryItemScannerDisplayDescription": {
+          "description": "A localized description for this scanner",
+          "type": "string"
+        },
+        "discoveryItemScannerDisplayName": {
+          "description": "A localized version of the scanner name",
+          "type": "string"
+        },
+        "inputScanItemTemplateId": {
+          "description": "The ID of the input scan template",
+          "type": "integer",
+          "format": "int32"
+        },
+        "inputTemplateDisplayName": {
+          "description": "A localized name of the input template",
+          "type": "string"
+        },
+        "inputTemplateName": {
+          "description": "The name of the input scan template",
+          "type": "string"
+        },
+        "isActive": {
+          "description": "Indicates if this scanner is active",
+          "type": "boolean"
+        },
+        "isInUse": {
+          "description": "Indicates if this scanner is used in any discover source scanner flows",
+          "type": "boolean"
+        },
+        "itemScannerDescription": {
+          "description": "The description of the scanner",
+          "type": "string"
+        },
+        "itemScannerId": {
+          "description": "Unique ID for this scanner",
+          "type": "integer",
+          "format": "int32"
+        },
+        "itemScannerName": {
+          "description": "The name of the scanner",
+          "type": "string"
+        },
+        "outputScanItemTemplateId": {
+          "description": "The ID of the output scan template",
+          "type": "integer",
+          "format": "int32"
+        },
+        "outputTemplateDisplayName": {
+          "description": "A localized name of the output template",
+          "type": "string"
+        },
+        "outputTemplateName": {
+          "description": "The name of the output scan template",
+          "type": "string"
+        },
+        "scannerId": {
+          "description": "The scanner ID for this scanner",
+          "type": "integer",
+          "format": "int32"
+        },
+        "scannerItems": {
+          "description": "All of the setting values for this scanner",
+          "items": {
+            "$ref": "#/$defs/DiscoveryScannerDetailItemModel"
+          },
+          "type": "array"
+        },
+        "scanTypeId": {
+          "description": "The scan type (1, 2, 3, 4)",
+          "type": "integer",
+          "format": "int32"
+        },
+        "scriptArguments": {
+          "description": "Any args that will be passed to the PS scanner script",
+          "type": "string"
+        },
+        "scriptId": {
+          "description": "If this is a PS scanner this is the associated script",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "scriptName": {
+          "description": "If this is a PS scanner this is the associated script name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoverySourceModel": {
+      "description": "Discovery Source Settings",
+      "properties": {
+        "active": {
+          "description": "Is discovery source active",
+          "type": "boolean"
+        },
+        "daysToKeepMachines": {
+          "description": "Days To Keep Machines",
+          "type": "integer",
+          "format": "int32"
+        },
+        "discoverSpecificOUs": {
+          "description": "Discover specific OUs",
+          "type": "boolean"
+        },
+        "discoveryScannerId": {
+          "description": "Discovery scanner ID",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "discoverySourceId": {
+          "description": "The discovery source ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "discoverySourceSettings": {
+          "$ref": "#/$defs/DiscoverySourceSettingsModel"
+        },
+        "lastDiscoveryRunDate": {
+          "description": "Last discovery run date",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "machineNameResolutionType": {
+          "$ref": "#/$defs/MachineNameResolutionType"
+        },
+        "name": {
+          "description": "The discovery source naame",
+          "type": "string"
+        },
+        "secretId": {
+          "description": "Default Discovery Secret credentials",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "siteId": {
+          "description": "The site ID",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoverySourceSettingsModel": {
+      "description": "Additional settings for discovery source",
+      "properties": {
+        "daysToKeepMachines": {
+          "description": "Days To Keep Machines",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "distinguishedName": {
+          "description": "The domain distinguished name",
+          "type": "string"
+        },
+        "domainType": {
+          "description": "Domain type: ActiveDirectory, OpenLdap, or AzureActiveDirectory",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "friendlyName": {
+          "description": "The domain friendly name",
+          "type": "string"
+        },
+        "fullyQualifiedDomainName": {
+          "description": "The fully qualified domain name",
+          "type": "string"
+        },
+        "netBIOSName": {
+          "description": "The NetBIOS name",
+          "type": "string"
+        },
+        "useSecureLDAP": {
+          "description": "Use secure LDAP",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DropDownOption": {
+      "description": "DropDownOptions",
+      "properties": {
+        "localizeKey": {
+          "description": "LocalizeKey",
+          "type": "string"
+        },
+        "optionValue": {
+          "description": "OptionValue",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DropDownOptionForDisplay": {
+      "description": "DropDownOptionsForDisplay",
+      "properties": {
+        "localizeKey": {
+          "description": "LocalizeKey",
+          "type": "string"
+        },
+        "nameForDisplay": {
+          "description": "NameForDisplay",
+          "type": "string"
+        },
+        "optionValue": {
+          "description": "OptionValue",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EditRequiresOptions": {
+      "description": "What option is required to edit this field including Owner, Edit, and Not Editable",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Edit",
+        "Owner",
+        "NotEditable"
+      ]
+    },
+    "IRestPasswordTypeField": {
+      "description": "Password Type Fields",
+      "properties": {
+        "isOptional": {
+          "description": "IsOptional",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "passwordTypeFieldId": {
+          "description": "PasswordTypeFieldId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "scanItemFieldId": {
+          "description": "ScanItemFieldId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "LineEnding": {
+      "description": "Line ending type",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "NewLine",
+        "CarriageReturn",
+        "CarriageReturnNewLine"
+      ]
+    },
+    "ListType": {
+      "description": "What type of contents does this list field contain",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Generic",
+        "URL"
+      ]
+    },
+    "MachineNameResolutionType": {
+      "description": "Use machine name and FQDM or only use machine name",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "UseMachineNameAndFQDM",
+        "OnlyUseMachineName"
+      ]
+    },
+    "PasswordTypeModel": {
+      "description": "Displays the properties of a Password Type",
+      "properties": {
+        "active": {
+          "description": "Whether the Password Type is Active ",
+          "type": "boolean"
+        },
+        "allowsPrivilegedAccount": {
+          "description": "Allows a Default Privileged Account",
+          "type": "boolean"
+        },
+        "canEdit": {
+          "description": "Whether the Password Type can be edited",
+          "type": "boolean"
+        },
+        "concurrencyId": {
+          "description": "Globally unique Id",
+          "type": "string"
+        },
+        "customPort": {
+          "description": "Custom Port",
+          "type": "integer",
+          "format": "int32"
+        },
+        "exitCommand": {
+          "description": "Exit Command",
+          "type": "string"
+        },
+        "fields": {
+          "description": "Password Type Fields",
+          "items": {
+            "$ref": "#/$defs/IRestPasswordTypeField"
+          },
+          "type": "array"
+        },
+        "hasCommands": {
+          "description": "Whether Commands Exist",
+          "type": "boolean"
+        },
+        "hasLDAPSettings": {
+          "description": "Whether LDAP Settings Exist",
+          "type": "boolean"
+        },
+        "heartbeatScriptArgs": {
+          "description": "Heartbeat Script Args",
+          "type": "string"
+        },
+        "heartbeatScriptId": {
+          "description": "Heartbeat Script Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "ignoreSSL": {
+          "description": "Whether Password Type ignores SSL warnings",
+          "type": "boolean"
+        },
+        "isWeb": {
+          "description": "Whether Is Web",
+          "type": "boolean"
+        },
+        "ldapConnectionSettingsId": {
+          "description": "LDAP Connection Settings Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "lineEnding": {
+          "$ref": "#/$defs/LineEnding"
+        },
+        "mainframeConnectionString": {
+          "description": "Mainframe Connection String",
+          "type": "string"
+        },
+        "name": {
+          "description": "Password Type Name",
+          "type": "string"
+        },
+        "odbcConnectionString": {
+          "description": "ODBC Connection String",
+          "type": "string"
+        },
+        "passwordTypeId": {
+          "description": "Password Type Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "requestTerminal": {
+          "description": "Request Terminal",
+          "type": "boolean"
+        },
+        "rpcScriptArgs": {
+          "description": "RPC Script Args",
+          "type": "string"
+        },
+        "rpcScriptId": {
+          "description": "RPC Script Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "runnerType": {
+          "$ref": "#/$defs/RunnerType"
+        },
+        "scanItemTemplateId": {
+          "description": "Scan Template Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "supportsCustomSettings": {
+          "description": "Identifies if changer supports custom settings",
+          "type": "boolean"
+        },
+        "supportsIgnoreSslErrors": {
+          "description": "Identifies if changer supports ignoring of SSL errors",
+          "type": "boolean"
+        },
+        "supportsSsl": {
+          "description": "Identifies if changer supports SSL",
+          "type": "boolean"
+        },
+        "supportsTakeOver": {
+          "description": "Identifies if changer supports take over",
+          "type": "boolean"
+        },
+        "supportsUseSsl": {
+          "description": "Identifies if changer supports Use of SSL",
+          "type": "boolean"
+        },
+        "typeName": {
+          "description": "Federator Type",
+          "type": "string"
+        },
+        "useSSL": {
+          "description": "Whether Password Type uses SSL",
+          "type": "boolean"
+        },
+        "useUsernameAndPassword": {
+          "description": "Whether Password Type uses both Username and Password",
+          "type": "boolean"
+        },
+        "validForTakeover": {
+          "description": "Whether is Valid For Takeover",
+          "type": "boolean"
+        },
+        "windowsCustomPorts": {
+          "description": "Custom Ports for Windows",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequiredScanTypes": {
+      "description": "RequiredScanTypes",
+      "properties": {
+        "hostRangeScannerIds": {
+          "description": "HostRangeScannerIds",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": "array"
+        },
+        "machineScannerIds": {
+          "description": "MachineScannerIds",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RunnerType": {
+      "description": "Runner Type",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Standard",
+        "Legacy"
+      ]
+    },
+    "ScannerBundle": {
+      "description": "Scanners",
+      "properties": {
+        "defaultDiscoverySettingForDisplays": {
+          "description": "DefaultDiscoverySettingForDisplays",
+          "items": {
+            "$ref": "#/$defs/DefaultDiscoverySettingForDisplay"
+          },
+          "type": "array"
+        },
+        "discoveryScannerDetail": {
+          "$ref": "#/$defs/DiscoveryScannerDetailModel"
+        },
+        "scanner": {
+          "$ref": "#/$defs/DiscoveryScannerModel"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptAdditionalDataModel": {
+      "description": "Additional data for this script including parameters and settings",
+      "properties": {
+        "sqlSettings": {
+          "$ref": "#/$defs/ScriptSqlAdditionalDataModel"
+        },
+        "sshSettings": {
+          "$ref": "#/$defs/ScriptSshAdditionalDataModel"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptModelV2": {
+      "description": "Script",
+      "properties": {
+        "additionalData": {
+          "$ref": "#/$defs/ScriptAdditionalDataModel"
+        },
+        "concurrencyId": {
+          "description": "Script Global Id",
+          "type": "string"
+        },
+        "description": {
+          "description": "Script Description",
+          "type": "string"
+        },
+        "isActive": {
+          "description": "Whether the Script is Active",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Script Name",
+          "type": "string"
+        },
+        "script": {
+          "description": "Script Text",
+          "type": "string"
+        },
+        "scriptCategoryId": {
+          "description": "Script Category Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "scriptCategoryName": {
+          "description": "Script Category Name",
+          "type": "string"
+        },
+        "scriptId": {
+          "description": "Script Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "scriptType": {
+          "$ref": "#/$defs/UserScriptType"
+        },
+        "usageCount": {
+          "description": "Usage Count",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptSqlAdditionalDataModel": {
+      "description": "Additional settings for SQL scripts",
+      "properties": {
+        "database": {
+          "description": "The database name to connect to",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Parameters for this sql script",
+          "items": {
+            "$ref": "#/$defs/ScriptSqlParamModel"
+          },
+          "type": "array"
+        },
+        "passwordChangerId": {
+          "description": "Which password changer this is used with",
+          "type": "integer",
+          "format": "int32"
+        },
+        "passwordChangerName": {
+          "description": "Which password changer this is used with",
+          "type": "string"
+        },
+        "port": {
+          "description": "A specific port to use",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptSqlParamModel": {
+      "description": "Parameters for this sql script",
+      "properties": {
+        "parameterDbType": {
+          "$ref": "#/$defs/ScriptSqlParamType"
+        },
+        "parameterName": {
+          "description": "ParameterName",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptSqlParamType": {
+      "description": "ParameterDbType",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "AnsiString",
+        "Binary",
+        "Byte",
+        "Boolean",
+        "Currency",
+        "Date",
+        "DateTime",
+        "Decimal",
+        "Double",
+        "Guid",
+        "Int16",
+        "Int32",
+        "Int64",
+        "Object",
+        "SByte",
+        "Single",
+        "String",
+        "Time",
+        "UInt16",
+        "UInt32",
+        "UInt64",
+        "VarNumeric",
+        "AnsiStringFixedLength",
+        "StringFixedLength",
+        "Xml",
+        "DateTime2",
+        "DateTimeOffset"
+      ]
+    },
+    "ScriptSshAdditionalDataModel": {
+      "description": "Additional settings for SSH scripts",
+      "properties": {
+        "doNotUseEnvironment": {
+          "description": "Do not use environment variables in script",
+          "type": "boolean"
+        },
+        "lineEnding": {
+          "$ref": "#/$defs/SshScriptLineEndingType"
+        },
+        "parameters": {
+          "description": "Any parameters that can be used in the script",
+          "items": {
+            "$ref": "#/$defs/ScriptSshParameterModel"
+          },
+          "type": "array"
+        },
+        "port": {
+          "description": "The port that should be used by an SSH script",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptSshParamType": {
+      "description": "ParameterSshType",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Intrepreted",
+        "Literal"
+      ]
+    },
+    "ScriptSshParameterModel": {
+      "description": "Any parameters that can be used in the script",
+      "properties": {
+        "parameterName": {
+          "description": "ParameterName",
+          "type": "string"
+        },
+        "parameterSshType": {
+          "$ref": "#/$defs/ScriptSshParamType"
+        }
+      },
+      "type": "object"
+    },
+    "SecretTemplateField": {
+      "description": "Secret template field",
+      "properties": {
+        "description": {
+          "description": "Field description",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Field display name",
+          "type": "string"
+        },
+        "editablePermission": {
+          "description": "Who has editing rights",
+          "type": "integer",
+          "format": "int32"
+        },
+        "editRequires": {
+          "$ref": "#/$defs/EditRequiresOptions"
+        },
+        "fieldSlugName": {
+          "description": "Field Slug Name",
+          "type": "string"
+        },
+        "generatePasswordCharacterSet": {
+          "description": "Generate password character set. Only returned if user can manage secret templates",
+          "type": "string"
+        },
+        "generatePasswordLength": {
+          "description": "Generate password length.  Only returned if user can manage secret templates",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "hideOnView": {
+          "description": "Hide this field when viewing",
+          "type": "boolean"
+        },
+        "historyLength": {
+          "description": "History length",
+          "type": "integer",
+          "format": "int32"
+        },
+        "isExpirationField": {
+          "description": "Is expiration field",
+          "type": "boolean"
+        },
+        "isFile": {
+          "description": "Is this field a file type",
+          "type": "boolean"
+        },
+        "isIndexable": {
+          "description": "Is able to be indexed",
+          "type": "boolean"
+        },
+        "isList": {
+          "description": "Is this field a list field type",
+          "type": "boolean"
+        },
+        "isNotes": {
+          "description": "Is this field a notes field type",
+          "type": "boolean"
+        },
+        "isPassword": {
+          "description": "Is this field a password field type",
+          "type": "boolean"
+        },
+        "isRequired": {
+          "description": "Is this field required",
+          "type": "boolean"
+        },
+        "isUrl": {
+          "description": "Is this field a url field type",
+          "type": "boolean"
+        },
+        "listType": {
+          "$ref": "#/$defs/ListType"
+        },
+        "mustEncrypt": {
+          "description": "Must encrypt.  Only returned if user can manage secret templates",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Field name",
+          "type": "string"
+        },
+        "passwordRequirementId": {
+          "description": "ID For Password Requirement assigned to field",
+          "type": "integer",
+          "format": "int32"
+        },
+        "passwordTypeFieldId": {
+          "description": "Type of password field",
+          "type": "integer",
+          "format": "int32"
+        },
+        "secretTemplateFieldId": {
+          "description": "Field Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "sortOrder": {
+          "description": "Sort Order for Field",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "SecretTemplateModel": {
+      "description": "Secret template",
+      "properties": {
+        "concurrencyId": {
+          "description": "Global unique identifier",
+          "type": "string"
+        },
+        "fields": {
+          "description": "Secret template fields",
+          "items": {
+            "$ref": "#/$defs/SecretTemplateField"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Secret template Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "description": "Secret template name",
+          "type": "string"
+        },
+        "passwordTypeId": {
+          "description": "Password Type Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "SettingDependency": {
+      "description": "SettingDependency",
+      "properties": {
+        "dependentOnValue": {
+          "description": "DependentOnValue",
+          "type": "boolean"
+        },
+        "dependentScanType": {
+          "description": "DependentScanType",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "SshScriptLineEndingType": {
+      "description": "The type of line ending that should be sent to the script",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "NewLine",
+        "CarriageReturn",
+        "CarriageReturnNewLine"
+      ]
+    },
+    "UserScriptType": {
+      "description": "Script Type (Powershell = 1, SQL = 2, SSH = 3)",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "PowerShell",
+        "SQL",
+        "SSH"
+      ]
+    },
+    "ViewFieldDropDownOption": {
+      "description": "DropDownOptions",
+      "properties": {
+        "fieldDisplay": {
+          "description": "FieldDisplay",
+          "type": "string"
+        },
+        "fieldValue": {
+          "description": "FieldValue",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

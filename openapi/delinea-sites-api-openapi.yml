@@ -60,13 +60,18 @@ paths:
       deprecated: false
 components:
   schemas:
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
+    SiteModel:
+      description: Site Model
       properties:
-        message:
-          description: Error message
+        active:
+          description: Active flag
+          type: boolean
+        siteId:
+          description: Site Id
+          type: integer
+          format: int32
+        siteName:
+          description: Site Name
           type: string
       type: object
     InternalServerErrorResponse:
@@ -90,18 +95,13 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    SiteModel:
-      description: Site Model
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
       properties:
-        active:
-          description: Active flag
-          type: boolean
-        siteId:
-          description: Site Id
-          type: integer
-          format: int32
-        siteName:
-          description: Site Name
+        message:
+          description: Error message
           type: string
       type: object
     BadRequestResponse:

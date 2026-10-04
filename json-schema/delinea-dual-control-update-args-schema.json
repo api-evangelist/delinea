@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-dual-control-update-args-schema.json",
+  "title": "DualControlUpdateArgs",
+  "description": "Dual control update options",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-dualcontrols-api-openapi.yml#/components/schemas/DualControlUpdateArgs",
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "active": {
+      "description": "Active",
+      "type": "boolean"
+    },
+    "dualControlApprovalGroups": {
+      "description": "Dual control approval groups",
+      "items": {
+        "$ref": "#/$defs/IDualControlApprovalGroup"
+      },
+      "type": "array"
+    },
+    "dualControlTypeId": {
+      "description": "Dual control type",
+      "type": "integer",
+      "format": "int32"
+    },
+    "id": {
+      "description": "App client ID. Must match ID in path",
+      "type": "integer",
+      "format": "int32"
+    },
+    "itemId": {
+      "description": "ItemId",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "IDualControlApprovalGroup": {
+      "description": "Dual control approval groups",
+      "properties": {
+        "dualControlId": {
+          "description": "DualControlId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "enabled": {
+          "description": "Enabled",
+          "type": "boolean"
+        },
+        "groupId": {
+          "description": "GroupId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "groupName": {
+          "description": "GroupName",
+          "type": "string"
+        },
+        "id": {
+          "description": "Id",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

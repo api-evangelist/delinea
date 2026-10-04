@@ -1,6 +1,8 @@
 aid: delinea
 name: Delinea
-description: Delinea is a privileged access management (PAM) platform providing REST APIs for Secret Server, DevOps Secrets Vault, Privilege Manager, and Cloud Suite. It enables organizations to manage, rotate, and audit privileged credentials, sessions, and access policies across on-premises and cloud infrastructure.
+description: Delinea is a privileged access management (PAM) platform providing REST APIs for Secret Server, DevOps Secrets Vault, Privilege Manager,
+  and Cloud Suite. It enables organizations to manage, rotate, and audit privileged credentials, sessions, and access policies across on-premises
+  and cloud infrastructure.
 deliveryModel:
   model: saas
   open_source: false
@@ -33,12 +35,109 @@ created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.23'
 tags:
-  - Privileged Access Management
-  - PAM
-  - Secrets Management
-  - Identity Security
-  - DevOps
-  - Cybersecurity
+- Privileged Access Management
+- PAM
+- Secrets Management
+- Identity Security
+- DevOps
+- Cybersecurity
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+common:
+- type: Spectral
+  url: rules/delinea-rules.yml
+- type: Spectral
+  url: rules/delinea-jsonschema-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/delinea-context.jsonld
+- type: Vocabulary
+  url: vocabulary/delinea-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Webhooks
+  url: asyncapi/delinea-webhooks.yml
+- type: DataModel
+  url: data-model/delinea-data-model.yml
+- type: Compliance
+  url: https://trust.delinea.com/
+- type: Security
+  url: https://trust.delinea.com/?itemUid=56583ca0-6561-4cf3-a150-8c0c45d214cf
+- type: ErrorCatalog
+  url: errors/delinea-problem-types.yml
+- type: Conformance
+  url: conformance/delinea-conformance.yml
+- type: LLMsTxt
+  url: llms/delinea-llms.txt
+- type: SecurityTxt
+  url: well-known/delinea-your-tenant-security.txt
+- type: SecurityTxt
+  url: well-known/delinea-status-security.txt
+- type: SecurityTxt
+  url: well-known/delinea-security.txt
+- type: SecurityTxt
+  url: well-known/delinea-api-security.txt
+- type: WellKnown
+  url: well-known/delinea-well-known.yml
+- type: Hosts
+  url: hosts/delinea-hosts.yml
+- type: Vendors
+  url: vendors/delinea-vendors.yml
+- type: Packages
+  url: packages/delinea-packages.yml
+- type: TermsOfService
+  url: https://community.delinea.com/site/terms
+- type: Support
+  url: https://support.delinea.com/s/
+- type: PrivacyPolicy
+  url: https://delinea.com/privacy-policy
+- type: Newsroom
+  url: https://delinea.com/news
+- type: Leadership
+  url: https://delinea.com/leadership
+- type: DeveloperPortal
+  url: https://developer.delinea.com/
+- type: ChangeLog
+  url: https://developer.delinea.com/changelog
+- type: APIReference
+  url: https://developer.delinea.com/reference
+- type: GettingStarted
+  url: https://developer.delinea.com/reference/post_quickstart-getstate
+- type: CapabilityMap
+  url: capabilities/delinea-capability-edges.yml
+  name: Delinea Business Capability Map
+- type: AgenticAccess
+  url: agentic-access/delinea-agentic-access.yml
+- type: TrustCenter
+  url: security/delinea-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/delinea-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/delinea-domain-security.yml
+- type: Authentication
+  url: authentication/delinea-authentication.yml
+- type: Website
+  url: https://delinea.com/
+- type: Documentation
+  url: https://docs.delinea.com/online-help/library/start.htm
+- type: GitHubOrg
+  url: https://github.com/DelineaXPM
+- type: LinkedIn
+  url: https://www.linkedin.com/company/delinea/
+- type: Blog
+  url: https://delinea.com/blog
+- type: Pricing
+  url: https://delinea.com/products/delinea-platform-bundles
+- type: StatusPage
+  url: https://status.delinea.com/
+- type: X
+  url: https://x.com/DelineaInc
+- type: Plans
+  url: plans/delinea-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/delinea-rate-limits.yml
+- type: FinOps
+  url: finops/delinea-finops.yml
 apis:
 - aid: delinea:secret-server-api
   name: Secret Server REST API
@@ -138,6 +237,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-activations-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-online-activation-args-schema.json
 - aid: delinea:delinea-advancedconfigsettings-api
   name: Delinea AdvancedConfigSettings API
   description: AdvancedConfigSettingsController
@@ -148,6 +249,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-advancedconfigsettings-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-configuration-advanced-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-deleted-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-configuration-advanced-create-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-configuration-advanced-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-configuration-advanced-update-args-schema.json
 - aid: delinea:delinea-appclients-api
   name: Delinea AppClients API
   description: View and maintain app clients
@@ -158,6 +269,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-appclients-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-deleted-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-app-client-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-app-client-update-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-app-client-create-args-schema.json
 - aid: delinea:delinea-applicationaccounts-api
   name: Delinea ApplicationAccounts API
   description: View and maintain users
@@ -168,6 +287,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-applicationaccounts-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-user-lookup-schema.json
 - aid: delinea:delinea-applicationrequest-api
   name: Delinea ApplicationRequest API
   description: ApplicationRequestController
@@ -178,6 +299,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-applicationrequest-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-application-access-request-audit-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-application-access-request-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-application-access-request-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-application-access-request-update-args-schema.json
 - aid: delinea:delinea-appstate-api
   name: Delinea AppState API
   description: AppStateController
@@ -188,6 +317,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-appstate-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-app-state-model-schema.json
 - aid: delinea:delinea-bulksecretoperations-api
   name: Delinea BulkSecretOperations API
   description: Create Bulk Secret Operations
@@ -198,6 +329,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-bulksecretoperations-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-disable-hide-launcher-password-for-secrets-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-update-password-requirement-for-secrets-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-enable-hide-launcher-password-secrets-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-disable-require-view-comment-secrets-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-enable-inherit-permissions-secrets-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-enable-require-view-comment-secrets-args-schema.json
 - aid: delinea:delinea-bundle-api
   name: Delinea Bundle API
   description: Export and Import Bundles
@@ -208,6 +351,10 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-bundle-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-bundle-settings-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-export-bundle-args-schema.json
 - aid: delinea:delinea-categorizedlists-api
   name: Delinea CategorizedLists API
   description: View and maintain lists of options
@@ -218,6 +365,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-categorizedlists-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-categorized-list-item-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-categorized-list-audit-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-categorized-list-item-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-categorized-list-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-simple-categorized-list-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-string-schema.json
 - aid: delinea:delinea-charactersets-api
   name: Delinea CharacterSets API
   description: Character Sets used in password requirements
@@ -228,6 +387,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-charactersets-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-character-set-audit-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-character-set-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-character-set-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-character-set-create-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-character-set-patch-args-schema.json
 - aid: delinea:delinea-clouddiagnostics-api
   name: Delinea CloudDiagnostics API
   description: View cloud diagnostics information
@@ -238,6 +407,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-clouddiagnostics-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-long-running-task-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-thread-information-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-recycle-background-processes-result-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-long-running-task-clear-result-schema.json
 - aid: delinea:delinea-configuration-api
   name: Delinea Configuration API
   description: Secret Server Configuration
@@ -248,6 +425,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-configuration-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-configuration-saml-identity-provider-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-configuration-security-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-configuration-application-settings-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-configuration-session-recording-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-configuration-user-experience-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-configuration-local-user-passwords-model-schema.json
 - aid: delinea:delinea-connectionmanagersettings-api
   name: Delinea ConnectionManagerSettings API
   description: ConnectionManagerSettingsController
@@ -258,6 +447,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-connectionmanagersettings-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-connection-manager-settings-model-schema.json
 - aid: delinea:delinea-dependencychanger-api
   name: Delinea DependencyChanger API
   description: DependencyChangerController
@@ -268,6 +459,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-dependencychanger-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-dependency-changer-setting-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-dependency-changer-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dependency-changer-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dependency-changer-scan-template-field-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dependency-script-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dependency-changer-create-args-schema.json
 - aid: delinea:delinea-devopssecretsvaultsync-api
   name: Delinea DevOpsSecretsVaultSync API
   description: Manage secrets that are synced to DSV Tenants.
@@ -278,6 +481,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-devopssecretsvaultsync-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-dev-ops-secrets-vault-sync-status-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dev-ops-secrets-vault-sync-status-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dev-ops-secrets-vault-sync-status-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dev-ops-secrets-vault-sync-secrets-args-schema.json
 - aid: delinea:delinea-devopssecretsvaulttenant-api
   name: Delinea DevOpsSecretsVaultTenant API
   description: Manage the tenants SS can communicate with in DevOps Secrets Vault.
@@ -288,6 +499,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-devopssecretsvaulttenant-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-dev-ops-secrets-vault-tenant-audit-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-dev-ops-secrets-vault-tenant-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dev-ops-secrets-vault-tenant-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dev-ops-secrets-vault-create-tenant-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dev-ops-secrets-vault-update-tenant-args-schema.json
 - aid: delinea:delinea-diagnostics-api
   name: Delinea Diagnostics API
   description: View diagnostics information
@@ -298,6 +519,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-diagnostics-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-diagnostics-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-quartz-trigger-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-log-collection-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-app-setting-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-collect-log-collection-result-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-clear-log-collection-result-model-schema.json
 - aid: delinea:delinea-diagnosticsv2-api
   name: Delinea DiagnosticsV2 API
   description: View diagnostics information
@@ -308,6 +541,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-diagnosticsv2-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-system-log-summary-model-schema.json
 - aid: delinea:delinea-discovery-api
   name: Delinea Discovery API
   description: DiscoveryController
@@ -318,6 +553,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-discovery-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-discovery-rule-account-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-discovery-scanner-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-discovery-status-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-discovery-network-computer-item-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-discovery-network-directory-account-item-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-discovery-network-public-key-item-detail-schema.json
 - aid: delinea:delinea-distributedengine-api
   name: Delinea DistributedEngine API
   description: View and maintain Distributed Engine integrations
@@ -328,6 +575,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-distributedengine-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-distributed-engine-configuration-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-site-basic-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-site-connector-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-site-log-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-engine-audit-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-engine-summary-model-schema.json
 - aid: delinea:delinea-domainnameindex-api
   name: Delinea DomainNameIndex API
   description: DomainNameIndexController
@@ -338,6 +597,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-domainnameindex-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-domain-name-index-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-domain-name-index-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-domain-name-index-expire-update-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-domain-name-index-create-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-domain-name-index-update-args-schema.json
 - aid: delinea:delinea-dualcontrols-api
   name: Delinea DualControls API
   description: View and maintain dual controls
@@ -348,6 +617,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-dualcontrols-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-dual-control-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dual-control-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dual-control-update-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dual-control-create-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-deleted-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-dual-control-type-model-schema.json
 - aid: delinea:delinea-enterprise-api
   name: Delinea Enterprise API
   description: View enterprise related data
@@ -358,6 +639,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-enterprise-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-enterprise-search-result-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-enterprise-search-request-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-enterprise-search-request-args-schema.json
 - aid: delinea:delinea-eventpipeline-api
   name: Delinea EventPipeline API
   description: EventPipelineController
@@ -368,6 +655,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-eventpipeline-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-event-pipeline-run-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-event-pipeline-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-event-pipeline-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-policy-map-schema.json
 - aid: delinea:delinea-eventpipelineaudit-api
   name: Delinea EventPipelineAudit API
   description: EventPipelineAuditController
@@ -378,6 +677,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-eventpipelineaudit-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-event-pipeline-policy-audit-summary-schema.json
 - aid: delinea:delinea-eventpipelinepolicy-api
   name: Delinea EventPipelinePolicy API
   description: EventPipelinePolicyController
@@ -388,6 +689,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-eventpipelinepolicy-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-event-pipeline-policy-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-event-pipeline-run-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-secret-policy-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-policy-run-activity-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-policy-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-policy-map-model-schema.json
 - aid: delinea:delinea-eventpipelinesettings-api
   name: Delinea EventPipelineSettings API
   description: EventPipelineSettingsController
@@ -398,6 +711,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-eventpipelinesettings-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-event-pipeline-task-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-task-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-filter-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-task-setting-map-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-filter-setting-map-summary-schema.json
 - aid: delinea:delinea-eventpipelinetrigger-api
   name: Delinea EventPipelineTrigger API
   description: EventPipelineTriggerController
@@ -408,6 +731,10 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-eventpipelinetrigger-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-trigger-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-event-pipeline-trigger-summary-schema.json
 - aid: delinea:delinea-extendedfields-api
   name: Delinea ExtendedFields API
   description: Extended Fields provider
@@ -418,6 +745,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-extendedfields-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-regex-values-summary-schema.json
 - aid: delinea:delinea-folders-api
   name: Delinea Folders API
   description: View and maintain secret folders
@@ -428,6 +757,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-folders-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-folder-audit-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-pinned-folder-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-folder-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-folder-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-folder-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-folder-basic-model-schema.json
 - aid: delinea:delinea-groups-api
   name: Delinea Groups API
   description: View and maintain user security groups
@@ -440,6 +781,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-groups-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-group-model-schema.json
 - aid: delinea:delinea-hsmconfiguration-api
   name: Delinea HsmConfiguration API
   description: Secret Server HSM Configuration
@@ -450,6 +793,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-hsmconfiguration-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-hsm-configuration-audit-view-model-schema.json
 - aid: delinea:delinea-inbox-api
   name: Delinea Inbox API
   description: InboxController
@@ -460,6 +805,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-inbox-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-inbox-resource-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-inbox-message-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-inbox-template-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-notification-status-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-inbox-message-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-inbox-resource-upload-args-schema.json
 - aid: delinea:delinea-inboxrules-api
   name: Delinea InboxRules API
   description: InboxRulesController
@@ -470,6 +827,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-inboxrules-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-inbox-rule-subscriber-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-inbox-rule-log-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-inbox-rule-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-inbox-rule-detail-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-inbox-rule-condition-detail-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-inbox-rule-condition-summary-schema.json
 - aid: delinea:delinea-install-api
   name: Delinea Install API
   description: InstallController
@@ -480,6 +849,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-install-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-initial-user-settings-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-create-initial-user-response-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-create-initial-user-args-schema.json
 - aid: delinea:delinea-ipaddressrestrictions-api
   name: Delinea IpAddressRestrictions API
   description: View and maintain IP Address restrictions
@@ -490,6 +865,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-ipaddressrestrictions-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-group-ip-address-restriction-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-user-ip-address-restriction-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-ip-address-restriction-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-user-ip-address-restriction-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-group-ip-address-restriction-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-deleted-model-schema.json
 - aid: delinea:delinea-jumpboxroute-api
   name: Delinea JumpboxRoute API
   description: JumpboxRouteController
@@ -500,6 +887,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-jumpboxroute-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-jumpbox-route-level-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-jumpbox-route-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-jumpbox-route-audit-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-jumpbox-route-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-jumpbox-route-level-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-jumpbox-route-summary-model-schema.json
 - aid: delinea:delinea-launcheragents-api
   name: Delinea LauncherAgents API
   description: Manage Launcher Agents and Launcher Agent Collections for Advanced Session Recording
@@ -510,6 +909,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-launcheragents-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-launcher-agent-collection-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-launcher-agent-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-launcher-agent-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-launcher-agent-audit-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-launcher-agent-collection-audit-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-launcher-agent-collection-update-args-schema.json
 - aid: delinea:delinea-launchers-api
   name: Delinea Launchers API
   description: View available application launchers
@@ -520,6 +931,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-launchers-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-launcher-type-model-v2-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-launcher-details-v2-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-launcher-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-launcher-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-launched-secret-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-launcher-model-schema.json
 - aid: delinea:delinea-license-api
   name: Delinea License API
   description: LicenseController
@@ -530,6 +953,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-license-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-valid-license-model-schema.json
 - aid: delinea:delinea-metadata-api
   name: Delinea Metadata API
   description: MetadataController
@@ -540,6 +965,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-metadata-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-metadata-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-metadata-field-section-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-metadata-history-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-metadata-field-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-metadata-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-metadata-field-section-summary-model-schema.json
 - aid: delinea:delinea-mobile-api
   name: Delinea Mobile API
   description: MobileController
@@ -550,6 +987,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-mobile-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-mobile-configuration-model-schema.json
 - aid: delinea:delinea-oauthexpiration-api
   name: Delinea OAuthExpiration API
   description: Expire the current user session
@@ -570,6 +1009,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-onetimepasswordcode-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-one-time-password-code-model-schema.json
 - aid: delinea:delinea-passwordrequirements-api
   name: Delinea PasswordRequirements API
   description: Password Requirements
@@ -580,6 +1021,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-passwordrequirements-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-password-requirement-audit-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-password-requirements-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-password-requirement-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-password-requirement-rule-update-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-password-requirement-create-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-password-requirement-patch-args-schema.json
 - aid: delinea:delinea-pbaconfiguration-api
   name: Delinea PbaConfiguration API
   description: View and configure Privilege Behavior Analytics
@@ -590,6 +1043,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-pbaconfiguration-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-pba-configuration-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-pba-historical-import-status-response-message-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-pba-historical-import-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-pba-historical-import-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-pba-confirm-pair-model-schema.json
 - aid: delinea:delinea-platform-api
   name: Delinea Platform API
   description: View and maintain Platform integration
@@ -600,6 +1063,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-platform-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-platform-user-and-group-search-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-platform-directory-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-platform-synchronization-status-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-test-integration-response-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-provision-platform-request-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-platform-provision-status-schema.json
 - aid: delinea:delinea-proxy-api
   name: Delinea Proxy API
   description: Retrieve and update SSH and RDP proxy configurations
@@ -610,6 +1085,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-proxy-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-ssh-proxy-configuration-view-model-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/delinea-paging-of-proxy-client-history-summary-and-ssh-proxy-client-history-filter-query-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/delinea-paging-of-proxy-client-summary-and-ssh-proxy-clients-filter-query-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-proxy-audit-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-rdp-proxy-configuration-view-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-proxy-site-view-model-schema.json
 - aid: delinea:delinea-remotepasswordchanging-api
   name: Delinea RemotePasswordChanging API
   description: View Password Changing Settings
@@ -620,6 +1109,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-remotepasswordchanging-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-password-type-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-password-type-update-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-password-type-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-custom-command-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-custom-command-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-password-type-create-args-schema.json
 - aid: delinea:delinea-reports-api
   name: Delinea Reports API
   description: View and maintain Reports
@@ -630,6 +1131,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-reports-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-report-export-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-report-execute-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-report-audit-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-report-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-report-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-report-schedule-model-schema.json
 - aid: delinea:delinea-restapidocs-api
   name: Delinea RestApiDocs API
   description: REST API Doc Services
@@ -640,6 +1153,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-restapidocs-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-rest-api-doc-summary-schema.json
 - aid: delinea:delinea-roleaudit-api
   name: Delinea RoleAudit API
   description: View User Role Audits
@@ -650,6 +1165,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-roleaudit-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-role-audit-summary-schema.json
 - aid: delinea:delinea-roles-api
   name: Delinea Roles API
   description: View and maintain User Roles
@@ -660,6 +1177,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-roles-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-role-group-summary-and-group-membership-filter-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-role-permission-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-role-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-role-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-role-permissions-assignment-request-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-role-create-args-schema.json
 - aid: delinea:delinea-schedule-api
   name: Delinea Schedule API
   description: ScheduleController
@@ -670,6 +1199,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-schedule-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-recurring-schedule-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-recurring-schedule-create-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-recurring-schedule-update-args-schema.json
 - aid: delinea:delinea-script-api
   name: Delinea Script API
   description: View Scripts
@@ -680,6 +1215,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-script-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-script-category-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-script-audit-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-script-summary-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-script-usage-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-script-model-v2-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-test-remote-script-ps-response-model-schema.json
 - aid: delinea:delinea-sdkclientaccounts-api
   name: Delinea SdkClientAccounts API
   description: View and maintain SDK Client Accounts
@@ -690,6 +1237,15 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-sdkclientaccounts-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      json-schema/delinea-paging-of-sdk-client-account-summary-and-sdk-client-account-filter-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-sdk-client-account-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-sdk-client-account-create-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-sdk-client-account-update-args-schema.json
 - aid: delinea:delinea-sdkclientaudits-api
   name: Delinea SdkClientAudits API
   description: View SDK Client Audits
@@ -700,6 +1256,9 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-sdkclientaudits-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      json-schema/delinea-paging-of-sdk-client-audit-summary-and-sdk-client-audit-filter-schema.json
 - aid: delinea:delinea-sdkclientrules-api
   name: Delinea SdkClientRules API
   description: View and maintain SDK Client Rules
@@ -710,6 +1269,17 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-sdkclientrules-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      json-schema/delinea-paging-of-sdk-client-rule-summary-and-sdk-client-rule-filter-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-sdk-client-rule-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-deleted-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-sdk-client-rule-create-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-sdk-client-rule-update-args-schema.json
 - aid: delinea:delinea-secretaccessrequests-api
   name: Delinea SecretAccessRequests API
   description: SecretAccessRequestsController
@@ -720,6 +1290,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-secretaccessrequests-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-secret-access-pending-request-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-secret-access-action-result-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-secret-access-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-secret-access-request-history-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-paging-of-secret-access-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-secret-access-options-model-schema.json
 - aid: delinea:delinea-secretdependencies-api
   name: Delinea SecretDependencies API
   description: View and maintain Secret Dependencies
@@ -730,6 +1312,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-secretdependencies-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/delinea-secret-dependency-model-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-secret-dependency-update-args-schema.json
+  - type: JSONSchema
+    url: json-schema/delinea-secret-dependency-create-args-schema.json
 - aid: delinea:delinea-secreteraserequests-api
   name: Delinea SecretEraseRequests API
   description: SecretEraseRequestsController
@@ -1128,42 +1716,9 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/delinea-workflow-templates-api-openapi.yml
-common:
-  - type: CapabilityMap
-    url: capabilities/delinea-capability-edges.yml
-    name: Delinea Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/delinea-agentic-access.yml
-  - type: TrustCenter
-    url: security/delinea-trust-center.yml
-  - type: VulnerabilityDisclosure
-    url: security/delinea-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/delinea-domain-security.yml
-  - type: Authentication
-    url: authentication/delinea-authentication.yml
-  - type: Website
-    url: https://delinea.com/
-  - type: Documentation
-    url: https://docs.delinea.com/online-help/library/start.htm
-  - type: GitHubOrg
-    url: https://github.com/DelineaXPM
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/delinea/
-  - type: Blog
-    url: https://delinea.com/blog
-  - type: Pricing
-    url: https://delinea.com/products/delinea-platform-bundles
-  - type: StatusPage
-    url: https://status.delinea.com/
-  - type: X
-    url: https://x.com/DelineaInc
-  - type: Plans
-    url: plans/delinea-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/delinea-rate-limits.yml
-  - type: FinOps
-    url: finops/delinea-finops.yml
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-10-03'
+  status: enriched
+  artifacts_added: 203
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-configuration-user-experience-model-schema.json",
+  "title": "ConfigurationUserExperienceModel",
+  "description": "Configuration User Experience",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-configuration-api-openapi.yml#/components/schemas/ConfigurationUserExperienceModel",
+  "properties": {
+    "applicationLanguage": {
+      "description": "The default application language for users and the language for non-user specific tasks like logging when applicable",
+      "type": "integer",
+      "format": "int32"
+    },
+    "checkoutNotificationThreshold": {
+      "description": "Percentage of secret checkout time elapsed when checkout notification will be sent",
+      "type": "integer",
+      "format": "int32"
+    },
+    "defaultDateFormat": {
+      "description": "The default date format that everyone sees unless they override with a user preference",
+      "type": "integer",
+      "format": "int32"
+    },
+    "defaultNewUserRoleId": {
+      "description": "The role that should be assigned when a new user is created",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "defaultTimeFormat": {
+      "description": "The default time format that everyone sees unless they override with a user preference",
+      "type": "integer",
+      "format": "int32"
+    },
+    "enableSecretCheckOutExtension": {
+      "description": "Enables users to extend secret check out sessions.",
+      "type": "boolean"
+    },
+    "forceInactivityTimeout": {
+      "description": "Logout users that are inactive",
+      "type": "boolean"
+    },
+    "forceInactivityTimeoutMinutes": {
+      "description": "Logout users that are inactive for this many minutes",
+      "type": "integer",
+      "format": "int32"
+    },
+    "maxCheckOutExtensionInMinutes": {
+      "description": "Maximum amount of time a secret check out can be extended in minutes.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "requireFolderForSecret": {
+      "description": "Secrets must be created within a folder",
+      "type": "boolean"
+    },
+    "searchDelayMs": {
+      "description": "This controls the delay, in milliseconds, until the search is executed by the global search in the header.  If set to 0, it will require the user to press enter in the search bar.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "secretPasswordHistoryRestrictionAll": {
+      "description": "No duplicate passwords on a Secret",
+      "type": "boolean"
+    },
+    "secretPasswordHistoryRestrictionCount": {
+      "description": "How many passwords must be unique on a Secret",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "secretViewIntervalMinutes": {
+      "description": "How long entering comments to view a Secret last before being required again",
+      "type": "integer",
+      "format": "int32"
+    },
+    "serverTimeZoneId": {
+      "description": "The timezone that the server shows by default and when job scheduling runs",
+      "type": "string"
+    },
+    "uiInactivitySleepMinutes": {
+      "description": "How long until the UI will go inactive and stop polling for updates",
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "type": "object"
+}

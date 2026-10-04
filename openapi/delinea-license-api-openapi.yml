@@ -50,6 +50,22 @@ paths:
       deprecated: false
 components:
   schemas:
+    ValidLicenseModel:
+      description: Valid License Model
+      properties:
+        isLicensed:
+          description: Is Licensed
+          type: boolean
+        isTrial:
+          description: Is Trial
+          type: boolean
+        licenseEndDate:
+          description: License End Date
+          type:
+          - string
+          - 'null'
+          format: date-time
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -70,22 +86,6 @@ components:
         stackTrace:
           description: Exception stack trace
           type: string
-      type: object
-    ValidLicenseModel:
-      description: Valid License Model
-      properties:
-        isLicensed:
-          description: Is Licensed
-          type: boolean
-        isTrial:
-          description: Is Trial
-          type: boolean
-        licenseEndDate:
-          description: License End Date
-          type:
-          - string
-          - 'null'
-          format: date-time
       type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures

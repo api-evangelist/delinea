@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-app-state-model-schema.json",
+  "title": "AppStateModel",
+  "description": "Describes application setup state",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-appstate-api-openapi.yml#/components/schemas/AppStateModel",
+  "properties": {
+    "provisionDeletionDateTime": {
+      "description": "If the instance is scheduled for deletion this date will be set",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "state": {
+      "$ref": "#/$defs/AppStateType"
+    },
+    "statusText": {
+      "description": "Additional information about the app state",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AppStateType": {
+      "description": "Current setup state of application",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Uninstalled",
+        "CreateInitialUser",
+        "DatabaseConnectionError",
+        "ScheduledForDeletion",
+        "MspDisabled",
+        "Normal",
+        "Provisioning"
+      ]
+    }
+  }
+}

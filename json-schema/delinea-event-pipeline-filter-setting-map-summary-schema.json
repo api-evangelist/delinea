@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-event-pipeline-filter-setting-map-summary-schema.json",
+  "title": "EventPipelineFilterSettingMapSummary",
+  "description": "EventPipelineFilterSettingMapSummary[]",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-eventpipelinesettings-api-openapi.yml#/components/schemas/EventPipelineFilterSettingMapSummary",
+  "properties": {
+    "eventPipelineFilterId": {
+      "description": "Event Pipeline Filter ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "eventPipelineFilterSettingMapId": {
+      "description": "Event Pipeline Filter Setting Map ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "setting": {
+      "$ref": "#/$defs/SettingForDisplay"
+    },
+    "settingDisplay": {
+      "description": "Setting Display",
+      "type": "string"
+    },
+    "settingId": {
+      "description": "Setting ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "settingValue": {
+      "description": "Setting Value",
+      "type": "string"
+    },
+    "sortOrder": {
+      "description": "Sort Order",
+      "type": "integer",
+      "format": "int32"
+    },
+    "usingDefault": {
+      "description": "Using Default",
+      "type": "boolean"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Setting": {
+      "description": "ChildSettings",
+      "properties": {
+        "active": {
+          "description": "Active",
+          "type": "boolean"
+        },
+        "canEdit": {
+          "description": "CanEdit",
+          "type": "boolean"
+        },
+        "canEditValue": {
+          "description": "CanEditValue",
+          "type": "boolean"
+        },
+        "childLoadSQL": {
+          "description": "ChildLoadSQL",
+          "type": "string"
+        },
+        "defaultValue": {
+          "description": "DefaultValue",
+          "type": "string"
+        },
+        "isVisible": {
+          "description": "IsVisible",
+          "type": "boolean"
+        },
+        "nameLocalizeKey": {
+          "description": "NameLocalizeKey",
+          "type": "string"
+        },
+        "parentSettingId": {
+          "description": "ParentSettingId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "regexValidation": {
+          "description": "RegexValidation",
+          "type": "string"
+        },
+        "settingId": {
+          "description": "SettingId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingName": {
+          "description": "SettingName",
+          "type": "string"
+        },
+        "settingSectionId": {
+          "description": "SettingSectionId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingType": {
+          "$ref": "#/$defs/SettingType"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": "integer",
+          "format": "int32"
+        },
+        "subSettingSectionId": {
+          "description": "SubSettingSectionId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "tooltipLocalizeKey": {
+          "description": "TooltipLocalizeKey",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SettingForDisplay": {
+      "description": "Setting",
+      "properties": {
+        "active": {
+          "description": "Active",
+          "type": "boolean"
+        },
+        "canEdit": {
+          "description": "CanEdit",
+          "type": "boolean"
+        },
+        "canEditValue": {
+          "description": "CanEditValue",
+          "type": "boolean"
+        },
+        "childLoadSQL": {
+          "description": "ChildLoadSQL",
+          "type": "string"
+        },
+        "childSettings": {
+          "description": "ChildSettings",
+          "items": {
+            "$ref": "#/$defs/Setting"
+          },
+          "type": "array"
+        },
+        "defaultValue": {
+          "description": "DefaultValue",
+          "type": "string"
+        },
+        "isVisible": {
+          "description": "IsVisible",
+          "type": "boolean"
+        },
+        "nameLocalizeKey": {
+          "description": "NameLocalizeKey",
+          "type": "string"
+        },
+        "parentSettingId": {
+          "description": "ParentSettingId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "regexValidation": {
+          "description": "RegexValidation",
+          "type": "string"
+        },
+        "settingId": {
+          "description": "SettingId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingName": {
+          "description": "SettingName",
+          "type": "string"
+        },
+        "settingSectionId": {
+          "description": "SettingSectionId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingType": {
+          "$ref": "#/$defs/SettingType"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": "integer",
+          "format": "int32"
+        },
+        "subSettingSectionId": {
+          "description": "SubSettingSectionId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "tooltipLocalizeKey": {
+          "description": "TooltipLocalizeKey",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SettingType": {
+      "description": "SettingType",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Default",
+        "Integer",
+        "String",
+        "Boolean",
+        "StringArray",
+        "DropDown",
+        "DropDownItem",
+        "MultilineString",
+        "IntegerArray",
+        "Radio",
+        "RadioItem"
+      ]
+    }
+  }
+}

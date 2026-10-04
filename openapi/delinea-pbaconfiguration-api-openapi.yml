@@ -269,46 +269,6 @@ components:
           description: Success
           type: boolean
       type: object
-    PbaConfigurationUpdateArgs:
-      description: PbaConfigurationUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/PbaConfigurationUpdateModel'
-      type: object
-    PbaConfigurationUpdateModel:
-      description: Update PBA Configuration
-      properties:
-        challengeEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        challengeLockoutIntegratedEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        challengeLockoutSamlEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        enabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        encryptionEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        eventDataUploadInterval:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        eventDataUploadSizeThreshold:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        externalPbaUrl:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        fileUploadEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        metadataInterval:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        pbaIntegrationKey:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        respectOwnerEditorRequireApprovalEnabled:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        retentionDays:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        siteId:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        storageDirectoryPath:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
     ApplicationKeyStatus:
       description: PBA Key Status
       properties: {}
@@ -317,213 +277,6 @@ components:
       - Unapproved
       - Approved
       - Disabled
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    PbaConfirmPairModel:
-      description: PBA Confirm Pair
-      properties:
-        alreadyApproved:
-          description: Already Approved
-          type: boolean
-        success:
-          description: Success
-          type: boolean
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    UpdateFieldValueOfOptionalInt32:
-      description: The minimum length required for local user passwords
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    DayOfWeek:
-      description: DayOfWeek
-      properties: {}
-      type: string
-      enum:
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
-      - Saturday
-    PbaHistoricalImportArgs:
-      description: PbaHistoricalImportArgs
-      properties:
-        endDate:
-          $ref: '#/components/schemas/OptionalDateTimeOffset'
-        processImport:
-          description: ProcessImport
-          type: boolean
-        startDate:
-          $ref: '#/components/schemas/OptionalDateTimeOffset'
-      type: object
-    PbaHistoricalImportStatusResponseMessage:
-      description: PbaHistoricalImportStatusResponseMessage
-      properties:
-        totalHistoricalEvents:
-          description: TotalHistoricalEvents
-          type: integer
-          format: int32
-        unprocessedHistoricalEvents:
-          description: UnprocessedHistoricalEvents
-          type: integer
-          format: int32
-      type: object
-    UpdateFieldValueOfInt32:
-      description: How many days until the password expires.
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: integer
-          format: int32
-      type: object
-    OptionalDateTimeOffset:
-      description: CreationDate
-      properties:
-        date:
-          description: Date
-          type: string
-          format: date-time
-        dateTime:
-          description: DateTime
-          type: string
-          format: date-time
-        day:
-          description: Day
-          type: integer
-          format: int32
-        dayOfWeek:
-          $ref: '#/components/schemas/DayOfWeek'
-        dayOfYear:
-          description: DayOfYear
-          type: integer
-          format: int32
-        hour:
-          description: Hour
-          type: integer
-          format: int32
-        localDateTime:
-          description: LocalDateTime
-          type: string
-          format: date-time
-        millisecond:
-          description: Millisecond
-          type: integer
-          format: int32
-        minute:
-          description: Minute
-          type: integer
-          format: int32
-        month:
-          description: Month
-          type: integer
-          format: int32
-        offset:
-          description: Offset
-          type: string
-          format: time-span
-        second:
-          description: Second
-          type: integer
-          format: int32
-        ticks:
-          description: Ticks
-          type: integer
-          format: int64
-        timeOfDay:
-          description: TimeOfDay
-          type: string
-          format: time-span
-        utcDateTime:
-          description: UtcDateTime
-          type: string
-          format: date-time
-        utcTicks:
-          description: UtcTicks
-          type: integer
-          format: int64
-        year:
-          description: Year
-          type: integer
-          format: int32
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
     PbaConfigurationModel:
       description: PBA Configuration
       properties:
@@ -625,6 +378,253 @@ components:
         warningMessage:
           description: Warning Message
           type: string
+      type: object
+    OptionalDateTimeOffset:
+      description: CreationDate
+      properties:
+        date:
+          description: Date
+          type: string
+          format: date-time
+        dateTime:
+          description: DateTime
+          type: string
+          format: date-time
+        day:
+          description: Day
+          type: integer
+          format: int32
+        dayOfWeek:
+          $ref: '#/components/schemas/DayOfWeek'
+        dayOfYear:
+          description: DayOfYear
+          type: integer
+          format: int32
+        hour:
+          description: Hour
+          type: integer
+          format: int32
+        localDateTime:
+          description: LocalDateTime
+          type: string
+          format: date-time
+        millisecond:
+          description: Millisecond
+          type: integer
+          format: int32
+        minute:
+          description: Minute
+          type: integer
+          format: int32
+        month:
+          description: Month
+          type: integer
+          format: int32
+        offset:
+          description: Offset
+          type: string
+          format: time-span
+        second:
+          description: Second
+          type: integer
+          format: int32
+        ticks:
+          description: Ticks
+          type: integer
+          format: int64
+        timeOfDay:
+          description: TimeOfDay
+          type: string
+          format: time-span
+        utcDateTime:
+          description: UtcDateTime
+          type: string
+          format: date-time
+        utcTicks:
+          description: UtcTicks
+          type: integer
+          format: int64
+        year:
+          description: Year
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    DayOfWeek:
+      description: DayOfWeek
+      properties: {}
+      type: string
+      enum:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    PbaHistoricalImportStatusResponseMessage:
+      description: PbaHistoricalImportStatusResponseMessage
+      properties:
+        totalHistoricalEvents:
+          description: TotalHistoricalEvents
+          type: integer
+          format: int32
+        unprocessedHistoricalEvents:
+          description: UnprocessedHistoricalEvents
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    PbaConfigurationUpdateArgs:
+      description: PbaConfigurationUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/PbaConfigurationUpdateModel'
+      type: object
+    PbaConfirmPairModel:
+      description: PBA Confirm Pair
+      properties:
+        alreadyApproved:
+          description: Already Approved
+          type: boolean
+        success:
+          description: Success
+          type: boolean
+      type: object
+    PbaConfigurationUpdateModel:
+      description: Update PBA Configuration
+      properties:
+        challengeEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        challengeLockoutIntegratedEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        challengeLockoutSamlEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        encryptionEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        eventDataUploadInterval:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        eventDataUploadSizeThreshold:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        externalPbaUrl:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        fileUploadEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        metadataInterval:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        pbaIntegrationKey:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        respectOwnerEditorRequireApprovalEnabled:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        retentionDays:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        siteId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        storageDirectoryPath:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    PbaHistoricalImportArgs:
+      description: PbaHistoricalImportArgs
+      properties:
+        endDate:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
+        processImport:
+          description: ProcessImport
+          type: boolean
+        startDate:
+          $ref: '#/components/schemas/OptionalDateTimeOffset'
       type: object
   securitySchemes:
     BearerToken:

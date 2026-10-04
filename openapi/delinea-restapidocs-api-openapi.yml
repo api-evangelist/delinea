@@ -53,6 +53,19 @@ paths:
       deprecated: false
 components:
   schemas:
+    RestApiDocSummary:
+      description: RestApiDocSummary[]
+      properties:
+        description:
+          description: Description of the service
+          type: string
+        serviceDisplayName:
+          description: Display Name of the service
+          type: string
+        serviceName:
+          description: Name of the service
+          type: string
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -81,19 +94,6 @@ components:
       properties:
         message:
           description: Error message
-          type: string
-      type: object
-    RestApiDocSummary:
-      description: RestApiDocSummary[]
-      properties:
-        description:
-          description: Description of the service
-          type: string
-        serviceDisplayName:
-          description: Display Name of the service
-          type: string
-        serviceName:
-          description: Name of the service
           type: string
       type: object
     BadRequestResponse:

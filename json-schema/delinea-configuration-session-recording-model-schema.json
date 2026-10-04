@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-configuration-session-recording-model-schema.json",
+  "title": "ConfigurationSessionRecordingModel",
+  "description": "Session Recording Configuration",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-configuration-api-openapi.yml#/components/schemas/ConfigurationSessionRecordingModel",
+  "properties": {
+    "archiveLocationBySite": {
+      "description": "If archive location changes based on site",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "archivePath": {
+      "description": "The location of the recordings stored on disk",
+      "type": "string"
+    },
+    "archivePathMappings": {
+      "description": "A list of archive paths mapped to sites, used when ArchiveLocationBySite is true",
+      "items": {
+        "$ref": "#/$defs/ConfigurationSessionRecordingSiteArchiveSummary"
+      },
+      "type": "array"
+    },
+    "daysUntilArchive": {
+      "description": "The number of days until a recording is archived",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "daysUntilDelete": {
+      "description": "The number of days before a session recording is deleted",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "enableArchive": {
+      "description": "If recordings should be archived",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableDelete": {
+      "description": "If session recordings will be automatically deleted",
+      "type": "boolean"
+    },
+    "enableHardwareAcceleration": {
+      "description": "If hardware acceleration should be enabled",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableInactivityTimeout": {
+      "description": "If sessions should end if inactive",
+      "type": "boolean"
+    },
+    "enableOnDemandVideoProcessing": {
+      "description": "If on demand video processing should be available",
+      "type": "boolean"
+    },
+    "enableSessionRecording": {
+      "description": "Whether or not Session Recording is enabled",
+      "type": "boolean"
+    },
+    "encryptArchive": {
+      "description": "If archived session recordings should be encrypted",
+      "type": "boolean"
+    },
+    "hideRecordingIndicator": {
+      "description": "If the recording indicator should be shown",
+      "type": "boolean"
+    },
+    "inactivityTimeoutMinutes": {
+      "description": "The length of inactivity before the session is ended",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "maxSessionLength": {
+      "description": "The longest a session is allowed to be in hours",
+      "type": "integer",
+      "format": "int32"
+    },
+    "rdpProxyRecordKeyStrokes": {
+      "description": "If proxied RDP sessions should have keystrokes recorded",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "rdpProxyRecordVideo": {
+      "description": "If proxied RDP sessions should have video recorded",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "sshProxyRecordKeyStrokes": {
+      "description": "If proxied SSH sessions should have keystrokes recorded",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "sshProxyRecordVideo": {
+      "description": "If proxied SSH sessions should have video recorded",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "storeInDatabase": {
+      "description": "If session recordings should be stored in the database",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "useTemporaryArchives": {
+      "description": "If the archive location should store temporary session recording data instead of the database",
+      "type": "boolean"
+    },
+    "videoCodecId": {
+      "description": "Which video codec to use for session recordings on OSX",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ConfigurationSessionRecordingSiteArchiveSummary": {
+      "description": "The session recording archive locations that are mapped to specific sites",
+      "properties": {
+        "path": {
+          "description": "Path",
+          "type": "string"
+        },
+        "siteId": {
+          "description": "SiteId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "siteName": {
+          "description": "SiteName",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

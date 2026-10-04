@@ -49,6 +49,15 @@ paths:
       deprecated: false
 components:
   schemas:
+    UnassignedPermissionsModel:
+      description: Permissions not assigned to any Role
+      properties:
+        permissions:
+          description: Names of all unassigned Permissions
+          items:
+            type: string
+          type: array
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -69,15 +78,6 @@ components:
         stackTrace:
           description: Exception stack trace
           type: string
-      type: object
-    UnassignedPermissionsModel:
-      description: Permissions not assigned to any Role
-      properties:
-        permissions:
-          description: Names of all unassigned Permissions
-          items:
-            type: string
-          type: array
       type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures

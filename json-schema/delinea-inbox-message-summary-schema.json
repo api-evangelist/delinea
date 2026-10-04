@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-inbox-message-summary-schema.json",
+  "title": "InboxMessageSummary",
+  "description": "Summary of an inbox message",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-inbox-api-openapi.yml#/components/schemas/InboxMessageSummary",
+  "properties": {
+    "data": {
+      "description": "All data fields for this messages",
+      "items": {
+        "$ref": "#/$defs/InboxMessageData"
+      },
+      "type": "array"
+    },
+    "details": {
+      "description": "A common data field on all notifications",
+      "type": "string"
+    },
+    "expirationDate": {
+      "description": "Within 24 hours of this date this message and all related history will be removed",
+      "type": "string",
+      "format": "date-time"
+    },
+    "inboxMessageTypeId": {
+      "description": "The type of message id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "inboxMessageTypeName": {
+      "description": "The message type name",
+      "type": "string"
+    },
+    "isRead": {
+      "description": "Has the current user read this message",
+      "type": "boolean"
+    },
+    "messageCreatedDate": {
+      "description": "When was the message created",
+      "type": "string",
+      "format": "date-time"
+    },
+    "messageId": {
+      "description": "Message ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "recipients": {
+      "description": "Who has recieved this message",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "InboxMessageData": {
+      "description": "All data fields for this messages",
+      "properties": {
+        "displayValue": {
+          "description": "DisplayValue",
+          "type": "string"
+        },
+        "inboxDataId": {
+          "description": "InboxDataId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "inboxDataName": {
+          "description": "InboxDataName",
+          "type": "string"
+        },
+        "valueBool": {
+          "description": "ValueBool",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "valueDateTime": {
+          "description": "ValueDateTime",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "valueInt": {
+          "description": "ValueInt",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "valueString": {
+          "description": "ValueString",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

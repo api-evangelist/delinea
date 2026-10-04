@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-discovery-rule-account-detail-schema.json",
+  "title": "DiscoveryRuleAccountDetail",
+  "description": "Discovery Rule Account Detail",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-discovery-api-openapi.yml#/components/schemas/DiscoveryRuleAccountDetail",
+  "properties": {
+    "accountAlerts": {
+      "description": "Account Alerts",
+      "type": "boolean"
+    },
+    "accountNameContains": {
+      "description": "Partial search of Account Name",
+      "type": "string"
+    },
+    "actionCreateSecrets": {
+      "description": "Action Create Secrets. Set to true when secrets are to be created.",
+      "type": "boolean"
+    },
+    "computerNameContains": {
+      "description": "Partial search of Computer Name",
+      "type": "string"
+    },
+    "currentPassphrase": {
+      "description": "Current Passphrase",
+      "type": "string"
+    },
+    "currentPassword": {
+      "description": "Curent Password",
+      "type": "string"
+    },
+    "currentPrivateKey": {
+      "description": "Current Private Key",
+      "type": "string"
+    },
+    "discoverySourceId": {
+      "description": "Discovery Source Id",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "discoverySourceName": {
+      "description": "Discovery Source Name",
+      "type": "string"
+    },
+    "filterFields": {
+      "description": "Filter Fields. Dynamic filters for the selected Scan Template",
+      "items": {
+        "$ref": "#/$defs/DiscoveryRuleScanItemFilter"
+      },
+      "type": "array"
+    },
+    "folderId": {
+      "description": "Folder Id where will the new Secrets get created",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "folderName": {
+      "description": "Folder Name where will the new Secrets get created",
+      "type": "string"
+    },
+    "importOnlyPolledLastScan": {
+      "description": "Import only those polled in last scan",
+      "type": "boolean"
+    },
+    "includeChildOUs": {
+      "description": "Include Child OUs",
+      "type": "boolean"
+    },
+    "isActive": {
+      "description": "Is Active",
+      "type": "boolean"
+    },
+    "matchingCondition": {
+      "$ref": "#/$defs/MatchingConditionEnum"
+    },
+    "newPassword": {
+      "description": "New Password",
+      "type": "string"
+    },
+    "operatingSystemContains": {
+      "description": "Partial search of Operating System",
+      "type": "string"
+    },
+    "organizationUnitId": {
+      "description": "Organization Unit Id",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "organizationUnitName": {
+      "description": "Organization Unit Name",
+      "type": "string"
+    },
+    "passwordChangingPrivilegedAccountSecretIds": {
+      "description": "Secrets of Privileged Account used for Password Changing",
+      "items": {
+        "$ref": "#/$defs/DiscoveryRuleSecret"
+      },
+      "type": "array"
+    },
+    "passwordChangingType": {
+      "$ref": "#/$defs/PasswordChangingTypeEnum"
+    },
+    "passwordOption": {
+      "$ref": "#/$defs/PasswordOptionEnum"
+    },
+    "ruleDescription": {
+      "description": "Rule Description",
+      "type": "string"
+    },
+    "ruleId": {
+      "description": "Rule Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "ruleName": {
+      "description": "Rule Name",
+      "type": "string"
+    },
+    "scanTemplateId": {
+      "description": "Scan Template Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "scanTemplateName": {
+      "description": "Scan Template Name",
+      "type": "string"
+    },
+    "secretNamePattern": {
+      "description": "Pattern used for naming secrets",
+      "type": "string"
+    },
+    "secretPermissions": {
+      "$ref": "#/$defs/SecretPermissionEnum"
+    },
+    "secretTemplateId": {
+      "description": "Secret Template Id",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "secretTemplateName": {
+      "description": "Secret Template Name",
+      "type": "string"
+    },
+    "siteId": {
+      "description": "Site Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "subscribedSpecificGroups": {
+      "description": "Groups for subscription",
+      "items": {
+        "$ref": "#/$defs/DiscoveryRuleSubscribedGroup"
+      },
+      "type": "array"
+    },
+    "subscriberType": {
+      "$ref": "#/$defs/SubscriberTypeEnum"
+    },
+    "takeOverAccountType": {
+      "$ref": "#/$defs/TakeOverAccountTypeEnum"
+    },
+    "takeOverPasswordTypeId": {
+      "description": "Take Over Password Type Id",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "takeoverSecretIds": {
+      "description": "Secrets used for Takeover",
+      "items": {
+        "$ref": "#/$defs/DiscoveryRuleSecret"
+      },
+      "type": "array"
+    },
+    "takeOverThreshold": {
+      "description": "Take Over Threshold",
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "DiscoveryRuleScanItemFilter": {
+      "description": "Discovery Rule Scan Item Filter",
+      "properties": {
+        "filterFieldValue": {
+          "description": "Filter Field Value",
+          "type": "string"
+        },
+        "scanItemFieldId": {
+          "description": "Scan Item Field Id",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryRuleSecret": {
+      "description": "Discovery Rule Secret",
+      "properties": {
+        "id": {
+          "description": "Secret Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "description": "Secret Name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryRuleSubscribedGroup": {
+      "description": "Discovery Rule Subscribed Group",
+      "properties": {
+        "groupId": {
+          "description": "Group Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "groupName": {
+          "description": "Group Name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MatchingConditionEnum": {
+      "description": "Whether to 'and' or 'or' ComputerNameContains and AccountNameContains",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "And",
+        "Or"
+      ]
+    },
+    "PasswordChangingTypeEnum": {
+      "description": "Password Changing Type",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "PrivilegedAccount",
+        "SecretCredentials"
+      ]
+    },
+    "PasswordOptionEnum": {
+      "description": "Password Option",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Current",
+        "ChangeTo",
+        "Random",
+        "PrivateKey",
+        "PublicKey"
+      ]
+    },
+    "SecretPermissionEnum": {
+      "description": "Secret Permissions",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "InheritPermission",
+        "CopyPermission"
+      ]
+    },
+    "SubscriberTypeEnum": {
+      "description": "Subscriber Type",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Admins",
+        "SpecificUsers"
+      ]
+    },
+    "TakeOverAccountTypeEnum": {
+      "description": "Take Over Account Type",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Single",
+        "Multiple"
+      ]
+    }
+  }
+}

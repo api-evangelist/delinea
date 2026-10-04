@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-rdp-proxy-configuration-view-model-schema.json",
+  "title": "RdpProxyConfigurationViewModel",
+  "description": "RdpProxyConfigurationViewModel",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-proxy-api-openapi.yml#/components/schemas/RdpProxyConfigurationViewModel",
+  "properties": {
+    "allowSiteSelectionForActiveDirectoryAccounts": {
+      "description": "Allows users to select a site when launching or generating proxy credentials for a RDP proxied secret",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "daysToKeepOperationalLogs": {
+      "description": "The number of days to store RDP proxy logs before they are rolled over",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "enableRdpProxy": {
+      "description": "Whether or not to enable the RDP proxy",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableRemoteHostValidation": {
+      "description": "Whether or not to enforce certificate validation on remote hosts that the proxy connects to",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isCloud": {
+      "description": "IsCloud",
+      "type": "boolean"
+    },
+    "proxyNewSecretsByDefault": {
+      "description": "Whether or not new RDP-enabled secrets should be created with 'Proxy Enabled' set",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "rdpProxyPort": {
+      "description": "The port that the RDP proxy will run on",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "rdpServerCertificate": {
+      "$ref": "#/$defs/RdpProxyCertificateViewModel"
+    },
+    "rdpServerCertificateMultipart": {
+      "description": "The certificate that is server when connections begin to the RDP proxy (used \"Content-Type: multipart/form-data\" only)",
+      "type": "string",
+      "format": "binary"
+    },
+    "rdpServerCertificateMultipartPassword": {
+      "description": "The password used to protect the certificate (only used for updating with \"Content-Type: multipart/form-data\" only)",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "RdpProxyCertificateViewModel": {
+      "description": "The certificate that is server when connections begin to the RDP proxy (used \"Content-Type: application/json\" only)",
+      "properties": {
+        "rdpServerCertificate": {
+          "description": "The certificate (x509/pfx) that is served to users connecting to the RDP proxy.",
+          "type": "string",
+          "format": "binary"
+        },
+        "rdpServerCertificateFileName": {
+          "description": "The name of the RDP server certificate file",
+          "type": "string"
+        },
+        "rdpServerCertificatePassword": {
+          "description": "The password used to protect the certificate (only used for updating)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

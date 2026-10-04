@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-metadata-field-section-summary-model-schema.json",
+  "title": "MetadataFieldSectionSummaryModel",
+  "description": "Summary of metadata sections",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-metadata-api-openapi.yml#/components/schemas/MetadataFieldSectionSummaryModel",
+  "properties": {
+    "actions": {
+      "description": "What actions can the current user perform",
+      "items": {
+        "$ref": "#/$defs/MetadataFieldSectionActionType"
+      },
+      "type": "array"
+    },
+    "metadataFieldSectionDescription": {
+      "description": "The description of this section",
+      "type": "string"
+    },
+    "metadataFieldSectionId": {
+      "description": "The sequence ID for this section",
+      "type": "integer",
+      "format": "int32"
+    },
+    "metadataFieldSectionName": {
+      "description": "The name of this section",
+      "type": "string"
+    },
+    "requiresAdministerMetadata": {
+      "description": "Is the user required to have the Administer Metadata role permission in order to edit fields in this metadata section",
+      "type": "boolean"
+    },
+    "requiresEntityEdit": {
+      "description": "Is the user required to be able to edit the entity to which the metadata is associated to in order to edit metadata",
+      "type": "boolean"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "MetadataFieldSectionActionType": {
+      "description": "Specific actions a user can take on metadata sections",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "EditSection",
+        "AddField",
+        "EditItem",
+        "DeleteItem"
+      ]
+    }
+  }
+}

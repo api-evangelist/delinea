@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-enterprise-search-request-args-schema.json",
+  "title": "EnterpriseSearchRequestArgs",
+  "description": "Arguments for an Enterprise Search Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-enterprise-api-openapi.yml#/components/schemas/EnterpriseSearchRequestArgs",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/EnterpriseSearchRequestFilter"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "EnterpriseSearchRequestFieldModel": {
+      "description": "Enterprise Search Request Field Model",
+      "properties": {
+        "fieldName": {
+          "description": "Field of scan template to filter by",
+          "type": "string"
+        },
+        "fieldValue": {
+          "description": "Value of field to filter by",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseSearchRequestFilter": {
+      "description": "Enterprise Search Request Filter",
+      "properties": {
+        "endDate": {
+          "description": "End Date of date range to filter",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "enterpriseName": {
+          "description": "Specify this for filtering data by the Enterprise Name",
+          "type": "string"
+        },
+        "requestFields": {
+          "description": "Fields used for filtering results. At least one is required",
+          "items": {
+            "$ref": "#/$defs/EnterpriseSearchRequestFieldModel"
+          },
+          "type": "array"
+        },
+        "startDate": {
+          "description": "Start Date of date range to filter",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-platform-synchronization-status-schema.json",
+  "title": "PlatformSynchronizationStatus",
+  "description": "Platform Synchronization Status",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-platform-api-openapi.yml#/components/schemas/PlatformSynchronizationStatus",
+  "properties": {
+    "endDateTime": {
+      "description": "The date and time that the last synchronization ended.  If a synchronization is currently running this will be empty.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "errorCount": {
+      "description": "The number of errors since the last synchronization start time",
+      "type": "integer",
+      "format": "int32"
+    },
+    "lastLogEntry": {
+      "description": "Log Entry used for parsing",
+      "type": "string"
+    },
+    "lastSyncGroupsCreated": {
+      "description": "Number of groups created during last sync",
+      "type": "integer",
+      "format": "int32"
+    },
+    "lastSyncUsersAddedToGroups": {
+      "description": "Number of users that were added to any platform group",
+      "type": "integer",
+      "format": "int32"
+    },
+    "lastSyncUsersRemovedFromGroups": {
+      "description": "Number of users that were removed from any platform group",
+      "type": "integer",
+      "format": "int32"
+    },
+    "nextSynchronizationDateTime": {
+      "description": "The next time the synchronization is expected to run",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "startDateTime": {
+      "description": "The date and time that the last synchronization started.  This will be empty if a synchronization has never been run.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-inbox-rule-detail-model-schema.json",
+  "title": "InboxRuleDetailModel",
+  "description": "InboxRuleDetailModel",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-inboxrules-api-openapi.yml#/components/schemas/InboxRuleDetailModel",
+  "properties": {
+    "active": {
+      "description": "Active",
+      "type": "boolean"
+    },
+    "canEditOwnSubscription": {
+      "description": "Can Edit Own Subscription",
+      "type": "boolean"
+    },
+    "conditions": {
+      "description": "Conditions",
+      "items": {
+        "$ref": "#/$defs/InboxRuleConditionSummary"
+      },
+      "type": "array"
+    },
+    "createdByUserId": {
+      "description": "Created By User Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "highPriority": {
+      "description": "High Priority",
+      "type": "boolean"
+    },
+    "inboxEmailTemplateId": {
+      "description": "Inbox Email Template",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "inboxMessageTypes": {
+      "description": "Inbox Message Types",
+      "items": {
+        "$ref": "#/$defs/InboxMessageTypeSummary"
+      },
+      "type": "array"
+    },
+    "inboxRuleId": {
+      "description": "Inbox Rule Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "inboxSlackTemplateId": {
+      "description": "Inbox Slack Template",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "isImmediate": {
+      "description": "Is Immediate",
+      "type": "boolean"
+    },
+    "isSystem": {
+      "description": "Is System",
+      "type": "boolean"
+    },
+    "name": {
+      "description": "Name",
+      "type": "string"
+    },
+    "recurringScheduleId": {
+      "description": "The schedule that indicates when this rule should trigger",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "sendEmail": {
+      "description": "Send Email",
+      "type": "boolean"
+    },
+    "sendSlack": {
+      "description": "Send Slack",
+      "type": "boolean"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "InboxDataType": {
+      "description": "InboxDataType",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Integer",
+        "DateTime",
+        "String",
+        "Boolean"
+      ]
+    },
+    "InboxMessageTypeSummary": {
+      "description": "InboxMessageTypeSummary[]",
+      "properties": {
+        "inboxMessageTypeId": {
+          "description": "Message Type ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "inboxMessageTypeName": {
+          "description": "The name of the message type",
+          "type": "string"
+        },
+        "notificationCount": {
+          "description": "Populated with the number of notifications the current user has of this message type.  Only populated when ",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "InboxRuleConditionOperand": {
+      "description": "Operand",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Equals",
+        "NotEquals",
+        "LessThan",
+        "GreaterThan",
+        "Regex"
+      ]
+    },
+    "InboxRuleConditionSummary": {
+      "description": "Conditions",
+      "properties": {
+        "displayValue": {
+          "description": "DisplayValue",
+          "type": "string"
+        },
+        "inboxDataId": {
+          "description": "InboxDataId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "inboxDataName": {
+          "description": "InboxDataName",
+          "type": "string"
+        },
+        "inboxDataType": {
+          "$ref": "#/$defs/InboxDataType"
+        },
+        "inboxRuleConditionId": {
+          "description": "InboxRuleConditionId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "inboxRuleOperand": {
+          "$ref": "#/$defs/InboxRuleConditionOperand"
+        },
+        "valueBool": {
+          "description": "ValueBool",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "valueDateTime": {
+          "description": "ValueDateTime",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "valueInt": {
+          "description": "ValueInt",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "valueString": {
+          "description": "ValueString",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

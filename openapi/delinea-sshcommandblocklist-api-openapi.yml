@@ -379,6 +379,92 @@ components:
           type: string
           format: uuid
       type: object
+    SshCommandBlocklistPatchArgs:
+      description: SshCommandBlocklistPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/SshCommandBlocklistPatchModel'
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    SshCommandBlocklistPatchModel:
+      description: SshCommandBlocklists
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        description:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        sshCommandBlocklistId:
+          description: SshCommandBlocklistId
+          type: string
+          format: uuid
+        sshCommandIds:
+          $ref: '#/components/schemas/UpdateFieldValueOfGuidArray'
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    SshCommandBlocklistCreateModel:
+      description: SSH Command Blocklist to create
+      properties:
+        active:
+          description: Active
+          type: boolean
+        description:
+          description: Description
+          type: string
+        name:
+          description: Name
+          type: string
+        sshCommandBlocklistId:
+          description: SshCommandBlocklistId
+          type:
+          - string
+          - 'null'
+          format: uuid
+        sshCommandIds:
+          description: SshCommandIds
+          items:
+            type: string
+            format: uuid
+          type: array
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    BlocklistSecretPolicySummaryModel:
+      description: Query results
+      properties:
+        secretPolicyId:
+          description: The Id of the Secret Policy
+          type: integer
+          format: int32
+        secretPolicyName:
+          description: The Name of the Secret Policy
+          type: string
+      type: object
     PagingOfBlocklistSecretPolicySummaryModel:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -435,38 +521,6 @@ components:
           description: Total number of results available
           type: integer
           format: int32
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    SshCommandBlocklistCreateArgs:
-      description: Options to create SSH Command Blocklist
-      properties:
-        data:
-          $ref: '#/components/schemas/SshCommandBlocklistCreateModel'
       type: object
     PagingOfSshCommandBlocklistSummaryModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -525,6 +579,13 @@ components:
           type: integer
           format: int32
       type: object
+    CommandPermissionType:
+      description: Allowed or Blocked
+      properties: {}
+      type: string
+      enum:
+      - Allowed
+      - Blocked
     SshCommandBlocklistSummaryModel:
       description: SSH command Blocklist
       properties:
@@ -542,21 +603,28 @@ components:
           type: string
           format: uuid
       type: object
-    CommandPermissionType:
-      description: Allowed or Blocked
-      properties: {}
-      type: string
-      enum:
-      - Allowed
-      - Blocked
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
+    SshCommandBlocklistCreateArgs:
+      description: Options to create SSH Command Blocklist
+      properties:
+        data:
+          $ref: '#/components/schemas/SshCommandBlocklistCreateModel'
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures
       required:
@@ -565,76 +633,6 @@ components:
         message:
           description: Error message
           type: string
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    SshCommandBlocklistPatchArgs:
-      description: SshCommandBlocklistPatchArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/SshCommandBlocklistPatchModel'
-      type: object
-    SshCommandBlocklistPatchModel:
-      description: SshCommandBlocklists
-      properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        description:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        name:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        sshCommandBlocklistId:
-          description: SshCommandBlocklistId
-          type: string
-          format: uuid
-        sshCommandIds:
-          $ref: '#/components/schemas/UpdateFieldValueOfGuidArray'
-      type: object
-    UpdateFieldValueOfGuidArray:
-      description: SshCommandIds
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          items:
-            type: string
-            format: uuid
-          type: array
-      type: object
-    SshCommandBlocklistCreateModel:
-      description: SSH Command Blocklist to create
-      properties:
-        active:
-          description: Active
-          type: boolean
-        description:
-          description: Description
-          type: string
-        name:
-          description: Name
-          type: string
-        sshCommandBlocklistId:
-          description: SshCommandBlocklistId
-          type:
-          - string
-          - 'null'
-          format: uuid
-        sshCommandIds:
-          description: SshCommandIds
-          items:
-            type: string
-            format: uuid
-          type: array
       type: object
     SshCommandBlocklistModel:
       description: SSH command Blocklist
@@ -697,17 +695,6 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    BlocklistSecretPolicySummaryModel:
-      description: Query results
-      properties:
-        secretPolicyId:
-          description: The Id of the Secret Policy
-          type: integer
-          format: int32
-        secretPolicyName:
-          description: The Name of the Secret Policy
-          type: string
-      type: object
     UpdateFieldValueOfBoolean:
       description: Active
       properties:
@@ -717,6 +704,19 @@ components:
         value:
           description: Value
           type: boolean
+      type: object
+    UpdateFieldValueOfGuidArray:
+      description: SshCommandIds
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            type: string
+            format: uuid
+          type: array
       type: object
   securitySchemes:
     BearerToken:

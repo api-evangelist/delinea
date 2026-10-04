@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-ssh-proxy-configuration-view-model-schema.json",
+  "title": "SshProxyConfigurationViewModel",
+  "description": "SshProxyConfigurationViewModel",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-proxy-api-openapi.yml#/components/schemas/SshProxyConfigurationViewModel",
+  "properties": {
+    "availablePortRange": {
+      "description": "Range of unused ports available on the SSH Proxy endpoint to be used for Jumpbox port forwarding",
+      "type": "string"
+    },
+    "daysToKeepOperationalLogs": {
+      "description": "The number of days to store SSH proxy logs before they are rolled over",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "enablePasswordHiding": {
+      "description": "Enable to hide passwords from SSH keystroke capture. This prevents logging user input on lines that are determined to be a password prompt.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableProxyBlockListing": {
+      "description": "Enable block listing of IP Addresses that connect and fail to authenticate too many times",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableProxyInactivityTimeout": {
+      "description": "Whether or not the proxy should disconnect inactive sessions",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableSshProxy": {
+      "description": "Whether or not the SSH proxy is enabled",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableSshPublicKeyAuth": {
+      "description": "Whether or not the SSH Terminal can allow key authentication",
+      "type": "boolean"
+    },
+    "enableSshTerminal": {
+      "description": "Whether or not the SSH terminal is enabled",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableSshTunneling": {
+      "description": "Whether or not to allow SSH tunneling through the proxy for proxied RDP sessions",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableTerminalInactivityTimeout": {
+      "description": "Whether or not the SSH terminal should disconnect inactive sessions",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableWindowTitleChangeCommand": {
+      "description": "Send window title change command on startup",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isCloud": {
+      "description": "IsCloud",
+      "type": "boolean"
+    },
+    "passwordRegexFilter": {
+      "description": "Regular Expression used to identify password prompts. The default expression search for either prompts beginning with 'sudo password for' or prompts ending with 'password:'",
+      "type": "string"
+    },
+    "proxyAutoBlockListingMaxHistory": {
+      "description": "The number of history entries to keep per client",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "proxyAutoBlockListingMaxNum": {
+      "description": "The number of failed authentication attempts before being blocked",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "proxyAutoBlockListingTimeFrameMinutes": {
+      "description": "The time frame in which all the failed attempts must happen before being blocked",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "proxyInactivityTimeoutSeconds": {
+      "description": "The amount of time in seconds to wait before disconnecting inactive proxy sessions",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "proxyNewSecretsByDefault": {
+      "description": "Whether or not new SSH-enabled secrets should be created with 'Proxy Enabled' set",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "sshHostKey": {
+      "description": "The host key that will the proxy will serve",
+      "type": "string"
+    },
+    "sshProxyBanner": {
+      "description": "The banner that is display when someone opens an shell connection to the proxy",
+      "type": "string"
+    },
+    "sshProxyHostFingerprint": {
+      "description": "The fingerprint of the host key that the proxy will serve",
+      "type": "string"
+    },
+    "sshProxyPort": {
+      "description": "The port that that SSH proxy runs on",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "sshTerminalBanner": {
+      "description": "The banner that is displayed when someone authenticates to the SSH terminal",
+      "type": "string"
+    },
+    "terminalInactivityTimeoutSeconds": {
+      "description": "The amount of time in seconds to wait before disconnecting inactive terminal sessions",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "tunnelKeepAliveInSeconds": {
+      "description": "Keep alive signals to local port forwarding tunnels at this interval (in seconds). Prevents port forwarding tunnels from closing. (0-86400) ",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "type": "object"
+}

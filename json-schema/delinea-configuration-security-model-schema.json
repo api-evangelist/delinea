@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-configuration-security-model-schema.json",
+  "title": "ConfigurationSecurityModel",
+  "description": "Security Configuration",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-configuration-api-openapi.yml#/components/schemas/ConfigurationSecurityModel",
+  "properties": {
+    "allowFilesWithoutExtension": {
+      "description": "When file extension restrictions are enabled you cannot upload a file that does not have an extension.  When this is true files without extensions are allowed.",
+      "type": "boolean"
+    },
+    "allowQuantumSafeEncryption": {
+      "description": "Allow Quantum Safe Encryption to provide Quantum Safe Encryption options to users.",
+      "type": "boolean"
+    },
+    "allowWebServiceHttpGet": {
+      "description": "Allows the Http Get verb for Web Services.  This allows REST-style calls to many Web Service methods, but reduces security",
+      "type": "boolean"
+    },
+    "auditTlsErrors": {
+      "description": "When enabled, this setting will add audits for TLS certificate validation. Auditing will apply to all Active Directory domains using LDAPS and Syslog using TLS. Certificate policy options including ignoring certificate revocation failures applies to Syslog using TLS only. The default is the most strict so the certificate chain policy may need to be updated. TLS errors will be logged to Security Audit Log found on the Administration page",
+      "type": "boolean"
+    },
+    "auditTlsErrorsDebug": {
+      "description": "Enable TLS Debugging and Connection Tracking",
+      "type": "boolean"
+    },
+    "certificateChainPolicyOptions": {
+      "description": "Certificate chain policy options",
+      "type": "string"
+    },
+    "clientCertificateIds": {
+      "description": "Client Certificate Thumbprint(s)",
+      "type": "string"
+    },
+    "databaseIntegrityMonitoringSymmetricKey": {
+      "description": "The secure symmetric key to use when sending data to the separate Database Integrity Monitoring service. This can be retrieved from the configuration utility in the Database Integrity Monitoring service install location",
+      "type": "string"
+    },
+    "enableApplicationHardening": {
+      "description": "Enabling Application Hardening to disallow Admins from tampering the database",
+      "type": "boolean"
+    },
+    "enableDatabaseIntegrityMonitoring": {
+      "description": "When enabled, Secret Server will communicate with the separately installed Database Integrity Monitoring service.  This service will send email alerts if it detects possible database tampering.  Access to Secret Server's database and web servers should be restricted to highly trusted individuals only",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableFileRestrictions": {
+      "description": "Enable restrictions on the types or sizes of files that can be uploaded into Secret Server",
+      "type": "boolean"
+    },
+    "enableFrameBlocking": {
+      "description": "Enable Frame Blocking",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableHSTS": {
+      "description": "Enable HTTP Strict Transport Security",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableSecretErase": {
+      "description": "Enable secret erase functionality",
+      "type": "boolean"
+    },
+    "fileExtensionRestrictions": {
+      "description": "File Extension Restrictions",
+      "type": "string"
+    },
+    "fipsEnabled": {
+      "description": "Allow only FIPS compliant encryption schemes to be used",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "forceHttps": {
+      "description": "By requiring HTTPS, users will not be able to access Secret Server using HTTP",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "hideVersionNumber": {
+      "description": "This will disable the VersionGet SOAP call. It will also hide the Secret Server Version Numbers from the Headers and Footer",
+      "type": "boolean"
+    },
+    "hstsMaxAge": {
+      "description": "Maximum Age (in seconds)",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "ignoreCertificateRevocationFailures": {
+      "description": "Indicates if X509RevocationMode.NoCheck certificate chain policy option is set",
+      "type": "boolean"
+    },
+    "maximumFileSizeBytes": {
+      "description": "Maximum File Size (bytes)",
+      "type": "string"
+    },
+    "maximumFileSizeSupported": {
+      "description": "Maximum File Size supported by ASP.NET",
+      "type": "boolean"
+    },
+    "multifactorAuthenticationProfile": {
+      "description": "The current Authentication Profile for Multifactor Authentication",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "secretEraseWorkflow": {
+      "description": "The workflow used by secret erase",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "webPasswordFillerRequiresFullDomainMatch": {
+      "description": "When enabled, the Web Password Filler will only allow exact domain matches.  When disabled, subdomains such as https://sub.google.com will match http://google.com Secrets.  The recommended setting is enabled.",
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}

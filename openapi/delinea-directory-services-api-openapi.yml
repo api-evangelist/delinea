@@ -763,6 +763,382 @@ paths:
       deprecated: false
 components:
   schemas:
+    LdapSyncSettingsPatchModel:
+      description: Patch update data for the Ldap Sync Settings.
+      properties:
+        baseDnCode:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        displayNameAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        emailAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        groupMemberAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        groupNameAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        groupObjectClasses:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        groupSearchFilter:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        guidAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        usernameAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        userObjectClasses:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        userPrincipalNameAttribute:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    LinkExternalGroupArgs:
+      description: LinkExternalGroupArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/LinkExternalGroupSettings'
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    UpdateFieldValueOfOptionalBoolean:
+      description: Use RADIUS Username for DUO
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - boolean
+          - 'null'
+      type: object
+    DomainCreateModel:
+      description: Data
+      properties:
+        active:
+          description: Active
+          type: boolean
+        authType:
+          description: AuthType for OpenLdap
+          type:
+          - string
+          - 'null'
+        clientId:
+          description: Client ID
+          type: string
+        clientSecret:
+          description: Client Secret
+          type: string
+        distinguishedName:
+          description: Domain Base DN
+          type: string
+        domainName:
+          description: The name of the domain.
+          type: string
+        domainType:
+          $ref: '#/components/schemas/DomainType'
+        friendlyName:
+          description: The friendly name of the domain.
+          type: string
+        multifactorAuthenticationProvider:
+          $ref: '#/components/schemas/MultifactorAuthenticationProviderTypes'
+        siteId:
+          description: Site Id
+          type:
+          - integer
+          - 'null'
+          format: int32
+        synchronizationSecretId:
+          description: Synchronization Secret
+          type:
+          - integer
+          - 'null'
+          format: int32
+        tenantId:
+          description: Tenant ID
+          type: string
+        userAuthType:
+          description: UserAuthType for OpenLdap
+          type:
+          - string
+          - 'null'
+        useSecureLDAP:
+          description: Use Secure LDAP
+          type:
+          - boolean
+          - 'null'
+      type: object
+    DirectoryServicesConfigurationModel:
+      description: Directory Services Configuration
+      properties:
+        daysToKeepOperationalLogs:
+          description: How long to keep operational logs
+          type: integer
+          format: int32
+        disableInactiveUsersMonths:
+          description: How long to wait before disabling inactive users
+          type: integer
+          format: int32
+        enableDirectoryIntegration:
+          description: Whether or not any Directory Services integrations are enabled or not
+          type: boolean
+        enableDirectorySynchronization:
+          description: Synchronize users and group membership on a time interval
+          type: boolean
+        enableIntegratedWindowsAuthentication:
+          description: Integrated Windows Authentication (IWA) allows users to log into Secret Server automatically if they are logged into a workstation with their Active Directory credentials.
+          type: boolean
+        enableUserDisabling:
+          description: When enabled inactive users will be automatically disabled regardless of their Directory status
+          type: boolean
+        synchronizationIntervalDays:
+          description: Synchronize days interval for users and group membership
+          type: integer
+          format: int32
+        synchronizationIntervalHours:
+          description: Synchronize hours interval for users and group membership
+          type: integer
+          format: int32
+        synchronizationIntervalMinutes:
+          description: Synchronize minutes interval for users and group membership
+          type: integer
+          format: int32
+        userAccountOptions:
+          $ref: '#/components/schemas/DirectoryServicesSynchronizationUserOption'
+      type: object
+    ViewFieldLink:
+      description: AdditionalLinks
+      properties:
+        isExternal:
+          description: IsExternal
+          type: boolean
+        linkText:
+          description: LinkText
+          type: string
+        url:
+          description: Url
+          type: string
+      type: object
+    LinkExternalGroupSettings:
+      description: Information about the directory group that is needed to create a link
+      properties:
+        domainIdentifier:
+          description: The unique directory identifier for the group to be linked. For Active Directory this must be in hex format, NOT guid format.  For example, this is ADGuid in Active Directory
+          type: string
+        name:
+          description: Name of the group in the directory
+          type: string
+      type: object
+    DomainSummaryModel:
+      description: Domain Summary
+      properties:
+        active:
+          description: Active
+          type: boolean
+        domainId:
+          description: Domain Id
+          type: integer
+          format: int32
+        domainName:
+          description: Domain Name
+          type: string
+        domainType:
+          $ref: '#/components/schemas/DomainType'
+        friendlyName:
+          description: Friendly Name
+          type: string
+        requireRadiusAuthentication:
+          description: Require Radius Authentication
+          type: boolean
+        useSecureLdap:
+          description: Use Secure LDAP
+          type: boolean
+      type: object
+    DomainPatchModel:
+      description: Patch update data for the domain.
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        authType:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalAuthType'
+        clientId:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        clientSecret:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        distinguishedName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        domainName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        friendlyName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        multifactorAuthenticationProvider:
+          $ref: '#/components/schemas/UpdateFieldValueOfMultifactorAuthenticationProviderTypes'
+        siteId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        synchronizationSecretId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        tenantId:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        userAuthType:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalAuthType'
+        useSecureLDAP:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+      type: object
+    DomainActionType:
+      description: Valid Actions
+      properties: {}
+      type: string
+      enum:
+      - EditDomain
+      - EditGroups
+    DirectoryServicesConfigurationUpdateArgs:
+      description: DirectoryServicesConfigurationUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DirectoryServicesConfigurationUpdateModel'
+      type: object
+    DirectoryServicesSynchronizationUserOption:
+      description: Indicates how to synchronize the enabled status for new and existing users
+      properties: {}
+      type: string
+      enum:
+      - ImportEnabled
+      - ImportDisabled
+      - MirrorDirectory
+    DirectoryServicesGroupMemberResponse:
+      description: Group Member Response
+      properties:
+        errorMessage:
+          description: Indicates if an error message occurred
+          type: string
+        members:
+          description: Members of the group
+          items:
+            $ref: '#/components/schemas/DirectoryGroupUserViewModel'
+          type: array
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    IPagingOfDomainSummaryModel:
+      description: IPagingOfDomainSummaryModel
+      properties:
+        records:
+          description: Records
+          items:
+            $ref: '#/components/schemas/DomainSummaryModel'
+          type: array
+        sortBy:
+          description: SortBy
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+      type: object
+    UpdateFieldValueOfMultifactorAuthenticationProviderTypes:
+      description: Domain multifactor authentication provider.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/MultifactorAuthenticationProviderTypes'
+      type: object
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    ViewFieldValueOfString:
+      description: GeneratedToken
+      properties:
+        additionalLinks:
+          description: AdditionalLinks
+          items:
+            $ref: '#/components/schemas/ViewFieldLink'
+          type: array
+        description:
+          description: Description
+          type: string
+        fieldInputType:
+          description: FieldInputType
+          type:
+          - string
+          - 'null'
+        hasHistory:
+          description: HasHistory
+          type:
+          - boolean
+          - 'null'
+        helpLink:
+          description: HelpLink
+          type: string
+        helpLinkText:
+          description: HelpLinkText
+          type: string
+        hidden:
+          description: Hidden
+          type:
+          - boolean
+          - 'null'
+        hideOnView:
+          description: HideOnView
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          description: IsRequired
+          type:
+          - boolean
+          - 'null'
+        label:
+          description: Label
+          type: string
+        maxLength:
+          description: MaxLength
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          description: Name
+          type: string
+        placeholder:
+          description: Placeholder
+          type: string
+        readOnly:
+          description: ReadOnly
+          type:
+          - boolean
+          - 'null'
+        readOnlyReason:
+          description: ReadOnlyReason
+          type: string
+        sortOrder:
+          description: SortOrder
+          type:
+          - integer
+          - 'null'
+          format: int32
+        value:
+          description: Value
+          type: string
+      type: object
     ViewFieldDropDownValueOfString:
       description: Base Distinguished Name Code
       properties:
@@ -843,36 +1219,83 @@ components:
           description: Value
           type: string
       type: object
-    DomainPatchModel:
-      description: Patch update data for the domain.
+    DomainSynchronizationStatus:
+      description: Results of the last synchronization for this domain
       properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        authType:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalAuthType'
-        clientId:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        clientSecret:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        distinguishedName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        domainName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        friendlyName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        multifactorAuthenticationProvider:
-          $ref: '#/components/schemas/UpdateFieldValueOfMultifactorAuthenticationProviderTypes'
-        siteId:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        synchronizationSecretId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        tenantId:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        userAuthType:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalAuthType'
-        useSecureLDAP:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalBoolean'
+        disabledUsers:
+          description: Number of users that were disabled
+          type: integer
+          format: int32
+        domainId:
+          description: Which domain is this status for
+          type: integer
+          format: int32
+        domainUsersUpdatedSinceLastSynchronization:
+          description: Obsolete - Not populated.
+          type: integer
+          format: int32
+        lastLogEntry:
+          description: Log Entry used for parsing
+          type: string
+        newUsersCreated:
+          description: Total new users that were created
+          type: integer
+          format: int32
+        newUsersCreatedAsDisabled:
+          description: Total new users that were created and then set as disabled due to either license limits or other settings
+          type: integer
+          format: int32
+        usersRemovedFromGroups:
+          description: Total users removed from groups
+          type: integer
+          format: int32
+        usersWithGroupMembershipChanges:
+          description: Total number of users that were added or removed from any group in this domain
+          type: integer
+          format: int32
       type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    DirectoryServicesSynchronizationLogEntry:
+      description: Query results
+      properties:
+        createdOn:
+          description: CreatedOn
+          type: string
+          format: date-time
+        machineName:
+          description: MachineName
+          type: string
+        text:
+          description: Text
+          type: string
+      type: object
+    ViewFieldDropDownOption:
+      description: DropDownOptions
+      properties:
+        fieldDisplay:
+          description: FieldDisplay
+          type: string
+        fieldValue:
+          description: FieldValue
+          type: string
+      type: object
+    DomainType:
+      description: Domain Type
+      properties: {}
+      type: string
+      enum:
+      - ActiveDirectory
+      - OpenLdap
+      - AzureActiveDirectory
     LdapSyncSettingsViewModel:
       description: LdapSyncSettingsViewModel
       properties:
@@ -910,256 +1333,19 @@ components:
         userPrincipalNameAttribute:
           $ref: '#/components/schemas/ViewFieldValueOfString'
       type: object
-    DomainType:
-      description: Domain Type
-      properties: {}
-      type: string
-      enum:
-      - ActiveDirectory
-      - OpenLdap
-      - AzureActiveDirectory
-    DirectoryServicesConfigurationUpdateModel:
-      description: The fields to update on the Directory Services configuration.
+    DirectoryGroupUserViewModel:
+      description: Directory Group User
       properties:
-        daysToKeepOperationalLogs:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        disableInactiveUsersMonths:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        enableDirectoryIntegration:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        enableDirectorySynchronization:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        enableIntegratedWindowsAuthentication:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        enableUserDisabling:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        synchronizationIntervalDays:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        synchronizationIntervalHours:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        synchronizationIntervalMinutes:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        userAccountOptions:
-          $ref: '#/components/schemas/UpdateFieldValueOfDirectoryServicesSynchronizationUserOption'
-      type: object
-    UpdateFieldValueOfOptionalAuthType:
-      description: AuthType for OpenLdap
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type:
-          - string
-          - 'null'
-      type: object
-    UpdateFieldValueOfMultifactorAuthenticationProviderTypes:
-      description: Domain multifactor authentication provider.
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          $ref: '#/components/schemas/MultifactorAuthenticationProviderTypes'
-      type: object
-    UpdateFieldValueOfDirectoryServicesSynchronizationUserOption:
-      description: Indicates how to synchronize the enabled status for new and existing users
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          $ref: '#/components/schemas/DirectoryServicesSynchronizationUserOption'
-      type: object
-    MultifactorAuthenticationProviderTypes:
-      description: Domain multifactor authentication providers.
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Radius
-      - TOTPAuthenticator
-      - Duo
-      - Fido2
-      - Email
-    IPagingOfDomainSummaryModel:
-      description: IPagingOfDomainSummaryModel
-      properties:
-        records:
-          description: Records
-          items:
-            $ref: '#/components/schemas/DomainSummaryModel'
-          type: array
-        sortBy:
-          description: SortBy
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    DirectoryServicesSynchronizationLogEntry:
-      description: Query results
-      properties:
-        createdOn:
-          description: CreatedOn
-          type: string
-          format: date-time
-        machineName:
-          description: MachineName
-          type: string
-        text:
-          description: Text
+        displayName:
+          description: Display Name of the user
           type: string
       type: object
-    UpdateFieldValueOfOptionalBoolean:
-      description: Use RADIUS Username for DUO
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type:
-          - boolean
-          - 'null'
-      type: object
-    LdapSyncSettingsPatchModel:
-      description: Patch update data for the Ldap Sync Settings.
-      properties:
-        baseDnCode:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        displayNameAttribute:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        emailAttribute:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        groupMemberAttribute:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        groupNameAttribute:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        groupObjectClasses:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        groupSearchFilter:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        guidAttribute:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        usernameAttribute:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        userObjectClasses:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        userPrincipalNameAttribute:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-      type: object
-    DomainActionType:
-      description: Valid Actions
-      properties: {}
-      type: string
-      enum:
-      - EditDomain
-      - EditGroups
-    LinkExternalGroupArgs:
-      description: LinkExternalGroupArgs
+    DomainCreateArgs:
+      description: DomainCreateArgs
       properties:
         data:
-          $ref: '#/components/schemas/LinkExternalGroupSettings'
+          $ref: '#/components/schemas/DomainCreateModel'
       type: object
-    LdapSyncSettingsPatchArgs:
-      description: LdapSyncSettingsPatchArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/LdapSyncSettingsPatchModel'
-      type: object
-    DirectoryServicesConfigurationUpdateArgs:
-      description: DirectoryServicesConfigurationUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/DirectoryServicesConfigurationUpdateModel'
-      type: object
-    DomainSynchronizationStatus:
-      description: Results of the last synchronization for this domain
-      properties:
-        disabledUsers:
-          description: Number of users that were disabled
-          type: integer
-          format: int32
-        domainId:
-          description: Which domain is this status for
-          type: integer
-          format: int32
-        domainUsersUpdatedSinceLastSynchronization:
-          description: Obsolete - Not populated.
-          type: integer
-          format: int32
-        lastLogEntry:
-          description: Log Entry used for parsing
-          type: string
-        newUsersCreated:
-          description: Total new users that were created
-          type: integer
-          format: int32
-        newUsersCreatedAsDisabled:
-          description: Total new users that were created and then set as disabled due to either license limits or other settings
-          type: integer
-          format: int32
-        usersRemovedFromGroups:
-          description: Total users removed from groups
-          type: integer
-          format: int32
-        usersWithGroupMembershipChanges:
-          description: Total number of users that were added or removed from any group in this domain
-          type: integer
-          format: int32
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    DirectoryServicesSynchronizationUserOption:
-      description: Indicates how to synchronize the enabled status for new and existing users
-      properties: {}
-      type: string
-      enum:
-      - ImportEnabled
-      - ImportDisabled
-      - MirrorDirectory
     ExternalServicesGroupModel:
       description: Directory Group
       properties:
@@ -1168,46 +1354,6 @@ components:
           type: string
         name:
           description: Name Guid of the Group
-          type: string
-      type: object
-    DirectoryGroupUserViewModel:
-      description: Directory Group User
-      properties:
-        displayName:
-          description: Display Name of the user
-          type: string
-      type: object
-    ViewFieldDropDownOption:
-      description: DropDownOptions
-      properties:
-        fieldDisplay:
-          description: FieldDisplay
-          type: string
-        fieldValue:
-          description: FieldValue
-          type: string
-      type: object
-    ViewFieldLink:
-      description: AdditionalLinks
-      properties:
-        isExternal:
-          description: IsExternal
-          type: boolean
-        linkText:
-          description: LinkText
-          type: string
-        url:
-          description: Url
-          type: string
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
           type: string
       type: object
     DomainModel:
@@ -1244,238 +1390,91 @@ components:
           description: Use Secure LDAP
           type: boolean
       type: object
-    DomainSummaryModel:
-      description: Domain Summary
-      properties:
-        active:
-          description: Active
-          type: boolean
-        domainId:
-          description: Domain Id
-          type: integer
-          format: int32
-        domainName:
-          description: Domain Name
-          type: string
-        domainType:
-          $ref: '#/components/schemas/DomainType'
-        friendlyName:
-          description: Friendly Name
-          type: string
-        requireRadiusAuthentication:
-          description: Require Radius Authentication
-          type: boolean
-        useSecureLdap:
-          description: Use Secure LDAP
-          type: boolean
-      type: object
-    ExternalGroupViewModel:
-      description: External Groups
-      properties:
-        errorMessage:
-          description: Error Message returned when populating groups array if error occurs, otherwise null
-          type: string
-        groups:
-          description: Groups that matched the search criteria
-          items:
-            $ref: '#/components/schemas/ExternalServicesGroupModel'
-          type: array
-      type: object
-    DomainCreateModel:
-      description: Data
-      properties:
-        active:
-          description: Active
-          type: boolean
-        authType:
-          description: AuthType for OpenLdap
-          type:
-          - string
-          - 'null'
-        clientId:
-          description: Client ID
-          type: string
-        clientSecret:
-          description: Client Secret
-          type: string
-        distinguishedName:
-          description: Domain Base DN
-          type: string
-        domainName:
-          description: The name of the domain.
-          type: string
-        domainType:
-          $ref: '#/components/schemas/DomainType'
-        friendlyName:
-          description: The friendly name of the domain.
-          type: string
-        multifactorAuthenticationProvider:
-          $ref: '#/components/schemas/MultifactorAuthenticationProviderTypes'
-        siteId:
-          description: Site Id
-          type:
-          - integer
-          - 'null'
-          format: int32
-        synchronizationSecretId:
-          description: Synchronization Secret
-          type:
-          - integer
-          - 'null'
-          format: int32
-        tenantId:
-          description: Tenant ID
-          type: string
-        userAuthType:
-          description: UserAuthType for OpenLdap
-          type:
-          - string
-          - 'null'
-        useSecureLDAP:
-          description: Use Secure LDAP
-          type:
-          - boolean
-          - 'null'
-      type: object
-    ViewFieldValueOfString:
-      description: GeneratedToken
-      properties:
-        additionalLinks:
-          description: AdditionalLinks
-          items:
-            $ref: '#/components/schemas/ViewFieldLink'
-          type: array
-        description:
-          description: Description
-          type: string
-        fieldInputType:
-          description: FieldInputType
-          type:
-          - string
-          - 'null'
-        hasHistory:
-          description: HasHistory
-          type:
-          - boolean
-          - 'null'
-        helpLink:
-          description: HelpLink
-          type: string
-        helpLinkText:
-          description: HelpLinkText
-          type: string
-        hidden:
-          description: Hidden
-          type:
-          - boolean
-          - 'null'
-        hideOnView:
-          description: HideOnView
-          type:
-          - boolean
-          - 'null'
-        isRequired:
-          description: IsRequired
-          type:
-          - boolean
-          - 'null'
-        label:
-          description: Label
-          type: string
-        maxLength:
-          description: MaxLength
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          description: Name
-          type: string
-        placeholder:
-          description: Placeholder
-          type: string
-        readOnly:
-          description: ReadOnly
-          type:
-          - boolean
-          - 'null'
-        readOnlyReason:
-          description: ReadOnlyReason
-          type: string
-        sortOrder:
-          description: SortOrder
-          type:
-          - integer
-          - 'null'
-          format: int32
-        value:
-          description: Value
-          type: string
-      type: object
-    DirectoryServicesConfigurationModel:
-      description: Directory Services Configuration
-      properties:
-        daysToKeepOperationalLogs:
-          description: How long to keep operational logs
-          type: integer
-          format: int32
-        disableInactiveUsersMonths:
-          description: How long to wait before disabling inactive users
-          type: integer
-          format: int32
-        enableDirectoryIntegration:
-          description: Whether or not any Directory Services integrations are enabled or not
-          type: boolean
-        enableDirectorySynchronization:
-          description: Synchronize users and group membership on a time interval
-          type: boolean
-        enableIntegratedWindowsAuthentication:
-          description: Integrated Windows Authentication (IWA) allows users to log into Secret Server automatically if they are logged into a workstation with their Active Directory credentials.
-          type: boolean
-        enableUserDisabling:
-          description: When enabled inactive users will be automatically disabled regardless of their Directory status
-          type: boolean
-        synchronizationIntervalDays:
-          description: Synchronize days interval for users and group membership
-          type: integer
-          format: int32
-        synchronizationIntervalHours:
-          description: Synchronize hours interval for users and group membership
-          type: integer
-          format: int32
-        synchronizationIntervalMinutes:
-          description: Synchronize minutes interval for users and group membership
-          type: integer
-          format: int32
-        userAccountOptions:
-          $ref: '#/components/schemas/DirectoryServicesSynchronizationUserOption'
-      type: object
-    UpdateFieldValueOfInt32:
-      description: How many days until the password expires.
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
       properties:
         dirty:
           description: Dirty
           type: boolean
         value:
           description: Value
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    LdapSyncSettingsPatchArgs:
+      description: LdapSyncSettingsPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/LdapSyncSettingsPatchModel'
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
           type: integer
           format: int32
       type: object
-    LinkExternalGroupSettings:
-      description: Information about the directory group that is needed to create a link
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
       properties:
-        domainIdentifier:
-          description: The unique directory identifier for the group to be linked. For Active Directory this must be in hex format, NOT guid format.  For example, this is ADGuid in Active Directory
-          type: string
-        name:
-          description: Name of the group in the directory
+        message:
+          description: Error message
           type: string
       type: object
-    DomainPatchArgs:
-      description: DomainPatchArgs
+    DirectoryServicesConfigurationUpdateModel:
+      description: The fields to update on the Directory Services configuration.
       properties:
-        data:
-          $ref: '#/components/schemas/DomainPatchModel'
+        daysToKeepOperationalLogs:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        disableInactiveUsersMonths:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        enableDirectoryIntegration:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableDirectorySynchronization:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableIntegratedWindowsAuthentication:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        enableUserDisabling:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        synchronizationIntervalDays:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        synchronizationIntervalHours:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        synchronizationIntervalMinutes:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        userAccountOptions:
+          $ref: '#/components/schemas/UpdateFieldValueOfDirectoryServicesSynchronizationUserOption'
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
       type: object
     PagingOfDirectoryServicesSynchronizationLogEntry:
       description: Specify paging and sorting options for querying records and returning results
@@ -1534,36 +1533,6 @@ components:
           type: integer
           format: int32
       type: object
-    DirectoryServicesGroupMemberResponse:
-      description: Group Member Response
-      properties:
-        errorMessage:
-          description: Indicates if an error message occurred
-          type: string
-        members:
-          description: Members of the group
-          items:
-            $ref: '#/components/schemas/DirectoryGroupUserViewModel'
-          type: array
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -1585,8 +1554,56 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    UpdateFieldValueOfOptionalInt32:
-      description: The minimum length required for local user passwords
+    UpdateFieldValueOfDirectoryServicesSynchronizationUserOption:
+      description: Indicates how to synchronize the enabled status for new and existing users
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/DirectoryServicesSynchronizationUserOption'
+      type: object
+    MultifactorAuthenticationProviderTypes:
+      description: Domain multifactor authentication providers.
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Radius
+      - TOTPAuthenticator
+      - Duo
+      - Fido2
+      - Email
+    ExternalGroupViewModel:
+      description: External Groups
+      properties:
+        errorMessage:
+          description: Error Message returned when populating groups array if error occurs, otherwise null
+          type: string
+        groups:
+          description: Groups that matched the search criteria
+          items:
+            $ref: '#/components/schemas/ExternalServicesGroupModel'
+          type: array
+      type: object
+    DomainPatchArgs:
+      description: DomainPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DomainPatchModel'
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    UpdateFieldValueOfOptionalAuthType:
+      description: AuthType for OpenLdap
       properties:
         dirty:
           description: Dirty
@@ -1594,9 +1611,8 @@ components:
         value:
           description: Value
           type:
-          - integer
+          - string
           - 'null'
-          format: int32
       type: object
     DirectoryServicesSynchronizationStatus:
       description: Directory Synchronization Status
@@ -1632,22 +1648,6 @@ components:
           - string
           - 'null'
           format: date-time
-      type: object
-    DomainCreateArgs:
-      description: DomainCreateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/DomainCreateModel'
-      type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
       type: object
   requestBodies:
     LinkExternalGroupArgs:

@@ -49,6 +49,14 @@ paths:
       deprecated: false
 components:
   schemas:
+    MobileConfigurationModel:
+      description: Mobile Configuration Model
+      properties:
+        maximumTimeOfflineMinutes:
+          description: Maximum Time for Offline Access on Mobile Devices
+          type: integer
+          format: int32
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -96,14 +104,6 @@ components:
         modelState:
           description: An object describing validation errors
           type: object
-      type: object
-    MobileConfigurationModel:
-      description: Mobile Configuration Model
-      properties:
-        maximumTimeOfflineMinutes:
-          description: Maximum Time for Offline Access on Mobile Devices
-          type: integer
-          format: int32
       type: object
   securitySchemes:
     BearerToken:

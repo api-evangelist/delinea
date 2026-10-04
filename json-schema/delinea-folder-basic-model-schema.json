@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-folder-basic-model-schema.json",
+  "title": "FolderBasicModel",
+  "description": "FolderBasicModel",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-folders-api-openapi.yml#/components/schemas/FolderBasicModel",
+  "properties": {
+    "allowedTemplates": {
+      "description": "Allowed Templates",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "type": "array"
+    },
+    "enableInheritPermissions": {
+      "description": "Should the folder inherit permissions from the parent folder",
+      "type": "boolean"
+    },
+    "enableInheritSecretPolicy": {
+      "description": "Should the folder inherit the secret policy from the parent folder",
+      "type": "boolean"
+    },
+    "folderName": {
+      "description": "The dispay name for the folder",
+      "type": "string"
+    },
+    "hasEdit": {
+      "description": "If the user can edit the folder",
+      "type": "boolean"
+    },
+    "hasOwner": {
+      "description": "If the user owns the folder",
+      "type": "boolean"
+    },
+    "isPersonalFolder": {
+      "description": "Whether or not this is a personal folder",
+      "type": "boolean"
+    },
+    "parentFolderId": {
+      "description": "The ID of the parent folder",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "parentFolderPolicyName": {
+      "description": "Policy name on the parent folder",
+      "type": "string"
+    },
+    "secretPolicies": {
+      "description": "SecretPolicies",
+      "items": {
+        "$ref": "#/$defs/SecretPolicyModel"
+      },
+      "type": "array"
+    },
+    "secretPolicy": {
+      "description": "The secret policy ID that is assigned to the folder",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "secretTemplates": {
+      "description": "Secret Templates",
+      "items": {
+        "$ref": "#/$defs/TemplateViewModel"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "SecretPolicyModel": {
+      "description": "SecretPolicies",
+      "properties": {
+        "active": {
+          "description": "Whether or not the Secret Policy is Active",
+          "type": "boolean"
+        },
+        "secretPolicyDescription": {
+          "description": "The Description of the Secret Policy",
+          "type": "string"
+        },
+        "secretPolicyId": {
+          "description": "The Id of the Secret Policy",
+          "type": "integer",
+          "format": "int32"
+        },
+        "secretPolicyName": {
+          "description": "The Name of the Secret Policy",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TemplateViewModel": {
+      "description": "Template View Model",
+      "properties": {
+        "id": {
+          "description": "Template Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "description": "Template Name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

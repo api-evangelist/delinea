@@ -1,0 +1,791 @@
+# Delinea Cloud Suite/PAS API Documentation
+
+> Documentation for Delinea Cloud Suite/PAS API
+
+## Guides: Manage Resources
+- [Monitor Connector Status](https://developer.delinea.com/docs/monitoring-connector-status.md)
+
+## API Reference: Centrify Identity Platform API
+- [Deletes an authentication profile.](https://developer.delinea.com/reference/post_authprofile-deleteprofile.md)
+- [Gets an authentication profile.](https://developer.delinea.com/reference/post_authprofile-getprofile.md): The profile get uses the uuid passed in by method call or as part of the payload.
+- [Gets a list of Authentication profiles.](https://developer.delinea.com/reference/post_authprofile-getprofilelist.md)
+- [Saves an authentication profile.](https://developer.delinea.com/reference/post_authprofile-saveprofile.md): If the profile contains a UUID an update is performed, otherwise it's a write.
+- [The tenant brand information.](https://developer.delinea.com/reference/post_brand-info.md)
+- [The tenant brand.](https://developer.delinea.com/reference/post_brand-mybrand.md)
+- [Fetch technical support user.](https://developer.delinea.com/reference/post_cdirectoryservice-gettechsupportuser.md): You must be a system administrator or have user management permissions.
+- [Grant portal access to technical support.](https://developer.delinea.com/reference/post_cdirectoryservice-grantaccess.md): You must be a system administrator or have user management permissions.  Support will receive portal access for the specified time period.
+- [Create a dynamic set.](https://developer.delinea.com/reference/post_collection-createdynamiccollection.md)
+- [Create a manual set.](https://developer.delinea.com/reference/post_collection-createmanualcollection.md)
+- [Delete a set.](https://developer.delinea.com/reference/post_collection-deletecollection.md)
+- [Gets the contents of a bucket.](https://developer.delinea.com/reference/post_collection-getbucketcontents.md)
+- [Gets a set based on the ID.](https://developer.delinea.com/reference/post_collection-getcollection.md)
+- [Gets the references to a set.](https://developer.delinea.com/reference/post_collection-getcollectionreferences.md)
+- [Gets the rights on a set.](https://developer.delinea.com/reference/post_collection-getcollectionrights.md)
+- [Gets a set template based on ObjectType and SubObjectType.](https://developer.delinea.com/reference/post_collection-getcollectiontemplate.md)
+- [Gets the members with access to the set.](https://developer.delinea.com/reference/post_collection-getmembers.md)
+- [Gets the objects set.](https://developer.delinea.com/reference/post_collection-getobjectcollections.md)
+- [Gets a set of ObjectType.](https://developer.delinea.com/reference/post_collection-getobjectcollectionsandfilters.md)
+- [Gets the members with access to the set.](https://developer.delinea.com/reference/post_collection-ismember.md)
+- [Update a set.](https://developer.delinea.com/reference/post_collection-updatecollection.md)
+- [Updates the set members.](https://developer.delinea.com/reference/post_collection-updatememberscollection.md)
+- [Adds a Blocked IP Range.](https://developer.delinea.com/reference/post_core-addblockediprange.md)
+- [Adds an IP Range local to the customer network.](https://developer.delinea.com/reference/post_core-addpremdetectrange.md)
+- [Requests a heath check from a specific cloud connector or from all cloud connectors.](https://developer.delinea.com/reference/post_core-checkproxyhealth-1.md): Returns a JSON package that includes health information for one or more connectors.             Each connector contains a health status from one or more regions within the connector.…
+- [Create a directory.](https://developer.delinea.com/reference/post_core-createdirectory.md)
+- [Creates a Reports directory in Path for the tenant.](https://developer.delinea.com/reference/post_core-createtenantreportsdirectory.md): The user must have AdminUI rights.
+- [Creates a Reports directory in the tenant for the current user.](https://developer.delinea.com/reference/post_core-createuserhomereportsdirectory.md)
+- [Deletes a Blocked IP Range.](https://developer.delinea.com/reference/post_core-delblockediprange.md)
+- [Removes a suffix.](https://developer.delinea.com/reference/post_core-deletealias.md)
+- [Removes multiple suffixes.](https://developer.delinea.com/reference/post_core-deletealiases.md)
+- [Delete a set of certificates.](https://developer.delinea.com/reference/post_core-deletecertificate.md)
+- [Deletes a directory.](https://developer.delinea.com/reference/post_core-deletedirectory.md)
+- [Deletes a file.](https://developer.delinea.com/reference/post_core-deletefile.md)
+- [Deletes a set of files.](https://developer.delinea.com/reference/post_core-deletefiles.md)
+- [Deletes a list of proxies.](https://developer.delinea.com/reference/post_core-deleteproxies.md)
+- [Remove a connector referred to by proxyUuid.](https://developer.delinea.com/reference/post_core-deleteproxy.md)
+- [Deletes a connector registration code.](https://developer.delinea.com/reference/post_core-deleteproxycode.md)
+- [Deletes a list of connector registration codes.](https://developer.delinea.com/reference/post_core-deleteproxycodes.md)
+- [Deletes the tenant configuration key.](https://developer.delinea.com/reference/post_core-deletetenantconfig.md)
+- [Deletes an IP Range local to the customer network.](https://developer.delinea.com/reference/post_core-delpremdetectrange.md)
+- [Check for the existence of a directory.](https://developer.delinea.com/reference/post_core-directoryexists.md)
+- [Downloads a certificate.](https://developer.delinea.com/reference/post_core-downloadcertificate.md)
+- [Download the contents of a file.](https://developer.delinea.com/reference/post_core-downloadfile.md)
+- [Check for the existence of a file.](https://developer.delinea.com/reference/post_core-fileexists.md)
+- [Generates a new connector registration code.](https://developer.delinea.com/reference/post_core-generatenewproxycode.md)
+- [Generates a password.](https://developer.delinea.com/reference/post_core-generatepassword.md)
+- [Get a list of domains in the forest.](https://developer.delinea.com/reference/post_core-getadloginsuffixesbyforest.md)
+- [Gets the active directory topology for the directory service Uuid or the domain name.](https://developer.delinea.com/reference/post_core-getadtopology.md)
+- [Get the tenant suffixes.](https://developer.delinea.com/reference/post_core-getaliasesfortenant.md)
+- [Gets the blocked IP Ranges.](https://developer.delinea.com/reference/post_core-getblockedipranges.md)
+- [Gets the certificate authority certificate chain.](https://developer.delinea.com/reference/post_core-getcacertchain.md)
+- [Get the tenant suffixes excluding 'legacy' versions.](https://developer.delinea.com/reference/post_core-getcdsaliasesfortenant.md)
+- [Gets the public part of the cloud certificate authority certificate.](https://developer.delinea.com/reference/post_core-getcloudcacert.md): If not specified uses CentrifyCA.cer
+- [Gets the connector log4net config for the connector.](https://developer.delinea.com/reference/post_core-getconnectorlog4netconfig.md)
+- [Gets the current Iwa Json Url.](https://developer.delinea.com/reference/post_core-getcurrentiwajsonpurl.md)
+- [Gets the current Iwa Url.](https://developer.delinea.com/reference/post_core-getcurrentiwaurl.md)
+- [Gets the public part of the default global app signing certificate.](https://developer.delinea.com/reference/post_core-getdefaultglobalappsigningcert.md)
+- [List the directory contents of a directory.](https://developer.delinea.com/reference/post_core-getdirectories.md): The resulting list of subdirectories include the full path to each directory.
+- [Get a list of directory contents.](https://developer.delinea.com/reference/post_core-getdirectorycontents.md)
+- [Gets directory information for the path.](https://developer.delinea.com/reference/post_core-getdirectoryinfo.md)
+- [Gets the directory services.](https://developer.delinea.com/reference/post_core-getdirectoryservices.md)
+- [Gets a list of domain controllers for the directory service Uuid in domain name.](https://developer.delinea.com/reference/post_core-getdomaincontrollersfordomain.md)
+- [Gets download urls.](https://developer.delinea.com/reference/post_core-getdownloadurls.md)
+- [Get metadata and information about a file, as well as the file contents.](https://developer.delinea.com/reference/post_core-getfileinfo.md)
+- [Get the Iwa trust root certificate.](https://developer.delinea.com/reference/post_core-getiwatrustrootcert.md)
+- [Gets the localized value of the tag.](https://developer.delinea.com/reference/post_core-getloctag.md)
+- [Get domains and organizational units.](https://developer.delinea.com/reference/post_core-getoutreecontents.md): This API is overloaded to get domains and OUs in a domain across AD directories with and without cache             API variations (excluding useCache variations)             1. id = null,…
+- [Gets the IP Ranges local to the customer network.](https://developer.delinea.com/reference/post_core-getpremdetectranges.md)
+- [Gets list of connectors.](https://developer.delinea.com/reference/post_core-getproxies.md)
+- [Fetchs a connector registration code along with its settings.](https://developer.delinea.com/reference/post_core-getproxycode.md)
+- [Fetchs a standard UI report that contains all of the connector registration codes.](https://developer.delinea.com/reference/post_core-getproxycodes.md)
+- [Get the connector Iwa host certificate file.](https://developer.delinea.com/reference/post_core-getproxyiwahostcertificatefile.md)
+- [Gets the Iwa settings for the connector Uuid.](https://developer.delinea.com/reference/post_core-getproxyiwasettings.md)
+- [Retrieves a list of product licenses for this tenant, from Salesforce.](https://developer.delinea.com/reference/post_core-getpurchasedlicenses.md): List of product licenses, by group and with counts.
+- [DEPRECATION WARNING - This API is no longer supported; please use /Report/GetReports.](https://developer.delinea.com/reference/post_core-getreportsdirectorycontents.md): Get a list of directory contents with a file extension of 'report'.
+- [Get supported cultures, returning their code and native name.](https://developer.delinea.com/reference/post_core-getsupportedcultures-1.md)
+- [Gets the public part of the tenant CA certificate.](https://developer.delinea.com/reference/post_core-gettenantcacert.md)
+- [Gets the tenant's config value for a key.](https://developer.delinea.com/reference/post_core-gettenantconfig.md)
+- [Returns a file name that is unique in the directory.](https://developer.delinea.com/reference/post_core-getuniquefilename.md): If there is a collision, integers will be added.              Example: path "~/", name "MyFile.txt"             If MyFile.txt already exists in ~/, this endpoint will return MyFile (1).txt,…
+- [Gets all user settings of setting type.](https://developer.delinea.com/reference/post_core-getusersettings.md)
+- [Gets the Zso certificate](https://developer.delinea.com/reference/post_core-getzsocertauthority.md)
+- [Gets the Zso host information.](https://developer.delinea.com/reference/post_core-getzsohostinfo.md)
+- [This is a callback used by the twilio service.](https://developer.delinea.com/reference/post_core-handletwiliosmsreceipt.md): Customers will not call this directly.
+- [Issues a user certificate. (Deprecated, please use OAuth2 instead.)](https://developer.delinea.com/reference/post_core-issueusercert.md)
+- [Issues a Zso user certificate](https://developer.delinea.com/reference/post_core-issuezsousercert.md)
+- [List the file contents of a directory.](https://developer.delinea.com/reference/post_core-listdirectory.md)
+- [Return given text as a file.](https://developer.delinea.com/reference/post_core-makefile.md)
+- [Move directory 'path' to 'toPath'.](https://developer.delinea.com/reference/post_core-movedirectory.md)
+- [Calls the NotifyEnvironment method on the connector.](https://developer.delinea.com/reference/post_core-notifyenvironment.md)
+- [Redirect to the targetUrl.](https://developer.delinea.com/reference/post_core-processproxyiwacloudredirect.md)
+- [Read the contents of a file.](https://developer.delinea.com/reference/post_core-readfile.md)
+- [Re issue the certificate for the connector.](https://developer.delinea.com/reference/post_core-reissueiwahostcertificate.md)
+- [Rename certificate with thumbprint to newName.](https://developer.delinea.com/reference/post_core-renamecertificate.md)
+- [Sets the connector Log4Net config for a connector.](https://developer.delinea.com/reference/post_core-setconnectorlog4netconfig.md)
+- [Sets the default certificate for the current tenant.](https://developer.delinea.com/reference/post_core-setdefaultcertificate.md)
+- [Set the certificate for the Iwa connector.](https://developer.delinea.com/reference/post_core-setproxyiwahostcertificatefile.md)
+- [Set the connector Iwa Settings for proxyUuid.](https://developer.delinea.com/reference/post_core-setproxyiwasettings.md)
+- [Sets the value of a tenant configuration key.](https://developer.delinea.com/reference/post_core-settenantconfig.md)
+- [Starts the named service on the connector.](https://developer.delinea.com/reference/post_core-startservice.md)
+- [Stops the named service on the connector.](https://developer.delinea.com/reference/post_core-stopservice.md)
+- [Store a suffix.](https://developer.delinea.com/reference/post_core-storealias.md)
+- [Saves the user information.](https://developer.delinea.com/reference/post_core-storeuser.md): Caller must provide either user name or guid.
+- [Stores the user settings.](https://developer.delinea.com/reference/post_core-storeusersetting.md)
+- [Updates the directory services stack for a tenant.](https://developer.delinea.com/reference/post_core-updatedirectoryservicesprecedence.md): This changes the search order of services used when authenticating a customer.
+- [Updates an existing connector registration code.](https://developer.delinea.com/reference/post_core-updateproxycode.md)
+- [Updates the Iwa connector settings.](https://developer.delinea.com/reference/post_core-updateproxyiwasettings.md)
+- [Uploads a certificate.](https://developer.delinea.com/reference/post_core-uploadcertificate.md)
+- [Write string content to a file.](https://developer.delinea.com/reference/post_core-writefile.md)
+- [Gets the value of an extended column.](https://developer.delinea.com/reference/post_extdata-getcolumn.md)
+- [Gets the value of all extended columns for a row.](https://developer.delinea.com/reference/post_extdata-getcolumns.md)
+- [Gets the tables extended columnar schema.](https://developer.delinea.com/reference/post_extdata-getschema.md)
+- [Sets the value of an extended column.](https://developer.delinea.com/reference/post_extdata-setcolumn.md): The value can either be a string, date, bool, double or integer.             It must match the column definition.             To clear a value set it to null.
+- [Sets the value of an extended column.](https://developer.delinea.com/reference/post_extdata-setcolumns.md): The value can either be a string, date, bool, double or integer.             It must match the column definition.             To clear a value set it to null.
+- [Updates a table's extended columnar schema.](https://developer.delinea.com/reference/post_extdata-updateschema.md)
+- [Add a certificate authority.](https://developer.delinea.com/reference/post_externalcamgmt-addcertauthority.md)
+- [Downloads the certificate authority public key file.](https://developer.delinea.com/reference/post_externalcamgmt-downloadcertauthority.md)
+- [Get certificate authorities for the tenant.](https://developer.delinea.com/reference/post_externalcamgmt-getcertauthorities.md)
+- [Remove a certificate authority.](https://developer.delinea.com/reference/post_externalcamgmt-removecertauthority.md)
+- [Update a certificate authority.](https://developer.delinea.com/reference/post_externalcamgmt-updatecertauthority.md)
+- [Add global group assertion mapping.](https://developer.delinea.com/reference/post_federation-addglobalgroupassertionmapping.md)
+- [Create federation.](https://developer.delinea.com/reference/post_federation-createfederation.md): The body payload for this API requires a Form post rather than a JSON payload.
+- [Delete a federation.](https://developer.delinea.com/reference/post_federation-deletefederation.md)
+- [Delete global group assertion mapping.](https://developer.delinea.com/reference/post_federation-deleteglobalgroupassertionmapping.md)
+- [Get the federation metadata.](https://developer.delinea.com/reference/post_federation-federationmetadata.md)
+- [Get a federation.](https://developer.delinea.com/reference/post_federation-getfederation.md)
+- [Get federation group assertion mappings.](https://developer.delinea.com/reference/post_federation-getfederationgroupassertionmappings.md)
+- [Gets a list of federations.](https://developer.delinea.com/reference/post_federation-getfederations.md)
+- [Gets a list of federation signature types](https://developer.delinea.com/reference/post_federation-getfederationsignaturetypes.md)
+- [Gets a list of federation types.](https://developer.delinea.com/reference/post_federation-getfederationtypes.md)
+- [Get global federation settings.](https://developer.delinea.com/reference/post_federation-getglobalfederationsettings.md)
+- [Get global group assertion mappings.](https://developer.delinea.com/reference/post_federation-getglobalgroupassertionmappings.md)
+- [Gets a list of federated groups.](https://developer.delinea.com/reference/post_federation-getgroups.md)
+- [Gets the public part of the Service Provider signing certificate.](https://developer.delinea.com/reference/post_federation-spsigningcertificate.md)
+- [Gets the public part of the Service Provider signing certificate authority.](https://developer.delinea.com/reference/post_federation-spsigningcertificateauthority.md)
+- [Update a federation.](https://developer.delinea.com/reference/post_federation-updatefederation.md): The body payload for this API requires a Form post rather than a JSON payload.
+- [Update federation group assertion mappings.](https://developer.delinea.com/reference/post_federation-updatefederationgroupassertionmappings.md)
+- [Update the global group assertion mappings.](https://developer.delinea.com/reference/post_federation-updateglobalgroupassertionmappings.md)
+- [Call back for the google directory service.](https://developer.delinea.com/reference/post_googledirectory-authcallback.md): Set this callback URL at https://console.developers.google.com/apis/credentials/
+- [Gets the IDP authorization state for the pollingToken.](https://developer.delinea.com/reference/post_googledirectory-getauthtokenstate.md)
+- [Gets the directory service configuration.](https://developer.delinea.com/reference/post_googledirectory-getdirectoryserviceconfig.md)
+- [Gets the state id and the service login url.](https://developer.delinea.com/reference/post_googledirectory-getserviceloginurlinfo.md)
+- [Updates the directory service configuration.](https://developer.delinea.com/reference/post_googledirectory-removedirectoryservice.md)
+- [Updates the directory service configuration.](https://developer.delinea.com/reference/post_googledirectory-updatedirectoryserviceconfig.md): If CustomConfigEnabled is true              then ApplicationClientId and ApplicationClientSecret are expected.
+- [Simple health check for load balancers: Is this node active?](https://developer.delinea.com/reference/post_health-check.md)
+- [Returns a report of deployment history, schema upgrade history, current nodes, for support.](https://developer.delinea.com/reference/post_health-supportinfo.md)
+- [Returns a report of deployment history, schema upgrade history, current nodes, for support.](https://developer.delinea.com/reference/post_health-supportinfofile.md)
+- [Returns login Data configurement.](https://developer.delinea.com/reference/post_home-getlogindata.md)
+- [Query and read the config for the one Safenet kmip box for this tenant.](https://developer.delinea.com/reference/post_kmip-configure.md): On IE browser, IE interjects the response if request content-type multi-part/formupload and response is JSON.…
+- [Delete the Kmip configuration.](https://developer.delinea.com/reference/post_kmip-deleteconfig.md)
+- [Get the Kmip configuration](https://developer.delinea.com/reference/post_kmip-getconfig.md)
+- [Stores the Kmip remote password.](https://developer.delinea.com/reference/post_kmip-passwordstoredremotely.md)
+- [Adds a service to the Lightweight Directory Access Protocol (LDAP) config.](https://developer.delinea.com/reference/post_ldapdirectoryservice-addldapdirectoryserviceconfig.md)
+- [Remove a service from the Lightweight Directory Access Protocol (LDAP).](https://developer.delinea.com/reference/post_ldapdirectoryservice-deleteldapdirectoryserviceconfig.md)
+- [Get a list of cloud connectors that have the LDAP module enabled.](https://developer.delinea.com/reference/post_ldapdirectoryservice-getcloudconnectors.md)
+- [Gets the directory service version for an LDAP directory service specified by UUID.](https://developer.delinea.com/reference/post_ldapdirectoryservice-getdirectoryserviceversion.md)
+- [Get the Lightweight Directory Access Protocol (LDAP) config.](https://developer.delinea.com/reference/post_ldapdirectoryservice-getldapdirectoryserviceconfig.md)
+- [Get the Directory Service UUID for a specific LDAP, using the name assigned by the user.](https://developer.delinea.com/reference/post_ldapdirectoryservice-getldapdirectoryserviceuuidbyname.md)
+- [Gets the list of mappable LDAP attributes.](https://developer.delinea.com/reference/post_ldapdirectoryservice-getmappableattributelist.md): This is intended for UI use, to fill in the prompts for the names of the attributes in the              customer's mappings.
+- [Gets a property to attribute mapping on an LDAP enabled directory service.](https://developer.delinea.com/reference/post_ldapdirectoryservice-getpropertytoattributemappings.md)
+- [Gets the scripting property to attribute mapping from an LDAP enabled directory service.](https://developer.delinea.com/reference/post_ldapdirectoryservice-getscriptingpropertytoattributemappings.md)
+- [Modify a service in the Lightweight Directory Access Protocol (LDAP) config.](https://developer.delinea.com/reference/post_ldapdirectoryservice-modifyldapdirectoryserviceconfig.md)
+- [Sets a property to attribute mapping on an LDAP enabled directory service.](https://developer.delinea.com/reference/post_ldapdirectoryservice-setpropertytoattributemappings.md)
+- [Sets the scripting property to attribute mapping on an LDAP enabled directory service.](https://developer.delinea.com/reference/post_ldapdirectoryservice-setscriptingpropertytoattributemappings.md)
+- [Gets the results of the specified mappings by looking up a user by name.](https://developer.delinea.com/reference/post_ldapdirectoryservice-testuserlookup.md): Using a supplied LDAP configuration OR a the UUID of an existing LDAP directory service (one or the              other is required), this API will attempt to look up a user (specified by login…
+- [Verify the Lightweight Directory Access Protocol (LDAP) directory service config.](https://developer.delinea.com/reference/post_ldapdirectoryservice-verifyldapdirectoryserviceconfig.md)
+- [Retrieves the file from the virtual file system.](https://developer.delinea.com/reference/post_libonlyvfs-getfile.md)
+- [Add a single OATH profile to a specific user.](https://developer.delinea.com/reference/post_oath-addorupdateprofile.md): For adding more than one or two OATH profiles consider using the bulk token import functionality              instead (see OathController.GetDataFromCsvFile and OathController.SubmitUploadedFile).…
+- [Delete a list of profiles.](https://developer.delinea.com/reference/post_oath-deleteprofiles.md)
+- [Gets data from a csv file.](https://developer.delinea.com/reference/post_oath-getdatafromcsvfile.md)
+- [Get import profile list.](https://developer.delinea.com/reference/post_oath-getimportprofilelist.md)
+- [Gets the profile list for the user.](https://developer.delinea.com/reference/post_oath-getprofilelist.md)
+- [Gets the oath profile list for a device.](https://developer.delinea.com/reference/post_oath-getprofilelistfordevice.md)
+- [Resets the Centrify OATH profile.](https://developer.delinea.com/reference/post_oath-resetcentrifyoathprofile.md)
+- [Resynchronize a TOTP or HOTP token.](https://developer.delinea.com/reference/post_oath-resynchronizeoathtoken.md): Resynchronizing requires two consecutive token codes             (which helps to ensure that the caller is in physical possesion of the token, not just of a             single copied token code).…
+- [Save or update the default Centrify profile.](https://developer.delinea.com/reference/post_oath-saveprofile.md)
+- [Process a previously uploaded csv file.](https://developer.delinea.com/reference/post_oath-submituploadedfile.md)
+- [Update the oath profile counter.](https://developer.delinea.com/reference/post_oath-updateoathprofilecounter.md)
+- [Validate the otp code.](https://developer.delinea.com/reference/post_oath-validateotpcode.md)
+- [Creates a client token.](https://developer.delinea.com/reference/post_oauth2man-createclienttoken.md)
+- [Login](https://developer.delinea.com/reference/post_pki-login.md): After the authentication attempt redirects to redirUrl.
+- [Add an authentication policy modifier.](https://developer.delinea.com/reference/post_policy-addauthpolicymodifier.md)
+- [Delete an authentication policy modifier.](https://developer.delinea.com/reference/post_policy-deleteauthpolicymodifier.md)
+- [Delete a policy block.](https://developer.delinea.com/reference/post_policy-deletepolicyblock.md)
+- [Get the authentication policy modifiers.](https://developer.delinea.com/reference/post_policy-getauthpolicymodifiers.md)
+- [Gets a list of policy links.](https://developer.delinea.com/reference/post_policy-getniceplinks.md): RevStamp is required for both requesting and setting policy links.             Return is a dictionary(plink name, plink fields as below) with RevStamp as the last entry.
+- [Get policy block.](https://developer.delinea.com/reference/post_policy-getnicepolicyblock.md)
+- [Gets the oath otp name for the user.](https://developer.delinea.com/reference/post_policy-getoathotpclientname.md)
+- [Get the password complexity requirements for the user.](https://developer.delinea.com/reference/post_policy-getpasswordcomplexityrequirements.md)
+- [Gets a list of policy links.](https://developer.delinea.com/reference/post_policy-getplinks.md): Deprecated - use GetNicePlinks() instead...
+- [Get policy block.](https://developer.delinea.com/reference/post_policy-getpolicyblock.md)
+- [Retrieves a boolean policy value.](https://developer.delinea.com/reference/post_policy-getpolicybool.md): If the policy value isn't set returns the default value.
+- [Retrieves an integer policy value.](https://developer.delinea.com/reference/post_policy-getpolicyint.md): If the policy value isn't set returns the default value.
+- [Get the policy meta data.](https://developer.delinea.com/reference/post_policy-getpolicymetadata.md)
+- [Retrieves a string policy value.](https://developer.delinea.com/reference/post_policy-getpolicystring.md)
+- [Get the rsop policy for the user and device.](https://developer.delinea.com/reference/post_policy-getrsop.md)
+- [Gets the oath u2f name for the user.](https://developer.delinea.com/reference/post_policy-getu2fclientname.md)
+- [Get using cloud mobile group policy.](https://developer.delinea.com/reference/post_policy-getusingcloudmobilegp.md)
+- [Get a list of policies for a device.](https://developer.delinea.com/reference/post_policy-policychecks.md)
+- [Deprecated; use SavePolicyBlock3.](https://developer.delinea.com/reference/post_policy-savepolicyblock2.md)
+- [Save a new or updated policy.](https://developer.delinea.com/reference/post_policy-savepolicyblock3.md): Replaces and deprecates SavePolicyBlock2, by adding the "rev stamp" functionality that helps              prevent change loss when policies are being edited by multiple users.
+- [Saves a list of policy links.](https://developer.delinea.com/reference/post_policy-setplinks.md): Deprecated - use SetPlinksv2() instead...
+- [Saves a list of policy links.](https://developer.delinea.com/reference/post_policy-setplinksv2.md): Replacement for SetPlinks, with added code to detect and prevent situations where the action of saving             the plinks file overwrites changes that have been made by another mechanism.  The…
+- [Sets the using cloud mobile group policy.](https://developer.delinea.com/reference/post_policy-setusingcloudmobilegp.md)
+- [Get all radius clients.](https://developer.delinea.com/reference/post_radius-getclients.md): You must be a system administrator or have radius administrator permissions.
+- [Fetch Radius config for a specified connector](https://developer.delinea.com/reference/post_radius-getconfig.md): You must be a system administrator or have radius administrator permissions.  Will return null if             connector has no radius config.
+- [Get the list of RADIUS servers](https://developer.delinea.com/reference/post_radius-getservers.md)
+- [Get the user identifier attribute types.](https://developer.delinea.com/reference/post_radius-getuseridentifierattributes.md)
+- [Remove one or more radius clients if they exist.](https://developer.delinea.com/reference/post_radius-removeclients.md): You must be a system administrator or have radius administrator permissions.
+- [Remove radius servers.](https://developer.delinea.com/reference/post_radius-removeservers.md)
+- [Add or update a radius client.](https://developer.delinea.com/reference/post_radius-setclient.md): You must be a system administrator or have radius administrator permissions.  When updating an existing client,             any properties not provided in the body will retain the existing values.…
+- [Change radius config for a connector.](https://developer.delinea.com/reference/post_radius-setconfig.md): You must be a system administrator or have radius administrator permissions.
+- [Configures a Radius server.](https://developer.delinea.com/reference/post_radius-setserver.md)
+- [Gets a list of tenants for the customer.](https://developer.delinea.com/reference/post_registration-customerinfo.md)
+- [Register a new tenant.](https://developer.delinea.com/reference/post_registration-registernewtenant.md): This takes some time to complete.
+- [Delete job history.](https://developer.delinea.com/reference/post_schedulerhistory-deletejobhistory.md)
+- [Make a job report.](https://developer.delinea.com/reference/post_schedulerhistory-getjobreport.md)
+- [Deprecated -- Am I authenticated.](https://developer.delinea.com/reference/post_security-amiauthenticated.md): Please use WhoAmI.
+- [Deprecated -- Checks for user execute rights on the Application Role Management task.](https://developer.delinea.com/reference/post_security-doihaveright.md): Keeping this API for backward compatibility.             Please use TaskCheck.
+- [Begin the process of recovering a lost or forgotten user name.](https://developer.delinea.com/reference/post_security-forgotusername-1.md): The request must be made using a tenant-specific URL.
+- [Gets a list of risk levels.](https://developer.delinea.com/reference/post_security-getriskanalysislevels.md)
+- [Deprecated -- Multi factor authentication login for user.](https://developer.delinea.com/reference/post_security-multiauthlogin.md): Please use StartAuthentication/AdvanceAuthentication.
+- [Add an enrollment code](https://developer.delinea.com/reference/post_serveragent-addenrollmentcode.md)
+- [Check user permissions.](https://developer.delinea.com/reference/post_serveragent-checkuserpermission.md): Check if the user has specified permissions on the agent system.
+- [Enable or disable CSS Extension functionality for the agent computer](https://developer.delinea.com/reference/post_serveragent-cssextension.md): When CSS Extension is enabled, it means the computer has joined to a zone in AD and agent can relay backchannel msg to adclient
+- [Delete an enrollment code](https://developer.delinea.com/reference/post_serveragent-deleteenrollmentcode.md)
+- [Disables zero or more features for an enrolled machine.](https://developer.delinea.com/reference/post_serveragent-disablefeatures.md)
+- [Deprecated -- EnableFeatures](https://developer.delinea.com/reference/post_serveragent-enablefeatures.md)
+- [Enables zero or more features for an enrolled machine.](https://developer.delinea.com/reference/post_serveragent-enablefeaturesv2.md)
+- [Get all enrollment codes](https://developer.delinea.com/reference/post_serveragent-getallenrollmentcodes.md)
+- [Returns specified configuration settings for the enrolled machine](https://developer.delinea.com/reference/post_serveragent-getconfigsettings.md)
+- [Get effective local groups.](https://developer.delinea.com/reference/post_serveragent-geteffectivelocalgroups.md)
+- [Get group by id.](https://developer.delinea.com/reference/post_serveragent-getgroupbyid.md): Given the Unix ID of a Unix group, returns non-membership information about said group.                  for getting the membership information of a group.
+- [Get group by name.](https://developer.delinea.com/reference/post_serveragent-getgroupbyname.md): Given the name of a Unix group (or the name of a CIP role), returns non-membership information                 about said group or group generated from the role.                  for getting the…
+- [Get group members.](https://developer.delinea.com/reference/post_serveragent-getgroupmembers.md): Given the UUID of a Unix group, returns a fully expanded list of members that belong to said                 group. Note that the list may be filtered. See the permission sections below.
+- [Get information concerning which roles are allowed to be made visible as groups.](https://developer.delinea.com/reference/post_serveragent-getgroupscopeallowedroles.md): This API can be used by UI implementations to know which roles should be shown in pickers.
+- [Get the group visibility scopes's valid names for a given role.](https://developer.delinea.com/reference/post_serveragent-getgroupscopenamesforrole-2.md)
+- [Get the group visibility scopes for a given role.](https://developer.delinea.com/reference/post_serveragent-getgroupscopesforrole.md)
+- [Get the group visibility scopes for a given type and effective scope.](https://developer.delinea.com/reference/post_serveragent-getgroupscopesfortype.md)
+- [Gets a set of agent settings.](https://developer.delinea.com/reference/post_serveragent-getsettings.md)
+- [Get user by Id.](https://developer.delinea.com/reference/post_serveragent-getuserbyid.md): Given the Unix ID of a Unix user, returns information about said user.                 See  for getting the groups a Unix user is in.
+- [Get user by name.](https://developer.delinea.com/reference/post_serveragent-getuserbyname.md): Given the Unix name or UPN of a Unix user (or the UPN of a non-Unix AD, CDS, or LDAP user),                 returns information about said Unix user or Unix user generated from an appropriate…
+- [Get user groups.](https://developer.delinea.com/reference/post_serveragent-getusergroups.md): Given the UUID of a Unix user, returns the list of Unix groups the user belongs to.                 Note that the list may be filtered. See the permission sections below.
+- [Set feature state on an enrolled machine.](https://developer.delinea.com/reference/post_serveragent-setfeaturestate-3.md)
+- [Update group scopes.](https://developer.delinea.com/reference/post_serveragent-updategroupscopes.md): Add and/or remove group visibility scopes that affect what roles are visible as Unix groups on                 enrolled machines.
+- [Update information about the agent computer.](https://developer.delinea.com/reference/post_serveragent-updateinformation.md): This is part of the "call home" feature.  For now, it just updates                 the AgentVersion and OperatingSystem information in the computer table.                 It also updates a timestamp…
+- [Update settings.](https://developer.delinea.com/reference/post_serveragent-updatesettings.md): Updates a set of agent settings.                               If the argument "key" has the value "policy": updates the global agent settings.                    - See  for agent setting names and…
+- [Check to validate the agent computer.](https://developer.delinea.com/reference/post_serveragent-validateagent.md): This acutally does same as AgentBackChannelManager::GetAgent().                               This is for the case when cagent found health/ping works yet the agent is                  not existing…
+- [Verify username and password.](https://developer.delinea.com/reference/post_serveragent-verifypassword.md)
+- [Verify password.](https://developer.delinea.com/reference/post_serveragent-verifypasswordv2.md): Verify that the given password is correct for the given user.             Similar to VerifyPassword, but this API is preferred.
+- [Verify user can login.](https://developer.delinea.com/reference/post_serveragent-verifyusercanlogin.md): Verifies that a given user can login to the system corresponding to the calling service user.                 Should only be called by a service user of an enrolled agent.
+- [Deprecated -- Add computer.](https://developer.delinea.com/reference/post_servermanage-addcomputer.md): Please use AddResource instead.
+- [Gets all visible accounts for a database](https://developer.delinea.com/reference/post_servermanage-getaccountsfordatabase.md)
+- [Check if a database exists or not](https://developer.delinea.com/reference/post_servermanage-precheckdatabase.md)
+- [Refresh health status of a host, domain or database.](https://developer.delinea.com/reference/post_servermanage-refreshhealthstatus.md): Either "Host", "DomainID" or "DatabaseID" should be provided.
+- [Grant permissions on a database collection](https://developer.delinea.com/reference/post_servermanage-setdatabasecollectionpermissions.md): You must be a system administrator or have 'Grant' permission on the database collection or have global 'Grant' permission on database collection.
+- [For social authentication, this is the Facebook call back.](https://developer.delinea.com/reference/post_socialauth-facebookauthcallback.md)
+- [For social authentication, this is the Google call back.](https://developer.delinea.com/reference/post_socialauth-googleauthcallback.md)
+- [For social authentication, this is the LinkedIn call back.](https://developer.delinea.com/reference/post_socialauth-linkedinauthcallback.md)
+- [For social authentication, this is the Microsoft call back.](https://developer.delinea.com/reference/post_socialauth-microsoftactauthcallback.md)
+- [For social authentication, this is the Twitter call back.](https://developer.delinea.com/reference/post_socialauth-twitterauthcallback.md)
+- [Gets the social configurations for all identity providers.](https://developer.delinea.com/reference/post_socialauthmgmt-getallcustomconfig.md): Requires administrator rights.             Requesting secret as plain text requires directory services administrator rights.
+- [Get the application client secret.](https://developer.delinea.com/reference/post_socialauthmgmt-getapplicationclientsecret.md): Requires directory service administrator rights.
+- [Gets the social user authentication configuration.](https://developer.delinea.com/reference/post_socialauthmgmt-getauthconfig.md): Requires administrator rights.
+- [Gets the social configuration for the requested identity provider.](https://developer.delinea.com/reference/post_socialauthmgmt-getcustomconfig.md): Requires administrator rights.
+- [Resets the social user authentication configuration.](https://developer.delinea.com/reference/post_socialauthmgmt-resetauthconfig.md): Requires directory service administrator rights.
+- [Sets the social user authentication configuration.](https://developer.delinea.com/reference/post_socialauthmgmt-setauthconfig.md): Requires directory service administrator rights.
+- [Set custom configuration.](https://developer.delinea.com/reference/post_socialauthmgmt-setcustomconfig.md): Requires directory service administrator rights.
+- [Describe the system.](https://developer.delinea.com/reference/post_sysinfo-about.md)
+- [Dummy](https://developer.delinea.com/reference/post_sysinfo-dummy.md): Use for a ping test to verify connectors.
+- [Retrieve a session id.](https://developer.delinea.com/reference/post_sysinfo-getmysession.md)
+- [Get the system version.](https://developer.delinea.com/reference/post_sysinfo-version.md)
+- [Request the cancellation of a job.](https://developer.delinea.com/reference/post_task-canceljob.md)
+- [Create a one time job.](https://developer.delinea.com/reference/post_task-createonetimejob.md)
+- [DEPRECATION WARNING - This API is no longer supported; please use /Report/EmailReport.](https://developer.delinea.com/reference/post_task-emailreport.md): Emails the report from scriptPath to the emailTo address. ScriptPath must have a .report extension.
+- [Returns streaming job history data via a redrock style interface.](https://developer.delinea.com/reference/post_task-getjobhistory.md): Expects RedRock style json arguments.
+- [Gets the history of a single job.](https://developer.delinea.com/reference/post_task-getsinglejobhistory.md)
+- [Retrieve simple job metrics from the persistent job system.](https://developer.delinea.com/reference/post_task-jobreport.md)
+- [List the cnames assigned for the tenant.](https://developer.delinea.com/reference/post_tenantcnames-get.md)
+- [Gets the domain of tenant urls](https://developer.delinea.com/reference/post_tenantcnames-getdomaininfo.md)
+- [Creates a cname with prefix specified for the tenant.](https://developer.delinea.com/reference/post_tenantcnames-register.md): If the cname is the only user created, it is set as preferred cname.
+- [Sets the tenant cname to preferred as cname](https://developer.delinea.com/reference/post_tenantcnames-setpreferred.md)
+- [Gets the tenant cnames.](https://developer.delinea.com/reference/post_tenantcnames-uiget.md)
+- [Deletes the cname for the tenant. Full cname is expected, e.g. 'company.my.centrify.net'.](https://developer.delinea.com/reference/post_tenantcnames-unregister.md)
+- [Deletes a single key record from the config table.](https://developer.delinea.com/reference/post_tenantconfig-deleteadvancedconfig.md): Reserved for on premises environments.
+- [Returns tenant's configuration values.](https://developer.delinea.com/reference/post_tenantconfig-getadvancedconfig.md): Retrieves the full configuration list for Opie... the combined set of "centrify" config table rows              and "blessed tenant" rows from config table, so that they can be presented in a UI.
+- [Get tenant configuration.](https://developer.delinea.com/reference/post_tenantconfig-getcustomerconfig.md)
+- [Deprecated -- Get editable mail templates.](https://developer.delinea.com/reference/post_tenantconfig-geteditablemailtemplates.md): Please use the generic GetEditableMessageTemplates instead.
+- [Get editable message template.](https://developer.delinea.com/reference/post_tenantconfig-geteditablemessagetemplate.md)
+- [Get editable message templates.](https://developer.delinea.com/reference/post_tenantconfig-geteditablemessagetemplates.md)
+- [Gets the google key for the tenant.](https://developer.delinea.com/reference/post_tenantconfig-getgooglekey.md)
+- [Gets the tenant mobile configuration data.](https://developer.delinea.com/reference/post_tenantconfig-getmobileconfig.md)
+- [Get the tenant Simple Mail Transport Protocol configuration.](https://developer.delinea.com/reference/post_tenantconfig-getsmtpconfig.md)
+- [Get the tenant Twilio configuration.](https://developer.delinea.com/reference/post_tenantconfig-gettwilioconfig.md)
+- [Reset portal configuration.](https://developer.delinea.com/reference/post_tenantconfig-resetportalconfig.md)
+- [Send a test message template.](https://developer.delinea.com/reference/post_tenantconfig-sendtestmessagetemplate.md)
+- [Set the tenant configuration.](https://developer.delinea.com/reference/post_tenantconfig-setadvancedconfig.md): Reserved for on premises environments.
+- [Set a tenant configuration.](https://developer.delinea.com/reference/post_tenantconfig-setcustomerconfig.md)
+- [Sets the google key for the tenant.](https://developer.delinea.com/reference/post_tenantconfig-setgooglekey.md)
+- [Sets the tenant mobile configuration.](https://developer.delinea.com/reference/post_tenantconfig-setmobileconfig.md)
+- [Set password persistance. i.e. do we save your password.](https://developer.delinea.com/reference/post_tenantconfig-setpasswordpersistance.md): Reserved for on premises environments.
+- [Set the tenant Simple Mail Transport Protocol configuration.](https://developer.delinea.com/reference/post_tenantconfig-setsmtpconfig.md)
+- [Set the tenant Twilio configuration.](https://developer.delinea.com/reference/post_tenantconfig-settwilioconfig.md)
+- [Test the tenant Simple Mail Transport Protocol configuration.](https://developer.delinea.com/reference/post_tenantconfig-testsmtpconfig.md)
+- [Test the tenant Twilio configuration.](https://developer.delinea.com/reference/post_tenantconfig-testtwilioconfig.md)
+- [Evaluate a shortened URL key, redirecting to its long URL if valid.](https://developer.delinea.com/reference/post_u-evaluate.md): This won't generally be invoked as "https://xxxxxxx/u/evaluate/12345".               Instead, it will be invoked as "https://podname.shortdomain/u/12345".               The RewriteRules governing…
+- [Get the file.](https://developer.delinea.com/reference/post_vfs-getfile.md): vfs/...... points here.
+- [Get lower case file name.](https://developer.delinea.com/reference/post_vfs-getfilelower.md): Our js files don't match the class names so we get requests for              FooBar.js but the file is called foobar.js.                          Hence this method (js upload forces all files to…
+- [Authenticate the ZSO session.](https://developer.delinea.com/reference/post_zso-authenticatesession.md)
+- [Login using a tenant Certificate authority certificate.](https://developer.delinea.com/reference/post_zso-certlogin.md): Certificate to use must be attached to the HTTP REST request.
+- [Clears the Mac Safari Zso cookie.](https://developer.delinea.com/reference/post_zso-clearmacsafarizsocookie.md)
+- [Is the Mac Safari Zso cookie set.](https://developer.delinea.com/reference/post_zso-ismacsafarizsocookieset.md)
+- [Checks to see if sessionId is authenticated.](https://developer.delinea.com/reference/post_zso-issessionauthenticated.md)
+- [Sets the Mac Safari Zso cookie.](https://developer.delinea.com/reference/post_zso-setmacsafarizsocookie.md)
+- [Check row ACLs.](https://developer.delinea.com/reference/post_acl-checkrowright.md)
+- [Gets a users access rights.](https://developer.delinea.com/reference/post_acl-getace.md)
+- [Get a collection of access rights.](https://developer.delinea.com/reference/post_acl-getcollectionaces.md)
+- [Retrieves a list of who has what rights for the directory.](https://developer.delinea.com/reference/post_acl-getdiraces.md)
+- [Gets a list of directory rights.](https://developer.delinea.com/reference/post_acl-geteffectivedirrights.md)
+- [Gets a list of file rights.](https://developer.delinea.com/reference/post_acl-geteffectivefilerights.md)
+- [Gets ACLs on a file.](https://developer.delinea.com/reference/post_acl-getfileaces.md)
+- [Gets the access rights for a row.](https://developer.delinea.com/reference/post_acl-getrowaces.md)
+- [Authenticates a request.](https://developer.delinea.com/reference/post_oauth2-authorize.md): Calls defined by RFC(s).  May alternately redirect to another login page or throw an exceptoin depending on success.              See the OAuth2 spec https://oauth.net/2/
+- [Confirm](https://developer.delinea.com/reference/post_oauth2-confirm.md): Calls defined by RFC(s).             See the OAuth2 spec https://oauth.net/2/
+- [https://openid.net/specs/openid-connect-session-1_0.html#RPLogout](https://developer.delinea.com/reference/post_oauth2-endsession.md)
+- [Introspect.](https://developer.delinea.com/reference/post_oauth2-introspect.md): See the OAuth2 spec https://oauth.net/2/
+- [Keys](https://developer.delinea.com/reference/post_oauth2-keys.md): See the OAuth2 spec https://oauth.net/2/
+- [Revoke.](https://developer.delinea.com/reference/post_oauth2-revoke.md): See the OAuth2 spec https://oauth.net/2/
+- [Gets a token based on grant type.](https://developer.delinea.com/reference/post_oauth2-token.md): See the OAuth2 spec https://oauth.net/2/
+- [This returns the contents of the bearer token used.](https://developer.delinea.com/reference/post_oauth2-userinfo.md): Not anonymous.             See the OAuth2 spec https://oauth.net/2/
+- [Attempt to advance the state of an authentication session.](https://developer.delinea.com/reference/post_security-advanceauthentication.md): When things are going smoothly, you can expect to get a 'StartNextChallenge' or 'LoginSuccess' response, however the system may (at any time)             return a new Mfa Package which may add,…
+- [Advances a forgot username session (similar to MFA advance authentication).](https://developer.delinea.com/reference/post_security-advanceforgotusername-1.md): Handles and mfa-like package with a single challenge (special case 'ForgotUsername' package).
+- [Terminate an incomplete session started with StartAuthentication or StartChallenge.](https://developer.delinea.com/reference/post_security-cleanupauthentication.md): Does not affect completed authentication sessions.
+- [Allows OAuth2 clients to perform on-demand step-up authentication challenges.](https://developer.delinea.com/reference/post_security-ondemandchallenge.md): Uses custom policy key modifiers to choose auth rules and profiles.
+- [Continues user authentication.](https://developer.delinea.com/reference/post_security-resumefromextidpauth.md): Continued after receiving authentication results from the identity provider.
+- [Starts a user authentication session.](https://developer.delinea.com/reference/post_security-startauthentication.md): The authentication package returned is a complex structure that guides the caller through the authentication process. Multiple calls to AdvanceAuthentication             may be required to complete…
+- [Starts a step-up authentication challenge session.](https://developer.delinea.com/reference/post_security-startchallenge.md): The authentication package returned is a complex structure that guides the caller through the authentication process. Multiple calls to AdvanceAuthentication             may be required to complete…
+- [Starts a forgot username session that looks similar to an MFA authentication session.](https://developer.delinea.com/reference/post_security-startforgotusername-1.md): Returns an mfa package with a single challenge (special case 'ForgotUsername' package). The tenant Id is derived from the URL - there is no way to specify it otherwise.
+- [Submit OATH OTP code for the specify user](https://developer.delinea.com/reference/post_security-submitoathotpcode.md): The request must be made using a tenant-specific URL.
+- [Answer registration challenge.](https://developer.delinea.com/reference/post_u2f-answerregistrationchallenge.md)
+- [Deletes the U2f device.](https://developer.delinea.com/reference/post_u2f-deleteu2fdevice.md)
+- [Delete a list of U2f devices.](https://developer.delinea.com/reference/post_u2f-deleteu2fdevices.md)
+- [Get the trusted facet list for the tenant.](https://developer.delinea.com/reference/post_u2f-facets.md)
+- [Get registration challenge.](https://developer.delinea.com/reference/post_u2f-getregistrationchallenge.md)
+- [Gets a list of U2f devices.](https://developer.delinea.com/reference/post_u2f-getu2fdevices.md)
+- [Gets a list of U2f devices for the current user.](https://developer.delinea.com/reference/post_u2f-getu2fdevicesforuser.md)
+- [Bulk imports users from csv file.](https://developer.delinea.com/reference/post_cdirectoryservice-getbulkimportwithextatt.md)
+- [Performs the action after confirming permission to do so.](https://developer.delinea.com/reference/post_cdirectoryservice-standardjsonresultwithpermissioncheck.md)
+- [Add a report.](https://developer.delinea.com/reference/post_report-addreport.md)
+- [Add an array of reports.](https://developer.delinea.com/reference/post_report-addreports.md)
+- [Copy a report by Name or UUID.](https://developer.delinea.com/reference/post_report-copyreport.md)
+- [Delete a report.](https://developer.delinea.com/reference/post_report-deletereport.md)
+- [Delete an array of reports by UUID.](https://developer.delinea.com/reference/post_report-deletereports.md)
+- [Run a report and email the results to a recipient.](https://developer.delinea.com/reference/post_report-emailreport.md)
+- [Gets the default categories for reports](https://developer.delinea.com/reference/post_report-getdefaultreportcategories.md)
+- [Get a report by Name or UUID.](https://developer.delinea.com/reference/post_report-getreport.md)
+- [Gets list of grants associated with a collection of Reports](https://developer.delinea.com/reference/post_report-getreportcollectionpermissions.md)
+- [Get list of permissions associated with a Report.](https://developer.delinea.com/reference/post_report-getreportpermissions.md)
+- [Gets the rights on a Report.](https://developer.delinea.com/reference/post_report-getreportrights.md)
+- [Get report objects.](https://developer.delinea.com/reference/post_report-getreports.md): Reports can be queried by Name OR Category OR Type; Name AND Type; Name AND Category; Type AND Category; Name AND Category AND Type.             If no arguments are provided, simply fetches all…
+- [Grant permissions on a Report collection.](https://developer.delinea.com/reference/post_report-setreportcollectionpermissions.md): You must be a system administrator or have 'Grant' permission on the Report collection.
+- [Grant permissions on a Report](https://developer.delinea.com/reference/post_report-setreportpermissions.md)
+- [Update an existing report.](https://developer.delinea.com/reference/post_report-updatereport.md)
+- [Gets a list of row rights.](https://developer.delinea.com/reference/post_acl-geteffectiverowrights.md): Only returns value if current user has at least read-rights.
+- [Deprecated -- Delete a list of users with permission check.](https://developer.delinea.com/reference/post_cdirectoryservice-bulkdeleteusers.md): Deprecated -- use UserMgmt/RemoveUsers() instead.
+- [Create new users in the Cloud Directory Service based on data read from files.](https://developer.delinea.com/reference/post_cdirectoryservice-createuserbulk.md): You must be a system administrator or have user management permissions.                 Specifying 'ServiceUser' will override the 'InEveryBodyRole' property if both are provided.…
+- [Delete user after permission check (DEPRECATED)](https://developer.delinea.com/reference/post_cdirectoryservice-delete.md)
+- [Exempt a specified user from MFA login for a period of time.](https://developer.delinea.com/reference/post_cdirectoryservice-exemptuserfrommfa.md): You must be a system administrator or have user management permissions.  User is exempt from MFA login for a specified amount of time.
+- [Get details for the current user.](https://developer.delinea.com/reference/post_cdirectoryservice-getuserattributes.md)
+- [Reads users from a csv file(s) for bulk user import.](https://developer.delinea.com/reference/post_cdirectoryservice-getusersfromcsvfile.md): After a successful call of this API, follow up with the SubmitUploadedFile API to perform the bulk user import.
+- [Refresh a user's cached identity.](https://developer.delinea.com/reference/post_cdirectoryservice-refreshtoken.md): You must be a system administrator or have user management permissions.  User cached identity in the cloud is reloaded from their directory service.             Useful when user details have changed…
+- [Create a Bulk User Import scheduled task to process an uploaded file.](https://developer.delinea.com/reference/post_cdirectoryservice-submituploadedfile.md): Use this API after a successful GetUsersFromCsvFile, to perform the bulk user import.
+- [Retreives a list of users that are members of a specific federated group.](https://developer.delinea.com/reference/post_federation-getfederatedgroupmembers.md)
+- [Retrieves the Federated Group Memberships for a specfic user.](https://developer.delinea.com/reference/post_federation-getfederatedgroupsforuser.md)
+- [Revokes federated group membership from a specific group for a specific user.](https://developer.delinea.com/reference/post_federation-removeuserfromfederatedgroup.md)
+- [Refresh current user's cached identity.](https://developer.delinea.com/reference/post_security-refreshtoken.md): User cached identity in the cloud is reloaded from their directory service.  Useful when user details have changed in their remote directory service, but have not yet been pushed to the cloud.
+- [Delete admin security question.](https://developer.delinea.com/reference/post_tenantconfig-deleteadminsecurityquestion.md)
+- [Get a specific admin security question](https://developer.delinea.com/reference/post_tenantconfig-getadminsecurityquestion.md)
+- [Get admin security questions](https://developer.delinea.com/reference/post_tenantconfig-getadminsecurityquestions.md)
+- [Add admin security question.](https://developer.delinea.com/reference/post_tenantconfig-setadminsecurityquestion.md)
+- [Get the unix profile info for cloud role/group.](https://developer.delinea.com/reference/post_unixprofile-getgroupprofile.md)
+- [Get the unix profile info for cloud user.](https://developer.delinea.com/reference/post_unixprofile-getuserprofile.md)
+- [Reads user profiles from csv file(s) for bulk user unix profiles import.](https://developer.delinea.com/reference/post_unixprofile-getuserprofilesfromcsvfile.md): Upon success here, follow up with the SubmitUploadedFile API to perform import.
+- [Set unix profile for cloud group/role](https://developer.delinea.com/reference/post_unixprofile-setgroupprofile.md)
+- [Set unix profile for cloud user](https://developer.delinea.com/reference/post_unixprofile-setuserprofile.md)
+- [Create a Bulk User Profile Import scheduled task to process an uploaded file.](https://developer.delinea.com/reference/post_unixprofile-submituploadedfile.md): Call this after a successful GetUserProfilesFromCsvFile, to perform import.
+- [Add a user favorite.](https://developer.delinea.com/reference/post_usermgmt-addfavorite.md)
+- [Runs a risk check for the current user.](https://developer.delinea.com/reference/post_usermgmt-analyzeadaptivemfarisk.md): You must be logged in and the tenant must have the Adaptive MFA entitlement enabled.
+- [Check to see if a user can edit attributes.](https://developer.delinea.com/reference/post_usermgmt-canedituserattributes.md)
+- [Update user attributes](https://developer.delinea.com/reference/post_usermgmt-changeuserattributes-1.md)
+- [Change the password for the current user.](https://developer.delinea.com/reference/post_usermgmt-changeuserpassword.md)
+- [Query all directory services for users, groups, and/or roles using a json query string.](https://developer.delinea.com/reference/post_usermgmt-directoryservicequery.md): Either a 'user', a 'group', or a 'role' query must be specified.  If no directoryServices are specified, all available             directory services will be searched.
+- [Get the cached entity.](https://developer.delinea.com/reference/post_usermgmt-getcachedentity.md)
+- [Get the cached user.](https://developer.delinea.com/reference/post_usermgmt-getcacheduser.md)
+- [Get a list of the user's favorites.](https://developer.delinea.com/reference/post_usermgmt-getfavorites.md)
+- [Get security questions for the current user](https://developer.delinea.com/reference/post_usermgmt-getsecurityquestions.md): Specified user must be you or you must have user management permissions.
+- [Fetch attributes for a specified user.](https://developer.delinea.com/reference/post_usermgmt-getuserattributes.md): Attributes will vary depending on the type of the directory service the user belongs to.
+- [Get certificate info for a given user.](https://developer.delinea.com/reference/post_usermgmt-getusercertificateinfo.md): Returns  Thumbprint and certificate type information for all certificates issued to the user.             Specified user must be you or you must be a system administrator or have user management…
+- [Fetch the reporting hierarchy for a specified user.](https://developer.delinea.com/reference/post_usermgmt-getuserhierarchy.md): Attributes will vary depending on the type of the directory service the user belongs to.
+- [Get additional info for a specified user.](https://developer.delinea.com/reference/post_usermgmt-getuserinfo.md): Specified user must be you or you must be a system administrator or have user management permissions.  Note that this call is somewhat costly and its use should be minimized (cache the results as…
+- [Fetch a cloud user's picture.](https://developer.delinea.com/reference/post_usermgmt-getuserpicture.md): Specified user must be you or you must be a system administrator or have user management permissions.
+- [Gets user roles and administrative rights.](https://developer.delinea.com/reference/post_usermgmt-getusersrolesandadministrativerights.md): The list consists of all user roles and associated administrative rights associated with a role.
+- [Invite one or more users to the cloud portal.](https://developer.delinea.com/reference/post_usermgmt-inviteusers.md): You must be a system administrator or have user management permissions.
+- [Checks to see if a given user is cloud locked.](https://developer.delinea.com/reference/post_usermgmt-isusercloudlocked.md): You must be a system administrator, have user management permissions, or be checking yourself.
+- [Determine if the current user can (or cannot...) satisfy the requisite MFA challenges.](https://developer.delinea.com/reference/post_usermgmt-isuserlockedoutbypolicy.md)
+- [Checks to see if a given user is subject to cloud locks.](https://developer.delinea.com/reference/post_usermgmt-isusersubjecttocloudlocks.md): You must be a system administrator, have user management permissions, or be checking yourself.
+- [Remove a user favorite.](https://developer.delinea.com/reference/post_usermgmt-removefavorite.md)
+- [Remove a user from the cloud.](https://developer.delinea.com/reference/post_usermgmt-removeuser.md): You must be a system administrator or have user management permissions.  Will delete cloud users.  Users for other directory services are only removed from the cloud.             This API will fail…
+- [Remove one or more certificates for a given user.](https://developer.delinea.com/reference/post_usermgmt-removeusercertificate.md): Specified user must be you or you must be a system administrator or have user management permissions.             'certType' will be ignored if 'thumbprint' is specified.             If 'thumbprint'…
+- [Remove one or more users.](https://developer.delinea.com/reference/post_usermgmt-removeusers.md): You must be a system administrator or have user management permissions.  Will delete cloud users.  Users for other directory services are only removed from the cloud.             This API will fail…
+- [Resets (clears) security questions for a user.](https://developer.delinea.com/reference/post_usermgmt-resetsecurityquestions.md): Specified user must be you or you must have user management permissions.
+- [Reset the password for a specified user.](https://developer.delinea.com/reference/post_usermgmt-resetuserpassword.md): Specified user must be you or you must be a system administrator or have user management permissions.
+- [Send email invitation to a specified user.](https://developer.delinea.com/reference/post_usermgmt-sendloginemail.md): You must be a system administrator.
+- [Send invitation emails to one or more users.](https://developer.delinea.com/reference/post_usermgmt-sendloginemails.md): You must be a system administrator.
+- [Send SMS invitation to a specified user.](https://developer.delinea.com/reference/post_usermgmt-sendsmsinvite.md): You must be a system administrator or have user management permissions.
+- [Applies or clears a cloud lock for a given user.](https://developer.delinea.com/reference/post_usermgmt-setcloudlock.md): You must be a system administrator or have user management permissions. The locked user will have all auth sessions removed and OAuth2 tokens revoked.
+- [Set the phone pin for a user.](https://developer.delinea.com/reference/post_usermgmt-setphonepin.md)
+- [Updates security questions for a user.](https://developer.delinea.com/reference/post_usermgmt-updatesecurityquestions.md)
+- [Updates various user preferences for the currently logged in user.](https://developer.delinea.com/reference/post_usermgmt-updateuserpreferences.md)
+- [Change cloud user properties.](https://developer.delinea.com/reference/post_cdirectoryservice-changeuser.md): User must be a cloud user.             Specified user must be you, you must be a system administrator or have user management permissions.             Specifying 'ServiceUser' will override the…
+- [Create a new user in the Cloud Directory Service.](https://developer.delinea.com/reference/post_cdirectoryservice-createuser.md): You must be a system administrator or have user management permissions.             Specifying 'ServiceUser' will override the 'InEveryBodyRole' property if both are provided.
+- [Create a new user in the Cloud Directory Service using minimal user information.](https://developer.delinea.com/reference/post_cdirectoryservice-createuserquick.md): You must be a system administrator or have user management permissions.
+- [Create new users in the Cloud Directory Service.](https://developer.delinea.com/reference/post_cdirectoryservice-createusers.md): You must be a system administrator or have user management permissions.             Specifying 'ServiceUser' will override the 'InEveryBodyRole' property if both are provided.
+- [Delete a cloud user. (DEPRECATED)](https://developer.delinea.com/reference/post_cdirectoryservice-deleteuser.md): (Deprecated - use UserMgmt/RemoveUser instead.)             You must be a system administrator or have user management permissions.  User must exist, and cannot be the current user.             Cloud…
+- [Get details for a specified cloud user.](https://developer.delinea.com/reference/post_cdirectoryservice-getuser.md): Specified user must be you, you must be a system administrator, or have user management permissions.
+- [Get details for a specified user by name.](https://developer.delinea.com/reference/post_cdirectoryservice-getuserbyname.md): Specified user must be you, you must be a system administrator, or have user management permissions.
+- [Get all cloud users.](https://developer.delinea.com/reference/post_cdirectoryservice-getusers.md)
+- [Removes AuthSource for list of users](https://developer.delinea.com/reference/post_cdirectoryservice-removeauthsource.md): You must be a system administrator or have user management permissions.             May perform the updates to users asyncronously if list of users is large (will return before updates are complete).
+- [Removes AuthSource from all users for a given Federation](https://developer.delinea.com/reference/post_cdirectoryservice-removefederationauthsource.md): You must be a system administrator or have user management permissions.             Will perform the updates to users asyncronously (will return before updates are complete).
+- [Set a cloud user's picture file.](https://developer.delinea.com/reference/post_cdirectoryservice-setuserpicture.md): Specified user must be you, you must be a system administrator or have user management permissions.                 The file is attached to the call so need to figure out how to document that without…
+- [Set user State (locked, disabled, expired) for a specified cloud user.](https://developer.delinea.com/reference/post_cdirectoryservice-setuserstate.md): You must be a system administrator or have user management permissions.  Specified cloud user may not be the default system adminstrator.             Specified new state may either be 'None' or…
+- [MultiFactor Auth support: answer out of band challenge.](https://developer.delinea.com/reference/post_security-answeroobchallenge.md): Invoked by 3rd party services for answering out of band challenges.             (text messages or email, not PhoneFactor)             Supports the click on link scenario.
+- [Determines if user needs step-up authentication.](https://developer.delinea.com/reference/post_security-challengeuser.md): ie. a challenge based on the passed authentication profile.             Pattern: Allow AuthChallengeHelper to check challenge and throw an AuthChallengeException if challenge is needed…
+- [Fetches a one-time passcode for the specified use.](https://developer.delinea.com/reference/post_security-getonetimepassword.md)
+- [Deprecated -- User login.](https://developer.delinea.com/reference/post_security-login.md): Please use StartAuthentication/AdvanceAuthentication.
+- [Logout current user.](https://developer.delinea.com/reference/post_security-logout.md): The user will be redirected to redirectUrl if it is present.             RedirectUrl can be external or relative.
+- [Start social authentication.](https://developer.delinea.com/reference/post_security-startsocialauthentication.md)
+- [Checks to see if user has execute rights on the task.](https://developer.delinea.com/reference/post_security-taskcheck.md)
+- [Checks to see if user has execute rights on a list of tasks.](https://developer.delinea.com/reference/post_security-taskchecks.md)
+- [Looks for the multi auth customer response.](https://developer.delinea.com/reference/post_security-twiliophonechallengecompleted.md): Invoked by 3rd party services answering twilio messages.
+- [Looks for the multi auth customer response.](https://developer.delinea.com/reference/post_security-twiliophonechallengenotanswered.md): Invoked by 3rd party services answering twilio messages.
+- [Confirms user authentication state.](https://developer.delinea.com/reference/post_security-whoami.md)
+- [Check if a user profile challenge is required for the current user.](https://developer.delinea.com/reference/post_usermgmt-checkuserprofilechallenge.md): Responds with challenge exception if a challenge is necessary, or success: true if it is not.
+- [Get the user preferences.](https://developer.delinea.com/reference/post_usermgmt-getuserpreferences.md)
+- [DEPRECATED -- This API is deprecated and should not be used.](https://developer.delinea.com/reference/post_usermgmt-setsecurityquestion.md): Please use UpdateSecurityQuestions and/or ResetSecurityQuestions instead.
+- [Uncache the user preferences.](https://developer.delinea.com/reference/post_usermgmt-uncacheuserpreferences.md)
+- [Assigns directoryfile rights to roles.](https://developer.delinea.com/reference/post_core-assigndirectoryfilerightstoroles.md)
+- [Assigns directory rights to roles.](https://developer.delinea.com/reference/post_core-assigndirectoryrightstoroles.md)
+- [Assigns file rights to roles.](https://developer.delinea.com/reference/post_core-assignfilerightstoroles.md)
+- [Get list of administrative rights associated with a role.](https://developer.delinea.com/reference/post_core-getassignedadministrativerights.md)
+- [List the roles and rights to a directoryfile.](https://developer.delinea.com/reference/post_core-getdirectoryfilerolesandrights.md)
+- [List the roles and rights of a directory.](https://developer.delinea.com/reference/post_core-getdirectoryrolesandrights.md)
+- [List the roles and rights of a file.](https://developer.delinea.com/reference/post_core-getfilerolesandrights.md)
+- [List the Dashboard roles and rights.](https://developer.delinea.com/reference/post_jsmanage-getdashboardrolesandrights.md)
+- [List the Report roles and rights.](https://developer.delinea.com/reference/post_jsmanage-getreportrolesandrights.md)
+- [Get the users for the specfied role id and return the paged results.](https://developer.delinea.com/reference/post_roles-getpagedrolemembers.md)
+- [Update specific attributes of a Role, leaving the rest unchanged.](https://developer.delinea.com/reference/post_roles-updaterole-1.md): You must be a system administrator or have role management permissions.
+- [Add principals to role.](https://developer.delinea.com/reference/post_saasmanage-addusersandgroupstorole.md): You must be a system administrator or have role management permissions.
+- [Assigns a set of rights (super rights) to a role.](https://developer.delinea.com/reference/post_saasmanage-assignsuperrights.md)
+- [Delete a role.](https://developer.delinea.com/reference/post_saasmanage-deleterole.md): You must be a system administrator or have role management permissions.
+- [Delete a list of Roles.](https://developer.delinea.com/reference/post_saasmanage-deleteroles.md): You must be a system administrator or have role management permissions.
+- [Fetch a Role.](https://developer.delinea.com/reference/post_saasmanage-getrole.md): You must be a system administrator or have role management permissions.
+- [Fetch a Role's principals.](https://developer.delinea.com/reference/post_saasmanage-getrolemembers.md): You must be a system administrator or have role management permissions.
+- [Remove principals from role.](https://developer.delinea.com/reference/post_saasmanage-removeusersandgroupsfromrole.md): You must be a system administrator or have role management permissions.
+- [Set policy on the role (pre-created).](https://developer.delinea.com/reference/post_saasmanage-setrolepolicy.md)
+- [Create a Principal List role.](https://developer.delinea.com/reference/post_saasmanage-storerole.md): You must be a system administrator or have role management permissions.
+- [Removes a set of rights (super rights) from a role.](https://developer.delinea.com/reference/post_saasmanage-unassignsuperrights.md)
+- [Deprecated -- Update a Role.](https://developer.delinea.com/reference/post_saasmanage-updaterole.md): Deprecated -- Use /roles/UpdateRole instead             You must be a system administrator or have role management permissions.
+- [Delete a device (Mobile + OSX)](https://developer.delinea.com/reference/post_mobilepas-deletedevice.md)
+- [Disable SSO on device (Mobile + OSX)](https://developer.delinea.com/reference/post_mobilepas-disablesso.md)
+- [Enable SSO on device (Mobile + OSX)](https://developer.delinea.com/reference/post_mobilepas-enablesso.md)
+- [Lock client app (Mobile)](https://developer.delinea.com/reference/post_mobilepas-lockclientapp.md)
+- [Ping a device (Mobile + OSX)](https://developer.delinea.com/reference/post_mobilepas-pingdevice.md)
+- [Reapply device policies (Mobile + OSX)](https://developer.delinea.com/reference/post_mobilepas-reapplydevicepolicy.md)
+- [Reset client app lock pin (Mobile)](https://developer.delinea.com/reference/post_mobilepas-resetclientapplockpin.md)
+- [Grant permissions on devices](https://developer.delinea.com/reference/post_mobilepas-setdevicepermissions.md): You must be a system administrator or have 'Grant' permission on the resource or have global 'Grant' permission on resources.
+- [Set a device as primary (Mobile)](https://developer.delinea.com/reference/post_mobilepas-setprimarydevice.md)
+- [Update device policies (Mobile + OSX)](https://developer.delinea.com/reference/post_mobilepas-updatedevicepolicy.md)
+- [Grant permissions on applicationss](https://developer.delinea.com/reference/post_saasmanage-setapplicationpermissions.md): You must be a system administrator or have 'Grant' permission on the resource or have global 'Grant' permission on resources.
+- [Add an AWS Access Key and Secret.](https://developer.delinea.com/reference/post_aws-addaccesskey.md): The access key must already exist in AWS.
+- [Deletes an access key for an IAM user.](https://developer.delinea.com/reference/post_aws-deleteaccesskey.md): The key is removed from PAS, but the access key in AWS is uneffected.
+- [Launch an Ec2 instance and install a connector registered to this tenant.](https://developer.delinea.com/reference/post_aws-deployconnector.md)
+- [Gets Access Keys for an IAM user.](https://developer.delinea.com/reference/post_aws-getaccesskeys.md)
+- [Get a List of all AWS availability zones in a given region.](https://developer.delinea.com/reference/post_aws-getavailabilityzones.md)
+- [Get the Centrify AWS Account ID and External ID for the tenant.](https://developer.delinea.com/reference/post_aws-getcentrifyawsaccountinfo.md)
+- [Get a list of VPC's along with information about connector(s) servicing the VPC.](https://developer.delinea.com/reference/post_aws-getconnectorsforregions.md)
+- [Get a list of all roles for EC2 instances.](https://developer.delinea.com/reference/post_aws-getec2iamroles.md)
+- [Get a List of all ssh keypairs in a given region.](https://developer.delinea.com/reference/post_aws-getkeypairs.md)
+- [Get region names.](https://developer.delinea.com/reference/post_aws-getregionnames.md)
+- [Get a List of all aws regions](https://developer.delinea.com/reference/post_aws-getregions.md)
+- [Get a list of all security groups in a region.](https://developer.delinea.com/reference/post_aws-getsecuritygroups.md)
+- [Get a list of all subnets in a given VPC.](https://developer.delinea.com/reference/post_aws-getsubnets.md)
+- [Get a list of all subnets in a specified list of regions.](https://developer.delinea.com/reference/post_aws-getsubnetsforregions.md)
+- [Get a list of all VPC's in a given region.](https://developer.delinea.com/reference/post_aws-getvpcs.md)
+- [Import AWS Access Key and Secret.](https://developer.delinea.com/reference/post_aws-importaccesskey.md): This will create the cloud provider and IAM user of the access key if they do not already exist.
+- [Retrieve an access key ID and secret access key for an IAM user.](https://developer.delinea.com/reference/post_aws-retrieveaccesskey.md)
+- [Verify an AWS Access Key and Secret](https://developer.delinea.com/reference/post_aws-verifyaccesskey.md)
+- [Verify an AWS Access Key and Secret for an IAM User name and Cloud Provider.](https://developer.delinea.com/reference/post_aws-verifyaccesskeyforuseraccount.md)
+- [Verify assume role configuration.](https://developer.delinea.com/reference/post_aws-verifyassumeroleconfiguration.md)
+- [Verify SQS queue configuration.](https://developer.delinea.com/reference/post_aws-verifysqsqueueconfiguration.md)
+- [AddCloudProvider - Adds a cloud provider.](https://developer.delinea.com/reference/post_cloudprovider-addcloudprovider.md)
+- [DeleteCloudProvider - Deletes a cloud provider.](https://developer.delinea.com/reference/post_cloudprovider-deletecloudprovider.md)
+- [Creates a asynchronous operation which will delete all cloud providers.](https://developer.delinea.com/reference/post_cloudprovider-deletecloudproviders.md): Creates a asynchronous operation which will delete all cloud providers and associate accounts in the background.             You must be a system administrator or have 'Delete' permission on the…
+- [GetAllCloudProviders - Gets all cloud providers.](https://developer.delinea.com/reference/post_cloudprovider-getallcloudproviders.md)
+- [GetCloudProvider - Gets a cloud provider.](https://developer.delinea.com/reference/post_cloudprovider-getcloudprovider.md)
+- [Gets list of grants associated with a set of cloud providers.](https://developer.delinea.com/reference/post_cloudprovider-getcloudprovidercollectionpermissions.md)
+- [Gets list of grants associated with a cloud provider.](https://developer.delinea.com/reference/post_cloudprovider-getcloudproviderpermissions.md)
+- [Grant permissions on cloud provider sets.](https://developer.delinea.com/reference/post_cloudprovider-setcloudprovidercollectionpermissions.md): You must have 'Grant' permission on the cloud provider set.
+- [Grant permissions on cloud providers](https://developer.delinea.com/reference/post_cloudprovider-setcloudproviderpermissions.md): You must have 'Grant' permission on the cloud provider.
+- [UpdateCloudProvider - Updates a cloud provider](https://developer.delinea.com/reference/post_cloudprovider-updatecloudprovider.md)
+- [Get list of permissions associated with a set.](https://developer.delinea.com/reference/post_collection-getcollectionpermissions.md)
+- [Grant permissions on a set](https://developer.delinea.com/reference/post_collection-setcollectionpermissions.md): You must be a system administrator or have 'Grant' permission on the collection or have global 'Grant' permission on collections.
+- [Execute the Dzdo authentication challenge.](https://developer.delinea.com/reference/post_cssintegration-dzdoexecute.md)
+- [Get the Dzdo and the Mfa challenge profile ids.](https://developer.delinea.com/reference/post_cssintegration-getchallengeprofiles.md)
+- [Execute the Mfa authentication challenge.](https://developer.delinea.com/reference/post_cssintegration-mfalogin.md)
+- [Sets the Dzdo and the Mfa challenge profile id.](https://developer.delinea.com/reference/post_cssintegration-setchallengeprofiles.md)
+- [Adds an alternate account discovery profile.](https://developer.delinea.com/reference/post_dashaccount-adddiscoveryprofile.md)
+- [Cancel all running Alternate Account Discovery jobs.](https://developer.delinea.com/reference/post_dashaccount-canceldiscovery.md)
+- [Clear owner account set on the alternate account.](https://developer.delinea.com/reference/post_dashaccount-clearowneraccount.md)
+- [Commit a discovered alternate account.](https://developer.delinea.com/reference/post_dashaccount-commitdiscoveredaccount.md)
+- [Commit a list of discovered alternate accounts.](https://developer.delinea.com/reference/post_dashaccount-commitdiscoveredaccounts.md)
+- [Deletes a list of alternate account discovery profiles.](https://developer.delinea.com/reference/post_dashaccount-deletediscoveredaccounts.md)
+- [Delete an alternate account discovery profile.](https://developer.delinea.com/reference/post_dashaccount-deletediscoveryprofile.md)
+- [Gets an alternate account discovery profile.](https://developer.delinea.com/reference/post_dashaccount-getdiscoveryprofile.md)
+- [Gets a list of alternate account discovery profiles.](https://developer.delinea.com/reference/post_dashaccount-getdiscoveryprofiles.md)
+- [Get the current user's dash A accounts that they can checkout](https://developer.delinea.com/reference/post_dashaccount-getmydashaaccountswithcheckout.md)
+- [Gets the current user rights of the alternate account discovery profile.](https://developer.delinea.com/reference/post_dashaccount-getprofilerights.md)
+- [Starts a job for each of the alternate account discovery profile ids provided.](https://developer.delinea.com/reference/post_dashaccount-rundiscovery.md)
+- [Set alternate account discovery profile permissions.](https://developer.delinea.com/reference/post_dashaccount-setdiscoveryprofilepermissions.md)
+- [Changes the discovery account.](https://developer.delinea.com/reference/post_dashaccount-updatediscoveredaccount.md)
+- [Update an alternate account discovery profile.](https://developer.delinea.com/reference/post_dashaccount-updatediscoveryprofile.md): A discovery profile identifier is required. It can be referenced as ID or _RowKey.
+- [Add a discovery account.](https://developer.delinea.com/reference/post_discovery-adddiscoveryaccount.md)
+- [Are any discovery accounts referenced.](https://developer.delinea.com/reference/post_discovery-anydiscoveryaccountsreferenced.md)
+- [Delete a blacklisted computer.](https://developer.delinea.com/reference/post_discovery-deleteblacklistedcomputer.md)
+- [Delete a discovery account.](https://developer.delinea.com/reference/post_discovery-deletediscoveryaccount.md)
+- [Delete a host from the excluded discovery list.](https://developer.delinea.com/reference/post_discovery-deleteexcludedaccount.md)
+- [Get discovery profile permissions.](https://developer.delinea.com/reference/post_discovery-getdiscoveryprofilepermissions.md)
+- [Get a list of hosts excluded from discovery.](https://developer.delinea.com/reference/post_discovery-getexcludedaccounts.md)
+- [Get discovery job history.](https://developer.delinea.com/reference/post_discovery-gethistory.md)
+- [Gets list of referenced VPC's.](https://developer.delinea.com/reference/post_discovery-getreferencedvpcs.md)
+- [Get the name of a VPC.](https://developer.delinea.com/reference/post_discovery-getvpcname.md)
+- [Set discovery profile permissions.](https://developer.delinea.com/reference/post_discovery-setdiscoveryprofilepermissions.md)
+- [Update a discovery account.](https://developer.delinea.com/reference/post_discovery-updatediscoveryaccount.md)
+- [Check if requester can Manage Assignment](https://developer.delinea.com/reference/post_privilegeelevation-canmanageprivilegeelevation.md)
+- [Enumerate all privilege elevation assignments that are effective for a specific scope](https://developer.delinea.com/reference/post_privilegeelevation-getassignmentsbyscope.md): 1. "Starts" and "Expires" are returned only if there is any value in the assignment.             2. UI can call this UI to enumerate all the effective privilege elevation assignments on a…
+- [Get Challenges for privilege elevation to a System](https://developer.delinea.com/reference/post_privilegeelevation-getchallenges.md)
+- [Returns list of allowed privilege elevation commands for a specific user on a system](https://developer.delinea.com/reference/post_privilegeelevation-getcommands.md): 1. Since this is a Read/Query operation, HTTP Get method is used.             2. In version 1, both "System" and "User" are required parameters.  This allows us to narrow the search for specify user…
+- [Initiate a privilege elevation workflow request](https://developer.delinea.com/reference/post_privilegeelevation-submitworkflowrequest.md): 1. This is similar to REST API JobFlow/StartJob.  The difference is that the caller of this API must be the service account of a client, and the              actual user is specified in the "User"…
+- [Create a new privilege elevation command](https://developer.delinea.com/reference/post_privilegeelevationcommand-add.md): 1. NO NEED TO EXPOSE THIS IN V1 AS THERE IS NO NEED TO CREATE/MODIFY NEW PRIVILEGE ELEVATION COMMAND IN V1.  However, it is implemented for use in testing.             2. Additional optional…
+- [Grant privilege elevation command to user/role/group](https://developer.delinea.com/reference/post_privilegeelevationcommand-addassignment.md): 1. In v1, there is only one privilege elevation command.             2. If additional columns are added to privilegeelevationassignment table in future for whatever reasons, they need to be optional…
+- [Delete a privilege elevation command](https://developer.delinea.com/reference/post_privilegeelevationcommand-delete.md)
+- [Delete privilege elevation assignment](https://developer.delinea.com/reference/post_privilegeelevationcommand-deleteassignment.md): This API deletes the specific privilege elevation assignment.  The caller should call GetAssignment to get the list of privilege elevation assignment(s) and call this API for each one.
+- [Get privilege elevation assignments that are explicitly granted](https://developer.delinea.com/reference/post_privilegeelevationcommand-getassignments.md): 1. If the "Principal" user has no permission to run the command, nothing is returned.              2. Usually only one entry is returned.   However, it is possible that multiple entries may be…
+- [Gets list of grants associated with a set of Privilege Elevation Commands.](https://developer.delinea.com/reference/post_privilegeelevationcommand-getprivilegeelevationcommandcollectionpermissions.md)
+- [Gets list of grants associated with a Privilege Elevation Command.](https://developer.delinea.com/reference/post_privilegeelevationcommand-getprivilegeelevationcommandpermissions.md)
+- [Enumerate privilege elevation assignments associated with a command](https://developer.delinea.com/reference/post_privilegeelevationcommand-listassignments.md): 1. "Starts" and "Expires" are returned only if there is any value in the assignment.
+- [Grant permissions on Privilege Elevation Command sets.](https://developer.delinea.com/reference/post_privilegeelevationcommand-setprivilegeelevationcommandcollectionpermissions.md): You must have 'Grant' permission on the Privilege Elevation Command set.
+- [Grant permissions on Privilege Elevation Commands](https://developer.delinea.com/reference/post_privilegeelevationcommand-setprivilegeelevationcommandpermissions.md): You must have 'Grant' permission on the Privilege Elevation Command.
+- [Update a privilege elevation command](https://developer.delinea.com/reference/post_privilegeelevationcommand-update.md)
+- [Update privilege elevation assignment](https://developer.delinea.com/reference/post_privilegeelevationcommand-updateassignment.md): 1. This API updates the specific privilege elevation assignment.  The caller should call GetAssignment to get the list of privilege elevation assignment(s) and call this API for each one.…
+- [Get the quick start state.](https://developer.delinea.com/reference/post_quickstart-getstate.md)
+- [Manage accounts.](https://developer.delinea.com/reference/post_quickstart-manageaccounts.md)
+- [Run the quick start discovery job.](https://developer.delinea.com/reference/post_quickstart-rundiscovery.md)
+- [Verify the administrator account.](https://developer.delinea.com/reference/post_quickstart-verifyadminaccount.md)
+- [AddResourceProfile - Adds a resource profile.](https://developer.delinea.com/reference/post_resourceprofile-addresourceprofile.md)
+- [DeleteResourceProfile - Deletes a resource profile.](https://developer.delinea.com/reference/post_resourceprofile-deleteresourceprofile.md)
+- [ExportResourceProfilePackage - zips a resource profile into a package.](https://developer.delinea.com/reference/post_resourceprofile-exportresourceprofilepackage.md): The supplied identifier is used in the export rather than the identifier saved in the resource profile.             The URL for the resource package is valid for at least one hour.
+- [GetAllResourceProfiles - Gets all resource profiles.](https://developer.delinea.com/reference/post_resourceprofile-getallresourceprofiles.md)
+- [GetResourceProfile - Gets a resource profile.](https://developer.delinea.com/reference/post_resourceprofile-getresourceprofile.md)
+- [Gets list of grants associated with a set of resource profiles.](https://developer.delinea.com/reference/post_resourceprofile-getresourceprofilecollectionpermissions.md)
+- [Gets list of grants associated with a resource profile.](https://developer.delinea.com/reference/post_resourceprofile-getresourceprofilepermissions.md)
+- [OpenResourceProfilePackage - unzips and validates a resource profile package.](https://developer.delinea.com/reference/post_resourceprofile-openresourceprofilepackage.md): Note that the package is not loaded into PAS.  Use AddResourceProfile to add a new profile.
+- [Grant permissions on resource profile sets.](https://developer.delinea.com/reference/post_resourceprofile-setresourceprofilecollectionpermissions.md): You must have 'Grant' permission on the resource profile set.
+- [Grant permissions on resource profiles](https://developer.delinea.com/reference/post_resourceprofile-setresourceprofilepermissions.md): You must have 'Grant' permission on the resource profile.
+- [UpdateResourceProfile - Updates a resource profile](https://developer.delinea.com/reference/post_resourceprofile-updateresourceprofile.md)
+- [Add/Upload a config file to Cloud](https://developer.delinea.com/reference/post_serveragent-addconfigfile.md)
+- [Convert current agent from using machine cert to using OAuth.](https://developer.delinea.com/reference/post_serveragent-convertmachineaccount.md): The machine can no longer use machine cert to identify/authenticate                 in new REST calls.                              This call is designed for use in Linux agent upgrade.…
+- [Delete config file from Cloud](https://developer.delinea.com/reference/post_serveragent-deleteconfigfile-2.md)
+- [Deprecated -- Enroll](https://developer.delinea.com/reference/post_serveragent-enroll.md): Please use EnrollV2 instead.
+- [Enrolls a machine to the CIP using user credentials.](https://developer.delinea.com/reference/post_serveragent-enrollv2.md): See  for enrolling using an enrollment code.
+- [Enrolls a machine to the CIP using user credentials.](https://developer.delinea.com/reference/post_serveragent-enrollv3.md): For agents that use OAUTH2 for future authentication.                 See  for enrolling using an enrollment code.
+- [Returns a list of all the config files pushed to systems](https://developer.delinea.com/reference/post_serveragent-getallconfigfiles-2.md)
+- [Returns a machine certificate.](https://developer.delinea.com/reference/post_serveragent-getcertificate.md): The agent uses the certificate to establish an SslStream with a DirectAudit collector.
+- [Gets a DirectAudit configuration.](https://developer.delinea.com/reference/post_serveragent-getdirectauditconfiguration.md): Returns a DirectAudit configuration for the agent to establish SslStream with a DirectAudit collector.
+- [Returns offline OTP settings for the enrolled machine](https://developer.delinea.com/reference/post_serveragent-getofflineotpsettings.md)
+- [Push config files to agent asynchronously](https://developer.delinea.com/reference/post_serveragent-pushconfigfile.md): Must provide either Ids or SetQuery for request.                 Returns the JobId for the BulkSystemPushConfigFile job. If RunSync is not provided, or passed as false, this id is valid for use with…
+- [Register](https://developer.delinea.com/reference/post_serveragent-register.md)
+- [Enrolls a machine to the CIP using an enrollment code.](https://developer.delinea.com/reference/post_serveragent-registerv2.md): See EnrollV2 for enrolling using user credentials.             Use the same arguments as EnrollV2 with the following modifications:                 Added: EnrollmentCode                 Disallowed:…
+- [Enrolls a machine to the CIP using an enrollment code.](https://developer.delinea.com/reference/post_serveragent-registerv3.md): For agents that use OAUTH2 for future authentication.                  See  for enrolling using user credentials.
+- [Unenroll an enrolled Agent.](https://developer.delinea.com/reference/post_serveragent-unenroll.md)
+- [Aysnchronous operation for unenrolling agents.](https://developer.delinea.com/reference/post_serveragent-unenrollagents.md): You must be a system administrator or have 'Delete' permission on the resource or have global 'Delete' permission on resources. Must provide either Ids or SetQuery for request.…
+- [Add an account for a resource](https://developer.delinea.com/reference/post_servermanage-addaccount.md): The CaseSensitiveCheck parameter is not applicable to Domain and Windows resource accounts.             Either "Host" or "DomainID" or "DatabaseID" need to be provided.             Either "Password"…
+- [Add a list of accounts.](https://developer.delinea.com/reference/post_servermanage-addaccounts.md)
+- [Add a database](https://developer.delinea.com/reference/post_servermanage-adddatabase.md)
+- [Add a list of databases.](https://developer.delinea.com/reference/post_servermanage-adddatabases.md)
+- [Add a domain](https://developer.delinea.com/reference/post_servermanage-adddomain.md)
+- [Add a list of domains.](https://developer.delinea.com/reference/post_servermanage-adddomains.md)
+- [Add a system](https://developer.delinea.com/reference/post_servermanage-addresource.md)
+- [Add a list of system resources.](https://developer.delinea.com/reference/post_servermanage-addresources.md)
+- [AddSecret - Adds a secret](https://developer.delinea.com/reference/post_servermanage-addsecret.md): The secret name is a slash delimited "path" to the secret, including its parent folder name(s). If no parent path is provided, the             secret will be added to the root folder. In addition, if…
+- [Adds a secret folder.](https://developer.delinea.com/reference/post_servermanage-addsecretsfolder.md)
+- [Add an SSH key as a JSON string.](https://developer.delinea.com/reference/post_servermanage-addsshkey.md): If Name is not specified, a default name will be generated:               'username keytype, timestamp'
+- [Add an SSH key as a file in multipart/form-data.](https://developer.delinea.com/reference/post_servermanage-addsshkeyfile.md): Descriptive properties should all have the same name as those in AddSshKey, i.e. Name, Description, Passphrase, etc.             Bodyargs documentation will show JSON format, however it must be…
+- [Checks if an SSH key can be deleted. Currently just looks for any accounts using this key.](https://developer.delinea.com/reference/post_servermanage-candeletesshkey.md)
+- [Checks in an account password](https://developer.delinea.com/reference/post_servermanage-checkinpassword.md): You must be a system administrator or have 'Checkout' permission on the account or have global 'Checkout' permission on accounts.
+- [Check whether offline OTP is available for the computer](https://developer.delinea.com/reference/post_servermanage-checkofflineotpexist.md)
+- [Checks out an account password](https://developer.delinea.com/reference/post_servermanage-checkoutpassword.md): You must be a system administrator or have 'Checkout' permission on the account or have global 'Checkout' permission on accounts.
+- [Create a Discovery Profile](https://developer.delinea.com/reference/post_servermanage-creatediscoveryprofile.md)
+- [Delete an account](https://developer.delinea.com/reference/post_servermanage-deleteaccount.md): You must be a system administrator or have 'Delete' permission on the account or have global 'Delete' permission on accounts.
+- [Delete multiple accounts in background job.](https://developer.delinea.com/reference/post_servermanage-deleteaccounts.md): Permissions will be handled in job. Failures and successes will be documented in jobs report. Must provide either Ids or SetQuery.
+- [Delete a database](https://developer.delinea.com/reference/post_servermanage-deletedatabase.md): You must be a system administrator or have 'Delete' permission on the database or have global 'Delete' permission on databases.
+- [Delete a domain](https://developer.delinea.com/reference/post_servermanage-deletedomain.md): You must be a system administrator or have 'Delete' permission on the domain.
+- [Delete a resource](https://developer.delinea.com/reference/post_servermanage-deleteresource.md): You must be a system administrator or have 'Delete' permission on the resource or have global 'Delete' permission on resources.
+- [Creates a asynchronous operation which will delete all resources and associate accounts in the background.](https://developer.delinea.com/reference/post_servermanage-deleteresources.md): You must be a system administrator or have 'Delete' permission on the resource or have global 'Delete' permission on resources. Must provide either Ids or SetQuery for request.
+- [DeleteSecret - Deletes a secret](https://developer.delinea.com/reference/post_servermanage-deletesecret.md)
+- [Deletes a secret folder.](https://developer.delinea.com/reference/post_servermanage-deletesecretsfolder.md)
+- [Delete an SSH key.](https://developer.delinea.com/reference/post_servermanage-deletesshkey.md)
+- [Delete one or more SSH Keys.
+            SSH keys in the set that require an MFA challenge to delete will fail to delete. The exception is if RunSync is true and a single ssh key
+            is included in the Ids array. That case will follow Centrify's standard MFA challenge pattern for API requests.](https://developer.delinea.com/reference/post_servermanage-deletesshkeys.md)
+- [Downloads a secret file in data chunks.](https://developer.delinea.com/reference/post_servermanage-downloadsecretfileinchunks.md): DOES NOT TAKE BODY ARGUMENTS.              The following are required query parameters:              - FilePath: holds reference to the filename, filesize, actual filepath for the file being…
+- [Extend checkout time for a password](https://developer.delinea.com/reference/post_servermanage-extendcheckout.md): You must be a system administrator or have 'Checkout' permission on the account or have global 'Checkout' permission on accounts.
+- [Generate an SSH key based on given parameters](https://developer.delinea.com/reference/post_servermanage-generatesshkey.md)
+- [Generate an SSH key based on given parameters](https://developer.delinea.com/reference/post_servermanage-generatesshkeyfile.md)
+- [Gets list of grants associated with collection of accounts](https://developer.delinea.com/reference/post_servermanage-getaccountcollectionpermissions.md)
+- [Gets list of permissions associated with an account](https://developer.delinea.com/reference/post_servermanage-getaccountpermissions.md)
+- [Retrieves Accounts for Login](https://developer.delinea.com/reference/post_servermanage-getaccountsforlogin.md)
+- [Gets all visible accounts for a resource](https://developer.delinea.com/reference/post_servermanage-getaccountsforresource.md)
+- [Get's agent profile (if there is one) for a resource](https://developer.delinea.com/reference/post_servermanage-getagentprofile.md): You must have 'Read' permission on the resource.
+- [Returns the auditing and monitoring service configuration for the tenant.](https://developer.delinea.com/reference/post_servermanage-getauditinfo.md)
+- [Get Challenges for login to a System](https://developer.delinea.com/reference/post_servermanage-getcomputerchallenges.md)
+- [Get Rights on Computer for current user.](https://developer.delinea.com/reference/post_servermanage-getcomputerrights.md)
+- [Get computer for ssh key accounts.](https://developer.delinea.com/reference/post_servermanage-getcomputersforsshkeyaccounts.md): Fetch the systems using a filter than are avaiable for SSH key accounts.  Filter will be applied             against 'Name', 'Description', and 'FQDN' fields of systems Keys(starts with).
+- [Gets list of grants associated with collection of databases](https://developer.delinea.com/reference/post_servermanage-getdatabasecollectionpermissions.md)
+- [Get list of permissions associated with a database](https://developer.delinea.com/reference/post_servermanage-getdatabasepermissions.md)
+- [Gets a list of discovery profiles.](https://developer.delinea.com/reference/post_servermanage-getdiscoveryprofiles.md)
+- [Gets list of grants associated with collection of domains](https://developer.delinea.com/reference/post_servermanage-getdomaincollectionpermissions.md)
+- [Gets list of grants associated with a domain](https://developer.delinea.com/reference/post_servermanage-getdomainpermissions.md)
+- [Retrieve token for an account](https://developer.delinea.com/reference/post_servermanage-getmfatokencode.md)
+- [Retrieve token settings for an account](https://developer.delinea.com/reference/post_servermanage-getmfatokensettings.md)
+- [Gets any ongoing Rdp or ssh sessions for a given user.](https://developer.delinea.com/reference/post_servermanage-getmysessions.md)
+- [Gets a list of accounts that the user has workspace login permission.](https://developer.delinea.com/reference/post_servermanage-getmyworkspaceaccounts.md)
+- [Returns an offline OTP for the computer](https://developer.delinea.com/reference/post_servermanage-getofflineotp.md)
+- [Gets list of grants associated with collection of resources](https://developer.delinea.com/reference/post_servermanage-getresourcecollectionpermissions.md)
+- [Gets list of grants associated with resource](https://developer.delinea.com/reference/post_servermanage-getresourcepermissions.md)
+- [Get a retired password of an account](https://developer.delinea.com/reference/post_servermanage-getretiredpassword.md): You must be a system administrator to get a retired password.
+- [Get the rsop policy for the user and entity.  If no user is passed in then the rsop will be for the current user.](https://developer.delinea.com/reference/post_servermanage-getrsop.md)
+- [GetSecret - Gets secret metadata](https://developer.delinea.com/reference/post_servermanage-getsecret.md)
+- [Fetch the workflow settings associated with a secret](https://developer.delinea.com/reference/post_servermanage-getsecretapprovers.md)
+- [Gets list of grants associated with a collection of secrets](https://developer.delinea.com/reference/post_servermanage-getsecretcollectionpermissions.md)
+- [Gets a secret folder.](https://developer.delinea.com/reference/post_servermanage-getsecretfolder.md): Either ID or Name must be defined.             Returns an integer count id CountOnly is true             Returns database format data if RRFormat is true             Returns an object representing…
+- [Get secret folders can move to.](https://developer.delinea.com/reference/post_servermanage-getsecretfolderscanmoveto.md): Gets a list of secret folders that the user can move secret or folder to.             Ability to move to a folder is determined by whether the user has an "Add" permission on that folder.…
+- [Fetch the rights and authentication challenges associated with a secret.](https://developer.delinea.com/reference/post_servermanage-getsecretrightsandchallenges.md)
+- [Gets a folder and its contents (secrets, sub-folders)](https://developer.delinea.com/reference/post_servermanage-getsecretsandfolders.md): Returns an integer count id CountOnly is true             Returns database format data if RRFormat is true             Returns an array of object representing the contents of the folder…
+- [Gets the permissions for a folder.](https://developer.delinea.com/reference/post_servermanage-getsecretsfolderrights.md)
+- [Gets the rights and challenges for a secret folder.](https://developer.delinea.com/reference/post_servermanage-getsecretsfolderrightsandchallenges.md): The provided ID may be either the folder's unique identifier *or* the folder's full path, *not* both.
+- [Get secret to be replaced.](https://developer.delinea.com/reference/post_servermanage-getsecrettobereplaced.md): GetSecretToBeReplaced - Retrieves the secret entity that needs to be replaced             with data still encrypted and secure fields removed. This differs from              because in this case we…
+- [Gets all active sessions](https://developer.delinea.com/reference/post_servermanage-getsessions.md)
+- [Gets list of grants associated with collection of SSH keys](https://developer.delinea.com/reference/post_servermanage-getsshkeycollectionpermissions.md)
+- [Gets an SSH key without any of the sensitive fields (PrivateKey, PublicKey, Passphrase)](https://developer.delinea.com/reference/post_servermanage-getsshkeyinfo.md)
+- [Gets list of permissions associated with a SSH key](https://developer.delinea.com/reference/post_servermanage-getsshkeypermissions.md)
+- [Fetch the rights and authentication challenges associated with an SSH Key](https://developer.delinea.com/reference/post_servermanage-getsshkeyrightsandchallenges.md)
+- [Fetch the SSH keys available for login.](https://developer.delinea.com/reference/post_servermanage-getsshkeysforlogin.md): Provided filter will be matched against Name and Comment fields of SSH Keys using 'starts with'.
+- [Get ssh key usage.](https://developer.delinea.com/reference/post_servermanage-getsshkeyusage.md): Get all accounts and discovery profiles that are using this sshkey.
+- [Log event for entering justification for login and password checkout](https://developer.delinea.com/reference/post_servermanage-logjustificationevent-2.md)
+- [Creates a asynchronous operation which will attempt to put all accounts under management.](https://developer.delinea.com/reference/post_servermanage-manageaccounts.md): You must be a system administrator or a PAS Administrator for this operation to succeed. Must provide either Ids or SetQuery for request.
+- [Moves a secret folder](https://developer.delinea.com/reference/post_servermanage-movefolder.md): The provided ID may be either the folder's unique identifier *or* the folder's full path, *not* both.
+- [Moves a secret (between folders)](https://developer.delinea.com/reference/post_servermanage-movesecret.md)
+- [Delete multiple accounts at once](https://developer.delinea.com/reference/post_servermanage-multiaccountdelete-1.md): You must be a system administrator or have 'Delete' permission on the account or have global 'Delete' permission on accounts.
+- [Rotate multiple accounts at once](https://developer.delinea.com/reference/post_servermanage-multiaccountpasswordrotation-1.md)
+- [Partial update a system. ID is required.](https://developer.delinea.com/reference/post_servermanage-patchresource.md)
+- [Check a domain exists or not](https://developer.delinea.com/reference/post_servermanage-precheckdomain.md)
+- [Pre Checkout call to get info for Checkout.](https://developer.delinea.com/reference/post_servermanage-precheckout.md)
+- [Provision reconciliation service account to resources.](https://developer.delinea.com/reference/post_servermanage-provisionreconciliationaccounts.md)
+- [Retrieve TOTP token for an account](https://developer.delinea.com/reference/post_servermanage-removemfatoken.md)
+- [Request secret download url.](https://developer.delinea.com/reference/post_servermanage-requestsecretdownloadurl.md)
+- [Request secret upload url.](https://developer.delinea.com/reference/post_servermanage-requestsecretuploadurl.md): Obtains the publicly available (and cloud key-secured)             URL for a secret file upload.
+- [Retrieves the secret entity](https://developer.delinea.com/reference/post_servermanage-retrievesecretcontents.md): with decrypted                 secret text/password stored in the given data vault item for the respective type.             DOC The Secret content field (not always text)
+- [Retrieves the secret entity.](https://developer.delinea.com/reference/post_servermanage-retrievesecretmetadata.md): The decrypted secret text/password is stored in                  the given data vault item for the respective type.
+- [Retrieve an SSH key.](https://developer.delinea.com/reference/post_servermanage-retrievesshkey.md): The GetAsFile property determines if the return is a JSON strong or a file.             Allows retrieval of only private key OR public key - not both. Does not return other SSH key related fields.
+- [Rotate password of a managed account](https://developer.delinea.com/reference/post_servermanage-rotatepassword.md)
+- [Rotate multiple accounts at once](https://developer.delinea.com/reference/post_servermanage-rotatepasswords.md)
+- [Grant permissions on account collections](https://developer.delinea.com/reference/post_servermanage-setaccountcollectionpermissions.md): You must be a system administrator or have 'Grant' permission on the resource or have global 'Grant' permission on resources.
+- [Grants permissions on accounts](https://developer.delinea.com/reference/post_servermanage-setaccountpermissions.md): You must be a system administrator or have 'Grant' permission on the account or have global 'Grant' permission on accounts.
+- [Sets the system association for a connector.](https://developer.delinea.com/reference/post_servermanage-setconnectorsystem.md)
+- [Grant permissions on a database](https://developer.delinea.com/reference/post_servermanage-setdatabasepermissions.md): You must be a system administrator or have 'Grant' permission on the database or have global 'Grant' permission on databases.
+- [Grant permissions on a domain collection.](https://developer.delinea.com/reference/post_servermanage-setdomaincollectionpermissions.md): You must be a system administrator or have 'Grant' permission on the domain collection.
+- [Grant permissions on domains](https://developer.delinea.com/reference/post_servermanage-setdomainpermissions.md): You must be a system administrator or have 'Grant' permission on the domain.
+- [Set escrow key from file.](https://developer.delinea.com/reference/post_servermanage-setescrowkeyfromfile.md): If there is no UI powershell can call: "-InFile $filePath".
+- [Sets an mfa token on an account](https://developer.delinea.com/reference/post_servermanage-setmfatoken.md)
+- [Grant permissions on resource collections](https://developer.delinea.com/reference/post_servermanage-setresourcecollectionpermissions.md): You must be a system administrator or have 'Grant' permission on the resource or have global 'Grant' permission on resources.
+- [Grant permissions on resources](https://developer.delinea.com/reference/post_servermanage-setresourcepermissions.md): You must be a system administrator or have 'Grant' permission on the resource or have global 'Grant' permission on resources.
+- [Sets a list of grants associated with a collection of secrets.](https://developer.delinea.com/reference/post_servermanage-setsecretcollectionpermissions.md): - There is no return value, only a successful html result code (200)             - You must be a system administrator or have 'Grant' permission on the secrets collection.
+- [Sets permissions on a secret](https://developer.delinea.com/reference/post_servermanage-setsecretpermissions.md): - There is no return value, only a successful html result code (200)             - You must be a system administrator or have 'Grant' permission on the secret             or have global 'Grant'…
+- [Sets the permissions on a folder.](https://developer.delinea.com/reference/post_servermanage-setsecretsfolderpermissions.md): No meaningful result. HTTP code 200 indicates success
+- [Grant permissions on SSH keys collection](https://developer.delinea.com/reference/post_servermanage-setsshkeycollectionpermissions.md): You must be a system administrator or have 'Grant' permission on the SSH Key collection.
+- [Grants permissions on SSH keys](https://developer.delinea.com/reference/post_servermanage-setsshkeypermissions.md): You must be a system administrator or have 'Grant' permission on the SSH key.
+- [Terminate an active session](https://developer.delinea.com/reference/post_servermanage-terminatesession.md)
+- [Update an account](https://developer.delinea.com/reference/post_servermanage-updateaccount.md): Either "Host" or "DomainID" or "DatabaseID" should be provided.
+- [Update a database](https://developer.delinea.com/reference/post_servermanage-updatedatabase.md)
+- [Updates a domain](https://developer.delinea.com/reference/post_servermanage-updatedomain.md)
+- [Updates password of an account](https://developer.delinea.com/reference/post_servermanage-updatepassword.md): Account password on the target resource is not changed.
+- [Update a system](https://developer.delinea.com/reference/post_servermanage-updateresource.md)
+- [UpdateSecret - Updates a secret](https://developer.delinea.com/reference/post_servermanage-updatesecret.md)
+- [Updates a secret folder.](https://developer.delinea.com/reference/post_servermanage-updatesecretsfolder.md)
+- [Update server settings](https://developer.delinea.com/reference/post_servermanage-updatesettings.md)
+- [Update fields on an SSH key.](https://developer.delinea.com/reference/post_servermanage-updatesshkey.md): This endpoint is meant to be used with the info obtained from GetSshKeyInfo.
+- [Upload secret file in chunks.](https://developer.delinea.com/reference/post_servermanage-uploadsecretfileinchunks.md): Uploads a secret file in data chunks. Each chunk is encrypted on its way to storage.
+- [Walks thru a checklist of items to verify a domain administrative account can help manage local accounts on a domain joined system](https://developer.delinea.com/reference/post_servermanage-verifyaccountpasswordmanagementsettings.md): In the response the Reason and ReasonId are empty when IsValid is false. When IsValid is true they are filled with the reason why it is not valid
+- [Get login url.](https://developer.delinea.com/reference/post_serversession-getloginurl.md)
+- [Add a subscription.](https://developer.delinea.com/reference/post_subscriptions-addsubscription.md)
+- [Create a multiplexed account.](https://developer.delinea.com/reference/post_subscriptions-creatempaccount.md)
+- [Delete a multiplexed account.](https://developer.delinea.com/reference/post_subscriptions-deletempaccount.md)
+- [Delete a subscription.](https://developer.delinea.com/reference/post_subscriptions-deletesubscription.md)
+- [Get all delayed multiplexed accounts.](https://developer.delinea.com/reference/post_subscriptions-getalllaggers.md)
+- [Get multiplexed account.](https://developer.delinea.com/reference/post_subscriptions-getmultiplexedaccount.md)
+- [Get list of permissions associated with a multiplexed account](https://developer.delinea.com/reference/post_subscriptions-getmultiplexedaccountpermissions.md)
+- [Get multiplexed account rights.](https://developer.delinea.com/reference/post_subscriptions-getmultiplexedaccountrights.md)
+- [Get all multiplexed accounts.](https://developer.delinea.com/reference/post_subscriptions-getmultiplexedaccounts.md)
+- [Get a subscription.](https://developer.delinea.com/reference/post_subscriptions-getsubscription.md)
+- [Gets list of grants associated with collection of subscriptions](https://developer.delinea.com/reference/post_subscriptions-getsubscriptioncollectionpermissions.md)
+- [Get list of permissions associated with a subscription](https://developer.delinea.com/reference/post_subscriptions-getsubscriptionpermissions.md)
+- [Get subscription rights.](https://developer.delinea.com/reference/post_subscriptions-getsubscriptionrights.md)
+- [Push a subscription.](https://developer.delinea.com/reference/post_subscriptions-pushsubscription.md)
+- [Grant permissions on a multiplexed account](https://developer.delinea.com/reference/post_subscriptions-setmultiplexedaccountpermissions.md)
+- [Grant permissions on a subscription collection](https://developer.delinea.com/reference/post_subscriptions-setsubscriptioncollectionpermissions.md): You must be a system administrator or have 'Grant' permission on the subscription collection or have global 'Grant' permission on subscription collection.
+- [Grant permissions on a subscription](https://developer.delinea.com/reference/post_subscriptions-setsubscriptionpermissions.md): You must be a system administrator or have 'Grant' permission on the subscription or have global 'Grant' permission on subscriptions.
+- [Sync my subscriptions.](https://developer.delinea.com/reference/post_subscriptions-sync.md)
+- [Update a multiplexed account.](https://developer.delinea.com/reference/post_subscriptions-updatempaccount.md)
+- [Update a subscription.](https://developer.delinea.com/reference/post_subscriptions-updatesubscription.md)
+- [Add a vault.](https://developer.delinea.com/reference/post_vault-addvault.md)
+- [Delete a vault.](https://developer.delinea.com/reference/post_vault-deletevault.md)
+- [Get all vaults.](https://developer.delinea.com/reference/post_vault-getallvaults.md)
+- [Get all sites in a vault.](https://developer.delinea.com/reference/post_vault-getallvaultsites.md)
+- [Get all templates in a vault.](https://developer.delinea.com/reference/post_vault-getallvaulttemplates.md)
+- [Get vault sync job history.](https://developer.delinea.com/reference/post_vault-gethistory.md)
+- [Get information of a specific vault sync job.](https://developer.delinea.com/reference/post_vault-getjobhistory.md)
+- [Get a vault.](https://developer.delinea.com/reference/post_vault-getvault.md)
+- [Get a site in a vault.](https://developer.delinea.com/reference/post_vault-getvaultsite.md)
+- [Grant permissions on vault collection.](https://developer.delinea.com/reference/post_vault-setvaultcollectionpermissions.md): You must have 'Grant' permission on the vault.
+- [Grant permissions on vaults.](https://developer.delinea.com/reference/post_vault-setvaultpermissions.md): You must have 'Grant' permission on the vault.
+- [Sync systems and accounts from a vault.](https://developer.delinea.com/reference/post_vault-syncvault.md)
+- [Update vault information](https://developer.delinea.com/reference/post_vault-updatevault.md)
+- [Verify connectivity to a vault.](https://developer.delinea.com/reference/post_vault-verifyvault.md)
+- [Create assignment.](https://developer.delinea.com/reference/post_zoneroleworkflow-createassignment.md)
+- [Delete expired assignments.](https://developer.delinea.com/reference/post_zoneroleworkflow-deleteexpiredassignments.md)
+- [Get all roles.](https://developer.delinea.com/reference/post_zoneroleworkflow-getallroles.md): Define either DomainId or ResourceId.
+- [Get workflow approvers.](https://developer.delinea.com/reference/post_zoneroleworkflow-getapprovers.md)
+- [Get the domain configuration.](https://developer.delinea.com/reference/post_zoneroleworkflow-getdomainconfiguration.md)
+- [Get resource roles.](https://developer.delinea.com/reference/post_zoneroleworkflow-getroles.md)
+- [Refresh the resource's "zone joined" status.](https://developer.delinea.com/reference/post_zoneroleworkflow-refreshresourcezonejoined.md)
+- [Validate user role request.](https://developer.delinea.com/reference/post_zoneroleworkflow-validaterolerequest.md)
+- [Get meta](https://developer.delinea.com/reference/post_oauth2-getmeta.md)
+- [Check if the apps are up to latest which is the template version in the app catalog.](https://developer.delinea.com/reference/post_saasmanage-checkifappshaveupdates.md)
+- [Delete an application.](https://developer.delinea.com/reference/post_saasmanage-deleteapplication.md)
+- [Returns a list of all apps that can be updated.](https://developer.delinea.com/reference/post_saasmanage-getallupdatableapps.md)
+- [Returns credentials required to launch the app.](https://developer.delinea.com/reference/post_saasmanage-getappcreds.md)
+- [Gets the ID of an app from its service name](https://developer.delinea.com/reference/post_saasmanage-getappidbyservicename.md)
+- [Get information for an application.](https://developer.delinea.com/reference/post_saasmanage-getapplication.md)
+- [Returns a list of apps that are no longer supported.](https://developer.delinea.com/reference/post_saasmanage-getappunsupportedlist.md)
+- [Get information for application templates.](https://developer.delinea.com/reference/post_saasmanage-gettemplatesandcategories.md)
+- [Create an application.](https://developer.delinea.com/reference/post_saasmanage-importappfromtemplate.md)
+- [Checks if Application is still available in the catalog.](https://developer.delinea.com/reference/post_saasmanage-isapplicationavailableincatalog-1.md)
+- [Refresh the file metadata in case the file has been changed by direct upload to distributed FS.
+            This API needs to be called in AWS after the distributed file is commited to the S3 storage from the browser.](https://developer.delinea.com/reference/post_saasmanage-refreshapplicationbinaryfilemetadata.md)
+- [Retrieve a publicly uploadable, SAS key secured URL (for Azure) or presigned URL (for AWS) for the app binary.](https://developer.delinea.com/reference/post_saasmanage-requestappuploadurl.md)
+- [Update an application.](https://developer.delinea.com/reference/post_saasmanage-updateapplicationde.md)
+- [Get an application's data.](https://developer.delinea.com/reference/post_uprest-getappbykey.md)
+- [Return a user's portal applications and how the user has access to each application.](https://developer.delinea.com/reference/post_uprest-getresultantappsforuser.md): Your must have user management rights to invoke this API.  This call caches the list of applications and roles.  Personal apps are not included in the result.
+- [Get the list of application tags for the current user.](https://developer.delinea.com/reference/post_uprest-gettagsforapp.md)
+- [Gets all available data for the user portal in one call.](https://developer.delinea.com/reference/post_uprest-getupdata.md): This call caches the list of applications but does not cache tag information.
+- [Set user credentials for an application.](https://developer.delinea.com/reference/post_uprest-setusercredsforapp.md)
+- [Add and update application tags for the current user.](https://developer.delinea.com/reference/post_uprest-upserttagsforapp.md)
+- [Deletes a workflow job](https://developer.delinea.com/reference/post_jobflow-deletejob.md)
+- [Sends a workflow event to a workflow](https://developer.delinea.com/reference/post_jobflow-event.md)
+- [Gets a workflow job](https://developer.delinea.com/reference/post_jobflow-getjob.md)
+- [Gets list of workflow jobs](https://developer.delinea.com/reference/post_jobflow-getjobs.md)
+- [Gets list of workflow jobs associated with the current user](https://developer.delinea.com/reference/post_jobflow-getmyjobs.md)
+- [Starts a workflow job](https://developer.delinea.com/reference/post_jobflow-startjob.md)
+
+## Changelog
+- [Support for OAuth2 has Arrived!](https://developer.delinea.com/changelog/support-for-oauth2-has-arrived.md)
+- [New Centrify Developer Program Portal](https://developer.delinea.com/changelog/new-centrify-developer-program-portal.md)

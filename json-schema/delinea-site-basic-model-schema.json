@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-site-basic-model-schema.json",
+  "title": "SiteBasicModel",
+  "description": "Basic Site Model",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-distributedengine-api-openapi.yml#/components/schemas/SiteBasicModel",
+  "properties": {
+    "active": {
+      "description": "Is Site Active",
+      "type": "boolean"
+    },
+    "enableCredSspForWinRm": {
+      "description": "Enable CredSSP For WinRM",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enableRdpProxy": {
+      "description": "Enable RDP Proxy",
+      "type": "boolean"
+    },
+    "enableSshProxy": {
+      "description": "Enable SSH Proxy",
+      "type": "boolean"
+    },
+    "heartbeatInterval": {
+      "description": "Heartbeat Interval of Site",
+      "type": "integer",
+      "format": "int32"
+    },
+    "jumpBoxAvailablePortRange": {
+      "description": "JumpBoxAvailablePortRange",
+      "type": "string"
+    },
+    "powershellSecretId": {
+      "description": "Powershell Secret Id of Site if set",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "processingLocation": {
+      "$ref": "#/$defs/ProcessingLocationType"
+    },
+    "rdpProxyPort": {
+      "description": "RDP Proxy Port",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "rdpProxyPortInherited": {
+      "description": "RDP Proxy Port Inherited",
+      "type": "boolean"
+    },
+    "secretCount": {
+      "description": "Secret Count of Site",
+      "type": "integer",
+      "format": "int32"
+    },
+    "siteConnectorId": {
+      "description": "Id of Site Connector of Site",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "siteId": {
+      "description": "Id of Site",
+      "type": "integer",
+      "format": "int32"
+    },
+    "siteName": {
+      "description": "Name of Site",
+      "type": "string"
+    },
+    "sshProxyPort": {
+      "description": "SSH Proxy Port",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "sshProxyPortInherited": {
+      "description": "SSH Proxy Port Inherited",
+      "type": "boolean"
+    },
+    "systemSite": {
+      "description": "Is this a system site",
+      "type": "boolean"
+    },
+    "winRmEndPointUrl": {
+      "description": "WinRM End Point URL of Site",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ProcessingLocationType": {
+      "description": "Processing Location of Site",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "UseWebSite",
+        "UseDistributedEngine"
+      ]
+    }
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-discovery-network-computer-item-detail-schema.json",
+  "title": "DiscoveryNetworkComputerItemDetail",
+  "description": "Computer Item that was discovered and appear in the network view",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-discovery-api-openapi.yml#/components/schemas/DiscoveryNetworkComputerItemDetail",
+  "properties": {
+    "accountTotal": {
+      "description": "Number of Accounts associated to this Network Item",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "computerAccounts": {
+      "description": "Computer Accounts associated to this Network Item",
+      "items": {
+        "$ref": "#/$defs/DiscoveryNetworkComputerAccount"
+      },
+      "type": "array"
+    },
+    "createdDate": {
+      "description": "Date Item was Created",
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "description": "Description",
+      "type": "string"
+    },
+    "discoveryItemScannerId": {
+      "description": "Discovery Item Scanner Id",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "discoveryItemScannerName": {
+      "description": "Discovery Item Scanner Name",
+      "type": "string"
+    },
+    "discoverySourceId": {
+      "description": "Discovery Source Id",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "discoverySourceName": {
+      "description": "Discovery Source Name",
+      "type": "string"
+    },
+    "displayName": {
+      "description": "Display Name",
+      "type": "string"
+    },
+    "distinguishedName": {
+      "description": "Distinguished Name",
+      "type": "string"
+    },
+    "dnsHostName": {
+      "description": "DNS Host Name",
+      "type": "string"
+    },
+    "lastErrorMessage": {
+      "description": "Last Error Message",
+      "type": "string"
+    },
+    "lastLogon": {
+      "description": "Last Logon",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "lastPolledDate": {
+      "description": "Date Item was Last Polled",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "lastReachedDate": {
+      "description": "Date Item was Last Reached",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "networkItemId": {
+      "description": "The Id of this Network Item",
+      "type": "integer",
+      "format": "int32"
+    },
+    "organizationUnitId": {
+      "description": "Organization Unit Id",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "organizationUnitName": {
+      "description": "Organization Unit Name",
+      "type": "string"
+    },
+    "publicKeyAccounts": {
+      "description": "Public Key Accounts associated to this Network Item",
+      "items": {
+        "$ref": "#/$defs/DiscoveryNetworkPublicKeyAccount"
+      },
+      "type": "array"
+    },
+    "scanItemTemplateId": {
+      "description": "Scan Item Template Id",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "scanItemTemplateName": {
+      "description": "Scan Item Template Name",
+      "type": "string"
+    },
+    "serviceAccounts": {
+      "description": "Service Accounts associated to this Network Item",
+      "items": {
+        "$ref": "#/$defs/DiscoveryNetworkServiceAccount"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "DiscoveryNetworkComputerAccount": {
+      "description": "Discovery Network Computer Account",
+      "properties": {
+        "accountName": {
+          "description": "Account Name",
+          "type": "string"
+        },
+        "canLaunch": {
+          "description": "Can Launch",
+          "type": "boolean"
+        },
+        "computerAccountId": {
+          "description": "Computer Account Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "secretId": {
+          "description": "Secret Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "secretName": {
+          "description": "Secret Name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryNetworkPublicKeyAccount": {
+      "description": "Discovery Network Public Key Account",
+      "properties": {
+        "accountName": {
+          "description": "Account Name",
+          "type": "string"
+        },
+        "canLaunch": {
+          "description": "Can Launch",
+          "type": "boolean"
+        },
+        "computerAccountId": {
+          "description": "Computer Account Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "secretId": {
+          "description": "Secret Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "secretName": {
+          "description": "Secret Name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryNetworkServiceAccount": {
+      "description": "Discovery Network Service Account",
+      "properties": {
+        "canLaunch": {
+          "description": "Can Launch",
+          "type": "boolean"
+        },
+        "computerAccountId": {
+          "description": "Id of Directory Service Computer Account if one is found to be associated",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "computerAccountName": {
+          "description": "Name of Directory Service Computer Account if one is found to be associated",
+          "type": "string"
+        },
+        "computerDependencyId": {
+          "description": "Computer Dependency Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "computerId": {
+          "description": "Computer Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "computerName": {
+          "description": "Computer Name",
+          "type": "string"
+        },
+        "dependencyName": {
+          "description": "Dependency Name",
+          "type": "string"
+        },
+        "secretId": {
+          "description": "Secret Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "secretName": {
+          "description": "Secret Name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

@@ -614,80 +614,13 @@ paths:
       deprecated: false
 components:
   schemas:
-    StreamContentResult:
-      description: StreamContentResult
+    LogCollectionSourceType:
+      description: SourceType
       properties: {}
-      type: object
-    ClearLogCollectionResultModel:
-      description: ClearLogCollectionResultModel
-      properties:
-        success:
-          description: Success
-          type: boolean
-      type: object
-    CollectLogCollectionResultModel:
-      description: CollectLogCollectionResultModel
-      properties:
-        success:
-          description: Success
-          type: boolean
-      type: object
-    ClearCacheResultModel:
-      description: ClearCacheResultModel
-      properties:
-        success:
-          description: Success
-          type: boolean
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    AppSettingModel:
-      description: AppSettingModel[]
-      properties:
-        key:
-          description: App setting key
-          type: string
-        value:
-          description: App setting value
-          type: string
-      type: object
+      type: string
+      enum:
+      - Node
+      - Engine
     DiagnosticsSummary:
       description: Diagnostics summary
       properties:
@@ -806,6 +739,131 @@ components:
           description: Up Time
           type: string
       type: object
+    CollectLogCollectionResultModel:
+      description: CollectLogCollectionResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    ClearCacheResultModel:
+      description: ClearCacheResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    ClearLogCollectionResultModel:
+      description: ClearLogCollectionResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    LogCollectionStatus:
+      description: Status
+      properties: {}
+      type: string
+      enum:
+      - Collecting
+      - Done
+      - Failed
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    LogCollectionSummaryModel:
+      description: LogCollectionSummaryModel
+      properties:
+        logCollection:
+          description: LogCollection
+          items:
+            $ref: '#/components/schemas/LogCollectionModel'
+          type: array
+        startDate:
+          description: StartDate
+          type:
+          - string
+          - 'null'
+          format: date-time
+      type: object
+    AppSettingModel:
+      description: AppSettingModel[]
+      properties:
+        key:
+          description: App setting key
+          type: string
+        value:
+          description: App setting value
+          type: string
+      type: object
+    LogCollectionModel:
+      description: LogCollection
+      properties:
+        logCollectionId:
+          description: LogCollectionId
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+        sourceId:
+          description: SourceId
+          type: integer
+          format: int32
+        sourceType:
+          $ref: '#/components/schemas/LogCollectionSourceType'
+        status:
+          $ref: '#/components/schemas/LogCollectionStatus'
+      type: object
+    StreamContentResult:
+      description: StreamContentResult
+      properties: {}
+      type: object
     QuartzTrigger:
       description: QuartzTrigger[]
       properties:
@@ -835,64 +893,6 @@ components:
         triggerState:
           description: TriggerState
           type: string
-      type: object
-    LogCollectionSourceType:
-      description: SourceType
-      properties: {}
-      type: string
-      enum:
-      - Node
-      - Engine
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    LogCollectionStatus:
-      description: Status
-      properties: {}
-      type: string
-      enum:
-      - Collecting
-      - Done
-      - Failed
-    LogCollectionSummaryModel:
-      description: LogCollectionSummaryModel
-      properties:
-        logCollection:
-          description: LogCollection
-          items:
-            $ref: '#/components/schemas/LogCollectionModel'
-          type: array
-        startDate:
-          description: StartDate
-          type:
-          - string
-          - 'null'
-          format: date-time
-      type: object
-    LogCollectionModel:
-      description: LogCollection
-      properties:
-        logCollectionId:
-          description: LogCollectionId
-          type: integer
-          format: int32
-        name:
-          description: Name
-          type: string
-        sourceId:
-          description: SourceId
-          type: integer
-          format: int32
-        sourceType:
-          $ref: '#/components/schemas/LogCollectionSourceType'
-        status:
-          $ref: '#/components/schemas/LogCollectionStatus'
       type: object
   securitySchemes:
     BearerToken:

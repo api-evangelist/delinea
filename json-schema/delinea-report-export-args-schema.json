@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-report-export-args-schema.json",
+  "title": "ReportExportArgs",
+  "description": "Report query options",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-reports-api-openapi.yml#/components/schemas/ReportExportArgs",
+  "properties": {
+    "delimiter": {
+      "description": "Delimiter",
+      "type": "string"
+    },
+    "dualControlApproval": {
+      "$ref": "#/$defs/DualControlApproval"
+    },
+    "encodeHtml": {
+      "description": "True to encode data as HTML, defaults to true if not provided",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "endRecordNumber": {
+      "description": "End Record Number when taking a specific set of records, passing this will override PageNumber and RecordsPerPage",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "format": {
+      "description": "Format",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "id": {
+      "description": "The Id of the report to run. Optional: will use Name if provided",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "isAscending": {
+      "description": "Flag determining sort direction of custom sort",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "name": {
+      "description": "The name of the report to run. Optional: will use Id if provided",
+      "type": "string"
+    },
+    "orderByFieldOrdinal": {
+      "description": "Ordinal of Field for custom OrderBy of results",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "pageNumber": {
+      "description": "Page number for paging results. All records returned if null",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "parameters": {
+      "description": "The parameters of the report",
+      "items": {
+        "$ref": "#/$defs/ReportParameter"
+      },
+      "type": "array"
+    },
+    "previewSql": {
+      "description": "When passed the report will be previewed with this sql",
+      "type": "string"
+    },
+    "recordsPerPage": {
+      "description": "Number of records per page for paging results",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "startRecordNumber": {
+      "description": "Start Record Number when taking a specific set of records, passing this will override PageNumber and RecordsPerPage",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "timeZone": {
+      "description": "TimeZone",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "useDatabasePaging": {
+      "description": "If true the report will attempt to do paging in the database. If false the paging will occur on the application server.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "useDefaultParameters": {
+      "description": "If a report contains a parameter but it is not passed the default value will be used on the server",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "DualControlApproval": {
+      "description": "The Dual control approval needed to update the report",
+      "properties": {
+        "domainId": {
+          "description": "DomainId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "password": {
+          "description": "Password",
+          "type": "string"
+        },
+        "twoFactor": {
+          "description": "TwoFactor",
+          "type": "string"
+        },
+        "username": {
+          "description": "Username",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportParameter": {
+      "description": "The parameters of the report",
+      "properties": {
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

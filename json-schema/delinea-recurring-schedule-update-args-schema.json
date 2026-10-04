@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-recurring-schedule-update-args-schema.json",
+  "title": "RecurringScheduleUpdateArgs",
+  "description": "RecurringScheduleUpdateArgs",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-schedule-api-openapi.yml#/components/schemas/RecurringScheduleUpdateArgs",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/RecurringScheduleUpdateModel"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "RecurringScheduleType": {
+      "description": "The iteration period for the schedule.  The schedule will restart after this cycle.",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Daily",
+        "Weekly",
+        "MonthlyDays",
+        "MonthlyWeeks"
+      ]
+    },
+    "RecurringScheduleUpdateModel": {
+      "description": "Data",
+      "properties": {
+        "active": {
+          "$ref": "#/$defs/UpdateFieldValueOfBoolean"
+        },
+        "duration": {
+          "$ref": "#/$defs/UpdateFieldValueOfInt32"
+        },
+        "durationStartDate": {
+          "$ref": "#/$defs/UpdateFieldValueOfDateTime"
+        },
+        "notes": {
+          "$ref": "#/$defs/UpdateFieldValueOfString"
+        },
+        "recurringScheduleId": {
+          "description": "Unique ID for this schedule",
+          "type": "integer",
+          "format": "int32"
+        },
+        "recurringScheduleType": {
+          "$ref": "#/$defs/UpdateFieldValueOfRecurringScheduleType"
+        },
+        "scheduleConstraints": {
+          "$ref": "#/$defs/UpdateFieldValueOfRecurringScheduleValueModelArray"
+        },
+        "timeZoneId": {
+          "$ref": "#/$defs/UpdateFieldValueOfString"
+        }
+      },
+      "type": "object"
+    },
+    "RecurringScheduleValueModel": {
+      "description": "A defined constraint for a schedule",
+      "properties": {
+        "recurrenceValue": {
+          "description": "The value that applies to the constraint.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "recurrenceValueType": {
+          "$ref": "#/$defs/RecurringScheduleValueType"
+        }
+      },
+      "type": "object"
+    },
+    "RecurringScheduleValueType": {
+      "description": "The type of schedule constraint",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "SpecificTime",
+        "DayOfWeek",
+        "DayOfMonth",
+        "WeekOfMonth",
+        "WeekOfMonthDay"
+      ]
+    },
+    "UpdateFieldValueOfBoolean": {
+      "description": "Active",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Value",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateFieldValueOfDateTime": {
+      "description": "BackupStartDateTime",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateFieldValueOfInt32": {
+      "description": "How many days until the password expires.",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Value",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateFieldValueOfRecurringScheduleType": {
+      "description": "The iteration period for the schedule.  The schedule will restart after this cycle.",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/RecurringScheduleType"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateFieldValueOfRecurringScheduleValueModelArray": {
+      "description": "Passing any constraints will update all of them and remove any not specified.",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Value",
+          "items": {
+            "$ref": "#/$defs/RecurringScheduleValueModel"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateFieldValueOfString": {
+      "description": "Description",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

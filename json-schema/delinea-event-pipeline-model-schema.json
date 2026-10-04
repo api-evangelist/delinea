@@ -1,0 +1,504 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-event-pipeline-model-schema.json",
+  "title": "EventPipelineModel",
+  "description": "Event Pipeline",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-eventpipeline-api-openapi.yml#/components/schemas/EventPipelineModel",
+  "properties": {
+    "active": {
+      "description": "Active",
+      "type": "boolean"
+    },
+    "createdDate": {
+      "description": "Event Pipeline Created Date",
+      "type": "string",
+      "format": "date-time"
+    },
+    "eventEntityTypeId": {
+      "description": "Entity Type Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "eventPipelineDescription": {
+      "description": "Event Pipeline Description",
+      "type": "string"
+    },
+    "eventPipelineId": {
+      "description": "Event Pipeline Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "eventPipelineName": {
+      "description": "Event Pipeline Name",
+      "type": "string"
+    },
+    "eventPipelinePolicyId": {
+      "description": "Event Pipeline Policy Id",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "eventPipelinePolicyMapId": {
+      "description": "Event Pipeline Policy Map Id",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "filterList": {
+      "description": "Event Pipeline Filters",
+      "items": {
+        "$ref": "#/$defs/EventPipelineFilterModel"
+      },
+      "type": "array"
+    },
+    "isSystem": {
+      "description": "Event pipeline used by the system",
+      "type": "boolean"
+    },
+    "lastModifiedDate": {
+      "description": "Event Pipeline Modified Date",
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastModifiedDisplayName": {
+      "description": "Event Pipeline Last Modified Date",
+      "type": "string"
+    },
+    "sortOrder": {
+      "description": "Sort Order",
+      "type": "integer",
+      "format": "int32"
+    },
+    "taskList": {
+      "description": "Event Pipeline Tasks",
+      "items": {
+        "$ref": "#/$defs/EventPipelineTaskModel"
+      },
+      "type": "array"
+    },
+    "triggers": {
+      "description": "Event Pipeline Triggers",
+      "items": {
+        "$ref": "#/$defs/EventPipelineTriggerModel"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "EventPipelineFilterModel": {
+      "description": "Event Pipeline Filter",
+      "properties": {
+        "eventEntityTypeId": {
+          "description": "Event Entity Type Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "eventPipelineFilterDescription": {
+          "description": "Event Pipeline Filter Description",
+          "type": "string"
+        },
+        "eventPipelineFilterDisplayName": {
+          "description": "Event Pipeline Filter Display Name",
+          "type": "string"
+        },
+        "eventPipelineFilterId": {
+          "description": "Event Pipeline Filter Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventPipelineFilterMapId": {
+          "description": "Event Pipeline Filter Map Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventPipelineFilterName": {
+          "description": "Event Pipeline Filter Name",
+          "type": "string"
+        },
+        "settings": {
+          "description": "Settings",
+          "items": {
+            "$ref": "#/$defs/EventPipelineFilterSettingValueMapModel"
+          },
+          "type": "array"
+        },
+        "sortOrder": {
+          "description": "Sort Order",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "EventPipelineFilterSettingValueMapModel": {
+      "description": "Event Pipeline Filter Setting Value Map",
+      "properties": {
+        "eventPipelineFilterMapId": {
+          "description": "Event Pipeline Filter Map Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventPipelineFilterSettingValueMapId": {
+          "description": "Event Pipeline Filter Setting Value Map Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "overrideDefault": {
+          "description": "Whether to override the default value",
+          "type": "boolean"
+        },
+        "setting": {
+          "$ref": "#/$defs/SettingForDisplay"
+        },
+        "settingDisplay": {
+          "description": "Setting Display",
+          "type": "string"
+        },
+        "settingDisplayValue": {
+          "description": "Setting Display Value",
+          "type": "string"
+        },
+        "settingId": {
+          "description": "Setting Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingValue": {
+          "description": "Setting Value",
+          "type": "string"
+        },
+        "usingDefault": {
+          "description": "Whether or not to use the setting's default value.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "EventPipelineTaskModel": {
+      "description": "Event Pipeline Task",
+      "properties": {
+        "eventEntityTypeId": {
+          "description": "Event Entity Type Id",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eventPipelineTaskDescription": {
+          "description": "Event Pipeline Task Description",
+          "type": "string"
+        },
+        "eventPipelineTaskDisplayName": {
+          "description": "Event Pipeline Task Display Name",
+          "type": "string"
+        },
+        "eventPipelineTaskId": {
+          "description": "Event Pipeline Task Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventPipelineTaskMapId": {
+          "description": "Event Pipeline Task Map Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventPipelineTaskName": {
+          "description": "Event Pipeline Name",
+          "type": "string"
+        },
+        "isMultiSelect": {
+          "description": "Multiselect",
+          "type": "boolean"
+        },
+        "settings": {
+          "description": "Settings",
+          "items": {
+            "$ref": "#/$defs/EventPipelineTaskSettingValueMapModel"
+          },
+          "type": "array"
+        },
+        "sortOrder": {
+          "description": "Sort ORder",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "EventPipelineTaskSettingValueMapModel": {
+      "description": "Event Pipeline Task Setting Value Map",
+      "properties": {
+        "eventPipelineTaskMapId": {
+          "description": "Event Pipeline Task Map Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventPipelineTaskSettingValueMapId": {
+          "description": "Event Pipeline Task Setting Value Map Id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "overrideDefault": {
+          "description": "Override Default",
+          "type": "boolean"
+        },
+        "setting": {
+          "$ref": "#/$defs/SettingForDisplay"
+        },
+        "settingDisplay": {
+          "description": "Setting Display",
+          "type": "string"
+        },
+        "settingDisplayValue": {
+          "description": "Setting Display Value",
+          "type": "string"
+        },
+        "settingId": {
+          "description": "Setting Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingValue": {
+          "description": "Setting Value",
+          "type": "string"
+        },
+        "usingDefault": {
+          "description": "Whether or not to use the setting's default value.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "EventPipelineTriggerModel": {
+      "description": "Event Pipeline Trigger",
+      "properties": {
+        "entityTypeDisplayName": {
+          "description": "Entity Type Display Name",
+          "type": "string"
+        },
+        "eventActionId": {
+          "description": "Event Action Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventPipelineId": {
+          "description": "Event Pipeline Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventPipelineTriggerId": {
+          "description": "Event Pipeline Trigger Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "triggerDisplayName": {
+          "description": "Trigger Display Name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Setting": {
+      "description": "ChildSettings",
+      "properties": {
+        "active": {
+          "description": "Active",
+          "type": "boolean"
+        },
+        "canEdit": {
+          "description": "CanEdit",
+          "type": "boolean"
+        },
+        "canEditValue": {
+          "description": "CanEditValue",
+          "type": "boolean"
+        },
+        "childLoadSQL": {
+          "description": "ChildLoadSQL",
+          "type": "string"
+        },
+        "defaultValue": {
+          "description": "DefaultValue",
+          "type": "string"
+        },
+        "isVisible": {
+          "description": "IsVisible",
+          "type": "boolean"
+        },
+        "nameLocalizeKey": {
+          "description": "NameLocalizeKey",
+          "type": "string"
+        },
+        "parentSettingId": {
+          "description": "ParentSettingId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "regexValidation": {
+          "description": "RegexValidation",
+          "type": "string"
+        },
+        "settingId": {
+          "description": "SettingId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingName": {
+          "description": "SettingName",
+          "type": "string"
+        },
+        "settingSectionId": {
+          "description": "SettingSectionId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingType": {
+          "$ref": "#/$defs/SettingType"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": "integer",
+          "format": "int32"
+        },
+        "subSettingSectionId": {
+          "description": "SubSettingSectionId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "tooltipLocalizeKey": {
+          "description": "TooltipLocalizeKey",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SettingForDisplay": {
+      "description": "Setting",
+      "properties": {
+        "active": {
+          "description": "Active",
+          "type": "boolean"
+        },
+        "canEdit": {
+          "description": "CanEdit",
+          "type": "boolean"
+        },
+        "canEditValue": {
+          "description": "CanEditValue",
+          "type": "boolean"
+        },
+        "childLoadSQL": {
+          "description": "ChildLoadSQL",
+          "type": "string"
+        },
+        "childSettings": {
+          "description": "ChildSettings",
+          "items": {
+            "$ref": "#/$defs/Setting"
+          },
+          "type": "array"
+        },
+        "defaultValue": {
+          "description": "DefaultValue",
+          "type": "string"
+        },
+        "isVisible": {
+          "description": "IsVisible",
+          "type": "boolean"
+        },
+        "nameLocalizeKey": {
+          "description": "NameLocalizeKey",
+          "type": "string"
+        },
+        "parentSettingId": {
+          "description": "ParentSettingId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "regexValidation": {
+          "description": "RegexValidation",
+          "type": "string"
+        },
+        "settingId": {
+          "description": "SettingId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingName": {
+          "description": "SettingName",
+          "type": "string"
+        },
+        "settingSectionId": {
+          "description": "SettingSectionId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingType": {
+          "$ref": "#/$defs/SettingType"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": "integer",
+          "format": "int32"
+        },
+        "subSettingSectionId": {
+          "description": "SubSettingSectionId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "tooltipLocalizeKey": {
+          "description": "TooltipLocalizeKey",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SettingType": {
+      "description": "SettingType",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Default",
+        "Integer",
+        "String",
+        "Boolean",
+        "StringArray",
+        "DropDown",
+        "DropDownItem",
+        "MultilineString",
+        "IntegerArray",
+        "Radio",
+        "RadioItem"
+      ]
+    }
+  }
+}

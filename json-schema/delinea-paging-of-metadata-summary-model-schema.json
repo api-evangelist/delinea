@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-paging-of-metadata-summary-model-schema.json",
+  "title": "PagingOfMetadataSummaryModel",
+  "description": "Specify paging and sorting options for querying records and returning results",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-metadata-api-openapi.yml#/components/schemas/PagingOfMetadataSummaryModel",
+  "properties": {
+    "batchCount": {
+      "description": "Number of result batches available with current query options",
+      "type": "integer",
+      "format": "int32"
+    },
+    "currentPage": {
+      "description": "Index of current result page",
+      "type": "integer",
+      "format": "int32"
+    },
+    "hasNext": {
+      "description": "Whether there are any results in additional pages",
+      "type": "boolean"
+    },
+    "hasPrev": {
+      "description": "Whether there are any results in previous pages",
+      "type": "boolean"
+    },
+    "nextSkip": {
+      "description": "Correct value of 'skip' for the next page of results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "pageCount": {
+      "description": "Number of result pages available with current query options",
+      "type": "integer",
+      "format": "int32"
+    },
+    "prevSkip": {
+      "description": "Correct value of 'skip' for the previous page of results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "records": {
+      "description": "Query results",
+      "items": {
+        "$ref": "#/$defs/MetadataSummaryModel"
+      },
+      "type": "array"
+    },
+    "severity": {
+      "$ref": "#/$defs/Severity"
+    },
+    "skip": {
+      "description": "Number of records to skip before taking results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "sortBy": {
+      "description": "List of sort properties",
+      "items": {
+        "$ref": "#/$defs/Sort"
+      },
+      "type": "array"
+    },
+    "success": {
+      "description": "Whether the query executed successfully",
+      "type": "boolean"
+    },
+    "take": {
+      "description": "Maximum number of records to include in results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "total": {
+      "description": "Total number of results available",
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "MetadataFieldDataType": {
+      "description": "Field types for metadata values",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "String",
+        "Boolean",
+        "Number",
+        "DateTime",
+        "User"
+      ]
+    },
+    "MetadataSummaryModel": {
+      "description": "Query results",
+      "properties": {
+        "containsPersonalInformation": {
+          "description": "When this is set to true, the metadata will be obfuscated during export",
+          "type": "boolean"
+        },
+        "createDateTime": {
+          "description": "When the field value was created",
+          "type": "string",
+          "format": "date-time"
+        },
+        "createUserId": {
+          "description": "The user id of who entered the field value",
+          "type": "integer",
+          "format": "int32"
+        },
+        "createUserName": {
+          "description": "Who entered the field value",
+          "type": "string"
+        },
+        "itemId": {
+          "description": "The ID of the item to which this metadata is associated",
+          "type": "integer",
+          "format": "int32"
+        },
+        "metadataFieldDataType": {
+          "$ref": "#/$defs/MetadataFieldDataType"
+        },
+        "metadataFieldId": {
+          "description": "The metadata field id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "metadataFieldName": {
+          "description": "The metadata field name",
+          "type": "string"
+        },
+        "metadataFieldSectionId": {
+          "description": "The Metadata section ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "metadataFieldSectionName": {
+          "description": "The metadata section name",
+          "type": "string"
+        },
+        "metadataFieldTypeName": {
+          "description": "Not currently populated, see MetadataFieldDataType",
+          "type": "string"
+        },
+        "metadataItemDataId": {
+          "description": "The sequence id for this specific metadata field",
+          "type": "integer",
+          "format": "int32"
+        },
+        "metadataType": {
+          "$ref": "#/$defs/MetadataType"
+        },
+        "metadataTypeName": {
+          "description": "Not currently populated, see MetadataType",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "The order in which to sort the metadata fields.  This is currently not utilized.",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "valueBit": {
+          "description": "When this metadata field is a boolean this will be the value",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "valueDateTime": {
+          "description": "When this metadata field is a datetime this will be the value",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "valueInt": {
+          "description": "When this metadata field is a user this will be the user id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "valueNumber": {
+          "description": "When this metadata field is a number this will be the value",
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
+        "valueString": {
+          "description": "When this metadata field is a string this will be the value",
+          "type": "string"
+        },
+        "valueUserDisplayName": {
+          "description": "When this metadata field is a user this will be the user display name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MetadataType": {
+      "description": "The types of entities that metadata can be associated to",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "User",
+        "Secret",
+        "Folder",
+        "Group"
+      ]
+    },
+    "Severity": {
+      "description": "Error severity level",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Retry",
+        "Warn",
+        "Critical",
+        "Fatal"
+      ]
+    },
+    "Sort": {
+      "description": "Sort options. Multiple sort options can be provided in the query string.",
+      "required": [
+        "name",
+        "direction"
+      ],
+      "properties": {
+        "direction": {
+          "$ref": "#/$defs/SortDirection"
+        },
+        "name": {
+          "description": "Sort field name",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Priority index. Sorts with lower values are executed earlier",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "SortDirection": {
+      "description": "Sort direction",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Asc",
+        "Desc"
+      ]
+    }
+  }
+}

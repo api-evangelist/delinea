@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-inbox-rule-condition-detail-model-schema.json",
+  "title": "InboxRuleConditionDetailModel",
+  "description": "Inbox Rule Condition",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-inboxrules-api-openapi.yml#/components/schemas/InboxRuleConditionDetailModel",
+  "properties": {
+    "displayValue": {
+      "description": "Display Value",
+      "type": "string"
+    },
+    "inboxDataId": {
+      "description": "Inbox Data",
+      "type": "integer",
+      "format": "int32"
+    },
+    "inboxDataType": {
+      "$ref": "#/$defs/InboxDataType"
+    },
+    "inboxRuleConditionId": {
+      "description": "Inbox Rule Condition Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "inboxRuleId": {
+      "description": "Inbox Rule",
+      "type": "integer",
+      "format": "int32"
+    },
+    "inboxRuleOperand": {
+      "$ref": "#/$defs/InboxRuleConditionOperand"
+    },
+    "valueBool": {
+      "description": "Boolean Value",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "valueDateTime": {
+      "description": "DateTime Value",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "valueInt": {
+      "description": "Integer Value",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "valueString": {
+      "description": "String Value",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "InboxDataType": {
+      "description": "InboxDataType",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Integer",
+        "DateTime",
+        "String",
+        "Boolean"
+      ]
+    },
+    "InboxRuleConditionOperand": {
+      "description": "Operand",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Equals",
+        "NotEquals",
+        "LessThan",
+        "GreaterThan",
+        "Regex"
+      ]
+    }
+  }
+}

@@ -50,18 +50,15 @@ paths:
       deprecated: false
 components:
   schemas:
-    AppStateType:
-      description: Current setup state of application
-      properties: {}
-      type: string
-      enum:
-      - Uninstalled
-      - CreateInitialUser
-      - DatabaseConnectionError
-      - ScheduledForDeletion
-      - MspDisabled
-      - Normal
-      - Provisioning
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -101,6 +98,18 @@ components:
           description: An object describing validation errors
           type: object
       type: object
+    AppStateType:
+      description: Current setup state of application
+      properties: {}
+      type: string
+      enum:
+      - Uninstalled
+      - CreateInitialUser
+      - DatabaseConnectionError
+      - ScheduledForDeletion
+      - MspDisabled
+      - Normal
+      - Provisioning
     AppStateModel:
       description: Describes application setup state
       properties:
@@ -114,15 +123,6 @@ components:
           $ref: '#/components/schemas/AppStateType'
         statusText:
           description: Additional information about the app state
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
           type: string
       type: object
   securitySchemes:

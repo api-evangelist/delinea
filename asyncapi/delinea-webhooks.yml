@@ -1,0 +1,20 @@
+generated: '2026-10-03'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://developer.delinea.com/docs/web-hooks
+sources:
+- https://developer.delinea.com/docs/web-hooks
+- https://developer.delinea.com/docs/slack-example-webhook
+- https://developer.delinea.com/docs/pagerduty-example-webhook
+- https://developer.delinea.com/reference/post_core-handletwiliosmsreceipt.md
+description: Delinea webhooks allow a tenant to invoke an external service when a security alert or a Centrify Analytics server event occurs.
+events:
+- event: Analytics.Server.AdaptiveSessionRecording
+  description: Triggered when an adaptive session recording event occurs in Centrify Analytics.
+- event: SecurityAlert
+  description: Triggered when a security alert exceeds the configured risk level.
+delivery:
+  auth: Optional Authorization header can be set (e.g., PagerDuty token) and custom headers may be provided.
+  signature: No signature header is described in the documentation.
+note: The documentation does not specify a retry policy for webhook deliveries.
+docs: https://developer.delinea.com/docs/web-hooks

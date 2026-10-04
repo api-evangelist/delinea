@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-metadata-model-schema.json",
+  "title": "MetadataModel",
+  "description": "A single record of metadata that is associated to one entity",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-metadata-api-openapi.yml#/components/schemas/MetadataModel",
+  "properties": {
+    "containsPersonalInformation": {
+      "description": "When this is set to true, the metadata will be obfuscated during export",
+      "type": "boolean"
+    },
+    "createDateTime": {
+      "description": "When was this field value entered",
+      "type": "string",
+      "format": "date-time"
+    },
+    "createUserId": {
+      "description": "The user id of the user who entered this field value",
+      "type": "integer",
+      "format": "int32"
+    },
+    "createUserName": {
+      "description": "Who entered this field value",
+      "type": "string"
+    },
+    "itemId": {
+      "description": "The ID of the entity to which this value is associated",
+      "type": "integer",
+      "format": "int32"
+    },
+    "metadataFieldId": {
+      "description": "The metadata field ID for this value",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "metadataFieldName": {
+      "description": "The field name for this metadata value",
+      "type": "string"
+    },
+    "metadataFieldSectionId": {
+      "description": "The section ID in which this metadata value resides",
+      "type": "integer",
+      "format": "int32"
+    },
+    "metadataFieldSectionName": {
+      "description": "The section name in which this metadata value resides",
+      "type": "string"
+    },
+    "metadataFieldTypeId": {
+      "description": "The ID for the field type in which this metadata value resides",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "metadataFieldTypeName": {
+      "description": "The field name in which this metadata value resides",
+      "type": "string"
+    },
+    "metadataItemDataId": {
+      "description": "The sequence ID for this specific metadata value record",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "metadataTypeName": {
+      "description": "The type name in which this metadata value resides",
+      "type": "string"
+    },
+    "sortOrder": {
+      "description": "Not currently utilized, but the sort order for the metadata",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "valueBit": {
+      "description": "The value when the metadata field is a boolean",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "valueDateTime": {
+      "description": "The value when the metadata field is a date",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "valueInt": {
+      "description": "The value when the metadata field is a user",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "valueNumber": {
+      "description": "The value when the metadata field is a number",
+      "type": [
+        "number",
+        "null"
+      ],
+      "format": "double"
+    },
+    "valueString": {
+      "description": "The value when the metadata field is a string",
+      "type": "string"
+    },
+    "valueUserDisplayName": {
+      "description": "The user display name when the metadata field is a user type",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

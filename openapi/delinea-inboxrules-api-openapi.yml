@@ -901,21 +901,285 @@ paths:
       deprecated: false
 components:
   schemas:
-    InboxRulePatchModel:
+    InboxRuleSummary:
+      description: Query results
+      properties:
+        active:
+          description: Whether or not this rule is active
+          type: boolean
+        currentUserSubscribed:
+          description: Only populated when IncludeCurrentUserSubscriptionStatus is passed as true on a rule search
+          type:
+          - boolean
+          - 'null'
+        digest:
+          description: Whether or not this rule is for a Digest that runs on a schedule.
+          type: boolean
+        inboxRuleId:
+          description: Inbox Rule ID
+          type: integer
+          format: int32
+        inboxRuleName:
+          description: The name of the rule
+          type: string
+        isSystem:
+          description: Whether or not this rule is a system rule
+          type: boolean
+        notificationTypes:
+          description: Notification Types where this rule is used
+          items:
+            type: string
+          type: array
+        usageCount:
+          description: Number of times this rule has been used in the last 7 days
+          type: integer
+          format: int32
+      type: object
+    InboxRuleCreateModel:
       description: Data
       properties:
         active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+          description: Active
+          type: boolean
         canEditOwnSubscription:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+          description: Can Edit Own Subscription
+          type: boolean
+        conditions:
+          description: Conditions
+          items:
+            $ref: '#/components/schemas/InboxRuleConditionCreateModel'
+          type: array
         highPriority:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        inboxMessageTypes:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+          description: High Priority
+          type: boolean
+        inboxEmailTemplateId:
+          description: Email Template
+          type:
+          - integer
+          - 'null'
+          format: int32
+        inboxMessageTypeIds:
+          description: Inbox Message Types
+          items:
+            type: integer
+            format: int32
+          type: array
+        inboxSlackTemplateId:
+          description: Slack Template
+          type:
+          - integer
+          - 'null'
+          format: int32
         isImmediate:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+          description: Is Immediate
+          type: boolean
         name:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
+          description: Name
+          type: string
+        sendEmail:
+          description: Send Email
+          type: boolean
+        sendSlack:
+          description: Send Slack
+          type: boolean
+      type: object
+    InboxRuleSubscriberEmailUpdate:
+      description: Change the subscription for a specific email
+      properties:
+        emailAddress:
+          description: A specific email address to add / remove.
+          type: string
+        subscribe:
+          description: Passing true will subscribe this email address, passing false will remove this email address along with any rule action history
+          type: boolean
+      type: object
+    InboxRuleActionPatchArgs:
+      description: InboxRuleActionPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRuleActionPatchModel'
+      type: object
+    PagingOfInboxRuleSubscriberSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/InboxRuleSubscriberSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    InboxRulePatchArgs:
+      description: InboxRulePatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRulePatchModel'
+      type: object
+    UpdateFieldValueOfBoolean:
+      description: Active
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: boolean
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    InboxRuleActionStatusType:
+      description: The result of the action
+      properties: {}
+      type: string
+      enum:
+      - Success
+      - Failed
+      - FailedAfterThreeAttempts
+      - InvalidEmail
+      - UnableToResolveHost
+    InboxRuleSubscriberPatchModel:
+      description: Inbox rule subscription changes
+      properties:
+        emailUpdates:
+          description: External email addresses to add or remove from this rule
+          items:
+            $ref: '#/components/schemas/InboxRuleSubscriberEmailUpdate'
+          type: array
+        groupUserUpdates:
+          description: Groups and Users changes to the subscription
+          items:
+            $ref: '#/components/schemas/InboxRuleSubscriberGroupUserUpdate'
+          type: array
+      type: object
+    InboxRuleSubscriptionUpdateResponse:
+      description: InboxRuleSubscriptionUpdateResponse
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    InboxRuleLogSummary:
+      description: Log item for inbox rule action results
+      properties:
+        actionType:
+          $ref: '#/components/schemas/ActionType'
+        displayName:
+          description: The display name for the user or external email address
+          type: string
+        inboxRuleActionStatus:
+          $ref: '#/components/schemas/InboxRuleActionStatusType'
+        statusDate:
+          description: When the action triggered
+          type: string
+          format: date-time
+        statusDescription:
+          description: Any extra description for this status
+          type: string
+        userId:
+          description: The specific user id that this action was for
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    InboxRuleSubscribersPatchArgs:
+      description: InboxRuleSubscribersPatchArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRuleSubscriberPatchModel'
+      type: object
+    InboxMessageTypeSummary:
+      description: InboxMessageTypeSummary[]
+      properties:
+        inboxMessageTypeId:
+          description: Message Type ID
+          type: integer
+          format: int32
+        inboxMessageTypeName:
+          description: The name of the message type
+          type: string
+        notificationCount:
+          description: 'Populated with the number of notifications the current user has of this message type.  Only populated when '
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    InboxRuleSubscriberUpdateResponse:
+      description: InboxRuleSubscriberUpdateResponse
+      properties:
+        success:
+          description: Success
+          type: boolean
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    InboxRuleCreateArgs:
+      description: InboxRuleCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRuleCreateModel'
       type: object
     PagingOfInboxRuleLogSummary:
       description: Specify paging and sorting options for querying records and returning results
@@ -974,156 +1238,8 @@ components:
           type: integer
           format: int32
       type: object
-    InboxRuleConditionCreateArgs:
-      description: InboxRuleConditionCreateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxRuleConditionCreateModel'
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    InboxRuleConditionSummary:
-      description: Conditions
-      properties:
-        displayValue:
-          description: DisplayValue
-          type: string
-        inboxDataId:
-          description: InboxDataId
-          type: integer
-          format: int32
-        inboxDataName:
-          description: InboxDataName
-          type: string
-        inboxDataType:
-          $ref: '#/components/schemas/InboxDataType'
-        inboxRuleConditionId:
-          description: InboxRuleConditionId
-          type: integer
-          format: int32
-        inboxRuleOperand:
-          $ref: '#/components/schemas/InboxRuleConditionOperand'
-        valueBool:
-          description: ValueBool
-          type:
-          - boolean
-          - 'null'
-        valueDateTime:
-          description: ValueDateTime
-          type:
-          - string
-          - 'null'
-          format: date-time
-        valueInt:
-          description: ValueInt
-          type:
-          - integer
-          - 'null'
-          format: int32
-        valueString:
-          description: ValueString
-          type: string
-      type: object
-    InboxRuleLogSummary:
-      description: Log item for inbox rule action results
-      properties:
-        actionType:
-          $ref: '#/components/schemas/ActionType'
-        displayName:
-          description: The display name for the user or external email address
-          type: string
-        inboxRuleActionStatus:
-          $ref: '#/components/schemas/InboxRuleActionStatusType'
-        statusDate:
-          description: When the action triggered
-          type: string
-          format: date-time
-        statusDescription:
-          description: Any extra description for this status
-          type: string
-        userId:
-          description: The specific user id that this action was for
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    InboxRuleSubscriberGroupUserUpdate:
-      description: The user/group to add or remove to the subscription.  Either UserId or GroupId should be set.  If both are set then GroupId will take precedence and UserId will be ignored.
-      properties:
-        groupId:
-          description: The group ID representing a group or an individual user
-          type:
-          - integer
-          - 'null'
-          format: int32
-        subscribe:
-          description: When true a group or user will be subscribed to this rule.  When false a group will be removed from the list.  If the this is a user then it will be removed if it is directly subscribed or it will be explicitly unsubscribed if not currently subscribed.
-          type: boolean
-        userId:
-          description: The user ID representing a an individual user
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    InboxRuleConditionOperand:
-      description: Operand
-      properties: {}
-      type: string
-      enum:
-      - Equals
-      - NotEquals
-      - LessThan
-      - GreaterThan
-      - Regex
-    InboxRuleSubscriberUpdateResponse:
-      description: InboxRuleSubscriberUpdateResponse
-      properties:
-        success:
-          description: Success
-          type: boolean
-      type: object
-    InboxRuleSubscriberPatchModel:
-      description: Inbox rule subscription changes
-      properties:
-        emailUpdates:
-          description: External email addresses to add or remove from this rule
-          items:
-            $ref: '#/components/schemas/InboxRuleSubscriberEmailUpdate'
-          type: array
-        groupUserUpdates:
-          description: Groups and Users changes to the subscription
-          items:
-            $ref: '#/components/schemas/InboxRuleSubscriberGroupUserUpdate'
-          type: array
-      type: object
-    InboxRuleConditionUpdateModel:
-      description: Inbox Rule Condition Update Model
+    InboxRuleConditionDetailModel:
+      description: Inbox Rule Condition
       properties:
         displayValue:
           description: Display Value
@@ -1132,11 +1248,15 @@ components:
           description: Inbox Data
           type: integer
           format: int32
+        inboxDataType:
+          $ref: '#/components/schemas/InboxDataType'
         inboxRuleConditionId:
-          description: The ID of the existing rule condition to update
-          type:
-          - integer
-          - 'null'
+          description: Inbox Rule Condition Id
+          type: integer
+          format: int32
+        inboxRuleId:
+          description: Inbox Rule
+          type: integer
           format: int32
         inboxRuleOperand:
           $ref: '#/components/schemas/InboxRuleConditionOperand'
@@ -1161,147 +1281,21 @@ components:
           description: String Value
           type: string
       type: object
-    SortDirection:
-      description: Sort direction
+    InboxRuleConditionCreateArgs:
+      description: InboxRuleConditionCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxRuleConditionCreateModel'
+      type: object
+    InboxDataType:
+      description: InboxDataType
       properties: {}
       type: string
       enum:
-      - None
-      - Asc
-      - Desc
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    InboxMessageTypeSummary:
-      description: InboxMessageTypeSummary[]
-      properties:
-        inboxMessageTypeId:
-          description: Message Type ID
-          type: integer
-          format: int32
-        inboxMessageTypeName:
-          description: The name of the message type
-          type: string
-        notificationCount:
-          description: 'Populated with the number of notifications the current user has of this message type.  Only populated when '
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    InboxRuleSubscriptionUpdateResponse:
-      description: InboxRuleSubscriptionUpdateResponse
-      properties:
-        success:
-          description: Success
-          type: boolean
-      type: object
-    InboxRuleCreateModel:
-      description: Data
-      properties:
-        active:
-          description: Active
-          type: boolean
-        canEditOwnSubscription:
-          description: Can Edit Own Subscription
-          type: boolean
-        conditions:
-          description: Conditions
-          items:
-            $ref: '#/components/schemas/InboxRuleConditionCreateModel'
-          type: array
-        highPriority:
-          description: High Priority
-          type: boolean
-        inboxEmailTemplateId:
-          description: Email Template
-          type:
-          - integer
-          - 'null'
-          format: int32
-        inboxMessageTypeIds:
-          description: Inbox Message Types
-          items:
-            type: integer
-            format: int32
-          type: array
-        inboxSlackTemplateId:
-          description: Slack Template
-          type:
-          - integer
-          - 'null'
-          format: int32
-        isImmediate:
-          description: Is Immediate
-          type: boolean
-        name:
-          description: Name
-          type: string
-        sendEmail:
-          description: Send Email
-          type: boolean
-        sendSlack:
-          description: Send Slack
-          type: boolean
-      type: object
-    InboxRuleSummary:
-      description: Query results
-      properties:
-        active:
-          description: Whether or not this rule is active
-          type: boolean
-        currentUserSubscribed:
-          description: Only populated when IncludeCurrentUserSubscriptionStatus is passed as true on a rule search
-          type:
-          - boolean
-          - 'null'
-        digest:
-          description: Whether or not this rule is for a Digest that runs on a schedule.
-          type: boolean
-        inboxRuleId:
-          description: Inbox Rule ID
-          type: integer
-          format: int32
-        inboxRuleName:
-          description: The name of the rule
-          type: string
-        isSystem:
-          description: Whether or not this rule is a system rule
-          type: boolean
-        notificationTypes:
-          description: Notification Types where this rule is used
-          items:
-            type: string
-          type: array
-        usageCount:
-          description: Number of times this rule has been used in the last 7 days
-          type: integer
-          format: int32
-      type: object
-    InboxRuleActionPatchModel:
-      description: InboxRuleActionPatchModel
-      properties:
-        inboxEmailTemplateId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        inboxSlackTemplateId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        sendEmail:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        sendSlack:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-      type: object
-    InboxRuleCopyArgs:
-      description: InboxRuleCopyArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxRuleCopyModel'
-      type: object
+      - Integer
+      - DateTime
+      - String
+      - Boolean
     PagingOfInboxRuleSummary:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -1359,116 +1353,15 @@ components:
           type: integer
           format: int32
       type: object
-    InboxRuleSubscribersPatchArgs:
-      description: InboxRuleSubscribersPatchArgs
+    InboxRuleCopyModel:
+      description: Inbox Rule Copy Model
       properties:
-        data:
-          $ref: '#/components/schemas/InboxRuleSubscriberPatchModel'
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    InboxRuleSubscriberEmailUpdate:
-      description: Change the subscription for a specific email
-      properties:
-        emailAddress:
-          description: A specific email address to add / remove.
-          type: string
-        subscribe:
-          description: Passing true will subscribe this email address, passing false will remove this email address along with any rule action history
-          type: boolean
-      type: object
-    InboxRulePatchArgs:
-      description: InboxRulePatchArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxRulePatchModel'
-      type: object
-    InboxRuleConditionDetailModel:
-      description: Inbox Rule Condition
-      properties:
-        displayValue:
-          description: Display Value
-          type: string
-        inboxDataId:
-          description: Inbox Data
+        inboxRuleIdToCopy:
+          description: InboxRuleId To Copy
           type: integer
           format: int32
-        inboxDataType:
-          $ref: '#/components/schemas/InboxDataType'
-        inboxRuleConditionId:
-          description: Inbox Rule Condition Id
-          type: integer
-          format: int32
-        inboxRuleId:
-          description: Inbox Rule
-          type: integer
-          format: int32
-        inboxRuleOperand:
-          $ref: '#/components/schemas/InboxRuleConditionOperand'
-        valueBool:
-          description: Boolean Value
-          type:
-          - boolean
-          - 'null'
-        valueDateTime:
-          description: DateTime Value
-          type:
-          - string
-          - 'null'
-          format: date-time
-        valueInt:
-          description: Integer Value
-          type:
-          - integer
-          - 'null'
-          format: int32
-        valueString:
-          description: String Value
-          type: string
-      type: object
-    InboxRuleConditionCreateModel:
-      description: InboxRuleConditionCreateModel
-      properties:
-        displayValue:
-          description: Display Value
-          type: string
-        inboxDataId:
-          description: Inbox Data
-          type: integer
-          format: int32
-        inboxRuleId:
-          description: Inbox Rule
-          type: integer
-          format: int32
-        inboxRuleOperand:
-          $ref: '#/components/schemas/InboxRuleConditionOperand'
-        valueBool:
-          description: Boolean Value
-          type:
-          - boolean
-          - 'null'
-        valueDateTime:
-          description: DateTime Value
-          type:
-          - string
-          - 'null'
-          format: date-time
-        valueInt:
-          description: Integer Value
-          type:
-          - integer
-          - 'null'
-          format: int32
-        valueString:
-          description: String Value
+        name:
+          description: Name
           type: string
       type: object
     UpdateFieldValueOfInt32Array:
@@ -1484,62 +1377,95 @@ components:
             format: int32
           type: array
       type: object
-    PagingOfInboxRuleSubscriberSummary:
-      description: Specify paging and sorting options for querying records and returning results
+    InboxRuleSubscriberSummary:
+      description: A user, group, or external email that is subscribed or unsubscribed to an inbox rule
       properties:
-        batchCount:
-          description: Number of result batches available with current query options
+        displayName:
+          description: A display name for this subscriber
+          type: string
+        domainId:
+          description: Active Directory domain ID
           type: integer
           format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
+        domainName:
+          description: Active Directory Domain Name
+          type: string
+        emailAddress:
+          description: EmailAddress
+          type: string
+        groupId:
+          description: The subscribers group id.  Either an actual group or a personal group ID for a single user.
+          type:
+          - integer
+          - 'null'
           format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
+        inboxRuleAdditionalEmailId:
+          description: InboxRuleAdditionalEmailId
+          type:
+          - integer
+          - 'null'
+          format: int32
+        inboxRuleSubscribersId:
+          description: The identifier for this subscriber.  Email only subscribers will not have this ID.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        isGroup:
+          description: Is this a group or a single user
           type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
+        subscribed:
+          description: True if the user, group, or external email is subscribed.  False if the user is unsubscribed.  Groups and external emails cannot be unsubscribed as they are just removed.
           type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    InboxRuleConditionUpdateModel:
+      description: Inbox Rule Condition Update Model
+      properties:
+        displayValue:
+          description: Display Value
+          type: string
+        inboxDataId:
+          description: Inbox Data
           type: integer
           format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
+        inboxRuleConditionId:
+          description: The ID of the existing rule condition to update
+          type:
+          - integer
+          - 'null'
           format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
+        inboxRuleOperand:
+          $ref: '#/components/schemas/InboxRuleConditionOperand'
+        valueBool:
+          description: Boolean Value
+          type:
+          - boolean
+          - 'null'
+        valueDateTime:
+          description: DateTime Value
+          type:
+          - string
+          - 'null'
+          format: date-time
+        valueInt:
+          description: Integer Value
+          type:
+          - integer
+          - 'null'
           format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/InboxRuleSubscriberSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
+        valueString:
+          description: String Value
+          type: string
       type: object
     InboxRuleDetailModel:
       description: InboxRuleDetailModel
@@ -1605,33 +1531,72 @@ components:
           description: Send Slack
           type: boolean
       type: object
-    InboxRuleCopyModel:
-      description: Inbox Rule Copy Model
+    InboxRuleCopyArgs:
+      description: InboxRuleCopyArgs
       properties:
-        inboxRuleIdToCopy:
-          description: InboxRuleId To Copy
+        data:
+          $ref: '#/components/schemas/InboxRuleCopyModel'
+      type: object
+    InboxRuleActionPatchModel:
+      description: InboxRuleActionPatchModel
+      properties:
+        inboxEmailTemplateId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        inboxSlackTemplateId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        sendEmail:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        sendSlack:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+      type: object
+    InboxRuleConditionOperand:
+      description: Operand
+      properties: {}
+      type: string
+      enum:
+      - Equals
+      - NotEquals
+      - LessThan
+      - GreaterThan
+      - Regex
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
           type: integer
           format: int32
-        name:
-          description: Name
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
           type: string
       type: object
-    InboxDataType:
-      description: InboxDataType
-      properties: {}
-      type: string
-      enum:
-      - Integer
-      - DateTime
-      - String
-      - Boolean
-    ActionType:
-      description: The type of action that was performed for this log entry
-      properties: {}
-      type: string
-      enum:
-      - SendEmail
-      - SendSlack
     InboxRuleConditionUpdateArgs:
       description: InboxRuleConditionUpdateArgs
       properties:
@@ -1640,22 +1605,6 @@ components:
           items:
             $ref: '#/components/schemas/InboxRuleConditionUpdateModel'
           type: array
-      type: object
-    InboxRuleActionStatusType:
-      description: The result of the action
-      properties: {}
-      type: string
-      enum:
-      - Success
-      - Failed
-      - FailedAfterThreeAttempts
-      - InvalidEmail
-      - UnableToResolveHost
-    InboxRuleActionPatchArgs:
-      description: InboxRuleActionPatchArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxRuleActionPatchModel'
       type: object
     BadRequestResponse:
       description: Response object for invalid requests
@@ -1674,19 +1623,6 @@ components:
         modelState:
           description: An object describing validation errors
           type: object
-      type: object
-    UpdateFieldValueOfOptionalInt32:
-      description: The minimum length required for local user passwords
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type:
-          - integer
-          - 'null'
-          format: int32
       type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
@@ -1709,62 +1645,126 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    InboxRuleSubscriberSummary:
-      description: A user, group, or external email that is subscribed or unsubscribed to an inbox rule
+    InboxRuleSubscriberGroupUserUpdate:
+      description: The user/group to add or remove to the subscription.  Either UserId or GroupId should be set.  If both are set then GroupId will take precedence and UserId will be ignored.
       properties:
-        displayName:
-          description: A display name for this subscriber
+        groupId:
+          description: The group ID representing a group or an individual user
+          type:
+          - integer
+          - 'null'
+          format: int32
+        subscribe:
+          description: When true a group or user will be subscribed to this rule.  When false a group will be removed from the list.  If the this is a user then it will be removed if it is directly subscribed or it will be explicitly unsubscribed if not currently subscribed.
+          type: boolean
+        userId:
+          description: The user ID representing a an individual user
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    ActionType:
+      description: The type of action that was performed for this log entry
+      properties: {}
+      type: string
+      enum:
+      - SendEmail
+      - SendSlack
+    InboxRulePatchModel:
+      description: Data
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        canEditOwnSubscription:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        highPriority:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        inboxMessageTypes:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32Array'
+        isImmediate:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        name:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    InboxRuleConditionSummary:
+      description: Conditions
+      properties:
+        displayValue:
+          description: DisplayValue
           type: string
-        domainId:
-          description: Active Directory domain ID
+        inboxDataId:
+          description: InboxDataId
           type: integer
           format: int32
-        domainName:
-          description: Active Directory Domain Name
+        inboxDataName:
+          description: InboxDataName
           type: string
-        emailAddress:
-          description: EmailAddress
+        inboxDataType:
+          $ref: '#/components/schemas/InboxDataType'
+        inboxRuleConditionId:
+          description: InboxRuleConditionId
+          type: integer
+          format: int32
+        inboxRuleOperand:
+          $ref: '#/components/schemas/InboxRuleConditionOperand'
+        valueBool:
+          description: ValueBool
+          type:
+          - boolean
+          - 'null'
+        valueDateTime:
+          description: ValueDateTime
+          type:
+          - string
+          - 'null'
+          format: date-time
+        valueInt:
+          description: ValueInt
+          type:
+          - integer
+          - 'null'
+          format: int32
+        valueString:
+          description: ValueString
           type: string
-        groupId:
-          description: The subscribers group id.  Either an actual group or a personal group ID for a single user.
-          type:
-          - integer
-          - 'null'
-          format: int32
-        inboxRuleAdditionalEmailId:
-          description: InboxRuleAdditionalEmailId
-          type:
-          - integer
-          - 'null'
-          format: int32
-        inboxRuleSubscribersId:
-          description: The identifier for this subscriber.  Email only subscribers will not have this ID.
-          type:
-          - integer
-          - 'null'
-          format: int32
-        isGroup:
-          description: Is this a group or a single user
-          type: boolean
-        subscribed:
-          description: True if the user, group, or external email is subscribed.  False if the user is unsubscribed.  Groups and external emails cannot be unsubscribed as they are just removed.
-          type: boolean
       type: object
-    UpdateFieldValueOfBoolean:
-      description: Active
+    InboxRuleConditionCreateModel:
+      description: InboxRuleConditionCreateModel
       properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: boolean
-      type: object
-    InboxRuleCreateArgs:
-      description: InboxRuleCreateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxRuleCreateModel'
+        displayValue:
+          description: Display Value
+          type: string
+        inboxDataId:
+          description: Inbox Data
+          type: integer
+          format: int32
+        inboxRuleId:
+          description: Inbox Rule
+          type: integer
+          format: int32
+        inboxRuleOperand:
+          $ref: '#/components/schemas/InboxRuleConditionOperand'
+        valueBool:
+          description: Boolean Value
+          type:
+          - boolean
+          - 'null'
+        valueDateTime:
+          description: DateTime Value
+          type:
+          - string
+          - 'null'
+          format: date-time
+        valueInt:
+          description: Integer Value
+          type:
+          - integer
+          - 'null'
+          format: int32
+        valueString:
+          description: String Value
+          type: string
       type: object
   securitySchemes:
     BearerToken:

@@ -1014,41 +1014,24 @@ paths:
       deprecated: false
 components:
   schemas:
-    ProxyEngineViewModel:
-      description: Engines
+    ProxyClientSummary:
+      description: Query results
       properties:
-        bindIpAddress:
-          description: BindIpAddress
-          type: string
-        engineId:
-          description: EngineId
+        clientId:
+          description: ClientId
           type: integer
           format: int32
-        friendlyName:
-          description: FriendlyName
+        ipAddress:
+          description: IpAddress
           type: string
-        publicHost:
-          description: PublicHost
-          type: string
-        siteName:
-          description: SiteName
-          type: string
-      type: object
-    TerminalAuthenticateResult:
-      description: AuthenticateResult
-      properties: {}
-      type: string
-      enum:
-      - Unknown
-      - Successful
-      - Failed
-      - Refused
-    GenerateSshHostKeyArgs:
-      description: GenerateSshHostKeyArgs
-      properties:
-        algorithm:
-          description: The Algorithm used for generating the host key
-          type: string
+        lastConnectionDate:
+          description: LastConnectionDate
+          type:
+          - string
+          - 'null'
+          format: date-time
+        terminalClientType:
+          $ref: '#/components/schemas/ProxyClientType'
       type: object
     PagingOfProxyClientHistorySummaryAndSshProxyClientHistoryFilterQuery:
       description: Specify filtering, paging, sorting options for querying records and returning results
@@ -1109,28 +1092,6 @@ components:
           type: integer
           format: int32
       type: object
-    ProxyExplanationsViewModel:
-      description: ProxyExplanationsViewModel
-      properties:
-        rdpProxyExplanation:
-          description: RdpProxyExplanation
-          type: string
-        sshProxyExplanation:
-          $ref: '#/components/schemas/DictionaryOfStringAndString'
-        sshTerminalBlockListExplanation:
-          description: SshTerminalBlockListExplanation
-          type: string
-        sshTerminalBlockListOverrideExplanation:
-          description: SshTerminalBlockListOverrideExplanation
-          type: string
-        sshTerminalExplanation:
-          description: SshTerminalExplanation
-          type: string
-      type: object
-    DictionaryOfStringAndString:
-      description: SshProxyExplanation
-      properties: {}
-      type: object
     ProxyNodeViewModel:
       description: Nodes
       properties:
@@ -1151,31 +1112,48 @@ components:
           description: PublicHost
           type: string
       type: object
-    Severity:
-      description: Error severity level
+    TerminalAuthenticateResult:
+      description: AuthenticateResult
+      properties: {}
+      type: string
+      enum:
+      - Unknown
+      - Successful
+      - Failed
+      - Refused
+    SshProxyClientHistoryFilterQuery:
+      description: Additional query options
+      properties:
+        authenticateResult:
+          description: AuthenticateResult
+          type: string
+        endDate:
+          description: EndDate
+          type: string
+        engineIdentityGuid:
+          description: EngineIdentityGuid
+          type: string
+        ipAddress:
+          description: IpAddress
+          type: string
+        startDate:
+          description: StartDate
+          type: string
+      type: object
+    SortDirection:
+      description: Sort direction
       properties: {}
       type: string
       enum:
       - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
+      - Asc
+      - Desc
+    ProxyingStateModel:
+      description: ProxyingStateModel
       properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
+        showLogs:
+          description: If the logs should be shown
+          type: boolean
       type: object
     ProxyClientOverrideSummary:
       description: ProxyClientOverrideSummary
@@ -1190,6 +1168,14 @@ components:
         terminalClientType:
           $ref: '#/components/schemas/ProxyClientType'
       type: object
+    ProxyClientType:
+      description: TerminalClientType
+      properties: {}
+      type: string
+      enum:
+      - Unknown
+      - AllowList
+      - BlockList
     SshProxyClientsFilterQuery:
       description: Additional query options
       properties:
@@ -1201,6 +1187,409 @@ components:
           type:
           - string
           - 'null'
+      type: object
+    ProxySiteViewModel:
+      description: Sites
+      properties:
+        enableRdpProxy:
+          description: EnableRdpProxy
+          type:
+          - boolean
+          - 'null'
+        enableSshProxy:
+          description: EnableSshProxy
+          type:
+          - boolean
+          - 'null'
+        rdpProxyPort:
+          description: RdpProxyPort
+          type:
+          - integer
+          - 'null'
+          format: int32
+        rdpProxyPortInherited:
+          description: RdpProxyPortInherited
+          type:
+          - boolean
+          - 'null'
+        siteId:
+          description: SiteId
+          type: integer
+          format: int32
+        siteName:
+          description: SiteName
+          type: string
+        sshJumpboxAvailablePortRange:
+          description: SshJumpboxAvailablePortRange
+          type: string
+        sshProxyPort:
+          description: SshProxyPort
+          type:
+          - integer
+          - 'null'
+          format: int32
+        sshProxyPortInherited:
+          description: SshProxyPortInherited
+          type:
+          - boolean
+          - 'null'
+      type: object
+    GenerateRdpCertificateArgs:
+      description: GenerateRdpCertificateArgs
+      properties:
+        dnsName:
+          description: The DNS name to use when generating the self-signed certificate
+          type: string
+      type: object
+    PagingOfProxyClientSummaryAndSshProxyClientsFilterQuery:
+      description: Specify filtering, paging, sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        filter:
+          $ref: '#/components/schemas/SshProxyClientsFilterQuery'
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/ProxyClientSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    DeletedModel:
+      description: Information about an object that was deleted
+      properties:
+        id:
+          description: ID of the deleted object
+          type: integer
+          format: int32
+        objectType:
+          description: Type of the deleted object
+          type: string
+        responseCodes:
+          description: List of response codes from the delete operation
+          items:
+            type: string
+          type: array
+      type: object
+    GenerateSshHostKeyArgs:
+      description: GenerateSshHostKeyArgs
+      properties:
+        algorithm:
+          description: The Algorithm used for generating the host key
+          type: string
+      type: object
+    RdpProxyConfigurationViewModel:
+      description: RdpProxyConfigurationViewModel
+      properties:
+        allowSiteSelectionForActiveDirectoryAccounts:
+          description: Allows users to select a site when launching or generating proxy credentials for a RDP proxied secret
+          type:
+          - boolean
+          - 'null'
+        daysToKeepOperationalLogs:
+          description: The number of days to store RDP proxy logs before they are rolled over
+          type:
+          - integer
+          - 'null'
+          format: int32
+        enableRdpProxy:
+          description: Whether or not to enable the RDP proxy
+          type:
+          - boolean
+          - 'null'
+        enableRemoteHostValidation:
+          description: Whether or not to enforce certificate validation on remote hosts that the proxy connects to
+          type:
+          - boolean
+          - 'null'
+        isCloud:
+          description: IsCloud
+          type: boolean
+        proxyNewSecretsByDefault:
+          description: Whether or not new RDP-enabled secrets should be created with 'Proxy Enabled' set
+          type:
+          - boolean
+          - 'null'
+        rdpProxyPort:
+          description: The port that the RDP proxy will run on
+          type:
+          - integer
+          - 'null'
+          format: int32
+        rdpServerCertificate:
+          $ref: '#/components/schemas/RdpProxyCertificateViewModel'
+        rdpServerCertificateMultipart:
+          description: 'The certificate that is server when connections begin to the RDP proxy (used "Content-Type: multipart/form-data" only)'
+          type: string
+          format: binary
+        rdpServerCertificateMultipartPassword:
+          description: 'The password used to protect the certificate (only used for updating with "Content-Type: multipart/form-data" only)'
+          type: string
+      type: object
+    ProxyAuditModel:
+      description: Query results
+      properties:
+        action:
+          description: Action
+          type: string
+        dateRecorded:
+          description: DateRecorded
+          type: string
+          format: date-time
+        displayName:
+          description: DisplayName
+          type: string
+        ipAddress:
+          description: IpAddress
+          type: string
+        notes:
+          description: Notes
+          type: string
+      type: object
+    PagingOfProxyAuditModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/ProxyAuditModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    RdpProxyCertificateViewModel:
+      description: 'The certificate that is server when connections begin to the RDP proxy (used "Content-Type: application/json" only)'
+      properties:
+        rdpServerCertificate:
+          description: The certificate (x509/pfx) that is served to users connecting to the RDP proxy.
+          type: string
+          format: binary
+        rdpServerCertificateFileName:
+          description: The name of the RDP server certificate file
+          type: string
+        rdpServerCertificatePassword:
+          description: The password used to protect the certificate (only used for updating)
+          type: string
+      type: object
+    ProxyClientHistorySummary:
+      description: Query results
+      properties:
+        authenticateResult:
+          $ref: '#/components/schemas/TerminalAuthenticateResult'
+        createdDate:
+          description: CreatedDate
+          type: string
+          format: date-time
+        engineIdentityGuid:
+          description: EngineIdentityGuid
+          type: string
+        ipAddress:
+          description: IpAddress
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    ProxyExplanationsViewModel:
+      description: ProxyExplanationsViewModel
+      properties:
+        rdpProxyExplanation:
+          description: RdpProxyExplanation
+          type: string
+        sshProxyExplanation:
+          $ref: '#/components/schemas/DictionaryOfStringAndString'
+        sshTerminalBlockListExplanation:
+          description: SshTerminalBlockListExplanation
+          type: string
+        sshTerminalBlockListOverrideExplanation:
+          description: SshTerminalBlockListOverrideExplanation
+          type: string
+        sshTerminalExplanation:
+          description: SshTerminalExplanation
+          type: string
+      type: object
+    ProxyEndpointsViewModel:
+      description: ProxyEndpointsViewModel
+      properties:
+        defaultRdpProxyPort:
+          description: DefaultRdpProxyPort
+          type: integer
+          format: int32
+        defaultSshProxyPort:
+          description: DefaultSshProxyPort
+          type: integer
+          format: int32
+        engines:
+          description: Engines
+          items:
+            $ref: '#/components/schemas/ProxyEngineViewModel'
+          type: array
+        nodes:
+          description: Nodes
+          items:
+            $ref: '#/components/schemas/ProxyNodeViewModel'
+          type: array
+        rdpProxyEnabled:
+          description: RdpProxyEnabled
+          type: boolean
+        sites:
+          description: Sites
+          items:
+            $ref: '#/components/schemas/ProxySiteViewModel'
+          type: array
+        sshProxyEnabled:
+          description: SshProxyEnabled
+          type: boolean
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    DictionaryOfStringAndString:
+      description: SshProxyExplanation
+      properties: {}
       type: object
     SshProxyConfigurationViewModel:
       description: SshProxyConfigurationViewModel
@@ -1323,430 +1712,41 @@ components:
           - 'null'
           format: int32
       type: object
-    PagingOfProxyAuditModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/ProxyAuditModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    DeletedModel:
-      description: Information about an object that was deleted
-      properties:
-        id:
-          description: ID of the deleted object
-          type: integer
-          format: int32
-        objectType:
-          description: Type of the deleted object
-          type: string
-        responseCodes:
-          description: List of response codes from the delete operation
-          items:
-            type: string
-          type: array
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    RdpProxyConfigurationViewModel:
-      description: RdpProxyConfigurationViewModel
-      properties:
-        allowSiteSelectionForActiveDirectoryAccounts:
-          description: Allows users to select a site when launching or generating proxy credentials for a RDP proxied secret
-          type:
-          - boolean
-          - 'null'
-        daysToKeepOperationalLogs:
-          description: The number of days to store RDP proxy logs before they are rolled over
-          type:
-          - integer
-          - 'null'
-          format: int32
-        enableRdpProxy:
-          description: Whether or not to enable the RDP proxy
-          type:
-          - boolean
-          - 'null'
-        enableRemoteHostValidation:
-          description: Whether or not to enforce certificate validation on remote hosts that the proxy connects to
-          type:
-          - boolean
-          - 'null'
-        isCloud:
-          description: IsCloud
-          type: boolean
-        proxyNewSecretsByDefault:
-          description: Whether or not new RDP-enabled secrets should be created with 'Proxy Enabled' set
-          type:
-          - boolean
-          - 'null'
-        rdpProxyPort:
-          description: The port that the RDP proxy will run on
-          type:
-          - integer
-          - 'null'
-          format: int32
-        rdpServerCertificate:
-          $ref: '#/components/schemas/RdpProxyCertificateViewModel'
-        rdpServerCertificateMultipart:
-          description: 'The certificate that is server when connections begin to the RDP proxy (used "Content-Type: multipart/form-data" only)'
-          type: string
-          format: binary
-        rdpServerCertificateMultipartPassword:
-          description: 'The password used to protect the certificate (only used for updating with "Content-Type: multipart/form-data" only)'
-          type: string
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
       required:
-      - message
+      - name
+      - direction
       properties:
-        message:
-          description: Error message
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
           type: string
-      type: object
-    GenerateRdpCertificateArgs:
-      description: GenerateRdpCertificateArgs
-      properties:
-        dnsName:
-          description: The DNS name to use when generating the self-signed certificate
-          type: string
-      type: object
-    RdpProxyCertificateViewModel:
-      description: 'The certificate that is server when connections begin to the RDP proxy (used "Content-Type: application/json" only)'
-      properties:
-        rdpServerCertificate:
-          description: The certificate (x509/pfx) that is served to users connecting to the RDP proxy.
-          type: string
-          format: binary
-        rdpServerCertificateFileName:
-          description: The name of the RDP server certificate file
-          type: string
-        rdpServerCertificatePassword:
-          description: The password used to protect the certificate (only used for updating)
-          type: string
-      type: object
-    ProxyAuditModel:
-      description: Query results
-      properties:
-        action:
-          description: Action
-          type: string
-        dateRecorded:
-          description: DateRecorded
-          type: string
-          format: date-time
-        displayName:
-          description: DisplayName
-          type: string
-        ipAddress:
-          description: IpAddress
-          type: string
-        notes:
-          description: Notes
-          type: string
-      type: object
-    ProxyClientType:
-      description: TerminalClientType
-      properties: {}
-      type: string
-      enum:
-      - Unknown
-      - AllowList
-      - BlockList
-    SshProxyClientHistoryFilterQuery:
-      description: Additional query options
-      properties:
-        authenticateResult:
-          description: AuthenticateResult
-          type: string
-        endDate:
-          description: EndDate
-          type: string
-        engineIdentityGuid:
-          description: EngineIdentityGuid
-          type: string
-        ipAddress:
-          description: IpAddress
-          type: string
-        startDate:
-          description: StartDate
-          type: string
-      type: object
-    ProxySiteViewModel:
-      description: Sites
-      properties:
-        enableRdpProxy:
-          description: EnableRdpProxy
-          type:
-          - boolean
-          - 'null'
-        enableSshProxy:
-          description: EnableSshProxy
-          type:
-          - boolean
-          - 'null'
-        rdpProxyPort:
-          description: RdpProxyPort
-          type:
-          - integer
-          - 'null'
-          format: int32
-        rdpProxyPortInherited:
-          description: RdpProxyPortInherited
-          type:
-          - boolean
-          - 'null'
-        siteId:
-          description: SiteId
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
           type: integer
           format: int32
+      type: object
+    ProxyEngineViewModel:
+      description: Engines
+      properties:
+        bindIpAddress:
+          description: BindIpAddress
+          type: string
+        engineId:
+          description: EngineId
+          type: integer
+          format: int32
+        friendlyName:
+          description: FriendlyName
+          type: string
+        publicHost:
+          description: PublicHost
+          type: string
         siteName:
           description: SiteName
           type: string
-        sshJumpboxAvailablePortRange:
-          description: SshJumpboxAvailablePortRange
-          type: string
-        sshProxyPort:
-          description: SshProxyPort
-          type:
-          - integer
-          - 'null'
-          format: int32
-        sshProxyPortInherited:
-          description: SshProxyPortInherited
-          type:
-          - boolean
-          - 'null'
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    ProxyClientHistorySummary:
-      description: Query results
-      properties:
-        authenticateResult:
-          $ref: '#/components/schemas/TerminalAuthenticateResult'
-        createdDate:
-          description: CreatedDate
-          type: string
-          format: date-time
-        engineIdentityGuid:
-          description: EngineIdentityGuid
-          type: string
-        ipAddress:
-          description: IpAddress
-          type: string
-      type: object
-    ProxyEndpointsViewModel:
-      description: ProxyEndpointsViewModel
-      properties:
-        defaultRdpProxyPort:
-          description: DefaultRdpProxyPort
-          type: integer
-          format: int32
-        defaultSshProxyPort:
-          description: DefaultSshProxyPort
-          type: integer
-          format: int32
-        engines:
-          description: Engines
-          items:
-            $ref: '#/components/schemas/ProxyEngineViewModel'
-          type: array
-        nodes:
-          description: Nodes
-          items:
-            $ref: '#/components/schemas/ProxyNodeViewModel'
-          type: array
-        rdpProxyEnabled:
-          description: RdpProxyEnabled
-          type: boolean
-        sites:
-          description: Sites
-          items:
-            $ref: '#/components/schemas/ProxySiteViewModel'
-          type: array
-        sshProxyEnabled:
-          description: SshProxyEnabled
-          type: boolean
-      type: object
-    PagingOfProxyClientSummaryAndSshProxyClientsFilterQuery:
-      description: Specify filtering, paging, sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        filter:
-          $ref: '#/components/schemas/SshProxyClientsFilterQuery'
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/ProxyClientSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    ProxyingStateModel:
-      description: ProxyingStateModel
-      properties:
-        showLogs:
-          description: If the logs should be shown
-          type: boolean
-      type: object
-    ProxyClientSummary:
-      description: Query results
-      properties:
-        clientId:
-          description: ClientId
-          type: integer
-          format: int32
-        ipAddress:
-          description: IpAddress
-          type: string
-        lastConnectionDate:
-          description: LastConnectionDate
-          type:
-          - string
-          - 'null'
-          format: date-time
-        terminalClientType:
-          $ref: '#/components/schemas/ProxyClientType'
       type: object
   requestBodies:
     ProxyClientOverrideSummary:

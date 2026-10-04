@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-pba-historical-import-args-schema.json",
+  "title": "PbaHistoricalImportArgs",
+  "description": "PbaHistoricalImportArgs",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-pbaconfiguration-api-openapi.yml#/components/schemas/PbaHistoricalImportArgs",
+  "properties": {
+    "endDate": {
+      "$ref": "#/$defs/OptionalDateTimeOffset"
+    },
+    "processImport": {
+      "description": "ProcessImport",
+      "type": "boolean"
+    },
+    "startDate": {
+      "$ref": "#/$defs/OptionalDateTimeOffset"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "DayOfWeek": {
+      "description": "DayOfWeek",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ]
+    },
+    "OptionalDateTimeOffset": {
+      "description": "CreationDate",
+      "properties": {
+        "date": {
+          "description": "Date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateTime": {
+          "description": "DateTime",
+          "type": "string",
+          "format": "date-time"
+        },
+        "day": {
+          "description": "Day",
+          "type": "integer",
+          "format": "int32"
+        },
+        "dayOfWeek": {
+          "$ref": "#/$defs/DayOfWeek"
+        },
+        "dayOfYear": {
+          "description": "DayOfYear",
+          "type": "integer",
+          "format": "int32"
+        },
+        "hour": {
+          "description": "Hour",
+          "type": "integer",
+          "format": "int32"
+        },
+        "localDateTime": {
+          "description": "LocalDateTime",
+          "type": "string",
+          "format": "date-time"
+        },
+        "millisecond": {
+          "description": "Millisecond",
+          "type": "integer",
+          "format": "int32"
+        },
+        "minute": {
+          "description": "Minute",
+          "type": "integer",
+          "format": "int32"
+        },
+        "month": {
+          "description": "Month",
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "description": "Offset",
+          "type": "string",
+          "format": "time-span"
+        },
+        "second": {
+          "description": "Second",
+          "type": "integer",
+          "format": "int32"
+        },
+        "ticks": {
+          "description": "Ticks",
+          "type": "integer",
+          "format": "int64"
+        },
+        "timeOfDay": {
+          "description": "TimeOfDay",
+          "type": "string",
+          "format": "time-span"
+        },
+        "utcDateTime": {
+          "description": "UtcDateTime",
+          "type": "string",
+          "format": "date-time"
+        },
+        "utcTicks": {
+          "description": "UtcTicks",
+          "type": "integer",
+          "format": "int64"
+        },
+        "year": {
+          "description": "Year",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

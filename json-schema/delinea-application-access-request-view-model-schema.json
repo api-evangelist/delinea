@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-application-access-request-view-model-schema.json",
+  "title": "ApplicationAccessRequestViewModel",
+  "description": "Query results",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-applicationrequest-api-openapi.yml#/components/schemas/ApplicationAccessRequestViewModel",
+  "properties": {
+    "createdDate": {
+      "description": "CreatedDate",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deviceId": {
+      "description": "DeviceId",
+      "type": "integer",
+      "format": "int32"
+    },
+    "requestingApplicationUsername": {
+      "description": "RequestingApplicationUsername",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/ApplicationAccessStatusRequestType"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ApplicationAccessStatusRequestType": {
+      "description": "Status",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Approved",
+        "Pending",
+        "Denied"
+      ]
+    }
+  }
+}

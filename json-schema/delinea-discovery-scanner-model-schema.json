@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-discovery-scanner-model-schema.json",
+  "title": "DiscoveryScannerModel",
+  "description": "Scanner Model",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-discovery-api-openapi.yml#/components/schemas/DiscoveryScannerModel",
+  "properties": {
+    "actions": {
+      "$ref": "#/$defs/DiscoveryScannerActionsModel"
+    },
+    "baseScannerId": {
+      "description": "The base scanner ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "baseScannerName": {
+      "description": "The name of the base scanner",
+      "type": "string"
+    },
+    "commandSetId": {
+      "description": "The specific command set ID if this is an SSH scanner",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "commandSetName": {
+      "description": "The specific command set ID if this is an SSH scanner",
+      "type": "string"
+    },
+    "concurrencyId": {
+      "description": "Globally unique ID for this scan template",
+      "type": "string"
+    },
+    "dependencyItemScannerDisplayName": {
+      "description": "A localized version of the scanner item name",
+      "type": "string"
+    },
+    "discoveryItemScannerDisplayDescription": {
+      "description": "A localized description for this scanner",
+      "type": "string"
+    },
+    "discoveryItemScannerDisplayName": {
+      "description": "A localized version of the scanner name",
+      "type": "string"
+    },
+    "inputScanItemTemplateId": {
+      "description": "The ID of the input scan template",
+      "type": "integer",
+      "format": "int32"
+    },
+    "inputTemplateDisplayName": {
+      "description": "A localized name of the input template",
+      "type": "string"
+    },
+    "inputTemplateName": {
+      "description": "The name of the input scan template",
+      "type": "string"
+    },
+    "isActive": {
+      "description": "Indicates if this scanner is active",
+      "type": "boolean"
+    },
+    "isInUse": {
+      "description": "Indicates if this scanner is used in any discover source scanner flows",
+      "type": "boolean"
+    },
+    "itemScannerDescription": {
+      "description": "The description of the scanner",
+      "type": "string"
+    },
+    "itemScannerId": {
+      "description": "Unique ID for this scanner",
+      "type": "integer",
+      "format": "int32"
+    },
+    "itemScannerName": {
+      "description": "The name of the scanner",
+      "type": "string"
+    },
+    "outputScanItemTemplateId": {
+      "description": "The ID of the output scan template",
+      "type": "integer",
+      "format": "int32"
+    },
+    "outputTemplateDisplayName": {
+      "description": "A localized name of the output template",
+      "type": "string"
+    },
+    "outputTemplateName": {
+      "description": "The name of the output scan template",
+      "type": "string"
+    },
+    "scannerId": {
+      "description": "The scanner ID for this scanner",
+      "type": "integer",
+      "format": "int32"
+    },
+    "scannerItems": {
+      "description": "All of the setting values for this scanner",
+      "items": {
+        "$ref": "#/$defs/DiscoveryScannerDetailItemModel"
+      },
+      "type": "array"
+    },
+    "scanTypeId": {
+      "description": "The scan type (1, 2, 3, 4)",
+      "type": "integer",
+      "format": "int32"
+    },
+    "scriptArguments": {
+      "description": "Any args that will be passed to the PS scanner script",
+      "type": "string"
+    },
+    "scriptId": {
+      "description": "If this is a PS scanner this is the associated script",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "scriptName": {
+      "description": "If this is a PS scanner this is the associated script name",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "DiscoveryScannerActionsModel": {
+      "description": "Defines the actions that the current user can perform on the scanner",
+      "properties": {
+        "canEdit": {
+          "description": "Can the current user edit this scanner",
+          "type": "boolean"
+        },
+        "canEditInputTemplate": {
+          "description": "Can the current user change the input template",
+          "type": "boolean"
+        },
+        "canEditOutputTemplate": {
+          "description": "Can the current user change the output template",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryScannerDetailItemModel": {
+      "description": "The scanner settings for this scanner on this discovery source",
+      "properties": {
+        "determinesAuthentication": {
+          "description": "DeterminesAuthentication",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "DisplayName",
+          "type": "string"
+        },
+        "dropDownOptions": {
+          "description": "DropDownOptions",
+          "items": {
+            "$ref": "#/$defs/ViewFieldDropDownOption"
+          },
+          "type": "array"
+        },
+        "editable": {
+          "description": "Editable",
+          "type": "boolean"
+        },
+        "fieldType": {
+          "description": "FieldType",
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "regexValidation": {
+          "description": "RegexValidation",
+          "type": "string"
+        },
+        "tooltip": {
+          "description": "Tooltip",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        },
+        "visible": {
+          "description": "Visible",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldDropDownOption": {
+      "description": "DropDownOptions",
+      "properties": {
+        "fieldDisplay": {
+          "description": "FieldDisplay",
+          "type": "string"
+        },
+        "fieldValue": {
+          "description": "FieldValue",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

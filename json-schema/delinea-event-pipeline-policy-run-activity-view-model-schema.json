@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-event-pipeline-policy-run-activity-view-model-schema.json",
+  "title": "EventPipelinePolicyRunActivityViewModel",
+  "description": "EventPipelinePolicyRunActivityViewModel[]",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-eventpipelinepolicy-api-openapi.yml#/components/schemas/EventPipelinePolicyRunActivityViewModel",
+  "properties": {
+    "duration": {
+      "description": "Duration",
+      "type": "string"
+    },
+    "endDateTime": {
+      "description": "EndDateTime",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "eventAction": {
+      "description": "EventAction",
+      "type": "string"
+    },
+    "eventEntityType": {
+      "description": "EventEntityType",
+      "type": "string"
+    },
+    "eventPipelineDescription": {
+      "description": "EventPipelineDescription",
+      "type": "string"
+    },
+    "eventPipelineId": {
+      "description": "EventPipelineId",
+      "type": "integer",
+      "format": "int32"
+    },
+    "eventPipelineName": {
+      "description": "EventPipelineName",
+      "type": "string"
+    },
+    "eventPipelinePolicyRunId": {
+      "description": "EventPipelinePolicyRunId",
+      "type": "string",
+      "format": "uuid"
+    },
+    "eventPipelineTaskDescription": {
+      "description": "EventPipelineTaskDescription",
+      "type": "string"
+    },
+    "eventPipelineTaskId": {
+      "description": "EventPipelineTaskId",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "eventPipelineTaskName": {
+      "description": "EventPipelineTaskName",
+      "type": "string"
+    },
+    "itemId": {
+      "description": "ItemId",
+      "type": "integer",
+      "format": "int32"
+    },
+    "itemName": {
+      "description": "ItemName",
+      "type": "string"
+    },
+    "notes": {
+      "description": "Notes",
+      "type": "string"
+    },
+    "queuedDateTime": {
+      "description": "QueuedDateTime",
+      "type": "string",
+      "format": "date-time"
+    },
+    "runOrder": {
+      "description": "RunOrder",
+      "type": "integer",
+      "format": "int32"
+    },
+    "startDateTime": {
+      "description": "StartDateTime",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "status": {
+      "$ref": "#/$defs/EventPipelineStatus"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "EventPipelineStatus": {
+      "description": "Status",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Failed",
+        "Success",
+        "Skipped",
+        "Processing",
+        "Pending",
+        "Scheduled"
+      ]
+    }
+  }
+}

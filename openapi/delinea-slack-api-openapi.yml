@@ -187,11 +187,50 @@ paths:
       deprecated: false
 components:
   schemas:
-    SlackConfigurationUpdateArgsV2:
-      description: SlackConfigurationUpdateArgsV2
+    SlackResponse:
+      description: SlackResponse
       properties:
-        data:
-          $ref: '#/components/schemas/SlackConfigurationUpdateModelV2'
+        error:
+          description: error
+          type: string
+        ok:
+          description: ok
+          type: boolean
+        response_metadata:
+          $ref: '#/components/schemas/SlackResponseMetadata'
+        warning:
+          description: warning
+          type: string
+      type: object
+    SlackResponseMetadata:
+      description: response_metadata
+      properties:
+        messages:
+          description: messages
+          items:
+            type: string
+          type: array
+        warnings:
+          description: warnings
+          items:
+            type: string
+          type: array
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    SlackConfigurationTestResultModel:
+      description: SlackConfigurationTestResultModel
+      properties:
+        success:
+          description: Success
+          type: boolean
       type: object
     UpdateFieldValueOfString:
       description: Description
@@ -203,12 +242,27 @@ components:
           description: Value
           type: string
       type: object
-    SlackConfigurationTestResultModel:
-      description: SlackConfigurationTestResultModel
+    SlackConfigurationModelV2:
+      description: Slack Configuration
       properties:
-        success:
-          description: Success
+        appId:
+          description: Id of App
+          type: string
+        botToken:
+          description: Bot Token
+          type: string
+        currentUserHasSlackId:
+          description: CurrentUserHasSlackId
           type: boolean
+        inboxNotificationsEnabled:
+          description: Enable inbox notifications in Slack
+          type: boolean
+        secretInteractionsEnabled:
+          description: Enable secret notifications and interactions with Slack
+          type: boolean
+        signatureKey:
+          description: Signature Key
+          type: string
       type: object
     BadRequestResponse:
       description: Response object for invalid requests
@@ -249,28 +303,6 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    SlackConfigurationModelV2:
-      description: Slack Configuration
-      properties:
-        appId:
-          description: Id of App
-          type: string
-        botToken:
-          description: Bot Token
-          type: string
-        currentUserHasSlackId:
-          description: CurrentUserHasSlackId
-          type: boolean
-        inboxNotificationsEnabled:
-          description: Enable inbox notifications in Slack
-          type: boolean
-        secretInteractionsEnabled:
-          description: Enable secret notifications and interactions with Slack
-          type: boolean
-        signatureKey:
-          description: Signature Key
-          type: string
-      type: object
     SlackConfigurationUpdateModelV2:
       description: Data
       properties:
@@ -285,43 +317,11 @@ components:
         signatureKey:
           $ref: '#/components/schemas/UpdateFieldValueOfString'
       type: object
-    SlackResponse:
-      description: SlackResponse
+    SlackConfigurationUpdateArgsV2:
+      description: SlackConfigurationUpdateArgsV2
       properties:
-        error:
-          description: error
-          type: string
-        ok:
-          description: ok
-          type: boolean
-        response_metadata:
-          $ref: '#/components/schemas/SlackResponseMetadata'
-        warning:
-          description: warning
-          type: string
-      type: object
-    SlackResponseMetadata:
-      description: response_metadata
-      properties:
-        messages:
-          description: messages
-          items:
-            type: string
-          type: array
-        warnings:
-          description: warnings
-          items:
-            type: string
-          type: array
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
+        data:
+          $ref: '#/components/schemas/SlackConfigurationUpdateModelV2'
       type: object
     UpdateFieldValueOfBoolean:
       description: Active

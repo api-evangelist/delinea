@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-paging-of-configuration-advanced-summary-schema.json",
+  "title": "PagingOfConfigurationAdvancedSummary",
+  "description": "Specify paging and sorting options for querying records and returning results",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-advancedconfigsettings-api-openapi.yml#/components/schemas/PagingOfConfigurationAdvancedSummary",
+  "properties": {
+    "batchCount": {
+      "description": "Number of result batches available with current query options",
+      "type": "integer",
+      "format": "int32"
+    },
+    "currentPage": {
+      "description": "Index of current result page",
+      "type": "integer",
+      "format": "int32"
+    },
+    "hasNext": {
+      "description": "Whether there are any results in additional pages",
+      "type": "boolean"
+    },
+    "hasPrev": {
+      "description": "Whether there are any results in previous pages",
+      "type": "boolean"
+    },
+    "nextSkip": {
+      "description": "Correct value of 'skip' for the next page of results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "pageCount": {
+      "description": "Number of result pages available with current query options",
+      "type": "integer",
+      "format": "int32"
+    },
+    "prevSkip": {
+      "description": "Correct value of 'skip' for the previous page of results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "records": {
+      "description": "Query results",
+      "items": {
+        "$ref": "#/$defs/ConfigurationAdvancedSummary"
+      },
+      "type": "array"
+    },
+    "severity": {
+      "$ref": "#/$defs/Severity"
+    },
+    "skip": {
+      "description": "Number of records to skip before taking results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "sortBy": {
+      "description": "List of sort properties",
+      "items": {
+        "$ref": "#/$defs/Sort"
+      },
+      "type": "array"
+    },
+    "success": {
+      "description": "Whether the query executed successfully",
+      "type": "boolean"
+    },
+    "take": {
+      "description": "Maximum number of records to include in results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "total": {
+      "description": "Total number of results available",
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ConfigurationAdvancedSummary": {
+      "description": "Advanced Configuration Setting Summary",
+      "properties": {
+        "advancedSettingId": {
+          "description": "Advanced Setting Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingName": {
+          "description": "Advanced Setting Name",
+          "type": "string"
+        },
+        "typeName": {
+          "description": "Type Name",
+          "type": "string"
+        },
+        "value": {
+          "description": "Advanced Setting Value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Severity": {
+      "description": "Error severity level",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Retry",
+        "Warn",
+        "Critical",
+        "Fatal"
+      ]
+    },
+    "Sort": {
+      "description": "Sort options. Multiple sort options can be provided in the query string.",
+      "required": [
+        "name",
+        "direction"
+      ],
+      "properties": {
+        "direction": {
+          "$ref": "#/$defs/SortDirection"
+        },
+        "name": {
+          "description": "Sort field name",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Priority index. Sorts with lower values are executed earlier",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "SortDirection": {
+      "description": "Sort direction",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Asc",
+        "Desc"
+      ]
+    }
+  }
+}

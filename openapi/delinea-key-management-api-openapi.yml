@@ -356,6 +356,119 @@ paths:
       deprecated: false
 components:
   schemas:
+    MasterEncryptionKeyRotationInfoAuditViewModel:
+      description: Query results
+      properties:
+        action:
+          description: Action
+          type: string
+        currentStatus:
+          $ref: '#/components/schemas/MasterEncryptionKeyRotationStatus'
+        date:
+          description: Date
+          type: string
+          format: date-time
+        displayName:
+          description: DisplayName
+          type: string
+        formattedDate:
+          description: FormattedDate
+          type: string
+        masterEncryptionKeyRotationInfoAuditId:
+          description: MasterEncryptionKeyRotationInfoAuditId
+          type: integer
+          format: int32
+        masterEncryptionKeyRotationInfoId:
+          description: MasterEncryptionKeyRotationInfoId
+          type: integer
+          format: int32
+        notes:
+          description: Notes
+          type: string
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+        userName:
+          description: UserName
+          type: string
+      type: object
+    MasterEncryptionKeyRotationStatus:
+      description: CurrentStatus
+      properties: {}
+      type: string
+      enum:
+      - NeverRun
+      - RotationRequested
+      - KeyRotationStarted
+      - KeyRotationCompleted
+      - PendingRestart
+      - MarkDataStarted
+      - MarkDataCompleted
+      - DataRotationStarted
+      - DataRotationCompleted
+      - SessionDataRotationStarted
+      - SessionDataRotationCompleted
+      - ProcessCompletedWithErrorsBeforeRotation
+      - ProcessFailedAfterRotation
+    MEKRotationInfoModel:
+      description: RotationInfo
+      properties:
+        lastEndDateUtc:
+          description: LastEndDateUtc
+          type:
+          - string
+          - 'null'
+          format: date-time
+        startedDateUtc:
+          description: StartedDateUtc
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          description: Status
+          type: string
+        statusUpdatedDateUtc:
+          description: StatusUpdatedDateUtc
+          type:
+          - string
+          - 'null'
+          format: date-time
+        statusValue:
+          description: StatusValue
+          type: integer
+          format: int32
+      type: object
+    MEKRotationProcessStateTypes:
+      description: ProcessState
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Completed
+      - Pending
+      - Running
+      - Retry
+      - Failed
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
     KeyManagementConfigUpdateArgs:
       description: KeyManagementConfigUpdateArgs
       properties:
@@ -391,16 +504,31 @@ components:
           type: integer
           format: int32
       type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
     MasterEncryptionKeyRotationInfoAuditUserViewModel:
       description: MasterEncryptionKeyRotationInfoAuditUserViewModel[]
       properties:
@@ -430,6 +558,33 @@ components:
           description: An object describing validation errors
           type: object
       type: object
+    KeyManagementConfigModel:
+      description: KeyManagementConfigModel
+      properties:
+        awsKmsAccessKeyId:
+          description: AwsKmsAccessKeyId
+          type: string
+        awsKmsKeyArn:
+          description: AwsKmsKeyArn
+          type: string
+        awsKmsKeyId:
+          description: AwsKmsKeyId
+          type: string
+        awsKmsSecretAccessKey:
+          description: AwsKmsSecretAccessKey
+          type: string
+        keyManagementConfigId:
+          description: KeyManagementConfigId
+          type: integer
+          format: int32
+        keyManagementTypeId:
+          description: KeyManagementTypeId
+          type: integer
+          format: int32
+        keyManagementTypeName:
+          description: KeyManagementTypeName
+          type: string
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -451,24 +606,46 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    MasterEncryptionKeyRotationStatus:
-      description: CurrentStatus
-      properties: {}
-      type: string
-      enum:
-      - NeverRun
-      - RotationRequested
-      - KeyRotationStarted
-      - KeyRotationCompleted
-      - PendingRestart
-      - MarkDataStarted
-      - MarkDataCompleted
-      - DataRotationStarted
-      - DataRotationCompleted
-      - SessionDataRotationStarted
-      - SessionDataRotationCompleted
-      - ProcessCompletedWithErrorsBeforeRotation
-      - ProcessFailedAfterRotation
+    MEKRotationInfoResponseViewModel:
+      description: MEKRotationInfoResponseViewModel
+      properties:
+        canRequestRotation:
+          description: CanRequestRotation
+          type: boolean
+        canRetryStatus:
+          description: CanRetryStatus
+          type: boolean
+        errorMessage:
+          description: ErrorMessage
+          type: string
+        hasPermission:
+          description: HasPermission
+          type: boolean
+        isReplicationEnabled:
+          description: IsReplicationEnabled
+          type: boolean
+        itemsToRotate:
+          description: ItemsToRotate
+          type: integer
+          format: int32
+        pollInfo:
+          description: PollInfo
+          type: boolean
+        processState:
+          $ref: '#/components/schemas/MEKRotationProcessStateTypes'
+        rotationInfo:
+          $ref: '#/components/schemas/MEKRotationInfoModel'
+        showBackupConfirmation:
+          description: ShowBackupConfirmation
+          type: boolean
+        totalItems:
+          description: TotalItems
+          type: integer
+          format: int32
+        warningMessage:
+          description: WarningMessage
+          type: string
+      type: object
     PagingOfMasterEncryptionKeyRotationInfoAuditViewModel:
       description: Specify paging and sorting options for querying records and returning results
       properties:
@@ -525,183 +702,6 @@ components:
           description: Total number of results available
           type: integer
           format: int32
-      type: object
-    KeyManagementConfigModel:
-      description: KeyManagementConfigModel
-      properties:
-        awsKmsAccessKeyId:
-          description: AwsKmsAccessKeyId
-          type: string
-        awsKmsKeyArn:
-          description: AwsKmsKeyArn
-          type: string
-        awsKmsKeyId:
-          description: AwsKmsKeyId
-          type: string
-        awsKmsSecretAccessKey:
-          description: AwsKmsSecretAccessKey
-          type: string
-        keyManagementConfigId:
-          description: KeyManagementConfigId
-          type: integer
-          format: int32
-        keyManagementTypeId:
-          description: KeyManagementTypeId
-          type: integer
-          format: int32
-        keyManagementTypeName:
-          description: KeyManagementTypeName
-          type: string
-      type: object
-    MEKRotationProcessStateTypes:
-      description: ProcessState
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Completed
-      - Pending
-      - Running
-      - Retry
-      - Failed
-    MEKRotationInfoResponseViewModel:
-      description: MEKRotationInfoResponseViewModel
-      properties:
-        canRequestRotation:
-          description: CanRequestRotation
-          type: boolean
-        canRetryStatus:
-          description: CanRetryStatus
-          type: boolean
-        errorMessage:
-          description: ErrorMessage
-          type: string
-        hasPermission:
-          description: HasPermission
-          type: boolean
-        isReplicationEnabled:
-          description: IsReplicationEnabled
-          type: boolean
-        itemsToRotate:
-          description: ItemsToRotate
-          type: integer
-          format: int32
-        pollInfo:
-          description: PollInfo
-          type: boolean
-        processState:
-          $ref: '#/components/schemas/MEKRotationProcessStateTypes'
-        rotationInfo:
-          $ref: '#/components/schemas/MEKRotationInfoModel'
-        showBackupConfirmation:
-          description: ShowBackupConfirmation
-          type: boolean
-        totalItems:
-          description: TotalItems
-          type: integer
-          format: int32
-        warningMessage:
-          description: WarningMessage
-          type: string
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    MEKRotationInfoModel:
-      description: RotationInfo
-      properties:
-        lastEndDateUtc:
-          description: LastEndDateUtc
-          type:
-          - string
-          - 'null'
-          format: date-time
-        startedDateUtc:
-          description: StartedDateUtc
-          type:
-          - string
-          - 'null'
-          format: date-time
-        status:
-          description: Status
-          type: string
-        statusUpdatedDateUtc:
-          description: StatusUpdatedDateUtc
-          type:
-          - string
-          - 'null'
-          format: date-time
-        statusValue:
-          description: StatusValue
-          type: integer
-          format: int32
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    MasterEncryptionKeyRotationInfoAuditViewModel:
-      description: Query results
-      properties:
-        action:
-          description: Action
-          type: string
-        currentStatus:
-          $ref: '#/components/schemas/MasterEncryptionKeyRotationStatus'
-        date:
-          description: Date
-          type: string
-          format: date-time
-        displayName:
-          description: DisplayName
-          type: string
-        formattedDate:
-          description: FormattedDate
-          type: string
-        masterEncryptionKeyRotationInfoAuditId:
-          description: MasterEncryptionKeyRotationInfoAuditId
-          type: integer
-          format: int32
-        masterEncryptionKeyRotationInfoId:
-          description: MasterEncryptionKeyRotationInfoId
-          type: integer
-          format: int32
-        notes:
-          description: Notes
-          type: string
-        userId:
-          description: UserId
-          type: integer
-          format: int32
-        userName:
-          description: UserName
-          type: string
       type: object
   securitySchemes:
     BearerToken:

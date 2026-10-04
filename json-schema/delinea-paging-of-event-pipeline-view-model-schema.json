@@ -1,0 +1,1815 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-paging-of-event-pipeline-view-model-schema.json",
+  "title": "PagingOfEventPipelineViewModel",
+  "description": "Specify paging and sorting options for querying records and returning results",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-eventpipeline-api-openapi.yml#/components/schemas/PagingOfEventPipelineViewModel",
+  "properties": {
+    "batchCount": {
+      "description": "Number of result batches available with current query options",
+      "type": "integer",
+      "format": "int32"
+    },
+    "currentPage": {
+      "description": "Index of current result page",
+      "type": "integer",
+      "format": "int32"
+    },
+    "hasNext": {
+      "description": "Whether there are any results in additional pages",
+      "type": "boolean"
+    },
+    "hasPrev": {
+      "description": "Whether there are any results in previous pages",
+      "type": "boolean"
+    },
+    "nextSkip": {
+      "description": "Correct value of 'skip' for the next page of results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "pageCount": {
+      "description": "Number of result pages available with current query options",
+      "type": "integer",
+      "format": "int32"
+    },
+    "prevSkip": {
+      "description": "Correct value of 'skip' for the previous page of results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "records": {
+      "description": "Query results",
+      "items": {
+        "$ref": "#/$defs/EventPipelineViewModel"
+      },
+      "type": "array"
+    },
+    "severity": {
+      "$ref": "#/$defs/Severity"
+    },
+    "skip": {
+      "description": "Number of records to skip before taking results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "sortBy": {
+      "description": "List of sort properties",
+      "items": {
+        "$ref": "#/$defs/Sort"
+      },
+      "type": "array"
+    },
+    "success": {
+      "description": "Whether the query executed successfully",
+      "type": "boolean"
+    },
+    "take": {
+      "description": "Maximum number of records to include in results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "total": {
+      "description": "Total number of results available",
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "EventPipelineFilterSettingValueMapViewModel": {
+      "description": "Value",
+      "properties": {
+        "eventPipelineFilterMapId": {
+          "$ref": "#/$defs/ViewFieldValueOfInt32"
+        },
+        "eventPipelineFilterSettingValueMapId": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfOptionalInt32"
+        },
+        "overrideDefault": {
+          "$ref": "#/$defs/ViewFieldValueOfBoolean"
+        },
+        "setting": {
+          "$ref": "#/$defs/ViewFieldValueOfSettingForDisplay"
+        },
+        "settingDisplay": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        },
+        "settingDisplayValue": {
+          "description": "SettingDisplayValue",
+          "type": "string"
+        },
+        "settingId": {
+          "$ref": "#/$defs/ViewFieldValueOfInt32"
+        },
+        "settingValue": {
+          "$ref": "#/$defs/ViewFieldValueOfString"
+        },
+        "usingDefault": {
+          "$ref": "#/$defs/ViewFieldValueOfBoolean"
+        }
+      },
+      "type": "object"
+    },
+    "EventPipelineFilterViewModel": {
+      "description": "FilterList",
+      "properties": {
+        "eventEntityTypeId": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfOptionalInt32"
+        },
+        "eventPipelineFilterDescription": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        },
+        "eventPipelineFilterDisplayName": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        },
+        "eventPipelineFilterId": {
+          "$ref": "#/$defs/ViewFieldValueOfInt32"
+        },
+        "eventPipelineFilterMapId": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfInt32"
+        },
+        "eventPipelineFilterName": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        },
+        "settings": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfEventPipelineFilterSettingValueMapViewModelArray"
+        },
+        "sortOrder": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfInt32"
+        }
+      },
+      "type": "object"
+    },
+    "EventPipelineTaskSettingValueMapViewModel": {
+      "description": "Value",
+      "properties": {
+        "eventPipelineTaskMapId": {
+          "$ref": "#/$defs/ViewFieldValueOfInt32"
+        },
+        "eventPipelineTaskSettingValueMapId": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfOptionalInt32"
+        },
+        "overrideDefault": {
+          "$ref": "#/$defs/ViewFieldValueOfBoolean"
+        },
+        "setting": {
+          "$ref": "#/$defs/ViewFieldValueOfSettingForDisplay"
+        },
+        "settingDisplay": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        },
+        "settingDisplayValue": {
+          "description": "SettingDisplayValue",
+          "type": "string"
+        },
+        "settingId": {
+          "$ref": "#/$defs/ViewFieldValueOfInt32"
+        },
+        "settingValue": {
+          "$ref": "#/$defs/ViewFieldValueOfString"
+        },
+        "usingDefault": {
+          "$ref": "#/$defs/ViewFieldValueOfBoolean"
+        }
+      },
+      "type": "object"
+    },
+    "EventPipelineTaskViewModel": {
+      "description": "TaskList",
+      "properties": {
+        "eventEntityTypeId": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum"
+        },
+        "eventPipelineTaskDescription": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        },
+        "eventPipelineTaskDisplayName": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        },
+        "eventPipelineTaskId": {
+          "$ref": "#/$defs/ViewFieldValueOfInt32"
+        },
+        "eventPipelineTaskMapId": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfInt32"
+        },
+        "eventPipelineTaskName": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        },
+        "isMultiSelect": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfBoolean"
+        },
+        "settings": {
+          "$ref": "#/$defs/ViewFieldValueOfEventPipelineTaskSettingValueMapViewModelArray"
+        },
+        "sortOrder": {
+          "$ref": "#/$defs/ViewFieldValueOfInt32"
+        }
+      },
+      "type": "object"
+    },
+    "EventPipelineTriggerViewModel": {
+      "description": "Triggers",
+      "properties": {
+        "entityTypeDisplayName": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        },
+        "eventActionId": {
+          "$ref": "#/$defs/ViewFieldValueOfInt32"
+        },
+        "eventEntityTypeId": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum"
+        },
+        "eventPipelineId": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfInt32"
+        },
+        "eventPipelineTriggerId": {
+          "$ref": "#/$defs/ViewFieldValueOfInt32"
+        },
+        "triggerDisplayName": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        }
+      },
+      "type": "object"
+    },
+    "EventPipelineViewModel": {
+      "description": "Query results",
+      "properties": {
+        "active": {
+          "$ref": "#/$defs/ViewFieldValueOfBoolean"
+        },
+        "createdDate": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfDateTime"
+        },
+        "eventEntityTypeId": {
+          "description": "EventEntityTypeId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventPipelineDescription": {
+          "$ref": "#/$defs/ViewFieldValueOfString"
+        },
+        "eventPipelineId": {
+          "description": "EventPipelineId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "eventPipelineName": {
+          "$ref": "#/$defs/ViewFieldValueOfString"
+        },
+        "eventPipelinePolicyId": {
+          "description": "EventPipelinePolicyId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "eventPipelinePolicyMapId": {
+          "description": "EventPipelinePolicyMapId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "filterList": {
+          "description": "FilterList",
+          "items": {
+            "$ref": "#/$defs/EventPipelineFilterViewModel"
+          },
+          "type": "array"
+        },
+        "isSystem": {
+          "description": "IsSystem",
+          "type": "boolean"
+        },
+        "lastModifiedDate": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfDateTime"
+        },
+        "lastModifiedDisplayName": {
+          "$ref": "#/$defs/ViewFieldValueReadOnlyOfString"
+        },
+        "sortOrder": {
+          "$ref": "#/$defs/ViewFieldValueOfInt32"
+        },
+        "taskList": {
+          "description": "TaskList",
+          "items": {
+            "$ref": "#/$defs/EventPipelineTaskViewModel"
+          },
+          "type": "array"
+        },
+        "triggers": {
+          "description": "Triggers",
+          "items": {
+            "$ref": "#/$defs/EventPipelineTriggerViewModel"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Setting": {
+      "description": "ChildSettings",
+      "properties": {
+        "active": {
+          "description": "Active",
+          "type": "boolean"
+        },
+        "canEdit": {
+          "description": "CanEdit",
+          "type": "boolean"
+        },
+        "canEditValue": {
+          "description": "CanEditValue",
+          "type": "boolean"
+        },
+        "childLoadSQL": {
+          "description": "ChildLoadSQL",
+          "type": "string"
+        },
+        "defaultValue": {
+          "description": "DefaultValue",
+          "type": "string"
+        },
+        "isVisible": {
+          "description": "IsVisible",
+          "type": "boolean"
+        },
+        "nameLocalizeKey": {
+          "description": "NameLocalizeKey",
+          "type": "string"
+        },
+        "parentSettingId": {
+          "description": "ParentSettingId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "regexValidation": {
+          "description": "RegexValidation",
+          "type": "string"
+        },
+        "settingId": {
+          "description": "SettingId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingName": {
+          "description": "SettingName",
+          "type": "string"
+        },
+        "settingSectionId": {
+          "description": "SettingSectionId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingType": {
+          "$ref": "#/$defs/SettingType"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": "integer",
+          "format": "int32"
+        },
+        "subSettingSectionId": {
+          "description": "SubSettingSectionId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "tooltipLocalizeKey": {
+          "description": "TooltipLocalizeKey",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SettingForDisplay": {
+      "description": "Setting",
+      "properties": {
+        "active": {
+          "description": "Active",
+          "type": "boolean"
+        },
+        "canEdit": {
+          "description": "CanEdit",
+          "type": "boolean"
+        },
+        "canEditValue": {
+          "description": "CanEditValue",
+          "type": "boolean"
+        },
+        "childLoadSQL": {
+          "description": "ChildLoadSQL",
+          "type": "string"
+        },
+        "childSettings": {
+          "description": "ChildSettings",
+          "items": {
+            "$ref": "#/$defs/Setting"
+          },
+          "type": "array"
+        },
+        "defaultValue": {
+          "description": "DefaultValue",
+          "type": "string"
+        },
+        "isVisible": {
+          "description": "IsVisible",
+          "type": "boolean"
+        },
+        "nameLocalizeKey": {
+          "description": "NameLocalizeKey",
+          "type": "string"
+        },
+        "parentSettingId": {
+          "description": "ParentSettingId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "regexValidation": {
+          "description": "RegexValidation",
+          "type": "string"
+        },
+        "settingId": {
+          "description": "SettingId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingName": {
+          "description": "SettingName",
+          "type": "string"
+        },
+        "settingSectionId": {
+          "description": "SettingSectionId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "settingType": {
+          "$ref": "#/$defs/SettingType"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": "integer",
+          "format": "int32"
+        },
+        "subSettingSectionId": {
+          "description": "SubSettingSectionId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "tooltipLocalizeKey": {
+          "description": "TooltipLocalizeKey",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SettingType": {
+      "description": "SettingType",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Default",
+        "Integer",
+        "String",
+        "Boolean",
+        "StringArray",
+        "DropDown",
+        "DropDownItem",
+        "MultilineString",
+        "IntegerArray",
+        "Radio",
+        "RadioItem"
+      ]
+    },
+    "Severity": {
+      "description": "Error severity level",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Retry",
+        "Warn",
+        "Critical",
+        "Fatal"
+      ]
+    },
+    "Sort": {
+      "description": "Sort options. Multiple sort options can be provided in the query string.",
+      "required": [
+        "name",
+        "direction"
+      ],
+      "properties": {
+        "direction": {
+          "$ref": "#/$defs/SortDirection"
+        },
+        "name": {
+          "description": "Sort field name",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Priority index. Sorts with lower values are executed earlier",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "SortDirection": {
+      "description": "Sort direction",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Asc",
+        "Desc"
+      ]
+    },
+    "ViewFieldLink": {
+      "description": "AdditionalLinks",
+      "properties": {
+        "isExternal": {
+          "description": "IsExternal",
+          "type": "boolean"
+        },
+        "linkText": {
+          "description": "LinkText",
+          "type": "string"
+        },
+        "url": {
+          "description": "Url",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfBoolean": {
+      "description": "When enabled, the log will be able to be viewed online",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfEventPipelineTaskSettingValueMapViewModelArray": {
+      "description": "Settings",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "items": {
+            "$ref": "#/$defs/EventPipelineTaskSettingValueMapViewModel"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfInt32": {
+      "description": "OrganizationId",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfSettingForDisplay": {
+      "description": "Setting",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "$ref": "#/$defs/SettingForDisplay"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfString": {
+      "description": "GeneratedToken",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueReadOnlyOfBoolean": {
+      "description": "IsMultiSelect",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueReadOnlyOfDateTime": {
+      "description": "When the Secret was originally mapped to the Tenant.",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueReadOnlyOfEventPipelineFilterSettingValueMapViewModelArray": {
+      "description": "Settings",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "items": {
+            "$ref": "#/$defs/EventPipelineFilterSettingValueMapViewModel"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueReadOnlyOfInt32": {
+      "description": "ID of the mapping between the Tenant and Secret.",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueReadOnlyOfOptionalEventEntityTypeEnum": {
+      "description": "EventEntityTypeId",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueReadOnlyOfOptionalInt32": {
+      "description": "EventEntityTypeId",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueReadOnlyOfString": {
+      "description": "Name of the Secret.",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

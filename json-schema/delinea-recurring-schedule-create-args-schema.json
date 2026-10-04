@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-recurring-schedule-create-args-schema.json",
+  "title": "RecurringScheduleCreateArgs",
+  "description": "RecurringScheduleCreateArgs",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-schedule-api-openapi.yml#/components/schemas/RecurringScheduleCreateArgs",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/RecurringScheduleCreateModel"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "RecurringScheduleCreateModel": {
+      "description": "Data",
+      "properties": {
+        "active": {
+          "description": "Whether or not the schedule is active",
+          "type": "boolean"
+        },
+        "duration": {
+          "description": "How long is the iteration of this schedule.  A weekly schedule with an iteration of 2 would restart every other week.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "durationStartDate": {
+          "description": "When does the schedule iteration begin",
+          "type": "string",
+          "format": "date-time"
+        },
+        "entity": {
+          "$ref": "#/$defs/RecurringScheduleEntityModel"
+        },
+        "notes": {
+          "description": "TBD",
+          "type": "string"
+        },
+        "recurringScheduleType": {
+          "$ref": "#/$defs/RecurringScheduleType"
+        },
+        "scheduleConstraints": {
+          "description": "Passing any constraints will update all of them and remove any not specified.",
+          "items": {
+            "$ref": "#/$defs/RecurringScheduleValueModel"
+          },
+          "type": "array"
+        },
+        "timeZoneId": {
+          "description": "Time Zone of the times the schedule is run",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecurringScheduleEntityModel": {
+      "description": "These are entities that subcribe to this schedule",
+      "properties": {
+        "entityId": {
+          "description": "The ID of the entity that is subscribing to this schedule",
+          "type": "integer",
+          "format": "int32"
+        },
+        "entityType": {
+          "$ref": "#/$defs/RecurringScheduleEntityType"
+        },
+        "id": {
+          "description": "The id of schedule entity map",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "RecurringScheduleEntityType": {
+      "description": "This is the type of entity",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "InboxRule"
+      ]
+    },
+    "RecurringScheduleType": {
+      "description": "The iteration period for the schedule.  The schedule will restart after this cycle.",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Daily",
+        "Weekly",
+        "MonthlyDays",
+        "MonthlyWeeks"
+      ]
+    },
+    "RecurringScheduleValueModel": {
+      "description": "A defined constraint for a schedule",
+      "properties": {
+        "recurrenceValue": {
+          "description": "The value that applies to the constraint.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "recurrenceValueType": {
+          "$ref": "#/$defs/RecurringScheduleValueType"
+        }
+      },
+      "type": "object"
+    },
+    "RecurringScheduleValueType": {
+      "description": "The type of schedule constraint",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "SpecificTime",
+        "DayOfWeek",
+        "DayOfMonth",
+        "WeekOfMonth",
+        "WeekOfMonthDay"
+      ]
+    }
+  }
+}

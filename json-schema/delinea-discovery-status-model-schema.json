@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-discovery-status-model-schema.json",
+  "title": "DiscoveryStatusModel",
+  "description": "DiscoveryStatusModel",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-discovery-api-openapi.yml#/components/schemas/DiscoveryStatusModel",
+  "properties": {
+    "actions": {
+      "description": "Actions the current user can perform for Discovery",
+      "items": {
+        "$ref": "#/$defs/DiscoveryActionType"
+      },
+      "type": "array"
+    },
+    "discoveryComputerScanEndDateTime": {
+      "description": "The date and time the Scan Computer messages completed queueing last.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "discoveryComputerScanStartDateTime": {
+      "description": "The date and time Scan Computer messages last started.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "discoveryFetchEndDateTime": {
+      "description": "The date and time the Host Range and Machine fetching last completed.  This will be empty if a synchronization has never been run.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "discoveryFetchStartDateTime": {
+      "description": "The date and time the Host Range and Machine fetching was last run or started.  This will be empty if a synchronization has never been run.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "discoverySourceCount": {
+      "description": "Total number of discovery sources either active or inactive",
+      "type": "integer",
+      "format": "int32"
+    },
+    "isDiscoveryComputerScanRunning": {
+      "description": "Indicates if computer scanning is actively queueing.",
+      "type": "boolean"
+    },
+    "isDiscoveryEnabled": {
+      "description": "Indicates if Discovery is currently enabled",
+      "type": "boolean"
+    },
+    "isDiscoveryFetchRunning": {
+      "description": "Indicates if the Host Range and Machine fetching is currently running.",
+      "type": "boolean"
+    },
+    "itemMetrics": {
+      "description": "Metrics of discovered items. Populated when includeMetrics is set to true",
+      "items": {
+        "$ref": "#/$defs/DiscoveryNetworkMetricItemSummary"
+      },
+      "type": "array"
+    },
+    "itemOsMetrics": {
+      "description": "Operating System of discovered items. Populated when includeMetrics is set to true",
+      "items": {
+        "$ref": "#/$defs/DiscoveryNetworkOsItemSummary"
+      },
+      "type": "array"
+    },
+    "nextComputerScanDiscoveryDateTime": {
+      "description": "The next time computer scanning is expected to run",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "nextFetchDiscoveryDateTime": {
+      "description": "The next time the Host Range and Machine fetching is expected to run",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "scanResultItemMetrics": {
+      "description": "Scan Results of discovered items. Populated when includeMetrics is set to true",
+      "items": {
+        "$ref": "#/$defs/DiscoveryScanResultItemSummary"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "DiscoveryActionType": {
+      "description": "Actions the current user can perform for Discovery",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "CreateDiscoverySource",
+        "EditDiscoverySource",
+        "RunDiscovery",
+        "RunComputerScan",
+        "EditConfiguration",
+        "ViewScanners"
+      ]
+    },
+    "DiscoveryNetworkMetricItemSummary": {
+      "description": "Metrics of Item type that were discovered and appear in the network view",
+      "properties": {
+        "itemType": {
+          "description": "The Type of this Network Item",
+          "type": "string"
+        },
+        "itemTypeDisplayName": {
+          "description": "The Display Name of the Type of this Network Item",
+          "type": "string"
+        },
+        "managedCount": {
+          "description": "Number of items managed",
+          "type": "integer",
+          "format": "int32"
+        },
+        "notManagedCount": {
+          "description": "Number of items not managed",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryNetworkOsItemSummary": {
+      "description": "Operating Systems that were discovered and appear in the network view",
+      "properties": {
+        "operatingSystem": {
+          "description": "Operating System",
+          "type": "string"
+        },
+        "operatingSystemCount": {
+          "description": "Number of occurences of Operating System",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryScanResultItemSummary": {
+      "description": "Discovery Sources that were scanned during the last scan and the summarized results",
+      "properties": {
+        "discoverySourceId": {
+          "description": "Discovery Source Id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "discoverySourceName": {
+          "description": "Discovery Source Name",
+          "type": "string"
+        },
+        "errorCount": {
+          "description": "Number of scans that had errors on the Discovery Source",
+          "type": "integer",
+          "format": "int32"
+        },
+        "successCount": {
+          "description": "Number of scans that were successful on the Discovery Source",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

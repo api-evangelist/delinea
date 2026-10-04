@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-enterprise-search-result-model-schema.json",
+  "title": "EnterpriseSearchResultModel",
+  "description": "Enterprise Search Result Model",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-enterprise-api-openapi.yml#/components/schemas/EnterpriseSearchResultModel",
+  "properties": {
+    "data": {
+      "description": "Date enterprise was accessed",
+      "items": {
+        "$ref": "#/$defs/EnterpriseSearchResultDataModel"
+      },
+      "type": "array"
+    },
+    "processEndDate": {
+      "description": "Date process was completed",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "processStartDate": {
+      "description": "Date process was started",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "EnterpriseSearchResultDataModel": {
+      "description": "Enterprise Search Result Data Model",
+      "properties": {
+        "action": {
+          "description": "Action taken on the accessed enterprise",
+          "type": "string"
+        },
+        "dateRecorded": {
+          "description": "Date enterprise was accessed",
+          "type": "string",
+          "format": "date-time"
+        },
+        "secretName": {
+          "description": "Name of secret associated to the accessed enterprise",
+          "type": "string"
+        },
+        "secretTemplateName": {
+          "description": "Secret Template of secret associated to the accessed enterprise",
+          "type": "string"
+        },
+        "userId": {
+          "description": "Id of user that accessed the enterprise",
+          "type": "integer",
+          "format": "int32"
+        },
+        "userName": {
+          "description": "Name of user that accessed the enterprise",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

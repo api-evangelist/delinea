@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-jumpbox-route-model-schema.json",
+  "title": "JumpboxRouteModel",
+  "description": "JumpboxRouteModel",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-jumpboxroute-api-openapi.yml#/components/schemas/JumpboxRouteModel",
+  "properties": {
+    "active": {
+      "description": "Indicates if the Jumpbox Route is active",
+      "type": "boolean"
+    },
+    "description": {
+      "description": "Jumpbox Route Descrition",
+      "type": "string"
+    },
+    "jumpboxRouteId": {
+      "description": "Jumpbox Route Id",
+      "type": "string",
+      "format": "uuid"
+    },
+    "jumpboxRouteLevels": {
+      "description": "Array of Jumpbox Route Levels attached to a Jumpbox Route",
+      "items": {
+        "$ref": "#/$defs/JumpboxRouteLevelModel"
+      },
+      "type": "array"
+    },
+    "name": {
+      "description": "Jumpbox Route Name",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "JumpboxRouteLevelModel": {
+      "description": "Array of Jumpbox Route Levels attached to a Jumpbox Route",
+      "properties": {
+        "jumpboxRouteId": {
+          "description": "Jumpbox Route Id",
+          "type": "string",
+          "format": "uuid"
+        },
+        "order": {
+          "description": "Jumpbox Route Level Order",
+          "type": "integer",
+          "format": "int32"
+        },
+        "port": {
+          "description": "Port Assigned to this Jumpbox Route Level",
+          "type": "integer",
+          "format": "int32"
+        },
+        "secretId": {
+          "description": "Secret Id Assigned to this Jumpbox Route Level",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

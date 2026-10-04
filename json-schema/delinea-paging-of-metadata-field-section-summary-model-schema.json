@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-paging-of-metadata-field-section-summary-model-schema.json",
+  "title": "PagingOfMetadataFieldSectionSummaryModel",
+  "description": "Specify paging and sorting options for querying records and returning results",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-metadata-api-openapi.yml#/components/schemas/PagingOfMetadataFieldSectionSummaryModel",
+  "properties": {
+    "batchCount": {
+      "description": "Number of result batches available with current query options",
+      "type": "integer",
+      "format": "int32"
+    },
+    "currentPage": {
+      "description": "Index of current result page",
+      "type": "integer",
+      "format": "int32"
+    },
+    "hasNext": {
+      "description": "Whether there are any results in additional pages",
+      "type": "boolean"
+    },
+    "hasPrev": {
+      "description": "Whether there are any results in previous pages",
+      "type": "boolean"
+    },
+    "nextSkip": {
+      "description": "Correct value of 'skip' for the next page of results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "pageCount": {
+      "description": "Number of result pages available with current query options",
+      "type": "integer",
+      "format": "int32"
+    },
+    "prevSkip": {
+      "description": "Correct value of 'skip' for the previous page of results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "records": {
+      "description": "Query results",
+      "items": {
+        "$ref": "#/$defs/MetadataFieldSectionSummaryModel"
+      },
+      "type": "array"
+    },
+    "severity": {
+      "$ref": "#/$defs/Severity"
+    },
+    "skip": {
+      "description": "Number of records to skip before taking results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "sortBy": {
+      "description": "List of sort properties",
+      "items": {
+        "$ref": "#/$defs/Sort"
+      },
+      "type": "array"
+    },
+    "success": {
+      "description": "Whether the query executed successfully",
+      "type": "boolean"
+    },
+    "take": {
+      "description": "Maximum number of records to include in results",
+      "type": "integer",
+      "format": "int32"
+    },
+    "total": {
+      "description": "Total number of results available",
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "MetadataFieldSectionActionType": {
+      "description": "Specific actions a user can take on metadata sections",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "EditSection",
+        "AddField",
+        "EditItem",
+        "DeleteItem"
+      ]
+    },
+    "MetadataFieldSectionSummaryModel": {
+      "description": "Summary of metadata sections",
+      "properties": {
+        "actions": {
+          "description": "What actions can the current user perform",
+          "items": {
+            "$ref": "#/$defs/MetadataFieldSectionActionType"
+          },
+          "type": "array"
+        },
+        "metadataFieldSectionDescription": {
+          "description": "The description of this section",
+          "type": "string"
+        },
+        "metadataFieldSectionId": {
+          "description": "The sequence ID for this section",
+          "type": "integer",
+          "format": "int32"
+        },
+        "metadataFieldSectionName": {
+          "description": "The name of this section",
+          "type": "string"
+        },
+        "requiresAdministerMetadata": {
+          "description": "Is the user required to have the Administer Metadata role permission in order to edit fields in this metadata section",
+          "type": "boolean"
+        },
+        "requiresEntityEdit": {
+          "description": "Is the user required to be able to edit the entity to which the metadata is associated to in order to edit metadata",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Severity": {
+      "description": "Error severity level",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Retry",
+        "Warn",
+        "Critical",
+        "Fatal"
+      ]
+    },
+    "Sort": {
+      "description": "Sort options. Multiple sort options can be provided in the query string.",
+      "required": [
+        "name",
+        "direction"
+      ],
+      "properties": {
+        "direction": {
+          "$ref": "#/$defs/SortDirection"
+        },
+        "name": {
+          "description": "Sort field name",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Priority index. Sorts with lower values are executed earlier",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "SortDirection": {
+      "description": "Sort direction",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "None",
+        "Asc",
+        "Desc"
+      ]
+    }
+  }
+}

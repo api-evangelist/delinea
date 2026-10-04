@@ -1,0 +1,1282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-report-schedule-model-schema.json",
+  "title": "ReportScheduleModel",
+  "description": "Report Schedule Model",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-reports-api-openapi.yml#/components/schemas/ReportScheduleModel",
+  "properties": {
+    "customParameterValue": {
+      "description": "Custom Parameter Value",
+      "type": "string"
+    },
+    "endDateParameterSpecificDateValue": {
+      "description": "Specific Date Value for when Specfic date is specified for EndDateParameterValue",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "endDateParameterValue": {
+      "description": "End Date Parameter Value",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "folderParameterValue": {
+      "$ref": "#/$defs/ReportParameterValue"
+    },
+    "folderPathParameterValue": {
+      "$ref": "#/$defs/ReportParameterValue"
+    },
+    "format": {
+      "$ref": "#/$defs/ReportFormat"
+    },
+    "groupParameterValue": {
+      "$ref": "#/$defs/ReportParameterValue"
+    },
+    "reportId": {
+      "description": "Report Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "reportName": {
+      "description": "Report Name",
+      "type": "string"
+    },
+    "schedule": {
+      "$ref": "#/$defs/ScheduleViewModel"
+    },
+    "scheduleReportId": {
+      "description": "Schedule Report Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "startDateParameterSpecificDateValue": {
+      "description": "Specific Date Value for when Specfic date is specified for StartDateParameterValue",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "startDateParameterValue": {
+      "description": "Start Date Parameter Value",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "userParameterValue": {
+      "$ref": "#/$defs/ReportParameterValue"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Object": {
+      "description": "ItemId",
+      "properties": {},
+      "type": "object"
+    },
+    "ReportFormat": {
+      "description": "How to show the report when emailed. Default is Inline which shows the report within the email. Otherwise, it will be an attachment in the selected format.",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Html",
+        "Csv"
+      ]
+    },
+    "ReportParameterValue": {
+      "description": "Folder Parameter Value",
+      "properties": {
+        "name": {
+          "description": "Name of the Report Parameter",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/$defs/Object"
+        },
+        "valueDisplayName": {
+          "description": "A display name representing the value.  For example, when a parameter is a user this will be the user display name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSubscriber": {
+      "description": "Value",
+      "properties": {
+        "displayName": {
+          "description": "DisplayName",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "GroupId",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "ScheduleChangeType": {
+      "description": "Value",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Daily",
+        "Weekly",
+        "Monthly"
+      ]
+    },
+    "ScheduleViewModel": {
+      "description": "Schedule",
+      "properties": {
+        "additionalEmailAddresses": {
+          "$ref": "#/$defs/ViewFieldValueOfString"
+        },
+        "changeType": {
+          "$ref": "#/$defs/ViewFieldValueOfScheduleChangeType"
+        },
+        "days": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalInt32"
+        },
+        "emailGroups": {
+          "$ref": "#/$defs/ViewFieldValueOfReportSubscriberArray"
+        },
+        "friday": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalBoolean"
+        },
+        "healthCheck": {
+          "$ref": "#/$defs/ViewFieldValueOfBoolean"
+        },
+        "historySize": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalInt32"
+        },
+        "monday": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalBoolean"
+        },
+        "monthlyDay": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalScheduleMonthlyDayType"
+        },
+        "monthlyDayOfMonth": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalInt32"
+        },
+        "monthlyDayOrder": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalScheduleMonthlyDayOrderType"
+        },
+        "monthlyDayOrderRecurrence": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalInt32"
+        },
+        "monthlyDayRecurrence": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalInt32"
+        },
+        "monthlyScheduleType": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalScheduleMonthlyType"
+        },
+        "saturday": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalBoolean"
+        },
+        "scheduleName": {
+          "$ref": "#/$defs/ViewFieldValueOfString"
+        },
+        "sendEmail": {
+          "$ref": "#/$defs/ViewFieldValueOfBoolean"
+        },
+        "sendEmailWithHighPriority": {
+          "$ref": "#/$defs/ViewFieldValueOfBoolean"
+        },
+        "startingOn": {
+          "$ref": "#/$defs/ViewFieldValueOfDateTime"
+        },
+        "sunday": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalBoolean"
+        },
+        "thursday": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalBoolean"
+        },
+        "tuesday": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalBoolean"
+        },
+        "wednesday": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalBoolean"
+        },
+        "weeks": {
+          "$ref": "#/$defs/ViewFieldValueOfOptionalInt32"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldLink": {
+      "description": "AdditionalLinks",
+      "properties": {
+        "isExternal": {
+          "description": "IsExternal",
+          "type": "boolean"
+        },
+        "linkText": {
+          "description": "LinkText",
+          "type": "string"
+        },
+        "url": {
+          "description": "Url",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfBoolean": {
+      "description": "When enabled, the log will be able to be viewed online",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfDateTime": {
+      "description": "StartingOn",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfOptionalBoolean": {
+      "description": "Friday",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfOptionalInt32": {
+      "description": "Maximum number of messages to keep in log. When null, it is unlimited",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfOptionalScheduleMonthlyDayOrderType": {
+      "description": "MonthlyDayOrder",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfOptionalScheduleMonthlyDayType": {
+      "description": "MonthlyDay",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfOptionalScheduleMonthlyType": {
+      "description": "MonthlyScheduleType",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfReportSubscriberArray": {
+      "description": "EmailGroups",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "items": {
+            "$ref": "#/$defs/ReportSubscriber"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfScheduleChangeType": {
+      "description": "ChangeType",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "$ref": "#/$defs/ScheduleChangeType"
+        }
+      },
+      "type": "object"
+    },
+    "ViewFieldValueOfString": {
+      "description": "GeneratedToken",
+      "properties": {
+        "additionalLinks": {
+          "description": "AdditionalLinks",
+          "items": {
+            "$ref": "#/$defs/ViewFieldLink"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "fieldInputType": {
+          "description": "FieldInputType",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasHistory": {
+          "description": "HasHistory",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "helpLink": {
+          "description": "HelpLink",
+          "type": "string"
+        },
+        "helpLinkText": {
+          "description": "HelpLinkText",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Hidden",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hideOnView": {
+          "description": "HideOnView",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "description": "IsRequired",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "label": {
+          "description": "Label",
+          "type": "string"
+        },
+        "maxLength": {
+          "description": "MaxLength",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Placeholder",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "ReadOnly",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readOnlyReason": {
+          "description": "ReadOnlyReason",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "SortOrder",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

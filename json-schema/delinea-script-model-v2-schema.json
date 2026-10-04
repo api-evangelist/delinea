@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-script-model-v2-schema.json",
+  "title": "ScriptModelV2",
+  "description": "Script",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-script-api-openapi.yml#/components/schemas/ScriptModelV2",
+  "properties": {
+    "additionalData": {
+      "$ref": "#/$defs/ScriptAdditionalDataModel"
+    },
+    "concurrencyId": {
+      "description": "Script Global Id",
+      "type": "string"
+    },
+    "description": {
+      "description": "Script Description",
+      "type": "string"
+    },
+    "isActive": {
+      "description": "Whether the Script is Active",
+      "type": "boolean"
+    },
+    "name": {
+      "description": "Script Name",
+      "type": "string"
+    },
+    "script": {
+      "description": "Script Text",
+      "type": "string"
+    },
+    "scriptCategoryId": {
+      "description": "Script Category Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "scriptCategoryName": {
+      "description": "Script Category Name",
+      "type": "string"
+    },
+    "scriptId": {
+      "description": "Script Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "scriptType": {
+      "$ref": "#/$defs/UserScriptType"
+    },
+    "usageCount": {
+      "description": "Usage Count",
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ScriptAdditionalDataModel": {
+      "description": "Additional data for this script including parameters and settings",
+      "properties": {
+        "sqlSettings": {
+          "$ref": "#/$defs/ScriptSqlAdditionalDataModel"
+        },
+        "sshSettings": {
+          "$ref": "#/$defs/ScriptSshAdditionalDataModel"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptSqlAdditionalDataModel": {
+      "description": "Additional settings for SQL scripts",
+      "properties": {
+        "database": {
+          "description": "The database name to connect to",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Parameters for this sql script",
+          "items": {
+            "$ref": "#/$defs/ScriptSqlParamModel"
+          },
+          "type": "array"
+        },
+        "passwordChangerId": {
+          "description": "Which password changer this is used with",
+          "type": "integer",
+          "format": "int32"
+        },
+        "passwordChangerName": {
+          "description": "Which password changer this is used with",
+          "type": "string"
+        },
+        "port": {
+          "description": "A specific port to use",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptSqlParamModel": {
+      "description": "Parameters for this sql script",
+      "properties": {
+        "parameterDbType": {
+          "$ref": "#/$defs/ScriptSqlParamType"
+        },
+        "parameterName": {
+          "description": "ParameterName",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptSqlParamType": {
+      "description": "ParameterDbType",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "AnsiString",
+        "Binary",
+        "Byte",
+        "Boolean",
+        "Currency",
+        "Date",
+        "DateTime",
+        "Decimal",
+        "Double",
+        "Guid",
+        "Int16",
+        "Int32",
+        "Int64",
+        "Object",
+        "SByte",
+        "Single",
+        "String",
+        "Time",
+        "UInt16",
+        "UInt32",
+        "UInt64",
+        "VarNumeric",
+        "AnsiStringFixedLength",
+        "StringFixedLength",
+        "Xml",
+        "DateTime2",
+        "DateTimeOffset"
+      ]
+    },
+    "ScriptSshAdditionalDataModel": {
+      "description": "Additional settings for SSH scripts",
+      "properties": {
+        "doNotUseEnvironment": {
+          "description": "Do not use environment variables in script",
+          "type": "boolean"
+        },
+        "lineEnding": {
+          "$ref": "#/$defs/SshScriptLineEndingType"
+        },
+        "parameters": {
+          "description": "Any parameters that can be used in the script",
+          "items": {
+            "$ref": "#/$defs/ScriptSshParameterModel"
+          },
+          "type": "array"
+        },
+        "port": {
+          "description": "The port that should be used by an SSH script",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptSshParamType": {
+      "description": "ParameterSshType",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Intrepreted",
+        "Literal"
+      ]
+    },
+    "ScriptSshParameterModel": {
+      "description": "Any parameters that can be used in the script",
+      "properties": {
+        "parameterName": {
+          "description": "ParameterName",
+          "type": "string"
+        },
+        "parameterSshType": {
+          "$ref": "#/$defs/ScriptSshParamType"
+        }
+      },
+      "type": "object"
+    },
+    "SshScriptLineEndingType": {
+      "description": "The type of line ending that should be sent to the script",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "NewLine",
+        "CarriageReturn",
+        "CarriageReturnNewLine"
+      ]
+    },
+    "UserScriptType": {
+      "description": "Script Type (Powershell = 1, SQL = 2, SSH = 3)",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "PowerShell",
+        "SQL",
+        "SSH"
+      ]
+    }
+  }
+}

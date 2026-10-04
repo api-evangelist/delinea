@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-domain-name-index-model-schema.json",
+  "title": "DomainNameIndexModel",
+  "description": "Domain Name Index",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-domainnameindex-api-openapi.yml#/components/schemas/DomainNameIndexModel",
+  "properties": {
+    "discoverySourceId": {
+      "description": "DiscoverySourceId",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "discoverySourceIdScanned": {
+      "description": "DiscoverySourceIdScanned",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "discoverySourceIdSuggested": {
+      "description": "DiscoverySourceIdSuggested",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "domainMarkedAsIgnored": {
+      "description": "Indicates if the domain is marked As Ignored",
+      "type": "boolean"
+    },
+    "domainNameDiscovered": {
+      "description": "Domain Name Discovered",
+      "type": "string"
+    },
+    "domainNameIndexId": {
+      "description": "Domain Name Index Id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "domainResolveType": {
+      "$ref": "#/$defs/DomainResolveType"
+    },
+    "expiredDate": {
+      "description": "Expired date",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "lastIndexedDate": {
+      "description": "The date the domain was last indexed",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "DomainResolveType": {
+      "description": "DomainResolveType",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "CouldNotResolve",
+        "MatchedDomainInDb",
+        "MatchedFQDNOrFriendlyOrNetBIOSInDb",
+        "MatchedFriendlyNameWithAd",
+        "ManualUserInputDiscoverySourceId"
+      ]
+    }
+  }
+}

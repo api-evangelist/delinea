@@ -1126,18 +1126,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    InboxTestMessageArgs:
-      description: InboxTestMessageArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxTestMessageModel'
-      type: object
-    InboxTemplateCopyArgs:
-      description: InboxTemplateCopyArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxTemplateCopyModel'
-      type: object
     InboxTestMessageResult:
       description: InboxTestMessageResult
       properties:
@@ -1147,42 +1135,6 @@ components:
         success:
           description: Success
           type: boolean
-      type: object
-    AlertNotificationType:
-      description: NotificationType
-      properties: {}
-      type: string
-      enum:
-      - EventSubscription
-      - SecretApproval
-      - ApplicationAccessRequest
-      - SystemAlert
-      - SecretEraseRequest
-    InboxTemplateCopyModel:
-      description: Inbox Template Copy Model
-      properties:
-        inboxTemplateIdToCopy:
-          description: InboxTemplateId To Copy
-          type: integer
-          format: int32
-        name:
-          description: Name
-          type: string
-      type: object
-    InboxTemplateType:
-      description: Template Type
-      properties: {}
-      type: string
-      enum:
-      - Email
-      - Slack
-    InboxTemplateLocaleUpdateModel:
-      description: Data
-      properties:
-        subject:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        templateBody:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
       type: object
     InboxResourceUploadArgs:
       description: InboxResourceUploadArgs
@@ -1200,655 +1152,6 @@ components:
           type: string
         slug:
           description: The unique resource slug.  Must be lowercase with no spaces or special characters except for hyphens.
-          type: string
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    AlertNotificationUnreadEventArgs:
-      description: AlertNotificationUnreadEventArgs
-      properties:
-        notificationId:
-          description: NotificationId
-          type: string
-          format: uuid
-      type: object
-    AlertNotification:
-      description: SystemAlerts
-      properties:
-        action:
-          description: Action
-          type: string
-        alertDate:
-          description: AlertDate
-          type:
-          - string
-          - 'null'
-          format: date-time
-        description:
-          description: Description
-          type: string
-        isRead:
-          description: IsRead
-          type:
-          - boolean
-          - 'null'
-        name:
-          description: Name
-          type: string
-        notificationId:
-          description: NotificationId
-          type:
-          - string
-          - 'null'
-          format: uuid
-        notificationType:
-          $ref: '#/components/schemas/AlertNotificationType'
-        type:
-          $ref: '#/components/schemas/AlertNotificationStatus'
-      type: object
-    AlertNotificationStatus:
-      description: Type
-      properties: {}
-      type: string
-      enum:
-      - Normal
-      - Critical
-      - RequiresInteraction
-    InboxData:
-      description: InboxData[]
-      properties:
-        createdByUserId:
-          description: CreatedByUserId
-          type: integer
-          format: int32
-        createdDate:
-          description: CreatedDate
-          type: string
-          format: date-time
-        inboxDataId:
-          description: InboxDataId
-          type: integer
-          format: int32
-        inboxDataName:
-          description: InboxDataName
-          type: string
-      type: object
-    InboxMessageSetMessageReadStatusArgs:
-      description: InboxMessageSetMessageReadStatusArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxMessageSetMessageReadStatusModel'
-      type: object
-    AlertNotificationReadEventArgs:
-      description: AlertNotificationReadEventArgs
-      properties:
-        notificationId:
-          description: NotificationId
-          type: string
-          format: uuid
-      type: object
-    InboxMessageData:
-      description: All data fields for this messages
-      properties:
-        displayValue:
-          description: DisplayValue
-          type: string
-        inboxDataId:
-          description: InboxDataId
-          type: integer
-          format: int32
-        inboxDataName:
-          description: InboxDataName
-          type: string
-        valueBool:
-          description: ValueBool
-          type:
-          - boolean
-          - 'null'
-        valueDateTime:
-          description: ValueDateTime
-          type:
-          - string
-          - 'null'
-          format: date-time
-        valueInt:
-          description: ValueInt
-          type:
-          - integer
-          - 'null'
-          format: int32
-        valueString:
-          description: ValueString
-          type: string
-      type: object
-    InboxTemplateUpdateArgs:
-      description: InboxTemplateUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxTemplateUpdateModel'
-      type: object
-    InboxTemplateUpdateModel:
-      description: Data
-      properties:
-        templateName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        templateType:
-          $ref: '#/components/schemas/UpdateFieldValueOfInboxTemplateType'
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    InboxMessageSummary:
-      description: Summary of an inbox message
-      properties:
-        data:
-          description: All data fields for this messages
-          items:
-            $ref: '#/components/schemas/InboxMessageData'
-          type: array
-        details:
-          description: A common data field on all notifications
-          type: string
-        expirationDate:
-          description: Within 24 hours of this date this message and all related history will be removed
-          type: string
-          format: date-time
-        inboxMessageTypeId:
-          description: The type of message id
-          type: integer
-          format: int32
-        inboxMessageTypeName:
-          description: The message type name
-          type: string
-        isRead:
-          description: Has the current user read this message
-          type: boolean
-        messageCreatedDate:
-          description: When was the message created
-          type: string
-          format: date-time
-        messageId:
-          description: Message ID
-          type: integer
-          format: int32
-        recipients:
-          description: Who has recieved this message
-          items:
-            type: string
-          type: array
-      type: object
-    InboxMessageTypeSummary:
-      description: InboxMessageTypeSummary[]
-      properties:
-        inboxMessageTypeId:
-          description: Message Type ID
-          type: integer
-          format: int32
-        inboxMessageTypeName:
-          description: The name of the message type
-          type: string
-        notificationCount:
-          description: 'Populated with the number of notifications the current user has of this message type.  Only populated when '
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    PagingOfInboxTemplateModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/InboxTemplateModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    InboxTemplateCreateArgs:
-      description: InboxTemplateCreateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxTemplateCreateModel'
-      type: object
-    InboxTemplateLocaleUpdateArgs:
-      description: InboxTemplateLocaleUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxTemplateLocaleUpdateModel'
-      type: object
-    PagingOfInboxResourceSummary:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/InboxResourceSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    InboxMessageSetMessageReadStatusModel:
-      description: Data
-      properties:
-        messageIds:
-          description: MessageIds
-          items:
-            type: integer
-            format: int32
-          type: array
-        read:
-          description: Read
-          type: boolean
-      type: object
-    InboxResourceDeleteResponse:
-      description: Response message when deleting an inbox resource
-      properties:
-        success:
-          description: Did the delete succeed
-          type: boolean
-      type: object
-    InboxTemplateModel:
-      description: Query results
-      properties:
-        isSystem:
-          description: Is System
-          type: boolean
-        rules:
-          description: Rules leveraging this Template
-          items:
-            $ref: '#/components/schemas/InboxRuleModel'
-          type: array
-        templateId:
-          description: Inbox Template Id
-          type: integer
-          format: int32
-        templateName:
-          description: Inbox Template Name
-          type: string
-        templateType:
-          $ref: '#/components/schemas/InboxTemplateType'
-      type: object
-    InboxTemplateCreateModel:
-      description: Data
-      properties:
-        templateName:
-          description: TemplateName
-          type: string
-        templateType:
-          $ref: '#/components/schemas/InboxTemplateType'
-      type: object
-    AlertNotificationsWrapper:
-      description: AlertNotificationsWrapper
-      properties:
-        hasNewNotifications:
-          description: HasNewNotifications
-          type: boolean
-        systemAlerts:
-          description: SystemAlerts
-          items:
-            $ref: '#/components/schemas/AlertNotification'
-          type: array
-      type: object
-    NotificationStatusModel:
-      description: Inbox notification status
-      properties:
-        applicationRequestPendingTotal:
-          description: The number of pending application requests that are pending approval from the current user.
-          type:
-          - integer
-          - 'null'
-          format: int32
-        hasAlerts:
-          description: Does the current user have any alerts
-          type: boolean
-        inboxNotificationTotal:
-          description: The number of notifications since notifications were last viewed online.  If they have never been viewed then in the last seven days.
-          type:
-          - integer
-          - 'null'
-          format: int32
-        notificationsLastViewed:
-          description: The last time the current user viewed their alerts
-          type:
-          - string
-          - 'null'
-          format: date-time
-        secretAccessRequestPendingTotal:
-          description: The number of pending secret access requests that are pending approval from the current user.
-          type:
-          - integer
-          - 'null'
-          format: int32
-        secretEraseRequestPendingTotal:
-          description: The number of pending secret erase requests that are pending approval from the current user.
-          type:
-          - integer
-          - 'null'
-          format: int32
-        systemAlertTotal:
-          description: The number of system alerts.
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    InboxTemplateLocaleCreateArgs:
-      description: InboxTemplateLocaleCreateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/InboxTemplateLocaleCreateModel'
-      type: object
-    InboxResourceSummary:
-      description: Query results
-      properties:
-        inboxResourceId:
-          description: InboxResourceId
-          type: integer
-          format: int32
-        inboxResourceSlug:
-          description: InboxResourceSlug
-          type: string
-        inboxResourceType:
-          $ref: '#/components/schemas/InboxResourceType'
-      type: object
-    InboxTemplateLocaleCreateModel:
-      description: Data
-      properties:
-        inboxTemplateId:
-          description: InboxTemplateId
-          type: integer
-          format: int32
-        localeCultureId:
-          description: LocaleCultureId
-          type: integer
-          format: int32
-        subject:
-          description: Subject
-          type: string
-        templateBody:
-          description: TemplateBody
-          type: string
-      type: object
-    InboxTemplateDetailModel:
-      description: InboxTemplateDetailModel
-      properties:
-        isSystem:
-          description: IsSystem
-          type: boolean
-        locale:
-          description: Locale
-          type: integer
-          format: int32
-        templateId:
-          description: TemplateId
-          type: integer
-          format: int32
-        templateName:
-          description: TemplateName
-          type: string
-        templateType:
-          $ref: '#/components/schemas/InboxTemplateType'
-      type: object
-    InboxResourceType:
-      description: Resource Image Type
-      properties: {}
-      type: string
-      enum:
-      - Jpg
-      - Png
-    InboxTestMessageModel:
-      description: Data
-      properties:
-        groupId:
-          description: The group ID to send the message.  If omitted the message is sent to the current user.
-          type:
-          - integer
-          - 'null'
-          format: int32
-        message:
-          description: The actual message
-          type: string
-        subject:
-          description: The subject of the message
-          type: string
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    UpdateFieldValueOfInboxTemplateType:
-      description: TemplateType
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          $ref: '#/components/schemas/InboxTemplateType'
-      type: object
-    InboxRuleModel:
-      description: Rules leveraging this Template
-      properties:
-        inboxRuleId:
-          description: Inbox Rule Id
-          type: integer
-          format: int32
-        inboxRuleName:
-          description: The name of the rule
-          type: string
-      type: object
-    InboxTemplateLocaleModel:
-      description: InboxTemplateLocaleModel
-      properties:
-        localeCultureId:
-          description: LocaleCultureId
-          type: integer
-          format: int32
-        subject:
-          description: Subject
-          type: string
-        templateBody:
-          description: TemplateBody
-          type: string
-        templateId:
-          description: TemplateId
-          type: integer
-          format: int32
-        templateLocaleId:
-          description: TemplateLocaleId
-          type: integer
-          format: int32
-      type: object
-    InboxResourceData:
-      description: Inbox Resource Data
-      properties:
-        imageData:
-          description: Resource Image Data as Base64 string
-          type: string
-          format: binary
-        imageType:
-          $ref: '#/components/schemas/InboxResourceType'
-        inboxResourceId:
-          description: Inbox Resource Id
-          type: integer
-          format: int32
-        name:
-          description: Inbox Resource Name
           type: string
       type: object
     PagingOfInboxMessageSummary:
@@ -1907,6 +1210,703 @@ components:
           description: Total number of results available
           type: integer
           format: int32
+      type: object
+    InboxTemplateUpdateArgs:
+      description: InboxTemplateUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxTemplateUpdateModel'
+      type: object
+    InboxTemplateCopyModel:
+      description: Inbox Template Copy Model
+      properties:
+        inboxTemplateIdToCopy:
+          description: InboxTemplateId To Copy
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+      type: object
+    InboxMessageData:
+      description: All data fields for this messages
+      properties:
+        displayValue:
+          description: DisplayValue
+          type: string
+        inboxDataId:
+          description: InboxDataId
+          type: integer
+          format: int32
+        inboxDataName:
+          description: InboxDataName
+          type: string
+        valueBool:
+          description: ValueBool
+          type:
+          - boolean
+          - 'null'
+        valueDateTime:
+          description: ValueDateTime
+          type:
+          - string
+          - 'null'
+          format: date-time
+        valueInt:
+          description: ValueInt
+          type:
+          - integer
+          - 'null'
+          format: int32
+        valueString:
+          description: ValueString
+          type: string
+      type: object
+    InboxTemplateDetailModel:
+      description: InboxTemplateDetailModel
+      properties:
+        isSystem:
+          description: IsSystem
+          type: boolean
+        locale:
+          description: Locale
+          type: integer
+          format: int32
+        templateId:
+          description: TemplateId
+          type: integer
+          format: int32
+        templateName:
+          description: TemplateName
+          type: string
+        templateType:
+          $ref: '#/components/schemas/InboxTemplateType'
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    InboxTemplateCopyArgs:
+      description: InboxTemplateCopyArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxTemplateCopyModel'
+      type: object
+    InboxResourceDeleteResponse:
+      description: Response message when deleting an inbox resource
+      properties:
+        success:
+          description: Did the delete succeed
+          type: boolean
+      type: object
+    InboxTemplateLocaleUpdateModel:
+      description: Data
+      properties:
+        subject:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        templateBody:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    InboxTemplateLocaleCreateArgs:
+      description: InboxTemplateLocaleCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxTemplateLocaleCreateModel'
+      type: object
+    InboxMessageSummary:
+      description: Summary of an inbox message
+      properties:
+        data:
+          description: All data fields for this messages
+          items:
+            $ref: '#/components/schemas/InboxMessageData'
+          type: array
+        details:
+          description: A common data field on all notifications
+          type: string
+        expirationDate:
+          description: Within 24 hours of this date this message and all related history will be removed
+          type: string
+          format: date-time
+        inboxMessageTypeId:
+          description: The type of message id
+          type: integer
+          format: int32
+        inboxMessageTypeName:
+          description: The message type name
+          type: string
+        isRead:
+          description: Has the current user read this message
+          type: boolean
+        messageCreatedDate:
+          description: When was the message created
+          type: string
+          format: date-time
+        messageId:
+          description: Message ID
+          type: integer
+          format: int32
+        recipients:
+          description: Who has recieved this message
+          items:
+            type: string
+          type: array
+      type: object
+    InboxTemplateLocaleUpdateArgs:
+      description: InboxTemplateLocaleUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxTemplateLocaleUpdateModel'
+      type: object
+    InboxResourceSummary:
+      description: Query results
+      properties:
+        inboxResourceId:
+          description: InboxResourceId
+          type: integer
+          format: int32
+        inboxResourceSlug:
+          description: InboxResourceSlug
+          type: string
+        inboxResourceType:
+          $ref: '#/components/schemas/InboxResourceType'
+      type: object
+    InboxMessageTypeSummary:
+      description: InboxMessageTypeSummary[]
+      properties:
+        inboxMessageTypeId:
+          description: Message Type ID
+          type: integer
+          format: int32
+        inboxMessageTypeName:
+          description: The name of the message type
+          type: string
+        notificationCount:
+          description: 'Populated with the number of notifications the current user has of this message type.  Only populated when '
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    AlertNotification:
+      description: SystemAlerts
+      properties:
+        action:
+          description: Action
+          type: string
+        alertDate:
+          description: AlertDate
+          type:
+          - string
+          - 'null'
+          format: date-time
+        description:
+          description: Description
+          type: string
+        isRead:
+          description: IsRead
+          type:
+          - boolean
+          - 'null'
+        name:
+          description: Name
+          type: string
+        notificationId:
+          description: NotificationId
+          type:
+          - string
+          - 'null'
+          format: uuid
+        notificationType:
+          $ref: '#/components/schemas/AlertNotificationType'
+        type:
+          $ref: '#/components/schemas/AlertNotificationStatus'
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    InboxTemplateModel:
+      description: Query results
+      properties:
+        isSystem:
+          description: Is System
+          type: boolean
+        rules:
+          description: Rules leveraging this Template
+          items:
+            $ref: '#/components/schemas/InboxRuleModel'
+          type: array
+        templateId:
+          description: Inbox Template Id
+          type: integer
+          format: int32
+        templateName:
+          description: Inbox Template Name
+          type: string
+        templateType:
+          $ref: '#/components/schemas/InboxTemplateType'
+      type: object
+    InboxTemplateCreateArgs:
+      description: InboxTemplateCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxTemplateCreateModel'
+      type: object
+    InboxRuleModel:
+      description: Rules leveraging this Template
+      properties:
+        inboxRuleId:
+          description: Inbox Rule Id
+          type: integer
+          format: int32
+        inboxRuleName:
+          description: The name of the rule
+          type: string
+      type: object
+    InboxTemplateLocaleModel:
+      description: InboxTemplateLocaleModel
+      properties:
+        localeCultureId:
+          description: LocaleCultureId
+          type: integer
+          format: int32
+        subject:
+          description: Subject
+          type: string
+        templateBody:
+          description: TemplateBody
+          type: string
+        templateId:
+          description: TemplateId
+          type: integer
+          format: int32
+        templateLocaleId:
+          description: TemplateLocaleId
+          type: integer
+          format: int32
+      type: object
+    AlertNotificationStatus:
+      description: Type
+      properties: {}
+      type: string
+      enum:
+      - Normal
+      - Critical
+      - RequiresInteraction
+    AlertNotificationType:
+      description: NotificationType
+      properties: {}
+      type: string
+      enum:
+      - EventSubscription
+      - SecretApproval
+      - ApplicationAccessRequest
+      - SystemAlert
+      - SecretEraseRequest
+    InboxTemplateType:
+      description: Template Type
+      properties: {}
+      type: string
+      enum:
+      - Email
+      - Slack
+    InboxResourceType:
+      description: Resource Image Type
+      properties: {}
+      type: string
+      enum:
+      - Jpg
+      - Png
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    AlertNotificationUnreadEventArgs:
+      description: AlertNotificationUnreadEventArgs
+      properties:
+        notificationId:
+          description: NotificationId
+          type: string
+          format: uuid
+      type: object
+    PagingOfInboxTemplateModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/InboxTemplateModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    InboxTemplateLocaleCreateModel:
+      description: Data
+      properties:
+        inboxTemplateId:
+          description: InboxTemplateId
+          type: integer
+          format: int32
+        localeCultureId:
+          description: LocaleCultureId
+          type: integer
+          format: int32
+        subject:
+          description: Subject
+          type: string
+        templateBody:
+          description: TemplateBody
+          type: string
+      type: object
+    UpdateFieldValueOfInboxTemplateType:
+      description: TemplateType
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          $ref: '#/components/schemas/InboxTemplateType'
+      type: object
+    InboxTemplateUpdateModel:
+      description: Data
+      properties:
+        templateName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        templateType:
+          $ref: '#/components/schemas/UpdateFieldValueOfInboxTemplateType'
+      type: object
+    InboxTemplateCreateModel:
+      description: Data
+      properties:
+        templateName:
+          description: TemplateName
+          type: string
+        templateType:
+          $ref: '#/components/schemas/InboxTemplateType'
+      type: object
+    AlertNotificationsWrapper:
+      description: AlertNotificationsWrapper
+      properties:
+        hasNewNotifications:
+          description: HasNewNotifications
+          type: boolean
+        systemAlerts:
+          description: SystemAlerts
+          items:
+            $ref: '#/components/schemas/AlertNotification'
+          type: array
+      type: object
+    PagingOfInboxResourceSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/InboxResourceSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    InboxData:
+      description: InboxData[]
+      properties:
+        createdByUserId:
+          description: CreatedByUserId
+          type: integer
+          format: int32
+        createdDate:
+          description: CreatedDate
+          type: string
+          format: date-time
+        inboxDataId:
+          description: InboxDataId
+          type: integer
+          format: int32
+        inboxDataName:
+          description: InboxDataName
+          type: string
+      type: object
+    AlertNotificationReadEventArgs:
+      description: AlertNotificationReadEventArgs
+      properties:
+        notificationId:
+          description: NotificationId
+          type: string
+          format: uuid
+      type: object
+    InboxTestMessageArgs:
+      description: InboxTestMessageArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxTestMessageModel'
+      type: object
+    InboxTestMessageModel:
+      description: Data
+      properties:
+        groupId:
+          description: The group ID to send the message.  If omitted the message is sent to the current user.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        message:
+          description: The actual message
+          type: string
+        subject:
+          description: The subject of the message
+          type: string
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
+    InboxMessageSetMessageReadStatusArgs:
+      description: InboxMessageSetMessageReadStatusArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/InboxMessageSetMessageReadStatusModel'
+      type: object
+    NotificationStatusModel:
+      description: Inbox notification status
+      properties:
+        applicationRequestPendingTotal:
+          description: The number of pending application requests that are pending approval from the current user.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        hasAlerts:
+          description: Does the current user have any alerts
+          type: boolean
+        inboxNotificationTotal:
+          description: The number of notifications since notifications were last viewed online.  If they have never been viewed then in the last seven days.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        notificationsLastViewed:
+          description: The last time the current user viewed their alerts
+          type:
+          - string
+          - 'null'
+          format: date-time
+        secretAccessRequestPendingTotal:
+          description: The number of pending secret access requests that are pending approval from the current user.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        secretEraseRequestPendingTotal:
+          description: The number of pending secret erase requests that are pending approval from the current user.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        systemAlertTotal:
+          description: The number of system alerts.
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    InboxMessageSetMessageReadStatusModel:
+      description: Data
+      properties:
+        messageIds:
+          description: MessageIds
+          items:
+            type: integer
+            format: int32
+          type: array
+        read:
+          description: Read
+          type: boolean
+      type: object
+    InboxResourceData:
+      description: Inbox Resource Data
+      properties:
+        imageData:
+          description: Resource Image Data as Base64 string
+          type: string
+          format: binary
+        imageType:
+          $ref: '#/components/schemas/InboxResourceType'
+        inboxResourceId:
+          description: Inbox Resource Id
+          type: integer
+          format: int32
+        name:
+          description: Inbox Resource Name
+          type: string
       type: object
   securitySchemes:
     BearerToken:

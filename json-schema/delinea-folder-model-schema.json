@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-folder-model-schema.json",
+  "title": "FolderModel",
+  "description": "Describes the properties of a secret folder",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-folders-api-openapi.yml#/components/schemas/FolderModel",
+  "properties": {
+    "childFolders": {
+      "description": "List of folders within this folder",
+      "items": {
+        "$ref": "#/$defs/IFolderModel"
+      },
+      "type": "array"
+    },
+    "folderName": {
+      "description": "The name of the folder.",
+      "type": "string"
+    },
+    "folderPath": {
+      "description": "The path of all folders and subfolders beginning at the root anterminating at this folder.",
+      "type": "string"
+    },
+    "folderTypeId": {
+      "description": "The icon to display for the folder. Depricated in latest UI. Use 1 when setting this value.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "id": {
+      "description": "Folder ID",
+      "type": "integer",
+      "format": "int32"
+    },
+    "inheritPermissions": {
+      "description": "Whether the folder should inherit permissions from its parent (default: true)",
+      "type": "boolean"
+    },
+    "inheritSecretPolicy": {
+      "description": "Whether the folder should inherit the secret policy.  Defaults to true unless creating a root folder.",
+      "type": "boolean"
+    },
+    "parentFolderId": {
+      "description": "The ID of this folder's parent folder.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "secretPolicyId": {
+      "description": "The id of the Secret Policy that sets security and other settings on secrets contained within the folder.",
+      "type": "integer",
+      "format": "int32"
+    },
+    "secretTemplates": {
+      "description": "List of templates that may be used to create secrets in this folder",
+      "items": {
+        "$ref": "#/$defs/SecretTemplateSummary"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "IFolderModel": {
+      "description": "Describes the properties of a secret folder",
+      "properties": {
+        "childFolders": {
+          "description": "List of folders within this folder",
+          "items": {
+            "$ref": "#/$defs/IFolderModel"
+          },
+          "type": "array"
+        },
+        "folderName": {
+          "description": "Folder name",
+          "type": "string"
+        },
+        "folderPath": {
+          "description": "Path of this folder",
+          "type": "string"
+        },
+        "folderTypeId": {
+          "description": "Folder type ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "description": "Folder ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "inheritPermissions": {
+          "description": "Whether the folder inherits permissions from its parent",
+          "type": "boolean"
+        },
+        "inheritSecretPolicy": {
+          "description": "Whether the folder inherits the secret policy",
+          "type": "boolean"
+        },
+        "parentFolderId": {
+          "description": "Parent folder ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "secretPolicyId": {
+          "description": "Secret policy ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "secretTemplates": {
+          "description": "Secret templates associated with this folder",
+          "items": {
+            "$ref": "#/$defs/SecretTemplateSummary"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SecretTemplateSummary": {
+      "description": "Secret template summary",
+      "properties": {
+        "active": {
+          "description": "Is Secret template active",
+          "type": "boolean"
+        },
+        "heartbeatEnabled": {
+          "description": "Is heartbeat enabled for this template",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "Secret template ID",
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "description": "Secret template name",
+          "type": "string"
+        },
+        "passwordTypeId": {
+          "description": "Password Type that the secret template uses for password change",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "passwordTypeReady": {
+          "description": "Is the template password type ready",
+          "type": "boolean"
+        },
+        "secretCount": {
+          "description": "Number of Secrets associated to the template. Only populated when IncludeCount is set to true.",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

@@ -138,30 +138,34 @@ paths:
       deprecated: false
 components:
   schemas:
-    EventPipelineTriggerSummary:
-      description: EventPipelineTriggerSummary[]
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
       properties:
-        entityTypeDisplayName:
-          description: Entity Type Display Name
+        message:
+          description: Error message
           type: string
-        eventActionId:
-          description: Event Action ID ID
-          type: integer
-          format: int32
-        eventEntityTypeId:
-          description: Event Entity Type ID
-          type: integer
-          format: int32
-        eventPipelineId:
-          description: Event Pipeline ID
-          type: integer
-          format: int32
-        eventPipelineTriggerId:
-          description: Event Pipeline Trigger ID
-          type: integer
-          format: int32
-        triggerDisplayName:
-          description: Trigger Display Name
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
           type: string
       type: object
     EventPipelineTrigger:
@@ -193,27 +197,6 @@ components:
           description: TriggerDisplayName
           type: string
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
     BadRequestResponse:
       description: Response object for invalid requests
       required:
@@ -232,13 +215,30 @@ components:
           description: An object describing validation errors
           type: object
       type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
+    EventPipelineTriggerSummary:
+      description: EventPipelineTriggerSummary[]
       properties:
-        message:
-          description: Error message
+        entityTypeDisplayName:
+          description: Entity Type Display Name
+          type: string
+        eventActionId:
+          description: Event Action ID ID
+          type: integer
+          format: int32
+        eventEntityTypeId:
+          description: Event Entity Type ID
+          type: integer
+          format: int32
+        eventPipelineId:
+          description: Event Pipeline ID
+          type: integer
+          format: int32
+        eventPipelineTriggerId:
+          description: Event Pipeline Trigger ID
+          type: integer
+          format: int32
+        triggerDisplayName:
+          description: Trigger Display Name
           type: string
       type: object
   securitySchemes:

@@ -96,6 +96,24 @@ paths:
       deprecated: false
 components:
   schemas:
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
     PagingOfSecurityAuditLogSummaryAndSecurityAuditLogFilter:
       description: Specify filtering, paging, sorting options for querying records and returning results
       properties:
@@ -155,44 +173,30 @@ components:
           type: integer
           format: int32
       type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
       required:
       - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
       properties:
         message:
           description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
           type: string
       type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
       required:
-      - message
+      - name
+      - direction
       properties:
-        message:
-          description: Error message
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
           type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
       type: object
     SecurityAuditLogSummary:
       description: Query results
@@ -229,22 +233,23 @@ components:
           description: Notes
           type: string
       type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
+    BadRequestResponse:
+      description: Response object for invalid requests
       required:
       - message
       properties:
         message:
           description: Error message
           type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
       type: object
     SecurityAuditLogFilter:
       description: Additional query options
@@ -256,31 +261,26 @@ components:
           description: SearchText
           type: string
       type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
       required:
-      - name
-      - direction
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
       properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
+        message:
+          description: Error message
           type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
       type: object
   securitySchemes:
     BearerToken:

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-character-set-patch-args-schema.json",
+  "title": "CharacterSetPatchArgs",
+  "description": "Character Set Patch Args",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-charactersets-api-openapi.yml#/components/schemas/CharacterSetPatchArgs",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/CharacterSetPatchModel"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "CharacterSetPatchModel": {
+      "description": "Character Set Patch Model",
+      "properties": {
+        "abbreviation": {
+          "$ref": "#/$defs/UpdateFieldValueOfString"
+        },
+        "active": {
+          "$ref": "#/$defs/UpdateFieldValueOfBoolean"
+        },
+        "description": {
+          "$ref": "#/$defs/UpdateFieldValueOfString"
+        },
+        "name": {
+          "$ref": "#/$defs/UpdateFieldValueOfString"
+        },
+        "value": {
+          "$ref": "#/$defs/UpdateFieldValueOfString"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateFieldValueOfBoolean": {
+      "description": "Active",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Value",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateFieldValueOfString": {
+      "description": "Description",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

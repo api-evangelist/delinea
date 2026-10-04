@@ -375,474 +375,11 @@ paths:
       deprecated: false
 components:
   schemas:
-    DependencyChangerSettingSummaryModel:
-      description: Discovery Scanner Dependency Changer Setting Summary
-      properties:
-        defaultValue:
-          description: The default value for the Setting.
-          type: string
-        settingId:
-          description: The Id of the Setting.
-          type: integer
-          format: int32
-        settingName:
-          description: The name of the Setting.
-          type: string
-      type: object
-    DependencyChangerScriptCreateModel:
-      description: Model for creating a Scanner Dependency Changer Script
-      properties:
-        arguments:
-          description: Arguments used for Powershell scripts
-          type: string
-        key:
-          description: Key
-          type: string
-        odbcParameters:
-          description: ODBC Parameters for Scripts
-          items:
-            $ref: '#/components/schemas/DependencyScriptOdbcParameterModel'
-          type: array
-        parameters:
-          description: Parameters for Scripts
-          items:
-            $ref: '#/components/schemas/DependencyScriptParameterModel'
-          type: array
-        passphrase:
-          description: Passphrase
-          type: string
-        password:
-          description: Password
-          type: string
-        scriptId:
-          description: The Id of the Script.
-          type:
-          - integer
-          - 'null'
-          format: int32
-        username:
-          description: Username
-          type: string
-        useTokens:
-          description: Use Tokens
-          type: boolean
-      type: object
-    DependencyChangerScriptUpdateModel:
-      description: Model for Scanner Dependency Changer Script
-      properties:
-        arguments:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        key:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        odbcParameters:
-          $ref: '#/components/schemas/UpdateFieldValueOfDependencyScriptOdbcParameterModelArray'
-        parameters:
-          $ref: '#/components/schemas/UpdateFieldValueOfDependencyScriptParameterModelArray'
-        passphrase:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        password:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        scriptId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        username:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        useTokens:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-      type: object
-    DependencyChangerModel:
-      description: Discovery Scanner Dependency Changer
-      properties:
-        active:
-          description: Indicates of the Dependency Changer is active.
-          type: boolean
-        canEdit:
-          description: Indicates if the Dependency Changer can be edited.
-          type: boolean
-        changeFailScript:
-          $ref: '#/components/schemas/DependencyChangerScriptModel'
-        changeSuccessScript:
-          $ref: '#/components/schemas/DependencyChangerScriptModel'
-        hasDependencies:
-          description: Indicates if the Dependency Changer has dependencies.
-          type: boolean
-        hasImportRules:
-          description: Indicates if the Dependency Changer has import rules.
-          type: boolean
-        passwordChangeScript:
-          $ref: '#/components/schemas/DependencyChangerScriptModel'
-        scanItemTemplateId:
-          description: The Scan Template Id of the Dependency Changer.
-          type:
-          - integer
-          - 'null'
-          format: int32
-        secretDependencyChangerDescription:
-          description: The description of the Dependency Changer.
-          type: string
-        secretDependencyChangerId:
-          description: The Id of the Dependency Changer.
-          type: integer
-          format: int32
-        secretDependencyChangerName:
-          description: The name of the Dependency Changer.
-          type: string
-        secretDependencyTypeId:
-          description: The Dependency Type Id of the Dependency Changer.
-          type: integer
-          format: int32
-        settings:
-          description: Settings of the changer.
-          items:
-            $ref: '#/components/schemas/DependencyChangerSettingDetailModel'
-          type: array
-        verificationScript:
-          $ref: '#/components/schemas/DependencyChangerScriptModel'
-      type: object
-    DependencyScriptParameterModel:
-      description: Model for a Dependency Script Parameter
-      properties:
-        name:
-          description: Name
-          type: string
-        type:
-          description: Type
-          type: string
-        value:
-          description: Value
-          type: string
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    DependencyChangerSummaryModel:
-      description: Discovery Scanner Dependency Changer Summary
-      properties:
-        active:
-          description: Indicates if this Secret Dependency Changer is active.
-          type: boolean
-        secretDependencyChangerId:
-          description: The Id of the Secret Dependency Changer.
-          type: integer
-          format: int32
-        secretDependencyChangerName:
-          description: The name of the Secret Dependency Changer.
-          type: string
-        secretDependencyTypeId:
-          description: The Dependency Type Id of the Secret Dependency Changer.
-          type: integer
-          format: int32
-        secretDependencyTypeName:
-          description: The Dependency Type Name of the Secret Dependency Changer.
-          type: string
-      type: object
-    DependencyChangerCreateModel:
-      description: Create a Dependency Changer model
-      properties:
-        active:
-          description: Indicates if this Dependency Changer is active
-          type: boolean
-        changeFailScript:
-          $ref: '#/components/schemas/DependencyChangerScriptCreateModel'
-        changeSuccessScript:
-          $ref: '#/components/schemas/DependencyChangerScriptCreateModel'
-        createDependencyTemplate:
-          description: Create a Dependency Template when creating the Dependency Changer
-          type: boolean
-        passwordChangeScript:
-          $ref: '#/components/schemas/DependencyChangerScriptCreateModel'
-        scanItemTemplateId:
-          description: The Scan Template ID of the Dependency Changer
-          type: integer
-          format: int32
-        secretDependencyChangerDescription:
-          description: The description of the Dependency Changer
-          type: string
-        secretDependencyChangerName:
-          description: The name of the Dependency Changer
-          type: string
-        secretDependencyTypeId:
-          description: The Dependency Type of the Dependency Changer
-          type: integer
-          format: int32
-        settings:
-          description: Dynamic Settings based on the DependencyTemplate
-          items:
-            $ref: '#/components/schemas/DependencyChangerSettingModel'
-          type: array
-        verificationScript:
-          $ref: '#/components/schemas/DependencyChangerScriptCreateModel'
-      type: object
-    DependencyChangerSettingDetailModel:
-      description: Model for Scanner Dependency Changer Setting
-      properties:
-        settingName:
-          description: Setting Name
-          type: string
-        usingDefault:
-          description: Using Default
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    DependencyChangerUpdateModel:
-      description: Update a Dependency Changer
-      properties:
-        active:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        changeFailScript:
-          $ref: '#/components/schemas/DependencyChangerScriptUpdateModel'
-        changeSuccessScript:
-          $ref: '#/components/schemas/DependencyChangerScriptUpdateModel'
-        passwordChangeScript:
-          $ref: '#/components/schemas/DependencyChangerScriptUpdateModel'
-        scanItemTemplateId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        secretDependencyChangerDescription:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        secretDependencyChangerName:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
-        secretDependencyTypeId:
-          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
-        settings:
-          $ref: '#/components/schemas/UpdateFieldValueOfDependencyChangerSettingModelArray'
-        verificationScript:
-          $ref: '#/components/schemas/DependencyChangerScriptUpdateModel'
-      type: object
-    UpdateFieldValueOfDependencyScriptParameterModelArray:
-      description: Parameters for Scripts
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          items:
-            $ref: '#/components/schemas/DependencyScriptParameterModel'
-          type: array
-      type: object
-    DependencyChangerCreateArgs:
-      description: Scanner Dependency Changer create args
-      properties:
-        data:
-          $ref: '#/components/schemas/DependencyChangerCreateModel'
-      type: object
-    PagingOfDependencyChangerSettingSummaryModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/DependencyChangerSettingSummaryModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    DependencyScriptModel:
-      description: DependencyScriptModel[]
-      properties:
-        databasePlaceholder:
-          description: Database Placeholder
-          type: string
-        id:
-          description: The Id of the Script Model.
-          type: integer
-          format: int32
-        name:
-          description: The name of the Script Model.
-          type: string
-        odbcConnectionStringArgs:
-          description: A collection of the ODBC Connection String args of the Script Model.
-          items:
-            type: string
-          type: array
-        parameters:
-          description: Parameters for Scripts
-          items:
-            $ref: '#/components/schemas/DependencyScriptParameterModel'
-          type: array
-        portPlaceholder:
-          description: Port Placeholder
-          type: string
-        scriptType:
-          description: The type of the Script Model.
-          type: integer
-          format: int32
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    UpdateFieldValueOfDependencyChangerSettingModelArray:
-      description: Dynamic Settings based on the DependencyTemplate
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          items:
-            $ref: '#/components/schemas/DependencyChangerSettingModel'
-          type: array
-      type: object
     DependencyChangerUpdateArgs:
       description: Scanner Dependency Changer update args
       properties:
         data:
           $ref: '#/components/schemas/DependencyChangerUpdateModel'
-      type: object
-    DependencyScriptOdbcParameterModel:
-      description: Model for a Dependency Script ODBC Parameter
-      properties:
-        name:
-          description: Name
-          type: string
-        value:
-          description: Value
-          type: string
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
-      type: object
-    UpdateFieldValueOfInt32:
-      description: How many days until the password expires.
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: integer
-          format: int32
-      type: object
-    DependencyChangerScanTemplateFieldModel:
-      description: DependencyChangerScanTemplateFieldModel[]
-      properties:
-        includeInMatch:
-          description: Include this field in the matching to find unique items
-          type: boolean
-        isActive:
-          description: indicates if this field is active
-          type: boolean
-        isRequired:
-          description: Indicates if this field is required
-          type: boolean
-        parentScanItemFieldId:
-          description: The ID of the parent field
-          type:
-          - integer
-          - 'null'
-          format: int32
-        parentScanItemFieldName:
-          description: The name of the parent field
-          type: string
-        scanItemFieldId:
-          description: Scan template field ID
-          type: integer
-          format: int32
-        scanItemFieldName:
-          description: The name of the field
-          type: string
-        scanItemTemplateId:
-          description: Which scan template does this field belong to
-          type: integer
-          format: int32
-        sortOrder:
-          description: The sort order for this field
-          type: integer
-          format: int32
-        systemField:
-          description: IS this a system field
-          type: boolean
       type: object
     PagingOfDependencyChangerSummaryModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -901,6 +438,263 @@ components:
           type: integer
           format: int32
       type: object
+    DependencyChangerSummaryModel:
+      description: Discovery Scanner Dependency Changer Summary
+      properties:
+        active:
+          description: Indicates if this Secret Dependency Changer is active.
+          type: boolean
+        secretDependencyChangerId:
+          description: The Id of the Secret Dependency Changer.
+          type: integer
+          format: int32
+        secretDependencyChangerName:
+          description: The name of the Secret Dependency Changer.
+          type: string
+        secretDependencyTypeId:
+          description: The Dependency Type Id of the Secret Dependency Changer.
+          type: integer
+          format: int32
+        secretDependencyTypeName:
+          description: The Dependency Type Name of the Secret Dependency Changer.
+          type: string
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    DependencyChangerUpdateModel:
+      description: Update a Dependency Changer
+      properties:
+        active:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+        changeFailScript:
+          $ref: '#/components/schemas/DependencyChangerScriptUpdateModel'
+        changeSuccessScript:
+          $ref: '#/components/schemas/DependencyChangerScriptUpdateModel'
+        passwordChangeScript:
+          $ref: '#/components/schemas/DependencyChangerScriptUpdateModel'
+        scanItemTemplateId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        secretDependencyChangerDescription:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        secretDependencyChangerName:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        secretDependencyTypeId:
+          $ref: '#/components/schemas/UpdateFieldValueOfInt32'
+        settings:
+          $ref: '#/components/schemas/UpdateFieldValueOfDependencyChangerSettingModelArray'
+        verificationScript:
+          $ref: '#/components/schemas/DependencyChangerScriptUpdateModel'
+      type: object
+    DependencyScriptModel:
+      description: DependencyScriptModel[]
+      properties:
+        databasePlaceholder:
+          description: Database Placeholder
+          type: string
+        id:
+          description: The Id of the Script Model.
+          type: integer
+          format: int32
+        name:
+          description: The name of the Script Model.
+          type: string
+        odbcConnectionStringArgs:
+          description: A collection of the ODBC Connection String args of the Script Model.
+          items:
+            type: string
+          type: array
+        parameters:
+          description: Parameters for Scripts
+          items:
+            $ref: '#/components/schemas/DependencyScriptParameterModel'
+          type: array
+        portPlaceholder:
+          description: Port Placeholder
+          type: string
+        scriptType:
+          description: The type of the Script Model.
+          type: integer
+          format: int32
+      type: object
+    DependencyChangerSettingModel:
+      description: Model for creating a Scanner Dependency Changer Setting
+      properties:
+        settingName:
+          description: Setting Name
+          type: string
+        value:
+          description: Value
+          type: string
+      type: object
+    UpdateFieldValueOfDependencyScriptParameterModelArray:
+      description: Parameters for Scripts
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          items:
+            $ref: '#/components/schemas/DependencyScriptParameterModel'
+          type: array
+      type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    UpdateFieldValueOfInt32:
+      description: How many days until the password expires.
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: integer
+          format: int32
+      type: object
+    DependencyChangerScanTemplateFieldModel:
+      description: DependencyChangerScanTemplateFieldModel[]
+      properties:
+        includeInMatch:
+          description: Include this field in the matching to find unique items
+          type: boolean
+        isActive:
+          description: indicates if this field is active
+          type: boolean
+        isRequired:
+          description: Indicates if this field is required
+          type: boolean
+        parentScanItemFieldId:
+          description: The ID of the parent field
+          type:
+          - integer
+          - 'null'
+          format: int32
+        parentScanItemFieldName:
+          description: The name of the parent field
+          type: string
+        scanItemFieldId:
+          description: Scan template field ID
+          type: integer
+          format: int32
+        scanItemFieldName:
+          description: The name of the field
+          type: string
+        scanItemTemplateId:
+          description: Which scan template does this field belong to
+          type: integer
+          format: int32
+        sortOrder:
+          description: The sort order for this field
+          type: integer
+          format: int32
+        systemField:
+          description: IS this a system field
+          type: boolean
+      type: object
+    DependencyChangerSettingDetailModel:
+      description: Model for Scanner Dependency Changer Setting
+      properties:
+        settingName:
+          description: Setting Name
+          type: string
+        usingDefault:
+          description: Using Default
+          type: boolean
+        value:
+          description: Value
+          type: string
+      type: object
+    DependencyScriptOdbcParameterModel:
+      description: Model for a Dependency Script ODBC Parameter
+      properties:
+        name:
+          description: Name
+          type: string
+        value:
+          description: Value
+          type: string
+      type: object
+    DependencyChangerCreateArgs:
+      description: Scanner Dependency Changer create args
+      properties:
+        data:
+          $ref: '#/components/schemas/DependencyChangerCreateModel'
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    DependencyChangerSettingSummaryModel:
+      description: Discovery Scanner Dependency Changer Setting Summary
+      properties:
+        defaultValue:
+          description: The default value for the Setting.
+          type: string
+        settingId:
+          description: The Id of the Setting.
+          type: integer
+          format: int32
+        settingName:
+          description: The name of the Setting.
+          type: string
+      type: object
+    DependencyChangerCreateModel:
+      description: Create a Dependency Changer model
+      properties:
+        active:
+          description: Indicates if this Dependency Changer is active
+          type: boolean
+        changeFailScript:
+          $ref: '#/components/schemas/DependencyChangerScriptCreateModel'
+        changeSuccessScript:
+          $ref: '#/components/schemas/DependencyChangerScriptCreateModel'
+        createDependencyTemplate:
+          description: Create a Dependency Template when creating the Dependency Changer
+          type: boolean
+        passwordChangeScript:
+          $ref: '#/components/schemas/DependencyChangerScriptCreateModel'
+        scanItemTemplateId:
+          description: The Scan Template ID of the Dependency Changer
+          type: integer
+          format: int32
+        secretDependencyChangerDescription:
+          description: The description of the Dependency Changer
+          type: string
+        secretDependencyChangerName:
+          description: The name of the Dependency Changer
+          type: string
+        secretDependencyTypeId:
+          description: The Dependency Type of the Dependency Changer
+          type: integer
+          format: int32
+        settings:
+          description: Dynamic Settings based on the DependencyTemplate
+          items:
+            $ref: '#/components/schemas/DependencyChangerSettingModel'
+          type: array
+        verificationScript:
+          $ref: '#/components/schemas/DependencyChangerScriptCreateModel'
+      type: object
     DependencyChangerScriptModel:
       description: Model for Scanner Dependency Changer Script
       properties:
@@ -947,14 +741,125 @@ components:
           description: Use Tokens
           type: boolean
       type: object
-    DependencyChangerSettingModel:
-      description: Model for creating a Scanner Dependency Changer Setting
+    UpdateFieldValueOfDependencyScriptOdbcParameterModelArray:
+      description: ODBC Parameters for Scripts
       properties:
-        settingName:
-          description: Setting Name
-          type: string
+        dirty:
+          description: Dirty
+          type: boolean
         value:
           description: Value
+          items:
+            $ref: '#/components/schemas/DependencyScriptOdbcParameterModel'
+          type: array
+      type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    DependencyChangerScriptUpdateModel:
+      description: Model for Scanner Dependency Changer Script
+      properties:
+        arguments:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        key:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        odbcParameters:
+          $ref: '#/components/schemas/UpdateFieldValueOfDependencyScriptOdbcParameterModelArray'
+        parameters:
+          $ref: '#/components/schemas/UpdateFieldValueOfDependencyScriptParameterModelArray'
+        passphrase:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        password:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        scriptId:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        username:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
+        useTokens:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    DependencyChangerModel:
+      description: Discovery Scanner Dependency Changer
+      properties:
+        active:
+          description: Indicates of the Dependency Changer is active.
+          type: boolean
+        canEdit:
+          description: Indicates if the Dependency Changer can be edited.
+          type: boolean
+        changeFailScript:
+          $ref: '#/components/schemas/DependencyChangerScriptModel'
+        changeSuccessScript:
+          $ref: '#/components/schemas/DependencyChangerScriptModel'
+        hasDependencies:
+          description: Indicates if the Dependency Changer has dependencies.
+          type: boolean
+        hasImportRules:
+          description: Indicates if the Dependency Changer has import rules.
+          type: boolean
+        passwordChangeScript:
+          $ref: '#/components/schemas/DependencyChangerScriptModel'
+        scanItemTemplateId:
+          description: The Scan Template Id of the Dependency Changer.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        secretDependencyChangerDescription:
+          description: The description of the Dependency Changer.
+          type: string
+        secretDependencyChangerId:
+          description: The Id of the Dependency Changer.
+          type: integer
+          format: int32
+        secretDependencyChangerName:
+          description: The name of the Dependency Changer.
+          type: string
+        secretDependencyTypeId:
+          description: The Dependency Type Id of the Dependency Changer.
+          type: integer
+          format: int32
+        settings:
+          description: Settings of the changer.
+          items:
+            $ref: '#/components/schemas/DependencyChangerSettingDetailModel'
+          type: array
+        verificationScript:
+          $ref: '#/components/schemas/DependencyChangerScriptModel'
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
           type: string
       type: object
     BadRequestResponse:
@@ -975,18 +880,18 @@ components:
           description: An object describing validation errors
           type: object
       type: object
-    UpdateFieldValueOfOptionalInt32:
-      description: The minimum length required for local user passwords
+    DependencyScriptParameterModel:
+      description: Model for a Dependency Script Parameter
       properties:
-        dirty:
-          description: Dirty
-          type: boolean
+        name:
+          description: Name
+          type: string
+        type:
+          description: Type
+          type: string
         value:
           description: Value
-          type:
-          - integer
-          - 'null'
-          format: int32
+          type: string
       type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
@@ -1009,8 +914,8 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    UpdateFieldValueOfDependencyScriptOdbcParameterModelArray:
-      description: ODBC Parameters for Scripts
+    UpdateFieldValueOfDependencyChangerSettingModelArray:
+      description: Dynamic Settings based on the DependencyTemplate
       properties:
         dirty:
           description: Dirty
@@ -1018,8 +923,65 @@ components:
         value:
           description: Value
           items:
-            $ref: '#/components/schemas/DependencyScriptOdbcParameterModel'
+            $ref: '#/components/schemas/DependencyChangerSettingModel'
           type: array
+      type: object
+    PagingOfDependencyChangerSettingSummaryModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/DependencyChangerSettingSummaryModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
       type: object
     UpdateFieldValueOfBoolean:
       description: Active
@@ -1029,6 +991,44 @@ components:
           type: boolean
         value:
           description: Value
+          type: boolean
+      type: object
+    DependencyChangerScriptCreateModel:
+      description: Model for creating a Scanner Dependency Changer Script
+      properties:
+        arguments:
+          description: Arguments used for Powershell scripts
+          type: string
+        key:
+          description: Key
+          type: string
+        odbcParameters:
+          description: ODBC Parameters for Scripts
+          items:
+            $ref: '#/components/schemas/DependencyScriptOdbcParameterModel'
+          type: array
+        parameters:
+          description: Parameters for Scripts
+          items:
+            $ref: '#/components/schemas/DependencyScriptParameterModel'
+          type: array
+        passphrase:
+          description: Passphrase
+          type: string
+        password:
+          description: Password
+          type: string
+        scriptId:
+          description: The Id of the Script.
+          type:
+          - integer
+          - 'null'
+          format: int32
+        username:
+          description: Username
+          type: string
+        useTokens:
+          description: Use Tokens
           type: boolean
       type: object
   securitySchemes:

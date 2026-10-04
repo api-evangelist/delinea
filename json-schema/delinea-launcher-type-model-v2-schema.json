@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-launcher-type-model-v2-schema.json",
+  "title": "LauncherTypeModelV2",
+  "description": "A definition for a launcher",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-launchers-api-openapi.yml#/components/schemas/LauncherTypeModelV2",
+  "properties": {
+    "active": {
+      "description": "Launcher type is active",
+      "type": "boolean"
+    },
+    "additionalPromptField": {
+      "description": "Determines whether to include additional prompts for the launcher",
+      "type": "boolean"
+    },
+    "additionalPromptFieldName": {
+      "description": "The name of the additional prompt",
+      "type": "string"
+    },
+    "application": {
+      "description": "Launcher type id",
+      "type": "string"
+    },
+    "canGetProxyCredentials": {
+      "description": "Method, denotes if can get proxy credentials",
+      "type": "boolean"
+    },
+    "canUseSSHKey": {
+      "description": "Method, denotes if you can use ssh key",
+      "type": "boolean"
+    },
+    "concurrencyId": {
+      "description": "The concurrency ID",
+      "type": "string"
+    },
+    "customLauncher": {
+      "$ref": "#/$defs/CustomLauncherModel"
+    },
+    "customLauncherId": {
+      "description": "The custom launcher ID associated with the launcher",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "isCustomLauncher": {
+      "description": "Method, denotes if is custom launcher",
+      "type": "boolean"
+    },
+    "isPuttyLauncherType": {
+      "description": "Method, denotes if is putty launcher",
+      "type": "boolean"
+    },
+    "isRDPReady": {
+      "description": "Method, denotes if is rdp ready",
+      "type": "boolean"
+    },
+    "isSessionConnectorLauncher": {
+      "description": "Method, denotes if is session connector launcher",
+      "type": "boolean"
+    },
+    "isSystemInternalLauncherType": {
+      "description": "Method, denotes if is system internal launcher",
+      "type": "boolean"
+    },
+    "lastModifiedDate": {
+      "description": "Date of last modification",
+      "type": "string",
+      "format": "date-time"
+    },
+    "launcherTypeId": {
+      "description": "Launcher type id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "launcherTypeName": {
+      "description": "Launcher type name",
+      "type": "string"
+    },
+    "mstscLauncherOption": {
+      "description": "Determines whether mstsc option is enabled",
+      "type": "boolean"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "CustomLauncherModel": {
+      "description": "CustomLauncher",
+      "properties": {
+        "additionalProcessesToRecord": {
+          "description": "The additional process to record if record multiple windows is set to true",
+          "type": "string"
+        },
+        "batchFileData": {
+          "description": "The batch file data",
+          "type": "string",
+          "format": "binary"
+        },
+        "batchFileId": {
+          "description": "The batch file id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "batchFileName": {
+          "description": "The batch file name",
+          "type": "string"
+        },
+        "charactersToEscape": {
+          "description": "Denotes a group of characters to escape",
+          "type": "string"
+        },
+        "childLauncherId": {
+          "description": "The ID of the child launcher associated to this launcher",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "escapeCharacter": {
+          "description": "Denotes an escape character",
+          "type": "string"
+        },
+        "launchAsSecretCredentials": {
+          "description": "Determines whether to launch as secret credentials",
+          "type": "boolean"
+        },
+        "loadUserProfile": {
+          "description": "Determines whether to load user profile if launch as secret credentials is set to true",
+          "type": "boolean"
+        },
+        "macProcessArguments": {
+          "description": "the updated mac process arguments",
+          "type": "string"
+        },
+        "macProcessName": {
+          "description": "The updated mac process name",
+          "type": "string"
+        },
+        "overrideDisallowAdditionalParametersInQuotes": {
+          "description": "Determines whether to wrap parameters in quotes",
+          "type": "boolean"
+        },
+        "preserveSSHClientProcess": {
+          "description": "Determines whether to preserve ssh client",
+          "type": "boolean"
+        },
+        "processArguments": {
+          "description": "The process arguments",
+          "type": "string"
+        },
+        "processName": {
+          "description": "The process name",
+          "type": "string"
+        },
+        "rdsCredentialsSecretId": {
+          "description": "The rds credentials secret ID",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "rdsCredentialsSecretName": {
+          "description": "The rds credentials secret name",
+          "type": "string"
+        },
+        "rdsServerHostname": {
+          "description": "The rds server hostname",
+          "type": "string"
+        },
+        "rdsServerPort": {
+          "description": "The rds server port",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "recordKeystrokes": {
+          "description": "Determines whether to record keystrokes",
+          "type": "boolean"
+        },
+        "recordMultipleWindows": {
+          "description": "Determines whether to record multiple windows",
+          "type": "boolean"
+        },
+        "runType": {
+          "description": "The run type id for the launcher",
+          "type": "integer",
+          "format": "int32"
+        },
+        "shellScriptData": {
+          "description": "The shell script data",
+          "type": "string",
+          "format": "binary"
+        },
+        "shellScriptId": {
+          "description": "The shell script id",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "shellScriptName": {
+          "description": "The shell script name",
+          "type": "string"
+        },
+        "useSFTPTunnel": {
+          "description": "Determines whether to use sftp tunnel to allow multiple data connections",
+          "type": "boolean"
+        },
+        "useShellExecute": {
+          "description": "Determines whether to use shell execute",
+          "type": "boolean"
+        },
+        "useSSHTunnel": {
+          "description": "Determines whether to us ssh tunnel",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

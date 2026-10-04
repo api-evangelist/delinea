@@ -58,6 +58,15 @@ paths:
       deprecated: false
 components:
   schemas:
+    RegexValuesSummary:
+      description: Regex Values Summary
+      properties:
+        regexList:
+          description: List of Regex values on the Secret, mapped to the Extended Field
+          items:
+            type: string
+          type: array
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -78,15 +87,6 @@ components:
         stackTrace:
           description: Exception stack trace
           type: string
-      type: object
-    RegexValuesSummary:
-      description: Regex Values Summary
-      properties:
-        regexList:
-          description: List of Regex values on the Secret, mapped to the Extended Field
-          items:
-            type: string
-          type: array
       type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures

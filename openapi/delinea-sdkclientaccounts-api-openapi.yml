@@ -338,39 +338,32 @@ paths:
       deprecated: false
 components:
   schemas:
-    SdkClientAccountModel:
-      description: SdkClientAccountModel
-      properties:
-        clientId:
-          description: ClientId
-          type: string
-          format: uuid
-        clientSecret:
-          description: ClientSecret
-          type: string
-        details:
-          description: Details
-          type: string
-        id:
-          description: Id
-          type: integer
-          format: int32
-        ipAddress:
-          description: IpAddress
-          type: string
-        name:
-          description: Name
-          type: string
-        userDisplayName:
-          description: UserDisplayName
-          type: string
-        userId:
-          description: UserId
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
+    FilterOperator:
+      description: Operator
+      properties: {}
+      type: string
+      enum:
+      - All
+      - Include
+      - Exclude
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
     SdkClientAccountUpdateArgs:
       description: SdkClientAccountUpdateArgs
       required:
@@ -386,28 +379,29 @@ components:
           - 'null'
           format: int32
       type: object
-    SdkClientAccountCreateArgs:
-      description: SdkClientAccountCreateArgs
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
       required:
       - name
-      - description
-      - ruleName
+      - direction
       properties:
-        clientId:
-          description: ClientId
-          type: string
-          format: uuid
-        description:
-          description: Description
-          type: string
+        direction:
+          $ref: '#/components/schemas/SortDirection'
         name:
-          description: Name
+          description: Sort field name
           type: string
-        onboardingKey:
-          description: OnboardingKey
-          type: string
-        ruleName:
-          description: RuleName
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
           type: string
       type: object
     PagingOfSdkClientAccountSummaryAndSdkClientAccountFilter:
@@ -469,6 +463,24 @@ components:
           type: integer
           format: int32
       type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -490,31 +502,31 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
+    SdkClientAccountModel:
+      description: SdkClientAccountModel
       properties:
-        message:
-          description: Error message
+        clientId:
+          description: ClientId
           type: string
-        messageDetail:
-          description: Error message detail
+          format: uuid
+        clientSecret:
+          description: ClientSecret
           type: string
-        errorCode:
-          description: Error message code
+        details:
+          description: Details
           type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    SdkClientAccountFilter:
-      description: Additional query options
-      properties:
-        operator:
-          $ref: '#/components/schemas/FilterOperator'
-        searchText:
-          description: SearchText
+        id:
+          description: Id
+          type: integer
+          format: int32
+        ipAddress:
+          description: IpAddress
+          type: string
+        name:
+          description: Name
+          type: string
+        userDisplayName:
+          description: UserDisplayName
           type: string
         userId:
           description: UserId
@@ -523,56 +535,29 @@ components:
           - 'null'
           format: int32
       type: object
-    FilterOperator:
-      description: Operator
-      properties: {}
-      type: string
-      enum:
-      - All
-      - Include
-      - Exclude
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
+    SdkClientAccountCreateArgs:
+      description: SdkClientAccountCreateArgs
       required:
       - name
-      - direction
+      - description
+      - ruleName
       properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
+        clientId:
+          description: ClientId
           type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
+          format: uuid
+        description:
+          description: Description
+          type: string
+        name:
+          description: Name
+          type: string
+        onboardingKey:
+          description: OnboardingKey
+          type: string
+        ruleName:
+          description: RuleName
+          type: string
       type: object
     SdkClientAccountSummary:
       description: Query results
@@ -596,6 +581,21 @@ components:
           type: string
         userDisplayName:
           description: UserDisplayName
+          type: string
+        userId:
+          description: UserId
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    SdkClientAccountFilter:
+      description: Additional query options
+      properties:
+        operator:
+          $ref: '#/components/schemas/FilterOperator'
+        searchText:
+          description: SearchText
           type: string
         userId:
           description: UserId

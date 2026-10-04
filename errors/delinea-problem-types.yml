@@ -1,0 +1,48 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/delinea-activations-api-openapi.yml
+- openapi/delinea-active-directory-api-openapi.yml
+- openapi/delinea-advancedconfigsettings-api-openapi.yml
+- openapi/delinea-api-token-api-openapi.yml
+- openapi/delinea-appclients-api-openapi.yml
+- openapi/delinea-applicationaccounts-api-openapi.yml
+- openapi/delinea-applicationrequest-api-openapi.yml
+- openapi/delinea-appstate-api-openapi.yml
+- openapi/delinea-bulk-operations-api-openapi.yml
+- openapi/delinea-bulk-user-operations-api-openapi.yml
+- openapi/delinea-bulksecretoperations-api-openapi.yml
+- openapi/delinea-bundle-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: BadRequestResponse
+coverage:
+  operations: 1037
+  statuses_declared: 3
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad request
+  operations: 1037
+  media_types:
+  - application/json
+  - application/octet-stream
+  schema: BadRequestResponse
+- status: 403
+  title: Forbidden
+  description: Authentication failed
+  operations: 1037
+  media_types:
+  - application/json
+  - application/octet-stream
+  schema: AuthenticationFailedResponse
+- status: 500
+  title: Internal Server Error
+  description: Internal server error
+  operations: 1037
+  media_types:
+  - application/json
+  - application/octet-stream
+  schema: InternalServerErrorResponse

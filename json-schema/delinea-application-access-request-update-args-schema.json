@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-application-access-request-update-args-schema.json",
+  "title": "ApplicationAccessRequestUpdateArgs",
+  "description": "ApplicationAccessRequestUpdateArgs",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-applicationrequest-api-openapi.yml#/components/schemas/ApplicationAccessRequestUpdateArgs",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/ApplicationAccessRequestUpdateModel"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ApplicationAccessRequestUpdateModel": {
+      "description": "Data",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/UpdateFieldValueOfApplicationAccessStatusRequestType"
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationAccessStatusRequestType": {
+      "description": "Status",
+      "properties": {},
+      "type": "string",
+      "enum": [
+        "Approved",
+        "Pending",
+        "Denied"
+      ]
+    },
+    "UpdateFieldValueOfApplicationAccessStatusRequestType": {
+      "description": "Application Access Status",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "#/$defs/ApplicationAccessStatusRequestType"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

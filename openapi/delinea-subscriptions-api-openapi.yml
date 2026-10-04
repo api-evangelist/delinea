@@ -80,6 +80,15 @@ components:
           type: integer
           format: int32
       type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -186,15 +195,6 @@ components:
           items:
             $ref: '#/components/schemas/CloudSubscriptionSummaryModel'
           type: array
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
       type: object
   securitySchemes:
     BearerToken:

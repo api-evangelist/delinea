@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-long-running-task-model-schema.json",
+  "title": "LongRunningTaskModel",
+  "description": "LongRunningTaskModel[]",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-clouddiagnostics-api-openapi.yml#/components/schemas/LongRunningTaskModel",
+  "properties": {
+    "createDate": {
+      "description": "When the task started running",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "expirationDate": {
+      "description": "The time that the task should expire",
+      "type": "string",
+      "format": "date-time"
+    },
+    "taskName": {
+      "description": "Name of the long running task or stale lock key",
+      "type": "string"
+    },
+    "timeToLive": {
+      "description": "How many more minutes the task has to live",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "type": "object"
+}

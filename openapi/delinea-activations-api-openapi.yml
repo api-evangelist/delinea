@@ -56,23 +56,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    OnlineActivationArgs:
-      description: Online Secret Server Activation Arguments
-      required:
-      - name
-      - phoneNumber
-      - email
-      properties:
-        email:
-          description: Email of person performing activation
-          type: string
-        name:
-          description: Name of person performing activation
-          type: string
-        phoneNumber:
-          description: Phone Number of person performing activation
-          type: string
-      type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
       required:
@@ -120,6 +103,23 @@ components:
         modelState:
           description: An object describing validation errors
           type: object
+      type: object
+    OnlineActivationArgs:
+      description: Online Secret Server Activation Arguments
+      required:
+      - name
+      - phoneNumber
+      - email
+      properties:
+        email:
+          description: Email of person performing activation
+          type: string
+        name:
+          description: Name of person performing activation
+          type: string
+        phoneNumber:
+          description: Phone Number of person performing activation
+          type: string
       type: object
   securitySchemes:
     BearerToken:

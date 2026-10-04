@@ -348,15 +348,39 @@ paths:
       deprecated: false
 components:
   schemas:
-    DomainNameIndexCreateModel:
+    DomainNameIndexCreateArgs:
+      description: DomainNameIndexCreateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DomainNameIndexCreateModel'
+      type: object
+    DomainResolveType:
+      description: DomainResolveType
+      properties: {}
+      type: string
+      enum:
+      - CouldNotResolve
+      - MatchedDomainInDb
+      - MatchedFQDNOrFriendlyOrNetBIOSInDb
+      - MatchedFriendlyNameWithAd
+      - ManualUserInputDiscoverySourceId
+    DomainNameIndexExpireUpdateModel:
       description: Data
       properties:
-        discoverySourceIdSuggested:
+        domainNameIndexId:
           $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        domainMarkedAsIgnored:
+        reIndexNow:
           $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-        domainNameDiscovered:
-          $ref: '#/components/schemas/UpdateFieldValueOfString'
+      type: object
+    UpdateFieldValueOfString:
+      description: Description
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type: string
       type: object
     DomainNameIndexSummary:
       description: Query results
@@ -402,6 +426,26 @@ components:
           type: string
           format: date-time
       type: object
+    SortDirection:
+      description: Sort direction
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Asc
+      - Desc
+    DomainNameIndexExpireUpdateArgs:
+      description: DomainNameIndexExpireUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DomainNameIndexExpireUpdateModel'
+      type: object
+    DomainNameIndexUpdateArgs:
+      description: DomainNameIndexUpdateArgs
+      properties:
+        data:
+          $ref: '#/components/schemas/DomainNameIndexUpdateModel'
+      type: object
     Severity:
       description: Error severity level
       properties: {}
@@ -412,22 +456,6 @@ components:
       - Warn
       - Critical
       - Fatal
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
     DomainNameIndexModel:
       description: Domain Name Index
       properties:
@@ -472,60 +500,15 @@ components:
           type: string
           format: date-time
       type: object
-    DomainNameIndexUpdateModel:
+    DomainNameIndexCreateModel:
       description: Data
       properties:
         discoverySourceIdSuggested:
           $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
         domainMarkedAsIgnored:
           $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-      type: object
-    DomainNameIndexCreateArgs:
-      description: DomainNameIndexCreateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/DomainNameIndexCreateModel'
-      type: object
-    SortDirection:
-      description: Sort direction
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Asc
-      - Desc
-    DomainNameIndexExpireUpdateModel:
-      description: Data
-      properties:
-        domainNameIndexId:
-          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
-        reIndexNow:
-          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
-      type: object
-    DomainNameIndexUpdateArgs:
-      description: DomainNameIndexUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/DomainNameIndexUpdateModel'
-      type: object
-    AuthenticationFailedResponse:
-      description: Response object for authentication failures
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-      type: object
-    UpdateFieldValueOfString:
-      description: Description
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type: string
+        domainNameDiscovered:
+          $ref: '#/components/schemas/UpdateFieldValueOfString'
       type: object
     PagingOfDomainNameIndexSummary:
       description: Specify paging and sorting options for querying records and returning results
@@ -584,6 +567,44 @@ components:
           type: integer
           format: int32
       type: object
+    UpdateFieldValueOfOptionalInt32:
+      description: The minimum length required for local user passwords
+      properties:
+        dirty:
+          description: Dirty
+          type: boolean
+        value:
+          description: Value
+          type:
+          - integer
+          - 'null'
+          format: int32
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    AuthenticationFailedResponse:
+      description: Response object for authentication failures
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
     BadRequestResponse:
       description: Response object for invalid requests
       required:
@@ -601,25 +622,6 @@ components:
         modelState:
           description: An object describing validation errors
           type: object
-      type: object
-    UpdateFieldValueOfOptionalInt32:
-      description: The minimum length required for local user passwords
-      properties:
-        dirty:
-          description: Dirty
-          type: boolean
-        value:
-          description: Value
-          type:
-          - integer
-          - 'null'
-          format: int32
-      type: object
-    DomainNameIndexExpireUpdateArgs:
-      description: DomainNameIndexExpireUpdateArgs
-      properties:
-        data:
-          $ref: '#/components/schemas/DomainNameIndexExpireUpdateModel'
       type: object
     InternalServerErrorResponse:
       description: Response object for internal server errors
@@ -642,16 +644,14 @@ components:
           description: Exception stack trace
           type: string
       type: object
-    DomainResolveType:
-      description: DomainResolveType
-      properties: {}
-      type: string
-      enum:
-      - CouldNotResolve
-      - MatchedDomainInDb
-      - MatchedFQDNOrFriendlyOrNetBIOSInDb
-      - MatchedFriendlyNameWithAd
-      - ManualUserInputDiscoverySourceId
+    DomainNameIndexUpdateModel:
+      description: Data
+      properties:
+        discoverySourceIdSuggested:
+          $ref: '#/components/schemas/UpdateFieldValueOfOptionalInt32'
+        domainMarkedAsIgnored:
+          $ref: '#/components/schemas/UpdateFieldValueOfBoolean'
+      type: object
     UpdateFieldValueOfBoolean:
       description: Active
       properties:

@@ -827,234 +827,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    Severity:
-      description: Error severity level
-      properties: {}
-      type: string
-      enum:
-      - None
-      - Retry
-      - Warn
-      - Critical
-      - Fatal
-    PagingOfIpAddressRestrictionSummary:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/IpAddressRestrictionSummary'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    IpAddressRestrictionUpdateArgs:
-      description: IpAddressRestrictionUpdateArgs
-      properties:
-        id:
-          description: Id
-          type: integer
-          format: int32
-        name:
-          description: Name
-          type: string
-        range:
-          description: Range
-          type: string
-      type: object
-    IpAddressRestrictionSummary:
-      description: Query results
-      properties:
-        id:
-          description: Id
-          type: integer
-          format: int32
-        name:
-          description: Name
-          type: string
-        range:
-          description: Range
-          type: string
-      type: object
-    PagingOfUserIpAddressRestrictionModel:
-      description: Specify paging and sorting options for querying records and returning results
-      properties:
-        batchCount:
-          description: Number of result batches available with current query options
-          type: integer
-          format: int32
-        currentPage:
-          description: Index of current result page
-          type: integer
-          format: int32
-        hasNext:
-          description: Whether there are any results in additional pages
-          type: boolean
-        hasPrev:
-          description: Whether there are any results in previous pages
-          type: boolean
-        nextSkip:
-          description: Correct value of 'skip' for the next page of results
-          type: integer
-          format: int32
-        pageCount:
-          description: Number of result pages available with current query options
-          type: integer
-          format: int32
-        prevSkip:
-          description: Correct value of 'skip' for the previous page of results
-          type: integer
-          format: int32
-        records:
-          description: Query results
-          items:
-            $ref: '#/components/schemas/UserIpAddressRestrictionModel'
-          type: array
-        severity:
-          $ref: '#/components/schemas/Severity'
-        skip:
-          description: Number of records to skip before taking results
-          type: integer
-          format: int32
-        sortBy:
-          description: List of sort properties
-          items:
-            $ref: '#/components/schemas/Sort'
-          type: array
-        success:
-          description: Whether the query executed successfully
-          type: boolean
-        take:
-          description: Maximum number of records to include in results
-          type: integer
-          format: int32
-        total:
-          description: Total number of results available
-          type: integer
-          format: int32
-      type: object
-    BadRequestResponse:
-      description: Response object for invalid requests
-      required:
-      - message
-      properties:
-        message:
-          description: Error message
-          type: string
-        messageDetail:
-          description: Error message detail
-          type: string
-        errorCode:
-          description: Error message code
-          type: string
-        modelState:
-          description: An object describing validation errors
-          type: object
-      type: object
-    GroupIpAddressRestrictionCreateArgs:
-      description: GroupIpAddressRestrictionCreateArgs
-      required:
-      - groupId
-      - ipAddressRestrictionId
-      properties:
-        groupId:
-          description: GroupId
-          type: integer
-          format: int32
-        ipAddressRestrictionId:
-          description: IpAddressRestrictionId
-          type: integer
-          format: int32
-      type: object
-    InternalServerErrorResponse:
-      description: Response object for internal server errors
-      required:
-      - message
-      - exceptionMessage
-      - exceptionType
-      - stackTrace
-      properties:
-        message:
-          description: Error message
-          type: string
-        exceptionMessage:
-          description: Error message from exception
-          type: string
-        exceptionType:
-          description: Exception type
-          type: string
-        stackTrace:
-          description: Exception stack trace
-          type: string
-      type: object
-    GroupIpAddressRestrictionModel:
-      description: GroupIpAddressRestrictionModel
-      properties:
-        groupId:
-          description: GroupId
-          type: integer
-          format: int32
-        groupName:
-          description: GroupName
-          type: string
-        id:
-          description: Id
-          type: integer
-          format: int32
-        ipAddressRestrictionId:
-          description: IpAddressRestrictionId
-          type: integer
-          format: int32
-        ipAddressRestrictionName:
-          description: IpAddressRestrictionName
-          type: string
-      type: object
     UserIpAddressRestrictionModel:
       description: UserIpAddressRestrictionModel
       properties:
@@ -1079,22 +851,6 @@ components:
         userName:
           description: UserName
           type: string
-      type: object
-    DeletedModel:
-      description: Information about an object that was deleted
-      properties:
-        id:
-          description: ID of the deleted object
-          type: integer
-          format: int32
-        objectType:
-          description: Type of the deleted object
-          type: string
-        responseCodes:
-          description: List of response codes from the delete operation
-          items:
-            type: string
-          type: array
       type: object
     PagingOfGroupIpAddressRestrictionModel:
       description: Specify paging and sorting options for querying records and returning results
@@ -1153,6 +909,31 @@ components:
           type: integer
           format: int32
       type: object
+    GroupIpAddressRestrictionCreateArgs:
+      description: GroupIpAddressRestrictionCreateArgs
+      required:
+      - groupId
+      - ipAddressRestrictionId
+      properties:
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+        ipAddressRestrictionId:
+          description: IpAddressRestrictionId
+          type: integer
+          format: int32
+      type: object
+    Severity:
+      description: Error severity level
+      properties: {}
+      type: string
+      enum:
+      - None
+      - Retry
+      - Warn
+      - Critical
+      - Fatal
     SortDirection:
       description: Sort direction
       properties: {}
@@ -1161,6 +942,228 @@ components:
       - None
       - Asc
       - Desc
+    PagingOfUserIpAddressRestrictionModel:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/UserIpAddressRestrictionModel'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    GroupIpAddressRestrictionModel:
+      description: GroupIpAddressRestrictionModel
+      properties:
+        groupId:
+          description: GroupId
+          type: integer
+          format: int32
+        groupName:
+          description: GroupName
+          type: string
+        id:
+          description: Id
+          type: integer
+          format: int32
+        ipAddressRestrictionId:
+          description: IpAddressRestrictionId
+          type: integer
+          format: int32
+        ipAddressRestrictionName:
+          description: IpAddressRestrictionName
+          type: string
+      type: object
+    UserIpAddressRestrictionCreateArgs:
+      description: UserIpAddressRestrictionCreateArgs
+      required:
+      - userId
+      - ipAddressRestrictionId
+      properties:
+        ipAddressRestrictionId:
+          description: IpAddressRestrictionId
+          type: integer
+          format: int32
+        userId:
+          description: UserId
+          type: integer
+          format: int32
+      type: object
+    PagingOfIpAddressRestrictionSummary:
+      description: Specify paging and sorting options for querying records and returning results
+      properties:
+        batchCount:
+          description: Number of result batches available with current query options
+          type: integer
+          format: int32
+        currentPage:
+          description: Index of current result page
+          type: integer
+          format: int32
+        hasNext:
+          description: Whether there are any results in additional pages
+          type: boolean
+        hasPrev:
+          description: Whether there are any results in previous pages
+          type: boolean
+        nextSkip:
+          description: Correct value of 'skip' for the next page of results
+          type: integer
+          format: int32
+        pageCount:
+          description: Number of result pages available with current query options
+          type: integer
+          format: int32
+        prevSkip:
+          description: Correct value of 'skip' for the previous page of results
+          type: integer
+          format: int32
+        records:
+          description: Query results
+          items:
+            $ref: '#/components/schemas/IpAddressRestrictionSummary'
+          type: array
+        severity:
+          $ref: '#/components/schemas/Severity'
+        skip:
+          description: Number of records to skip before taking results
+          type: integer
+          format: int32
+        sortBy:
+          description: List of sort properties
+          items:
+            $ref: '#/components/schemas/Sort'
+          type: array
+        success:
+          description: Whether the query executed successfully
+          type: boolean
+        take:
+          description: Maximum number of records to include in results
+          type: integer
+          format: int32
+        total:
+          description: Total number of results available
+          type: integer
+          format: int32
+      type: object
+    Sort:
+      description: Sort options. Multiple sort options can be provided in the query string.
+      required:
+      - name
+      - direction
+      properties:
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+        name:
+          description: Sort field name
+          type: string
+        priority:
+          description: Priority index. Sorts with lower values are executed earlier
+          type: integer
+          format: int32
+      type: object
+    DeletedModel:
+      description: Information about an object that was deleted
+      properties:
+        id:
+          description: ID of the deleted object
+          type: integer
+          format: int32
+        objectType:
+          description: Type of the deleted object
+          type: string
+        responseCodes:
+          description: List of response codes from the delete operation
+          items:
+            type: string
+          type: array
+      type: object
+    BadRequestResponse:
+      description: Response object for invalid requests
+      required:
+      - message
+      properties:
+        message:
+          description: Error message
+          type: string
+        messageDetail:
+          description: Error message detail
+          type: string
+        errorCode:
+          description: Error message code
+          type: string
+        modelState:
+          description: An object describing validation errors
+          type: object
+      type: object
+    InternalServerErrorResponse:
+      description: Response object for internal server errors
+      required:
+      - message
+      - exceptionMessage
+      - exceptionType
+      - stackTrace
+      properties:
+        message:
+          description: Error message
+          type: string
+        exceptionMessage:
+          description: Error message from exception
+          type: string
+        exceptionType:
+          description: Exception type
+          type: string
+        stackTrace:
+          description: Exception stack trace
+          type: string
+      type: object
     AuthenticationFailedResponse:
       description: Response object for authentication failures
       required:
@@ -1172,6 +1175,34 @@ components:
       type: object
     IpAddressRestrictionModel:
       description: IpAddressRestrictionModel
+      properties:
+        id:
+          description: Id
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+        range:
+          description: Range
+          type: string
+      type: object
+    IpAddressRestrictionSummary:
+      description: Query results
+      properties:
+        id:
+          description: Id
+          type: integer
+          format: int32
+        name:
+          description: Name
+          type: string
+        range:
+          description: Range
+          type: string
+      type: object
+    IpAddressRestrictionUpdateArgs:
+      description: IpAddressRestrictionUpdateArgs
       properties:
         id:
           description: Id
@@ -1196,37 +1227,6 @@ components:
         range:
           description: Range
           type: string
-      type: object
-    Sort:
-      description: Sort options. Multiple sort options can be provided in the query string.
-      required:
-      - name
-      - direction
-      properties:
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-        name:
-          description: Sort field name
-          type: string
-        priority:
-          description: Priority index. Sorts with lower values are executed earlier
-          type: integer
-          format: int32
-      type: object
-    UserIpAddressRestrictionCreateArgs:
-      description: UserIpAddressRestrictionCreateArgs
-      required:
-      - userId
-      - ipAddressRestrictionId
-      properties:
-        ipAddressRestrictionId:
-          description: IpAddressRestrictionId
-          type: integer
-          format: int32
-        userId:
-          description: UserId
-          type: integer
-          format: int32
       type: object
   securitySchemes:
     BearerToken:

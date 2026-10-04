@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/delinea/main/json-schema/delinea-domain-name-index-expire-update-args-schema.json",
+  "title": "DomainNameIndexExpireUpdateArgs",
+  "description": "DomainNameIndexExpireUpdateArgs",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/delinea-domainnameindex-api-openapi.yml#/components/schemas/DomainNameIndexExpireUpdateArgs",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/DomainNameIndexExpireUpdateModel"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "DomainNameIndexExpireUpdateModel": {
+      "description": "Data",
+      "properties": {
+        "domainNameIndexId": {
+          "$ref": "#/$defs/UpdateFieldValueOfOptionalInt32"
+        },
+        "reIndexNow": {
+          "$ref": "#/$defs/UpdateFieldValueOfBoolean"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateFieldValueOfBoolean": {
+      "description": "Active",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Value",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateFieldValueOfOptionalInt32": {
+      "description": "The minimum length required for local user passwords",
+      "properties": {
+        "dirty": {
+          "description": "Dirty",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Value",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      },
+      "type": "object"
+    }
+  }
+}
