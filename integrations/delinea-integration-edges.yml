@@ -10,6 +10,9 @@ checked:
 - https://addons.mozilla.org/api/v5/addons/addon/<slug>/
 - https://addons.mozilla.org/api/v5/addons/search/?type=extension&app=firefox
 - https://chromewebstore.google.com/sitemap
+- https://api.first.org/data/v1/teams
+- https://raw.githubusercontent.com/CVEProject/cve-website/dev/src/assets/data/CNAsList.json
+- https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -129,6 +132,47 @@ edges:
   apps:
   - Delinea Web Password Filler
   - Delinea Credential Manager
+- partner_name: CVE Program (CVE Numbering Authorities)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.cve.org/PartnerInformation/ListofPartners/partner/Delinea
+  category: Vulnerability disclosure (CVE Numbering Authority)
+  contract_reference:
+    register: CVE Program CNA list (github.com/CVEProject/cve-website CNAsList.json @ 239d3d9b68e0)
+    standard: CVE Program CNA Operational Rules (CVE Numbering Authority)
+    spec_file: null
+    role: cve-numbering-authority
+    registered_name: Delinea, Inc.
+    matched_domain: delinea.com
+    matched_by: domain
+    cna_id: CNA-2024-0086
+    cna_short_name: Delinea
+    cna_types:
+    - Vendor
+    - Hosted Service
+    - Researcher
+    cna_roles:
+    - CNA
+    scope: Vulnerabilities in Delinea products or services listed on <a href='https://www.delinea.com' target='_blank'>delinea.com</a>,
+      or vulnerabilities in third-party products or services discovered by or reported to Delinea, unless covered
+      by the scope of another CNA.
+    top_level_root: MITRE Corporation
+    root: n/a
+    security_advisories:
+    - https://trust.delinea.com/
+    disclosure_policy:
+    - https://trust.delinea.com/?itemUid=56583ca0-6561-4cf3-a150-8c0c45d214cf
+    country: USA
+    signal_note: listing as a CVE Numbering Authority = participation (a public commitment to assign CVE IDs and
+      publish advisories for its scope); never a count of CVEs
+    detected_by: sweep-vulnerability-disclosure-cna.py
+    detected: '2026-10-22'
+  detected_by: sweep-vulnerability-disclosure-cna.py
+  first_seen: '2026-10-22'
 source:
 - microsoft-sentinel/integrations/microsoft-sentinel-integration-edges.yml
 - palo-alto-networks/integrations/palo-alto-networks-integration-edges.yml
