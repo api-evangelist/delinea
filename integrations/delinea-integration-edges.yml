@@ -13,6 +13,7 @@ checked:
 - https://api.first.org/data/v1/teams
 - https://raw.githubusercontent.com/CVEProject/cve-website/dev/src/assets/data/CNAsList.json
 - https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+- ansible/integrations/ansible-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -30,46 +31,6 @@ edges:
   seller_name: Delinea Inc.
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-- partner_name: Microsoft Sentinel (own)
-  partner: microsoft-sentinel
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://github.com/Azure/Azure-Sentinel/tree/master/Solutions/Delinea%20Platform
-  mirror_of: microsoft-sentinel/integrations/microsoft-sentinel-integration-edges.yml
-  apps:
-  - Delinea Platform
-  - Delinea Secret Server
-  listing_count: 2
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Identity
-  badges:
-  - support-tier:partner
-- partner_name: Palo Alto Networks (own)
-  partner: palo-alto-networks
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://cortex.marketplace.pan.dev/marketplace/details/DelineaDSV/
-  mirror_of: palo-alto-networks/integrations/palo-alto-networks-integration-edges.yml
-  apps:
-  - Delinea DevOps Secrets Vault
-  - Delinea Secret Server
-  listing_count: 2
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Identity and Access Management
-  badges:
-  - support:partner
 - partner_name: CISA Secure by Design Pledge
   partner: null
   partner_match: register-name
@@ -173,6 +134,68 @@ edges:
     detected: '2026-10-22'
   detected_by: sweep-vulnerability-disclosure-cna.py
   first_seen: '2026-10-22'
+- partner_name: Microsoft Sentinel (own)
+  partner: microsoft-sentinel
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://github.com/Azure/Azure-Sentinel/tree/master/Solutions/Delinea%20Platform
+  mirror_of: microsoft-sentinel/integrations/microsoft-sentinel-integration-edges.yml
+  apps:
+  - Delinea Platform
+  - Delinea Secret Server
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Identity
+  badges:
+  - support-tier:partner
+- partner_name: Palo Alto Networks (own)
+  partner: palo-alto-networks
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://cortex.marketplace.pan.dev/marketplace/details/DelineaDSV/
+  mirror_of: palo-alto-networks/integrations/palo-alto-networks-integration-edges.yml
+  apps:
+  - Delinea DevOps Secrets Vault
+  - Delinea Secret Server
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Identity and Access Management
+  badges:
+  - support:partner
+- partner_name: Ansible (ansible-galaxy)
+  partner: ansible
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: ansible-galaxy
+  evidence: https://galaxy.ansible.com/ui/repo/published/delinea/ss/
+  mirror_of: ansible/integrations/ansible-integration-edges.yml
+  apps:
+  - delinea.ss
+  - delinea.platform_secretserver
+  - delinea.core
+  - delinea.pas
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: configuration-management content listing (Ansible collection)
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
 source:
 - microsoft-sentinel/integrations/microsoft-sentinel-integration-edges.yml
 - palo-alto-networks/integrations/palo-alto-networks-integration-edges.yml
